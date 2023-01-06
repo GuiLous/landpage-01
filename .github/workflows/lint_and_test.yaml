@@ -1,0 +1,35 @@
+name: Lint & Test
+
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1.4.4
+        with:
+          node-version: '12'
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: run prettier
+        run: npx prettier --check src
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v1.4.4
+        with:
+          node-version: '12'
+
+      - name: Install dependencies
+        run: npm i
+
+      - name: run jest tests
+        run: npm test
