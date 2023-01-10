@@ -14,7 +14,16 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --watchAll=false"
+    "test": "craco test --watchAll=false",
+    "test-w-coverage": "craco test --coverage --watchAll=false"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/",
+      "!src/index.js",
+      "!src/reportWebVitals.js"
+    ]
   },
   "eslintConfig": {
     "extends": [
