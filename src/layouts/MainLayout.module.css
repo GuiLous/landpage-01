@@ -1,0 +1,25 @@
+.container {
+	background-color: #062339;
+}
+
+.content {
+	min-height: calc(100vh - 120px);
+}
+
+/* .container {
+	bottom: 0;
+	color: white;
+	position: fixed;
+	right: -370px;
+	top: 0;
+	width: 370px;
+	padding: 20px;
+	background-color: #081929;
+	box-shadow: -2px 0px 8px 0px rgba(0, 0, 0, 0.51);
+	z-index: 20;
+	transition: all 150ms ease-in;
+}
+
+.container.visible {
+	right: 0;
+} */

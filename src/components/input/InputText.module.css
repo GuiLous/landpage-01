@@ -1,0 +1,12 @@
+.container {
+	flex: 1;
+}
+
+.container input {
+	border: none;
+	color: var(--color-secondary-dark);
+	flex: 1;
+	font-size: 15px;
+	font-weight: 600;
+	padding: 0 10px;
+}

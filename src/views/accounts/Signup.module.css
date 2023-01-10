@@ -1,0 +1,9 @@
+.steamSignin {
+	margin-top: 20px;
+}
+
+.fakeSigninForm {
+	border-top: 1px solid rgba(255, 255, 255, 0.1);
+	margin-top: 30px;
+	padding-top: 30px;
+}
