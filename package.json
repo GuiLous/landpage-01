@@ -29,8 +29,8 @@
     "test-w-coverage": "craco test --coverage --watchAll=false",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "format": "npx prettier --write src",
-    "lint": "npx prettier --check src"
+    "format": "npx prettier --write src public",
+    "lint": "npx prettier --check src public"
   },
   "jest": {
     "collectCoverageFrom": [
