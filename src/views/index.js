@@ -12,11 +12,11 @@ import VerifyView from './accounts/Verify'
 import LobbyView from './matchmaking/Lobby'
 
 export {
-	HomeView,
-	NotFoundView,
-	AuthView,
-	SignupView,
-	VerifyView,
-	ProfileView,
-	LobbyView,
+  HomeView,
+  NotFoundView,
+  AuthView,
+  SignupView,
+  VerifyView,
+  ProfileView,
+  LobbyView,
 }

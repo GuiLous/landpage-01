@@ -1,25 +1,25 @@
 .container {
-	background-color: black;
-	background-image: url('@assets/images/home_bg.png');
-	background-repeat: no-repeat;
-	background-size: cover;
-	color: white;
-	height: 100vh;
-	padding: 0 100px;
+    background-color: black;
+    background-image: url('@assets/images/home_bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100vh;
+    padding: 0 100px;
 }
 
 .steamSignin {
-	margin-top: 20px;
+    margin-top: 20px;
 }
 
 .fakeSigninForm {
-	border-top: 1px solid rgba(255, 255, 255, 0.1);
-	margin-top: 30px;
-	padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 30px;
+    padding-top: 30px;
 }
 
 @media (max-width: 600px) {
-	.container {
-		padding: 0 40px;
-	}
+    .container {
+        padding: 0 40px;
+    }
 }

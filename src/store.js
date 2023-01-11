@@ -6,11 +6,11 @@ import DrawerReducer from './slices/DrawerSlice'
 import NotificationReducer from './slices/NotificationSlice'
 
 export default configureStore({
-	reducer: {
-		user: UserReducer,
-		toasts: ToastReducer,
-		drawer: DrawerReducer,
-		notifications: NotificationReducer,
-	},
-	devTools: true,
+  reducer: {
+    user: UserReducer,
+    toasts: ToastReducer,
+    drawer: DrawerReducer,
+    notifications: NotificationReducer,
+  },
+  devTools: true,
 })

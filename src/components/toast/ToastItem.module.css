@@ -1,123 +1,123 @@
 .container {
-	animation: show 300ms ease-out;
-	align-items: stretch;
-	backdrop-filter: blur(10px);
-	box-shadow: var(--box-shadow);
-	flex: 1;
-	opacity: 0.7;
-	position: relative;
+    animation: show 300ms ease-out;
+    align-items: stretch;
+    backdrop-filter: blur(10px);
+    box-shadow: var(--box-shadow);
+    flex: 1;
+    opacity: 0.7;
+    position: relative;
 
-	transition: all 100ms linear;
+    transition: all 100ms linear;
 }
 
 .container.leaving {
-	animation: hide 300ms ease-out;
+    animation: hide 300ms ease-out;
 }
 
 .container:hover {
-	opacity: 1;
+    opacity: 1;
 }
 
 .container.info {
-	background: linear-gradient(
-		90deg,
-		rgba(71, 122, 209, 0.3) 0%,
-		rgba(22, 61, 99, 1) 100%
-	);
+    background: linear-gradient(
+        90deg,
+        rgba(71, 122, 209, 0.3) 0%,
+        rgba(22, 61, 99, 1) 100%
+    );
 }
 
 .container.success {
-	background: linear-gradient(
-		90deg,
-		rgba(49, 129, 71, 0.3) 0%,
-		rgba(22, 61, 99, 1) 100%
-	);
+    background: linear-gradient(
+        90deg,
+        rgba(49, 129, 71, 0.3) 0%,
+        rgba(22, 61, 99, 1) 100%
+    );
 }
 
 .container.warning {
-	background: linear-gradient(
-		90deg,
-		rgba(164, 134, 35, 0.3) 0%,
-		rgba(22, 61, 99, 1) 100%
-	);
+    background: linear-gradient(
+        90deg,
+        rgba(164, 134, 35, 0.3) 0%,
+        rgba(22, 61, 99, 1) 100%
+    );
 }
 
 .container.danger {
-	background: linear-gradient(
-		90deg,
-		rgba(183, 36, 36, 0.3) 0%,
-		rgba(22, 61, 99, 1) 100%
-	);
+    background: linear-gradient(
+        90deg,
+        rgba(183, 36, 36, 0.3) 0%,
+        rgba(22, 61, 99, 1) 100%
+    );
 }
 
 .title {
-	font-size: 16px;
-	font-weight: bold;
-	user-select: none;
+    font-size: 16px;
+    font-weight: bold;
+    user-select: none;
 }
 
 .danger .title {
-	color: var(--color-danger-background);
+    color: var(--color-danger-background);
 }
 
 .warning .title {
-	color: var(--color-warning-background);
+    color: var(--color-warning-background);
 }
 
 .info .title {
-	color: var(--color-info-background);
+    color: var(--color-info-background);
 }
 
 .success .title {
-	color: var(--color-success-background);
+    color: var(--color-success-background);
 }
 
 .indicator {
-	align-items: center;
-	flex: 1;
-	font-size: 20px;
-	justify-content: center;
-	max-width: 50px;
+    align-items: center;
+    flex: 1;
+    font-size: 20px;
+    justify-content: center;
+    max-width: 50px;
 }
 
 .danger .indicator {
-	color: var(--color-danger);
+    color: var(--color-danger);
 }
 
 .warning .indicator {
-	color: var(--color-warning);
+    color: var(--color-warning);
 }
 
 .info .indicator {
-	color: var(--color-info);
+    color: var(--color-info);
 }
 
 .success .indicator {
-	color: var(--color-success);
+    color: var(--color-success);
 }
 
 .content {
-	flex: 3;
-	font-size: 14px;
-	padding: 14px;
-	padding-left: 0;
-	user-select: none;
+    flex: 3;
+    font-size: 14px;
+    padding: 14px;
+    padding-left: 0;
+    user-select: none;
 }
 
 @keyframes show {
-	0% {
-		left: 450px;
-	}
-	100% {
-		left: 0;
-	}
+    0% {
+        left: 450px;
+    }
+    100% {
+        left: 0;
+    }
 }
 
 @keyframes hide {
-	0% {
-		left: 0;
-	}
-	100% {
-		left: 450px;
-	}
+    0% {
+        left: 0;
+    }
+    100% {
+        left: 450px;
+    }
 }

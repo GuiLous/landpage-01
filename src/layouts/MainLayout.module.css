@@ -1,9 +1,9 @@
 .container {
-	background-color: #062339;
+    background-color: #062339;
 }
 
 .content {
-	min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 120px);
 }
 
 /* .container {

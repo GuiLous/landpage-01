@@ -8,17 +8,17 @@ import App from './App'
 import './index.css'
 
 const Application = render(
-	<ChakraProvider>
-		<BrowserRouter>
-			<Provider store={store}>
-				<App />
-			</Provider>
-		</BrowserRouter>
-	</ChakraProvider>
+  <ChakraProvider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
+  </ChakraProvider>
 )
 
 test('sample test', () => {
-	expect(true).toBeTruthy()
+  expect(true).toBeTruthy()
 })
 
 // test('renders learn react link', () => {

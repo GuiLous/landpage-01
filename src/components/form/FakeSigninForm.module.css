@@ -1,31 +1,31 @@
 .container form {
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	text-align: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
 }
 
 .title {
-	text-transform: uppercase;
+    text-transform: uppercase;
 }
 
 .formset {
-	margin-top: 10px;
-	width: 70%;
+    margin-top: 10px;
+    width: 70%;
 }
 
 .input {
-	flex: 75;
+    flex: 75;
 }
 
 .button {
-	flex: 25;
+    flex: 25;
 }
 
 .helper {
-	font-size: 14px;
-	margin-top: 10px;
-	padding: 10px;
-	width: 70%;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 70%;
 }
