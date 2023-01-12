@@ -1,20 +1,20 @@
-import { Button } from '@chakra-ui/react'
+import { Button, FormControl, FormLabel } from '@chakra-ui/react'
 import { useState } from 'react'
 
-import { Container, InputText } from '@components'
+import { Container, Input } from '@components'
 import { REACT_APP_API_URL } from '@config'
-import { validateEmail } from '../input/Validators'
+import { isEmailValid } from '../input/Validators'
 import style from './FakeSigninForm.module.css'
 
-export default function FakeSigninForm(props) {
+export default function FakeSigninForm({ fetching, onSubmit }) {
   const [value, setValue] = useState()
 
   const handleButtonClick = () => {
-    if (validateEmail(value)) props.onSubmit({ email: value })
+    if (isEmailValid(value)) onSubmit({ email: value })
   }
 
-  const handleChange = (value) => {
-    setValue(value)
+  const handleChange = (event) => {
+    setValue(event.target.value)
   }
 
   const handleSubmit = (event) => {
@@ -24,35 +24,39 @@ export default function FakeSigninForm(props) {
   const formAction = `${REACT_APP_API_URL}/api/accounts/fake-signup/`
 
   return (
-    <Container align="center" justify="center" className={style.container}>
-      <form action={formAction} method="POST" onSubmit={handleSubmit}>
-        <p className={style.title}>Entre sem uma conta da Steam</p>
+    <Container className={style.container}>
+      <form
+        action={formAction}
+        method="POST"
+        onSubmit={handleSubmit}
+        style={{ width: '100%' }}
+      >
+        <Container className={style.formset} column>
+          <FormControl>
+            <FormLabel>Entrar sem Steam</FormLabel>
 
-        <Container align="stretch" justify="center" className={style.formset}>
-          <Container align="stretch" justify="center" weight={75}>
-            <InputText
+            <Input
               onChange={handleChange}
               type="email"
               name="email"
-              placeholder="E-mail"
+              placeholder="exemplo@email.com"
             />
-          </Container>
+          </FormControl>
 
-          <Container className={style.button} weight={25}>
+          <Container>
             <Button
-              label="Entrar"
+              style={{ flex: 1, marginTop: 16 }}
               onClick={handleButtonClick}
-              className={style.button}
-              disabled={!value || props.fetching || !validateEmail(value)}
-              animated={props.fetching}
-            />
+              isDisabled={!value || !isEmailValid(value)}
+              isLoading={fetching}
+              loadingText="Enviando"
+            >
+              Entrar
+            </Button>
           </Container>
         </Container>
 
-        <p className={style.helper}>
-          Disponível <b>somente para testes.</b> <br /> Caso o email informado
-          não seja encontrado, uma nova conta será criada com o email fornecido.
-        </p>
+        <p className={style.helper}>*Disponível somente para testes.</p>
       </form>
     </Container>
   )

@@ -1,9 +1,6 @@
 .container form {
-    align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
 }
 
 .title {
@@ -12,20 +9,9 @@
 
 .formset {
     margin-top: 10px;
-    width: 70%;
-}
-
-.input {
-    flex: 75;
-}
-
-.button {
-    flex: 25;
 }
 
 .helper {
-    font-size: 14px;
-    margin-top: 10px;
+    font-size: 12px;
     padding: 10px;
-    width: 70%;
 }
