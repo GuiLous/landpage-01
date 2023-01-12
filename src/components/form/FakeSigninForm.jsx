@@ -1,10 +1,10 @@
+import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
 
-import { Container } from '@components'
+import { Container, InputText } from '@components'
 import { REACT_APP_API_URL } from '@config'
-import style from './FakeSigninForm.module.css'
-import { InputText, Button } from '@components'
 import { validateEmail } from '../input/Validators'
+import style from './FakeSigninForm.module.css'
 
 export default function FakeSigninForm(props) {
   const [value, setValue] = useState()

@@ -1,5 +1,4 @@
 import TokenLogin from './auth/TokenLogin'
-import Button from './button/Button'
 import Container from './container/Container'
 import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
@@ -10,7 +9,6 @@ import ToastItem from './toast/ToastItem'
 import ToastList from './toast/ToastList'
 
 export {
-  Button,
   Container,
   FakeSigninForm,
   InputCheckbox,
