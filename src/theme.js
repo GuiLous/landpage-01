@@ -13,16 +13,16 @@ export default extendTheme({
         paddingRight: 20,
         borderRadius: 8,
         _hover: {
-          bg: 'primary.300',
-          backgroundColor: 'primary.300',
+          bg: 'primary.500',
+          backgroundColor: 'primary.500',
           _disabled: {
             bg: 'primary.400',
             backgroundColor: 'primary.400',
           },
         },
         _active: {
-          bg: 'primary.500',
-          backgroundColor: 'primary.500',
+          bg: 'primary.600',
+          backgroundColor: 'primary.600',
         },
       },
       variants: {
@@ -35,12 +35,13 @@ export default extendTheme({
           _hover: {
             bg: 'secondary.400',
             backgroundColor: 'secondary.400',
-            color: 'primary.400',
+            color: 'white',
           },
           _active: {
             bg: 'secondary.500',
             backgroundColor: 'secondary.500',
             borderColor: 'secondary.500',
+            color: 'white',
           },
         },
       },
@@ -87,9 +88,10 @@ export default extendTheme({
   },
   colors: {
     primary: {
-      300: '#34218C',
+      300: '#9882FF',
       400: '#6847FF',
-      500: '#1A1240',
+      500: '#34218C',
+      600: '#1A1240',
     },
 
     secondary: {
