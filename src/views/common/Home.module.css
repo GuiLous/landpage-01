@@ -11,6 +11,7 @@
 .animatedBg {
     position: absolute;
     z-index: 0;
+    top: 10px;
 }
 
 .animatedBg img {

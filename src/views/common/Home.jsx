@@ -4,11 +4,10 @@ import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { Container } from '@components'
-
 import animatedBg from '@assets/images/home_bg_animated.gif'
 import heroImg from '@assets/images/home_hero.png'
 import logo from '@assets/images/logo_type_white.svg'
+import { Container, Footer } from '@components'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -20,39 +19,48 @@ export default function HomeView() {
   })
 
   return (
-    <Container align="center" justify="center" className={style.container}>
-      <Container className={style.animatedBg} align="center" justify="center">
-        <img src={animatedBg} alt="Fundo animado" />
-      </Container>
-      <Container className={style.heroImg} align="center" justify="end">
-        <img src={heroImg} alt="Personagem do GTA 5" />
-      </Container>
-
-      <Container column className={style.hero} justify="center" gap={25}>
-        <Container className={style.brand}>
-          <img src={logo} alt="Reload" />
+    <Container
+      column
+      align="center"
+      justify="center"
+      className={style.container}
+    >
+      <Container align="center" justify="center">
+        <Container className={style.animatedBg} align="center" justify="center">
+          <img src={animatedBg} alt="Fundo animado" />
+        </Container>
+        <Container className={style.heroImg} align="center" justify="end">
+          <img src={heroImg} alt="Personagem do GTA 5" />
         </Container>
 
-        <Container className={style.description}>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut
-            tellus ex. Sed in orci risus. Morbi qui lacus eget tellus tristique
-            congue.
-          </p>
-        </Container>
-        <Container justify="between" className={style.actions} gap={12}>
-          <Button leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
-            Entrar com
-            <strong style={{ display: 'inline-block', marginLeft: 5 }}>
-              Steam
-            </strong>
-          </Button>
+        <Container column className={style.hero} justify="center" gap={25}>
+          <Container className={style.brand}>
+            <img src={logo} alt="Reload" />
+          </Container>
 
-          <Button variant={'secondary'}>
-            <SiDiscord style={{ fontSize: 26 }} />
-          </Button>
+          <Container className={style.description}>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas
+              ut tellus ex. Sed in orci risus. Morbi qui lacus eget tellus
+              tristique congue.
+            </p>
+          </Container>
+          <Container justify="between" className={style.actions} gap={12}>
+            <Button leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
+              Entrar com
+              <strong style={{ display: 'inline-block', marginLeft: 5 }}>
+                Steam
+              </strong>
+            </Button>
+
+            <Button variant={'secondary'}>
+              <SiDiscord style={{ fontSize: 26 }} />
+            </Button>
+          </Container>
         </Container>
       </Container>
+
+      <Footer />
     </Container>
   )
 }
