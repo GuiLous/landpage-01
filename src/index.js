@@ -9,12 +9,13 @@ import reportWebVitals from './reportWebVitals'
 import store from '@store'
 import App from './App'
 import './index.css'
+import theme from './theme'
 
 const container = document.getElementById('root')
 const root = createRoot(container)
 
 root.render(
-  <ChakraProvider>
+  <ChakraProvider theme={theme}>
     <BrowserRouter>
       <Provider store={store}>
         <App />
