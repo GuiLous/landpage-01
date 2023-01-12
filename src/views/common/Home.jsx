@@ -25,10 +25,11 @@ export default function HomeView() {
       justify="center"
       className={style.container}
     >
-      <Container align="center" justify="center">
+      <Container align="center">
         <Container className={style.animatedBg} align="center" justify="center">
           <img src={animatedBg} alt="Fundo animado" />
         </Container>
+
         <Container className={style.heroImg} align="center" justify="end">
           <img src={heroImg} alt="Personagem do GTA 5" />
         </Container>
