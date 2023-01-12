@@ -18,10 +18,16 @@
 
 .brand {
     max-width: 305px;
+    position: relative;
+    left: -5px;
 }
 
 .description {
     max-width: 310px;
     font-size: 16px;
     line-height: 28px;
+}
+
+.actions {
+    max-width: 305px;
 }

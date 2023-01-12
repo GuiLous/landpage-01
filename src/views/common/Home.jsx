@@ -1,4 +1,6 @@
+import { Button } from '@chakra-ui/react'
 import { useEffect } from 'react'
+import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,6 +35,18 @@ export default function HomeView() {
             tellus ex. Sed in orci risus. Morbi qui lacus eget tellus tristique
             congue.
           </p>
+        </Container>
+        <Container justify="between" className={style.actions} gap={12}>
+          <Button leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
+            Entrar com
+            <strong style={{ display: 'inline-block', marginLeft: 5 }}>
+              Steam
+            </strong>
+          </Button>
+
+          <Button variant={'secondary'}>
+            <SiDiscord style={{ fontSize: 26 }} />
+          </Button>
         </Container>
       </Container>
     </Container>
