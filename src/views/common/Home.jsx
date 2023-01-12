@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { Container } from '@components'
 
+import animatedBg from '@assets/images/home_bg_animated.gif'
 import heroImg from '@assets/images/home_hero.png'
 import logo from '@assets/images/logo_type_white.svg'
 import style from './Home.module.css'
@@ -20,6 +21,9 @@ export default function HomeView() {
 
   return (
     <Container align="center" justify="center" className={style.container}>
+      <Container className={style.animatedBg} align="center" justify="center">
+        <img src={animatedBg} alt="Fundo animado" />
+      </Container>
       <Container className={style.heroImg} align="center" justify="end">
         <img src={heroImg} alt="Personagem do GTA 5" />
       </Container>
