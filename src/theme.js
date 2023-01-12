@@ -44,6 +44,15 @@ export default extendTheme({
         },
       },
     },
+    Link: {
+      baseStyle: {
+        color: '#999999',
+        _hover: {
+          color: 'secondary.400',
+          textDecoration: 'none',
+        },
+      },
+    },
   },
   colors: {
     primary: {
