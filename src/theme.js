@@ -20,6 +20,10 @@ export default extendTheme({
             backgroundColor: 'primary.400',
           },
         },
+        _active: {
+          bg: 'primary.500',
+          backgroundColor: 'primary.500',
+        },
       },
       variants: {
         secondary: {
@@ -32,6 +36,11 @@ export default extendTheme({
             bg: 'secondary.400',
             backgroundColor: 'secondary.400',
             color: 'primary.400',
+          },
+          _active: {
+            bg: 'secondary.500',
+            backgroundColor: 'secondary.500',
+            borderColor: 'secondary.500',
           },
         },
       },
@@ -51,6 +60,9 @@ export default extendTheme({
           color: 'secondary.400',
           textDecoration: 'none',
         },
+        _active: {
+          color: 'secondary.500',
+        },
       },
     },
   },
@@ -58,10 +70,12 @@ export default extendTheme({
     primary: {
       300: '#34218C',
       400: '#6847FF',
+      500: '#1A1240',
     },
 
     secondary: {
       400: '#00E4C9',
+      500: '#00A1A1',
     },
   },
 })
