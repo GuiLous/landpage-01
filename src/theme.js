@@ -8,10 +8,10 @@ export default extendTheme({
         backgroundColor: 'primary.400',
         textTransform: 'uppercase',
         fontWeight: 'normal',
-        paddingTop: 6,
-        paddingBottom: 6,
+        minHeight: '44px',
         paddingLeft: 20,
         paddingRight: 20,
+        borderRadius: 8,
         _hover: {
           bg: 'primary.300',
           backgroundColor: 'primary.300',
@@ -46,6 +46,10 @@ export default extendTheme({
       },
       sizes: {
         lg: {
+          fontSize: '16px',
+          minHeight: '48px',
+        },
+        xl: {
           fontSize: '32px',
         },
         md: {
@@ -65,6 +69,21 @@ export default extendTheme({
         },
       },
     },
+    Input: {
+      baseStyle: {
+        field: {
+          color: 'gray.600',
+          bg: 'gray.400',
+          backgroundColor: 'gray.400',
+          fontWeight: 600,
+          fontSize: '16px',
+          _focus: {
+            bg: 'gray.300',
+            backgroundColor: 'gray.300',
+          },
+        },
+      },
+    },
   },
   colors: {
     primary: {
@@ -76,6 +95,13 @@ export default extendTheme({
     secondary: {
       400: '#00E4C9',
       500: '#00A1A1',
+    },
+
+    gray: {
+      300: '#ECECEC',
+      400: '#CCCCCC',
+      500: '#5D5D5D',
+      600: '#434343',
     },
   },
 })
