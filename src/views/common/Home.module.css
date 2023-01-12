@@ -50,6 +50,10 @@
     max-width: 305px;
 }
 
+.fakeSigninForm {
+    max-width: 310px;
+}
+
 @media (max-width: 1645px) {
     .heroImg {
         min-width: 1000px;

@@ -1,22 +1,52 @@
-import { Button } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { Button, Divider } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { SiDiscord, SiSteam } from 'react-icons/si'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import animatedBg from '@assets/images/home_bg_animated.gif'
 import heroImg from '@assets/images/home_hero.png'
 import logo from '@assets/images/logo_type_white.svg'
-import { Container, Footer } from '@components'
+import { Container, FakeSigninForm, Footer } from '@components'
+import { REACT_APP_ENV } from '@config'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
+import { update } from '@slices/UserSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const [fetching, setFetching] = useState(false)
 
   useEffect(() => {
     if (user && user.account && user.account.is_verified) navigate('/jogar')
   })
+
+  const onFakeSigninFormSubmit = async (form) => {
+    setFetching(true)
+    let response
+
+    response = await HttpService.post('accounts/fake-signup/', null, form)
+    if (response.error) {
+      dispatch(
+        addToast({
+          content: response.error,
+          type: 'danger',
+          title: 'Tente novamente',
+        })
+      )
+      setFetching(false)
+      return
+    }
+
+    dispatch(update(response))
+    StorageService.set('token', response.token)
+    if (response.account.is_verified) navigate('/jogar')
+    else navigate('/verificar')
+  }
 
   return (
     <Container
@@ -34,7 +64,7 @@ export default function HomeView() {
           <img src={heroImg} alt="Personagem do GTA 5" />
         </Container>
 
-        <Container column className={style.hero} justify="center" gap={25}>
+        <Container column className={style.hero} gap={25} justify="center">
           <Container className={style.brand}>
             <img src={logo} alt="Reload" />
           </Container>
@@ -46,18 +76,29 @@ export default function HomeView() {
               tristique congue.
             </p>
           </Container>
+
           <Container justify="between" className={style.actions} gap={12}>
-            <Button leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
+            <Button size={'lg'} leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
               Entrar com
               <strong style={{ display: 'inline-block', marginLeft: 5 }}>
                 Steam
               </strong>
             </Button>
 
-            <Button variant={'secondary'}>
+            <Button size={'lg'} variant={'secondary'}>
               <SiDiscord style={{ fontSize: 26 }} />
             </Button>
           </Container>
+
+          {REACT_APP_ENV === 'local' ? (
+            <Container className={style.fakeSigninForm} column>
+              <Divider />
+              <FakeSigninForm
+                fetching={fetching}
+                onSubmit={onFakeSigninFormSubmit}
+              />
+            </Container>
+          ) : null}
         </Container>
       </Container>
 
