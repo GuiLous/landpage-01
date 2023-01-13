@@ -1,10 +1,12 @@
-import { MainLayout } from '@layouts'
 import { Container } from '@components'
+import { MainLayout } from '@layouts'
 
 export default function LobbyView() {
   return (
     <MainLayout>
-      <Container style={{ padding: 10 }}>Lobby</Container>
+      <Container>
+        <h2>Lobby</h2>
+      </Container>
     </MainLayout>
   )
 }
