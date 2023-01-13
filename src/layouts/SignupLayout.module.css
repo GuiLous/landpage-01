@@ -1,0 +1,21 @@
+.container {
+    background-color: black;
+    background-image: url('@assets/images/signup_bg.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left bottom;
+    color: white;
+    height: 100vh;
+    position: relative;
+}
+
+.liquidObject {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.brand {
+    max-width: 305px;
+    margin-left: -30px;
+}
