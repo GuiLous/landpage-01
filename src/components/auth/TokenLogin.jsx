@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AuthService, StorageService } from '@services'
-import { update } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 
 export default function TokenLogin(props) {
   const navigate = useNavigate()
@@ -17,10 +17,10 @@ export default function TokenLogin(props) {
       const response = await AuthService.login(token)
       if (response.error) {
         StorageService.remove('token')
-        dispatch(update(null))
+        dispatch(updateUser(null))
         if (props.redirect) navigate('/')
       }
-      dispatch(update(response))
+      dispatch(updateUser(response))
 
       if (
         props.verifiedRequired &&

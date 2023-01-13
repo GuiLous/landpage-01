@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { AuthService, StorageService } from '@services'
-import { update } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 
 export default function AuthView() {
   // eslint-disable-next-line no-unused-vars
@@ -24,7 +24,7 @@ export default function AuthView() {
       const response = await AuthService.login(token)
 
       if (response) {
-        dispatch(update(response))
+        dispatch(updateUser(response))
         StorageService.set('token', token)
         redirectUser(response)
       } else {

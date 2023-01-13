@@ -15,7 +15,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { Container } from '@components'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { update } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 import style from './Verify.module.css'
 
 export default function VerifyView() {
@@ -53,7 +53,7 @@ export default function VerifyView() {
       return
     }
 
-    dispatch(update(response))
+    dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
   }
 

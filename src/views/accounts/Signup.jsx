@@ -14,7 +14,7 @@ import { Container, Input } from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { update } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 import style from './Signup.module.css'
 
 export default function SignupView() {
@@ -55,7 +55,7 @@ export default function SignupView() {
       return
     }
 
-    dispatch(update(response))
+    dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
   }
