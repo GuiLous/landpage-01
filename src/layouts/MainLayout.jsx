@@ -10,12 +10,18 @@ export default function MainLayout(props) {
   return (
     <Container column className={style.container}>
       {user ? (
-        <Container className={style.header}>
-          <p>Header</p>
+        <Container className={style.header} align="center">
+          <h2>LOGO</h2>
         </Container>
       ) : null}
 
-      <Container className={style.content}>{props.children}</Container>
+      <Container gap={56} className={style.wrapper}>
+        <Container className={style.content}>{props.children}</Container>
+
+        <Container className={style.sidebar}>
+          <h2>Sidebar</h2>
+        </Container>
+      </Container>
     </Container>
   )
 }
