@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
 
-import { StorageService, AuthService } from '@services'
+import { AuthService, StorageService } from '@services'
 import { update } from '@slices/UserSlice'
 
 export default function TokenLogin(props) {
@@ -15,7 +15,7 @@ export default function TokenLogin(props) {
   useEffect(() => {
     const fetch = async (token) => {
       const response = await AuthService.login(token)
-      if (!response) {
+      if (response.error) {
         StorageService.remove('token')
         dispatch(update(null))
         if (props.redirect) navigate('/')
