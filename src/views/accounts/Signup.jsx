@@ -30,14 +30,11 @@ export default function SignupView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const handleButtonClick = () => {
-    if (isEmailValid(value))
-      handleSubmit({ email: value, policy: true, terms: true })
-  }
+  const handleButtonClick = () =>
+    isEmailValid(value) &&
+    handleSubmit({ email: value, policy: true, terms: true })
 
-  const handleChange = (event) => {
-    setValue(event.target.value)
-  }
+  const handleChange = (event) => setValue(event.target.value)
 
   const handleSubmit = async (form) => {
     setFetching(true)

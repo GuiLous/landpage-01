@@ -104,6 +104,24 @@ export default extendTheme({
         },
       },
     },
+    PinInput: {
+      variants: {
+        flushed: {
+          color: 'secondary.400',
+          _focusVisible: {
+            borderColor: 'secondary.400',
+            shadow: 'none',
+          },
+        },
+        outline: {
+          color: 'secondary.400',
+          _focusVisible: {
+            borderColor: 'secondary.400',
+            shadow: 'none',
+          },
+        },
+      },
+    },
   },
   colors: {
     primary: {

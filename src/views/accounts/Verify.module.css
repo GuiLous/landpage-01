@@ -1,3 +1,14 @@
-.verifyForm {
-    margin-top: 20px;
+.container {
+    max-width: 430px;
+    margin-top: 55px;
+    position: relative;
+}
+
+.pin {
+    max-width: 100%;
+    margin: 25px 0;
+}
+
+.pinWrapper {
+    max-width: 300px;
 }
