@@ -70,6 +70,14 @@ export default extendTheme({
           color: 'secondary.500',
         },
       },
+      variants: {
+        inline: {
+          textDecoration: 'underline',
+          _hover: {
+            textDecoration: 'underline',
+          },
+        },
+      },
     },
     Input: {
       baseStyle: {
@@ -86,6 +94,13 @@ export default extendTheme({
             bg: 'gray.300',
             backgroundColor: 'gray.300',
           },
+        },
+      },
+    },
+    Form: {
+      baseStyle: {
+        helperText: {
+          color: 'gray.400',
         },
       },
     },
