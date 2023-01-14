@@ -8,10 +8,10 @@ import animatedBg from '@assets/images/home_bg_animated.gif'
 import heroImg from '@assets/images/home_hero.png'
 import logo from '@assets/images/logo_type_white.svg'
 import { Container, FakeSigninForm, Footer } from '@components'
-import { REACT_APP_ENV } from '@config'
+import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/ToastSlice'
-import { update } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -42,7 +42,7 @@ export default function HomeView() {
       return
     }
 
-    dispatch(update(response))
+    dispatch(updateUser(response))
     StorageService.set('token', response.token)
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
@@ -78,16 +78,31 @@ export default function HomeView() {
           </Container>
 
           <Container justify="between" className={style.actions} gap={12}>
-            <Button size={'lg'} leftIcon={<SiSteam style={{ fontSize: 26 }} />}>
-              Entrar com
-              <strong style={{ display: 'inline-block', marginLeft: 5 }}>
-                Steam
-              </strong>
-            </Button>
-
-            <Button size={'lg'} variant={'secondary'}>
-              <SiDiscord style={{ fontSize: 26 }} />
-            </Button>
+            <form
+              action={`${REACT_APP_API_URL}/accounts/login/steam/`}
+              method="POST"
+              style={{ display: 'flex', gap: 12, width: '100%' }}
+            >
+              <Button
+                type="submit"
+                size={'lg'}
+                style={{ fontSize: 16 }}
+                leftIcon={<SiSteam style={{ fontSize: 26 }} />}
+              >
+                Entrar com
+                <strong
+                  style={{
+                    display: 'inline-block',
+                    marginLeft: 5,
+                  }}
+                >
+                  Steam
+                </strong>
+              </Button>
+              <Button size={'lg'} variant={'secondary'}>
+                <SiDiscord style={{ fontSize: 26 }} />
+              </Button>
+            </form>
           </Container>
 
           {REACT_APP_ENV === 'local' ? (

@@ -9,6 +9,7 @@ import {
   LobbyView,
   ProfileView,
   SignupView,
+  UpdateEmailView,
   VerifyView,
 } from '@views'
 
@@ -27,6 +28,7 @@ export default function App() {
             </TokenLogin>
           }
         />
+
         <Route path="/auth" element={<AuthView />} />
 
         <Route
@@ -37,11 +39,21 @@ export default function App() {
             </TokenLogin>
           }
         />
+
         <Route
           path="/verificar"
           element={
             <TokenLogin>
               <VerifyView />
+            </TokenLogin>
+          }
+        />
+
+        <Route
+          path="/alterar-email"
+          element={
+            <TokenLogin>
+              <UpdateEmailView />
             </TokenLogin>
           }
         />
@@ -54,6 +66,7 @@ export default function App() {
             </TokenLogin>
           }
         />
+
         <Route
           path="/perfil"
           element={

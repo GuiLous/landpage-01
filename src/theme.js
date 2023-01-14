@@ -32,6 +32,8 @@ export default extendTheme({
           backgroundColor: 'transparent',
           border: '1px solid',
           borderColor: 'secondary.400',
+          paddingLeft: 0,
+          paddingRight: 0,
           _hover: {
             bg: 'secondary.400',
             backgroundColor: 'secondary.400',
@@ -47,8 +49,7 @@ export default extendTheme({
       },
       sizes: {
         lg: {
-          fontSize: '16px',
-          minHeight: '48px',
+          fontSize: '26px',
         },
         xl: {
           fontSize: '32px',
@@ -69,6 +70,14 @@ export default extendTheme({
           color: 'secondary.500',
         },
       },
+      variants: {
+        inline: {
+          textDecoration: 'underline',
+          _hover: {
+            textDecoration: 'underline',
+          },
+        },
+      },
     },
     Input: {
       baseStyle: {
@@ -78,9 +87,37 @@ export default extendTheme({
           backgroundColor: 'gray.400',
           fontWeight: 600,
           fontSize: '16px',
+          _placeholder: {
+            color: 'rgba(0, 0, 0, .3)',
+          },
           _focus: {
             bg: 'gray.300',
             backgroundColor: 'gray.300',
+          },
+        },
+      },
+    },
+    Form: {
+      baseStyle: {
+        helperText: {
+          color: 'gray.400',
+        },
+      },
+    },
+    PinInput: {
+      variants: {
+        flushed: {
+          color: 'secondary.400',
+          _focusVisible: {
+            borderColor: 'secondary.400',
+            shadow: 'none',
+          },
+        },
+        outline: {
+          color: 'secondary.400',
+          _focusVisible: {
+            borderColor: 'secondary.400',
+            shadow: 'none',
           },
         },
       },

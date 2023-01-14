@@ -1,25 +1,27 @@
 .container {
-    background-color: #062339;
+    background-color: #111111;
+    color: white;
+    height: 100vh;
 }
 
-.content {
-    min-height: calc(100vh - 120px);
+.header {
+    background-color: black;
+    max-height: 90px;
+    color: white;
+    padding: 16px 60px;
 }
 
-/* .container {
-	bottom: 0;
-	color: white;
-	position: fixed;
-	right: -370px;
-	top: 0;
-	width: 370px;
-	padding: 20px;
-	background-color: #081929;
-	box-shadow: -2px 0px 8px 0px rgba(0, 0, 0, 0.51);
-	z-index: 20;
-	transition: all 150ms ease-in;
+.wrapper {
+    padding-top: 42px;
+    padding-left: 60px;
+    padding-right: 60px;
 }
 
-.container.visible {
-	right: 0;
-} */
+.sidebar {
+    max-width: 305px;
+}
+
+.content,
+.sidebar {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
