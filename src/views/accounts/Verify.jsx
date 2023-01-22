@@ -69,7 +69,12 @@ export default function VerifyView() {
   return (
     user && (
       <SignupLayout>
-        <Container className={style.container} column justify="center">
+        <Container
+          className={style.container}
+          column
+          justify="center"
+          fitContent
+        >
           <Container className={style.formTitle} justify="center">
             Verificação obrigatória
           </Container>
