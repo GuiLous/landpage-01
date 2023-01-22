@@ -15,10 +15,12 @@ export default function TokenLogin(props) {
   useEffect(() => {
     const fetch = async (token) => {
       const response = await AuthService.login(token)
-      if (response.error) {
+      if (response.errorMsg) {
+        setFetching(false)
         StorageService.remove('token')
         dispatch(updateUser(null))
         if (props.redirect) navigate('/')
+        else return
       }
       dispatch(updateUser(response))
 
