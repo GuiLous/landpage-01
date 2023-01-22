@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
   Link,
@@ -24,6 +25,7 @@ export default function SignupView() {
   const toast = useToast()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
+  const [formError, setFormError] = useState()
 
   useEffect(() => {
     if (!user || user.account) navigate('/')
@@ -34,7 +36,10 @@ export default function SignupView() {
     isEmailValid(value) &&
     handleSubmit({ email: value, policy: true, terms: true })
 
-  const handleChange = (event) => setValue(event.target.value)
+  const handleChange = (event) => {
+    setValue(event.target.value)
+    setFormError(null)
+  }
 
   const handleSubmit = async (form) => {
     setFetching(true)
@@ -42,19 +47,22 @@ export default function SignupView() {
     let response
 
     response = await HttpService.post('accounts/', token, form)
-    if (response.error) {
-      toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.error,
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        position: 'bottom-right',
-      })
+    if (response.errorMsg) {
       setFetching(false)
+      if (response.field) setFormError(response)
+      else
+        toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+          isClosable: true,
+          position: 'bottom-right',
+          duration: 6000,
+        })
       return
     }
 
+    setFetching(false)
     dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
@@ -62,13 +70,8 @@ export default function SignupView() {
 
   return (
     <SignupLayout>
-      <Container
-        className={style.container}
-        column
-        align="center"
-        justify="center"
-      >
-        <FormControl>
+      <Container className={style.container} column align="center">
+        <FormControl isInvalid={formError}>
           <FormLabel>Cadastre seu e-mail</FormLabel>
 
           <Input
@@ -77,33 +80,38 @@ export default function SignupView() {
             name="email"
             placeholder="exemplo@email.com"
           />
-          <FormHelperText>
-            Ao se cadastrar, você concorda com os{' '}
-            <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
-              Termos de Uso
-            </Link>{' '}
-            e a{' '}
-            <Link
-              as={RouterLink}
-              to="/política-de-privacidade"
-              variant={'inline'}
-            >
-              Política de Privacidade
-            </Link>
-          </FormHelperText>
-        </FormControl>
 
-        <Container>
-          <Button
-            style={{ flex: 1, marginTop: 16 }}
-            onClick={handleButtonClick}
-            isDisabled={!value || !isEmailValid(value)}
-            isLoading={fetching}
-            loadingText="Enviando"
-          >
-            Completar cadastro
-          </Button>
-        </Container>
+          {formError && (
+            <FormErrorMessage>{formError.errorMsg}</FormErrorMessage>
+          )}
+
+          <Container column align="stretch">
+            <Button
+              style={{ flex: 1, marginTop: 16 }}
+              onClick={handleButtonClick}
+              isDisabled={!value || !isEmailValid(value)}
+              isLoading={fetching}
+              loadingText="Enviando"
+            >
+              Completar cadastro
+            </Button>
+
+            <FormHelperText>
+              Ao se cadastrar, você concorda com os{' '}
+              <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
+                Termos de Uso
+              </Link>{' '}
+              e a{' '}
+              <Link
+                as={RouterLink}
+                to="/política-de-privacidade"
+                variant={'inline'}
+              >
+                Política de Privacidade
+              </Link>
+            </FormHelperText>
+          </Container>
+        </FormControl>
       </Container>
     </SignupLayout>
   )
