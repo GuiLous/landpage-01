@@ -1,4 +1,4 @@
-import { Button, Divider } from '@chakra-ui/react'
+import { Button, Divider, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,6 @@ import logo from '@assets/images/logo_type_white.svg'
 import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
@@ -18,8 +17,10 @@ export default function HomeView() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
+  const toast = useToast()
 
   const [fetching, setFetching] = useState(false)
+  const [formError, setFormError] = useState()
 
   useEffect(() => {
     if (user && user.account && user.account.is_verified) navigate('/jogar')
@@ -30,17 +31,22 @@ export default function HomeView() {
     let response
 
     response = await HttpService.post('accounts/fake-signup/', null, form)
-    if (response.error) {
-      dispatch(
-        addToast({
-          content: response.error,
-          type: 'danger',
-          title: 'Tente novamente',
-        })
-      )
+    if (response.errorMsg) {
       setFetching(false)
+      if (response.field) setFormError(response)
+      else
+        toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+          isClosable: true,
+          position: 'bottom-right',
+          duration: 6000,
+        })
       return
     }
+
+    setFetching(false)
 
     dispatch(updateUser(response))
     StorageService.set('token', response.token)
@@ -109,6 +115,7 @@ export default function HomeView() {
             <Container className={style.fakeSigninForm} column>
               <Divider />
               <FakeSigninForm
+                formError={formError}
                 fetching={fetching}
                 onSubmit={onFakeSigninFormSubmit}
               />

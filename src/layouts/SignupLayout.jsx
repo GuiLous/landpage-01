@@ -5,21 +5,18 @@ import style from './SignupLayout.module.css'
 
 export default function SignupLayout({ children }) {
   return (
-    <Container
-      className={style.container}
-      align="center"
-      justify="center"
-      column
-    >
+    <Container className={style.container} align="center">
       <Container className={style.liquidObject}>
         <img src={liquidObject} alt="Liquid object" />
       </Container>
 
-      <Container className={style.brand} align="end">
-        <img src={logo} alt="Reload logo" />
-      </Container>
+      <Container align="center" justify="center" column gap={55}>
+        <Container className={style.brand} justify="center" align="end">
+          <img src={logo} alt="Reload logo" />
+        </Container>
 
-      {children}
+        {children}
+      </Container>
     </Container>
   )
 }
