@@ -70,7 +70,7 @@ export default function SignupView() {
 
   return (
     <SignupLayout>
-      <Container className={style.container} column align="center">
+      <Container className={style.container} column align="center" fitContent>
         <FormControl isInvalid={formError}>
           <FormLabel>Cadastre seu e-mail</FormLabel>
 

@@ -1,6 +1,7 @@
 import {
   Button,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Link,
   useToast,
@@ -23,6 +24,7 @@ export default function SignupView() {
   const toast = useToast()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
+  const [formError, setFormError] = useState()
 
   useEffect(() => {
     if (!user || !user.account || user.account.is_verified) navigate('/')
@@ -40,19 +42,22 @@ export default function SignupView() {
     let response
 
     response = await HttpService.patch('accounts/update-email/', token, form)
-    if (response.error) {
-      toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.error,
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        position: 'bottom-right',
-      })
+    if (response.errorMsg) {
       setFetching(false)
+      if (response.field) setFormError(response)
+      else
+        toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+          isClosable: true,
+          position: 'bottom-right',
+          duration: 6000,
+        })
       return
     }
 
+    setFetching(false)
     dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
@@ -69,8 +74,9 @@ export default function SignupView() {
         column
         align="center"
         justify="center"
+        fitContent
       >
-        <FormControl>
+        <FormControl isInvalid={formError}>
           <FormLabel>Altere seu e-mail</FormLabel>
 
           <Input
@@ -79,6 +85,10 @@ export default function SignupView() {
             name="email"
             placeholder="exemplo@email.com"
           />
+
+          {formError && (
+            <FormErrorMessage>{formError.errorMsg}</FormErrorMessage>
+          )}
         </FormControl>
 
         <Container fitContent>
