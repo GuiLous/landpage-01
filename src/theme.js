@@ -80,19 +80,21 @@ export default extendTheme({
       },
     },
     Input: {
+      defaultProps: {
+        focusBorderColor: 'secondary.400',
+        errorBorderColor: 'danger.400',
+      },
       baseStyle: {
         field: {
           color: 'gray.600',
-          bg: 'gray.400',
-          backgroundColor: 'gray.400',
-          fontWeight: 600,
+          bg: 'white',
+          backgroundColor: 'white',
           fontSize: '16px',
           _placeholder: {
-            color: 'rgba(0, 0, 0, .3)',
+            color: 'gray.700',
           },
-          _focus: {
-            bg: 'gray.300',
-            backgroundColor: 'gray.300',
+          _invalid: {
+            color: 'danger.400',
           },
         },
       },
@@ -104,21 +106,28 @@ export default extendTheme({
         },
       },
     },
-    PinInput: {
-      variants: {
-        flushed: {
-          color: 'secondary.400',
-          _focusVisible: {
-            borderColor: 'secondary.400',
-            shadow: 'none',
-          },
+    FormError: {
+      baseStyle: {
+        text: {
+          color: 'danger.400',
         },
-        outline: {
-          color: 'secondary.400',
-          _focusVisible: {
-            borderColor: 'secondary.400',
-            shadow: 'none',
-          },
+      },
+    },
+    PinInput: {
+      defaultProps: {
+        focusBorderColor: 'secondary.400',
+        errorBorderColor: 'danger.400',
+      },
+      baseStyle: {
+        color: 'gray.600',
+        bg: 'white',
+        backgroundColor: 'white',
+        fontSize: '16px',
+        _placeholder: {
+          color: 'gray.700',
+        },
+        _invalid: {
+          color: 'danger.400',
         },
       },
     },
@@ -136,11 +145,16 @@ export default extendTheme({
       500: '#00A1A1',
     },
 
+    danger: {
+      400: '#F63535',
+    },
+
     gray: {
       300: '#ECECEC',
       400: '#CCCCCC',
       500: '#5D5D5D',
       600: '#434343',
+      700: '#999999',
     },
   },
 })

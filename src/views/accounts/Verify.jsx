@@ -1,6 +1,8 @@
 import {
   Button,
+  Divider,
   FormControl,
+  FormErrorMessage,
   FormHelperText,
   FormLabel,
   Link,
@@ -25,6 +27,7 @@ export default function VerifyView() {
   const toast = useToast()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
+  const [formError, setFormError] = useState()
 
   useEffect(() => {
     if (!user || !user.account || user.account.is_verified) navigate('/')
@@ -33,26 +36,32 @@ export default function VerifyView() {
 
   const handleButtonClick = () =>
     value && value.length === 6 && handleSubmit({ verification_token: value })
-  const handleChange = (value) => setValue(value)
+  const handleChange = (value) => {
+    setValue(value)
+    setFormError(null)
+  }
 
   const handleSubmit = async (form) => {
     setFetching(true)
     const token = StorageService.get('token')
 
     const response = await HttpService.post('accounts/verify/', token, form)
-    if (response.error) {
-      toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.error,
-        status: 'error',
-        duration: 9000,
-        isClosable: true,
-        position: 'bottom-right',
-      })
+    if (response.errorMsg) {
       setFetching(false)
+      if (response.field) setFormError(response)
+      else
+        toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+          isClosable: true,
+          position: 'bottom-right',
+          duration: 6000,
+        })
       return
     }
 
+    setFetching(false)
     dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
   }
@@ -63,44 +72,66 @@ export default function VerifyView() {
         <Container
           className={style.container}
           column
-          align="center"
           justify="center"
+          fitContent
         >
-          <FormControl>
-            <FormLabel style={{ textAlign: 'center' }}>
-              Informe o código recebido para verificar sua conta
-            </FormLabel>
+          <Container className={style.formTitle} justify="center">
+            Verificação obrigatória
+          </Container>
 
-            <Container justify="center" className={style.pin}>
-              <Container className={style.pinWrapper} justify="between">
-                <PinInput
-                  placeholder="-"
-                  onChange={handleChange}
-                  type="alphanumeric"
-                  autoFocus
-                  manageFocus
-                >
-                  <PinInputField />
-                  <PinInputField />
-                  <PinInputField />
-                  <PinInputField />
-                  <PinInputField />
-                  <PinInputField />
-                </PinInput>
+          <Container justify="center">
+            <FormControl isInvalid={formError}>
+              <FormLabel style={{ textAlign: 'center', fontSize: 16 }}>
+                Informe o código recebido para verificar sua conta
+              </FormLabel>
+
+              <Container justify="center" className={style.pin}>
+                <Container className={style.pinWrapper} justify="between">
+                  <PinInput
+                    placeholder=""
+                    onChange={handleChange}
+                    type="alphanumeric"
+                    autoFocus
+                    isInvalid={formError}
+                    manageFocus
+                  >
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                    <PinInputField />
+                  </PinInput>
+                </Container>
               </Container>
-            </Container>
-            <FormHelperText>
-              Enviamos um código de 6 dígitos para <strong>{user.email}</strong>
-              . Se esse não é seu e-mail,{' '}
-              <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
-                clique aqui
-              </Link>{' '}
-              para cadastrar um novo e-mail. <strong>Dica:</strong> se seu
-              e-mail não chegou, verifique sua caixa de lixo eletrônico.
-            </FormHelperText>
-          </FormControl>
 
-          <Container>
+              {formError && (
+                <Container justify="center">
+                  <FormErrorMessage style={{ textAlign: 'center' }}>
+                    {formError.errorMsg}
+                  </FormErrorMessage>
+                </Container>
+              )}
+
+              <Divider
+                style={{
+                  borderColor: 'rgba(153, 153, 153, .3)',
+                  marginTop: 25,
+                }}
+              />
+
+              <FormHelperText style={{ textAlign: 'center', marginTop: 25 }}>
+                Enviamos um código para <strong>{user.email}</strong>. <br />{' '}
+                Não é seu e-mail?{' '}
+                <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
+                  Clique aqui
+                </Link>
+                .
+              </FormHelperText>
+            </FormControl>
+          </Container>
+
+          <Container justify="center">
             <Button
               style={{ flex: 1, marginTop: 16 }}
               onClick={handleButtonClick}

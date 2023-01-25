@@ -31,22 +31,22 @@ export const HttpService = {
     }
 
     if (payload) request = { ...request, body: JSON.stringify(payload) }
+    const defaultError = custom_unknown_error || 'Ocorreu um erro desconhecido.'
 
     const response = await fetch(url, request)
-    let errorMsg =
-      custom_unknown_error ||
-      'Ocorreu um erro desconhecido. Tente novamente mais tarde.'
-
-    if (response) {
-      if (response.status < 400) return await response.json()
-      else if (response.status >= 400 && response.status < 500) {
-        const json = await response.json()
-        if (Array.isArray(json.detail)) errorMsg = json.detail[0].msg
-        else errorMsg = json.detail
-      }
+    const json = await response.json()
+    if (!response || response.status >= 500)
+      return { ...json, errorMsg: defaultError }
+    if (response.status >= 400) {
+      if (Array.isArray(json.detail)) {
+        return {
+          ...json,
+          field: json.detail[0].loc[2],
+          errorMsg: json.detail[0].msg,
+        }
+      } else return { ...json, errorMsg: json.detail }
     }
-
-    return { error: errorMsg }
+    return json
   },
 
   get(endpoint, token) {

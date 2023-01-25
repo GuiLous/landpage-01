@@ -1,5 +1,8 @@
+const theme = require('../src/theme')
+
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  chakra: { theme },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,

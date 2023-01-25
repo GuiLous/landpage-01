@@ -17,7 +17,9 @@ export default function Footer(props) {
     >
       <Container align="center" justify="center" className={style.wrapper}>
         <Container column className={style.brand} gap={12}>
-          <img src={logo} alt="Reload" />
+          <Link as={RouterLink} to="/" style={{ width: 170 }}>
+            <img src={logo} alt="Reload" />
+          </Link>
           <p>Copyright ©2023. Todos os direitos reservados.</p>
         </Container>
         <Container column gap={5}>

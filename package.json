@@ -27,7 +27,7 @@
     "build": "craco build",
     "test": "craco test --watchAll=false",
     "test-w-coverage": "craco test --coverage --watchAll=false",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "start-storybook -p 6006 -s public --no-open",
     "build-storybook": "build-storybook -s public",
     "format": "npx prettier --write src public",
     "lint": "npx prettier --check src public"
@@ -69,6 +69,7 @@
     ]
   },
   "devDependencies": {
+    "@chakra-ui/storybook-addon": "^4.0.16",
     "@craco/craco": "^7.0.0",
     "@redux-devtools/core": "^3.13.1",
     "@storybook/addon-actions": "^6.5.15",
