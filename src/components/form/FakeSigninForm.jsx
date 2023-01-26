@@ -19,7 +19,6 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
 
   const handleButtonClick = () => {
     if (isEmailValid(value)) onSubmit({ email: value })
-    onSubmit({ email: value })
   }
 
   const handleChange = (event) => {
