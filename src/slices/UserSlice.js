@@ -53,10 +53,28 @@ export const UserReducer = createSlice({
         },
       }
     },
+
+    removeInvite: (state, action) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby_invites: state.account.lobby_invites.filter(
+            (invite) => invite.id !== action.payload.id
+          ),
+        },
+      }
+    },
   },
 })
 
-export const { updateUser, updateFriend, addFriend, updateLobby, addInvite } =
-  UserReducer.actions
+export const {
+  updateUser,
+  updateFriend,
+  addFriend,
+  updateLobby,
+  addInvite,
+  removeInvite,
+} = UserReducer.actions
 
 export default UserReducer.reducer
