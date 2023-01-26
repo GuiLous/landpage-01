@@ -32,24 +32,29 @@ export const HttpService = {
 
     if (payload) request = { ...request, body: JSON.stringify(payload) }
     const defaultError = custom_unknown_error || 'Ocorreu um erro desconhecido.'
+    let response
 
-    const response = await fetch(url, request)
-
-    if (response.status === 404) return { errorMsg: 'Página não encontrada.' }
-
-    const json = await response.json()
-    if (!response || response.status >= 500)
-      return { ...json, errorMsg: defaultError }
-    if (response.status >= 400) {
-      if (Array.isArray(json.detail)) {
-        return {
-          ...json,
-          field: json.detail[0].loc[2],
-          errorMsg: json.detail[0].msg,
-        }
-      } else return { ...json, errorMsg: json.detail }
+    try {
+      response = await fetch(url, request)
+    } catch {
+      return { errorMsg: defaultError }
     }
-    return json
+
+    if (response.ok) return await response.json()
+    else {
+      try {
+        const json = await response.json()
+        if (Array.isArray(json.detail)) {
+          return {
+            ...json,
+            field: json.detail[0].loc[2],
+            errorMsg: json.detail[0].msg,
+          }
+        } else return { ...json, errorMsg: json.detail }
+      } catch {
+        return { ...response, errorMsg: response.statusText }
+      }
+    }
   },
 
   get(endpoint, token) {
