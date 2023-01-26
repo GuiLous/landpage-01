@@ -23,7 +23,6 @@ export const UserReducer = createSlice({
       const alreadyExists = state.account.friends.filter(
         (friend) => friend.id === action.payload.id
       )
-      console.log(alreadyExists)
       if (alreadyExists.length > 0) return state
 
       return {
@@ -44,10 +43,38 @@ export const UserReducer = createSlice({
         },
       }
     },
+
+    addInvite: (state, action) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby_invites: [...state.account.lobby_invites, action.payload],
+        },
+      }
+    },
+
+    removeInvite: (state, action) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby_invites: state.account.lobby_invites.filter(
+            (invite) => invite.id !== action.payload.id
+          ),
+        },
+      }
+    },
   },
 })
 
-export const { updateUser, updateFriend, addFriend, updateLobby } =
-  UserReducer.actions
+export const {
+  updateUser,
+  updateFriend,
+  addFriend,
+  updateLobby,
+  addInvite,
+  removeInvite,
+} = UserReducer.actions
 
 export default UserReducer.reducer
