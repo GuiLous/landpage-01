@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Container, SidebarItem, UserCard } from '@components'
+import { Container, FriendListUser, SidebarItem } from '@components'
 import style from './Sidebar.module.css'
 
 export default function Sidebar(props) {
@@ -14,12 +14,12 @@ export default function Sidebar(props) {
   )
 
   return (
-    <Container column className={style.container}>
+    <Container column className={style.container} gap={40}>
       {
         <SidebarItem
           title="Amigos Online"
           meta={onlineFriends.length}
-          Item={UserCard}
+          Item={FriendListUser}
           data={onlineFriends}
         />
       }
@@ -27,7 +27,7 @@ export default function Sidebar(props) {
         <SidebarItem
           title="Amigos Offline"
           meta={offlineFriends.length}
-          Item={UserCard}
+          Item={FriendListUser}
           data={offlineFriends}
         />
       }
