@@ -5,15 +5,18 @@ import { Container, Sidebar } from '@components'
 import { StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
+import { useNavigate } from 'react-router-dom'
 import style from './MainLayout.module.css'
 
 export default function MainLayout(props) {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const handleLogout = () => {
     dispatch(updateUser(null))
     StorageService.remove('token')
+    navigate('/')
   }
 
   return (
