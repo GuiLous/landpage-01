@@ -77,6 +77,18 @@ export default extendTheme({
             textDecoration: 'underline',
           },
         },
+
+        active: {
+          color: 'secondary.500',
+          cursor: 'default',
+          _hover: {
+            color: 'secondary.500',
+            textDecoration: 'none',
+          },
+          _active: {
+            color: 'secondary.500',
+          },
+        },
       },
     },
     Input: {

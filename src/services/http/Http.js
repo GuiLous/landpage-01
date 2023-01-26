@@ -34,6 +34,9 @@ export const HttpService = {
     const defaultError = custom_unknown_error || 'Ocorreu um erro desconhecido.'
 
     const response = await fetch(url, request)
+
+    if (response.status === 404) return { errorMsg: 'Página não encontrada.' }
+
     const json = await response.json()
     if (!response || response.status >= 500)
       return { ...json, errorMsg: defaultError }
