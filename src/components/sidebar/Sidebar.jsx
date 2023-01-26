@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 
-import { Container, FriendListUser, SidebarItem } from '@components'
+import { Container, FriendListUser, Invite, SidebarItem } from '@components'
 import style from './Sidebar.module.css'
 
 export default function Sidebar(props) {
@@ -29,6 +29,14 @@ export default function Sidebar(props) {
           meta={offlineFriends.length}
           Item={FriendListUser}
           data={offlineFriends}
+        />
+      }
+      {
+        <SidebarItem
+          title="Convites"
+          meta={user.account.lobby_invites.length}
+          Item={Invite}
+          data={user.account.lobby_invites}
         />
       }
     </Container>
