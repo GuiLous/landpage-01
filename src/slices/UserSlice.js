@@ -34,9 +34,20 @@ export const UserReducer = createSlice({
         },
       }
     },
+
+    updateLobby: (state, action) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby: action.payload,
+        },
+      }
+    },
   },
 })
 
-export const { updateUser, updateFriend, addFriend } = UserReducer.actions
+export const { updateUser, updateFriend, addFriend, updateLobby } =
+  UserReducer.actions
 
 export default UserReducer.reducer
