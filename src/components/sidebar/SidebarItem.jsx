@@ -1,4 +1,3 @@
-import { Link } from '@chakra-ui/react'
 import React from 'react'
 
 import { Container } from '@components'
@@ -8,7 +7,6 @@ export default function SidebarItem({ title, meta, Item, data }) {
   const render = data.map((dataItem, idx) => (
     <li style={{ margin: '10px 0' }} key={idx}>
       <Item {...dataItem} />
-      <Link variant={'inline'}>Convidar</Link>
     </li>
   ))
 

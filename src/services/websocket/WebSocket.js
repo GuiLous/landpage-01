@@ -1,9 +1,14 @@
+import { useDispatch, useSelector } from 'react-redux'
 import useWebSocket from 'react-use-websocket'
-import { useSelector, useDispatch } from 'react-redux'
 
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
-import { updateFriend, addFriend } from '@slices/UserSlice'
+import {
+  addFriend,
+  addInvite,
+  updateFriend,
+  updateLobby,
+} from '@slices/UserSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -32,6 +37,14 @@ export const WSS = () => {
 
       case 'ws_friendlistAdd':
         dispatch(addFriend(data.payload))
+        break
+
+      case 'ws_lobbyUpdate':
+        dispatch(updateLobby(data.payload))
+        break
+
+      case 'ws_lobbyInviteReceived':
+        dispatch(addInvite(data.payload))
         break
 
       default:
