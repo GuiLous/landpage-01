@@ -30,7 +30,7 @@ export default function SignupView() {
   useEffect(() => {
     if (!user || user.account) navigate('/')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   const handleButtonClick = () =>
     isEmailValid(value) &&

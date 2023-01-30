@@ -32,7 +32,7 @@ export default function VerifyView() {
   useEffect(() => {
     if (!user || !user.account || user.account.is_verified) navigate('/')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   const handleButtonClick = () =>
     value && value.length === 6 && handleSubmit({ verification_token: value })
