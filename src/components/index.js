@@ -1,11 +1,8 @@
-import TokenLogin from './auth/TokenLogin'
 import Container from './container/Container'
 import Footer from './footer/Footer'
 import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
 import Input from './input/Input'
-import InputCheckbox from './input/InputCheckbox'
-import InputCode from './input/InputCode'
 import Invite from './lobby/Invite'
 import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
@@ -19,12 +16,9 @@ export {
   FriendListUser,
   Footer,
   Input,
-  InputCheckbox,
-  InputCode,
   Sidebar,
   SidebarItem,
   SteamSignin,
-  TokenLogin,
   UserCard,
   Invite,
   Timer,

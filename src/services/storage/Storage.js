@@ -1,4 +1,4 @@
-const STORAGE_KEY = 'kst__'
+const STORAGE_KEY = 'rld__'
 
 export const StorageService = {
   save(key, data) {

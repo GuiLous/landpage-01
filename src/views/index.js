@@ -3,6 +3,7 @@ import HomeView from './common/Home'
 import NotFoundView from './common/NotFound'
 
 // accounts
+import AccountView from './accounts/Account'
 import AuthView from './accounts/Auth'
 import ProfileView from './accounts/Profile'
 import SignupView from './accounts/Signup'
@@ -16,6 +17,7 @@ export {
   HomeView,
   NotFoundView,
   AuthView,
+  AccountView,
   UpdateEmailView,
   SignupView,
   VerifyView,

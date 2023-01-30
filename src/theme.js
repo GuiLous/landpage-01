@@ -6,12 +6,19 @@ export default extendTheme({
       baseStyle: {
         bg: 'primary.400',
         backgroundColor: 'primary.400',
+        color: 'white',
         textTransform: 'uppercase',
         fontWeight: 'normal',
         minHeight: '44px',
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 8,
+        _loading: {
+          _hover: {
+            bg: 'primary.400',
+            backgroundColor: 'primary.400',
+          },
+        },
         _hover: {
           bg: 'primary.500',
           backgroundColor: 'primary.500',
@@ -46,6 +53,30 @@ export default extendTheme({
             color: 'white',
           },
         },
+
+        danger: {
+          bg: 'danger.400',
+          backgroundColor: 'danger.400',
+          borderColor: 'danger.400',
+          color: 'white',
+          _hover: {
+            bg: 'danger.600',
+            backgroundColor: 'danger.600',
+            color: 'white',
+          },
+          _active: {
+            bg: 'danger.600',
+            backgroundColor: 'danger.600',
+            borderColor: 'danger.600',
+            color: 'white',
+          },
+          _loading: {
+            _hover: {
+              bg: 'danger.400',
+              backgroundColor: 'danger.400',
+            },
+          },
+        },
       },
       sizes: {
         lg: {
@@ -56,6 +87,9 @@ export default extendTheme({
         },
         md: {
           fontSize: '16px',
+        },
+        sm: {
+          minHeight: '24px',
         },
       },
     },
@@ -143,6 +177,27 @@ export default extendTheme({
         },
       },
     },
+    Modal: {
+      baseStyle: {
+        dialog: {
+          backgroundColor: '#222222',
+          bg: '#222222',
+        },
+        closeButton: {
+          color: '#F5F6F8',
+          opacity: 0.5,
+          _hover: {
+            opacity: 1,
+          },
+        },
+        body: {
+          color: 'white',
+        },
+        header: {
+          color: 'white',
+        },
+      },
+    },
   },
   colors: {
     primary: {
@@ -159,6 +214,7 @@ export default extendTheme({
 
     danger: {
       400: '#F63535',
+      600: '#8d1919',
     },
 
     gray: {

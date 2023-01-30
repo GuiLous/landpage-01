@@ -20,14 +20,3 @@ const Application = render(
 test('sample test', () => {
   expect(true).toBeTruthy()
 })
-
-// test('renders learn react link', () => {
-// 	const linkElement = screen.getByText(/learn react/i)
-// 	expect(linkElement).toBeInTheDocument()
-// })
-
-// test('renders logo', () => {
-// 	const logo = screen.getByRole('img')
-// 	expect(logo).toHaveAttribute('src', '/logo512.png')
-// 	expect(logo).toHaveAttribute('alt', 'Killshot')
-// })

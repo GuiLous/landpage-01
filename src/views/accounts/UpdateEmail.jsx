@@ -27,9 +27,9 @@ export default function SignupView() {
   const [formError, setFormError] = useState()
 
   useEffect(() => {
-    if (!user || !user.account || user.account.is_verified) navigate('/')
+    if (!user || !user.account) navigate('/')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   const handleButtonClick = () =>
     isEmailValid(value) && handleSubmit({ email: value })
