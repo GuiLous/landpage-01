@@ -1,5 +1,6 @@
 import { Link } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { Container, Sidebar } from '@components'
 import { StorageService } from '@services'
@@ -23,10 +24,23 @@ export default function MainLayout(props) {
     <Container column className={style.container}>
       {user && (
         <Container className={style.header} align="center" justify="between">
-          <h2>LOGO</h2>
-          <Link variant="inline" onClick={handleLogout}>
-            Sair
-          </Link>
+          <Container gap={60}>
+            <h2>LOGO</h2>
+
+            <Link variant="inline" as={RouterLink} to="/jogar">
+              Jogar
+            </Link>
+          </Container>
+
+          <Container justify="end" gap={20}>
+            <Link variant="inline" as={RouterLink} to="/minha-conta">
+              Minha conta
+            </Link>
+
+            <Link variant="inline" onClick={handleLogout}>
+              Sair
+            </Link>
+          </Container>
         </Container>
       )}
 
