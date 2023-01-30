@@ -1,10 +1,10 @@
-# Killshot Frontend
+# Reload Club Frontend
 
-Killshot webapp.
+Reload Club webapp.
 
 ## Dependencies
 
-- Node/NPM.
+-   Node/NPM.
 
 ## Instructions
 
