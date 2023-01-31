@@ -177,6 +177,7 @@ export default extendTheme({
         },
       },
     },
+<<<<<<< HEAD
     Modal: {
       baseStyle: {
         dialog: {
@@ -198,6 +199,19 @@ export default extendTheme({
         },
       },
     },
+=======
+    Badge: {
+      variants:{
+        online: {
+          borderRadius: '50%',
+          bg: 'online',
+          backgroundColor: 'online',
+          height: '9px',
+          width: '9px',
+        }
+      }
+    }
+>>>>>>> 1fc786e (add online badge variant)
   },
   colors: {
     primary: {
@@ -216,6 +230,8 @@ export default extendTheme({
       400: '#F63535',
       600: '#8d1919',
     },
+
+    online: '#6BE400',
 
     gray: {
       300: '#ECECEC',
