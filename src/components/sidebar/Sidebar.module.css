@@ -16,6 +16,37 @@
 }
 
 .body {
-    padding: 0 25px;
     position: relative;
+}
+
+.tabs {
+    display: flex !important;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+}
+
+.tablist {
+    padding: 0 25px;
+    flex: 0;
+}
+
+.panels {
+    display: flex;
+    flex: 1;
+    margin-top: 25px;
+}
+
+.panel {
+    display: flex;
+    flex: 1;
+}
+
+.panel.empty {
+    align-items: center;
+    justify-content: center;
+}
+
+.panel.empty p {
+    font-size: 14px;
 }

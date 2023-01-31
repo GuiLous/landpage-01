@@ -5,6 +5,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
+  Text,
 } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
@@ -27,48 +28,65 @@ export default function Sidebar(props) {
         <Container className={style.title}>Amigos</Container>
         <Container className={style.meta} justify="end" align="center" gap={5}>
           <Badge variant="online" />
-          <p>{offlineFriends.length}</p>
+          <p>{onlineFriends.length}</p>
         </Container>
       </Container>
 
       <Container className={style.body}>
-        <Tabs variant="primary">
-          <TabList gap={2}>
-            <Tab>Online</Tab>
-            <Tab>Offline</Tab>
-            <Tab>Convites</Tab>
-          </TabList>
+        <Tabs variant="primary" className={style.tabs}>
+          <Container className={style.tablist}>
+            <TabList gap={2}>
+              <Tab>Online</Tab>
+              <Tab>Offline</Tab>
+              <Tab>Convites</Tab>
+            </TabList>
+          </Container>
 
-          <TabPanels className={style.panel}>
-            <TabPanel>
-              <SidebarItem
-                title="Amigos Online"
-                meta={onlineFriends.length}
-                Item={FriendListUser}
-                data={onlineFriends}
-                emptyMsg="Nenhum amigo online."
-              />
-            </TabPanel>
+          <TabPanels className={style.panels}>
+            {onlineFriends.length > 0 ? (
+              <TabPanel className={style.panel}>
+                <SidebarItem
+                  title="Amigos Online"
+                  meta={onlineFriends.length}
+                  Item={FriendListUser}
+                  data={onlineFriends}
+                />
+              </TabPanel>
+            ) : (
+              <TabPanel className={[style.panel, style.empty].join(' ')}>
+                <Text>Nenhum amigo online.</Text>
+              </TabPanel>
+            )}
 
-            <TabPanel>
-              <SidebarItem
-                title="Amigos Offline"
-                meta={offlineFriends.length}
-                Item={FriendListUser}
-                data={offlineFriends}
-                emptyMsg="Nenhum amigo offline."
-              />
-            </TabPanel>
+            {offlineFriends.length > 0 ? (
+              <TabPanel className={style.panel}>
+                <SidebarItem
+                  title="Amigos Offline"
+                  meta={offlineFriends.length}
+                  Item={FriendListUser}
+                  data={offlineFriends}
+                />
+              </TabPanel>
+            ) : (
+              <TabPanel className={[style.panel, style.empty].join(' ')}>
+                <Text>Nenhum amigo offline.</Text>
+              </TabPanel>
+            )}
 
-            <TabPanel>
-              <SidebarItem
-                title="Convites"
-                meta={user.account.lobby_invites.length}
-                Item={Invite}
-                data={user.account.lobby_invites}
-                emptyMsg="Nenhum convite recebido."
-              />
-            </TabPanel>
+            {user.account.lobby_invites.length.length > 0 ? (
+              <TabPanel>
+                <SidebarItem
+                  title="Convites"
+                  meta={user.account.lobby_invites.length}
+                  Item={Invite}
+                  data={user.account.lobby_invites}
+                />
+              </TabPanel>
+            ) : (
+              <TabPanel className={[style.panel, style.empty].join(' ')}>
+                <Text>Nenhum convite recebido.</Text>
+              </TabPanel>
+            )}
           </TabPanels>
         </Tabs>
       </Container>
