@@ -192,47 +192,36 @@ export default extendTheme({
         },
       },
     },
-    Tabs: {
+    Avatar: {
       variants: {
-        primary: {
-          root: {
-            height: '100%',
-            width: '100%',
-            flex: 1,
-            display: 'flex',
-            flexDirection: 'column',
+        online: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'online',
+            borderStyle: 'solid',
           },
-          tablist: {
-            flex: 0,
-            display: 'flex',
-          },
-          tab: {
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'online',
+            bg: 'online',
             border: 'none',
-            borderRadius: '8px',
-            color: 'white',
-            fontSize: '14px',
-            padding: '5px 9px',
-            _selected: {
-              borderRadius: '8px',
-              backgroundColor: 'primary.400',
-              bg: 'primary.400',
-            },
-            _active: {
-              borderRadius: '8px',
-            },
-            _focus: {
-              borderRadius: '8px',
-            },
+            top: '-2px',
+            right: 0,
           },
-          tabpanels: {
-            padding: 0,
-            flex: 1,
-            display: 'flex',
+        },
+        offline: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'offline',
+            borderStyle: 'solid',
           },
-          tabpanel: {
-            padding: 0,
-            flex: 1,
-            display: 'flex',
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'offline',
+            bg: 'offline',
+            border: 'none',
+            top: 0,
+            right: 0,
           },
         },
         body: {
@@ -261,6 +250,9 @@ export default extendTheme({
       400: '#F63535',
       600: '#8d1919',
     },
+
+    online: '#6BE400',
+    offline: '#999999',
 
     gray: {
       300: '#ECECEC',

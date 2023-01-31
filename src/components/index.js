@@ -1,3 +1,4 @@
+import Avatar from './avatar/Avatar'
 import Container from './container/Container'
 import Footer from './footer/Footer'
 import FakeSigninForm from './form/FakeSigninForm'
@@ -11,6 +12,7 @@ import FriendListUser from './user/FriendListUser'
 import UserCard from './user/UserCard'
 
 export {
+  Avatar,
   Container,
   FakeSigninForm,
   FriendListUser,
