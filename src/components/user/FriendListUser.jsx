@@ -1,6 +1,7 @@
-import { Link, useToast } from '@chakra-ui/react'
+import { Text, useToast } from '@chakra-ui/react'
 import React from 'react'
 
+import { AddUserIcon, Avatar, Container } from '@components'
 import { HttpService, StorageService } from '@services'
 import { useSelector } from 'react-redux'
 import style from './FriendListUser.module.css'
@@ -9,7 +10,59 @@ export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
   const toast = useToast()
 
+  const resolveStatus = () => {
+    switch (props.status) {
+      case 'online':
+        return 'Online'
+
+      case 'offline':
+        return 'Offline'
+
+      case 'away':
+        return 'Ausente'
+
+      case 'in_game':
+        return 'Em partida'
+
+      case 'teaming':
+        return 'Em grupo'
+
+      case 'queued':
+        return 'Procurando partida'
+
+      default:
+        return 'Offline'
+    }
+  }
+
+  const isAvailable = () => {
+    switch (props.status) {
+      case 'online':
+        return true
+
+      case 'offline':
+        return false
+
+      case 'away':
+        return true
+
+      case 'in_game':
+        return false
+
+      case 'teaming':
+        return true
+
+      case 'queued':
+        return false
+
+      default:
+        return false
+    }
+  }
+
   const handleInvite = async () => {
+    if (!isAvailable()) return
+
     const token = StorageService.get('token')
 
     const response = await HttpService.post(
@@ -30,9 +83,29 @@ export default function FriendListUser(props) {
   }
 
   return (
-    <div className={style.container}>
-      <p>{props.username}</p>
-      <Link onClick={handleInvite}>Convidar</Link>
-    </div>
+    <Container
+      className={[style.container, !isAvailable() && style.disabled].join(' ')}
+      justify="center"
+      align="center"
+      fitContent
+      onClick={handleInvite}
+    >
+      <Container gap={15}>
+        <Container fitContent>
+          <Avatar variant={props.status} className={style.avatar} />
+        </Container>
+
+        <Container column justify="center" className={style.info}>
+          <Text className={style.username}>{props.username}</Text>
+          <Text className={style.status}>{resolveStatus()}</Text>
+        </Container>
+      </Container>
+
+      {props.status === 'online' && (
+        <Container justify="end" className={style.invite} align="center">
+          <AddUserIcon />
+        </Container>
+      )}
+    </Container>
   )
 }

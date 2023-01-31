@@ -1,0 +1,66 @@
+.container {
+    background-color: transparent;
+    cursor: pointer;
+    padding: 10px 25px;
+
+    transition: all 50ms linear;
+}
+
+.container:hover {
+    background-color: #333;
+}
+
+.username,
+.status {
+    line-height: 18px;
+}
+
+.username {
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.status {
+    color: #999;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.avatar {
+    height: 46px;
+    width: 46px;
+}
+
+.info {
+    position: relative;
+    top: 6px;
+}
+
+.invite {
+    opacity: 0;
+    font-size: 20px;
+
+    transition: all 50ms linear;
+}
+
+.container:hover .invite {
+    opacity: 1;
+}
+
+.container.disabled {
+    cursor: default;
+}
+
+.container.disabled:hover {
+    background-color: transparent;
+    cursor: default;
+}
+
+.container.disabled:hover .invite {
+    opacity: 0;
+}
