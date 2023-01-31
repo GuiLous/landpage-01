@@ -23,7 +23,7 @@ export default function Sidebar(props) {
 
   return (
     <Container column className={style.container}>
-      <Container className={style.header} justify="between">
+      <Container className={style.header} justify="between" fitContent>
         <Container className={style.title}>Amigos</Container>
         <Container className={style.meta} justify="end" align="center" gap={5}>
           <Badge variant="online" />
@@ -39,13 +39,14 @@ export default function Sidebar(props) {
             <Tab>Convites</Tab>
           </TabList>
 
-          <TabPanels>
+          <TabPanels className={style.panel}>
             <TabPanel>
               <SidebarItem
                 title="Amigos Online"
                 meta={onlineFriends.length}
                 Item={FriendListUser}
                 data={onlineFriends}
+                emptyMsg="Nenhum amigo online."
               />
             </TabPanel>
 
@@ -55,6 +56,7 @@ export default function Sidebar(props) {
                 meta={offlineFriends.length}
                 Item={FriendListUser}
                 data={offlineFriends}
+                emptyMsg="Nenhum amigo offline."
               />
             </TabPanel>
 
@@ -64,6 +66,7 @@ export default function Sidebar(props) {
                 meta={user.account.lobby_invites.length}
                 Item={Invite}
                 data={user.account.lobby_invites}
+                emptyMsg="Nenhum convite recebido."
               />
             </TabPanel>
           </TabPanels>
