@@ -1,3 +1,11 @@
+import {
+  Badge,
+  Tab,
+  TabList,
+  TabPanel,
+  TabPanels,
+  Tabs,
+} from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
 
@@ -14,31 +22,53 @@ export default function Sidebar(props) {
   )
 
   return (
-    <Container column className={style.container} gap={40}>
-      {
-        <SidebarItem
-          title="Amigos Online"
-          meta={onlineFriends.length}
-          Item={FriendListUser}
-          data={onlineFriends}
-        />
-      }
-      {
-        <SidebarItem
-          title="Amigos Offline"
-          meta={offlineFriends.length}
-          Item={FriendListUser}
-          data={offlineFriends}
-        />
-      }
-      {
-        <SidebarItem
-          title="Convites"
-          meta={user.account.lobby_invites.length}
-          Item={Invite}
-          data={user.account.lobby_invites}
-        />
-      }
+    <Container column className={style.container}>
+      <Container className={style.header} justify="between">
+        <Container className={style.title}>Amigos</Container>
+        <Container className={style.meta} justify="end" align="center" gap={5}>
+          <Badge variant="online" />
+          <p>{offlineFriends.length}</p>
+        </Container>
+      </Container>
+
+      <Container className={style.body}>
+        <Tabs variant="primary">
+          <TabList gap={2}>
+            <Tab>Online</Tab>
+            <Tab>Offline</Tab>
+            <Tab>Convites</Tab>
+          </TabList>
+
+          <TabPanels>
+            <TabPanel>
+              <SidebarItem
+                title="Amigos Online"
+                meta={onlineFriends.length}
+                Item={FriendListUser}
+                data={onlineFriends}
+              />
+            </TabPanel>
+
+            <TabPanel>
+              <SidebarItem
+                title="Amigos Offline"
+                meta={offlineFriends.length}
+                Item={FriendListUser}
+                data={offlineFriends}
+              />
+            </TabPanel>
+
+            <TabPanel>
+              <SidebarItem
+                title="Convites"
+                meta={user.account.lobby_invites.length}
+                Item={Invite}
+                data={user.account.lobby_invites}
+              />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </Container>
     </Container>
   )
 }
