@@ -192,6 +192,33 @@ export default extendTheme({
         },
       },
     },
+    Tabs: {
+      variants: {
+        primary: {
+          tab: {
+            border: 'none',
+            borderRadius: '8px',
+            color: 'white',
+            fontSize: '14px',
+            padding: '5px 9px',
+            _selected: {
+              borderRadius: '8px',
+              backgroundColor: 'primary.400',
+              bg: 'primary.400',
+            },
+            _active: {
+              borderRadius: '8px',
+            },
+            _focus: {
+              borderRadius: '8px',
+            },
+          },
+          tabpanel: {
+            padding: 0,
+          },
+        },
+      },
+    },
     Avatar: {
       variants: {
         online: {
