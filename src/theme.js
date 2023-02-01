@@ -315,6 +315,19 @@ export default extendTheme({
         },
       },
     },
+    Alert: {
+      baseStyle: {
+        container: {
+          maxWidth: '300px',
+        },
+        title: {
+          fontSize: '14px',
+        },
+        description: {
+          fontSize: '14px',
+        },
+      },
+    },
   },
   colors: {
     primary: {
