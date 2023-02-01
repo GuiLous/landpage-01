@@ -1,5 +1,6 @@
-import { Text, useToast } from '@chakra-ui/react'
-import React from 'react'
+import { Icon, Text, useToast } from '@chakra-ui/react'
+import { useState } from 'react'
+import { BsFillCheckCircleFill } from 'react-icons/bs'
 
 import { AddUserIcon, Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
@@ -9,8 +10,11 @@ import style from './FriendListUser.module.css'
 export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
   const toast = useToast()
+  const [invited, setInvited] = useState(false)
 
   const isAvailable = () => {
+    if (invited) return false
+
     switch (props.status) {
       case 'online':
         return true
@@ -57,14 +61,7 @@ export default function FriendListUser(props) {
       return
     }
 
-    toast({
-      title: 'Convite enviado',
-      description: `O convite para ${props.username} foi enviado.`,
-      status: 'success',
-      isClosable: true,
-      position: 'bottom-right',
-      variant: 'subtle',
-    })
+    setInvited(true)
   }
 
   return (
@@ -86,9 +83,15 @@ export default function FriendListUser(props) {
         </Container>
       </Container>
 
-      {props.status === 'online' && (
+      {props.status === 'online' && !invited && (
         <Container justify="end" className={style.invite} align="center">
           <AddUserIcon />
+        </Container>
+      )}
+
+      {invited && (
+        <Container justify="end" className={style.invited} align="center">
+          <Icon as={BsFillCheckCircleFill} color="success" />
         </Container>
       )}
     </Container>
