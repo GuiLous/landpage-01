@@ -11,6 +11,7 @@ import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
 import FriendListUser from './user/FriendListUser'
 import UserCard from './user/UserCard'
+import UserStatus from './user/UserStatus'
 
 export {
   AddUserIcon,
@@ -26,4 +27,5 @@ export {
   UserCard,
   Invite,
   Timer,
+  UserStatus,
 }
