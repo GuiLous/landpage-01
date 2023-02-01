@@ -12,15 +12,14 @@ import {
   useDisclosure,
   useToast,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container } from '@components'
 import { MainLayout } from '@layouts'
-
 import { HttpService, StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
-import { useState } from 'react'
 
 export default function AccountView() {
   const user = useSelector((state) => state.user)
@@ -31,7 +30,10 @@ export default function AccountView() {
 
   const [fetching, setFetching] = useState(false)
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const token = StorageService.get('token')
+    await HttpService.patch('accounts/logout/', token)
+
     dispatch(updateUser(null))
     StorageService.remove('token')
     navigate('/')
