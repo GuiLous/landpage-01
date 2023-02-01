@@ -8,6 +8,7 @@ import {
   addInvite,
   updateFriend,
   updateLobby,
+  updateUser,
 } from '@slices/UserSlice'
 
 export const WSS = () => {
@@ -31,6 +32,10 @@ export const WSS = () => {
     const data = JSON.parse(event.data)
 
     switch (data.meta.action) {
+      case 'ws_userUpdate':
+        dispatch(updateUser(data.payload))
+        break
+
       case 'ws_userStatusChange':
         dispatch(updateFriend(data.payload))
         break
