@@ -1,3 +1,4 @@
+import { useToast } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import useWebSocket from 'react-use-websocket'
 
@@ -16,6 +17,7 @@ export const WSS = () => {
 
   const user = useSelector((state) => state.user)
   const token = StorageService.get('token')
+  const toast = useToast()
 
   useWebSocket(
     REACT_APP_WS_URL,
@@ -50,6 +52,18 @@ export const WSS = () => {
 
       case 'ws_lobbyInviteReceived':
         dispatch(addInvite(data.payload))
+        break
+
+      case 'ws_refuseInvite':
+        toast({
+          title: 'Convite recusado',
+          description: `O convite para ${data.payload.to_player.username} foi recusado.`,
+          status: 'info',
+          isClosable: true,
+          position: 'bottom-right',
+          duration: 60000,
+          variant: 'subtle',
+        })
         break
 
       default:
