@@ -52,9 +52,19 @@ export default function FriendListUser(props) {
         status: 'error',
         isClosable: true,
         position: 'bottom-right',
-        duration: 6000,
+        variant: 'subtle',
       })
+      return
     }
+
+    toast({
+      title: 'Convite enviado',
+      description: `O convite para ${props.username} foi enviado.`,
+      status: 'success',
+      isClosable: true,
+      position: 'bottom-right',
+      variant: 'subtle',
+    })
   }
 
   return (
