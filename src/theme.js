@@ -262,6 +262,51 @@ export default extendTheme({
             right: 0,
           },
         },
+        teaming: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'teaming',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'teaming',
+            bg: 'teaming',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
+        in_game: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'in_game',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'in_game',
+            bg: 'in_game',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
+        queued: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'queued',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'queued',
+            bg: 'queued',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
         body: {
           color: 'white',
         },
@@ -293,6 +338,9 @@ export default extendTheme({
 
     online: '#6BE400',
     offline: '#999999',
+    teaming: '#9882FF',
+    in_game: '#E4BC00',
+    queued: '#E4BC00',
 
     gray: {
       300: '#ECECEC',
