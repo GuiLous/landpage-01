@@ -192,6 +192,17 @@ export default extendTheme({
         },
       },
     },
+    Badge: {
+      variants: {
+        online: {
+          bg: 'success',
+          backgroundColor: 'success',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+        },
+      },
+    },
     Tabs: {
       variants: {
         primary: {
@@ -277,6 +288,8 @@ export default extendTheme({
       400: '#F63535',
       600: '#8d1919',
     },
+
+    success: '#6BE400',
 
     online: '#6BE400',
     offline: '#999999',
