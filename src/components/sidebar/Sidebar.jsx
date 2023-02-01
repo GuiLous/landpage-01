@@ -73,8 +73,8 @@ export default function Sidebar(props) {
               </TabPanel>
             )}
 
-            {user.account.lobby_invites.length.length > 0 ? (
-              <TabPanel>
+            {user.account.lobby_invites.length > 0 ? (
+              <TabPanel className={style.panel}>
                 <SidebarItem
                   title="Convites"
                   meta={user.account.lobby_invites.length}
