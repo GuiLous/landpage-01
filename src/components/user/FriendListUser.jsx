@@ -1,7 +1,7 @@
 import { Text, useToast } from '@chakra-ui/react'
 import React from 'react'
 
-import { AddUserIcon, Avatar, Container } from '@components'
+import { AddUserIcon, Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
 import { useSelector } from 'react-redux'
 import style from './FriendListUser.module.css'
@@ -9,31 +9,6 @@ import style from './FriendListUser.module.css'
 export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
   const toast = useToast()
-
-  const resolveStatus = () => {
-    switch (props.status) {
-      case 'online':
-        return 'Online'
-
-      case 'offline':
-        return 'Offline'
-
-      case 'away':
-        return 'Ausente'
-
-      case 'in_game':
-        return 'Em partida'
-
-      case 'teaming':
-        return 'Em grupo'
-
-      case 'queued':
-        return 'Procurando partida'
-
-      default:
-        return 'Offline'
-    }
-  }
 
   const isAvailable = () => {
     switch (props.status) {
@@ -97,7 +72,7 @@ export default function FriendListUser(props) {
 
         <Container column justify="center" className={style.info}>
           <Text className={style.username}>{props.username}</Text>
-          <Text className={style.status}>{resolveStatus()}</Text>
+          <UserStatus className={style.status} status={props.status} />
         </Container>
       </Container>
 
