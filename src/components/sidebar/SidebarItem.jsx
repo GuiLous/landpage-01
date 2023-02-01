@@ -3,7 +3,7 @@ import React from 'react'
 import { Container } from '@components'
 import style from './SidebarItem.module.css'
 
-export default function SidebarItem({ title, meta, Item, data, emptyMsg }) {
+export default function SidebarItem({ Item, data }) {
   const render = data.map((dataItem, idx) => <Item key={idx} {...dataItem} />)
 
   return (
