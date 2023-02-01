@@ -6,7 +6,8 @@ import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
 import {
   addFriend,
-  addInvite,
+  addInviteReceived,
+  removeInviteSent,
   updateFriend,
   updateLobby,
   updateUser,
@@ -51,7 +52,7 @@ export const WSS = () => {
         break
 
       case 'ws_lobbyInviteReceived':
-        dispatch(addInvite(data.payload))
+        dispatch(addInviteReceived(data.payload))
         break
 
       case 'ws_refuseInvite':
@@ -64,6 +65,7 @@ export const WSS = () => {
           duration: 60000,
           variant: 'subtle',
         })
+        dispatch(removeInviteSent(data.payload))
         break
 
       default:

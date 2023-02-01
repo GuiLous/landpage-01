@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
-import { removeInvite } from '@slices/UserSlice'
+import { removeInviteReceived } from '@slices/UserSlice'
 import style from './Invite.module.css'
 
 export default function Invite({ id, lobby_id, from_player }) {
@@ -29,7 +29,7 @@ export default function Invite({ id, lobby_id, from_player }) {
         duration: 6000,
       })
     } else {
-      dispatch(removeInvite({ id: id }))
+      dispatch(removeInviteReceived({ id: id }))
     }
   }
 
@@ -49,7 +49,7 @@ export default function Invite({ id, lobby_id, from_player }) {
         duration: 6000,
       })
     } else {
-      dispatch(removeInvite(response))
+      dispatch(removeInviteReceived(response))
     }
   }
 

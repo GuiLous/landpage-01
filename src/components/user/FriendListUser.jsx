@@ -1,16 +1,21 @@
 import { Icon, Text, useToast } from '@chakra-ui/react'
-import { useState } from 'react'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { AddUserIcon, Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
-import { useSelector } from 'react-redux'
+import { addInviteSent } from '@slices/UserSlice'
 import style from './FriendListUser.module.css'
 
 export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
   const toast = useToast()
-  const [invited, setInvited] = useState(false)
+  const dispatch = useDispatch()
+
+  const invited =
+    user.account.lobby_invites_sent.filter((invite) => {
+      return invite.to_player.id === props.id
+    }).length > 0
 
   const isAvailable = () => {
     if (invited) return false
@@ -61,7 +66,7 @@ export default function FriendListUser(props) {
       return
     }
 
-    setInvited(true)
+    dispatch(addInviteSent(response))
   }
 
   return (
@@ -89,7 +94,7 @@ export default function FriendListUser(props) {
         </Container>
       )}
 
-      {invited && (
+      {props.status === 'online' && invited && (
         <Container justify="end" className={style.invited} align="center">
           <Icon as={BsFillCheckCircleFill} color="success" />
         </Container>
