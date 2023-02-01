@@ -13,9 +13,22 @@ export const UserReducer = createSlice({
       const updatedItems = state.account.friends.map((friend) =>
         friend.id === action.payload.id ? action.payload : friend
       )
+
+      let updatedInvitesSent = state.account.lobby_invites_sent
+
+      if (action.payload.status === 'offline') {
+        updatedInvitesSent = state.account.lobby_invites_sent.filter(
+          (invite) => invite.to_player.id !== action.payload.id
+        )
+      }
+
       return {
         ...state,
-        account: { ...state.account, friends: updatedItems },
+        account: {
+          ...state.account,
+          friends: updatedItems,
+          lobby_invites_sent: updatedInvitesSent,
+        },
       }
     },
 
