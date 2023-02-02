@@ -9,13 +9,21 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 import { useSelector } from 'react-redux'
+// import { Scrollbar } from 'react-scrollbars-custom'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
-import { Container, FriendListUser, Invite, SidebarItem } from '@components'
+import {
+  Container,
+  FriendListUser,
+  Invite,
+  Scrollbars,
+  SidebarItem,
+} from '@components'
 import style from './Sidebar.module.css'
 
 export default function Sidebar(props) {
   const user = useSelector((state) => state.user)
+
   const onlineFriends = user.account.friends.filter(
     (friend) => friend.is_online
   )
@@ -46,12 +54,14 @@ export default function Sidebar(props) {
           <TabPanels className={style.panels}>
             {onlineFriends.length > 0 ? (
               <TabPanel className={style.panel}>
-                <SidebarItem
-                  title="Amigos Online"
-                  meta={onlineFriends.length}
-                  Item={FriendListUser}
-                  data={onlineFriends}
-                />
+                <Scrollbars autoHide>
+                  <SidebarItem
+                    title="Amigos Online"
+                    meta={onlineFriends.length}
+                    Item={FriendListUser}
+                    data={onlineFriends}
+                  />
+                </Scrollbars>
               </TabPanel>
             ) : (
               <TabPanel className={[style.panel, style.empty].join(' ')}>
@@ -61,12 +71,14 @@ export default function Sidebar(props) {
 
             {offlineFriends.length > 0 ? (
               <TabPanel className={style.panel}>
-                <SidebarItem
-                  title="Amigos Offline"
-                  meta={offlineFriends.length}
-                  Item={FriendListUser}
-                  data={offlineFriends}
-                />
+                <Scrollbars autoHide>
+                  <SidebarItem
+                    title="Amigos Offline"
+                    meta={offlineFriends.length}
+                    Item={FriendListUser}
+                    data={offlineFriends}
+                  />
+                </Scrollbars>
               </TabPanel>
             ) : (
               <TabPanel className={[style.panel, style.empty].join(' ')}>
@@ -76,12 +88,14 @@ export default function Sidebar(props) {
 
             {user.account.lobby_invites.length > 0 ? (
               <TabPanel className={style.panel}>
-                <SidebarItem
-                  title="Convites"
-                  meta={user.account.lobby_invites.length}
-                  Item={Invite}
-                  data={user.account.lobby_invites}
-                />
+                <Scrollbars autoHide>
+                  <SidebarItem
+                    title="Convites"
+                    meta={user.account.lobby_invites.length}
+                    Item={Invite}
+                    data={user.account.lobby_invites}
+                  />
+                </Scrollbars>
               </TabPanel>
             ) : (
               <TabPanel className={[style.panel, style.empty].join(' ')}>
