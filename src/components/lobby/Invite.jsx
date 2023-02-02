@@ -1,14 +1,14 @@
-import { Icon, Text, useToast } from '@chakra-ui/react'
+import { Badge, Icon, Text, useToast } from '@chakra-ui/react'
 import React from 'react'
 import { BsFillCheckCircleFill, BsFillXCircleFill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 
 import { Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
-import { removeInviteReceived } from '@slices/UserSlice'
+import { removeInvite } from '@slices/UserSlice'
 import style from './Invite.module.css'
 
-export default function Invite({ id, lobby_id, from_player }) {
+export default function Invite({ id, lobby_id, from_player, lobby }) {
   const toast = useToast()
   const token = StorageService.get('token')
   const dispatch = useDispatch()
@@ -29,7 +29,7 @@ export default function Invite({ id, lobby_id, from_player }) {
         duration: 6000,
       })
     } else {
-      dispatch(removeInviteReceived({ id: id }))
+      dispatch(removeInvite({ id: id }))
     }
   }
 
@@ -49,7 +49,7 @@ export default function Invite({ id, lobby_id, from_player }) {
         duration: 6000,
       })
     } else {
-      dispatch(removeInviteReceived(response))
+      dispatch(removeInvite(response))
     }
   }
 
@@ -61,8 +61,11 @@ export default function Invite({ id, lobby_id, from_player }) {
       fitContent
     >
       <Container gap={15}>
-        <Container fitContent>
+        <Container fitContent className={style.meta}>
           <Avatar variant={from_player.status} className={style.avatar} />
+          <Badge variant="primary" className={style.badge}>
+            + {lobby.players_count - 1}
+          </Badge>
         </Container>
 
         <Container column justify="center" className={style.info}>

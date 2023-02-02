@@ -30,9 +30,19 @@
     font-weight: 500;
 }
 
+.meta {
+    position: relative;
+}
+
 .avatar {
     height: 46px;
     width: 46px;
+}
+
+.badge {
+    bottom: -3px;
+    position: absolute;
+    right: -6px;
 }
 
 .info {
