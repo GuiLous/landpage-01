@@ -190,11 +190,151 @@ export default extendTheme({
             opacity: 1,
           },
         },
+      },
+    },
+    Badge: {
+      variants: {
+        online: {
+          bg: 'success',
+          backgroundColor: 'success',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+        },
+
+        primary: {
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
+          fontWeight: 'lighter',
+          fontSize: '14px',
+          padding: '0 5px',
+          letterSpacing: '-1px',
+          borderRadius: '4px',
+        },
+      },
+    },
+    Tabs: {
+      variants: {
+        primary: {
+          tab: {
+            border: 'none',
+            borderRadius: '8px',
+            color: 'white',
+            fontSize: '14px',
+            padding: '5px 9px',
+            _selected: {
+              borderRadius: '8px',
+              backgroundColor: 'primary.400',
+              bg: 'primary.400',
+            },
+            _active: {
+              borderRadius: '8px',
+            },
+            _focus: {
+              borderRadius: '8px',
+            },
+          },
+          tabpanel: {
+            padding: 0,
+          },
+        },
+      },
+    },
+    Avatar: {
+      variants: {
+        online: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'online',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'online',
+            bg: 'online',
+            border: 'none',
+            top: '-2px',
+            right: 0,
+          },
+        },
+        offline: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'offline',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'offline',
+            bg: 'offline',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
+        teaming: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'teaming',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'teaming',
+            bg: 'teaming',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
+        in_game: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'in_game',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'in_game',
+            bg: 'in_game',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
+        queued: {
+          container: {
+            borderWidth: '3px ',
+            borderColor: 'queued',
+            borderStyle: 'solid',
+          },
+          badge: {
+            boxSize: '11px',
+            backgroundColor: 'queued',
+            bg: 'queued',
+            border: 'none',
+            top: 0,
+            right: 0,
+          },
+        },
         body: {
           color: 'white',
         },
         header: {
           color: 'white',
+        },
+      },
+    },
+    Alert: {
+      baseStyle: {
+        container: {
+          maxWidth: '300px',
+        },
+        title: {
+          fontSize: '14px',
+        },
+        description: {
+          fontSize: '14px',
         },
       },
     },
@@ -216,6 +356,14 @@ export default extendTheme({
       400: '#F63535',
       600: '#8d1919',
     },
+
+    success: '#6BE400',
+
+    online: '#6BE400',
+    offline: '#999999',
+    teaming: '#9882FF',
+    in_game: '#E4BC00',
+    queued: '#E4BC00',
 
     gray: {
       300: '#ECECEC',

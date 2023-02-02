@@ -1,12 +1,10 @@
 import { Link } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container, Sidebar } from '@components'
-import { StorageService } from '@services'
+import { HttpService, StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
-
-import { useNavigate } from 'react-router-dom'
 import style from './MainLayout.module.css'
 
 export default function MainLayout(props) {
@@ -14,7 +12,10 @@ export default function MainLayout(props) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    const token = StorageService.get('token')
+    await HttpService.patch('accounts/logout/', token)
+
     dispatch(updateUser(null))
     StorageService.remove('token')
     navigate('/')
