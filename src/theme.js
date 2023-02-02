@@ -201,6 +201,16 @@ export default extendTheme({
           height: '9px',
           width: '9px',
         },
+
+        primary: {
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
+          fontWeight: 'lighter',
+          fontSize: '14px',
+          padding: '0 5px',
+          letterSpacing: '-1px',
+          borderRadius: '4px',
+        },
       },
     },
     Tabs: {
