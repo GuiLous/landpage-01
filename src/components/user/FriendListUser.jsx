@@ -18,7 +18,7 @@ export default function FriendListUser(props) {
     }).length > 0
 
   const isAvailable = () => {
-    if (invited) return false
+    if (invited || user.account.lobby.queue) return false
 
     switch (props.status) {
       case 'online':
