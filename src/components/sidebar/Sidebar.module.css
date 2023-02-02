@@ -50,3 +50,15 @@
 .panel.empty p {
     font-size: 14px;
 }
+
+.footer {
+    border-top: 1px solid #434343;
+    margin: 0 auto;
+    padding: 12px;
+    width: 90%;
+}
+
+.footer img {
+    opacity: 0.2;
+    width: 24px;
+}

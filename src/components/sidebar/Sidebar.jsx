@@ -10,6 +10,7 @@ import {
 import React from 'react'
 import { useSelector } from 'react-redux'
 
+import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import { Container, FriendListUser, Invite, SidebarItem } from '@components'
 import style from './Sidebar.module.css'
 
@@ -89,6 +90,15 @@ export default function Sidebar(props) {
             )}
           </TabPanels>
         </Tabs>
+      </Container>
+
+      <Container
+        className={style.footer}
+        justify="center"
+        align="end"
+        fitContent
+      >
+        <img src={logoSymbol} alt="Reload" />
       </Container>
     </Container>
   )
