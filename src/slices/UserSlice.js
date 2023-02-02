@@ -70,18 +70,6 @@ export const UserReducer = createSlice({
       }
     },
 
-    removeInviteSent: (state, action) => {
-      return {
-        ...state,
-        account: {
-          ...state.account,
-          lobby_invites_sent: state.account.lobby_invites_sent.filter(
-            (invite) => invite.id !== action.payload.id
-          ),
-        },
-      }
-    },
-
     addInviteReceived: (state, action) => {
       return {
         ...state,
@@ -92,7 +80,7 @@ export const UserReducer = createSlice({
       }
     },
 
-    removeInviteReceived: (state, action) => {
+    removeInvite: (state, action) => {
       return {
         ...state,
         account: {
@@ -100,6 +88,23 @@ export const UserReducer = createSlice({
           lobby_invites: state.account.lobby_invites.filter(
             (invite) => invite.id !== action.payload.id
           ),
+          lobby_invites_sent: state.account.lobby_invites_sent.filter(
+            (invite) => invite.id !== action.payload.id
+          ),
+        },
+      }
+    },
+
+    updateInviteReceived: (state, action) => {
+      const updatedItems = state.account.lobby_invites.map((invite) =>
+        invite.id === action.payload.id ? action.payload : invite
+      )
+
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby_invites: updatedItems,
         },
       }
     },
@@ -112,9 +117,9 @@ export const {
   addFriend,
   updateLobby,
   addInviteReceived,
-  removeInviteReceived,
+  removeInvite,
+  updateInviteReceived,
   addInviteSent,
-  removeInviteSent,
 } = UserReducer.actions
 
 export default UserReducer.reducer

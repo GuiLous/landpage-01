@@ -7,8 +7,9 @@ import { StorageService } from '@services'
 import {
   addFriend,
   addInviteReceived,
-  removeInviteSent,
+  removeInvite,
   updateFriend,
+  updateInviteReceived,
   updateLobby,
   updateUser,
 } from '@slices/UserSlice'
@@ -65,7 +66,26 @@ export const WSS = () => {
           duration: 60000,
           variant: 'subtle',
         })
-        dispatch(removeInviteSent(data.payload))
+        dispatch(removeInvite(data.payload))
+        break
+
+      case 'ws_updateInvite':
+        dispatch(updateInviteReceived(data.payload))
+        break
+
+      case 'ws_removeInvite':
+        if (data.payload.to_player.id === user.id) {
+          toast({
+            title: 'Convite expirou',
+            description: `O convite de ${data.payload.from_player.username} expirou.`,
+            status: 'info',
+            isClosable: true,
+            position: 'bottom-right',
+            duration: 60000,
+            variant: 'subtle',
+          })
+        }
+        dispatch(removeInvite(data.payload))
         break
 
       default:
