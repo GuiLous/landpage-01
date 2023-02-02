@@ -1,15 +1,14 @@
-import { Icon, Text, useToast } from '@chakra-ui/react'
+import { Icon, Text } from '@chakra-ui/react'
 import { BsFillCheckCircleFill } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { AddUserIcon, Avatar, Container, UserStatus } from '@components'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
 import { addInviteSent } from '@slices/UserSlice'
 import style from './FriendListUser.module.css'
 
 export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
-  const toast = useToast()
   const dispatch = useDispatch()
 
   const invited =
@@ -55,13 +54,10 @@ export default function FriendListUser(props) {
     )
 
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        variant: 'subtle',
       })
       return
     }
