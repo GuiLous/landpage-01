@@ -7,9 +7,8 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react'
-import React from 'react'
-import { useSelector } from 'react-redux'
-// import { Scrollbar } from 'react-scrollbars-custom'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
@@ -19,10 +18,18 @@ import {
   Scrollbars,
   SidebarItem,
 } from '@components'
+import { readInvites } from '@slices/InviteSlice'
 import style from './Sidebar.module.css'
 
 export default function Sidebar(props) {
   const user = useSelector((state) => state.user)
+  const unreadInvites = useSelector((state) => state.invites.unread)
+  const dispatch = useDispatch()
+  const [tabIndex, setTabIndex] = useState()
+
+  useEffect(() => {
+    if (tabIndex === tabs.indexOf('Convites')) dispatch(readInvites())
+  }, [unreadInvites])
 
   const onlineFriends = user.account.friends.filter(
     (friend) => friend.is_online
@@ -30,6 +37,26 @@ export default function Sidebar(props) {
   const offlineFriends = user.account.friends.filter(
     (friend) => !friend.is_online
   )
+
+  const tabs = ['Online', 'Offline', 'Convites']
+
+  const handleTabsChange = (index) => {
+    if (index === tabs.indexOf('Convites')) dispatch(readInvites())
+    setTabIndex(index)
+  }
+
+  const renderTabs = () => {
+    return tabs.map((tab) => (
+      <Tab key={tab}>
+        {tab}
+        {tab === 'Convites' &&
+          tabIndex !== tabs.indexOf('Convites') &&
+          unreadInvites > 0 && (
+            <Badge className={style.unreadBadge} variant="unread" />
+          )}
+      </Tab>
+    ))
+  }
 
   return (
     <Container column className={style.container}>
@@ -42,13 +69,13 @@ export default function Sidebar(props) {
       </Container>
 
       <Container className={style.body}>
-        <Tabs variant="primary" className={style.tabs}>
+        <Tabs
+          variant="primary"
+          className={style.tabs}
+          onChange={handleTabsChange}
+        >
           <Container className={style.tablist}>
-            <TabList gap={2}>
-              <Tab>Online</Tab>
-              <Tab>Offline</Tab>
-              <Tab>Convites</Tab>
-            </TabList>
+            <TabList gap={2}>{renderTabs()}</TabList>
           </Container>
 
           <TabPanels className={style.panels}>
