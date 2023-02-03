@@ -211,6 +211,14 @@ export default extendTheme({
           letterSpacing: '-1px',
           borderRadius: '4px',
         },
+
+        unread: {
+          bg: 'secondary.400',
+          backgroundColor: 'secondary.400',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+        },
       },
     },
     Tabs: {
