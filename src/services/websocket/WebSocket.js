@@ -3,6 +3,7 @@ import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService, Toast } from '@services'
+import { newInvite } from '@slices/InviteSlice'
 import {
   addFriend,
   addInviteReceived,
@@ -52,6 +53,7 @@ export const WSS = () => {
 
       case 'ws_lobbyInviteReceived':
         dispatch(addInviteReceived(data.payload))
+        dispatch(newInvite())
         break
 
       case 'ws_refuseInvite':
