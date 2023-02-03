@@ -1,9 +1,8 @@
-import { useToast } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
-import { StorageService } from '@services'
+import { StorageService, Toast } from '@services'
 import {
   addFriend,
   addInviteReceived,
@@ -19,7 +18,6 @@ export const WSS = () => {
 
   const user = useSelector((state) => state.user)
   const token = StorageService.get('token')
-  const toast = useToast()
 
   useWebSocket(
     REACT_APP_WS_URL,
@@ -57,14 +55,10 @@ export const WSS = () => {
         break
 
       case 'ws_refuseInvite':
-        toast({
+        Toast({
           title: 'Convite recusado',
           description: `O convite para ${data.payload.to_player.username} foi recusado.`,
           status: 'info',
-          isClosable: true,
-          position: 'bottom-right',
-          duration: 60000,
-          variant: 'subtle',
         })
         dispatch(removeInvite(data.payload))
         break
@@ -75,14 +69,10 @@ export const WSS = () => {
 
       case 'ws_removeInvite':
         if (data.payload.to_player.id === user.id) {
-          toast({
+          Toast({
             title: 'Convite expirou',
             description: `O convite de ${data.payload.from_player.username} expirou.`,
             status: 'info',
-            isClosable: true,
-            position: 'bottom-right',
-            duration: 60000,
-            variant: 'subtle',
           })
         }
         dispatch(removeInvite(data.payload))

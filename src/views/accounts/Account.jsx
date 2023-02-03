@@ -10,7 +10,6 @@ import {
   ModalOverlay,
   UnorderedList,
   useDisclosure,
-  useToast,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,14 +17,13 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
 export default function AccountView() {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const [fetching, setFetching] = useState(false)
@@ -48,13 +46,10 @@ export default function AccountView() {
     setFetching(false)
 
     if (response && response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
       return
     }

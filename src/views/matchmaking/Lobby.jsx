@@ -1,17 +1,16 @@
-import { Button, Link, useToast } from '@chakra-ui/react'
+import { Button, Link } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 // import { useStopwatch } from 'react-timer-hook'
 
 import { Container, Timer, UserCard } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
-  const toast = useToast()
   const dispatch = useDispatch()
 
   const lobby = user && user.account.lobby
@@ -22,13 +21,10 @@ export default function LobbyView() {
     const token = StorageService.get('token')
     const response = await HttpService.patch('mm/lobby/leave', token)
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
       return
     }
@@ -45,13 +41,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
@@ -113,13 +106,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
@@ -133,13 +123,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
