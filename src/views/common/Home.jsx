@@ -1,4 +1,4 @@
-import { Button, Divider, useToast } from '@chakra-ui/react'
+import { Button, Divider } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
@@ -9,7 +9,7 @@ import heroImg from '@assets/images/home_hero.png'
 import logo from '@assets/images/logo_type_white.svg'
 import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
@@ -17,7 +17,6 @@ export default function HomeView() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const toast = useToast()
 
   const [fetching, setFetching] = useState(false)
   const [formError, setFormError] = useState()
@@ -35,13 +34,10 @@ export default function HomeView() {
       setFetching(false)
       if (response.field) setFormError(response)
       else
-        toast({
+        Toast({
           title: 'Oops, ocorreu um erro',
           description: response.errorMsg,
           status: 'error',
-          isClosable: true,
-          position: 'bottom-right',
-          duration: 6000,
         })
       return
     }

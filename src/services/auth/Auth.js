@@ -11,7 +11,8 @@ export const AuthService = {
       return null
     }
 
-    return response
+    if (response.errorMsg) return null
+    else return response
   },
 }
 

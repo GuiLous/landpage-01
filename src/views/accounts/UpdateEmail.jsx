@@ -4,7 +4,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Link,
-  useToast,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,7 +12,7 @@ import { useNavigate } from 'react-router-dom'
 import { Container, Input } from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { SignupLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
 import style from './UpdateEmail.module.css'
 
@@ -21,15 +20,14 @@ export default function SignupView() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const toast = useToast()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
   const [formError, setFormError] = useState()
 
   useEffect(() => {
-    if (!user || !user.account || user.account.is_verified) navigate('/')
+    if (!user || !user.account) navigate('/')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user])
 
   const handleButtonClick = () =>
     isEmailValid(value) && handleSubmit({ email: value })
@@ -46,13 +44,10 @@ export default function SignupView() {
       setFetching(false)
       if (response.field) setFormError(response)
       else
-        toast({
+        Toast({
           title: 'Oops, ocorreu um erro',
           description: response.errorMsg,
           status: 'error',
-          isClosable: true,
-          position: 'bottom-right',
-          duration: 6000,
         })
       return
     }

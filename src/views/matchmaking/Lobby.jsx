@@ -1,33 +1,36 @@
-import { Button, Link, useToast } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
+import { Button, Link } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
 // import { useStopwatch } from 'react-timer-hook'
 
 import { Container, Timer, UserCard } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
+import { HttpService, StorageService, Toast } from '@services'
+import { updateUser } from '@slices/UserSlice'
 
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
-  const toast = useToast()
+  const dispatch = useDispatch()
+
   const lobby = user && user.account.lobby
   const owner = lobby.players.filter((player) => player.id === user.id)[0]
   const nonOwners = lobby.players.filter((player) => player.id !== user.id)
-  // const {
-  //   seconds,
-  //   minutes,
-  //   hours,
-  //   isRunning,
-  //   start,
-  //   pause,
-  //   reset,
-  // } = useStopwatch({ autoStart: true, offsetTimestamp: lobby.queue_time})
-  // const elapsed_time = () => {
-  //   // let time = lobby.queue_time
-  //   if (seconds > 3600) return new Date(seconds * 1000).toISOString().substr(11, 8)
-  //   else return (seconds-(seconds%=60))/60+(9<seconds?':':':0')+seconds
-  // }
+
+  const handleLeave = async () => {
+    const token = StorageService.get('token')
+    const response = await HttpService.patch('mm/lobby/leave', token)
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+      return
+    }
+
+    dispatch(updateUser(response))
+  }
 
   const handleKick = async (user) => {
     const token = StorageService.get('token')
@@ -38,13 +41,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
@@ -106,13 +106,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
@@ -126,13 +123,10 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      toast({
+      Toast({
         title: 'Oops, ocorreu um erro',
         description: response.errorMsg,
         status: 'error',
-        isClosable: true,
-        position: 'bottom-right',
-        duration: 6000,
       })
     }
   }
@@ -165,7 +159,10 @@ export default function LobbyView() {
           style={{ marginTop: 200 }}
         >
           {!lobby.queue && (
-            <Button onClick={handleStartQueue}>Procurar partida</Button>
+            <>
+              <Button onClick={handleStartQueue}>Procurar partida</Button>
+              <Link onClick={handleLeave}>Sair</Link>
+            </>
           )}
           {lobby.queue && (
             <Button onClick={handleCancelQueue}>

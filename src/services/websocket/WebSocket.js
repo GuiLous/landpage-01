@@ -2,12 +2,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
-import { StorageService } from '@services'
+import { StorageService, Toast } from '@services'
+import { newInvite } from '@slices/InviteSlice'
 import {
   addFriend,
-  addInvite,
+  addInviteReceived,
+  removeInvite,
   updateFriend,
+  updateInviteReceived,
   updateLobby,
+  updateUser,
 } from '@slices/UserSlice'
 
 export const WSS = () => {
@@ -31,6 +35,10 @@ export const WSS = () => {
     const data = JSON.parse(event.data)
 
     switch (data.meta.action) {
+      case 'ws_userUpdate':
+        dispatch(updateUser(data.payload))
+        break
+
       case 'ws_userStatusChange':
         dispatch(updateFriend(data.payload))
         break
@@ -44,7 +52,32 @@ export const WSS = () => {
         break
 
       case 'ws_lobbyInviteReceived':
-        dispatch(addInvite(data.payload))
+        dispatch(addInviteReceived(data.payload))
+        dispatch(newInvite())
+        break
+
+      case 'ws_refuseInvite':
+        Toast({
+          title: 'Convite recusado',
+          description: `O convite para ${data.payload.to_player.username} foi recusado.`,
+          status: 'info',
+        })
+        dispatch(removeInvite(data.payload))
+        break
+
+      case 'ws_updateInvite':
+        dispatch(updateInviteReceived(data.payload))
+        break
+
+      case 'ws_removeInvite':
+        if (data.payload.to_player.id === user.id) {
+          Toast({
+            title: 'Convite expirou',
+            description: `O convite de ${data.payload.from_player.username} expirou.`,
+            status: 'info',
+          })
+        }
+        dispatch(removeInvite(data.payload))
         break
 
       default:
