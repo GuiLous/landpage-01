@@ -46,6 +46,7 @@ export default function App() {
           path="/"
           element={
             (!user && <HomeView />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <Navigate to="/jogar" replace />
@@ -57,6 +58,7 @@ export default function App() {
           path="/jogar"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <LobbyView />
@@ -68,6 +70,7 @@ export default function App() {
           path="/minha-conta"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <AccountView />
@@ -79,6 +82,7 @@ export default function App() {
           path="/perfil"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <ProfileView />
@@ -90,6 +94,7 @@ export default function App() {
           path="/alterar-email"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) || (
               <UpdateEmailView />
             )
@@ -100,6 +105,7 @@ export default function App() {
           path="/verificar"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
             (unverifiedUser && <VerifyView />) || (
               <Navigate to="/jogar" replace />
@@ -111,9 +117,22 @@ export default function App() {
           path="/cadastrar"
           element={
             (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <SignupView />) ||
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <Navigate to="/jogar" replace />
+            )
+          }
+        />
+
+        <Route
+          path="/conta-inativa"
+          element={
+            (!user && <Navigate to="/" replace />) ||
+            (user.is_active && <Navigate to="/" replace />) ||
+            (newUser && <Navigate to="/cadastrar" replace />) ||
+            (unverifiedUser && <Navigate to="/verificar" replace />) || (
+              <InactiveView />
             )
           }
         />
@@ -130,7 +149,6 @@ export default function App() {
       <Routes>
         {render()}
         <Route path="/auth" element={<AuthView />} />
-        <Route path="/conta-inativa" element={<InactiveView />} />
         <Route path="/404" element={<NotFoundView />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
