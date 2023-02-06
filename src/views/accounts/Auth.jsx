@@ -24,9 +24,12 @@ export default function AuthView() {
       const response = await AuthService.login(token)
 
       if (response) {
-        dispatch(updateUser(response))
-        StorageService.set('token', token)
-        redirectUser(response)
+        if (!response.is_active) navigate('/conta-inativa')
+        else {
+          dispatch(updateUser(response))
+          StorageService.set('token', token)
+          redirectUser(response)
+        }
       } else {
         navigate('/')
       }
