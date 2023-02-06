@@ -8,6 +8,7 @@ import {
   AccountView,
   AuthView,
   HomeView,
+  InactiveView,
   LobbyView,
   NotFoundView,
   ProfileView,
@@ -129,6 +130,7 @@ export default function App() {
       <Routes>
         {render()}
         <Route path="/auth" element={<AuthView />} />
+        <Route path="/conta-inativa" element={<InactiveView />} />
         <Route path="/404" element={<NotFoundView />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>

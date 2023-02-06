@@ -5,6 +5,7 @@ import NotFoundView from './common/NotFound'
 // accounts
 import AccountView from './accounts/Account'
 import AuthView from './accounts/Auth'
+import InactiveView from './accounts/Inactive'
 import ProfileView from './accounts/Profile'
 import SignupView from './accounts/Signup'
 import UpdateEmailView from './accounts/UpdateEmail'
@@ -23,4 +24,5 @@ export {
   VerifyView,
   ProfileView,
   LobbyView,
+  InactiveView,
 }
