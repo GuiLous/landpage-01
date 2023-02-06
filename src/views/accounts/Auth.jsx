@@ -15,6 +15,7 @@ export default function AuthView() {
   useEffect(() => {
     const redirectUser = (user) => {
       if (!user) navigate('/')
+      else if (!user.is_active) navigate('/conta-inativa')
       else if (!user.account) navigate('/cadastrar')
       else if (!user.account.is_verified) navigate('/verificar')
       else navigate('/jogar')
@@ -24,8 +25,8 @@ export default function AuthView() {
       const response = await AuthService.login(token)
 
       if (response) {
-        dispatch(updateUser(response))
         StorageService.set('token', token)
+        dispatch(updateUser(response))
         redirectUser(response)
       } else {
         navigate('/')

@@ -43,11 +43,14 @@ export default function HomeView() {
     }
 
     setFetching(false)
-
-    dispatch(updateUser(response))
     StorageService.set('token', response.token)
-    if (response.account.is_verified) navigate('/jogar')
-    else navigate('/verificar')
+
+    if (!response.is_active) navigate(`/conta-inativa?token=${response.token}`)
+    else {
+      dispatch(updateUser(response))
+      if (response.account.is_verified) navigate('/jogar')
+      else navigate('/verificar')
+    }
   }
 
   return (

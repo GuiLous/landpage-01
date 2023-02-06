@@ -28,20 +28,12 @@ export default function AccountView() {
 
   const [fetching, setFetching] = useState(false)
 
-  const handleLogout = async () => {
-    const token = StorageService.get('token')
-    await HttpService.patch('accounts/logout/', token)
-
-    dispatch(updateUser(null))
-    StorageService.remove('token')
-    navigate('/')
-  }
-
   const handleAccountInactivation = async () => {
     if (fetching) return
 
     setFetching(true)
     const token = StorageService.get('token')
+    await HttpService.patch('accounts/logout/', token)
     const response = await HttpService.delete('accounts/', token)
     setFetching(false)
 
@@ -54,7 +46,9 @@ export default function AccountView() {
       return
     }
 
-    handleLogout()
+    dispatch(updateUser(null))
+    StorageService.remove('token')
+    navigate('/')
   }
 
   return (

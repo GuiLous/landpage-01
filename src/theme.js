@@ -182,6 +182,7 @@ export default extendTheme({
         dialog: {
           backgroundColor: '#222222',
           bg: '#222222',
+          color: 'white',
         },
         closeButton: {
           color: '#F5F6F8',
