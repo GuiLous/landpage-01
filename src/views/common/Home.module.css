@@ -69,9 +69,15 @@
     }
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 767px) {
     .heroImg {
-        display: none;
+        margin: 0;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .heroImg img {
+        max-width: 100%;
     }
 
     .hero {
@@ -87,4 +93,30 @@
     .animatedBg {
         display: none;
     }
+
+    .brand {
+        max-width: 75%;
+    }
+}
+
+.containerMobile {
+    background: url('@assets/images/home_mobile_bg_bottom.png') no-repeat bottom
+            left,
+        url('@assets/images/home_mobile_bg_top.png') no-repeat top right black;
+    color: white;
+    min-height: 100vh;
+    padding: 0 30px;
+}
+
+.mobileHeader {
+    position: relative;
+    z-index: 1;
+}
+
+.mobileBrand {
+    width: 75%;
+}
+
+.mobileJoinUs {
+    font-size: 12px;
 }
