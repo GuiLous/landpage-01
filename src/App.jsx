@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
 import { updateUser } from '@slices/UserSlice'
 import {
@@ -141,7 +142,9 @@ export default function App() {
   }
 
   return fetching ? (
-    'Carregando...'
+    <LoadingBackdrop>
+      <Loading />
+    </LoadingBackdrop>
   ) : (
     <>
       {user && user.account && user.account.is_verified && <WSS />}
