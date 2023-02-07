@@ -1,10 +1,11 @@
 import {
-  Button,
   Divider,
   FormControl,
   FormErrorMessage,
   FormHelperText,
   FormLabel,
+  Icon,
+  IconButton,
   Link,
   PinInput,
   PinInputField,
@@ -13,7 +14,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
-import { Container } from '@components'
+import { ArrowRightIcon, Container, LockIcon } from '@components'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
@@ -70,7 +71,13 @@ export default function VerifyView() {
           justify="center"
           fitContent
         >
-          <Container className={style.formTitle} justify="center">
+          <Container
+            className={style.formTitle}
+            align="center"
+            justify="center"
+            column
+          >
+            <Icon style={{ fontSize: 40, marginBottom: 32 }} as={LockIcon} />
             Verificação obrigatória
           </Container>
 
@@ -81,7 +88,11 @@ export default function VerifyView() {
               </FormLabel>
 
               <Container justify="center" className={style.pin}>
-                <Container className={style.pinWrapper} justify="between">
+                <Container
+                  className={style.pinWrapper}
+                  justify="between"
+                  gap={10}
+                >
                   <PinInput
                     placeholder=""
                     onChange={handleChange}
@@ -90,13 +101,23 @@ export default function VerifyView() {
                     isInvalid={formError}
                     manageFocus
                   >
-                    <PinInputField />
-                    <PinInputField />
-                    <PinInputField />
-                    <PinInputField />
-                    <PinInputField />
-                    <PinInputField />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
                   </PinInput>
+                  <IconButton
+                    variant="secondary"
+                    isDisabled={!value || value.length !== 6}
+                    isLoading={fetching}
+                    onClick={handleButtonClick}
+                    aria-label="Validar e jogar agora!"
+                    fontSize="18px"
+                    style={{ minHeight: '48px', minWidth: '48px' }}
+                    icon={<ArrowRightIcon />}
+                  />
                 </Container>
               </Container>
 
@@ -126,7 +147,7 @@ export default function VerifyView() {
             </FormControl>
           </Container>
 
-          <Container justify="center">
+          {/* <Container justify="center">
             <Button
               style={{ flex: 1, marginTop: 16 }}
               onClick={handleButtonClick}
@@ -136,7 +157,7 @@ export default function VerifyView() {
             >
               Validar e jogar agora!
             </Button>
-          </Container>
+          </Container> */}
         </Container>
       </SignupLayout>
     )
