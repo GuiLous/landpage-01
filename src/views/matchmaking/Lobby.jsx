@@ -1,4 +1,5 @@
-import { Button, Link, Switch } from '@chakra-ui/react'
+import { Button, Icon, Link, Switch } from '@chakra-ui/react'
+import { AiFillCaretUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, Timer, UserCard } from '@components'
@@ -100,6 +101,23 @@ export default function LobbyView() {
     }
   }
 
+  const handleToggleMode = async (lobbyType, lobbyMode) => {
+    const token = StorageService.get('token')
+    let response
+
+    response = await HttpService.patch(
+      `mm/lobby/${lobby.id}/change-type/${lobbyType}/change-mode/${lobbyMode}`,
+      token
+    )
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+    }
+  }
+
   const renderLineup = () => {
     let lineup = []
 
@@ -180,8 +198,63 @@ export default function LobbyView() {
           align="center"
           justify="between"
         >
-          <Link variant="active">Ranked 5x5</Link>
-          <Link>Ranked 1x1</Link>
+          <Container
+            justify="center"
+            className={[
+              style.lobbyMode,
+              lobby.mode === 1 && style.activeMode,
+            ].join(' ')}
+            onClick={() => {
+              handleToggleMode('competitive', 1)
+            }}
+          >
+            Ranked 1x1
+            <Container
+              className={style.modeActiveCaret}
+              align="center"
+              justify="center"
+            >
+              <Icon as={AiFillCaretUp} />
+            </Container>
+          </Container>
+          <Container
+            justify="center"
+            className={[
+              style.lobbyMode,
+              lobby.mode === 5 && style.activeMode,
+            ].join(' ')}
+            onClick={() => {
+              handleToggleMode('competitive', 5)
+            }}
+          >
+            Ranked 5x5
+            <Container
+              className={style.modeActiveCaret}
+              align="center"
+              justify="center"
+            >
+              <Icon as={AiFillCaretUp} />
+            </Container>
+          </Container>
+          <Container
+            justify="center"
+            className={[
+              style.lobbyMode,
+              lobby.mode === 20 && style.activeMode,
+            ].join(' ')}
+            onClick={() => {
+              handleToggleMode('custom', 20)
+            }}
+          >
+            Personalizada
+            <Container
+              className={style.modeActiveCaret}
+              align="center"
+              justify="center"
+            >
+              <Icon as={AiFillCaretUp} />
+            </Container>
+          </Container>
         </Container>
 
         <Container align="center" justify="between">
