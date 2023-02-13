@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
+import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
@@ -41,5 +42,9 @@ export default function AuthView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  return <p>Carregando...</p>
+  return (
+    <LoadingBackdrop>
+      <Loading />
+    </LoadingBackdrop>
+  )
 }
