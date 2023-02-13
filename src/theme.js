@@ -45,12 +45,22 @@ export default extendTheme({
             bg: 'secondary.400',
             backgroundColor: 'secondary.400',
             color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
           },
           _active: {
             bg: 'secondary.500',
             backgroundColor: 'secondary.500',
             borderColor: 'secondary.500',
             color: 'white',
+          },
+          _loading: {
+            _hover: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
           },
         },
 
@@ -165,10 +175,9 @@ export default extendTheme({
         errorBorderColor: 'danger.400',
       },
       baseStyle: {
-        color: 'gray.600',
+        color: 'black',
         bg: 'white',
         backgroundColor: 'white',
-        fontSize: '16px',
         _placeholder: {
           color: 'gray.700',
         },
@@ -182,6 +191,7 @@ export default extendTheme({
         dialog: {
           backgroundColor: '#222222',
           bg: '#222222',
+          color: 'white',
         },
         closeButton: {
           color: '#F5F6F8',

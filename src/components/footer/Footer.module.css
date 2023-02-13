@@ -33,3 +33,10 @@
     font-size: 22px;
     margin-bottom: auto;
 }
+
+@media (max-width: 767px) {
+    .mobileContainer {
+        background-color: black;
+        padding: 30px;
+    }
+}
