@@ -356,6 +356,16 @@ export default extendTheme({
         },
       },
     },
+    Switch: {
+      baseStyle: {
+        track: {
+          bg: '#C4C4C4',
+          _checked: {
+            bg: 'primary.400',
+          },
+        },
+      },
+    },
   },
   colors: {
     primary: {
