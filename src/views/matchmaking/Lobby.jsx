@@ -1,6 +1,5 @@
-import { Button, Link } from '@chakra-ui/react'
+import { Button, Link, Switch } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-// import { useStopwatch } from 'react-timer-hook'
 
 import { Container, Timer, UserCard } from '@components'
 import { MainLayout } from '@layouts'
@@ -38,6 +37,58 @@ export default function LobbyView() {
 
     response = await HttpService.patch(
       `mm/lobby/${lobby.id}/remove-player/${user.id}/`,
+      token
+    )
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+    }
+  }
+
+  const handleCancelQueue = async () => {
+    const token = StorageService.get('token')
+    let response
+
+    response = await HttpService.patch(
+      `mm/lobby/${lobby.id}/cancel-queue/`,
+      token
+    )
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+    }
+  }
+
+  const handleStartQueue = async () => {
+    const token = StorageService.get('token')
+    let response
+
+    response = await HttpService.patch(
+      `mm/lobby/${lobby.id}/start-queue/`,
+      token
+    )
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+    }
+  }
+
+  const handleToggleVisibilty = async () => {
+    const token = StorageService.get('token')
+    const endpoint = lobby.is_public ? 'set-private' : 'set-public'
+    let response
+
+    response = await HttpService.patch(
+      `mm/lobby/${lobby.id}/${endpoint}/`,
       token
     )
     if (response.errorMsg) {
@@ -97,46 +148,31 @@ export default function LobbyView() {
     return lineup
   }
 
-  const handleCancelQueue = async () => {
-    const token = StorageService.get('token')
-    let response
-
-    response = await HttpService.patch(
-      `mm/lobby/${lobby.id}/cancel-queue/`,
-      token
-    )
-    if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
-    }
-  }
-
-  const handleStartQueue = async () => {
-    const token = StorageService.get('token')
-    let response
-
-    response = await HttpService.patch(
-      `mm/lobby/${lobby.id}/start-queue/`,
-      token
-    )
-    if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
-    }
-  }
-
   return (
     <MainLayout>
-      <Container column>
-        <Container column>
-          <h3>Selecione um</h3>
-          <h2>modo de jogo</h2>
+      <Container column className={style.container}>
+        <Container>
+          <Container className={style.header} column>
+            <Container style={{ fontSize: 24 }}>Selecione um</Container>
+            <Container
+              style={{ fontSize: 32, fontWeight: 'bold', marginTop: '-8px' }}
+            >
+              modo de jogo
+            </Container>
+          </Container>
+
+          <Container className={style.groupType} gap={14} fitContent>
+            <Container style={{ whiteSpace: 'nowrap', minWidth: '106px' }}>
+              Grupo {lobby.is_public ? 'aberto' : 'fechado'}
+            </Container>
+            <Container fitContent>
+              <Switch
+                id="groupType"
+                defaultChecked={!lobby.is_public}
+                onChange={handleToggleVisibilty}
+              />
+            </Container>
+          </Container>
         </Container>
 
         <Container
