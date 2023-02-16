@@ -1,0 +1,39 @@
+.container {
+    background: linear-gradient(to bottom, #2f2f2f, #2f2f2f);
+    border-radius: 8px;
+    cursor: pointer;
+    height: 100%;
+    opacity: 0.9;
+    padding: 2px;
+
+    transition: all 120ms ease-in;
+}
+
+.container:hover {
+    background: linear-gradient(
+        to bottom,
+        var(--chakra-colors-primary-400) 0,
+        #2f2f2f 70%
+    );
+    opacity: 1;
+}
+
+.wrapper {
+    background: #2f2f2f;
+    border-radius: 8px;
+    height: 100%;
+}
+
+.icon {
+    filter: invert(63%) sepia(6%) saturate(15%) hue-rotate(334deg)
+        brightness(95%) contrast(88%);
+    font-size: 20px;
+    position: relative;
+    transition: transform 120ms ease-in;
+}
+
+.container:hover .icon {
+    filter: invert(48%) sepia(97%) saturate(6600%) hue-rotate(244deg)
+        brightness(104%) contrast(101%);
+    transform: rotate(45deg);
+}

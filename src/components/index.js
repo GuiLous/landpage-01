@@ -12,6 +12,7 @@ import Input from './input/Input'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
 import Invite from './lobby/Invite'
+import LobbySeat from './lobby/LobbySeat'
 import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
@@ -34,6 +35,7 @@ export {
   Input,
   Loading,
   LoadingBackdrop,
+  LobbySeat,
   Scrollbars,
   Sidebar,
   SidebarItem,
