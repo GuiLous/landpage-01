@@ -2,7 +2,7 @@ import { Button, Icon, Link, Switch } from '@chakra-ui/react'
 import { AiFillCaretUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Container, Timer, UserCard } from '@components'
+import { Container, LobbySeat, Timer, UserCard } from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
@@ -125,20 +125,45 @@ export default function LobbyView() {
       const fillOrder = [1, 3, 0, 4]
 
       lineup = [
-        <Container align="center" justify="center" key="pos0">
-          Vazio
+        <Container
+          align="center"
+          justify="center"
+          key="pos0"
+          className={style.lobbySeat}
+        >
+          <LobbySeat />
         </Container>,
-        <Container align="center" justify="center" key="pos1">
-          Vazio
+        <Container
+          align="center"
+          justify="center"
+          key="pos1"
+          className={style.lobbySeat}
+        >
+          <LobbySeat />
         </Container>,
-        <Container align="center" justify="center" key="pos2">
+        <Container
+          align="center"
+          justify="center"
+          key="pos2"
+          className={style.lobbySeat}
+        >
           <UserCard {...owner} />
         </Container>,
-        <Container align="center" justify="center" key="pos3">
-          Vazio
+        <Container
+          align="center"
+          justify="center"
+          key="pos3"
+          className={style.lobbySeat}
+        >
+          <LobbySeat />
         </Container>,
-        <Container align="center" justify="center" key="pos4">
-          Vazio
+        <Container
+          align="center"
+          justify="center"
+          key="pos4"
+          className={style.lobbySeat}
+        >
+          <LobbySeat />
         </Container>,
       ]
 
@@ -161,6 +186,14 @@ export default function LobbyView() {
           <UserCard {...owner} />
         </Container>,
       ]
+    } else if (lobby.max_players === 20) {
+      lineup = Array.from(Array(20)).map((el, idx) => (
+        <Container key={idx} className={style.lobbyCustomSeat}>
+          <LobbySeat />
+        </Container>
+      ))
+
+      lineup[0] = <UserCard {...owner} />
     }
 
     return lineup
@@ -169,7 +202,7 @@ export default function LobbyView() {
   return (
     <MainLayout>
       <Container column className={style.container}>
-        <Container>
+        <Container fitContent align="center">
           <Container className={style.header} column>
             <Container style={{ fontSize: 24 }}>Selecione um</Container>
             <Container
@@ -197,6 +230,7 @@ export default function LobbyView() {
           className={style.typeSelection}
           align="center"
           justify="between"
+          fitContent
         >
           <Container
             justify="center"
@@ -217,6 +251,7 @@ export default function LobbyView() {
               <Icon as={AiFillCaretUp} />
             </Container>
           </Container>
+
           <Container
             justify="center"
             className={[
@@ -236,6 +271,7 @@ export default function LobbyView() {
               <Icon as={AiFillCaretUp} />
             </Container>
           </Container>
+
           <Container
             justify="center"
             className={[
@@ -257,20 +293,20 @@ export default function LobbyView() {
           </Container>
         </Container>
 
-        <Container align="center" justify="between">
+        <Container
+          align="center"
+          justify="between"
+          className={style.lineupWrapper}
+          gap={18}
+        >
           {renderLineup()}
         </Container>
 
-        <Container
-          align="center"
-          justify="center"
-          column
-          style={{ marginTop: 200 }}
-        >
+        <Container align="center" justify="center" column fitContent>
           {!lobby.queue && (
             <>
               <Button onClick={handleStartQueue}>Procurar partida</Button>
-              <Link onClick={handleLeave}>Sair</Link>
+              {/* <Link onClick={handleLeave}>Sair</Link> */}
             </>
           )}
           {lobby.queue && (

@@ -1,3 +1,7 @@
+.container {
+    height: 100%;
+}
+
 .header {
     text-transform: uppercase;
 }
@@ -12,7 +16,7 @@
 .typeSelection {
     color: #999;
     font-size: 18px;
-    margin-top: 60px;
+    margin-top: 40px;
     position: relative;
     text-transform: uppercase;
 }
@@ -49,4 +53,18 @@
 
 .lobbyMode:hover {
     color: var(--chakra-colors-secondary-400);
+}
+
+.lineupWrapper {
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 32px 0;
+}
+
+.lobbySeat {
+    height: 100%;
+}
+
+.lobbyCustomSeat {
+    flex: 1 0 calc(25% - 18px);
 }
