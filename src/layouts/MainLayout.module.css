@@ -12,16 +12,14 @@
 }
 
 .wrapper {
-    padding-top: 42px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding: 40px 60px;
 }
 
 .sidebar {
     max-width: 305px;
-    height: 90%;
+    height: 100%;
 }
 
 .content {
-    height: 90%;
+    height: 100%;
 }
