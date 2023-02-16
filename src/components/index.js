@@ -5,7 +5,9 @@ import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import CloseIcon from './icons/CloseIcon'
 import LockIcon from './icons/LockIcon'
+import PlusIcon from './icons/PlusIcon'
 import Input from './input/Input'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
@@ -21,7 +23,9 @@ import UserStatus from './user/UserStatus'
 export {
   AddUserIcon,
   ArrowRightIcon,
+  CloseIcon,
   LockIcon,
+  PlusIcon,
   Avatar,
   Container,
   FakeSigninForm,
