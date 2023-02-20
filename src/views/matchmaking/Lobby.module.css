@@ -52,7 +52,8 @@
 }
 
 .lobbyMode:hover {
-    color: var(--chakra-colors-secondary-400);
+    border-bottom: 1px solid white;
+    color: white;
 }
 
 .lineupWrapper {
