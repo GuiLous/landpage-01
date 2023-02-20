@@ -182,14 +182,51 @@ export default function LobbyView() {
       }
     } else if (lobby.max_players === 1) {
       lineup = [
-        <Container align="center" justify="center" key="pos2">
+        <Container
+          align="center"
+          justify="center"
+          key="pos0"
+          className={style.lobbySeat}
+        >
+          <LobbySeat disabled />
+        </Container>,
+        <Container
+          align="center"
+          justify="center"
+          key="pos1"
+          className={style.lobbySeat}
+        >
+          <LobbySeat disabled />
+        </Container>,
+        <Container
+          align="center"
+          justify="center"
+          key="pos2"
+          className={style.lobbySeat}
+        >
           <UserCard {...owner} />
+        </Container>,
+        <Container
+          align="center"
+          justify="center"
+          key="pos3"
+          className={style.lobbySeat}
+        >
+          <LobbySeat disabled />
+        </Container>,
+        <Container
+          align="center"
+          justify="center"
+          key="pos4"
+          className={style.lobbySeat}
+        >
+          <LobbySeat disabled />
         </Container>,
       ]
     } else if (lobby.max_players === 20) {
       lineup = Array.from(Array(20)).map((el, idx) => (
         <Container key={idx} className={style.lobbyCustomSeat}>
-          <LobbySeat />
+          <LobbySeat mini />
         </Container>
       ))
 
@@ -296,7 +333,10 @@ export default function LobbyView() {
         <Container
           align="center"
           justify="between"
-          className={style.lineupWrapper}
+          className={[
+            style.lineupWrapper,
+            lobby.max_players === 20 && style.lineup20,
+          ].join(' ')}
           gap={18}
         >
           {renderLineup()}

@@ -59,7 +59,7 @@
 .lineupWrapper {
     flex-wrap: wrap;
     height: 100%;
-    padding: 32px 0;
+    padding: 20px 0;
 }
 
 .lobbySeat {
@@ -67,5 +67,6 @@
 }
 
 .lobbyCustomSeat {
-    flex: 1 0 calc(25% - 18px);
+    flex: 1 0 20%;
+    margin: 3px 11px;
 }

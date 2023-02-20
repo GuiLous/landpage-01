@@ -41,6 +41,7 @@ select {
 
 html {
     box-sizing: border-box;
+    background: #111;
 }
 
 body {
