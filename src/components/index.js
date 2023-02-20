@@ -21,6 +21,7 @@ import Timer from './timer/Timer'
 import FriendListUser from './user/FriendListUser'
 import LevelBadge from './user/LevelBadge'
 import UserCard from './user/UserCard'
+import UserCardMini from './user/UserCardMini'
 import UserStatus from './user/UserStatus'
 
 export {
@@ -44,6 +45,7 @@ export {
   SidebarItem,
   SteamSignin,
   UserCard,
+  UserCardMini,
   UserIcon,
   Invite,
   Timer,

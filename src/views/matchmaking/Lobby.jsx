@@ -2,7 +2,13 @@ import { Button, Icon, Switch, Text } from '@chakra-ui/react'
 import { AiFillCaretUp, AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Container, LobbySeat, Timer, UserCard } from '@components'
+import {
+  Container,
+  LobbySeat,
+  Timer,
+  UserCard,
+  UserCardMini,
+} from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
@@ -258,12 +264,22 @@ export default function LobbyView() {
       ))
 
       lineup[0] = (
-        <UserCard
-          {...owner}
-          onLeave={handleLeave}
-          showLeave={lobby.players_count > 1}
-        />
+        <Container key={owner.id} className={style.lobbyCustomSeat}>
+          <UserCardMini {...owner} onLeave={handleLeave} showLeave={true} />
+        </Container>
       )
+
+      for (let i = 0; i < nonOwners.length; i++) {
+        lineup[i] = (
+          <Container key={nonOwners[i].id} className={style.lobbyCustomSeat}>
+            <UserCardMini
+              {...nonOwners[i]}
+              showLeave={isOwner && lobby.players_count > 1}
+              onLeave={() => handleKick(nonOwners[i])}
+            />
+          </Container>
+        )
+      }
     }
 
     return lineup

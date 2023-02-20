@@ -41,13 +41,10 @@ export default function UserCard(props) {
         </Container>
       </Container>
 
-      <Container
-        className={style.level}
-        align="center"
-        justify="center"
-        fitContent
-      >
-        <LevelBadge level={props.level} />
+      <Container className={style.level} align="center" justify="center">
+        <Container className={style.levelBadge}>
+          <LevelBadge level={props.level} />
+        </Container>
       </Container>
 
       <Container className={style.actions} fitContent gap={30} justify="center">

@@ -1,6 +1,6 @@
 .container {
-    min-height: 90px;
     position: relative;
+    width: 100%;
 }
 
 .badge {
@@ -9,8 +9,7 @@
 }
 
 .badge img {
-    height: 90px;
-    width: auto;
+    width: 100%;
 }
 
 .level {
@@ -22,4 +21,9 @@
     top: -7px;
     user-select: none;
     z-index: 1;
+}
+
+.small .level {
+    font-size: 15px;
+    top: -5px;
 }

@@ -10,9 +10,13 @@ import lvl50Up from '@assets/images/level_badges/50.png'
 import { Container } from '@components'
 import style from './LevelBadge.module.css'
 
-export default function LevelBadge({ level }) {
+export default function LevelBadge({ level, small }) {
   return (
-    <Container className={style.container} align="center" justify="center">
+    <Container
+      className={[style.container, small && style.small].join(' ')}
+      align="center"
+      justify="center"
+    >
       <Container className={style.badge} align="center" justify="center">
         {level <= 9 && <img src={lvl0To9} alt={`Level ${level}`} />}
 
