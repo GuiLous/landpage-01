@@ -1,5 +1,5 @@
-import { Button, Icon, Link, Switch } from '@chakra-ui/react'
-import { AiFillCaretUp } from 'react-icons/ai'
+import { Button, Icon, Link, Switch, Text } from '@chakra-ui/react'
+import { AiFillCaretUp, AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LobbySeat, Timer, UserCard } from '@components'
@@ -249,18 +249,37 @@ export default function LobbyView() {
             </Container>
           </Container>
 
-          <Container className={style.groupType} gap={14} fitContent>
-            <Container style={{ whiteSpace: 'nowrap', minWidth: '106px' }}>
-              Grupo {lobby.is_public ? 'aberto' : 'fechado'}
+          {lobby.max_players == 5 && (
+            <Container className={style.groupType} gap={14} fitContent>
+              <Container style={{ whiteSpace: 'nowrap', minWidth: '106px' }}>
+                <Icon
+                  style={{
+                    fontSize: '22px',
+                    top: '-1px',
+                    opacity: lobby.is_public ? '1' : '.7',
+                    position: 'relative',
+                    marginRight: '8px',
+                  }}
+                  as={lobby.is_public ? AiFillUnlock : AiFillLock}
+                />
+                <Text
+                  style={{
+                    width: '106px',
+                    opacity: lobby.is_public ? '1' : '.7',
+                  }}
+                >
+                  Grupo {lobby.is_public ? 'aberto' : 'fechado'}
+                </Text>
+              </Container>
+              <Container fitContent>
+                <Switch
+                  id="groupType"
+                  defaultChecked={lobby.is_public}
+                  onChange={handleToggleVisibilty}
+                />
+              </Container>
             </Container>
-            <Container fitContent>
-              <Switch
-                id="groupType"
-                defaultChecked={!lobby.is_public}
-                onChange={handleToggleVisibilty}
-              />
-            </Container>
-          </Container>
+          )}
         </Container>
 
         <Container
