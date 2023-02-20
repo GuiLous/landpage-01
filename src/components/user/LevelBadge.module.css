@@ -1,0 +1,25 @@
+.container {
+    min-height: 90px;
+    position: relative;
+}
+
+.badge {
+    position: absolute;
+    z-index: 0;
+}
+
+.badge img {
+    height: 90px;
+    width: auto;
+}
+
+.level {
+    cursor: default;
+    font-size: 20px;
+    font-weight: bold;
+    left: -1px;
+    position: relative;
+    top: -7px;
+    user-select: none;
+    z-index: 1;
+}
