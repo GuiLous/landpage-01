@@ -106,6 +106,8 @@ export default function LobbyView() {
   }
 
   const handleToggleMode = async (lobbyType, lobbyMode) => {
+    if (lobby.players_count > 1) return
+
     const token = StorageService.get('token')
     let response
 
@@ -134,6 +136,7 @@ export default function LobbyView() {
           justify="center"
           key="pos0"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat />
         </Container>,
@@ -142,6 +145,7 @@ export default function LobbyView() {
           justify="center"
           key="pos1"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat />
         </Container>,
@@ -162,6 +166,7 @@ export default function LobbyView() {
           justify="center"
           key="pos3"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat />
         </Container>,
@@ -170,6 +175,7 @@ export default function LobbyView() {
           justify="center"
           key="pos4"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat />
         </Container>,
@@ -182,12 +188,13 @@ export default function LobbyView() {
             justify="center"
             key={nonOwners[i].id}
             className={style.lobbySeat}
+            style={{ maxHeight: '95%' }}
             column
           >
             <UserCard
               {...nonOwners[i]}
               showLeave={isOwner && lobby.players_count > 1}
-              onClick={() => handleKick(nonOwners[i])}
+              onLeave={() => handleKick(nonOwners[i])}
             />
           </Container>
         )
@@ -199,6 +206,7 @@ export default function LobbyView() {
           justify="center"
           key="pos0"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat disabled />
         </Container>,
@@ -207,6 +215,7 @@ export default function LobbyView() {
           justify="center"
           key="pos1"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat disabled />
         </Container>,
@@ -227,6 +236,7 @@ export default function LobbyView() {
           justify="center"
           key="pos3"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat disabled />
         </Container>,
@@ -235,6 +245,7 @@ export default function LobbyView() {
           justify="center"
           key="pos4"
           className={style.lobbySeat}
+          style={{ maxHeight: '95%' }}
         >
           <LobbySeat disabled />
         </Container>,
@@ -305,7 +316,10 @@ export default function LobbyView() {
         </Container>
 
         <Container
-          className={style.typeSelection}
+          className={[
+            style.typeSelection,
+            lobby.players_count > 1 && style.disabled,
+          ].join(' ')}
           align="center"
           justify="between"
           fitContent
