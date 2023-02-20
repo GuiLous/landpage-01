@@ -147,7 +147,7 @@ export default function LobbyView() {
           key="pos2"
           className={style.lobbySeat}
         >
-          <UserCard {...owner} />
+          <UserCard {...owner} onLeave={handleLeave} />
         </Container>,
         <Container
           align="center"
@@ -204,7 +204,7 @@ export default function LobbyView() {
           key="pos2"
           className={style.lobbySeat}
         >
-          <UserCard {...owner} />
+          <UserCard {...owner} onLeave={handleLeave} />
         </Container>,
         <Container
           align="center"
@@ -230,7 +230,7 @@ export default function LobbyView() {
         </Container>
       ))
 
-      lineup[0] = <UserCard {...owner} />
+      lineup[0] = <UserCard {...owner} onLeave={handleLeave} />
     }
 
     return lineup
@@ -249,7 +249,7 @@ export default function LobbyView() {
             </Container>
           </Container>
 
-          {lobby.max_players == 5 && (
+          {lobby.max_players === 5 && (
             <Container className={style.groupType} gap={14} fitContent>
               <Container style={{ whiteSpace: 'nowrap', minWidth: '106px' }}>
                 <Icon
@@ -365,7 +365,6 @@ export default function LobbyView() {
           {!lobby.queue && (
             <>
               <Button onClick={handleStartQueue}>Procurar partida</Button>
-              {/* <Link onClick={handleLeave}>Sair</Link> */}
             </>
           )}
           {lobby.queue && (

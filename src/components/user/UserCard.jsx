@@ -10,7 +10,7 @@ export default function UserCard(props) {
     <Container className={style.container} column>
       <Container column align="center" justify="between" gap={16} fitContent>
         <Container className={style.avatar} align="center" justify="center">
-          <img src={props.avatar.large} />
+          <img src={props.avatar.large} alt={props.username} />
         </Container>
 
         <Container className={style.username} justify="center">
