@@ -1,4 +1,4 @@
-import { Button, Icon, Link, Switch, Text } from '@chakra-ui/react'
+import { Button, Icon, Switch, Text } from '@chakra-ui/react'
 import { AiFillCaretUp, AiFillLock, AiFillUnlock } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -14,8 +14,12 @@ export default function LobbyView() {
   const dispatch = useDispatch()
 
   const lobby = user && user.account.lobby
-  const owner = lobby.players.filter((player) => player.id === user.id)[0]
+  const owner = lobby.players.filter(
+    (player) => player.id === lobby.owner_id
+  )[0]
+  const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
   const nonOwners = lobby.players.filter((player) => player.id !== user.id)
+  const isOwner = userPlayer.id === owner.id
 
   const handleLeave = async () => {
     const token = StorageService.get('token')
@@ -147,7 +151,11 @@ export default function LobbyView() {
           key="pos2"
           className={style.lobbySeat}
         >
-          <UserCard {...owner} onLeave={handleLeave} />
+          <UserCard
+            {...userPlayer}
+            onLeave={handleLeave}
+            showLeave={lobby.players_count > 1}
+          />
         </Container>,
         <Container
           align="center"
@@ -173,10 +181,14 @@ export default function LobbyView() {
             align="center"
             justify="center"
             key={nonOwners[i].id}
+            className={style.lobbySeat}
             column
           >
-            <UserCard {...nonOwners[i]} />
-            <Link onClick={() => handleKick(nonOwners[i])}>Remover</Link>
+            <UserCard
+              {...nonOwners[i]}
+              showLeave={isOwner && lobby.players_count > 1}
+              onClick={() => handleKick(nonOwners[i])}
+            />
           </Container>
         )
       }
@@ -204,7 +216,11 @@ export default function LobbyView() {
           key="pos2"
           className={style.lobbySeat}
         >
-          <UserCard {...owner} onLeave={handleLeave} />
+          <UserCard
+            {...owner}
+            onLeave={handleLeave}
+            showLeave={lobby.players_count > 1}
+          />
         </Container>,
         <Container
           align="center"
@@ -230,7 +246,13 @@ export default function LobbyView() {
         </Container>
       ))
 
-      lineup[0] = <UserCard {...owner} onLeave={handleLeave} />
+      lineup[0] = (
+        <UserCard
+          {...owner}
+          onLeave={handleLeave}
+          showLeave={lobby.players_count > 1}
+        />
+      )
     }
 
     return lineup

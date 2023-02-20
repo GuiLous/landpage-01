@@ -1,13 +1,29 @@
 .container {
-    /* background-color: #34a5e0; */
     background: linear-gradient(
         to bottom,
         var(--chakra-colors-primary-400) 0,
         #34a5e0 80%
     );
     border-radius: 8px;
-    height: 525px;
-    padding: 40px;
+    height: 100%;
+    padding: 60px 20px;
+    position: relative;
+    width: 100%;
+}
+
+.leaveAction {
+    cursor: pointer;
+    right: 18px;
+    opacity: 0.5;
+    position: absolute;
+    top: 18px;
+    z-index: 1;
+
+    transition: all 100ms linear;
+}
+
+.leaveAction:hover {
+    opacity: 1;
 }
 
 .avatar {
@@ -24,12 +40,19 @@
     cursor: default;
     font-size: 20px;
     font-weight: 500;
+    max-width: 230px;
+}
+
+.username p {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .infos {
     cursor: default;
     font-size: 12px;
-    margin-top: 60px;
+    margin-top: auto;
     text-transform: uppercase;
     user-select: none;
 }

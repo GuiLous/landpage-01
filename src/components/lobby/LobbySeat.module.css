@@ -1,11 +1,13 @@
 .container {
     border-radius: 8px;
+    background: #2f2f2f;
     cursor: pointer;
     height: 100%;
     opacity: 1;
     overflow: visible;
     padding: 2px;
     position: relative;
+    width: 100%;
 
     transition: all 100ms linear;
 }
@@ -18,7 +20,7 @@
 .wrapper {
     background: #2f2f2f;
     border-radius: 8px;
-    height: 525px;
+    height: 100%;
     position: relative;
     z-index: 1;
 }

@@ -2,12 +2,16 @@ import { Divider, Icon, Text } from '@chakra-ui/react'
 import React from 'react'
 import { SiSteam } from 'react-icons/si'
 
-import { Container, LevelBadge, UserIcon } from '@components'
+import { CloseIcon, Container, LevelBadge, UserIcon } from '@components'
 import style from './UserCard.module.css'
 
 export default function UserCard(props) {
   return (
     <Container className={style.container} column>
+      {props.showLeave && (
+        <CloseIcon className={style.leaveAction} onClick={props.onLeave} />
+      )}
+
       <Container column align="center" justify="between" gap={16} fitContent>
         <Container className={style.avatar} align="center" justify="center">
           <img src={props.avatar.large} alt={props.username} />
