@@ -13,19 +13,27 @@ import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
+import { useEffect, useState } from 'react'
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  const [lineup, setLineup] = useState([])
 
   const lobby = user && user.account.lobby
   const owner = lobby.players.filter(
     (player) => player.id === lobby.owner_id
   )[0]
   const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
-  const nonOwners = lobby.players.filter((player) => player.id !== user.id)
+  const nonOwners = lobby.players.filter(
+    (player) => player.id !== lobby.owner_id
+  )
   const isOwner = userPlayer.id === owner.id
+
+  useEffect(() => {
+    renderLineup()
+  }, [lobby])
 
   const handleLeave = async () => {
     const token = StorageService.get('token')
@@ -134,13 +142,14 @@ export default function LobbyView() {
     let lineup = []
 
     if (lobby.max_players === 5) {
+      console.log(lineup)
       const fillOrder = [1, 3, 0, 4]
 
       lineup = [
         <Container
           align="center"
           justify="center"
-          key="pos0"
+          key={`5-pos0`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
         >
@@ -149,7 +158,7 @@ export default function LobbyView() {
         <Container
           align="center"
           justify="center"
-          key="pos1"
+          key={`5-pos1`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
         >
@@ -158,7 +167,7 @@ export default function LobbyView() {
         <Container
           align="center"
           justify="center"
-          key="pos2"
+          key={`5-pos2`}
           className={style.lobbySeat}
         >
           <UserCard
@@ -170,7 +179,7 @@ export default function LobbyView() {
         <Container
           align="center"
           justify="center"
-          key="pos3"
+          key={`5-pos3`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
         >
@@ -179,7 +188,7 @@ export default function LobbyView() {
         <Container
           align="center"
           justify="center"
-          key="pos4"
+          key={`5-pos4`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
         >
@@ -192,7 +201,7 @@ export default function LobbyView() {
           <Container
             align="center"
             justify="center"
-            key={nonOwners[i].id}
+            key={`5-${nonOwners[i].id}`}
             className={style.lobbySeat}
             style={{ maxHeight: '95%' }}
             column
@@ -206,6 +215,7 @@ export default function LobbyView() {
         )
       }
     } else if (lobby.max_players === 1) {
+      console.log(lineup)
       lineup = [
         <Container
           align="center"
@@ -258,20 +268,27 @@ export default function LobbyView() {
       ]
     } else if (lobby.max_players === 20) {
       lineup = Array.from(Array(20)).map((el, idx) => (
-        <Container key={idx} className={style.lobbyCustomSeat}>
+        <Container key={`20-pos${idx}`} className={style.lobbyCustomSeat}>
           <LobbySeat mini />
         </Container>
       ))
 
       lineup[0] = (
-        <Container key={owner.id} className={style.lobbyCustomSeat}>
-          <UserCardMini {...owner} onLeave={handleLeave} showLeave={true} />
+        <Container key={`20-${user.id}`} className={style.lobbyCustomSeat}>
+          <UserCardMini
+            {...userPlayer}
+            onLeave={handleLeave}
+            showLeave={true}
+          />
         </Container>
       )
 
       for (let i = 0; i < nonOwners.length; i++) {
-        lineup[i] = (
-          <Container key={nonOwners[i].id} className={style.lobbyCustomSeat}>
+        lineup[i + 1] = (
+          <Container
+            key={`20-${nonOwners[i].id}`}
+            className={style.lobbyCustomSeat}
+          >
             <UserCardMini
               {...nonOwners[i]}
               showLeave={isOwner && lobby.players_count > 1}
@@ -282,7 +299,7 @@ export default function LobbyView() {
       }
     }
 
-    return lineup
+    setLineup(lineup)
   }
 
   return (
@@ -410,7 +427,7 @@ export default function LobbyView() {
           ].join(' ')}
           gap={18}
         >
-          {renderLineup()}
+          {lineup}
         </Container>
 
         <Container align="center" justify="center" column fitContent>
