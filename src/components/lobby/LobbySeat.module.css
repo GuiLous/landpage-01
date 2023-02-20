@@ -1,27 +1,19 @@
 .container {
-    background: linear-gradient(to bottom, #2f2f2f, #2f2f2f);
     border-radius: 8px;
     cursor: pointer;
     height: 100%;
     opacity: 0.9;
     padding: 2px;
-
-    transition: all 120ms ease-in;
-}
-
-.container:hover {
-    background: linear-gradient(
-        to bottom,
-        var(--chakra-colors-primary-400) 0,
-        #2f2f2f 70%
-    );
-    opacity: 1;
+    position: relative;
+    overflow: visible;
 }
 
 .wrapper {
     background: #2f2f2f;
     border-radius: 8px;
     height: 100%;
+    position: relative;
+    z-index: 1;
 }
 
 .icon {
@@ -29,6 +21,7 @@
         brightness(95%) contrast(88%);
     font-size: 20px;
     position: relative;
+    z-index: 1;
     transition: transform 120ms ease-in;
 }
 
@@ -36,4 +29,25 @@
     filter: invert(48%) sepia(97%) saturate(6600%) hue-rotate(244deg)
         brightness(104%) contrast(101%);
     transform: rotate(45deg);
+}
+
+.border {
+    background: linear-gradient(
+        to bottom,
+        var(--chakra-colors-primary-400) 0,
+        #2f2f2f 80%
+    );
+    border-radius: 8px;
+    bottom: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+
+    transition: all 150ms linear;
+}
+
+.container:hover .border {
+    bottom: 0;
 }

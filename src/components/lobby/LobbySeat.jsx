@@ -9,6 +9,7 @@ export default function LobbySeat(props) {
       <Container align="center" justify="center" className={style.wrapper}>
         <CloseIcon className={style.icon} />
       </Container>
+      <Container className={style.border}></Container>
     </Container>
   )
 }
