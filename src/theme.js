@@ -90,10 +90,16 @@ export default extendTheme({
       },
       sizes: {
         lg: {
-          fontSize: '26px',
+          fontSize: '28px',
+          fontWeight: 'bold',
+          minHeight: '60px',
+          paddingInlineStart: '85px',
+          paddingInlineEnd: '85px',
+          letterSpacing: '1px',
         },
         xl: {
           fontSize: '32px',
+          fontWeight: 'bold',
         },
         md: {
           fontSize: '16px',
