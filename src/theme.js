@@ -227,6 +227,10 @@ export default extendTheme({
             opacity: 1,
           },
         },
+        overlay: {
+          bg: 'rgba(0, 0, 0, .85)',
+          backdropFilter: 'blur(5px)',
+        },
       },
     },
     Badge: {
