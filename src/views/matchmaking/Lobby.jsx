@@ -33,6 +33,7 @@ export default function LobbyView() {
 
   useEffect(() => {
     renderLineup()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lobby])
 
   const handleLeave = async () => {
@@ -101,23 +102,24 @@ export default function LobbyView() {
     }
   }
 
-  const handleToggleVisibilty = async () => {
-    const token = StorageService.get('token')
-    const endpoint = lobby.is_public ? 'set-private' : 'set-public'
-    let response
+  // Uncomment to allow public and private lobbies
+  // const handleToggleVisibilty = async () => {
+  //   const token = StorageService.get('token')
+  //   const endpoint = lobby.is_public ? 'set-private' : 'set-public'
+  //   let response
 
-    response = await HttpService.patch(
-      `mm/lobby/${lobby.id}/${endpoint}/`,
-      token
-    )
-    if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
-    }
-  }
+  //   response = await HttpService.patch(
+  //     `mm/lobby/${lobby.id}/${endpoint}/`,
+  //     token
+  //   )
+  //   if (response.errorMsg) {
+  //     Toast({
+  //       title: 'Oops, ocorreu um erro',
+  //       description: response.errorMsg,
+  //       status: 'error',
+  //     })
+  //   }
+  // }
 
   const handleToggleMode = async (lobbyType, lobbyMode) => {
     if (lobby.players_count > 1) return
@@ -438,7 +440,7 @@ export default function LobbyView() {
           className={style.actionBtns}
         >
           {!lobby.queue && (
-            <Button onClick={handleStartQueue} size="lg" disabled={!isOwner}>
+            <Button onClick={handleStartQueue} size="xl" disabled={!isOwner}>
               Jogar
             </Button>
           )}
@@ -446,6 +448,7 @@ export default function LobbyView() {
             <Button
               onClick={handleCancelQueue}
               className={style.cancelQueueBtn}
+              size="xl"
             >
               <Container column align="center">
                 <Timer initialTime={lobby.queue_time} />
