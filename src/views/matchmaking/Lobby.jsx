@@ -3,6 +3,7 @@ import { AiFillCaretUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+  CloseIcon,
   Container,
   LobbySeat,
   Timer,
@@ -175,7 +176,7 @@ export default function LobbyView() {
           <UserCard
             {...userPlayer}
             onLeave={handleLeave}
-            showLeave={lobby.players_count > 1}
+            showLeave={lobby.players_count > 1 && !lobby.queue}
           />
         </Container>,
         <Container
@@ -210,7 +211,7 @@ export default function LobbyView() {
           >
             <UserCard
               {...nonOwners[i]}
-              showLeave={isOwner && lobby.players_count > 1}
+              showLeave={isOwner && lobby.players_count > 1 && !lobby.queue}
               onLeave={() => handleKick(nonOwners[i])}
             />
           </Container>
@@ -246,7 +247,7 @@ export default function LobbyView() {
           <UserCard
             {...owner}
             onLeave={handleLeave}
-            showLeave={lobby.players_count > 1}
+            showLeave={lobby.players_count > 1 && !lobby.queue}
           />
         </Container>,
         <Container
@@ -450,9 +451,12 @@ export default function LobbyView() {
               className={style.cancelQueueBtn}
               size="xl"
             >
-              <Container column align="center">
+              <Container justify="center">
                 <Timer initialTime={lobby.queue_time} />
-                <p>X Cancelar</p>
+              </Container>
+
+              <Container justify="end" className={style.cancelQueueBtnIcon}>
+                <CloseIcon />
               </Container>
             </Button>
           )}

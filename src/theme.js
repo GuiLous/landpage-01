@@ -95,9 +95,10 @@ export default extendTheme({
         xl: {
           fontSize: '28px',
           fontWeight: 'bold',
-          minHeight: '60px',
-          paddingInlineStart: '85px',
-          paddingInlineEnd: '85px',
+          minHeight: '73px',
+          minWidth: '273px',
+          paddingLeft: '20px',
+          paddingRight: '20px',
           letterSpacing: '1px',
         },
         md: {
