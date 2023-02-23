@@ -160,6 +160,27 @@ export default extendTheme({
           },
         },
       },
+      variants: {
+        filled: {
+          field: {
+            color: 'white',
+            bg: 'gray.600',
+            backgroundColor: 'gray.600',
+            fontSize: '14px',
+            fontWeight: '200',
+            _hover: {
+              color: 'white',
+              bg: 'gray.600',
+              backgroundColor: 'gray.600',
+            },
+            _focus: {
+              color: 'white',
+              bg: 'gray.600',
+              backgroundColor: 'gray.600',
+            },
+          },
+        },
+      },
     },
     Form: {
       baseStyle: {
