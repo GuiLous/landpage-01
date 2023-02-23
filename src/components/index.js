@@ -8,6 +8,7 @@ import ArrowRightIcon from './icons/ArrowRightIcon'
 import CloseIcon from './icons/CloseIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
+import SearchIcon from './icons/SearchIcon'
 import UserIcon from './icons/UserIcon'
 import Input from './input/Input'
 import Loading from './loading/Loading'
@@ -41,6 +42,7 @@ export {
   LoadingBackdrop,
   LobbySeat,
   Scrollbars,
+  SearchIcon,
   Sidebar,
   SidebarItem,
   SteamSignin,
