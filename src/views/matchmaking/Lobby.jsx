@@ -1,5 +1,5 @@
-import { Button, Icon, Switch, Text } from '@chakra-ui/react'
-import { AiFillCaretUp, AiFillLock, AiFillUnlock } from 'react-icons/ai'
+import { Button, Icon } from '@chakra-ui/react'
+import { AiFillCaretUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -305,7 +305,7 @@ export default function LobbyView() {
   return (
     <MainLayout>
       <Container column className={style.container}>
-        <Container fitContent align="center">
+        {/* <Container fitContent align="center">
           <Container className={style.header} column>
             <Container style={{ fontSize: 24 }}>Selecione um</Container>
             <Container
@@ -346,7 +346,7 @@ export default function LobbyView() {
               </Container>
             </Container>
           )}
-        </Container>
+        </Container> */}
 
         <Container
           className={[
@@ -430,14 +430,23 @@ export default function LobbyView() {
           {lineup}
         </Container>
 
-        <Container align="center" justify="center" column fitContent>
+        <Container
+          align="center"
+          justify="center"
+          column
+          fitContent
+          className={style.actionBtns}
+        >
           {!lobby.queue && (
-            <>
-              <Button onClick={handleStartQueue}>Procurar partida</Button>
-            </>
+            <Button onClick={handleStartQueue} size="lg" disabled={!isOwner}>
+              Jogar
+            </Button>
           )}
           {lobby.queue && (
-            <Button onClick={handleCancelQueue}>
+            <Button
+              onClick={handleCancelQueue}
+              className={style.cancelQueueBtn}
+            >
               <Container column align="center">
                 <Timer initialTime={lobby.queue_time} />
                 <p>X Cancelar</p>
