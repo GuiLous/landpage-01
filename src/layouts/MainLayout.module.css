@@ -7,22 +7,20 @@
 .header {
     background-color: black;
     max-height: 90px;
+    min-height: 90px;
     color: white;
     padding: 16px 60px;
 }
 
 .wrapper {
-    padding-top: 42px;
-    padding-left: 60px;
-    padding-right: 60px;
+    padding: 30px 60px;
 }
 
 .sidebar {
     max-width: 305px;
-    height: 90%;
+    height: 100%;
 }
 
 .content {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 90%;
+    height: 100%;
 }

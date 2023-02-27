@@ -1,0 +1,76 @@
+.container {
+    border-radius: 8px;
+    background: #2f2f2f;
+    cursor: pointer;
+    height: 100%;
+    opacity: 1;
+    overflow: visible;
+    padding: 2px;
+    position: relative;
+    width: 100%;
+
+    transition: all 100ms linear;
+}
+
+.container.disabled {
+    cursor: default;
+    opacity: 0.1;
+}
+
+.wrapper {
+    background: #2f2f2f;
+    border-radius: 8px;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.mini .wrapper {
+    height: 80px;
+}
+
+.icon {
+    filter: invert(63%) sepia(6%) saturate(15%) hue-rotate(334deg)
+        brightness(95%) contrast(88%);
+    font-size: 20px;
+    position: relative;
+    z-index: 1;
+    transition: transform 120ms ease-in;
+}
+
+.container:hover .icon {
+    filter: invert(48%) sepia(97%) saturate(6600%) hue-rotate(244deg)
+        brightness(104%) contrast(101%);
+    transform: rotate(45deg);
+}
+
+.container.disabled:hover .icon {
+    filter: invert(63%) sepia(6%) saturate(15%) hue-rotate(334deg)
+        brightness(95%) contrast(88%);
+    transform: none;
+}
+
+.border {
+    background: linear-gradient(
+        to bottom,
+        var(--chakra-colors-primary-400) 0,
+        #2f2f2f 80%
+    );
+    border-radius: 8px;
+    bottom: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    z-index: 0;
+
+    transition: all 150ms linear;
+}
+
+.container:hover .border {
+    bottom: 0;
+}
+
+.container.disabled .border {
+    display: none;
+}
