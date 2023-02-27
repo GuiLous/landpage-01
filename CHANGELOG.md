@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [27509b6] - 27/02/2023
+
 ### Added
 
 -   Estilos e comportamentos do lobby (https://github.com/3C-gg/reload-frontend/pull/86)
