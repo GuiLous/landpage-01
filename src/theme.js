@@ -93,7 +93,13 @@ export default extendTheme({
           fontSize: '26px',
         },
         xl: {
-          fontSize: '32px',
+          fontSize: '28px',
+          fontWeight: 'bold',
+          minHeight: '73px',
+          minWidth: '273px',
+          paddingLeft: '20px',
+          paddingRight: '20px',
+          letterSpacing: '1px',
         },
         md: {
           fontSize: '16px',
@@ -154,6 +160,27 @@ export default extendTheme({
           },
         },
       },
+      variants: {
+        filled: {
+          field: {
+            color: 'white',
+            bg: 'gray.600',
+            backgroundColor: 'gray.600',
+            fontSize: '14px',
+            fontWeight: '200',
+            _hover: {
+              color: 'white',
+              bg: 'gray.600',
+              backgroundColor: 'gray.600',
+            },
+            _focus: {
+              color: 'white',
+              bg: 'gray.600',
+              backgroundColor: 'gray.600',
+            },
+          },
+        },
+      },
     },
     Form: {
       baseStyle: {
@@ -199,6 +226,10 @@ export default extendTheme({
           _hover: {
             opacity: 1,
           },
+        },
+        overlay: {
+          bg: 'rgba(0, 0, 0, .85)',
+          backdropFilter: 'blur(5px)',
         },
       },
     },
@@ -353,6 +384,16 @@ export default extendTheme({
         },
         description: {
           fontSize: '14px',
+        },
+      },
+    },
+    Switch: {
+      baseStyle: {
+        track: {
+          bg: '#C4C4C4',
+          _checked: {
+            bg: 'primary.400',
+          },
         },
       },
     },

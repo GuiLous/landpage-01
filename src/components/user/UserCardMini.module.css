@@ -5,42 +5,51 @@
         #34a5e0 80%
     );
     border-radius: 8px;
-    height: 100%;
-    padding: 60px 20px;
+    padding: 12px;
     position: relative;
     width: 100%;
 }
 
 .leaveAction {
+    background-color: var(--chakra-colors-danger-400);
+    border-radius: 50%;
     cursor: pointer;
-    right: 18px;
-    opacity: 0.5;
+    font-size: 18px;
+    font-weight: bold;
+    right: -4px;
+    opacity: 0;
+    padding: 3px;
     position: absolute;
-    top: 18px;
+    top: -4px;
     z-index: 1;
+    width: 100px;
+    height: 100px;
 
     transition: all 100ms linear;
 }
 
-.leaveAction:hover {
+.container:hover .leaveAction {
     opacity: 1;
+}
+
+.infos {
+    margin-left: 20px;
 }
 
 .avatar {
     border-radius: 8px;
-    border: 2px solid white;
-    max-width: 120px;
 }
 
 .avatar img {
+    border: 2px solid white;
     border-radius: 8px;
+    min-width: 60px;
+    max-width: 60px;
 }
 
 .username {
     cursor: default;
-    font-size: 20px;
-    font-weight: 500;
-    max-width: 230px;
+    max-width: 160px;
 }
 
 .username p {
@@ -49,26 +58,8 @@
     white-space: nowrap;
 }
 
-.infos {
-    cursor: default;
-    font-size: 12px;
-    margin-top: 60px;
-    text-transform: uppercase;
-    user-select: none;
-}
-
-.lastResults {
-    font-size: 16px;
-    font-weight: 700;
-}
-
-.levelBadge {
-    max-width: 80px;
-}
-
 .actions {
-    font-size: 24px;
-    margin-top: auto;
+    margin-top: 10px;
 }
 
 .actionLink {
@@ -80,4 +71,10 @@
 
 .actionLink:hover {
     opacity: 1;
+}
+
+.level {
+    max-width: 60px;
+    position: relative;
+    top: 4px;
 }
