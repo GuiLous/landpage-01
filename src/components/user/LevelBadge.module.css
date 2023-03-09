@@ -27,3 +27,9 @@
     font-size: 15px;
     top: -5px;
 }
+
+.xsmall .level {
+    font-size: 13px;
+    left: 0;
+    top: -5px;
+}

@@ -106,6 +106,7 @@ export default extendTheme({
         },
         sm: {
           minHeight: '24px',
+          paddingTop: '2px',
         },
       },
     },
@@ -219,10 +220,12 @@ export default extendTheme({
           backgroundColor: '#222222',
           bg: '#222222',
           color: 'white',
+          position: 'relative',
         },
         closeButton: {
           color: '#F5F6F8',
           opacity: 0.5,
+          fontSize: '18px',
           _hover: {
             opacity: 1,
           },
@@ -230,6 +233,11 @@ export default extendTheme({
         overlay: {
           bg: 'rgba(0, 0, 0, .85)',
           backdropFilter: 'blur(5px)',
+        },
+        header: {
+          textTransform: 'uppercase',
+          fontSize: '24px',
+          fontWeight: '800',
         },
       },
     },

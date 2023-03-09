@@ -1,11 +1,24 @@
-import { Button, Icon } from '@chakra-ui/react'
+import {
+  Button,
+  Icon,
+  Modal,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  Text,
+} from '@chakra-ui/react'
 import { AiFillCaretUp } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
   CloseIcon,
   Container,
+  Input,
+  InviteListItem,
   LobbySeat,
+  SearchIcon,
   Timer,
   UserCard,
   UserCardMini,
@@ -21,6 +34,8 @@ export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [lineup, setLineup] = useState([])
+  const [inviteModalVisible, setInviteModalVisible] = useState(false)
+  const [inviteModalFilter, setInviteModalFilter] = useState('')
 
   const lobby = user && user.account.lobby
   const owner = lobby.players.filter(
@@ -141,11 +156,18 @@ export default function LobbyView() {
     }
   }
 
+  const handleInviteModalClose = () => {
+    setInviteModalVisible(false)
+  }
+
+  const handleInviteModalShow = () => {
+    setInviteModalVisible(true)
+  }
+
   const renderLineup = () => {
     let lineup = []
 
     if (lobby.max_players === 5) {
-      console.log(lineup)
       const fillOrder = [1, 3, 0, 4]
 
       lineup = [
@@ -155,6 +177,7 @@ export default function LobbyView() {
           key={`5-pos0`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
+          onClick={handleInviteModalShow}
         >
           <LobbySeat />
         </Container>,
@@ -164,6 +187,7 @@ export default function LobbyView() {
           key={`5-pos1`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
+          onClick={handleInviteModalShow}
         >
           <LobbySeat />
         </Container>,
@@ -185,6 +209,7 @@ export default function LobbyView() {
           key={`5-pos3`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
+          onClick={handleInviteModalShow}
         >
           <LobbySeat />
         </Container>,
@@ -194,6 +219,7 @@ export default function LobbyView() {
           key={`5-pos4`}
           className={style.lobbySeat}
           style={{ maxHeight: '95%' }}
+          onClick={handleInviteModalShow}
         >
           <LobbySeat />
         </Container>,
@@ -218,7 +244,6 @@ export default function LobbyView() {
         )
       }
     } else if (lobby.max_players === 1) {
-      console.log(lineup)
       lineup = [
         <Container
           align="center"
@@ -271,7 +296,11 @@ export default function LobbyView() {
       ]
     } else if (lobby.max_players === 20) {
       lineup = Array.from(Array(20)).map((el, idx) => (
-        <Container key={`20-pos${idx}`} className={style.lobbyCustomSeat}>
+        <Container
+          key={`20-pos${idx}`}
+          className={style.lobbyCustomSeat}
+          onClick={handleInviteModalShow}
+        >
           <LobbySeat mini />
         </Container>
       ))
@@ -305,8 +334,76 @@ export default function LobbyView() {
     setLineup(lineup)
   }
 
+  const handleInviteModalFilterChange = (event) => {
+    setInviteModalFilter(event.target.value)
+  }
+
+  const onlineFriends = user.account.friends.filter(
+    (friend) => friend.is_online
+  )
+
+  const nonLobbyOnlineFriends = onlineFriends.filter(
+    (friend) => friend.lobby.id !== user.account.lobby.id
+  )
+
+  const onlineFriendListFiltered = nonLobbyOnlineFriends
+    .filter(
+      (friend) =>
+        inviteModalFilter === '' || friend.username.includes(inviteModalFilter)
+    )
+    .map((friend) => <InviteListItem key={friend.id} {...friend} />)
+
   return (
     <MainLayout>
+      <Modal
+        size="3xl"
+        isCentered
+        isOpen={inviteModalVisible}
+        onClose={handleInviteModalClose}
+        scrollBehavior="inside"
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <Container justify="center" style={{ marginBottom: '40px' }}>
+              Convidar
+            </Container>
+            <Container justify="center">
+              <Container style={{ maxWidth: '50%' }}>
+                <Input
+                  onChange={handleInviteModalFilterChange}
+                  variant="filled"
+                  leftIcon={<SearchIcon fill="#999" />}
+                />
+              </Container>
+            </Container>
+            <ModalCloseButton />
+          </ModalHeader>
+
+          <ModalBody>
+            <Container justify="center" column>
+              <Container
+                style={{ marginBottom: '34px' }}
+                justify="center"
+                align="center"
+                column
+                gap={12}
+              >
+                {nonLobbyOnlineFriends.length > 0 ? (
+                  onlineFriendListFiltered.length > 0 ? (
+                    onlineFriendListFiltered
+                  ) : (
+                    <Text>Nenhum amigo com os termos buscados.</Text>
+                  )
+                ) : (
+                  <Text>Nenhum amigo online agora.</Text>
+                )}
+              </Container>
+            </Container>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+
       <Container column className={style.container}>
         {/* <Container fitContent align="center">
           <Container className={style.header} column>
