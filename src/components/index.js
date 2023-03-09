@@ -20,6 +20,7 @@ import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
 import FriendListUser from './user/FriendListUser'
+import InviteListItem from './user/InviteListItem'
 import LevelBadge from './user/LevelBadge'
 import UserCard from './user/UserCard'
 import UserCardMini from './user/UserCardMini'
@@ -35,6 +36,7 @@ export {
   Container,
   FakeSigninForm,
   FriendListUser,
+  InviteListItem,
   Footer,
   Input,
   LevelBadge,
