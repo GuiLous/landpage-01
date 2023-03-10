@@ -1,83 +1,83 @@
 .container {
-    background: linear-gradient(
-        to bottom,
-        var(--chakra-colors-primary-400) 0,
-        #34a5e0 80%
-    );
-    border-radius: 8px;
-    height: 100%;
-    padding: 60px 20px;
-    position: relative;
-    width: 100%;
+	background: linear-gradient(
+		to bottom,
+		var(--chakra-colors-primary-400) 0,
+		#34a5e0 80%
+	);
+	border-radius: 8px;
+	height: 100%;
+	padding: 60px 20px;
+	position: relative;
+	width: 100%;
 }
 
 .leaveAction {
-    cursor: pointer;
-    right: 18px;
-    opacity: 0.5;
-    position: absolute;
-    top: 18px;
-    z-index: 1;
+	cursor: pointer;
+	right: 18px;
+	opacity: 0.5;
+	position: absolute;
+	top: 18px;
+	z-index: 1;
 
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 .leaveAction:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .avatar {
-    border-radius: 8px;
-    border: 2px solid white;
-    max-width: 120px;
+	border-radius: 8px;
+	border: 2px solid white;
+	max-width: 120px;
 }
 
 .avatar img {
-    border-radius: 8px;
+	border-radius: 8px;
 }
 
 .username {
-    cursor: default;
-    font-size: 20px;
-    font-weight: 500;
-    max-width: 230px;
+	cursor: default;
+	font-size: 20px;
+	font-weight: 500;
+	max-width: 230px;
 }
 
 .username p {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .infos {
-    cursor: default;
-    font-size: 12px;
-    margin-top: 60px;
-    text-transform: uppercase;
-    user-select: none;
+	cursor: default;
+	font-size: 12px;
+	margin-top: 60px;
+	text-transform: uppercase;
+	user-select: none;
 }
 
 .lastResults {
-    font-size: 16px;
-    font-weight: 700;
+	font-size: 16px;
+	font-weight: 700;
 }
 
 .levelBadge {
-    max-width: 80px;
+	max-width: 80px;
 }
 
 .actions {
-    font-size: 24px;
-    margin-top: auto;
+	font-size: 24px;
+	margin-top: auto;
 }
 
 .actionLink {
-    cursor: pointer;
-    opacity: 0.8;
+	cursor: pointer;
+	opacity: 0.8;
 
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 .actionLink:hover {
-    opacity: 1;
+	opacity: 1;
 }

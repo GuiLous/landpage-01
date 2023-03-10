@@ -1,17 +1,17 @@
 .container form {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .title {
-    text-transform: uppercase;
+	text-transform: uppercase;
 }
 
 .formset {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .helper {
-    font-size: 12px;
-    padding: 10px;
+	font-size: 12px;
+	padding: 10px;
 }

@@ -1,75 +1,75 @@
 .container {
-    display: flex;
-    flex: 1;
-    width: 100%;
+	display: flex;
+	flex: 1;
+	width: 100%;
 }
 
 .row {
-    flex-direction: row;
+	flex-direction: row;
 }
 
 .column {
-    flex-direction: column;
+	flex-direction: column;
 }
 
 .alignCenter {
-    align-items: center;
+	align-items: center;
 }
 
 .alignStart {
-    align-items: flex-start;
+	align-items: flex-start;
 }
 
 .alignEnd {
-    align-items: flex-end;
+	align-items: flex-end;
 }
 
 .alignStretch {
-    align-items: stretch;
+	align-items: stretch;
 }
 
 .justifyCenter {
-    justify-content: center;
+	justify-content: center;
 }
 
 .justifyStart {
-    justify-content: flex-start;
+	justify-content: flex-start;
 }
 
 .justifyEnd {
-    justify-content: flex-end;
+	justify-content: flex-end;
 }
 
 .justifyAround {
-    justify-content: space-around;
+	justify-content: space-around;
 }
 
 .justifyBetween {
-    justify-content: space-between;
+	justify-content: space-between;
 }
 
 .justifyEven {
-    justify-content: space-evenly;
+	justify-content: space-evenly;
 }
 
 .container.fitContent {
-    flex: 0;
+	flex: 0;
 }
 
 @media (min-width: 1401px) {
-    .hidden-lg {
-        display: none;
-    }
+	.hidden-lg {
+		display: none;
+	}
 }
 
 @media (min-width: 601px) and (max-width: 1400px) {
-    .hidden-md {
-        display: none;
-    }
+	.hidden-md {
+		display: none;
+	}
 }
 
 @media (max-width: 600px) {
-    .hidden-sm {
-        display: none;
-    }
+	.hidden-sm {
+		display: none;
+	}
 }

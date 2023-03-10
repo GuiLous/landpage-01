@@ -1,42 +1,42 @@
 .container {
-    background-color: black;
-    padding: 30px 0;
-    width: 100%;
-    position: relative;
+	background-color: black;
+	padding: 30px 0;
+	width: 100%;
+	position: relative;
 }
 
 .wrapper {
-    max-width: 1320px;
+	max-width: 1320px;
 }
 
 .brand {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .brand img {
-    max-width: 100%;
+	max-width: 100%;
 }
 
 .links {
-    font-size: 14px;
+	font-size: 14px;
 }
 
 .links li {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .links li:last-child {
-    margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .social {
-    font-size: 22px;
-    margin-bottom: auto;
+	font-size: 22px;
+	margin-bottom: auto;
 }
 
 @media (max-width: 767px) {
-    .mobileContainer {
-        background-color: black;
-        padding: 30px;
-    }
+	.mobileContainer {
+		background-color: black;
+		padding: 30px;
+	}
 }
