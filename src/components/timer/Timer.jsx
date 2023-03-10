@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
 
-export default function Timer({ initialTime }) {
+export default function Timer({ initialTime, stop }) {
   const [elapsed, setElapsed] = useState(initialTime)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setElapsed(elapsed + 1)
-    }, 1000)
+    const interval =
+      !stop &&
+      setInterval(() => {
+        setElapsed(elapsed + 1)
+      }, 1000)
 
     return () => clearInterval(interval)
   })

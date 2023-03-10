@@ -14,6 +14,8 @@ import {
   updateUser,
 } from '@slices/UserSlice'
 
+import { preMatch } from '@slices/MatchSlice'
+
 export const WSS = () => {
   const dispatch = useDispatch()
 
@@ -78,6 +80,10 @@ export const WSS = () => {
           })
         }
         dispatch(removeInvite(data.payload))
+        break
+
+      case 'ws_preMatch':
+        dispatch(preMatch(data.payload))
         break
 
       default:

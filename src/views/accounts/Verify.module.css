@@ -1,19 +1,19 @@
 .container {
-    max-width: 430px;
-    position: relative;
+	max-width: 430px;
+	position: relative;
 }
 
 .pin {
-    max-width: 100%;
-    margin-top: 25px;
+	max-width: 100%;
+	margin-top: 25px;
 }
 
 .pinWrapper {
-    max-width: 412px;
+	max-width: 412px;
 }
 
 .formTitle {
-    text-transform: uppercase;
-    font-weight: bolder;
-    font-size: 24px;
+	text-transform: uppercase;
+	font-weight: bolder;
+	font-size: 24px;
 }

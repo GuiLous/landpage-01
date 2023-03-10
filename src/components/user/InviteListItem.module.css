@@ -1,29 +1,29 @@
 .container {
-    background-color: #434343;
-    border-radius: 8px;
-    padding: 10px 60px;
+	background-color: #434343;
+	border-radius: 8px;
+	padding: 10px 60px;
 }
 
 .level {
-    max-width: 50px;
-    position: relative;
-    top: 6px;
+	max-width: 50px;
+	position: relative;
+	top: 6px;
 }
 
 .username {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 280px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 280px;
 }
 
 .actionLink {
-    cursor: pointer;
-    opacity: 0.8;
+	cursor: pointer;
+	opacity: 0.8;
 
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 .actionLink:hover {
-    opacity: 1;
+	opacity: 1;
 }
