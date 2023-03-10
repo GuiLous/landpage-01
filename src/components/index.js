@@ -27,6 +27,7 @@ import UserIcon from './icons/UserIcon'
 import Invite from './lobby/Invite'
 import InviteModal from './lobby/InviteModal'
 import LobbyHeader from './lobby/LobbyHeader'
+import LobbyModeSelector from './lobby/LobbyModeSelector'
 import LobbySeat from './lobby/LobbySeat'
 
 // User
@@ -55,6 +56,7 @@ export {
   Loading,
   LoadingBackdrop,
   LobbyHeader,
+  LobbyModeSelector,
   LobbySeat,
   Scrollbars,
   SearchIcon,
