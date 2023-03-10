@@ -9,23 +9,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
--   Tamanho `xsmall` da badge de level.
--   Lista de usuários disponíveis para convite a partir do card vazio do Lobby (https://github.com/3C-gg/reload-frontend/issues/85).
+- Tamanho `xsmall` da badge de level.
+- Lista de usuários disponíveis para convite a partir do card vazio do Lobby (https://github.com/3C-gg/reload-frontend/issues/85).
+- Serviço websocket recebe e trata evento de pré partida (`ws_preMatch`).
+- Gerenciamento de estado de partida no Redux.
+- Chamada API para fazer o lock in do player quando receber evento de pré partida (https://github.com/3C-gg/reload-frontend/issues/92).
 
 ### Changed
 
--   Ajustes visuais no tema do Modal do Chakra UI.
+- Ajustes visuais no tema do Modal do Chakra UI.
+- Move alguns componentes que estavam no Lobby para seus próprios componentes: Header, Lineup, ModeSelector e InviteModal.
+- Componente de Timer agora recebe uma propriedade chamada `stop` que faz o timer parar caso seja `true`.
+- Alterações no `.editorconfig` para padronizar o projeto.
+
+### Fixed
+
+- Ícone de usuário agora reflete exatamente o design do Figma.
 
 ## [27509b6] - 27/02/2023
 
 ### Added
 
--   Estilos e comportamentos do lobby (https://github.com/3C-gg/reload-frontend/pull/86)
+- Estilos e comportamentos do lobby (https://github.com/3C-gg/reload-frontend/pull/86)
 
 ## [6972139 - 13-02-2023]
 
 ### Added
 
--   Página de usuário inativo (https://github.com/3C-gg/reload-frontend/pull/74)
--   Home para dispositivos mobile (https://github.com/3C-gg/reload-frontend/pull/75)
--   Loading para telas que precisam carregar informações do servidor antes de exibir informações (https://github.com/3C-gg/reload-frontend/pull/78)
+- Página de usuário inativo (https://github.com/3C-gg/reload-frontend/pull/74)
+- Home para dispositivos mobile (https://github.com/3C-gg/reload-frontend/pull/75)
+- Loading para telas que precisam carregar informações do servidor antes de exibir informações (https://github.com/3C-gg/reload-frontend/pull/78)
