@@ -12,12 +12,34 @@ import {
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
+  const preMatch = useSelector((state) => state.match.preMatch)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
+
+  useEffect(() => {
+    const lockIn = async () => {
+      const token = StorageService.get('token')
+      let response
+
+      response = await HttpService.patch(
+        `mm/match/${preMatch.id}/player-lock-in/`,
+        token
+      )
+      if (response.errorMsg) {
+        Toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+        })
+      }
+    }
+
+    if (preMatch && preMatch.countdown === null) lockIn()
+  }, [preMatch])
 
   const lobby = user && user.account.lobby
   const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
@@ -53,6 +75,7 @@ export default function LobbyView() {
         isOpen={inviteModalVisible}
         onClose={handleInviteModalClose}
       />
+
       <Container column className={style.container}>
         <LobbyModeSelector lobby={lobby} />
 
@@ -93,7 +116,7 @@ export default function LobbyView() {
               size="xl"
             >
               <Container justify="center">
-                <Timer initialTime={lobby.queue_time} />
+                <Timer initialTime={lobby.queue_time} stop={preMatch} />
               </Container>
 
               <Container justify="end" className={style.cancelQueueBtnIcon}>
