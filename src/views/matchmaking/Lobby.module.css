@@ -3,17 +3,6 @@
     position: relative;
 }
 
-.header {
-    text-transform: uppercase;
-}
-
-.groupType {
-    border: 1px solid var(--chakra-colors-primary-400);
-    border-radius: 8px;
-    font-size: 14px;
-    padding: 10px 15px;
-}
-
 .typeSelection {
     color: #999;
     font-size: 18px;

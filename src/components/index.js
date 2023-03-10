@@ -1,8 +1,20 @@
+// Common
 import Avatar from './avatar/Avatar'
 import Container from './container/Container'
 import Footer from './footer/Footer'
+import Loading from './loading/Loading'
+import LoadingBackdrop from './loading/LoadingBackdrop'
+import Scrollbars from './scrollbars/Scrollbars'
+import Sidebar from './sidebar/Sidebar'
+import SidebarItem from './sidebar/SidebarItem'
+import Timer from './timer/Timer'
+
+// Form
 import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
+import Input from './input/Input'
+
+// Icons
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import CloseIcon from './icons/CloseIcon'
@@ -10,16 +22,14 @@ import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
 import UserIcon from './icons/UserIcon'
-import Input from './input/Input'
-import Loading from './loading/Loading'
-import LoadingBackdrop from './loading/LoadingBackdrop'
+
+// Lobby
 import Invite from './lobby/Invite'
 import InviteModal from './lobby/InviteModal'
+import LobbyHeader from './lobby/LobbyHeader'
 import LobbySeat from './lobby/LobbySeat'
-import Scrollbars from './scrollbars/Scrollbars'
-import Sidebar from './sidebar/Sidebar'
-import SidebarItem from './sidebar/SidebarItem'
-import Timer from './timer/Timer'
+
+// User
 import FriendListUser from './user/FriendListUser'
 import InviteListItem from './user/InviteListItem'
 import LevelBadge from './user/LevelBadge'
@@ -44,6 +54,7 @@ export {
   LevelBadge,
   Loading,
   LoadingBackdrop,
+  LobbyHeader,
   LobbySeat,
   Scrollbars,
   SearchIcon,
