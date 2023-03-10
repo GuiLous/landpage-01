@@ -9,16 +9,6 @@
     padding: 20px 0;
 }
 
-.lobbySeat {
-    height: 100%;
-    width: 20%;
-}
-
-.lobbyCustomSeat {
-    flex: 1 0 20%;
-    margin: 3px 11px;
-}
-
 .cancelQueueBtn {
     position: relative;
     width: 269px;
