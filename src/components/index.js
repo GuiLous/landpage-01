@@ -14,6 +14,7 @@ import Input from './input/Input'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
 import Invite from './lobby/Invite'
+import InviteModal from './lobby/InviteModal'
 import LobbySeat from './lobby/LobbySeat'
 import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
@@ -37,6 +38,7 @@ export {
   FakeSigninForm,
   FriendListUser,
   InviteListItem,
+  InviteModal,
   Footer,
   Input,
   LevelBadge,
