@@ -1,13 +1,25 @@
 import { useEffect, useState } from 'react'
 
-export default function Timer({ initialTime, stop }) {
+export default function Timer({ initialTime, stop, reverse }) {
   const [elapsed, setElapsed] = useState(initialTime)
 
   useEffect(() => {
+    if (reverse && !initialTime) {
+      throw Object.assign(
+        new Error(
+          'An initial time is required for a reverse timer (countdown).'
+        ),
+        { code: 400 }
+      )
+    }
+
     const interval =
       !stop &&
       setInterval(() => {
-        setElapsed(elapsed + 1)
+        if (reverse) {
+          if (elapsed > 0) setElapsed(elapsed - 1)
+          else clearInterval(interval)
+        } else setElapsed(elapsed + 1)
       }, 1000)
 
     return () => clearInterval(interval)
