@@ -206,7 +206,7 @@ export default function LobbyLineup({
           <UserCardMini
             {...userPlayer}
             onLeave={handleLeave}
-            showLeave={true}
+            showLeave={lobby.players_count > 1 && !lobby.queue}
           />
         </Container>
       )
