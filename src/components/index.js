@@ -30,6 +30,7 @@ import LobbyHeader from './lobby/LobbyHeader'
 import LobbyLineup from './lobby/LobbyLineup'
 import LobbyModeSelector from './lobby/LobbyModeSelector'
 import LobbySeat from './lobby/LobbySeat'
+import MatchFoundModal from './lobby/MatchFoundModal'
 
 // User
 import FriendListUser from './user/FriendListUser'
@@ -60,6 +61,7 @@ export {
   LobbyModeSelector,
   LobbyLineup,
   LobbySeat,
+  MatchFoundModal,
   Scrollbars,
   SearchIcon,
   Sidebar,
