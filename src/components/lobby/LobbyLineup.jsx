@@ -191,37 +191,55 @@ export default function LobbyLineup({
         </Container>,
       ]
     } else if (lobby.max_players === 20) {
-      lineup = Array.from(Array(20)).map((el, idx) => (
-        <Container
-          key={`20-pos${idx}`}
-          className={style.customSeat}
-          onClick={onSeatClick}
-        >
-          <LobbySeat mini />
-        </Container>
-      ))
+      console.log(nonOwners)
 
-      lineup[0] = (
-        <Container key={`20-${user.id}`} className={style.customSeat}>
-          <UserCardMini
-            {...userPlayer}
-            onLeave={handleLeave}
-            showLeave={lobby.players_count > 1 && !lobby.queue}
-          />
-        </Container>
-      )
+      lineup = Array.from(Array(20)).map((el, idx) => {
+        if (idx === 0)
+          return (
+            <Container key={`20-pos0`} className={style.customSeat}>
+              <UserCardMini
+                {...userPlayer}
+                onLeave={handleLeave}
+                showLeave={lobby.players_count > 1 && !lobby.queue}
+              />
+            </Container>
+          )
+        else {
+          if (typeof nonOwners[idx - 1] !== 'undefined') {
+            return (
+              <Container key={`20-pos${idx}`} className={style.customSeat}>
+                <UserCardMini
+                  {...nonOwners[idx - 1]}
+                  showLeave={isOwner && lobby.players_count > 1}
+                  onLeave={() => handleKick(nonOwners[idx - 1])}
+                />
+              </Container>
+            )
+          } else {
+            return (
+              <Container
+                key={`20-pos${idx}`}
+                className={style.customSeat}
+                onClick={onSeatClick}
+              >
+                <LobbySeat mini />
+              </Container>
+            )
+          }
+        }
+      })
 
-      for (let i = 0; i < nonOwners.length; i++) {
-        lineup[i + 1] = (
-          <Container key={`20-${nonOwners[i].id}`} className={style.customSeat}>
-            <UserCardMini
-              {...nonOwners[i]}
-              showLeave={isOwner && lobby.players_count > 1}
-              onLeave={() => handleKick(nonOwners[i])}
-            />
-          </Container>
-        )
-      }
+      // for (let i = 0; i < nonOwners.length; i++) {
+      //   lineup[i + 1] = (
+      // <Container key={`20-${nonOwners[i].id}`} className={style.customSeat}>
+      //   <UserCardMini
+      //     {...nonOwners[i]}
+      //     showLeave={isOwner && lobby.players_count > 1}
+      //     onLeave={() => handleKick(nonOwners[i])}
+      //   />
+      // </Container>
+      //   )
+      // }
     }
 
     setLineup(lineup)

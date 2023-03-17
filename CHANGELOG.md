@@ -30,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Ícone de usuário agora reflete exatamente o design do Figma.
+- Removemos ícone de sair do lobby personalizado 20x20 quando não houver mais ninguém no lobby ou quando o lobby estiver em fila (https://github.com/3C-gg/reload-frontend/issues/89).
+- Corrigimos o erro visual de layout que aparecia quando um jogador entrava em um lobby personalizado e voltava para o seu lobby 5x5 (https://github.com/3C-gg/reload-frontend/issues/100).
 
 ## [27509b6] - 27/02/2023
 
