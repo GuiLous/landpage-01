@@ -1,5 +1,5 @@
 import { Button } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   CloseIcon,
@@ -7,15 +7,18 @@ import {
   InviteModal,
   LobbyLineup,
   LobbyModeSelector,
+  MatchFoundModal,
   Timer,
 } from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
+import { removeRestartQueue } from '@slices/UserSlice'
 
 import { useEffect, useState } from 'react'
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const preMatch = useSelector((state) => state.match.preMatch)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
@@ -29,7 +32,8 @@ export default function LobbyView() {
         `mm/match/${preMatch.id}/player-lock-in/`,
         token
       )
-      if (response.errorMsg) {
+
+      if (response && response.errorMsg) {
         Toast({
           title: 'Oops, ocorreu um erro',
           description: response.errorMsg,
@@ -40,6 +44,31 @@ export default function LobbyView() {
 
     if (preMatch && preMatch.countdown === null) lockIn()
   }, [preMatch])
+
+  useEffect(() => {
+    const restartQueue = async () => {
+      const token = StorageService.get('token')
+      let response
+
+      response = await HttpService.patch(
+        `mm/lobby/${lobby.id}/start-queue/`,
+        token
+      )
+      if (response && response.errorMsg) {
+        Toast({
+          title: 'Oops, ocorreu um erro',
+          description: response.errorMsg,
+          status: 'error',
+        })
+      }
+    }
+
+    if (user.account.lobby && user.account.lobby.restart) {
+      restartQueue()
+      dispatch(removeRestartQueue())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   const lobby = user && user.account.lobby
   const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
@@ -76,6 +105,10 @@ export default function LobbyView() {
         onClose={handleInviteModalClose}
       />
 
+      {preMatch && preMatch.state === 'lock_in' && (
+        <MatchFoundModal preMatch={preMatch} />
+      )}
+
       <Container column className={style.container}>
         <LobbyModeSelector lobby={lobby} />
 
@@ -105,7 +138,11 @@ export default function LobbyView() {
           className={style.actionBtns}
         >
           {!lobby.queue && (
-            <Button onClick={handleStartQueue} size="xl" disabled={!isOwner}>
+            <Button
+              onClick={handleStartQueue}
+              size="xl"
+              disabled={!isOwner || preMatch}
+            >
               Jogar
             </Button>
           )}

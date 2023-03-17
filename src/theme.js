@@ -385,7 +385,7 @@ export default extendTheme({
     Alert: {
       baseStyle: {
         container: {
-          maxWidth: '300px',
+          maxWidth: '500px',
         },
         title: {
           fontSize: '14px',

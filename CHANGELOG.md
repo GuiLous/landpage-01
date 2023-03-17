@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Serviço websocket recebe e trata evento de pré partida (`ws_preMatch`).
 - Gerenciamento de estado de partida no Redux.
 - Chamada API para fazer o lock in do player quando receber evento de pré partida (https://github.com/3C-gg/reload-frontend/issues/92).
+- Visual e comportamento de partida encontrada, com modal de _ready_ para que players fiquem prontos até que o _countdown_ chegue a zero (https://github.com/3C-gg/reload-frontend/issues/94).
 
 ### Changed
 
@@ -21,6 +22,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move alguns componentes que estavam no Lobby para seus próprios componentes: Header, Lineup, ModeSelector e InviteModal.
 - Componente de Timer agora recebe uma propriedade chamada `stop` que faz o timer parar caso seja `true`.
 - Alterações no `.editorconfig` para padronizar o projeto.
+- O componente Timer passa a conter uma prop `reverse` que caracteriza o Timer como countdown.
+- Altera o reducer `preMatch` para aceitar tanto criação quanto update de `pre_match`.
+- Login passa a guardar `pre_match` no store de `Match`.
+- Altera tamanho do componente `Toast`.
 
 ### Fixed
 

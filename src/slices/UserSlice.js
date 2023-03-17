@@ -108,6 +108,32 @@ export const UserReducer = createSlice({
         },
       }
     },
+
+    restartQueue: (state) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby: {
+            ...state.account.lobby,
+            restart: true,
+          },
+        },
+      }
+    },
+
+    removeRestartQueue: (state) => {
+      return {
+        ...state,
+        account: {
+          ...state.account,
+          lobby: {
+            ...state.account.lobby,
+            restart: false,
+          },
+        },
+      }
+    },
   },
 })
 
@@ -120,6 +146,8 @@ export const {
   removeInvite,
   updateInviteReceived,
   addInviteSent,
+  restartQueue,
+  removeRestartQueue,
 } = UserReducer.actions
 
 export default UserReducer.reducer
