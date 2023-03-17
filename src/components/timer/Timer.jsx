@@ -26,6 +26,8 @@ export default function Timer({ initialTime, stop, reverse }) {
   })
 
   const render = () => {
+    if (reverse) return elapsed
+
     let timer = elapsed
     if (timer > 3600) return new Date(timer * 1000).toISOString().substr(11, 8)
     else return (timer - (timer %= 60)) / 60 + (9 < timer ? ':' : ':0') + timer
