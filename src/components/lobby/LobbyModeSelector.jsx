@@ -10,7 +10,7 @@ import style from './LobbyModeSelector.module.css'
 
 export default function LobbyModeSelector({ lobby }) {
   const handleToggleMode = async (lobbyType, lobbyMode) => {
-    if (lobby.players_count > 1) return
+    if (lobby.players_count > 1 || lobby.queue) return
 
     const token = StorageService.get('token')
     let response
@@ -32,7 +32,7 @@ export default function LobbyModeSelector({ lobby }) {
     <Container
       className={[
         style.typeSelection,
-        lobby.players_count > 1 && style.disabled,
+        (lobby.queue || lobby.players_count > 1) && style.disabled,
       ].join(' ')}
       align="center"
       justify="between"
