@@ -8,13 +8,7 @@ import React, { useEffect, useState } from 'react'
 
 import style from './LobbyLineup.module.css'
 
-export default function LobbyLineup({
-  lobby,
-  onSeatClick,
-  user,
-  owner,
-  userPlayer,
-}) {
+export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
   const dispatch = useDispatch()
   const [lineup, setLineup] = useState([])
 
@@ -191,8 +185,6 @@ export default function LobbyLineup({
         </Container>,
       ]
     } else if (lobby.max_players === 20) {
-      console.log(nonOwners)
-
       lineup = Array.from(Array(20)).map((el, idx) => {
         if (idx === 0)
           return (
@@ -228,18 +220,6 @@ export default function LobbyLineup({
           }
         }
       })
-
-      // for (let i = 0; i < nonOwners.length; i++) {
-      //   lineup[i + 1] = (
-      // <Container key={`20-${nonOwners[i].id}`} className={style.customSeat}>
-      //   <UserCardMini
-      //     {...nonOwners[i]}
-      //     showLeave={isOwner && lobby.players_count > 1}
-      //     onLeave={() => handleKick(nonOwners[i])}
-      //   />
-      // </Container>
-      //   )
-      // }
     }
 
     setLineup(lineup)

@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera o reducer `preMatch` para aceitar tanto criação quanto update de `pre_match`.
 - Login passa a guardar `pre_match` no store de `Match`.
 - Altera tamanho do componente `Toast`.
+- Atualiza pacotes core muito defasados.
 
 ### Fixed
 
