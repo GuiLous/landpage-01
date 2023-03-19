@@ -4,6 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
+import { preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
 import {
   AccountView,
@@ -27,7 +28,12 @@ export default function App() {
     const authenticate = async (token) => {
       const user = await AuthService.login(token)
 
-      if (user) dispatch(updateUser(user))
+      if (user) {
+        dispatch(updateUser(user))
+        if (user.account && user.account.pre_match) {
+          dispatch(preMatch(user.account.pre_match))
+        }
+      }
       setFetching(false)
     }
 

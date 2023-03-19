@@ -1,80 +1,80 @@
 .container {
-    background: linear-gradient(
-        to bottom,
-        var(--chakra-colors-primary-400) 0,
-        #34a5e0 80%
-    );
-    border-radius: 8px;
-    padding: 12px;
-    position: relative;
-    width: 100%;
+	background: linear-gradient(
+		to bottom,
+		var(--chakra-colors-primary-400) 0,
+		#34a5e0 80%
+	);
+	border-radius: 8px;
+	padding: 12px;
+	position: relative;
+	width: 100%;
 }
 
 .leaveAction {
-    background-color: var(--chakra-colors-danger-400);
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    right: -4px;
-    opacity: 0;
-    padding: 3px;
-    position: absolute;
-    top: -4px;
-    z-index: 1;
-    width: 100px;
-    height: 100px;
+	background-color: var(--chakra-colors-danger-400);
+	border-radius: 50%;
+	cursor: pointer;
+	font-size: 18px;
+	font-weight: bold;
+	right: -4px;
+	opacity: 0;
+	padding: 3px;
+	position: absolute;
+	top: -4px;
+	z-index: 1;
+	width: 100px;
+	height: 100px;
 
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 .container:hover .leaveAction {
-    opacity: 1;
+	opacity: 1;
 }
 
 .infos {
-    margin-left: 20px;
+	margin-left: 20px;
 }
 
 .avatar {
-    border-radius: 8px;
+	border-radius: 8px;
 }
 
 .avatar img {
-    border: 2px solid white;
-    border-radius: 8px;
-    min-width: 60px;
-    max-width: 60px;
+	border: 2px solid white;
+	border-radius: 8px;
+	min-width: 60px;
+	max-width: 60px;
 }
 
 .username {
-    cursor: default;
-    max-width: 160px;
+	cursor: default;
+	max-width: 160px;
 }
 
 .username p {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 
 .actions {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .actionLink {
-    cursor: pointer;
-    opacity: 0.8;
+	cursor: pointer;
+	opacity: 0.8;
 
-    transition: all 100ms linear;
+	transition: all 100ms linear;
 }
 
 .actionLink:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .level {
-    max-width: 60px;
-    position: relative;
-    top: 4px;
+	max-width: 60px;
+	position: relative;
+	top: 4px;
 }

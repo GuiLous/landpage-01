@@ -1,29 +1,35 @@
 .container {
-    position: relative;
-    width: 100%;
+	position: relative;
+	width: 100%;
 }
 
 .badge {
-    position: absolute;
-    z-index: 0;
+	position: absolute;
+	z-index: 0;
 }
 
 .badge img {
-    width: 100%;
+	width: 100%;
 }
 
 .level {
-    cursor: default;
-    font-size: 20px;
-    font-weight: bold;
-    left: -1px;
-    position: relative;
-    top: -7px;
-    user-select: none;
-    z-index: 1;
+	cursor: default;
+	font-size: 20px;
+	font-weight: bold;
+	left: -1px;
+	position: relative;
+	top: -7px;
+	user-select: none;
+	z-index: 1;
 }
 
 .small .level {
-    font-size: 15px;
-    top: -5px;
+	font-size: 15px;
+	top: -5px;
+}
+
+.xsmall .level {
+	font-size: 13px;
+	left: 0;
+	top: -5px;
 }

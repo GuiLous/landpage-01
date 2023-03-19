@@ -7,16 +7,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Tamanho `xsmall` da badge de level.
+- Lista de usuários disponíveis para convite a partir do card vazio do Lobby (https://github.com/3C-gg/reload-frontend/issues/85).
+- Serviço websocket recebe e trata evento de pré partida (`ws_preMatch`).
+- Gerenciamento de estado de partida no Redux.
+- Chamada API para fazer o lock in do player quando receber evento de pré partida (https://github.com/3C-gg/reload-frontend/issues/92).
+- Visual e comportamento de partida encontrada, com modal de _ready_ para que players fiquem prontos até que o _countdown_ chegue a zero (https://github.com/3C-gg/reload-frontend/issues/94).
+
+### Changed
+
+- Ajustes visuais no tema do Modal do Chakra UI.
+- Move alguns componentes que estavam no Lobby para seus próprios componentes: Header, Lineup, ModeSelector e InviteModal.
+- Componente de Timer agora recebe uma propriedade chamada `stop` que faz o timer parar caso seja `true`.
+- Alterações no `.editorconfig` para padronizar o projeto.
+- O componente Timer passa a conter uma prop `reverse` que caracteriza o Timer como countdown.
+- Altera o reducer `preMatch` para aceitar tanto criação quanto update de `pre_match`.
+- Login passa a guardar `pre_match` no store de `Match`.
+- Altera tamanho do componente `Toast`.
+- Atualiza pacotes core muito defasados.
+
+### Fixed
+
+- Ícone de usuário agora reflete exatamente o design do Figma.
+- Ícone de sair do lobby personalizado 20x20 quando não houver mais ninguém no lobby ou quando o lobby estiver em fila (https://github.com/3C-gg/reload-frontend/issues/89).
+- Erro visual de layout que aparecia quando um jogador entrava em um lobby personalizado e voltava para o seu lobby 5x5 (https://github.com/3C-gg/reload-frontend/issues/100).
+- Erro que permitia clicar para alterar o modo/tipo do lobby enquanto procurava partida. O backend recusava o pedido e não fazia a alteração (https://github.com/3C-gg/reload-frontend/issues/96).
+- Cards de usuário duplicado no lobby pela visão do convidado ao aceitar convite (https://github.com/3C-gg/reload-frontend/issues/102).
+
 ## [27509b6] - 27/02/2023
 
 ### Added
 
--   Estilos e comportamentos do lobby (https://github.com/3C-gg/reload-frontend/pull/86)
+- Estilos e comportamentos do lobby (https://github.com/3C-gg/reload-frontend/pull/86)
 
-## [6972139] - 13/02/2023
+## [6972139 - 13-02-2023]
 
 ### Added
 
--   Página de usuário inativo (https://github.com/3C-gg/reload-frontend/pull/74)
--   Home para dispositivos mobile (https://github.com/3C-gg/reload-frontend/pull/75)
--   Loading para telas que precisam carregar informações do servidor antes de exibir informações (https://github.com/3C-gg/reload-frontend/pull/78)
+- Página de usuário inativo (https://github.com/3C-gg/reload-frontend/pull/74)
+- Home para dispositivos mobile (https://github.com/3C-gg/reload-frontend/pull/75)
+- Loading para telas que precisam carregar informações do servidor antes de exibir informações (https://github.com/3C-gg/reload-frontend/pull/78)

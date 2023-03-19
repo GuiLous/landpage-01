@@ -29,6 +29,7 @@ export default function Sidebar(props) {
 
   useEffect(() => {
     if (tabIndex === tabs.indexOf('Convites')) dispatch(readInvites())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unreadInvites])
 
   const onlineFriends = user.account.friends.filter(

@@ -1,25 +1,25 @@
 .container {
-    background-color: black;
-    background-image: url('@assets/images/signup_bg.png');
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: left bottom;
-    color: white;
-    height: 100vh;
-    position: relative;
+	background-color: black;
+	background-image: url('@assets/images/signup_bg.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left bottom;
+	color: white;
+	height: 100vh;
+	position: relative;
 }
 
 .liquidObject {
-    position: absolute;
-    bottom: 140px;
-    left: 0;
-    z-index: 0;
+	position: absolute;
+	bottom: 140px;
+	left: 0;
+	z-index: 0;
 }
 
 .brand {
-    max-width: 365px;
+	max-width: 365px;
 }
 
 .brand img {
-    width: 100%;
+	width: 100%;
 }

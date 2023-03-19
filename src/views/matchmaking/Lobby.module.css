@@ -1,110 +1,21 @@
 .container {
-    height: 100%;
-}
-
-.header {
-    text-transform: uppercase;
-}
-
-.groupType {
-    border: 1px solid var(--chakra-colors-primary-400);
-    border-radius: 8px;
-    font-size: 14px;
-    padding: 10px 15px;
-}
-
-.typeSelection {
-    color: #999;
-    font-size: 18px;
-    position: relative;
-    text-transform: uppercase;
-
-    transition: all 100ms linear;
-}
-
-.typeSelection.disabled {
-    opacity: 0.5;
-}
-
-.lobbyMode {
-    border-bottom: 1px solid #999;
-    cursor: pointer;
-    padding-bottom: 22px;
-    position: relative;
-    user-select: none;
-
-    transition: all 100ms linear;
-}
-
-.typeSelection.disabled .lobbyMode {
-    cursor: default;
-}
-
-.modeActiveCaret {
-    color: var(--chakra-colors-primary-400);
-    bottom: -8px;
-    font-size: 24px;
-    position: absolute;
-    opacity: 0;
-
-    transition: all 100ms linear;
-}
-
-.lobbyMode.activeMode,
-.lobbyMode.activeMode:hover {
-    cursor: default;
-    color: var(--chakra-colors-primary-400);
-    border-bottom: 1px solid var(--chakra-colors-primary-400);
-}
-
-.lobbyMode.lobbyMode.activeMode .modeActiveCaret {
-    opacity: 1;
-}
-
-.lobbyMode:hover {
-    border-bottom: 1px solid white;
-    color: white;
-}
-
-.typeSelection.disabled .lobbyMode:hover {
-    border-bottom: 1px solid #999;
-    color: #999;
-}
-
-.typeSelection.disabled .lobbyMode.activeMode,
-.typeSelection.disabled .lobbyMode.activeMode:hover {
-    cursor: default;
-    color: var(--chakra-colors-primary-400);
-    border-bottom: 1px solid var(--chakra-colors-primary-400);
-}
-
-.typeSelection.disabled .lobbyMode.lobbyMode.activeMode .modeActiveCaret {
-    opacity: 1;
+	height: 100%;
+	position: relative;
 }
 
 .lineupWrapper {
-    flex-wrap: wrap;
-    height: 100%;
-    padding: 20px 0;
-}
-
-.lobbySeat {
-    height: 100%;
-    width: 20%;
-}
-
-.lobbyCustomSeat {
-    flex: 1 0 20%;
-    margin: 3px 11px;
+	flex-wrap: wrap;
+	height: 100%;
+	padding: 20px 0;
 }
 
 .cancelQueueBtn {
-    position: relative;
-    width: 269px;
+	position: relative;
+	width: 269px;
 }
 
 .cancelQueueBtnIcon {
-    font-size: 18px;
-    position: absolute;
-    right: 24px;
+	font-size: 18px;
+	position: absolute;
+	right: 24px;
 }

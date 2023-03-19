@@ -8,11 +8,14 @@ import {
   addFriend,
   addInviteReceived,
   removeInvite,
+  restartQueue,
   updateFriend,
   updateInviteReceived,
   updateLobby,
   updateUser,
 } from '@slices/UserSlice'
+
+import { preMatch } from '@slices/MatchSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -78,6 +81,27 @@ export const WSS = () => {
           })
         }
         dispatch(removeInvite(data.payload))
+        break
+
+      case 'ws_preMatch':
+        dispatch(preMatch(data.payload))
+        break
+
+      case 'ws_preMatchCancel':
+        dispatch(preMatch(null))
+        break
+
+      case 'ws_preMatchCancelWarn':
+        Toast({
+          title: 'Não aceitou a partida',
+          description:
+            'Um ou mais jogadores desse lobby não aceitaram a partida. Na próxima vez que isso acontecer, os jogadores que não aceitarem podem sofrer penalidades.',
+          status: 'warning',
+        })
+        break
+
+      case 'ws_restartQueue':
+        dispatch(restartQueue())
         break
 
       default:
