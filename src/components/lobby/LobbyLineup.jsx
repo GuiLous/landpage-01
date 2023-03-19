@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LobbySeat, UserCard, UserCardMini } from '@components'
 import { HttpService, StorageService, Toast } from '@services'
@@ -10,6 +10,7 @@ import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.user)
   const [lineup, setLineup] = useState([])
 
   useEffect(() => {
@@ -18,9 +19,7 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
   }, [lobby])
 
   const isOwner = userPlayer.id === owner.id
-  const nonOwners = lobby.players.filter(
-    (player) => player.id !== lobby.owner_id
-  )
+  const otherPlayers = lobby.players.filter((player) => player.id !== user.id)
 
   const handleLeave = async () => {
     const token = StorageService.get('token')
@@ -115,20 +114,20 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
         </Container>,
       ]
 
-      for (let i = 0; i < nonOwners.length; i++) {
+      for (let i = 0; i < otherPlayers.length; i++) {
         lineup[fillOrder[i]] = (
           <Container
             align="center"
             justify="center"
-            key={`5-${nonOwners[i].id}`}
+            key={`5-${otherPlayers[i].id}`}
             className={style.seat}
             style={{ maxHeight: '95%' }}
             column
           >
             <UserCard
-              {...nonOwners[i]}
+              {...otherPlayers[i]}
               showLeave={isOwner && lobby.players_count > 1 && !lobby.queue}
-              onLeave={() => handleKick(nonOwners[i])}
+              onLeave={() => handleKick(otherPlayers[i])}
             />
           </Container>
         )
@@ -197,13 +196,13 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
             </Container>
           )
         else {
-          if (typeof nonOwners[idx - 1] !== 'undefined') {
+          if (typeof otherPlayers[idx - 1] !== 'undefined') {
             return (
               <Container key={`20-pos${idx}`} className={style.customSeat}>
                 <UserCardMini
-                  {...nonOwners[idx - 1]}
+                  {...otherPlayers[idx - 1]}
                   showLeave={isOwner && lobby.players_count > 1}
-                  onLeave={() => handleKick(nonOwners[idx - 1])}
+                  onLeave={() => handleKick(otherPlayers[idx - 1])}
                 />
               </Container>
             )
