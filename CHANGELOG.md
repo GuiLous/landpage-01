@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [93a88f5 - 19-03-2023]
+
 ### Added
 
 - Tamanho `xsmall` da badge de level.
