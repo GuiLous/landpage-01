@@ -1,15 +1,13 @@
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import { Container, LobbySeat, UserCard, UserCardMini } from '@components'
 import { HttpService, StorageService, Toast } from '@services'
-import { updateUser } from '@slices/UserSlice'
 
 import React, { useEffect, useState } from 'react'
 
 import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
-  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [lineup, setLineup] = useState([])
 
@@ -30,10 +28,7 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
         description: response.errorMsg,
         status: 'error',
       })
-      return
     }
-
-    dispatch(updateUser(response))
   }
 
   const handleKick = async (user) => {
