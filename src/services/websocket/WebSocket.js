@@ -57,6 +57,11 @@ export const WSS = () => {
       case 'ws_lobbyInviteReceived':
         dispatch(addInviteReceived(data.payload))
         dispatch(newInvite())
+        Toast({
+          title: 'Convite recebido',
+          description: `Você recebeu um convite de ${data.payload.from_player.username}.`,
+          status: 'success',
+        })
         break
 
       case 'ws_refuseInvite':
