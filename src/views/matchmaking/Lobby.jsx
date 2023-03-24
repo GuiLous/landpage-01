@@ -76,8 +76,11 @@ export default function LobbyView() {
     (player) => player.id === lobby.owner_id
   )[0]
   const isOwner = userPlayer.id === owner.id
+  console.log(owner, isOwner, preMatch)
 
   const handleQueue = async (action) => {
+    if (!isOwner) return
+
     const token = StorageService.get('token')
     let response
 
@@ -141,7 +144,7 @@ export default function LobbyView() {
             <Button
               onClick={handleStartQueue}
               size="xl"
-              disabled={!isOwner || preMatch}
+              isDisabled={!isOwner || preMatch}
             >
               Jogar
             </Button>
