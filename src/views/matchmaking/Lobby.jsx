@@ -76,7 +76,7 @@ export default function LobbyView() {
     (player) => player.id === lobby.owner_id
   )[0]
   const isOwner = userPlayer.id === owner.id
-  console.log(owner, isOwner, preMatch)
+  const is1v1 = lobby.max_players === 1
 
   const handleQueue = async (action) => {
     if (!isOwner) return
@@ -103,10 +103,12 @@ export default function LobbyView() {
 
   return (
     <MainLayout>
-      <InviteModal
-        isOpen={inviteModalVisible}
-        onClose={handleInviteModalClose}
-      />
+      {!is1v1 && (
+        <InviteModal
+          isOpen={inviteModalVisible}
+          onClose={handleInviteModalClose}
+        />
+      )}
 
       {preMatch && preMatch.state === 'lock_in' && (
         <MatchFoundModal preMatch={preMatch} />
