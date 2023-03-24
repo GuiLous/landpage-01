@@ -74,6 +74,7 @@ export default function Sidebar(props) {
           variant="primary"
           className={style.tabs}
           onChange={handleTabsChange}
+          index={tabIndex}
         >
           <Container className={style.tablist}>
             <TabList gap={2}>{renderTabs()}</TabList>
@@ -122,6 +123,7 @@ export default function Sidebar(props) {
                     meta={user.account.lobby_invites.length}
                     Item={Invite}
                     data={user.account.lobby_invites}
+                    changeTab={handleTabsChange}
                   />
                 </Scrollbars>
               </TabPanel>

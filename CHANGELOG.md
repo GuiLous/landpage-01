@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
 
+### Changed
+
+- Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
+
 ## [93a88f5 - 19-03-2023]
 
 ### Added
