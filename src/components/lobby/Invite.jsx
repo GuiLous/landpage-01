@@ -8,9 +8,17 @@ import { HttpService, StorageService, Toast } from '@services'
 import { removeInvite } from '@slices/UserSlice'
 import style from './Invite.module.css'
 
-export default function Invite({ id, lobby_id, from_player, lobby }) {
+export default function Invite({
+  id,
+  lobby_id,
+  from_player,
+  lobby,
+  changeTab,
+  meta,
+}) {
   const token = StorageService.get('token')
   const dispatch = useDispatch()
+  const invitesReceivedLen = meta
 
   const handleAccept = async () => {
     const response = await HttpService.patch(
@@ -26,6 +34,7 @@ export default function Invite({ id, lobby_id, from_player, lobby }) {
       })
     } else {
       dispatch(removeInvite({ id: id }))
+      changeTab(0)
     }
   }
 
@@ -42,6 +51,7 @@ export default function Invite({ id, lobby_id, from_player, lobby }) {
         status: 'error',
       })
     } else {
+      if (invitesReceivedLen <= 1) changeTab(0)
       dispatch(removeInvite(response))
     }
   }
