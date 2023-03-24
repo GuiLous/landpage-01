@@ -72,7 +72,7 @@ export default function MatchFoundModal({ preMatch }) {
             </Container>
 
             <Container justify="center" style={{ marginTop: '40px' }}>
-              <Button disabled={preMatch.user_ready} onClick={handleAccept}>
+              <Button isDisabled={preMatch.user_ready} onClick={handleAccept}>
                 {preMatch.user_ready ? 'Você está pronto!' : 'Aceitar partida'}
               </Button>
             </Container>
