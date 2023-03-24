@@ -17,7 +17,8 @@ export default function UserStatus(props) {
         return 'Em partida'
 
       case 'teaming':
-        return 'Em grupo'
+        if (props.teamingTogether) return 'No seu grupo'
+        else return 'Em grupo'
 
       case 'queued':
         return 'Procurando partida'
@@ -27,5 +28,5 @@ export default function UserStatus(props) {
     }
   }
 
-  return <Text {...props}>{resolveStatus()}</Text>
+  return <Text className={props.className}>{resolveStatus()}</Text>
 }
