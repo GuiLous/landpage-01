@@ -64,3 +64,8 @@
 .container.disabled:hover .invite {
 	opacity: 0;
 }
+
+.together {
+	background-color: rgba(0, 0, 0, 0.15);
+	cursor: default;
+}

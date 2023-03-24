@@ -38,6 +38,9 @@ export default function Sidebar(props) {
   const offlineFriends = user.account.friends.filter(
     (friend) => !friend.is_online
   )
+  const sortedOnlineFriends = onlineFriends.sort((a, b) =>
+    user.account.lobby.players_ids.includes(a.id) ? -1 : 1
+  )
 
   const tabs = ['Online', 'Offline', 'Convites']
 
@@ -88,7 +91,7 @@ export default function Sidebar(props) {
                     title="Amigos Online"
                     meta={onlineFriends.length}
                     Item={FriendListUser}
-                    data={onlineFriends}
+                    data={sortedOnlineFriends}
                   />
                 </Scrollbars>
               </TabPanel>

@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
+- Agora mostramos o status "No seu grupo" para jogadores que estiverem juntos no lobby, além de agrupá-los e exibí-los no topo da lista de amigos online (https://github.com/3C-gg/reload-frontend/issues/88).
 
 ## [93a88f5 - 19-03-2023]
 

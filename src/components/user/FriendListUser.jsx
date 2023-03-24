@@ -74,6 +74,7 @@ export default function FriendListUser(props) {
         style.container,
         (!isAvailable() || fullLobby || invited || teamingTogether) &&
           style.disabled,
+        teamingTogether && style.together,
       ].join(' ')}
       justify="center"
       align="center"
@@ -87,7 +88,11 @@ export default function FriendListUser(props) {
 
         <Container column justify="center" className={style.info}>
           <Text className={style.username}>{props.username}</Text>
-          <UserStatus className={style.status} status={props.status} />
+          <UserStatus
+            className={style.status}
+            status={props.status}
+            teamingTogether={teamingTogether}
+          />
         </Container>
       </Container>
 
