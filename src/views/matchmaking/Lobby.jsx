@@ -21,6 +21,7 @@ export default function LobbyView() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const preMatch = useSelector((state) => state.match.preMatch)
+  const match = useSelector((state) => state.match.match)
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
 
   useEffect(() => {
@@ -79,7 +80,7 @@ export default function LobbyView() {
   const is1v1 = lobby.max_players === 1
 
   const handleQueue = async (action) => {
-    if (!isOwner) return
+    if (!isOwner || preMatch || match) return
 
     const token = StorageService.get('token')
     let response
@@ -115,7 +116,7 @@ export default function LobbyView() {
       )}
 
       <Container column className={style.container}>
-        <LobbyModeSelector lobby={lobby} />
+        <LobbyModeSelector lobby={lobby} disabled={match || preMatch} />
 
         <Container
           align="center"
@@ -146,7 +147,7 @@ export default function LobbyView() {
             <Button
               onClick={handleStartQueue}
               size="xl"
-              isDisabled={!isOwner || preMatch}
+              isDisabled={!isOwner || preMatch || match}
             >
               Jogar
             </Button>
