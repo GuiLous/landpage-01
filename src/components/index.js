@@ -17,6 +17,7 @@ import Input from './input/Input'
 // Icons
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import ClipboardIcon from './icons/ClipboardIcon'
 import CloseIcon from './icons/CloseIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
@@ -43,6 +44,7 @@ import UserStatus from './user/UserStatus'
 export {
   AddUserIcon,
   ArrowRightIcon,
+  ClipboardIcon,
   CloseIcon,
   LockIcon,
   PlusIcon,
