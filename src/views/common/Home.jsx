@@ -99,16 +99,16 @@ export default function HomeView() {
                 </p>
               </Container>
 
-              <Container justify="between" className={style.actions} gap={12}>
+              <Container className={style.actions}>
                 <form
                   action={`${REACT_APP_API_URL}/accounts/login/steam/`}
                   method="POST"
-                  style={{ display: 'flex', gap: 12, width: '100%' }}
+                  style={{ display: 'flex', width: '100%' }}
                 >
                   <Button
                     type="submit"
                     size={'lg'}
-                    style={{ fontSize: 16 }}
+                    style={{ fontSize: 16, width: '100%' }}
                     leftIcon={<SiSteam style={{ fontSize: 26 }} />}
                   >
                     Entrar com
@@ -120,9 +120,6 @@ export default function HomeView() {
                     >
                       Steam
                     </strong>
-                  </Button>
-                  <Button size={'lg'} variant={'secondary'}>
-                    <SiDiscord style={{ fontSize: 26 }} />
                   </Button>
                 </form>
               </Container>
