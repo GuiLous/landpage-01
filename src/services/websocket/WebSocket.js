@@ -15,7 +15,7 @@ import {
   updateUser,
 } from '@slices/UserSlice'
 
-import { preMatch } from '@slices/MatchSlice'
+import { match, preMatch } from '@slices/MatchSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -107,6 +107,10 @@ export const WSS = () => {
 
       case 'ws_restartQueue':
         dispatch(restartQueue())
+        break
+
+      case 'ws_match':
+        dispatch(match(data.payload))
         break
 
       default:

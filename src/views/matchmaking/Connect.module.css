@@ -1,0 +1,91 @@
+.container {
+	background-color: black;
+	background-image: url('@assets/images/connect_bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: right bottom;
+	color: white;
+	height: 100vh;
+	padding: 0 10%;
+	position: relative;
+}
+
+.gtaAvatarWrapper {
+	height: 100%;
+}
+
+.gtaAvatar {
+	height: 90%;
+}
+
+.gtaAvatar img {
+	max-height: 100%;
+	width: auto;
+}
+
+.bigTitle {
+	color: white;
+	font-size: 60px;
+	font-weight: 700;
+	/* margin-bottom: 60px; */
+	text-transform: uppercase;
+}
+
+.logo {
+	max-width: 455px;
+}
+
+.title {
+	color: var(--chakra-colors-secondary-400);
+	font-size: 28px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.helper {
+	color: var(--chakra-colors-gray-700);
+	font-weight: 500;
+	font-size: 20px;
+	max-width: 600px;
+	text-align: end;
+}
+
+.connectionBox {
+	border-radius: 8px;
+	border: 1px solid var(--chakra-colors-primary-400);
+	cursor: pointer;
+	margin-bottom: 110px;
+	max-width: 300px;
+	opacity: 0.8;
+	padding: 15px;
+	position: relative;
+
+	transition: all 150ms linear;
+}
+
+.connectionBox:hover {
+	opacity: 1;
+}
+
+.ip {
+	color: var(--chakra-colors-gray-700);
+	font-size: 18px;
+}
+
+.clipboard {
+	font-size: 25px;
+}
+
+.copied {
+	background-color: var(--chakra-colors-primary-400);
+	border-radius: 8px;
+	color: white;
+	cursor: default;
+	margin-bottom: 110px;
+	max-width: 300px;
+	font-size: 22px;
+	font-weight: 700;
+	padding: 13px;
+	position: relative;
+	text-transform: uppercase;
+}
