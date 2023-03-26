@@ -13,6 +13,7 @@ import logo from '@assets/images/logo_type_white.svg'
 import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService, Toast } from '@services'
+import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
@@ -51,6 +52,13 @@ export default function HomeView() {
     if (!response.is_active) navigate(`/conta-inativa?token=${response.token}`)
     else {
       dispatch(updateUser(response))
+      if (response.account) {
+        if (response.account.pre_match) {
+          dispatch(preMatch(response.account.pre_match))
+        } else if (response.account.match) {
+          dispatch(match(response.account.match))
+        }
+      }
       if (response.account.is_verified) navigate('/jogar')
       else navigate('/verificar')
     }
