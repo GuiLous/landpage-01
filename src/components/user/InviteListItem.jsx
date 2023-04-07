@@ -101,7 +101,7 @@ export default function InviteListItem(props) {
           </Container>
         </Container>
 
-        <Button size="sm" onClick={handleInvite} disabled={invited}>
+        <Button size="sm" onClick={handleInvite} isDisabled={invited}>
           {invited ? 'Convidado' : 'Convidar'}
         </Button>
       </Container>

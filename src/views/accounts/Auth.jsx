@@ -4,6 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService } from '@services'
+import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
 
 export default function AuthView() {
@@ -19,6 +20,12 @@ export default function AuthView() {
       else if (!user.is_active) navigate('/conta-inativa')
       else if (!user.account) navigate('/cadastrar')
       else if (!user.account.is_verified) navigate('/verificar')
+      else if (
+        user.account &&
+        user.account.match &&
+        user.account.match.status === 'loading'
+      )
+        navigate('/conectar')
       else navigate('/jogar')
     }
 
@@ -28,6 +35,13 @@ export default function AuthView() {
       if (response) {
         StorageService.set('token', token)
         dispatch(updateUser(response))
+        if (response.account) {
+          if (response.account.pre_match) {
+            dispatch(preMatch(response.account.pre_match))
+          } else if (response.account.match) {
+            dispatch(match(response.account.match))
+          }
+        }
         redirectUser(response)
       } else {
         navigate('/')
@@ -36,7 +50,6 @@ export default function AuthView() {
 
     const token = searchParams.get('token') || StorageService.get('token')
     if (!token) navigate('/')
-
     if (user) redirectUser(user)
     else fetch(token)
     // eslint-disable-next-line react-hooks/exhaustive-deps

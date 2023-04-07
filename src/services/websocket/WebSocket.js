@@ -15,7 +15,7 @@ import {
   updateUser,
 } from '@slices/UserSlice'
 
-import { preMatch } from '@slices/MatchSlice'
+import { match, preMatch } from '@slices/MatchSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -57,6 +57,11 @@ export const WSS = () => {
       case 'ws_lobbyInviteReceived':
         dispatch(addInviteReceived(data.payload))
         dispatch(newInvite())
+        Toast({
+          title: 'Convite recebido',
+          description: `Você recebeu um convite de ${data.payload.from_player.username}.`,
+          status: 'success',
+        })
         break
 
       case 'ws_refuseInvite':
@@ -102,6 +107,10 @@ export const WSS = () => {
 
       case 'ws_restartQueue':
         dispatch(restartQueue())
+        break
+
+      case 'ws_match':
+        dispatch(match(data.payload))
         break
 
       default:

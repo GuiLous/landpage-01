@@ -4,11 +4,12 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
-import { preMatch } from '@slices/MatchSlice'
+import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
 import {
   AccountView,
   AuthView,
+  ConnectView,
   HomeView,
   InactiveView,
   LobbyView,
@@ -21,6 +22,7 @@ import {
 
 export default function App() {
   const user = useSelector((state) => state.user)
+  const userMatch = useSelector((state) => state.match.match)
   const dispatch = useDispatch()
   const [fetching, setFetching] = useState(true)
 
@@ -30,8 +32,9 @@ export default function App() {
 
       if (user) {
         dispatch(updateUser(user))
-        if (user.account && user.account.pre_match) {
-          dispatch(preMatch(user.account.pre_match))
+        if (user.account) {
+          if (user.account.pre_match) dispatch(preMatch(user.account.pre_match))
+          else if (user.account.match) dispatch(match(user.account.match))
         }
       }
       setFetching(false)
@@ -67,9 +70,10 @@ export default function App() {
             (!user && <Navigate to="/" replace />) ||
             (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
             (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <LobbyView />
-            )
+            (unverifiedUser && <Navigate to="/verificar" replace />) ||
+            (userMatch && userMatch.status === 'loading' && (
+              <Navigate to="/conectar" replace />
+            )) || <LobbyView />
           }
         />
 
@@ -141,6 +145,20 @@ export default function App() {
             (unverifiedUser && <Navigate to="/verificar" replace />) || (
               <InactiveView />
             )
+          }
+        />
+
+        <Route
+          path="/conectar"
+          element={
+            (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
+            (newUser && <Navigate to="/cadastrar" replace />) ||
+            (unverifiedUser && <Navigate to="/verificar" replace />) ||
+            (!userMatch && <Navigate to="/jogar" replace />) ||
+            (userMatch && userMatch.status !== 'loading' && (
+              <Navigate to="/jogar" replace />
+            )) || <ConnectView />
           }
         />
       </>

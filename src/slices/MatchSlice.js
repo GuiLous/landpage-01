@@ -10,9 +10,13 @@ export const MatchReducer = createSlice({
     preMatch: (state, action) => {
       return { ...state, preMatch: action.payload }
     },
+
+    match: (state, action) => {
+      return { ...state, match: action.payload }
+    },
   },
 })
 
-export const { preMatch } = MatchReducer.actions
+export const { preMatch, match } = MatchReducer.actions
 
 export default MatchReducer.reducer

@@ -8,7 +8,7 @@ import React from 'react'
 
 import style from './LobbyModeSelector.module.css'
 
-export default function LobbyModeSelector({ lobby }) {
+export default function LobbyModeSelector({ lobby, disabled }) {
   const handleToggleMode = async (lobbyType, lobbyMode) => {
     if (lobby.players_count > 1 || lobby.queue) return
 
@@ -32,7 +32,7 @@ export default function LobbyModeSelector({ lobby }) {
     <Container
       className={[
         style.typeSelection,
-        (lobby.queue || lobby.players_count > 1) && style.disabled,
+        (lobby.queue || lobby.players_count > 1 || disabled) && style.disabled,
       ].join(' ')}
       align="center"
       justify="between"

@@ -10,6 +10,9 @@ import style from './FriendListUser.module.css'
 export default function FriendListUser(props) {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
+  const lobby = user.account.lobby
+  const fullLobby = lobby.max_players === lobby.players_count
+  const teamingTogether = lobby.players_ids.includes(props.id)
 
   const invited =
     user.account.lobby_invites_sent.filter((invite) => {
@@ -17,7 +20,7 @@ export default function FriendListUser(props) {
     }).length > 0
 
   const isAvailable = () => {
-    if (invited || user.account.lobby.queue) return false
+    if (lobby.queue) return false
 
     switch (props.status) {
       case 'online':
@@ -44,12 +47,12 @@ export default function FriendListUser(props) {
   }
 
   const handleInvite = async () => {
-    if (!isAvailable()) return
+    if (!isAvailable() || fullLobby || invited || teamingTogether) return
 
     const token = StorageService.get('token')
 
     const response = await HttpService.post(
-      `mm/lobby/${user.account.lobby.id}/invite-player/${props.id}/`,
+      `mm/lobby/${lobby.id}/invite-player/${props.id}/`,
       token
     )
 
@@ -67,7 +70,12 @@ export default function FriendListUser(props) {
 
   return (
     <Container
-      className={[style.container, !isAvailable() && style.disabled].join(' ')}
+      className={[
+        style.container,
+        (!isAvailable() || fullLobby || invited || teamingTogether) &&
+          style.disabled,
+        teamingTogether && style.together,
+      ].join(' ')}
       justify="center"
       align="center"
       fitContent
@@ -80,17 +88,21 @@ export default function FriendListUser(props) {
 
         <Container column justify="center" className={style.info}>
           <Text className={style.username}>{props.username}</Text>
-          <UserStatus className={style.status} status={props.status} />
+          <UserStatus
+            className={style.status}
+            status={props.status}
+            teamingTogether={teamingTogether}
+          />
         </Container>
       </Container>
 
-      {props.status === 'online' && !invited && (
+      {isAvailable() && !invited && !fullLobby && !teamingTogether && (
         <Container justify="end" className={style.invite} align="center">
           <AddUserIcon />
         </Container>
       )}
 
-      {props.status === 'online' && invited && (
+      {isAvailable() && invited && (
         <Container justify="end" className={style.invited} align="center">
           <Icon as={BsFillCheckCircleFill} color="success" />
         </Container>

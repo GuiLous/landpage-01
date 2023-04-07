@@ -7,6 +7,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
+- Agora mostramos o status "No seu grupo" para jogadores que estiverem juntos no lobby, além de agrupá-los e exibí-los no topo da lista de amigos online (https://github.com/3C-gg/reload-frontend/issues/88).
+- Novo ícone de copiar.
+- Página de Conectar/Pré-Partida (https://github.com/3C-gg/reload-frontend/issues/98).
+- Evento WS `ws_match` que identifica que uma partida foi criada.
+
+### Fixed
+
+- Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
+- Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
+
+### Changed
+
+- Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
+- Métodos de autenticação agora reconhecem o campo `match` e redirecionam o usuário corretamente.
+
+### Removed
+
+- Botão de discord ao lado do login da Home (https://github.com/3C-gg/reload-frontend/issues/120).
+
 ## [93a88f5 - 19-03-2023]
 
 ### Added
@@ -37,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Erro visual de layout que aparecia quando um jogador entrava em um lobby personalizado e voltava para o seu lobby 5x5 (https://github.com/3C-gg/reload-frontend/issues/100).
 - Erro que permitia clicar para alterar o modo/tipo do lobby enquanto procurava partida. O backend recusava o pedido e não fazia a alteração (https://github.com/3C-gg/reload-frontend/issues/96).
 - Cards de usuário duplicado no lobby pela visão do convidado ao aceitar convite (https://github.com/3C-gg/reload-frontend/issues/102).
+- Impede que usuários iniciem uma busca por partidas caso já estejam em uma partida. Além disso, também protege a mudança de modo/tipo de lobby (https://github.com/3C-gg/reload-frontend/issues/121).
 
 ## [27509b6] - 27/02/2023
 

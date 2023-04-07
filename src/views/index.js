@@ -12,6 +12,7 @@ import UpdateEmailView from './accounts/UpdateEmail'
 import VerifyView from './accounts/Verify'
 
 // matchmaking
+import ConnectView from './matchmaking/Connect'
 import LobbyView from './matchmaking/Lobby'
 
 export {
@@ -24,5 +25,6 @@ export {
   VerifyView,
   ProfileView,
   LobbyView,
+  ConnectView,
   InactiveView,
 }
