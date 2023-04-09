@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Página de Conectar/Pré-Partida (https://github.com/3C-gg/reload-frontend/issues/98).
 - Evento WS `ws_match` que identifica que uma partida foi criada.
 - Componente `RequireAuth` de apoio para rotas.
+- View de detalhe de partida `MatchView`.
 
 ### Fixed
 

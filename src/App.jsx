@@ -13,6 +13,7 @@ import {
   HomeView,
   InactiveView,
   LobbyView,
+  MatchView,
   NotFoundView,
   ProfileView,
   SignupView,
@@ -164,6 +165,18 @@ export default function App() {
                   <Navigate to="/jogar" replace />
                 )) || <ConnectView />
               }
+            />
+          }
+        />
+
+        <Route
+          path="/partidas/:matchId"
+          element={
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={<MatchView />}
             />
           }
         />
