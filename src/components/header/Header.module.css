@@ -1,0 +1,36 @@
+.header {
+	background-color: black;
+
+	color: white;
+	padding: 0px 60px;
+	flex: initial;
+}
+
+.statusLobbyLinkBtn {
+	background-color: var(--chakra-colors-primary-400);
+
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 30px;
+	text-transform: uppercase;
+
+	padding: 20px 35px;
+}
+
+.statusLobbyLinkBtn:hover {
+	background-color: var(--chakra-colors-primary-500);
+}
+
+.hello {
+	font-size: 14px;
+	color: var(--chakra-colors-gray-700);
+	font-weight: 500;
+}
+
+.logo {
+	max-width: 195px;
+}
+
+.logo img {
+	width: 100%;
+}
