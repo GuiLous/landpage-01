@@ -45,7 +45,6 @@ export default function Header() {
 
       <Container justify="end" align="center">
         <Link
-          className={style.statusLobbyLinkBtn}
           color="gray.200"
           _hover={{
             color: 'gray.200',
