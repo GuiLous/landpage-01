@@ -9,33 +9,17 @@ import {
   MenuButton,
   Text,
 } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link as RouterLink } from 'react-router-dom'
 
 import logo from '@assets/images/logo_type_white.svg'
 
 import { ArrowDownIcon, Container, Notifications } from '@components'
 
-import { HttpService, StorageService } from '@services'
-import { updateUser } from '@slices/UserSlice'
-
 import style from './Header.module.css'
 
 export default function Header() {
   const user = useSelector((state) => state.user)
-
-  const dispatch = useDispatch()
-
-  const navigate = useNavigate()
-
-  const handleLogout = async () => {
-    const token = StorageService.get('token')
-    await HttpService.patch('accounts/logout/', token)
-
-    dispatch(updateUser(null))
-    StorageService.remove('token')
-    navigate('/')
-  }
 
   return (
     <Container className={style.header} align="center" justify="between">
