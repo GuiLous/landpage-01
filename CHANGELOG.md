@@ -9,9 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Passamos a mostrar a quantidade de notificações no ícone apenas quando o número de notificações for maior que 0 (https://github.com/3C-gg/reload-frontend/issues/8).
-- Criado teste para o componente `Notifications` (https://github.com/3C-gg/reload-frontend/issues/8).
-- Criado teste para o componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Criado componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
 - Agora mostramos o status "No seu grupo" para jogadores que estiverem juntos no lobby, além de agrupá-los e exibí-los no topo da lista de amigos online (https://github.com/3C-gg/reload-frontend/issues/88).
@@ -21,20 +18,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- O botão de jogar do componente `Header` estava faltando o className `statusLobbyLinkBtn` causando bug no css (https://github.com/3C-gg/reload-frontend/issues/8).
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
 
 ### Changed
 
-- A logo no header agora é um link para `\`.
+- A logo no header agora é um link para `/`.
 - Move `Header` do `MainLayout` para o seu próprio componente.
 - Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
 - Métodos de autenticação agora reconhecem o campo `match` e redirecionam o usuário corretamente.
 
 ### Removed
 
-- Removido importação do `React` nos arquivos de teste dos componentes `Header` e `Notifications` (https://github.com/3C-gg/reload-frontend/issues/8).
+- Removido a função `handleLogout` e suas importações do `Header` por não estar sendo usada.
 - Botão de discord ao lado do login da Home (https://github.com/3C-gg/reload-frontend/issues/120).
 
 ## [93a88f5 - 19-03-2023]
