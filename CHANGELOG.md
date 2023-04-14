@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Passamos a mostrar a quantidade de notificações no ícone apenas quando houver notificações (https://github.com/3C-gg/reload-frontend/issues/8).
+- Passamos a mostrar a quantidade de notificações no ícone apenas quando o número de notificações for maior que 0 (https://github.com/3C-gg/reload-frontend/issues/8).
 - Criado teste para o componente `Notifications` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Criado teste para o componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Criado componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
@@ -27,12 +27,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- A logo no header agora é um link para `\`.
 - Move `Header` do `MainLayout` para o seu próprio componente.
 - Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
 - Métodos de autenticação agora reconhecem o campo `match` e redirecionam o usuário corretamente.
 
 ### Removed
 
+- Removido importação do `React` nos arquivos de teste dos componentes `Header` e `Notifications` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Botão de discord ao lado do login da Home (https://github.com/3C-gg/reload-frontend/issues/120).
 
 ## [93a88f5 - 19-03-2023]
