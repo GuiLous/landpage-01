@@ -84,5 +84,5 @@ export {
   BellIcon,
   Header,
   Notifications,
-  ArrowDownIcon
+  ArrowDownIcon,
 }
