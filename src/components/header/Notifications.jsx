@@ -16,12 +16,14 @@ export default function Notifications({ totalNotifications }) {
           position="absolute"
           top="-8px"
           right="-12px"
+          fontSize={10}
           px={2}
+          py="1px"
         >
           {totalNotifications}
         </Badge>
       )}
-      <Icon as={BellIcon} fill="#999999" />
+      <Icon as={BellIcon} fill="#999999" w={6} h={6} />
     </Box>
   )
 }
