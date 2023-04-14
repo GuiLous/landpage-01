@@ -48,7 +48,7 @@ export default function Header() {
 
         <Container fitContent align="center">
           <Flex flexDir="column" mr={6}>
-            <Text className={style.hello}>Ola!</Text>
+            <Text className={style.hello}>Olá!</Text>
             <Text>{user.account.username}</Text>
           </Flex>
 
