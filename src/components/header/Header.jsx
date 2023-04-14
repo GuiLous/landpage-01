@@ -40,7 +40,9 @@ export default function Header() {
   return (
     <Container className={style.header} align="center" justify="between">
       <Container className={style.logo} align="center" justify="center">
-        <img src={logo} alt="Reload logo" />
+        <Link as={RouterLink} to="/">
+          <img src={logo} alt="Reload logo" />
+        </Link>
       </Container>
 
       <Container justify="end" align="center">
