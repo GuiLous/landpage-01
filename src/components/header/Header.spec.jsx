@@ -12,16 +12,16 @@ describe('Header Component', () => {
     account: {
       username: 'fakeUser',
       avatar: {
-        small: 'fakeImg'
-      }
-    }
+        small: 'fakeImg',
+      },
+    },
   }
 
   it('should renders correctly', () => {
     const store = configureStore({
       reducer: UserReducer,
       preloadedState: { user },
-    });
+    })
 
     render(
       <BrowserRouter>
@@ -39,7 +39,7 @@ describe('Header Component', () => {
     const store = configureStore({
       reducer: UserReducer,
       preloadedState: { user },
-    });
+    })
 
     render(
       <BrowserRouter>
@@ -48,7 +48,6 @@ describe('Header Component', () => {
         </Provider>
       </BrowserRouter>
     )
-
 
     expect(screen.getByText('fakeUser')).toBeInTheDocument()
   })

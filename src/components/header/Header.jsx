@@ -61,7 +61,7 @@ export default function Header() {
         <Divider orientation="vertical" h={12} borderColor="#40444B" mr={6} />
 
         <Container fitContent align="center">
-          <Flex flexDir="column" mr={6} >
+          <Flex flexDir="column" mr={6}>
             <Text className={style.hello}>Ola!</Text>
             <Text>{user.account.username}</Text>
           </Flex>
