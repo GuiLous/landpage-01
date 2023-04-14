@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Passamos a mostrar a quantidade de notificações no ícone apenas quando houver notificações (https://github.com/3C-gg/reload-frontend/issues/8).
+- Criado teste para o componente `Notifications` (https://github.com/3C-gg/reload-frontend/issues/8).
+- Criado teste para o componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Criado componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
 - Agora mostramos o status "No seu grupo" para jogadores que estiverem juntos no lobby, além de agrupá-los e exibí-los no topo da lista de amigos online (https://github.com/3C-gg/reload-frontend/issues/88).
@@ -18,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- O botão de jogar do componente `Header` estava faltando o className `statusLobbyLinkBtn` causando bug no css (https://github.com/3C-gg/reload-frontend/issues/8).
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
 
