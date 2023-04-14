@@ -14,7 +14,12 @@ import { Link as RouterLink } from 'react-router-dom'
 
 import logo from '@assets/images/logo_type_white.svg'
 
-import { ArrowDownIcon, Container, Notifications } from '@components'
+import {
+  ArrowDownIcon,
+  Container,
+  LinkButton,
+  Notifications
+} from '@components'
 
 import style from './Header.module.css'
 
@@ -30,21 +35,17 @@ export default function Header() {
       </Container>
 
       <Container justify="end" align="center">
-        <Link
-          className={style.statusLobbyLinkBtn}
-          color="gray.200"
-          _hover={{
-            color: 'gray.200',
-          }}
-          as={RouterLink}
-          to="/jogar"
-        >
-          Jogar
-        </Link>
+
+        <LinkButton />
 
         <Notifications totalNotifications={10} />
 
-        <Divider orientation="vertical" h={12} borderColor="#40444B" mr={6} />
+        <Divider
+          orientation="vertical"
+          h={12}
+          borderColor="#40444B"
+          mr={6}
+        />
 
         <Container fitContent align="center">
           <Flex flexDir="column" mr={6}>
