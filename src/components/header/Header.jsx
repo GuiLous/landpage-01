@@ -1,13 +1,13 @@
 import {
-  Link,
-  Divider,
-  Flex,
-  Text,
-  Menu,
-  MenuButton,
-  Button,
   Avatar,
   Badge,
+  Button,
+  Divider,
+  Flex,
+  Link,
+  Menu,
+  MenuButton,
+  Text,
 } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
@@ -15,11 +15,11 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import logo from '@assets/images/logo_type_white.svg'
 import { Container } from '@components'
 import ArrowDownIcon from '@components/icons/ArrowDownIcon'
-import { updateUser } from '@slices/UserSlice'
 import { HttpService, StorageService } from '@services'
+import { updateUser } from '@slices/UserSlice'
 
-import Notifications from './Notifications'
 import style from './Header.module.css'
+import Notifications from './Notifications'
 
 export default function Header() {
   const user = useSelector((state) => state.user)
@@ -45,6 +45,7 @@ export default function Header() {
 
       <Container justify="end" align="center">
         <Link
+          className={style.statusLobbyLinkBtn}
           color="gray.200"
           _hover={{
             color: 'gray.200',
@@ -60,7 +61,7 @@ export default function Header() {
         <Divider orientation="vertical" h={12} borderColor="#40444B" mr={6} />
 
         <Container fitContent align="center">
-          <Flex flexDir="column" mr={6}>
+          <Flex flexDir="column" mr={6} >
             <Text className={style.hello}>Ola!</Text>
             <Text>{user.account.username}</Text>
           </Flex>
