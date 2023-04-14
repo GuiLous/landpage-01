@@ -31,7 +31,7 @@ describe('Header Component', () => {
     )
 
     expect(screen.getByText('Jogar')).toBeInTheDocument()
-    expect(screen.getByText('Ola!')).toBeInTheDocument()
+    expect(screen.getByText('Olá!')).toBeInTheDocument()
   })
 
   it('should renders with user', () => {
