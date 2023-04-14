@@ -18,7 +18,7 @@ import {
   ArrowDownIcon,
   Container,
   LinkButton,
-  Notifications
+  Notifications,
 } from '@components'
 
 import style from './Header.module.css'
@@ -35,17 +35,11 @@ export default function Header() {
       </Container>
 
       <Container justify="end" align="center">
-
         <LinkButton />
 
         <Notifications totalNotifications={10} />
 
-        <Divider
-          orientation="vertical"
-          h={12}
-          borderColor="#40444B"
-          mr={6}
-        />
+        <Divider orientation="vertical" h={12} borderColor="#40444B" mr={6} />
 
         <Container fitContent align="center">
           <Flex flexDir="column" mr={6}>
