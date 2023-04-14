@@ -1,7 +1,7 @@
-import { Badge, Box } from '@chakra-ui/react'
+import { Badge, Box, Icon } from '@chakra-ui/react'
 import React from 'react'
 
-import bell from '@assets/images/bell.svg'
+import { BellIcon } from '@components'
 
 import style from './Notifications.module.css'
 
@@ -21,7 +21,8 @@ export default function Notifications({ totalNotifications }) {
           {totalNotifications}
         </Badge>
       )}
-      <img src={bell} alt="bell icon" />
+      <Icon as={BellIcon} />
+      {/* <img src={bell} alt="bell icon" /> */}
     </Box>
   )
 }

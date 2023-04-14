@@ -13,13 +13,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import logo from '@assets/images/logo_type_white.svg'
-import { Container } from '@components'
-import ArrowDownIcon from '@components/icons/ArrowDownIcon'
+
+import { ArrowDownIcon, Container, Notifications } from '@components'
+
 import { HttpService, StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './Header.module.css'
-import Notifications from './Notifications'
 
 export default function Header() {
   const user = useSelector((state) => state.user)

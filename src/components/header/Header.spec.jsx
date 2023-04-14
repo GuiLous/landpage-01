@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
-import Header from '@components/header/Header'
-import UserReducer from '@slices/UserSlice'
+import { Header } from '@components'
 import { configureStore } from '@reduxjs/toolkit'
+import UserReducer from '@slices/UserSlice'
 
 describe('Header Component', () => {
   const user = {
