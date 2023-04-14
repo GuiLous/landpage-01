@@ -9,12 +9,12 @@
 .statusLobbyLinkBtn {
 	background-color: var(--chakra-colors-primary-400);
 
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 700;
 	line-height: 30px;
 	text-transform: uppercase;
 
-	padding: 20px 35px;
+	padding: 18px 35px;
 }
 
 .statusLobbyLinkBtn:hover {
