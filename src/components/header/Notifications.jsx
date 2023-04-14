@@ -8,18 +8,20 @@ import style from './Notifications.module.css'
 export default function Notifications({ totalNotifications }) {
   return (
     <Box className={style.notificationBox}>
-      <Badge
-        borderRadius="full"
-        color="gray.200"
-        bgColor="primary.400"
-        position="absolute"
-        top="-8px"
-        right="-12px"
-        px={2}
-      >
-        {totalNotifications}
-      </Badge>
-      <img src={bell} alt="Reload logo" />
+      {totalNotifications > 0 && (
+        <Badge
+          borderRadius="full"
+          color="gray.200"
+          bgColor="primary.400"
+          position="absolute"
+          top="-8px"
+          right="-12px"
+          px={2}
+        >
+          {totalNotifications}
+        </Badge>
+      )}
+      <img src={bell} alt="bell icon" />
     </Box>
   )
 }
