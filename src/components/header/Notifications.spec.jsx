@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import Notifications from './Notifications'
+import { Notifications } from '@components'
 
 describe('Notifications Component', () => {
   it('should renders correctly', () => {
