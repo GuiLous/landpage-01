@@ -56,7 +56,7 @@ export default function Header() {
             <MenuButton
               as={Button}
               className={style.menuAvatarButton}
-              rightIcon={<ArrowDownIcon w="12px" h="7px" />}
+              rightIcon={<ArrowDownIcon w="12px" h="7px" fill="#F5F6F8" />}
               display="flex"
               alignItems="center"
               variant="unstyled"

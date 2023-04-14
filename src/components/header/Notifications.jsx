@@ -21,8 +21,7 @@ export default function Notifications({ totalNotifications }) {
           {totalNotifications}
         </Badge>
       )}
-      <Icon as={BellIcon} />
-      {/* <img src={bell} alt="bell icon" /> */}
+      <Icon as={BellIcon} fill="#999999" />
     </Box>
   )
 }
