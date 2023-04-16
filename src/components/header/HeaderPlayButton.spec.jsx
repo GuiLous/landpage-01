@@ -74,7 +74,7 @@ describe('HeaderPlayButton Component', () => {
     expect(screen.getByText('Em partida')).toBeInTheDocument()
   })
 
-  it('should renders with Count', () => {
+  it('should renders with Timer component', () => {
     const user = {
       account: {
         lobby: {
@@ -106,5 +106,6 @@ describe('HeaderPlayButton Component', () => {
     )
 
     expect(screen.getByText('Na fila')).toBeInTheDocument()
+    expect(screen.getByText('0:00')).toBeInTheDocument()
   })
 })
