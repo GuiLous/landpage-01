@@ -45,6 +45,7 @@ import UserStatus from './user/UserStatus'
 
 // Header
 import Header from './header/Header'
+import HeaderPlayButton from './header/HeaderPlayButton'
 import Notifications from './header/Notifications'
 
 export {
@@ -85,4 +86,5 @@ export {
   Header,
   Notifications,
   ArrowDownIcon,
+  HeaderPlayButton,
 }

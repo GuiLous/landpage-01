@@ -1,9 +1,10 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import { Header } from '@components'
-import { configureStore } from '@reduxjs/toolkit'
+import MatchReducer from '@slices/MatchSlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('Header Component', () => {
@@ -13,13 +14,24 @@ describe('Header Component', () => {
       avatar: {
         small: 'fakeImg',
       },
+      lobby: {
+        queue: null,
+      },
     },
+  }
+
+  const match = {
+    preMatch: null,
+    match: null,
   }
 
   it('should renders correctly', () => {
     const store = configureStore({
-      reducer: UserReducer,
-      preloadedState: { user },
+      reducer: {
+        user: UserReducer,
+        match: MatchReducer,
+      },
+      preloadedState: { user, match },
     })
 
     render(
@@ -36,8 +48,11 @@ describe('Header Component', () => {
 
   it('should renders with user', () => {
     const store = configureStore({
-      reducer: UserReducer,
-      preloadedState: { user },
+      reducer: {
+        user: UserReducer,
+        match: MatchReducer,
+      },
+      preloadedState: { user, match },
     })
 
     render(
