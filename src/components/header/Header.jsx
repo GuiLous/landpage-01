@@ -17,7 +17,7 @@ import logo from '@assets/images/logo_type_white.svg'
 import {
   ArrowDownIcon,
   Container,
-  LinkButton,
+  HeaderPlayButton,
   Notifications,
 } from '@components'
 
@@ -35,7 +35,7 @@ export default function Header() {
       </Container>
 
       <Container justify="end" align="center">
-        <LinkButton />
+        <HeaderPlayButton />
 
         <Notifications totalNotifications={10} />
 

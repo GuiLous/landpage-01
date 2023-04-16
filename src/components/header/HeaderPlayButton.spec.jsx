@@ -3,11 +3,11 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { LinkButton } from '@components'
+import { HeaderPlayButton } from '@components'
 import MatchReducer from '@slices/MatchSlice'
 import UserReducer from '@slices/UserSlice'
 
-describe('LinkButton Component', () => {
+describe('HeaderPlayButton Component', () => {
   it('should renders correctly', () => {
     const user = {
       account: {
@@ -33,7 +33,7 @@ describe('LinkButton Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <LinkButton />
+          <HeaderPlayButton />
         </Provider>
       </BrowserRouter>
     )
@@ -66,7 +66,7 @@ describe('LinkButton Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <LinkButton />
+          <HeaderPlayButton />
         </Provider>
       </BrowserRouter>
     )
@@ -79,6 +79,7 @@ describe('LinkButton Component', () => {
       account: {
         lobby: {
           queue: true,
+          queue_time: 0,
         },
       },
     }
@@ -99,7 +100,7 @@ describe('LinkButton Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <LinkButton />
+          <HeaderPlayButton />
         </Provider>
       </BrowserRouter>
     )
