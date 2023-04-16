@@ -87,6 +87,29 @@ export default extendTheme({
             },
           },
         },
+        unstyled: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          color: 'white',
+          border: 'none',
+          _hover: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+          },
+          _active: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            border: 'none',
+            color: 'white',
+          },
+          _loading: {
+            _hover: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
+          },
+        },
       },
       sizes: {
         lg: {
@@ -433,6 +456,7 @@ export default extendTheme({
     queued: '#E4BC00',
 
     gray: {
+      200: '#F5F6F8',
       300: '#ECECEC',
       400: '#CCCCCC',
       500: '#5D5D5D',

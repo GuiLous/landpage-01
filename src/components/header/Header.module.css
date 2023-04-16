@@ -1,0 +1,21 @@
+.header {
+	background-color: black;
+
+	color: white;
+	padding: 0px 60px;
+	flex: initial;
+}
+
+.hello {
+	font-size: 14px;
+	color: var(--chakra-colors-gray-700);
+	font-weight: 500;
+}
+
+.logo {
+	max-width: 195px;
+}
+
+.logo img {
+	width: 100%;
+}

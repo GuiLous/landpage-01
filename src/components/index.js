@@ -16,7 +16,9 @@ import Input from './input/Input'
 
 // Icons
 import AddUserIcon from './icons/AddUserIcon'
+import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import BellIcon from './icons/BellIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
 import CloseIcon from './icons/CloseIcon'
 import LockIcon from './icons/LockIcon'
@@ -40,6 +42,11 @@ import LevelBadge from './user/LevelBadge'
 import UserCard from './user/UserCard'
 import UserCardMini from './user/UserCardMini'
 import UserStatus from './user/UserStatus'
+
+// Header
+import Header from './header/Header'
+import HeaderPlayButton from './header/HeaderPlayButton'
+import Notifications from './header/Notifications'
 
 export {
   AddUserIcon,
@@ -75,4 +82,9 @@ export {
   Invite,
   Timer,
   UserStatus,
+  BellIcon,
+  Header,
+  Notifications,
+  ArrowDownIcon,
+  HeaderPlayButton,
 }
