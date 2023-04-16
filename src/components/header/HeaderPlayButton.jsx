@@ -29,7 +29,9 @@ export default function HeaderPlayButton() {
       {lobby.queue && !match && (
         <>
           <Text>Na fila</Text>
-          <Timer initialTime={lobby.queue_time} stop={preMatch} />
+          <Text fontSize={16}>
+            <Timer initialTime={lobby.queue_time} stop={preMatch} />
+          </Text>
         </>
       )}
 
