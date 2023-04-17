@@ -42,6 +42,7 @@ export default function HeaderProfileMenu() {
         alignItems="center"
         variant="unstyled"
         gap={1}
+        aria-label="menu button"
       >
         <Container fitContent align="center">
           <Flex flexDir="column" mr={6} alignItems="flex-start">
