@@ -9,14 +9,29 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { ArrowDownIcon, Container } from '@components'
+import { HttpService, StorageService } from '@services'
+import { updateUser } from '@slices/UserSlice'
 
 import style from './HeaderProfileMenu.module.css'
 
 export default function HeaderProfileMenu() {
   const user = useSelector((state) => state.user)
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  const handleLogout = async () => {
+    const token = StorageService.get('token')
+    await HttpService.patch('accounts/logout/', token)
+
+    dispatch(updateUser(null))
+    StorageService.remove('token')
+    navigate('/')
+  }
 
   return (
     <Menu>
@@ -88,6 +103,7 @@ export default function HeaderProfileMenu() {
           _hover={{
             color: 'secondary.400',
           }}
+          onClick={handleLogout}
         >
           Sair
         </MenuItem>
