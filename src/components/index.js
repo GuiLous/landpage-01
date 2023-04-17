@@ -46,6 +46,7 @@ import UserStatus from './user/UserStatus'
 // Header
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
+import HeaderProfileMenu from './header/HeaderProfileMenu'
 import Notifications from './header/Notifications'
 
 // Match
@@ -91,4 +92,5 @@ export {
   Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
+  HeaderProfileMenu,
 }

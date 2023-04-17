@@ -6,12 +6,6 @@
 	flex: initial;
 }
 
-.hello {
-	font-size: 14px;
-	color: var(--chakra-colors-gray-700);
-	font-weight: 500;
-}
-
 .logo {
 	max-width: 195px;
 }
