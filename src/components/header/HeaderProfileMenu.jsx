@@ -10,7 +10,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import { ArrowDownIcon, ArrowUpIcon, Container } from '@components'
 import { HttpService, StorageService } from '@services'
@@ -80,8 +80,8 @@ export default function HeaderProfileMenu() {
 
           <MenuList bgColor="gray.900" border="1px" borderColor="gray.600">
             <MenuItem
-              as="a"
-              href="/profile"
+              as={Link}
+              to="/"
               bgColor="gray.900"
               fontSize={14}
               color="gray.700"
@@ -93,8 +93,8 @@ export default function HeaderProfileMenu() {
               Meu perfil
             </MenuItem>
             <MenuItem
-              as="a"
-              href="/"
+              as={Link}
+              to="/"
               bgColor="gray.900"
               fontSize={14}
               color="gray.700"
