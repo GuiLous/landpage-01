@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado `ArrowUpIcon` componente.
+- Criado componente `HeaderProfileMenu` usado no `Header` (https://github.com/3C-gg/reload-frontend/issues/130).
 - Criado componente `LinkButton` usado no `Header` que muda conforme o status do lobby e match (https://github.com/3C-gg/reload-frontend/issues/127).
 - Criado componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
@@ -32,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido o z-index do componente `Sidebar`.
 - Removido a função `handleLogout` e suas importações do `Header` por não estar sendo usada.
 - Botão de discord ao lado do login da Home (https://github.com/3C-gg/reload-frontend/issues/120).
 

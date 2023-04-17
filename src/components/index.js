@@ -18,6 +18,7 @@ import Input from './input/Input'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellIcon from './icons/BellIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
 import CloseIcon from './icons/CloseIcon'
@@ -46,6 +47,7 @@ import UserStatus from './user/UserStatus'
 // Header
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
+import HeaderProfileMenu from './header/HeaderProfileMenu'
 import Notifications from './header/Notifications'
 
 // Match
@@ -91,4 +93,6 @@ export {
   Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
+  HeaderProfileMenu,
+  ArrowUpIcon,
 }
