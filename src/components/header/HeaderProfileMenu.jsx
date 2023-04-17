@@ -56,7 +56,7 @@ export default function HeaderProfileMenu() {
             <Container fitContent align="center">
               <Flex flexDir="column" mr={6} alignItems="flex-start">
                 <Text className={style.hello}>Olá!</Text>
-                <Text>{user.account.username}</Text>
+                <Text textTransform="initial">{user.account.username}</Text>
               </Flex>
 
               <Avatar
