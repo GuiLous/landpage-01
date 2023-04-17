@@ -12,7 +12,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { ArrowDownIcon, Container } from '@components'
+import { ArrowDownIcon, ArrowUpIcon, Container } from '@components'
 import { HttpService, StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
 
@@ -35,80 +35,91 @@ export default function HeaderProfileMenu() {
 
   return (
     <Menu>
-      <MenuButton
-        as={Button}
-        rightIcon={<ArrowDownIcon w="12px" h="7px" fill="gray.200" />}
-        display="flex"
-        alignItems="center"
-        variant="unstyled"
-        gap={1}
-        aria-label="menu button"
-      >
-        <Container fitContent align="center">
-          <Flex flexDir="column" mr={6} alignItems="flex-start">
-            <Text className={style.hello}>Olá!</Text>
-            <Text>{user.account.username}</Text>
-          </Flex>
-
-          <Avatar
-            variant="online"
-            width="46px"
-            height="46px"
-            src={user.account.avatar.small}
-            borderWidth={2}
+      {({ isOpen }) => (
+        <>
+          <MenuButton
+            as={Button}
+            isActive={isOpen}
+            rightIcon={
+              isOpen ? (
+                <ArrowUpIcon w="12px" h="7px" fill="gray.200" />
+              ) : (
+                <ArrowDownIcon w="12px" h="7px" fill="gray.200" />
+              )
+            }
+            display="flex"
+            alignItems="center"
+            variant="unstyled"
+            gap={1}
+            aria-label="menu button"
           >
-            <Badge
-              variant="online"
-              pos="absolute"
-              top="-1px"
-              right="-2px"
-              height="11px"
-              width="11px"
-            />
-          </Avatar>
-        </Container>
-      </MenuButton>
+            <Container fitContent align="center">
+              <Flex flexDir="column" mr={6} alignItems="flex-start">
+                <Text className={style.hello}>Olá!</Text>
+                <Text>{user.account.username}</Text>
+              </Flex>
 
-      <MenuList bgColor="gray.900" border="1px" borderColor="gray.600">
-        <MenuItem
-          as="a"
-          href="/profile"
-          bgColor="gray.900"
-          fontSize={14}
-          color="gray.700"
-          py={1}
-          _hover={{
-            color: 'secondary.400',
-          }}
-        >
-          Meu perfil
-        </MenuItem>
-        <MenuItem
-          as="a"
-          href="/"
-          bgColor="gray.900"
-          fontSize={14}
-          color="gray.700"
-          py={1}
-          _hover={{
-            color: 'secondary.400',
-          }}
-        >
-          Configurações
-        </MenuItem>
-        <MenuItem
-          bgColor="gray.900"
-          fontSize={14}
-          color="gray.700"
-          py={1}
-          _hover={{
-            color: 'secondary.400',
-          }}
-          onClick={handleLogout}
-        >
-          Sair
-        </MenuItem>
-      </MenuList>
+              <Avatar
+                variant="online"
+                width="46px"
+                height="46px"
+                src={user.account.avatar.small}
+                borderWidth={2}
+              >
+                <Badge
+                  variant="online"
+                  pos="absolute"
+                  top="-1px"
+                  right="-2px"
+                  height="11px"
+                  width="11px"
+                />
+              </Avatar>
+            </Container>
+          </MenuButton>
+
+          <MenuList bgColor="gray.900" border="1px" borderColor="gray.600">
+            <MenuItem
+              as="a"
+              href="/profile"
+              bgColor="gray.900"
+              fontSize={14}
+              color="gray.700"
+              py={1}
+              _hover={{
+                color: 'secondary.400',
+              }}
+            >
+              Meu perfil
+            </MenuItem>
+            <MenuItem
+              as="a"
+              href="/"
+              bgColor="gray.900"
+              fontSize={14}
+              color="gray.700"
+              py={1}
+              _hover={{
+                color: 'secondary.400',
+              }}
+            >
+              Configurações
+            </MenuItem>
+            <MenuItem
+              bgColor="gray.900"
+              fontSize={14}
+              color="gray.700"
+              py={1}
+              _hover={{
+                color: 'secondary.400',
+              }}
+              onClick={handleLogout}
+            >
+              Sair
+            </MenuItem>
+          </MenuList>
+        </>
+      )}
     </Menu>
   )
 }
