@@ -48,6 +48,9 @@ import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
 import Notifications from './header/Notifications'
 
+// Match
+import MatchInfos from './match/MatchInfos'
+
 export {
   AddUserIcon,
   ArrowRightIcon,
@@ -71,6 +74,7 @@ export {
   LobbyLineup,
   LobbySeat,
   MatchFoundModal,
+  MatchInfos,
   Scrollbars,
   SearchIcon,
   Sidebar,
