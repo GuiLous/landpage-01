@@ -49,6 +49,7 @@ import HeaderPlayButton from './header/HeaderPlayButton'
 import Notifications from './header/Notifications'
 
 // Match
+import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
 
 export {
@@ -91,4 +92,5 @@ export {
   Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
+  LevelProgressBar,
 }
