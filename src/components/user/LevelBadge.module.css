@@ -33,3 +33,9 @@
 	left: 0;
 	top: -5px;
 }
+
+.xxsmall .level {
+	font-size: 8px;
+	left: 0;
+	top: -1px;
+}
