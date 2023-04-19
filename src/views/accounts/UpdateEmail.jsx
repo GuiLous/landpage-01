@@ -62,6 +62,12 @@ export default function SignupView() {
     navigate(-1)
   }
 
+  const handleKeyEnterDown = (event) => {
+    if (event.key === 'Enter') {
+      isEmailValid(value) && handleSubmit({ email: value })
+    }
+  }
+
   return (
     <SignupLayout>
       <Container
@@ -76,6 +82,7 @@ export default function SignupView() {
 
           <Input
             onChange={handleChange}
+            onKeyDown={handleKeyEnterDown}
             type="email"
             name="email"
             placeholder="exemplo@email.com"
