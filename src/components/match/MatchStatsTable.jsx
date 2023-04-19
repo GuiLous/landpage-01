@@ -82,7 +82,7 @@ export default function MatchStatsTable({ stats }) {
               player.stats.clutch_v5
 
             return (
-              <Tr>
+              <Tr key={player.id}>
                 <Td className={style.user}>
                   <HStack>
                     <Avatar
