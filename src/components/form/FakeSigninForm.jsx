@@ -21,6 +21,12 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
     if (isEmailValid(value)) onSubmit({ email: value })
   }
 
+  const handleKeyEnterDown = (event) => {
+    if (event.key === 'Enter') {
+      isEmailValid(value) && onSubmit({ email: value })
+    }
+  }
+
   const handleChange = (event) => {
     setValue(event.target.value)
   }
@@ -46,6 +52,7 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
             <InputGroup>
               <Input
                 onChange={handleChange}
+                onKeyDown={handleKeyEnterDown}
                 type="email"
                 name="email"
                 placeholder="exemplo@email.com"
