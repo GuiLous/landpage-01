@@ -146,18 +146,18 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
                         ? pointsToRender + userPoints >= 98
                           ? '10px'
                           : pointsToRender === 0
-                            ? '-54px'
-                            : '-38px'
+                          ? '-54px'
+                          : '-38px'
                         : pointsToRender + userPoints >= 98
-                          ? '10px'
-                          : '6px'
-                      : pointsToRender <= 3
-                        ? userPoints + pointsToRender >= 98
-                          ? '12px'
-                          : pointsToRender === 0
-                            ? '-46px'
-                            : '-30px'
+                        ? '10px'
                         : '6px'
+                      : pointsToRender <= 3
+                      ? userPoints + pointsToRender >= 98
+                        ? '12px'
+                        : pointsToRender === 0
+                        ? '-46px'
+                        : '-30px'
+                      : '6px'
                   }
                 >
                   <CountUp
