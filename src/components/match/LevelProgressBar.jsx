@@ -172,14 +172,9 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
         </Container>
 
         <Container style={{ padding: '0 10px' }} justify="between">
-          <Text fontSize={14}>
-            CLASSIFICAÇÃO RANQUEADA
-          </Text>
+          <Text fontSize={14}>CLASSIFICAÇÃO RANQUEADA</Text>
           <Text fontSize={12}>
-            <Text
-              as="span"
-              color="secondary.400"
-            >
+            <Text as="span" color="secondary.400">
               {userPoints}
             </Text>
 
