@@ -8,12 +8,12 @@ import { Container, LevelBadge } from '@components'
 
 import style from './LevelProgressBar.module.css'
 
-export default function LevelProgressBar({ earnedPoints }) {
+export default function LevelProgressBar({ earnedPoints = 0 }) {
   const user = useSelector((state) => state.user)
 
   const [userLevel, setUserLevel] = useState(user.account.level)
   const [nextLevelValue, setNextLevelValue] = useState(user.account.level + 1)
-  const [userPoints, setUserPoints] = useState(0)
+  const [userPoints, setUserPoints] = useState(user.account.level_points)
   const [pointsToRender, setPointsToRender] = useState(0)
   const [isNextLevel, setIsNextLevel] = useState(false)
   const [isPreviousLevel, setIsPreviousLevel] = useState(false)
@@ -58,7 +58,6 @@ export default function LevelProgressBar({ earnedPoints }) {
         }, 100)
       }, 1500)
     } else if (userPoints + earnedPoints < 0) {
-
       setPointsToRender(userPoints * -1)
 
       if (userLevel > 0) {
@@ -146,15 +145,19 @@ export default function LevelProgressBar({ earnedPoints }) {
                       ? pointsToRender <= 4
                         ? pointsToRender + userPoints >= 98
                           ? '10px'
-                          : pointsToRender === 0 ? '-54px' : '-38px'
+                          : pointsToRender === 0
+                          ? '-54px'
+                          : '-38px'
                         : pointsToRender + userPoints >= 98
-                          ? '10px'
-                          : '6px'
-                      : pointsToRender <= 3
-                        ? userPoints + pointsToRender >= 98
-                          ? '12px'
-                          : (pointsToRender === 0 ? '-46px' : '-30px')
+                        ? '10px'
                         : '6px'
+                      : pointsToRender <= 3
+                      ? userPoints + pointsToRender >= 98
+                        ? '12px'
+                        : pointsToRender === 0
+                        ? '-46px'
+                        : '-30px'
+                      : '6px'
                   }
                 >
                   <CountUp
@@ -169,14 +172,9 @@ export default function LevelProgressBar({ earnedPoints }) {
         </Container>
 
         <Container style={{ padding: '0 10px' }} justify="between">
-          <Text fontSize={14}>
-            CLASSIFICAÇÃO RANQUEADA
-          </Text>
+          <Text fontSize={14}>CLASSIFICAÇÃO RANQUEADA</Text>
           <Text fontSize={12}>
-            <Text
-              as="span"
-              color="secondary.400"
-            >
+            <Text as="span" color="secondary.400">
               {userPoints}
             </Text>
 
