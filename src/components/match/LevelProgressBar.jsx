@@ -19,6 +19,11 @@ export default function LevelProgressBar({
   const [isNextLevel, setIsNextLevel] = useState(false)
   const [isPreviousLevel, setIsPreviousLevel] = useState(false)
 
+  const maxPoints = 100
+  const minPoints = 0
+  const levelToImageGrow = 30
+  const levelTextCloserToRightEdge = 98
+
   useEffect(() => {
     // add 1 to user level
     if (isNextLevel) {
@@ -40,8 +45,8 @@ export default function LevelProgressBar({
   }, [isPreviousLevel])
 
   useEffect(() => {
-    if (userPoints + earned_points >= 100) {
-      const pointsDiffTo100 = 100 - userPoints
+    if (userPoints + earned_points >= maxPoints) {
+      const pointsDiffTo100 = maxPoints - userPoints
 
       setPointsToRender(pointsDiffTo100)
 
@@ -49,25 +54,25 @@ export default function LevelProgressBar({
       setIsNextLevel(true)
 
       setTimeout(() => {
-        setUserPoints(0)
-        setPointsToRender(0)
+        setUserPoints(minPoints)
+        setPointsToRender(minPoints)
 
-        if (userPoints + earned_points === 100) return
+        if (userPoints + earned_points === maxPoints) return
 
         setTimeout(() => {
-          setPointsToRender((earned_points - pointsDiffTo100) % 100)
+          setPointsToRender((earned_points - pointsDiffTo100) % maxPoints)
         }, 100)
       }, 1500)
-    } else if (userPoints + earned_points < 0) {
+    } else if (userPoints + earned_points < minPoints) {
       setPointsToRender(userPoints * -1)
 
-      if (userLevel > 0) {
+      if (userLevel > minPoints) {
         setIsPreviousLevel(true)
         setIsNextLevel(false)
 
         setTimeout(() => {
-          setUserPoints(100)
-          setPointsToRender(0)
+          setUserPoints(maxPoints)
+          setPointsToRender(minPoints)
 
           if (userPoints + earned_points === -1) return
 
@@ -135,29 +140,33 @@ export default function LevelProgressBar({
               }}
             >
               <Container className={`${style.progressBar} ${style.progressUp}`}>
-                {/* verifications to calcule the necessary gap on the sides of the text
-                    (right or left) so the level images don`t overflow the quantity points text
+                {/*
+                    verifications to calcule the necessary gap on the sides of the text
+                    (right or left) so the level icons don`t overflow the quantity points text.
                 */}
                 <Text
                   className={style.points}
                   right={
-                    userLevel >= 30 // the icon level when the level is greater than 30 is bigger
-                      ? pointsToRender <= 4
-                        ? pointsToRender + userPoints >= 98
+                    userLevel >= levelToImageGrow
+                      ? pointsToRender <= 4 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0
+                        ? pointsToRender + userPoints >=
+                          levelTextCloserToRightEdge
                           ? '10px'
                           : pointsToRender === 0
-                          ? '-54px'
-                          : '-38px'
-                        : pointsToRender + userPoints >= 98
-                        ? '10px'
+                            ? '-54px'
+                            : '-38px'
+                        : pointsToRender + userPoints >=
+                          levelTextCloserToRightEdge
+                          ? '10px'
+                          : '6px'
+                      : pointsToRender <= 3 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0    and userLevel is lower than 30
+                        ? userPoints + pointsToRender >=
+                          levelTextCloserToRightEdge
+                          ? '12px'
+                          : pointsToRender === 0
+                            ? '-46px'
+                            : '-30px'
                         : '6px'
-                      : pointsToRender <= 3
-                      ? userPoints + pointsToRender >= 98
-                        ? '12px'
-                        : pointsToRender === 0
-                        ? '-46px'
-                        : '-30px'
-                      : '6px'
                   }
                 >
                   <CountUp
