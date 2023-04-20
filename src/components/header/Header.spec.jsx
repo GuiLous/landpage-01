@@ -65,4 +65,70 @@ describe('Header Component', () => {
 
     expect(screen.getByText('fakeUser')).toBeInTheDocument()
   })
+
+  it('should renders restricted button', () => {
+    const user = {
+      account: {
+        username: 'fakeUser',
+        avatar: {
+          small: 'fakeImg',
+        },
+        lobby: {
+          queue: null,
+          restriction_countdown: 120,
+        },
+      },
+    }
+
+    const store = configureStore({
+      reducer: {
+        user: UserReducer,
+        match: MatchReducer,
+      },
+      preloadedState: { user, match },
+    })
+
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Header />
+        </Provider>
+      </BrowserRouter>
+    )
+
+    expect(screen.getByText('FILA RESTRINGIDA')).toBeInTheDocument()
+  })
+
+  it('should renders timer reverse', () => {
+    const user = {
+      account: {
+        username: 'fakeUser',
+        avatar: {
+          small: 'fakeImg',
+        },
+        lobby: {
+          queue: null,
+          restriction_countdown: 120,
+        },
+      },
+    }
+
+    const store = configureStore({
+      reducer: {
+        user: UserReducer,
+        match: MatchReducer,
+      },
+      preloadedState: { user, match },
+    })
+
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Header />
+        </Provider>
+      </BrowserRouter>
+    )
+
+    expect(screen.getByText('2:00')).toBeInTheDocument()
+  })
 })
