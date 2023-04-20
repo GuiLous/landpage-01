@@ -17,12 +17,12 @@ import { LevelBadge } from '@components'
 
 import style from './MatchStatsTable.module.css'
 
-export default function MatchStatsTable({ stats }) {
+export default function MatchStatsTable({ team }) {
   const user = useSelector((state) => state.user)
 
-  const isMyTeam = stats.players.find((player) => player.user_id === user.id)
+  const isMyTeam = team.players.find((player) => player.user_id === user.id)
 
-  const players = stats.players
+  const players = team.players
 
   return (
     <TableContainer className={style.tableContainer}>
@@ -55,9 +55,9 @@ export default function MatchStatsTable({ stats }) {
             //calculate head shots percent
             const hsPercent = Number(
               (player.stats.head_shots * 100) /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
+              (player.stats.chest_shots +
+                player.stats.other_shots +
+                player.stats.head_shots)
             ).toFixed(2)
 
             //calculate Kill-Death Ratio number
@@ -68,9 +68,9 @@ export default function MatchStatsTable({ stats }) {
             //calculate Damage per Hit Ratio number
             const dh = Number(
               player.stats.damage /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
+              (player.stats.chest_shots +
+                player.stats.other_shots +
+                player.stats.head_shots)
             ).toFixed(2)
 
             //calculate total clutchs
