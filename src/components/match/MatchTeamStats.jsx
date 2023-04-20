@@ -15,9 +15,9 @@ import { useSelector } from 'react-redux'
 
 import { LevelBadge } from '@components'
 
-import style from './MatchStatsTable.module.css'
+import style from './MatchTeamStats.module.css'
 
-export default function MatchStatsTable({ team }) {
+export default function MatchTeamStats({ team }) {
   const user = useSelector((state) => state.user)
 
   const isMyTeam = team.players.find((player) => player.user_id === user.id)
@@ -55,9 +55,9 @@ export default function MatchStatsTable({ team }) {
             //calculate head shots percent
             const hsPercent = Number(
               (player.stats.head_shots * 100) /
-              (player.stats.chest_shots +
-                player.stats.other_shots +
-                player.stats.head_shots)
+                (player.stats.chest_shots +
+                  player.stats.other_shots +
+                  player.stats.head_shots)
             ).toFixed(2)
 
             //calculate Kill-Death Ratio number
@@ -68,9 +68,9 @@ export default function MatchStatsTable({ team }) {
             //calculate Damage per Hit Ratio number
             const dh = Number(
               player.stats.damage /
-              (player.stats.chest_shots +
-                player.stats.other_shots +
-                player.stats.head_shots)
+                (player.stats.chest_shots +
+                  player.stats.other_shots +
+                  player.stats.head_shots)
             ).toFixed(2)
 
             //calculate total clutchs

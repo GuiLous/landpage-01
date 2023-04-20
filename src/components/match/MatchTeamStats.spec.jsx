@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import { MatchStatsTable } from '@components'
+import { MatchTeamStats } from '@components'
 import UserReducer from '@slices/UserSlice'
 
 describe('MatchStatsTable Component', () => {
@@ -66,7 +66,7 @@ describe('MatchStatsTable Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <MatchStatsTable stats={data} />
+          <MatchTeamStats team={data} />
         </Provider>
       </BrowserRouter>
     )
@@ -135,7 +135,7 @@ describe('MatchStatsTable Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <MatchStatsTable stats={data} />
+          <MatchTeamStats team={data} />
         </Provider>
       </BrowserRouter>
     )
@@ -202,7 +202,7 @@ describe('MatchStatsTable Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <MatchStatsTable stats={data} />
+          <MatchTeamStats team={data} />
         </Provider>
       </BrowserRouter>
     )
@@ -269,7 +269,7 @@ describe('MatchStatsTable Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <MatchStatsTable stats={data} />
+          <MatchTeamStats team={data} />
         </Provider>
       </BrowserRouter>
     )
