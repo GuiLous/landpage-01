@@ -19,7 +19,7 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
   const [isPreviousLevel, setIsPreviousLevel] = useState(false)
 
   useEffect(() => {
-    //acrescenta ao level do usuario +1
+    // add 1 to user level
     if (isNextLevel) {
       setTimeout(() => {
         setNextLevelValue(nextLevelValue + 1)
@@ -29,7 +29,7 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
   }, [isNextLevel])
 
   useEffect(() => {
-    //decrementa do level do usuario -1
+    // decrease 1 to user level
     if (isPreviousLevel) {
       setTimeout(() => {
         setNextLevelValue(nextLevelValue - 1)
@@ -134,14 +134,13 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
               }}
             >
               <Container className={`${style.progressBar} ${style.progressUp}`}>
-                {/* verificações para calcular o espaço necessário nas laterais do texto
-                    right ou left para que as imagens de level não cubram o texto de
-                    quantidade de pontos
+                {/* verifications to calcule the necessary gap on the sides of the text
+                    (right or left) so the level images don`t overflow the quantity points text
                 */}
                 <Text
                   className={style.points}
                   right={
-                    userLevel >= 30 // a imagem quando o level é maior ou igual a 30 ocupa mais espaço
+                    userLevel >= 30 // the icon level when the level is greater than 30 is bigger
                       ? pointsToRender <= 4
                         ? pointsToRender + userPoints >= 98
                           ? '10px'
