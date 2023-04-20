@@ -54,9 +54,9 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             // calculate head shots percent
             const hsPercent = Number(
               (player.stats.head_shots * 100) /
-              (player.stats.chest_shots +
-                player.stats.other_shots +
-                player.stats.head_shots)
+                (player.stats.chest_shots +
+                  player.stats.other_shots +
+                  player.stats.head_shots)
             ).toFixed(2)
 
             // calculate Kill-Death Ratio number
@@ -67,9 +67,9 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             // calculate Damage per Hit Ratio number
             const dh = Number(
               player.stats.damage /
-              (player.stats.chest_shots +
-                player.stats.other_shots +
-                player.stats.head_shots)
+                (player.stats.chest_shots +
+                  player.stats.other_shots +
+                  player.stats.head_shots)
             ).toFixed(2)
 
             // calculate total clutches
