@@ -46,7 +46,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             <Th>3k</Th>
             <Th>4k</Th>
             <Th>5k</Th>
-            <Th>AFK</Th>
             <Th textTransform="initial">1vsX</Th>
           </Tr>
         </Thead>
@@ -114,7 +113,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                 <Td>{player.stats.triple_kills}</Td>
                 <Td>{player.stats.quadra_kills}</Td>
                 <Td>{player.stats.aces}</Td>
-                <Td>{player.stats.afk}</Td>
                 <Td>{oneVsX}</Td>
               </Tr>
             )
