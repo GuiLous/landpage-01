@@ -19,7 +19,7 @@
 	border: none;
 }
 
-.tableContainer .myTeam {
+.tableContainer .winning {
 	color: var(--chakra-colors-secondary-400);
 	font-size: 16px;
 	font-weight: 600;
@@ -27,7 +27,7 @@
 	text-transform: initial;
 }
 
-.tableContainer .enemyTeam {
+.tableContainer .loosing {
 	color: var(--chakra-colors-danger-400);
 	font-size: 16px;
 	font-weight: 600;

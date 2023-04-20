@@ -17,10 +17,10 @@ import { LevelBadge } from '@components'
 
 import style from './MatchTeamStats.module.css'
 
-export default function MatchTeamStats({ team }) {
+export default function MatchTeamStats({ team, isWinning = false }) {
   const user = useSelector((state) => state.user)
 
-  const isMyTeam = team.players.find((player) => player.user_id === user.id)
+  // const isMyTeam = team.players.find((player) => player.user_id === user.id)
 
   const players = team.players
 
@@ -29,8 +29,8 @@ export default function MatchTeamStats({ team }) {
       <Table variant="striped" bgColor="gray.600" colorScheme="stripe">
         <Thead>
           <Tr>
-            <Th className={isMyTeam ? style.myTeam : style.enemyTeam}>
-              {isMyTeam ? 'Meu Time' : 'Time Inimigo'}
+            <Th className={isWinning ? style.winning : style.loosing}>
+              {team.name}
             </Th>
             <Th>K</Th>
             <Th>D</Th>
