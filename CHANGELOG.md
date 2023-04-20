@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado lib `react-countup` para animar um número de 0 a x.
+- Criado componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/137).
 - Criado `ArrowUpIcon` componente.
 - Criado componente `HeaderProfileMenu` usado no `Header` (https://github.com/3C-gg/reload-frontend/issues/130).
 - Criado componente `LinkButton` usado no `Header` que muda conforme o status do lobby e match (https://github.com/3C-gg/reload-frontend/issues/127).
@@ -27,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Mudado a importação do Header no componente `MainLayout`.
 - Formulários agora são enviados ao pressionar a tecla `enter` (https://github.com/3C-gg/reload-frontend/issues/103).
 - A logo no header agora é um link para `/`.
 - Move `Header` do `MainLayout` para o seu próprio componente.

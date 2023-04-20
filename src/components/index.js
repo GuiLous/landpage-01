@@ -51,6 +51,7 @@ import HeaderProfileMenu from './header/HeaderProfileMenu'
 import Notifications from './header/Notifications'
 
 // Match
+import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
 
 export {
@@ -95,4 +96,5 @@ export {
   HeaderPlayButton,
   HeaderProfileMenu,
   ArrowUpIcon,
+  LevelProgressBar,
 }
