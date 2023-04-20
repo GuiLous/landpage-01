@@ -2,18 +2,19 @@
 import { Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import CountUp from 'react-countup'
-import { useSelector } from 'react-redux'
 
 import { Container, LevelBadge } from '@components'
 
 import style from './LevelProgressBar.module.css'
 
-export default function LevelProgressBar({ earnedPoints = 0 }) {
-  const user = useSelector((state) => state.user)
-
-  const [userLevel, setUserLevel] = useState(user.account.level)
-  const [nextLevelValue, setNextLevelValue] = useState(user.account.level + 1)
-  const [userPoints, setUserPoints] = useState(user.account.level_points)
+export default function LevelProgressBar({
+  earned_points,
+  level_points,
+  level,
+}) {
+  const [userLevel, setUserLevel] = useState(level)
+  const [nextLevelValue, setNextLevelValue] = useState(level + 1)
+  const [userPoints, setUserPoints] = useState(level_points)
   const [pointsToRender, setPointsToRender] = useState(0)
   const [isNextLevel, setIsNextLevel] = useState(false)
   const [isPreviousLevel, setIsPreviousLevel] = useState(false)
@@ -39,7 +40,7 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
   }, [isPreviousLevel])
 
   useEffect(() => {
-    if (userPoints + earnedPoints >= 100) {
+    if (userPoints + earned_points >= 100) {
       const pointsDiffTo100 = 100 - userPoints
 
       setPointsToRender(pointsDiffTo100)
@@ -51,13 +52,13 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
         setUserPoints(0)
         setPointsToRender(0)
 
-        if (userPoints + earnedPoints === 100) return
+        if (userPoints + earned_points === 100) return
 
         setTimeout(() => {
-          setPointsToRender((earnedPoints - pointsDiffTo100) % 100)
+          setPointsToRender((earned_points - pointsDiffTo100) % 100)
         }, 100)
       }, 1500)
-    } else if (userPoints + earnedPoints < 0) {
+    } else if (userPoints + earned_points < 0) {
       setPointsToRender(userPoints * -1)
 
       if (userLevel > 0) {
@@ -68,15 +69,15 @@ export default function LevelProgressBar({ earnedPoints = 0 }) {
           setUserPoints(100)
           setPointsToRender(0)
 
-          if (userPoints + earnedPoints === -1) return
+          if (userPoints + earned_points === -1) return
 
           setTimeout(() => {
-            setPointsToRender(earnedPoints + userPoints)
+            setPointsToRender(earned_points + userPoints)
           }, 100)
         }, 1500)
       }
     } else {
-      setPointsToRender(earnedPoints)
+      setPointsToRender(earned_points)
     }
   }, [])
 
