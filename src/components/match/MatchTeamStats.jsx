@@ -37,8 +37,8 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             <Th>A</Th>
             <Th>HS</Th>
             <Th>HS%</Th>
-            <Th>P</Th>
-            <Th>DEF</Th>
+            <Th>BP</Th>
+            <Th>BD</Th>
             <Th>FK</Th>
             <Th>KDR</Th>
             <Th>D/H</Th>
