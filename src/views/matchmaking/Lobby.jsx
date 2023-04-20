@@ -1,4 +1,4 @@
-import { Button, Text } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -8,6 +8,7 @@ import {
   LobbyLineup,
   LobbyModeSelector,
   MatchFoundModal,
+  RestrictedButton,
   Timer,
 } from '@components'
 import { MainLayout } from '@layouts'
@@ -168,14 +169,9 @@ export default function LobbyView() {
             </Button>
           )}
           {lobby.restriction_countdown && (
-            <Button size="xl" variant="danger">
-              <Container align="center" column>
-                <Timer initialTime={lobby.restriction_countdown} reverse />
-                <Text fontSize={12} textTransform="initial">
-                  FILA RESTRINGIDA
-                </Text>
-              </Container>
-            </Button>
+            <RestrictedButton
+              restriction_countdown={lobby.restriction_countdown}
+            />
           )}
         </Container>
       </Container>
