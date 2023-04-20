@@ -55,6 +55,9 @@ import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
+// Button
+import RestrictedButton from './button/RestrictedButton'
+
 export {
   AddUserIcon,
   ArrowRightIcon,
@@ -99,4 +102,5 @@ export {
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
+  RestrictedButton,
 }

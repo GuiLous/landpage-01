@@ -1,4 +1,4 @@
-import { Button, Divider, Link, Text } from '@chakra-ui/react'
+import { Divider, Link } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import logo from '@assets/images/logo_type_white.svg'
@@ -8,7 +8,7 @@ import {
   HeaderPlayButton,
   HeaderProfileMenu,
   Notifications,
-  Timer,
+  RestrictedButton,
 } from '@components'
 
 import { useSelector } from 'react-redux'
@@ -28,21 +28,9 @@ export default function Header() {
 
       <Container justify="end" align="center">
         {lobby.restriction_countdown ? (
-          <Button
-            size="xl"
-            variant="danger"
-            maxW={141}
-            minW="initial"
-            h={66}
-            borderRadius={0}
-          >
-            <Container align="center" column>
-              <Timer initialTime={lobby.restriction_countdown} reverse />
-              <Text fontSize={12} textTransform="initial">
-                FILA RESTRINGIDA
-              </Text>
-            </Container>
-          </Button>
+          <RestrictedButton
+            restriction_countdown={lobby.restriction_countdown}
+          />
         ) : (
           <HeaderPlayButton />
         )}
