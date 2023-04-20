@@ -1,4 +1,4 @@
-import { Button } from '@chakra-ui/react'
+import { Button, Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
@@ -164,6 +164,16 @@ export default function LobbyView() {
 
               <Container justify="end" className={style.cancelQueueBtnIcon}>
                 <CloseIcon />
+              </Container>
+            </Button>
+          )}
+          {lobby.restriction_countdown && (
+            <Button size="xl" variant="danger">
+              <Container align="center" column>
+                <Timer initialTime={lobby.restriction_countdown} reverse />
+                <Text fontSize={12} textTransform="initial">
+                  FILA RESTRINGIDA!
+                </Text>
               </Container>
             </Button>
           )}
