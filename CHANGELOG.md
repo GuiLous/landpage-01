@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Mudado a importação do Header no componente `MainLayout`.
+- Formulários agora são enviados ao pressionar a tecla `enter` (https://github.com/3C-gg/reload-frontend/issues/103).
 - A logo no header agora é um link para `/`.
 - Move `Header` do `MainLayout` para o seu próprio componente.
 - Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
