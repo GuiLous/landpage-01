@@ -81,7 +81,10 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               player.stats.clutch_v5
 
             return (
-              <Tr key={player.id}>
+              <Tr
+                key={player.id}
+                className={player.user_id === user.id ? style.highlight : ''}
+              >
                 <Td className={style.user}>
                   <HStack>
                     <Avatar

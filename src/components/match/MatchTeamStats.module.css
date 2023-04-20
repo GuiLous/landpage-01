@@ -53,3 +53,7 @@
 	height: 34px;
 	width: 34px;
 }
+
+.tableContainer table tbody .highlight {
+	border: 1px solid var(--chakra-colors-secondary-500);
+}
