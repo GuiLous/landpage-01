@@ -52,28 +52,28 @@ export default function MatchTeamStats({ team, isWinning = false }) {
         </Thead>
         <Tbody>
           {players.map((player) => {
-            //calculate head shots percent
+            // calculate head shots percent
             const hsPercent = Number(
               (player.stats.head_shots * 100) /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
+              (player.stats.chest_shots +
+                player.stats.other_shots +
+                player.stats.head_shots)
             ).toFixed(2)
 
-            //calculate Kill-Death Ratio number
+            // calculate Kill-Death Ratio number
             const kdr = Number(
               player.stats.kills / player.stats.deaths
             ).toFixed(2)
 
-            //calculate Damage per Hit Ratio number
+            // calculate Damage per Hit Ratio number
             const dh = Number(
               player.stats.damage /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
+              (player.stats.chest_shots +
+                player.stats.other_shots +
+                player.stats.head_shots)
             ).toFixed(2)
 
-            //calculate total clutchs
+            // calculate total clutches
             const oneVsX =
               player.stats.clutch_v1 +
               player.stats.clutch_v2 +
