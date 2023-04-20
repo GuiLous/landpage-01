@@ -172,7 +172,7 @@ export default function LobbyView() {
               <Container align="center" column>
                 <Timer initialTime={lobby.restriction_countdown} reverse />
                 <Text fontSize={12} textTransform="initial">
-                  FILA RESTRINGIDA!
+                  FILA RESTRINGIDA
                 </Text>
               </Container>
             </Button>
