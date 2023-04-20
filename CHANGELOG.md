@@ -32,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
+- Criado botão de restrição de partida no componente `Header` quando o usuário está com uma penalidade (https://github.com/3C-gg/reload-frontend/issues/125).
 - Criado botão de restrição de partida no componente `Lobby` quando o usuário está com uma penalidade (https://github.com/3C-gg/reload-frontend/issues/125).
 - Adicionado nova propriedade `formatted` no `Timer` para formatar o valor quando for uma contagem regressiva.
 - Formulários agora são enviados ao pressionar a tecla `enter` (https://github.com/3C-gg/reload-frontend/issues/103).
