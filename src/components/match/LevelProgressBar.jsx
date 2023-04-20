@@ -153,20 +153,20 @@ export default function LevelProgressBar({
                           levelTextCloserToRightEdge
                           ? '10px'
                           : pointsToRender === 0
-                            ? '-54px'
-                            : '-38px'
+                          ? '-54px'
+                          : '-38px'
                         : pointsToRender + userPoints >=
                           levelTextCloserToRightEdge
-                          ? '10px'
-                          : '6px'
-                      : pointsToRender <= 3 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0    and userLevel is lower than 30
-                        ? userPoints + pointsToRender >=
-                          levelTextCloserToRightEdge
-                          ? '12px'
-                          : pointsToRender === 0
-                            ? '-46px'
-                            : '-30px'
+                        ? '10px'
                         : '6px'
+                      : pointsToRender <= 3 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0    and userLevel is lower than 30
+                      ? userPoints + pointsToRender >=
+                        levelTextCloserToRightEdge
+                        ? '12px'
+                        : pointsToRender === 0
+                        ? '-46px'
+                        : '-30px'
+                      : '6px'
                   }
                 >
                   <CountUp
