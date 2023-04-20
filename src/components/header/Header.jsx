@@ -30,6 +30,11 @@ export default function Header() {
         {lobby.restriction_countdown ? (
           <RestrictedButton
             restriction_countdown={lobby.restriction_countdown}
+            maxW={141}
+            minW="initial"
+            minHeight="initial"
+            h={66}
+            borderRadius={0}
           />
         ) : (
           <HeaderPlayButton />
