@@ -9,6 +9,7 @@ import {
   Text,
   Th,
   Thead,
+  Tooltip,
   Tr,
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
@@ -20,8 +21,6 @@ import style from './MatchTeamStats.module.css'
 export default function MatchTeamStats({ team, isWinning = false }) {
   const user = useSelector((state) => state.user)
 
-  // const isMyTeam = team.players.find((player) => player.user_id === user.id)
-
   const players = team.players
 
   return (
@@ -32,21 +31,87 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             <Th className={isWinning ? style.winning : style.loosing}>
               {team.name}
             </Th>
-            <Th>K</Th>
-            <Th>D</Th>
-            <Th>A</Th>
-            <Th>HS</Th>
-            <Th>HS%</Th>
-            <Th>BP</Th>
-            <Th>BD</Th>
-            <Th>FK</Th>
-            <Th>KDR</Th>
-            <Th>D/H</Th>
-            <Th>2k</Th>
-            <Th>3k</Th>
-            <Th>4k</Th>
-            <Th>5k</Th>
-            <Th textTransform="initial">1vsX</Th>
+            <Tooltip label="Abates" aria-label="Abates tooltip">
+              <Th>K</Th>
+            </Tooltip>
+            <Tooltip label="Mortes" aria-label="Mortes tooltip">
+              <Th>D</Th>
+            </Tooltip>
+            <Tooltip label="Assistências" aria-label="Assistências tooltip">
+              <Th>A</Th>
+            </Tooltip>
+            <Tooltip
+              label="Tiros na cabeça"
+              aria-label="Tiros na cabeça tooltip"
+            >
+              <Th>HS</Th>
+            </Tooltip>
+            <Tooltip
+              label="Porcentagem de tiros na cabeça"
+              aria-label="Porcentagem de tiros na cabeça tooltip"
+            >
+              <Th>HS%</Th>
+            </Tooltip>
+            <Tooltip
+              label="Bombas plantadas"
+              aria-label="Bombas plantadas tooltip"
+            >
+              <Th>BP</Th>
+            </Tooltip>
+            <Tooltip
+              label="Bombas desarmadas"
+              aria-label="Bombas desarmadas tooltip"
+            >
+              <Th>BD</Th>
+            </Tooltip>
+            <Tooltip
+              label="Primeiros abates"
+              aria-label="Primeiros abates tooltip"
+            >
+              <Th>FK</Th>
+            </Tooltip>
+            <Tooltip
+              label="Abates por morte"
+              aria-label="Abates por morte tooltip"
+            >
+              <Th>KDR</Th>
+            </Tooltip>
+            <Tooltip
+              label="Dano por acerto"
+              aria-label="Dano por acerto tooltip"
+            >
+              <Th>D/H</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 2 abates"
+              aria-label="Total de 2 abates tooltip"
+            >
+              <Th>2k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 3 abates"
+              aria-label="Total de 3 abates tooltip"
+            >
+              <Th>3k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 4 abates"
+              aria-label="Total de 4 abates tooltip"
+            >
+              <Th>4k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 5 abates"
+              aria-label="Total de 5 abates tooltip"
+            >
+              <Th>5k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de clutches"
+              aria-label="Total de clutches tooltip"
+            >
+              <Th textTransform="initial">1vsX</Th>
+            </Tooltip>
           </Tr>
         </Thead>
         <Tbody>
