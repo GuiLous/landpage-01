@@ -22,8 +22,10 @@ import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellIcon from './icons/BellIcon'
+import CheckIcon from './icons/CheckIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
 import CloseIcon from './icons/CloseIcon'
+import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
@@ -113,4 +115,6 @@ export {
   HeatmapCardStats,
   Progress,
   LevelCardStats,
+  DoubleCheckIcon,
+  CheckIcon,
 }
