@@ -53,6 +53,7 @@ import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
 import HeaderProfileMenu from './header/HeaderProfileMenu'
 import Notifications from './header/Notifications'
+import NotificationsMenuList from './header/NotificationsMenuList'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -117,4 +118,5 @@ export {
   LevelCardStats,
   DoubleCheckIcon,
   CheckIcon,
+  NotificationsMenuList,
 }
