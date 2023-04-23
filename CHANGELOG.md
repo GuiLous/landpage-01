@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado lib `react-countup` para animar um número de 0 a x.
 - Criado componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/137).
 - Criado `MatchStatsTable` componente (https://github.com/3C-gg/reload-frontend/issues/138).
-- Criado componente `RestrictedButton` (https://github.com/3C-gg/reload-frontend/issues/125).
+- Cria estado `restricted` no tema do componente `Button` para representar o estado de restrição de lobby(https://github.com/3C-gg/reload-frontend/issues/125).
 - Criado `ArrowUpIcon` componente.
 - Criado componente `HeaderProfileMenu` usado no `Header` (https://github.com/3C-gg/reload-frontend/issues/130).
 - Criado componente `LinkButton` usado no `Header` que muda conforme o status do lobby e match (https://github.com/3C-gg/reload-frontend/issues/127).
