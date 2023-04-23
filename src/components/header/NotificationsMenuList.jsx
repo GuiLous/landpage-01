@@ -9,16 +9,18 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 
 import { CheckIcon, Container, DoubleCheckIcon, Scrollbars } from '@components'
 
+import { useState } from 'react'
 import style from './NotificationsMenuList.module.css'
 
 const data = [
   {
-    id: 2,
+    id: 1,
     to_user_id: 2,
     content: 'Nova atualização do FiveM disponível.',
     avatar: 'https://github.com/GuiLous.png',
@@ -27,7 +29,7 @@ const data = [
     read_date: null,
   },
   {
-    id: 3,
+    id: 2,
     to_user_id: 2,
     content: 'Uma nova solicitação de amizade para você.',
     avatar: 'https://github.com/GuiLous.png',
@@ -36,7 +38,7 @@ const data = [
     read_date: '2023-04-07T18:23:12',
   },
   {
-    id: 4,
+    id: 3,
     to_user_id: 2,
     content: 'Uma nova solicitação de amizade para você.',
     avatar: 'https://github.com/GuiLous.png',
@@ -47,6 +49,8 @@ const data = [
 ]
 
 export default function NotificationsMenuList() {
+  const [notifications, setNotifications] = useState(data)
+
   return (
     <MenuList
       bgColor="gray.900"
@@ -86,8 +90,10 @@ export default function NotificationsMenuList() {
           overflowY="auto"
           overflowX="hidden"
         >
-          {data.map((notification, index) => {
+          {notifications.map((notification, index) => {
             const isRead = notification.read_date
+
+            const created_date = DateTime.fromISO(notification.create_date)
 
             return (
               <>
@@ -100,6 +106,7 @@ export default function NotificationsMenuList() {
                     bgColor={isRead ? 'gray.900' : '#333333'}
                     className={style.notification}
                     cursor="initial"
+                    closeOnSelect={false}
                   >
                     <Flex align="center" gap={3}>
                       <Badge
@@ -113,7 +120,7 @@ export default function NotificationsMenuList() {
                           {notification.content}
                         </Text>
                         <Text as="span" fontSize={10} color="#B7B7B7">
-                          10 Jun, 2022 as 10:30
+                          {created_date.toFormat("dd MMM ', ' yyyy ' às ' HH:mm")}
                         </Text>
                       </Flex>
                       <Avatar
