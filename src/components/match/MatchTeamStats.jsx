@@ -173,17 +173,17 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                 <Td>{player.stats.deaths}</Td>
                 <Td>{player.stats.assists}</Td>
                 <Td>{player.stats.head_shots}</Td>
-                <Td>{hsPercent}%</Td>
+                <Td data-testid="hs-percentage">{hsPercent}%</Td>
                 <Td>{player.stats.plants}</Td>
                 <Td>{player.stats.defuses}</Td>
                 <Td>{player.stats.firstkills}</Td>
-                <Td>{kdr}</Td>
-                <Td>{dh}</Td>
+                <Td data-testid="kdr">{kdr}</Td>
+                <Td data-testid="dh">{dh}</Td>
                 <Td>{player.stats.double_kills}</Td>
                 <Td>{player.stats.triple_kills}</Td>
                 <Td>{player.stats.quadra_kills}</Td>
                 <Td>{player.stats.aces}</Td>
-                <Td>{oneVsX}</Td>
+                <Td data-testid="1vsX">{oneVsX}</Td>
               </Tr>
             )
           })}
