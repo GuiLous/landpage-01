@@ -25,7 +25,7 @@ export default function MatchTeamStats({ team, isWinning = false }) {
 
   return (
     <TableContainer className={style.tableContainer}>
-      <Table variant="striped" bgColor="gray.600" colorScheme="stripe">
+      <Table variant="striped" bgColor="gray.900" colorScheme="stripe">
         <Thead>
           <Tr>
             <Th className={isWinning ? style.winning : style.loosing}>
@@ -80,7 +80,7 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               label="Dano por acerto"
               aria-label="Dano por acerto tooltip"
             >
-              <Th>D/H</Th>
+              <Th>D/A</Th>
             </Tooltip>
             <Tooltip
               label="Total de 2 abates"
@@ -161,10 +161,12 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                     />
 
                     <Box className={style.level}>
-                      <LevelBadge level={player.level} xxsmall />
+                      <LevelBadge level={player.level} xsmall />
                     </Box>
 
-                    <Text fontWeight={600}>{player.username}</Text>
+                    <Text fontWeight={600} fontSize={'14px'}>
+                      {player.username}
+                    </Text>
                   </HStack>
                 </Td>
                 <Td>{player.stats.kills}</Td>
@@ -172,8 +174,8 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                 <Td>{player.stats.assists}</Td>
                 <Td>{player.stats.head_shots}</Td>
                 <Td>{hsPercent}%</Td>
-                <Td>{player.stats.plants}P</Td>
-                <Td>{player.stats.defuses}D</Td>
+                <Td>{player.stats.plants}</Td>
+                <Td>{player.stats.defuses}</Td>
                 <Td>{player.stats.firstkills}</Td>
                 <Td>{kdr}</Td>
                 <Td>{dh}</Td>

@@ -20,7 +20,7 @@
 }
 
 .tableContainer .winning {
-	color: var(--chakra-colors-secondary-400);
+	color: var(--chakra-colors-success);
 	font-size: 16px;
 	font-weight: 600;
 	text-align: left;
@@ -49,9 +49,10 @@
 
 .level {
 	display: flex;
+	padding-top: 5px;
 
-	height: 34px;
-	width: 34px;
+	height: 40px;
+	width: 40px;
 }
 
 .tableContainer table tbody .highlight {
