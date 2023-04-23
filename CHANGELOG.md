@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado lib `react-countup` para animar um número de 0 a x.
+- Criado componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/137).
+- Criado `MatchStatsTable` componente (https://github.com/3C-gg/reload-frontend/issues/138).
+- Cria estado `restricted` no tema do componente `Button` para representar o estado de restrição de lobby(https://github.com/3C-gg/reload-frontend/issues/125).
+- Criado `ArrowUpIcon` componente.
+- Criado componente `HeaderProfileMenu` usado no `Header` (https://github.com/3C-gg/reload-frontend/issues/130).
 - Criado componente `LinkButton` usado no `Header` que muda conforme o status do lobby e match (https://github.com/3C-gg/reload-frontend/issues/127).
 - Criado componente `Header` (https://github.com/3C-gg/reload-frontend/issues/8).
 - Passamos a mostrar um `Tooltip` ao receber um convite (https://github.com/3C-gg/reload-frontend/issues/116).
@@ -16,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Novo ícone de copiar.
 - Página de Conectar/Pré-Partida (https://github.com/3C-gg/reload-frontend/issues/98).
 - Evento WS `ws_match` que identifica que uma partida foi criada.
+- Componente `MatchInfos` que exibe detalhe da partida.
 
 ### Fixed
 
@@ -24,6 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Mudado a importação do Header no componente `MainLayout`.
+- Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
+- Adicionado propriedade formatted com valor falso no timer do componente MatchFoundModal.
+- Adicionado botão de restrição de partida no componente `Header` quando o usuário está com uma penalidade (https://github.com/3C-gg/reload-frontend/issues/125).
+- Adicionado botão de restrição de partida no componente `Lobby` quando o usuário está com uma penalidade (https://github.com/3C-gg/reload-frontend/issues/125).
+- Adicionado nova propriedade `formatted` no `Timer` para formatar o valor quando for uma contagem regressiva.
+- Formulários agora são enviados ao pressionar a tecla `enter` (https://github.com/3C-gg/reload-frontend/issues/103).
 - A logo no header agora é um link para `/`.
 - Move `Header` do `MainLayout` para o seu próprio componente.
 - Ao aceitar um convite movemos a aba da `sidebar` para a aba default ("Amigos Online"). E rejeitar um convite, se este for o último convite recebido, move aba também (https://github.com/3C-gg/reload-frontend/issues/107).
@@ -31,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido o z-index do componente `Sidebar`.
 - Removido a função `handleLogout` e suas importações do `Header` por não estar sendo usada.
 - Botão de discord ao lado do login da Home (https://github.com/3C-gg/reload-frontend/issues/120).
 

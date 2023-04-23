@@ -1,20 +1,23 @@
+/** @type { import('@storybook/react-webpack5').StorybookConfig } */
 const path = require('path')
 
-module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+const config = {
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
-    '@storybook/preset-create-react-app',
     '@chakra-ui/storybook-addon',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-webpack5',
+  framework: {
+    name: '@storybook/react-webpack5',
+    options: {},
   },
   features: {
     emotionAlias: false,
+  },
+  docs: {
+    autodocs: 'tag',
   },
   webpackFinal: async (config, { configType }) => {
     config.resolve.alias = {
@@ -33,3 +36,4 @@ module.exports = {
     return config
   },
 }
+export default config

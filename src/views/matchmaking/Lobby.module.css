@@ -19,3 +19,7 @@
 	position: absolute;
 	right: 24px;
 }
+
+.restrictedText {
+	font-size: 18px;
+}

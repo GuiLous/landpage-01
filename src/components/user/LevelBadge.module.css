@@ -29,7 +29,13 @@
 }
 
 .xsmall .level {
-	font-size: 13px;
+	font-size: 11px;
 	left: 0;
 	top: -5px;
+}
+
+.xxsmall .level {
+	font-size: 11px;
+	left: 0;
+	top: -3px;
 }

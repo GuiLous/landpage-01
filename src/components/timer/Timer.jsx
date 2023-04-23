@@ -1,6 +1,11 @@
 import { useEffect, useState } from 'react'
 
-export default function Timer({ initialTime, stop, reverse }) {
+export default function Timer({
+  initialTime,
+  stop,
+  reverse,
+  formatted = true,
+}) {
   const [elapsed, setElapsed] = useState(initialTime)
 
   useEffect(() => {
@@ -26,7 +31,7 @@ export default function Timer({ initialTime, stop, reverse }) {
   })
 
   const render = () => {
-    if (reverse) return elapsed
+    if (!formatted) return elapsed
 
     let timer = elapsed
     if (timer > 3600) return new Date(timer * 1000).toISOString().substr(11, 8)
