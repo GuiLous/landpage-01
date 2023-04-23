@@ -53,6 +53,7 @@ import Notifications from './header/Notifications'
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
+import MatchTeamStats from './match/MatchTeamStats'
 
 export {
   AddUserIcon,
@@ -97,4 +98,5 @@ export {
   HeaderProfileMenu,
   ArrowUpIcon,
   LevelProgressBar,
+  MatchTeamStats,
 }
