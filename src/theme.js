@@ -73,6 +73,11 @@ export default extendTheme({
             bg: 'danger.600',
             backgroundColor: 'danger.600',
             color: 'white',
+            _disabled: {
+              bg: 'danger.600',
+              backgroundColor: 'danger.600',
+              color: 'white',
+            },
           },
           _active: {
             bg: 'danger.600',
@@ -87,6 +92,30 @@ export default extendTheme({
             },
           },
         },
+
+        restricted: {
+          bg: 'rgba(246, 53, 53, .8)',
+          backgroundColor: 'rgba(246, 53, 53, .8)',
+          borderColor: 'rgba(246, 53, 53, .8)',
+          color: 'white',
+          _disabled: {
+            bg: 'rgba(246, 53, 53, .8)',
+            backgroundColor: 'rgba(246, 53, 53, .8)',
+            color: 'white',
+            opacity: 1,
+          },
+          _hover: {
+            bg: 'rgba(246, 53, 53, .8)',
+            backgroundColor: 'rgba(246, 53, 53, .8)',
+            color: 'white',
+            _disabled: {
+              bg: 'rgba(246, 53, 53, .8)',
+              backgroundColor: 'rgba(246, 53, 53, .8)',
+              color: 'white',
+            },
+          },
+        },
+
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',

@@ -143,7 +143,7 @@ export default function LobbyView() {
           fitContent
           className={style.actionBtns}
         >
-          {!lobby.queue && (
+          {!lobby.queue && !lobby.restriction_countdown && (
             <Button
               onClick={handleStartQueue}
               size="xl"
@@ -152,7 +152,7 @@ export default function LobbyView() {
               Jogar
             </Button>
           )}
-          {lobby.queue && (
+          {lobby.queue && !lobby.restriction_countdown && (
             <Button
               onClick={handleCancelQueue}
               className={style.cancelQueueBtn}
@@ -164,6 +164,19 @@ export default function LobbyView() {
 
               <Container justify="end" className={style.cancelQueueBtnIcon}>
                 <CloseIcon />
+              </Container>
+            </Button>
+          )}
+          {lobby.restriction_countdown && (
+            <Button size="xl" variant="restricted" isDisabled>
+              <Container column>
+                <Container justify="center">
+                  <Timer initialTime={lobby.restriction_countdown} reverse />
+                </Container>
+
+                <Container justify="center" className={style.restrictedText}>
+                  Fila restringida
+                </Container>
               </Container>
             </Button>
           )}
