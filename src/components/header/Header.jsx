@@ -8,16 +8,11 @@ import {
   HeaderPlayButton,
   HeaderProfileMenu,
   Notifications,
-  RestrictedButton,
 } from '@components'
 
-import { useSelector } from 'react-redux'
 import style from './Header.module.css'
 
 export default function Header() {
-  const user = useSelector((state) => state.user)
-  const lobby = user && user.account.lobby
-
   return (
     <Container className={style.header} align="center" justify="between">
       <Container className={style.logo} align="center" justify="center">
@@ -27,18 +22,7 @@ export default function Header() {
       </Container>
 
       <Container justify="end" align="center">
-        {lobby.restriction_countdown ? (
-          <RestrictedButton
-            restriction_countdown={lobby.restriction_countdown}
-            maxW={141}
-            minW="initial"
-            minHeight="initial"
-            h={66}
-            borderRadius={0}
-          />
-        ) : (
-          <HeaderPlayButton />
-        )}
+        <HeaderPlayButton />
 
         <Notifications totalNotifications={10} />
 
