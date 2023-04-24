@@ -13,6 +13,12 @@ button.readAllBtn {
 	fill: #fff;
 }
 
+button.readAllBtn:is(:disabled) {
+	color: #fff;
+	background: transparent;
+	background-color: transparent;
+}
+
 .itemContainer .notification {
 	font-size: 14px;
 
@@ -31,11 +37,11 @@ button.readAllBtn {
 	animation: 0.2s ease-in-out showBtn;
 }
 
-.readMessageBtn :is(span, path) {
+.readMessageBtn:is(span, path) {
 	transition: all 0.2s ease-in-out;
 }
 
-.readMessageBtn:hover :is(path, span) {
+.readMessageBtn:not(:disabled):hover:is(path, span) {
 	fill: #fff;
 	color: #fff;
 }

@@ -10,46 +10,63 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
+import { Fragment, useState } from 'react'
+import { useSelector } from 'react-redux'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 
 import { CheckIcon, Container, DoubleCheckIcon, Scrollbars } from '@components'
+import { HttpService, Toast } from '@services'
 
-import { useState } from 'react'
 import style from './NotificationsMenuList.module.css'
 
-const data = [
-  {
-    id: 1,
-    to_user_id: 2,
-    content: 'Nova atualização do FiveM disponível.',
-    avatar: 'https://github.com/GuiLous.png',
-    create_date: '2023-04-08T18:23:12',
-    from_user_id: null,
-    read_date: null,
-  },
-  {
-    id: 2,
-    to_user_id: 2,
-    content: 'Uma nova solicitação de amizade para você.',
-    avatar: 'https://github.com/GuiLous.png',
-    create_date: '2023-04-07T18:23:12',
-    from_user_id: 4,
-    read_date: '2023-04-07T18:23:12',
-  },
-  {
-    id: 3,
-    to_user_id: 2,
-    content: 'Uma nova solicitação de amizade para você.',
-    avatar: 'https://github.com/GuiLous.png',
-    create_date: '2023-04-07T18:23:12',
-    from_user_id: 5,
-    read_date: null,
-  },
-]
-
 export default function NotificationsMenuList() {
-  const [notifications, setNotifications] = useState(data)
+  const user = useSelector((state) => state.user)
+
+  const userNotifications = user.account.notifications
+
+  const [notifications, setNotifications] = useState(userNotifications)
+  const [isFetching, setIsFetching] = useState(false)
+
+  const handleReadNotificationById = async (notification_id) => {
+    if (isFetching) return
+
+    let response
+
+    setIsFetching(true)
+    response = await HttpService.patch(`/notifications/${notification_id}/read`)
+    setIsFetching(false)
+
+    if (response && response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+      return
+    }
+  }
+
+  const handleReadAllNotifications = async () => {
+    if (isFetching) return
+
+    let response
+
+    setIsFetching(true)
+    response = await HttpService.patch(
+      `/notifications/read-all/user/${user.id}`
+    )
+    setIsFetching(false)
+
+    if (response && response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+      return
+    }
+  }
 
   return (
     <MenuList
@@ -71,9 +88,15 @@ export default function NotificationsMenuList() {
         <Button
           variant="unstyled"
           leftIcon={
-            <DoubleCheckIcon fill="#00E4C9" width="16px" height="9px" />
+            <DoubleCheckIcon
+              fill={isFetching ? '#fff' : '#00E4C9'}
+              width="16px"
+              height="9px"
+            />
           }
           className={style.readAllBtn}
+          onClick={handleReadAllNotifications}
+          isDisabled={isFetching}
         >
           Ler tudo
         </Button>
@@ -96,9 +119,8 @@ export default function NotificationsMenuList() {
             const created_date = DateTime.fromISO(notification.create_date)
 
             return (
-              <>
+              <Fragment key={notification.id}>
                 <Flex
-                  key={notification.id}
                   className={!isRead ? style.itemContainer : ''}
                   alignItems="center"
                 >
@@ -116,11 +138,17 @@ export default function NotificationsMenuList() {
                         bgColor={isRead && 'transparent'}
                       />
                       <Flex direction="column" align="flex-start" gap={1}>
-                        <Text textAlign="initial" color="#fff" fontSize={12}>
+                        <Text
+                          textAlign="initial"
+                          color={isRead ? '#fff' : 'secondary.400'}
+                          fontSize={12}
+                        >
                           {notification.content}
                         </Text>
                         <Text as="span" fontSize={10} color="#B7B7B7">
-                          {created_date.toFormat("dd MMM ', ' yyyy ' às ' HH:mm")}
+                          {created_date.toFormat(
+                            "dd MMM ', ' yyyy ' às ' HH:mm"
+                          )}
                         </Text>
                       </Flex>
                       <Avatar
@@ -137,6 +165,8 @@ export default function NotificationsMenuList() {
                     variant="unstyled"
                     display="none"
                     className={style.readMessageBtn}
+                    onClick={() => handleReadNotificationById(notification.id)}
+                    isDisabled={isFetching}
                   >
                     <Icon as={CheckIcon} fill="secondary.400" w={18} h={19} />
                     <Text
@@ -149,7 +179,7 @@ export default function NotificationsMenuList() {
                     </Text>
                   </Button>
                 </Flex>
-                {index !== data.length - 1 && (
+                {index !== notifications.length - 1 && (
                   <Divider
                     width="86%"
                     marginRight={11}
@@ -158,7 +188,7 @@ export default function NotificationsMenuList() {
                     borderColor="#434343"
                   />
                 )}
-              </>
+              </Fragment>
             )
           })}
         </Flex>
