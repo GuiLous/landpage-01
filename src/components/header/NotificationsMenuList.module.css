@@ -37,11 +37,11 @@ button.readAllBtn:is(:disabled) {
 	animation: 0.2s ease-in-out showBtn;
 }
 
-.readMessageBtn:is(span, path) {
+.readMessageBtn :is(span, path) {
 	transition: all 0.2s ease-in-out;
 }
 
-.readMessageBtn:not(:disabled):hover:is(path, span) {
+.readMessageBtn:not(:disabled):hover :is(path, span) {
 	fill: #fff;
 	color: #fff;
 }
