@@ -5,14 +5,14 @@ import { BellIcon, NotificationsMenuList } from '@components'
 
 import style from './Notifications.module.css'
 
-export default function Notifications({ totalNotifications }) {
+export default function Notifications({ totalUnreadNotifications }) {
   return (
     <Box className={style.notificationBox}>
       <Menu placement="bottom-end">
         <MenuButton aria-label="menu notifications button">
-          {totalNotifications > 0 && (
+          {totalUnreadNotifications > 0 && (
             <Badge className={style.badge} borderRadius="full">
-              {totalNotifications}
+              {totalUnreadNotifications}
             </Badge>
           )}
           <Icon as={BellIcon} fill="#999999" w={6} h={6} />
