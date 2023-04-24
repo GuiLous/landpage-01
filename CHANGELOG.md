@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado layout `ProfileLayout` para a página de perfil (https://github.com/3C-gg/reload-frontend/issues/133).
 - Adicionado lib `react-countup` para animar um número de 0 a x.
 - Criado componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/137).
 - Criado `MatchStatsTable` componente (https://github.com/3C-gg/reload-frontend/issues/138).
@@ -31,6 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado o componente `HeaderProfileMenu` para redirecionar para a página de perfil.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
 - Adicionado propriedade formatted com valor falso no timer do componente MatchFoundModal.

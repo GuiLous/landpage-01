@@ -81,7 +81,7 @@ export default function HeaderProfileMenu() {
           <MenuList bgColor="gray.900" border="1px" borderColor="gray.600">
             <MenuItem
               as={Link}
-              to="/"
+              to="/perfil"
               bgColor="gray.900"
               fontSize={14}
               color="gray.700"
