@@ -125,6 +125,10 @@ export default extendTheme({
             bg: 'transparent',
             backgroundColor: 'transparent',
             color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
           },
           _active: {
             bg: 'transparent',
