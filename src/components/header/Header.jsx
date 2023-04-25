@@ -16,7 +16,7 @@ import style from './Header.module.css'
 export default function Header() {
   const user = useSelector((state) => state.user)
 
-  const userNotifications = user.account.notifications || []
+  const userNotifications = user.account.notifications
 
   const totalUnreadNotifications = userNotifications.filter(
     (notification) => notification.read_date !== null

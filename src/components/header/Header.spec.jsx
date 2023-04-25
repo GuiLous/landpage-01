@@ -14,6 +14,7 @@ describe('Header Component', () => {
       avatar: {
         small: 'fakeImg',
       },
+      notifications: [],
       lobby: {
         queue: null,
       },
