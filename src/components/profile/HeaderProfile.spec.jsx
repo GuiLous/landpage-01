@@ -15,14 +15,14 @@ describe('HeaderProfile Component', () => {
     },
   }
 
-  it('should renders correctly', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+    },
+    preloadedState: { user },
+  })
 
+  it('should renders correctly', () => {
     render(
       <Provider store={store}>
         <HeaderProfile />
