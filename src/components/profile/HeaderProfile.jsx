@@ -3,16 +3,16 @@ import { useSelector } from 'react-redux'
 
 import style from './HeaderProfile.module.css'
 
-export default function HeaderProfile() {
+export default function HeaderProfile(props) {
   const user = useSelector((state) => state.user)
 
   return (
-    <Flex gap={14} align="flex-end" px={20} flex="1" padding={0}>
-      <Flex gap={4}>
+    <Flex gap={14} align="flex-end" px={20} flex="1" padding={0} {...props}>
+      <Flex gap={4} alignItems="flex-end">
         <Avatar
           variant="online"
-          width="68px"
-          height="68px"
+          width="70px"
+          height="70px"
           src={user.account.avatar.medium}
           borderWidth={2}
         />
