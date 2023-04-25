@@ -70,6 +70,12 @@ export default function NotificationsMenuList() {
     }
   }
 
+  const formateDate = (create_date) => {
+    return DateTime.fromISO(create_date).toFormat(
+      "dd MMM ', ' yyyy ' às ' HH:mm"
+    )
+  }
+
   return (
     <MenuList
       bgColor="gray.900"
@@ -119,43 +125,47 @@ export default function NotificationsMenuList() {
           h={isNotificationsEmpty ? '15vh' : ''}
         >
           {notifications?.map((notification, index) => {
-            const isRead = notification.read_date
-
-            const created_date = DateTime.fromISO(notification.create_date)
-
             return (
               <Fragment key={notification.id}>
                 <Flex
-                  className={!isRead ? style.itemContainer : ''}
+                  className={!notification.read_date ? style.itemContainer : ''}
                   alignItems="center"
                 >
                   <MenuItem
-                    bgColor={isRead ? 'gray.900' : '#333333'}
+                    bgColor={notification.read_date ? 'gray.900' : '#333333'}
                     className={style.notification}
                     cursor="initial"
                     closeOnSelect={false}
+                    minH="65px"
                   >
-                    <Flex align="center" gap={3}>
-                      <Badge
-                        variant="unread"
-                        alignSelf="baseline"
-                        mt="5px"
-                        bgColor={isRead && 'transparent'}
-                      />
-                      <Flex direction="column" align="flex-start" gap={1}>
-                        <Text
-                          textAlign="initial"
-                          color={isRead ? '#fff' : 'secondary.400'}
-                          fontSize={12}
-                        >
-                          {notification.content}
-                        </Text>
-                        <Text as="span" fontSize={10} color="#B7B7B7">
-                          {created_date.toFormat(
-                            "dd MMM ', ' yyyy ' às ' HH:mm"
-                          )}
-                        </Text>
+                    <Flex
+                      align="center"
+                      justifyContent="space-between"
+                      w="full"
+                    >
+                      <Flex align="center" gap={2}>
+                        <Badge
+                          variant="unread"
+                          alignSelf="baseline"
+                          mt="5px"
+                          bgColor={notification.read_date && 'transparent'}
+                        />
+                        <Flex direction="column" align="flex-start" gap={1}>
+                          <Text
+                            textAlign="initial"
+                            color={
+                              notification.read_date ? '#fff' : 'secondary.400'
+                            }
+                            fontSize={12}
+                          >
+                            {notification.content}
+                          </Text>
+                          <Text as="span" fontSize={10} color="#B7B7B7">
+                            {formateDate(notification.create_date)}
+                          </Text>
+                        </Flex>
                       </Flex>
+
                       <Avatar
                         variant="teaming"
                         width="42px"
@@ -188,7 +198,7 @@ export default function NotificationsMenuList() {
                   <Divider
                     width="86%"
                     marginRight={11}
-                    mt={!isRead && 1}
+                    mt={!notification.read_date && 1}
                     alignSelf="end"
                     borderColor="#434343"
                   />
