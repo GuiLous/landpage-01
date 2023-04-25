@@ -23,10 +23,12 @@ import style from './NotificationsMenuList.module.css'
 export default function NotificationsMenuList() {
   const user = useSelector((state) => state.user)
 
-  const userNotifications = user.account.notifications || []
+  const userNotifications = user.account.notifications
 
   const [notifications, setNotifications] = useState(userNotifications)
   const [isFetching, setIsFetching] = useState(false)
+
+  const isNotificationsEmpty = notifications.length === 0
 
   const handleReadNotificationById = async (notification_id) => {
     if (isFetching) return
@@ -75,7 +77,7 @@ export default function NotificationsMenuList() {
       borderColor="gray.600"
       cursor="initial"
       w={330}
-      h={335}
+      h={isNotificationsEmpty ? 235 : 335}
       zIndex={10}
       display="flex"
       flexDirection="column"
@@ -89,16 +91,14 @@ export default function NotificationsMenuList() {
           variant="unstyled"
           leftIcon={
             <DoubleCheckIcon
-              fill={
-                isFetching || notifications.length === 0 ? '#fff' : '#00E4C9'
-              }
+              fill={isFetching || isNotificationsEmpty ? '#fff' : '#00E4C9'}
               width="16px"
               height="9px"
             />
           }
           className={style.readAllBtn}
           onClick={handleReadAllNotifications}
-          isDisabled={isFetching || notifications.length === 0}
+          isDisabled={isFetching || isNotificationsEmpty}
         >
           Ler tudo
         </Button>
@@ -107,15 +107,16 @@ export default function NotificationsMenuList() {
       <Scrollbars autoHide>
         <Flex
           flex="1"
-          mt="3"
+          mt={3}
           px={3}
           mb="2px"
           direction="column"
           gap={1}
           overflowY="auto"
           overflowX="hidden"
-          alignItems={notifications.length === 0 ? 'center' : 'initial'}
-          justifyContent={notifications.length === 0 ? 'center' : 'initial'}
+          alignItems={isNotificationsEmpty ? 'center' : 'initial'}
+          justifyContent={isNotificationsEmpty ? 'center' : 'initial'}
+          h={isNotificationsEmpty ? '15vh' : ''}
         >
           {notifications?.map((notification, index) => {
             const isRead = notification.read_date
@@ -196,7 +197,9 @@ export default function NotificationsMenuList() {
             )
           })}
 
-          {notifications.length === 0 && <Text>Você não tem notificações</Text>}
+          {isNotificationsEmpty && (
+            <Text fontSize={14}>Nada de novo por aqui.</Text>
+          )}
         </Flex>
       </Scrollbars>
 
