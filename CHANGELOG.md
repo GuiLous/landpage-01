@@ -53,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- No teste `Lobby.spec.jsx` foi adicionado uma propriedade `notifications` dentro do objeto `user`.
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
 - Estrutura ruim de arquivos de apoio (`utils`).
@@ -60,10 +61,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Adicionado tema dark no storybook.
-- Alterado style para o component `MatchTeamStats` ocupar `100%`. 
+- Alterado style para o component `MatchTeamStats` ocupar `100%`.
 - Removido a margin-top de `40px` do component `MatchTeamStats`.
 - Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
+- Mudado `Lobby.spec.js` para `Lobby.spec.jsx`.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
 - Adicionado propriedade formatted com valor falso no timer do componente MatchFoundModal.

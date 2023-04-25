@@ -14,6 +14,7 @@ const user = {
     level: 1,
     friends: [],
     username: 'player1',
+    notifications: [],
     lobby_invites: [],
     avatar: {
       small:
