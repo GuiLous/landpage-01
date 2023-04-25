@@ -7,21 +7,21 @@ import { BellIcon, NotificationsMenuList } from '@components'
 import UserReducer from '@slices/UserSlice'
 
 describe('NotificationsMenuList Component', () => {
+  const user = {
+    id: 1,
+    account: {
+      notifications: [],
+    },
+  }
+
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+    },
+    preloadedState: { user },
+  })
+
   it('should renders correctly', () => {
-    const user = {
-      id: 1,
-      account: {
-        notifications: [],
-      },
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
-
     render(
       <Provider store={store}>
         <Menu placement="bottom-end">
@@ -37,34 +37,21 @@ describe('NotificationsMenuList Component', () => {
     const openMenuButton = screen.getByRole('button', {
       name: 'menu notifications button',
     })
+
     fireEvent.click(openMenuButton)
 
     expect(screen.getByText('Notificações')).toBeInTheDocument()
   })
 
   it('should render notifications', () => {
-    const user = {
+    user.account.notifications.push({
       id: 1,
-      account: {
-        notifications: [
-          {
-            id: 1,
-            to_user_id: 2,
-            content: 'Nova atualização do FiveM disponível.',
-            avatar: 'https://github.com/GuiLous.png',
-            create_date: '2023-04-08T18:23:12',
-            from_user_id: null,
-            read_date: null,
-          },
-        ],
-      },
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
+      to_user_id: 2,
+      content: 'Nova atualização do FiveM disponível.',
+      avatar: 'https://github.com/GuiLous.png',
+      create_date: '2023-04-08T18:23:12',
+      from_user_id: null,
+      read_date: null,
     })
 
     render(
@@ -82,6 +69,7 @@ describe('NotificationsMenuList Component', () => {
     const openMenuButton = screen.getByRole('button', {
       name: 'menu notifications button',
     })
+
     fireEvent.click(openMenuButton)
 
     expect(
