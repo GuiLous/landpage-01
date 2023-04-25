@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado a view `ProfileView` para renderizar o componente `HeaderProfile`.
 - Alterado o componente `HeaderProfileMenu` para redirecionar para a página de perfil.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
