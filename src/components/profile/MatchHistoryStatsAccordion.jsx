@@ -27,7 +27,7 @@ export default function MatchHistoryStatsAccordion({ win = false }) {
         <Container align="center" center>
           <Box
             borderRadius={8}
-            h="44px"
+            h="49px"
             as="div"
             w="2px"
             bgColor={win ? 'success' : 'danger.400'}
