@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
 - Adicionado lib `react-countup` para animar um número de 0 a x.
 - Criado componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/137).
 - Criado `MatchStatsTable` componente (https://github.com/3C-gg/reload-frontend/issues/138).

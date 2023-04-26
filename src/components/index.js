@@ -55,6 +55,9 @@ import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
+// Profile
+import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+
 export {
   AddUserIcon,
   ArrowRightIcon,
@@ -99,4 +102,5 @@ export {
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
+  MatchHistoryStatsAccordion,
 }
