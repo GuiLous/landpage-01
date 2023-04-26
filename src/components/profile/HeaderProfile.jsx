@@ -1,103 +1,96 @@
-import { Avatar, Box, Flex, Text } from '@chakra-ui/react'
-import { useSelector } from 'react-redux'
+import { Avatar, Progress, Text } from '@chakra-ui/react'
+import React from 'react'
 
+import { Container } from '@components'
 import style from './HeaderProfile.module.css'
 
-export default function HeaderProfile(props) {
-  const user = useSelector((state) => state.user)
-
+export default function HeaderProfile({ profile }) {
   return (
-    <Flex gap={14} align="flex-end" px={20} flex="1" padding={0} {...props}>
-      <Flex gap={4} alignItems="flex-end">
+    <Container className={style.container} gap={26} align="end">
+      <Container className={style.avatar} fitContent>
         <Avatar
-          variant="online"
-          width="70px"
-          height="70px"
-          src={user.account.avatar.medium}
-          borderWidth={2}
+          src={profile.avatar.medium}
+          variant={profile.status}
+          size={'xl'}
         />
+      </Container>
 
-        <Flex direction="column" gap="2px">
-          <Text as="span" fontSize={16} fontWeight={700}>
-            {user.account.username} #1607
-          </Text>
-          <Text as="span" fontSize={14} fontWeight={600}>
-            Platinum 20
-          </Text>
-          <Box className={style.progressBar}>
-            <Box className={style.progress} w="30%" />
-          </Box>
-          <Flex
-            direction="row"
-            alignItems="center"
-            justifyContent="space-between"
-            mt="2px"
-          >
-            <Text as="span" fontSize={10} color="gray.700">
-              Classificação de ranking
-            </Text>
-            <Text as="span" fontSize={10} color="gray.700">
-              {user.account.level_points}/100
-            </Text>
-          </Flex>
-        </Flex>
-      </Flex>
+      <Container className={style.userInfo} column gap={6}>
+        <Container className={style.username}>
+          <Text>{profile.username}</Text>
+        </Container>
 
-      <Flex gap={12}>
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
+        <Container className={style.levelInfo} column>
+          <Container className={style.levelTxt}>
+            <Text>Level {profile.level}</Text>
+          </Container>
+
+          <Container className={style.levelBar}>
+            <Progress h={'7px'} value={profile.level_points} />
+          </Container>
+
+          <Container className={style.levelHelper} justify="between">
+            <Text>Pontos de Nível</Text>
+            <Text>{profile.level_points}/100</Text>
+          </Container>
+        </Container>
+      </Container>
+
+      <Container className={style.userStats}>
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
             Vitórias
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            80
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
+        </Container>
 
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
             Derrotas
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            54
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
+        </Container>
 
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
             Abates
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            5434
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
+        </Container>
 
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
             Mortes
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            1800
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
+        </Container>
 
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
-            Assistências
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+            Assistencias
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            800
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
+        </Container>
 
-        <Flex direction="column" alignItems="center" justifyContent="center">
-          <Text fontSize={14} fontWeight={500} color="gray.700">
+        <Container column align="center" justify="center">
+          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
             Headshots
           </Text>
-          <Text fontWeight={700} fontSize={16}>
-            1200
+          <Text fontSize={'24px'} fontWeight={'bold'}>
+            {profile.stats.wins}
           </Text>
-        </Flex>
-      </Flex>
-    </Flex>
+        </Container>
+      </Container>
+    </Container>
   )
 }

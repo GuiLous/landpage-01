@@ -1,36 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import UserReducer from '@slices/UserSlice'
 import HeaderProfile from './HeaderProfile'
 
 export default {
   title: 'Profile/HeaderProfile',
   component: HeaderProfile,
-  tags: ['autodocs'],
-}
-
-const user = {
-  id: 1,
-  account: {
-    avatar: {
-      medium: 'https://github.com/GuiLous',
+  argTypes: {
+    profile: { control: 'object' },
+  },
+  args: {
+    profile: {
+      avatar: {
+        medium:
+          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+      },
+      status: 'online',
+      username: 'fulaninhodetal',
+      level: 20,
+      level_points: 80,
+      stats: {
+        wins: 80,
+      },
     },
-    username: 'GuiLous',
   },
 }
-
-const store = configureStore({
-  reducer: {
-    user: UserReducer,
-  },
-  preloadedState: { user },
-})
 
 export const Default = {
-  render: (props) => (
-    <Provider store={store}>
-      <HeaderProfile {...props} />
-    </Provider>
-  ),
+  render: (props) => <HeaderProfile {...props} />,
 }
