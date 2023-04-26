@@ -433,6 +433,14 @@ export default extendTheme({
           color: 'white',
         },
       },
+      sizes: {
+        md: {
+          container: {
+            width: '42px',
+            height: '42px',
+          },
+        },
+      },
     },
     Alert: {
       baseStyle: {
