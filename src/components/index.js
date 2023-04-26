@@ -56,6 +56,7 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import HeaderProfile from './profile/HeaderProfile'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 export {
@@ -103,4 +104,5 @@ export {
   LevelProgressBar,
   MatchTeamStats,
   MatchHistoryStatsAccordion,
+  HeaderProfile,
 }

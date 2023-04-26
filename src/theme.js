@@ -465,6 +465,17 @@ export default extendTheme({
         },
       },
     },
+    Progress: {
+      baseStyle: {
+        track: {
+          bg: '#d9d9d9',
+          borderRadius: '8px',
+        },
+        filledTrack: {
+          bg: 'primary.400',
+        },
+      },
+    },
   },
   colors: {
     primary: {
