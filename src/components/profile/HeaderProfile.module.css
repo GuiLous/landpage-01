@@ -1,0 +1,26 @@
+.username {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.levelTxt {
+	font-size: 18px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.levelBar {
+	margin-top: 5px;
+}
+
+.levelBar * {
+	width: 100%;
+}
+
+.levelHelper {
+	font-size: 12px;
+}
+
+.userStats {
+	min-width: 600px;
+}
