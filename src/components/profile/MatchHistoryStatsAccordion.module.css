@@ -1,24 +1,23 @@
-.containerInfos {
-	align-items: center;
-	justify-content: space-between;
-	padding-left: 12px;
+.borderLeft {
+	max-width: 4px;
+	border-radius: 8px;
+	margin-right: 20px;
+
+	background-color: var(--chakra-colors-success);
 }
 
-.avatarInfos {
-	align-items: center;
-
-	min-width: 160px;
+.leftInfo {
+	max-width: 160px;
 }
 
-.resultInfo {
-	align-items: center;
-	justify-content: space-around;
-
-	min-width: 400px;
+.rightInfo {
+	max-width: 100px;
 }
 
-.seeMore {
-	align-items: end;
-	flex-direction: column;
-	min-width: 90px;
+.centerInfo {
+	padding: 0 37px;
+}
+
+.statsCenterInfos {
+	max-width: fit-content;
 }
