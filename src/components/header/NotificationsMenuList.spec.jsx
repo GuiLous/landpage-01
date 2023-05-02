@@ -4,21 +4,22 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { BellIcon, NotificationsMenuList } from '@components'
+import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('NotificationsMenuList Component', () => {
   const user = {
     id: 1,
-    account: {
-      notifications: [],
-    },
   }
+
+  const notifications = []
 
   const store = configureStore({
     reducer: {
       user: UserReducer,
+      notifications: NotificationReducer,
     },
-    preloadedState: { user },
+    preloadedState: { user, notifications },
   })
 
   it('should renders correctly', () => {
@@ -44,7 +45,7 @@ describe('NotificationsMenuList Component', () => {
   })
 
   it('should render notifications', () => {
-    user.account.notifications.push({
+    notifications.push({
       id: 1,
       to_user_id: 2,
       content: 'Nova atualização do FiveM disponível.',
