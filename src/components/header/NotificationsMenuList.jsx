@@ -122,7 +122,7 @@ export default function NotificationsMenuList() {
           overflowX="hidden"
           alignItems={isNotificationsEmpty ? 'center' : 'initial'}
           justifyContent={isNotificationsEmpty ? 'center' : 'initial'}
-          h={isNotificationsEmpty ? '15vh' : ''}
+          h={isNotificationsEmpty ? '22vh' : ''}
         >
           {notifications?.map((notification, index) => {
             return (
