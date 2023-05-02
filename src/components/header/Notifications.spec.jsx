@@ -2,56 +2,57 @@ import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
 
 import { Notifications } from '@components'
+import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 import { Provider } from 'react-redux'
 
 describe('Notifications Component', () => {
-  it('should renders correctly', () => {
-    const user = {
+  const user = {
+    id: 1,
+  }
+
+  let notifications = [
+    {
       id: 1,
-      account: {
-        notifications: [
-          {
-            id: 1,
-            to_user_id: 2,
-            content: 'Nova atualização do FiveM disponível.',
-            avatar: 'https://github.com/GuiLous.png',
-            create_date: '2023-04-08T18:23:12',
-            from_user_id: null,
-            read_date: null,
-          },
-          {
-            id: 2,
-            to_user_id: 2,
-            content: 'Uma nova solicitação de amizade para você.',
-            avatar: 'https://github.com/GuiLous.png',
-            create_date: '2023-04-07T18:23:12',
-            from_user_id: 4,
-            read_date: '2023-04-07T18:23:12',
-          },
-          {
-            id: 3,
-            to_user_id: 2,
-            content: 'Uma nova solicitação de amizade para você.',
-            avatar: 'https://github.com/GuiLous.png',
-            create_date: '2023-04-07T18:23:12',
-            from_user_id: 5,
-            read_date: null,
-          },
-        ],
-      },
-    }
+      to_user_id: 2,
+      content: 'Nova atualização do FiveM disponível.',
+      avatar: 'https://github.com/GuiLous.png',
+      create_date: '2023-04-08T18:23:12',
+      from_user_id: null,
+      read_date: null,
+    },
+    {
+      id: 2,
+      to_user_id: 2,
+      content: 'Uma nova solicitação de amizade para você.',
+      avatar: 'https://github.com/GuiLous.png',
+      create_date: '2023-04-07T18:23:12',
+      from_user_id: 4,
+      read_date: '2023-04-07T18:23:12',
+    },
+    {
+      id: 3,
+      to_user_id: 2,
+      content: 'Uma nova solicitação de amizade para você.',
+      avatar: 'https://github.com/GuiLous.png',
+      create_date: '2023-04-07T18:23:12',
+      from_user_id: 5,
+      read_date: null,
+    },
+  ]
 
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+      notifications: NotificationReducer,
+    },
+    preloadedState: { user, notifications },
+  })
 
+  it('should renders correctly', () => {
     render(
       <Provider store={store}>
-        <Notifications totalUnreadNotifications={2} />
+        <Notifications />
       </Provider>
     )
 
@@ -59,23 +60,11 @@ describe('Notifications Component', () => {
   })
 
   it('should not renders badge notification if totalNotifications props equal 0', () => {
-    const user = {
-      id: 1,
-      account: {
-        notifications: [],
-      },
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
+    notifications = []
 
     render(
       <Provider store={store}>
-        <Notifications totalUnreadNotifications={0} />
+        <Notifications />
       </Provider>
     )
 
