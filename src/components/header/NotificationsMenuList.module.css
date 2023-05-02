@@ -55,7 +55,7 @@ button.readAllBtn:is(:disabled) {
 }
 
 .itemContainer:hover .notification {
-	transform: translateX(-35%);
+	transform: translateX(-36%);
 }
 
 .footer {
