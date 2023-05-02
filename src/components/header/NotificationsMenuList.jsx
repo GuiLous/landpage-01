@@ -23,7 +23,7 @@ import style from './NotificationsMenuList.module.css'
 export default function NotificationsMenuList() {
   const user = useSelector((state) => state.user)
 
-  const userNotifications = user.account.notifications
+  const userNotifications = useSelector((state) => state.notifications)
 
   const [notifications, setNotifications] = useState(userNotifications)
   const [isFetching, setIsFetching] = useState(false)
