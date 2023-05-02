@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Header } from '@components'
 import MatchReducer from '@slices/MatchSlice'
+import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('Header Component', () => {
@@ -14,12 +15,13 @@ describe('Header Component', () => {
       avatar: {
         small: 'fakeImg',
       },
-      notifications: [],
       lobby: {
         queue: null,
       },
     },
   }
+
+  const notifications = []
 
   const match = {
     preMatch: null,
@@ -31,8 +33,9 @@ describe('Header Component', () => {
       reducer: {
         user: UserReducer,
         match: MatchReducer,
+        notifications: NotificationReducer,
       },
-      preloadedState: { user, match },
+      preloadedState: { user, match, notifications },
     })
 
     render(
