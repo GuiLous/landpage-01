@@ -88,6 +88,7 @@ export default function NotificationsMenuList() {
       display="flex"
       flexDirection="column"
       pb={0}
+      position="relative"
     >
       <Flex px="20px" align="center" justifyContent="space-between">
         <Text fontWeight={500} fontSize={18}>
@@ -113,16 +114,15 @@ export default function NotificationsMenuList() {
       <Scrollbars autoHide>
         <Flex
           flex="1"
-          mt={1}
           px={3}
           mb="2px"
           direction="column"
           gap={1}
-          overflowY="auto"
-          overflowX="hidden"
           alignItems={isNotificationsEmpty ? 'center' : 'initial'}
           justifyContent={isNotificationsEmpty ? 'center' : 'initial'}
-          h={isNotificationsEmpty ? '22vh' : ''}
+          position="absolute"
+          w="100%"
+          h="100%"
         >
           {notifications?.map((notification, index) => {
             return (
@@ -207,7 +207,9 @@ export default function NotificationsMenuList() {
           })}
 
           {isNotificationsEmpty && (
-            <Text fontSize={14}>Nada de novo por aqui.</Text>
+            <Text fontSize={12} mt={-2}>
+              Nada de novo por aqui.
+            </Text>
           )}
         </Flex>
       </Scrollbars>
