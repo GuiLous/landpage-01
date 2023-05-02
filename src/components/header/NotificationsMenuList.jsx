@@ -82,15 +82,15 @@ export default function NotificationsMenuList() {
       border="1px"
       borderColor="gray.600"
       cursor="initial"
-      w={330}
-      h={isNotificationsEmpty ? 235 : 335}
+      w={353}
+      h={isNotificationsEmpty ? 228 : 354}
       zIndex={10}
       display="flex"
       flexDirection="column"
       pb={0}
     >
       <Flex px="20px" align="center" justifyContent="space-between">
-        <Text fontWeight={500} fontSize={16}>
+        <Text fontWeight={500} fontSize={18}>
           Notificações
         </Text>
         <Button
@@ -98,8 +98,8 @@ export default function NotificationsMenuList() {
           leftIcon={
             <DoubleCheckIcon
               fill={isFetching || isNotificationsEmpty ? '#fff' : '#00E4C9'}
-              width="16px"
-              height="9px"
+              width="14px"
+              height="8px"
             />
           }
           className={style.readAllBtn}
@@ -113,7 +113,7 @@ export default function NotificationsMenuList() {
       <Scrollbars autoHide>
         <Flex
           flex="1"
-          mt={3}
+          mt={1}
           px={3}
           mb="2px"
           direction="column"
@@ -136,12 +136,13 @@ export default function NotificationsMenuList() {
                     className={style.notification}
                     cursor="initial"
                     closeOnSelect={false}
-                    minH="65px"
+                    minH="73px"
                   >
                     <Flex
                       align="center"
                       justifyContent="space-between"
                       w="full"
+                      gap={4}
                     >
                       <Flex align="center" gap={2}>
                         <Badge
@@ -160,7 +161,7 @@ export default function NotificationsMenuList() {
                           >
                             {notification.content}
                           </Text>
-                          <Text as="span" fontSize={10} color="#B7B7B7">
+                          <Text as="span" fontSize={12} color="#B7B7B7">
                             {formateDate(notification.create_date)}
                           </Text>
                         </Flex>
@@ -168,8 +169,7 @@ export default function NotificationsMenuList() {
 
                       <Avatar
                         variant="teaming"
-                        width="42px"
-                        height="42px"
+                        size="md"
                         src={notification.avatar}
                         borderWidth={2}
                       />
@@ -183,10 +183,10 @@ export default function NotificationsMenuList() {
                     onClick={() => handleReadNotificationById(notification.id)}
                     isDisabled={isFetching}
                   >
-                    <Icon as={CheckIcon} fill="secondary.400" w={18} h={19} />
+                    <Icon as={CheckIcon} fill="secondary.400" w={25} h={19} />
                     <Text
                       as="span"
-                      fontSize={10}
+                      fontSize={12}
                       textTransform="initial"
                       color="secondary.400"
                     >
@@ -196,9 +196,8 @@ export default function NotificationsMenuList() {
                 </Flex>
                 {index !== notifications.length - 1 && (
                   <Divider
-                    width="86%"
+                    width="88%"
                     marginRight={11}
-                    mt={!notification.read_date && 1}
                     alignSelf="end"
                     borderColor="#434343"
                   />
