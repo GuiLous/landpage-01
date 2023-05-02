@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import InviteReducer from '@slices/InviteSlice'
 import MatchReducer from '@slices/MatchSlice'
+import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 import { LobbyView } from '@views'
 
@@ -14,7 +15,6 @@ const user = {
     level: 1,
     friends: [],
     username: 'player1',
-    notifications: [],
     lobby_invites: [],
     avatar: {
       small:
@@ -47,13 +47,16 @@ const user = {
   },
 }
 
+const notifications = []
+
 const store = configureStore({
   reducer: {
     user: UserReducer,
     match: MatchReducer,
     invites: InviteReducer,
+    notifications: NotificationReducer,
   },
-  preloadedState: { user },
+  preloadedState: { user, notifications },
 })
 
 describe('Lobby View Test Case', () => {
