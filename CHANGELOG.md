@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
 - Adicionado propriedade formatted com valor falso no timer do componente MatchFoundModal.

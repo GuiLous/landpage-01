@@ -434,10 +434,10 @@ export default extendTheme({
         },
       },
       sizes: {
-        md: {
+        lg: {
           container: {
-            width: '42px',
-            height: '42px',
+            width: '55px',
+            height: '55px',
           },
         },
       },
