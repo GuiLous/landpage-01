@@ -17,6 +17,8 @@ import {
 
 import { match, preMatch } from '@slices/MatchSlice'
 
+import { addNotification } from '@slices/NotificationSlice'
+
 export const WSS = () => {
   const dispatch = useDispatch()
 
@@ -111,6 +113,10 @@ export const WSS = () => {
 
       case 'ws_match':
         dispatch(match(data.payload))
+        break
+
+      case 'ws_newNotification':
+        dispatch(addNotification(data.payload))
         break
 
       default:
