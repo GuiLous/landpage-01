@@ -1,4 +1,6 @@
 .container {
+	align-items: center;
+
 	background-color: var(--chakra-colors-primary-400);
 
 	border-radius: 8px;
