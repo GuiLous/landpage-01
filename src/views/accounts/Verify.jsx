@@ -35,6 +35,7 @@ export default function VerifyView() {
 
   const handleButtonClick = () =>
     value && value.length === 6 && handleSubmit({ verification_token: value })
+
   const handleChange = (value) => {
     setValue(value)
     setFormError(null)
@@ -60,6 +61,12 @@ export default function VerifyView() {
     setFetching(false)
     dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
+  }
+
+  const handleKeyEnterDown = (event) => {
+    if (event.key === 'Enter') {
+      value && value.length === 6 && handleSubmit({ verification_token: value })
+    }
   }
 
   return (
@@ -106,7 +113,12 @@ export default function VerifyView() {
                     <PinInputField fontSize="24px" minH="48px" minW="48px" />
                     <PinInputField fontSize="24px" minH="48px" minW="48px" />
                     <PinInputField fontSize="24px" minH="48px" minW="48px" />
-                    <PinInputField fontSize="24px" minH="48px" minW="48px" />
+                    <PinInputField
+                      fontSize="24px"
+                      minH="48px"
+                      minW="48px"
+                      onKeyDown={handleKeyEnterDown}
+                    />
                   </PinInput>
                   <IconButton
                     variant="secondary"

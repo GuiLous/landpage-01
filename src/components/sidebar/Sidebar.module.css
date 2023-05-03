@@ -32,7 +32,6 @@
 	padding-bottom: 10px;
 	flex: 0;
 	position: relative;
-	z-index: 1;
 }
 
 .unreadBadge {

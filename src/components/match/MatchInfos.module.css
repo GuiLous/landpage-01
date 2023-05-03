@@ -1,0 +1,12 @@
+.container {
+	align-items: center;
+
+	background-color: var(--chakra-colors-primary-400);
+
+	border-radius: 8px;
+	height: 40px;
+	padding: 5px 50px;
+
+	font-size: 14px;
+	font-weight: 500;
+}

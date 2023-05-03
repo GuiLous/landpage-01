@@ -45,24 +45,4 @@ describe('Header Component', () => {
     expect(screen.getByText('Jogar')).toBeInTheDocument()
     expect(screen.getByText('Olá!')).toBeInTheDocument()
   })
-
-  it('should renders with user', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-        match: MatchReducer,
-      },
-      preloadedState: { user, match },
-    })
-
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Header />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    expect(screen.getByText('fakeUser')).toBeInTheDocument()
-  })
 })

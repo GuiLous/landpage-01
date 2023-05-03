@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import Header from '@components/header/Header'
-import { Container, Sidebar } from '@components'
+import { Container, Header, Sidebar } from '@components'
 
 import style from './MainLayout.module.css'
 

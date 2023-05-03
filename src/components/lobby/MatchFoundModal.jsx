@@ -78,7 +78,11 @@ export default function MatchFoundModal({ preMatch }) {
             </Container>
 
             <Container justify="center" style={{ marginTop: '14px' }}>
-              <Timer reverse initialTime={preMatch.countdown} />
+              <Timer
+                reverse
+                formatted={false}
+                initialTime={preMatch.countdown}
+              />
             </Container>
           </Container>
         </ModalBody>
