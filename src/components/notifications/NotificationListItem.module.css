@@ -1,0 +1,48 @@
+.itemContainer .notification {
+	font-size: 14px;
+
+	border-radius: 8px;
+	padding: 12px 11px;
+	height: fit-content;
+
+	transition: all 0.2s ease-in-out;
+}
+
+.itemContainer .readMessageBtn {
+	gap: 6px;
+	min-width: fit-content;
+	min-height: fit-content;
+	margin-left: -118px;
+
+	animation: 0.2s ease-in-out showBtn;
+}
+
+.readMessageBtn :is(span, path) {
+	transition: all 0.2s ease-in-out;
+}
+
+.readMessageBtn:not(:disabled):hover :is(path, span) {
+	fill: #fff;
+	color: #fff;
+}
+
+.itemContainer:hover .readMessageBtn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.itemContainer:hover .notification {
+	transform: translateX(-130px);
+}
+
+@keyframes showBtn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
