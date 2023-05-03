@@ -6,24 +6,43 @@ import {
   AccordionPanel,
   Avatar,
   Text,
+  Tooltip,
 } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 
 import { Container } from '@components'
 
 import style from './MatchHistoryStatsAccordion.module.css'
 
-export default function MatchHistoryStatsAccordion() {
-  const won = false
+export default function MatchHistoryStatsAccordion({ user, match }) {
+  const winner_team_id = match.winner_id
+  const winner_team = match.teams.find((team) => team.id === winner_team_id)
+  const defeated_team = match.teams.find((team) => team.id !== winner_team_id)
+  const won = winner_team.players.find((player) => player.user_id === user.id)
 
-  const user = {
-    status: 'online',
-    account: {
-      avatar: {
-        medium:
-          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-      },
-    },
-  }
+  const player = won
+    ? won
+    : defeated_team.players.find((player) => player.user_id === user.id)
+
+  const kda = Number(
+    (player.stats.kills + player.stats.deaths) / player.stats.assists
+  ).toFixed(2)
+
+  const kpr = Number(player.stats.kills / match.rounds).toFixed(2)
+  const adr = Number(player.stats.damage / match.rounds).toFixed(2)
+
+  const hsPercent = Number(
+    (player.stats.head_shots * 100) /
+      (player.stats.chest_shots +
+        player.stats.other_shots +
+        player.stats.head_shots)
+  ).toFixed(1)
+
+  const startDate = DateTime.fromISO(match.start_date)
+  const endDate = DateTime.fromISO(match.end_date)
+  const matchDurationFormatted = endDate
+    .diff(startDate, 'seconds')
+    .toFormat('hh:mm')
 
   return (
     <Accordion
@@ -39,14 +58,14 @@ export default function MatchHistoryStatsAccordion() {
             className={[style.borderLeft, won && style.won].join(' ')}
           />
 
-          <Container className={style.leftInfo} gap="10px" align="center">
+          <Container className={style.leftInfo} gap={10} align="center">
             <Avatar
               variant={user.status}
               size="lg"
               src={user.account.avatar.medium}
             />
 
-            <Container column gap="8px">
+            <Container column gap={8}>
               <Text
                 as="span"
                 fontSize={20}
@@ -63,12 +82,17 @@ export default function MatchHistoryStatsAccordion() {
                 fontSize={14}
                 fontWeight={500}
               >
-                san andreas
+                {match.map_name}
               </Text>
             </Container>
           </Container>
 
-          <Container className={style.centerInfo} align="center" gap="32px">
+          <Container
+            className={style.centerInfo}
+            align="center"
+            justify="center"
+            gap={32}
+          >
             <Container className={style.statsCenterInfos}>
               <Text
                 as="span"
@@ -77,7 +101,7 @@ export default function MatchHistoryStatsAccordion() {
                 textAlign="center"
                 color="#fff"
               >
-                10
+                {won ? winner_team.score : defeated_team.score}
                 <Text
                   pos="relative"
                   top={-1}
@@ -89,56 +113,72 @@ export default function MatchHistoryStatsAccordion() {
                 >
                   :
                 </Text>
-                10
+                {won ? defeated_team.score : winner_team.score}
               </Text>
             </Container>
 
             <Container column className={style.statsCenterInfos}>
-              <Text
-                as="span"
-                fontSize={16}
-                fontWeight={700}
-                color="#fff"
-                align="flex-start"
+              <Tooltip
+                label="Abates/Mortes/Assistências"
+                aria-label="Kda tooltip"
               >
-                17/17/17
-              </Text>
-              <Text
-                as="span"
-                color="gray.700"
-                fontWeight={500}
-                fontSize={14}
-                align="flex-start"
+                <Text
+                  as="span"
+                  fontSize={16}
+                  fontWeight={700}
+                  color="#fff"
+                  align="flex-start"
+                >
+                  {player.stats.kills}/{player.stats.deaths}/
+                  {player.stats.assists}
+                </Text>
+              </Tooltip>
+              <Tooltip
+                label="Relação de abates e assistências por morte"
+                aria-label="Kill death assist tooltip"
               >
-                1.35 KDA
-              </Text>
+                <Text
+                  as="span"
+                  color="gray.700"
+                  fontWeight={500}
+                  fontSize={14}
+                  align="flex-start"
+                >
+                  {kda} KDA
+                </Text>
+              </Tooltip>
             </Container>
 
             <Container column className={style.statsCenterInfos}>
-              <Text
-                as="span"
-                fontSize={16}
-                fontWeight={700}
-                color="#fff"
-                align="flex-start"
-              >
-                0.40 KPR
-              </Text>
-              <Text
-                as="span"
-                color="gray.700"
-                fontWeight={500}
-                fontSize={14}
-                align="flex-start"
-              >
-                72.30 ADR
-              </Text>
+              <Tooltip label="Abates por round" aria-label="Kpr tooltip">
+                <Text
+                  as="span"
+                  fontSize={16}
+                  fontWeight={700}
+                  color="#fff"
+                  align="flex-start"
+                >
+                  {kpr} KPR
+                </Text>
+              </Tooltip>
+
+              <Tooltip label="Dano médio por round" aria-label="Adr tooltip">
+                <Text
+                  as="span"
+                  color="gray.700"
+                  fontWeight={500}
+                  fontSize={14}
+                  align="flex-start"
+                >
+                  {adr} ADR
+                </Text>
+              </Tooltip>
             </Container>
 
             <Container
               column
               style={{ minWidth: '100px' }}
-              align="flex-start"
+              align="start"
               className={style.statsCenterInfos}
             >
               <Text
@@ -148,17 +188,23 @@ export default function MatchHistoryStatsAccordion() {
                 fontWeight={700}
                 color="#fff"
               >
-                7.3% HS
+                {player.points_earned} Pontos ganhos
               </Text>
-              <Text
-                as="span"
-                color="gray.700"
-                fontWeight={500}
-                fontSize={14}
-                align="flex-start"
+
+              <Tooltip
+                label="Porcentagem de tiros na cabeça"
+                aria-label="Hs tooltip"
               >
-                117 Pontuação média
-              </Text>
+                <Text
+                  as="span"
+                  color="gray.700"
+                  fontWeight={500}
+                  fontSize={14}
+                  align="flex-start"
+                >
+                  {hsPercent}% HS
+                </Text>
+              </Tooltip>
             </Container>
           </Container>
 
@@ -168,9 +214,18 @@ export default function MatchHistoryStatsAccordion() {
             align="center"
             justify="center"
           >
-            <Text as="span" fontSize={14} fontWeight={500} color="gray.700">
-              Abril 8 - 02:24
-            </Text>
+            <Tooltip label="Duração da partida" aria-label="Duration tooltip">
+              <Text
+                as="span"
+                mr="3px"
+                fontSize={14}
+                fontWeight={500}
+                color="gray.700"
+              >
+                {endDate.toFormat('MMM dd')} - {matchDurationFormatted}
+              </Text>
+            </Tooltip>
+
             <AccordionButton width="fit-content" p={0} color="secondary.400">
               <Text as="span" textAlign="left" fontSize={14}>
                 Ver detalhes

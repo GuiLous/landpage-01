@@ -3,7 +3,7 @@
 	border-radius: 8px;
 	margin-right: 20px;
 
-	background-color: var(--chakra-colors-success);
+	background-color: var(--chakra-colors-danger-400);
 }
 
 .leftInfo {
@@ -20,4 +20,8 @@
 
 .statsCenterInfos {
 	max-width: fit-content;
+}
+
+.won {
+	background-color: var(--chakra-colors-success);
 }
