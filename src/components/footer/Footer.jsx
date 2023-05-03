@@ -59,7 +59,7 @@ export default function Footer(props) {
                 <SiTwitter />
               </Link>
 
-              <Link href="https://discord.gg/RvazV3dkKJ" isExternal>
+              <Link href="https://discord.gg/mMMKshktfT" isExternal>
                 <SiDiscord />
               </Link>
 
@@ -139,7 +139,7 @@ export default function Footer(props) {
               <SiTwitter />
             </Link>
 
-            <Link href="https://discord.gg/RvazV3dkKJ" isExternal>
+            <Link href="https://discord.gg/mMMKshktfT" isExternal>
               <SiDiscord />
             </Link>
 
