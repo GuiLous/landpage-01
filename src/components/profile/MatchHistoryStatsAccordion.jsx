@@ -143,6 +143,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                   fontWeight={500}
                   fontSize={14}
                   align="flex-start"
+                  data-testid="kda"
                 >
                   {kda} KDA
                 </Text>
@@ -157,6 +158,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                   fontWeight={700}
                   color="#fff"
                   align="flex-start"
+                  data-testid="kpr"
                 >
                   {kpr} KPR
                 </Text>
@@ -169,6 +171,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                   fontWeight={500}
                   fontSize={14}
                   align="flex-start"
+                  data-testid="adr"
                 >
                   {adr} ADR
                 </Text>
@@ -201,6 +204,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                   fontWeight={500}
                   fontSize={14}
                   align="flex-start"
+                  data-testid="hs"
                 >
                   {hsPercent}% HS
                 </Text>
