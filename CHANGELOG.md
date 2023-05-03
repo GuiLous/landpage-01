@@ -65,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removido a margin-top de `40px` do component `MatchTeamStats`.
 - Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
+- Removido os componentes de `notificação` do `Header`.
 - Serviço websocket que recebe as notificações (`ws_newNotification`).
 - Adicionado o slice de `Notifications` no arquivo de `store`.
 - Alterado o slice de `Notifications` para usar no componente de notificações do header.
