@@ -12,7 +12,7 @@
 	gap: 6px;
 	min-width: fit-content;
 	min-height: fit-content;
-	margin-left: -118px;
+	margin-left: -103px;
 
 	animation: 0.2s ease-in-out showBtn;
 }
@@ -34,7 +34,7 @@
 }
 
 .itemContainer:hover .notification {
-	transform: translateX(-130px);
+	transform: translateX(-115px);
 }
 
 @keyframes showBtn {
