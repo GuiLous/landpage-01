@@ -52,8 +52,6 @@ import UserStatus from './user/UserStatus'
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
 import HeaderProfileMenu from './header/HeaderProfileMenu'
-import Notifications from './header/Notifications'
-import NotificationsMenuList from './header/NotificationsMenuList'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -65,6 +63,10 @@ import HeaderProfile from './profile/HeaderProfile'
 import HeatmapCardStats from './profile/HeatmapCardStats'
 import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+
+// Notifications
+import NotificationListItem from './notifications/NotificationListItem'
+import Notifications from './notifications/Notifications'
 
 export {
   AddUserIcon,
@@ -118,5 +120,5 @@ export {
   LevelCardStats,
   DoubleCheckIcon,
   CheckIcon,
-  NotificationsMenuList,
+  NotificationListItem,
 }
