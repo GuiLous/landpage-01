@@ -25,15 +25,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Novo ícone de copiar.
 - Página de Conectar/Pré-Partida (https://github.com/3C-gg/reload-frontend/issues/98).
 - Evento WS `ws_match` que identifica que uma partida foi criada.
+- Componente `RequireAuth` de apoio para rotas.
+- View de detalhe de partida `MatchView`.
 - Componente `MatchInfos` que exibe detalhe da partida.
 
 ### Fixed
 
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
+- Estrutura ruim de arquivos de apoio (`utils`).
 
 ### Changed
 
+- Adicionado tema dark no storybook.
+- Alterado style para o component `MatchTeamStats` ocupar `100%`. 
+- Removido a margin-top de `40px` do component `MatchTeamStats`.
 - Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
 - Mudado a importação do Header no componente `MainLayout`.

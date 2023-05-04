@@ -23,6 +23,52 @@ export default function MatchTeamStats({ team, isWinning = false }) {
 
   const players = team.players
 
+  const calculateHsPercent = (player) => {
+    const totalShots =
+      player.stats.chest_shots +
+      player.stats.other_shots +
+      player.stats.head_shots
+
+    if (totalShots === 0) return 0
+
+    // calculate head shots percent
+    return Number((player.stats.head_shots * 100) / totalShots).toFixed(2)
+  }
+
+  const calculateKdr = (player) => {
+    if (player.stats.deaths === 0) return 0
+
+    // calculate Kill-Death Ratio number
+    return Number(player.stats.kills / player.stats.deaths).toFixed(2)
+  }
+
+  const calculateDh = (player) => {
+    const totalShots =
+      player.stats.chest_shots +
+      player.stats.other_shots +
+      player.stats.head_shots
+
+    if (totalShots === 0) return 0
+
+    // calculate Damage per Hit Ratio number
+    return Number(
+      player.stats.damage /
+        (player.stats.chest_shots +
+          player.stats.other_shots +
+          player.stats.head_shots)
+    ).toFixed(2)
+  }
+
+  const calculateOneVsX = (player) => {
+    return (
+      player.stats.clutch_v1 +
+      player.stats.clutch_v2 +
+      player.stats.clutch_v3 +
+      player.stats.clutch_v4 +
+      player.stats.clutch_v5
+    )
+  }
+
   return (
     <TableContainer className={style.tableContainer}>
       <Table variant="striped" bgColor="gray.900" colorScheme="stripe">
@@ -115,78 +161,47 @@ export default function MatchTeamStats({ team, isWinning = false }) {
           </Tr>
         </Thead>
         <Tbody>
-          {players.map((player) => {
-            // calculate head shots percent
-            const hsPercent = Number(
-              (player.stats.head_shots * 100) /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
-            ).toFixed(2)
+          {players.map((player) => (
+            <Tr
+              key={player.id}
+              className={player.user_id === user.id ? style.highlight : ''}
+            >
+              <Td className={style.user}>
+                <HStack>
+                  <Avatar
+                    variant="online"
+                    width="40px"
+                    height="40px"
+                    src={player.avatar?.small}
+                    borderWidth={2}
+                  />
 
-            // calculate Kill-Death Ratio number
-            const kdr = Number(
-              player.stats.kills / player.stats.deaths
-            ).toFixed(2)
+                  <Box className={style.level}>
+                    <LevelBadge level={player.level} xsmall />
+                  </Box>
 
-            // calculate Damage per Hit Ratio number
-            const dh = Number(
-              player.stats.damage /
-                (player.stats.chest_shots +
-                  player.stats.other_shots +
-                  player.stats.head_shots)
-            ).toFixed(2)
-
-            // calculate total clutches
-            const oneVsX =
-              player.stats.clutch_v1 +
-              player.stats.clutch_v2 +
-              player.stats.clutch_v3 +
-              player.stats.clutch_v4 +
-              player.stats.clutch_v5
-
-            return (
-              <Tr
-                key={player.id}
-                className={player.user_id === user.id ? style.highlight : ''}
-              >
-                <Td className={style.user}>
-                  <HStack>
-                    <Avatar
-                      variant="online"
-                      width="40px"
-                      height="40px"
-                      src={player.avatar?.small}
-                      borderWidth={2}
-                    />
-
-                    <Box className={style.level}>
-                      <LevelBadge level={player.level} xsmall />
-                    </Box>
-
-                    <Text fontWeight={600} fontSize={'14px'}>
-                      {player.username}
-                    </Text>
-                  </HStack>
-                </Td>
-                <Td>{player.stats.kills}</Td>
-                <Td>{player.stats.deaths}</Td>
-                <Td>{player.stats.assists}</Td>
-                <Td>{player.stats.head_shots}</Td>
-                <Td data-testid="hs-percentage">{hsPercent}%</Td>
-                <Td>{player.stats.plants}</Td>
-                <Td>{player.stats.defuses}</Td>
-                <Td>{player.stats.firstkills}</Td>
-                <Td data-testid="kdr">{kdr}</Td>
-                <Td data-testid="dh">{dh}</Td>
-                <Td>{player.stats.double_kills}</Td>
-                <Td>{player.stats.triple_kills}</Td>
-                <Td>{player.stats.quadra_kills}</Td>
-                <Td>{player.stats.aces}</Td>
-                <Td data-testid="1vsX">{oneVsX}</Td>
-              </Tr>
-            )
-          })}
+                  <Text fontWeight={600} fontSize={'14px'}>
+                    {player.username}
+                  </Text>
+                </HStack>
+              </Td>
+              <Td>{player.stats.kills}</Td>
+              <Td>{player.stats.deaths}</Td>
+              <Td>{player.stats.assists}</Td>
+              <Td>{player.stats.head_shots}</Td>
+              <Td data-testid="hs-percentage">{calculateHsPercent(player)}%</Td>
+              <Td>{player.stats.plants}</Td>
+              <Td>{player.stats.defuses}</Td>
+              <Td>{player.stats.firstkills}</Td>
+              <Td data-testid="kdr">{calculateKdr(player)}</Td>
+              <Td data-testid="dh">{calculateDh(player)}</Td>
+              <Td>{player.stats.double_kills}</Td>
+              <Td>{player.stats.triple_kills}</Td>
+              <Td>{player.stats.quadra_kills}</Td>
+              <Td>{player.stats.aces}</Td>
+              <Td data-testid="1vsX">{calculateOneVsX(player)}</Td>
+            </Tr>
+          ))}
         </Tbody>
       </Table>
     </TableContainer>

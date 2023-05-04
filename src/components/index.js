@@ -4,6 +4,7 @@ import Container from './container/Container'
 import Footer from './footer/Footer'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
+import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
@@ -99,6 +100,7 @@ export {
   Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
+  RequireAuth,
   HeaderProfileMenu,
   ArrowUpIcon,
   LevelProgressBar,

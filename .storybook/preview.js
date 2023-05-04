@@ -1,5 +1,6 @@
 /** @type { import('@storybook/react').Preview } */
 import { ChakraProvider } from '@chakra-ui/react'
+import { themes } from '@storybook/theming'
 import theme from '../src/theme'
 
 const preview = {
@@ -21,6 +22,9 @@ const preview = {
         </ChakraProvider>
       ),
     ],
+    docs: {
+      theme: themes.dark,
+    },
   },
 }
 
