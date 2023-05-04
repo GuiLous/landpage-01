@@ -194,7 +194,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 {player.points_earned > 0
                   ? `+${player.points_earned}`
                   : player.points_earned}{' '}
-                Pontos ganhos
+                PTS
               </Text>
 
               <Tooltip
