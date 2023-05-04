@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
 - Tema customizado para component Progress do Chakra UI.
 - Criado componente `HeaderProfile` (https://github.com/3C-gg/reload-frontend/issues/153).
 - Adicionado lib `react-countup` para animar um número de 0 a x.
@@ -39,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado tema dark no storybook.
 - Alterado style para o component `MatchTeamStats` ocupar `100%`. 
 - Removido a margin-top de `40px` do component `MatchTeamStats`.
+- Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
