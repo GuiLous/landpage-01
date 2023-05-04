@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Criado componente `HeatmapCardStats` (https://github.com/3C-gg/reload-frontend/issues/157).
 - Criado `stories` para o componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/171).
 - Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
+- Criado componente `LevelCardStats` (https://github.com/3C-gg/reload-frontend/issues/156).
 - Tema customizado para component Progress do Chakra UI.
 - Criado componente `HeaderProfile` (https://github.com/3C-gg/reload-frontend/issues/153).
 - Adicionado lib `react-countup` para animar um número de 0 a x.

@@ -1,0 +1,24 @@
+.container {
+	padding: 24px;
+
+	width: 349px;
+	height: 344px;
+
+	background-color: #222222;
+
+	border-radius: 8px;
+
+	border: 1px solid #434343;
+}
+
+.avatar {
+	max-width: 90px;
+	max-height: 96px;
+	height: 90px;
+	width: 90px;
+}
+
+.centerStats {
+	min-width: 113px;
+	max-width: 113px;
+}
