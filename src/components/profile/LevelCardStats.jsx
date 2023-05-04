@@ -11,7 +11,7 @@ export default function LevelCardStats() {
         <Container className={style.avatar}>
           <LevelBadge level={50} />
         </Container>
-        <Container column gap="4px">
+        <Container column gap="4px" justify="center">
           <Text fontSize={16} fontWeight={700} color="#00E4C9" as="span">
             Level 50
           </Text>
@@ -55,7 +55,7 @@ export default function LevelCardStats() {
           </Container>
         </Container>
 
-        <Container align="center" justify="between" fitContent>
+        <Container align="baseline" justify="between" fitContent>
           <Container
             align="center"
             justify="between"
@@ -76,8 +76,8 @@ export default function LevelCardStats() {
             fitContent
             className={style.centerStats}
           >
-            <Text fontSize={12} as="span">
-              Pontuação de combate
+            <Text fontSize={12} as="span" lineHeight={0.9}>
+              Pontuação de Combate
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
               173
@@ -87,8 +87,8 @@ export default function LevelCardStats() {
 
         <Container align="center" fitContent>
           <Container align="center" gap={12} className={style.centerStats}>
-            <Text fontSize={12} as="span">
-              pontuação econômica
+            <Text fontSize={12} as="span" lineHeight={0.9}>
+              Pontuação Econômica
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
               8%

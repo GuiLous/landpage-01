@@ -11,7 +11,16 @@
 	border: 1px solid #434343;
 }
 
+.topStats {
+	align-items: center;
+
+	margin-bottom: 32px;
+}
+
 .avatar {
+	align-items: center;
+	justify-content: center;
+
 	max-width: 90px;
 	max-height: 96px;
 	height: 90px;
