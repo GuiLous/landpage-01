@@ -36,6 +36,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Adicionado tema dark no storybook.
+- Alterado style para o component `MatchTeamStats` ocupar `100%`. 
+- Removido a margin-top de `40px` do component `MatchTeamStats`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
