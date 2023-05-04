@@ -87,7 +87,7 @@ export default function LevelProgressBar({
   }, [])
 
   return (
-    <Container align="center" style={{ marginTop: '40px' }}>
+    <Container align="center">
       <Container
         className={
           isPreviousLevel
