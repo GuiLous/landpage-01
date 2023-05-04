@@ -2,17 +2,46 @@ import { Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import { Container, Loading, LoadingBackdrop } from '@components'
+import {
+  Container,
+  LevelProgressBar,
+  Loading,
+  LoadingBackdrop,
+  MatchInfos,
+  MatchTeamStats,
+} from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService, Toast } from '@services'
 
+import { useSelector } from 'react-redux'
 import style from './Match.module.css'
 
 export default function MatchView(props) {
+  const user = useSelector((state) => state.user)
+
   const params = useParams()
   const matchId = params.matchId
   const [fetching, setFetching] = useState(true)
   const [match, setMatch] = useState(null)
+
+  const statusMap = {
+    loading: 'Configurando',
+    running: 'Em andamento',
+    finished: 'Finalizada',
+    canceled: 'Cancelada',
+  }
+
+  const playerOnMatch = match?.teams
+    .map((team) => team.players.find((player) => player.user_id === user.id))
+    .find((player) => player !== undefined)
+
+  const winningTeam = match?.teams.reduce((currentTeam, team) => {
+    if (team.score > currentTeam.score) {
+      return team
+    } else {
+      return currentTeam
+    }
+  })
 
   useEffect(() => {
     const fetch = async () => {
@@ -36,20 +65,13 @@ export default function MatchView(props) {
     matchId && fetch()
   }, [matchId])
 
-  const statusMap = {
-    loading: 'Configurando',
-    running: 'Em andamento',
-    finished: 'Finalizada',
-    canceled: 'Cancelada',
-  }
-
   return fetching || !match ? (
     <LoadingBackdrop>
       <Loading />
     </LoadingBackdrop>
   ) : (
     <MainLayout>
-      <Container className={style.container} column gap={18}>
+      <Container className={style.container} column gap={25}>
         <Container className={style.header} justify="around" align="center">
           <Container className={style.title} align="center">
             <Text>
@@ -90,6 +112,26 @@ export default function MatchView(props) {
             </Text>
             <Text className={style.teamName}>{match.teams[1].name}</Text>
           </Container>
+        </Container>
+
+        {playerOnMatch && match.status === 'finished' && (
+          <LevelProgressBar
+            earned_points={playerOnMatch.points_earned}
+            level_points={playerOnMatch.level_points}
+            level={playerOnMatch.level}
+          />
+        )}
+
+        <MatchInfos match={match} />
+
+        <Container column gap={18}>
+          {match?.teams.map((team) => (
+            <MatchTeamStats
+              key={team.id}
+              team={team}
+              isWinning={winningTeam.id === team.id}
+            />
+          ))}
         </Container>
       </Container>
     </MainLayout>
