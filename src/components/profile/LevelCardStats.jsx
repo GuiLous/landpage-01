@@ -4,23 +4,23 @@ import { Container, LevelBadge } from '@components'
 
 import style from './LevelCardStats.module.css'
 
-export default function LevelCardStats() {
+export default function LevelCardStats({ user }) {
   return (
     <Container className={style.container} column>
-      <Container className={style.topStats} gap="20px" fitContent>
+      <Container className={style.topStats} gap={20} fitContent>
         <Container className={style.avatar}>
-          <LevelBadge level={50} />
+          <LevelBadge level={user.level} />
         </Container>
-        <Container column gap="4px" justify="center">
+        <Container column gap={4} justify="center">
           <Text fontSize={16} fontWeight={700} color="#00E4C9" as="span">
-            Level 50
+            Level {user.level}
           </Text>
           <Container gap={15}>
             <Text fontSize={14} fontWeight={500} color="#f2f2f2" as="span">
-              14V 8D
+              {user.wins}V {user.loses}D
             </Text>
             <Text fontSize={14} fontWeight={500} color="#00E4C9" as="span">
-              68%
+              {user.win_rate}%
             </Text>
           </Container>
         </Container>
@@ -35,11 +35,12 @@ export default function LevelCardStats() {
             fitContent
             className={style.centerStats}
           >
-            <Text fontSize={12} as="span">
+            <Text fontSize={12} as="span" minW="80px">
               Abates/Mortes
             </Text>
+
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              0.88
+              {user.kda_rate}
             </Text>
           </Container>
           <Container
@@ -48,26 +49,28 @@ export default function LevelCardStats() {
             fitContent
             className={style.centerStats}
           >
-            <Text fontSize={12}>Dano/Rodada</Text>
-            <Text fontSize={14} fontWeight={600} color="#00E4C9">
-              93,5
+            <Text fontSize={12} minW="78px" as="span">
+              Dano/Rodada
+            </Text>
+            <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
+              {user.adr_rate}
             </Text>
           </Container>
         </Container>
 
-        <Container align="baseline" justify="between" fitContent>
+        <Container align="center" justify="between" fitContent>
           <Container
-            align="center"
             justify="between"
             gap={12}
             fitContent
+            style={{ alignItems: 'flex-start' }}
             className={style.centerStats}
           >
-            <Text fontSize={12} as="span">
+            <Text fontSize={12} as="span" minW="80px">
               Headshots
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              8%
+              {user.hs_percent}%
             </Text>
           </Container>
           <Container
@@ -80,18 +83,18 @@ export default function LevelCardStats() {
               Pontuação de Combate
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              173
+              {user.combat_points}
             </Text>
           </Container>
         </Container>
 
         <Container align="center" fitContent>
           <Container align="center" gap={12} className={style.centerStats}>
-            <Text fontSize={12} as="span" lineHeight={0.9}>
+            <Text fontSize={12} as="span" lineHeight={0.9} minW="80px">
               Pontuação Econômica
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              8%
+              {user.economic_points}%
             </Text>
           </Container>
         </Container>
