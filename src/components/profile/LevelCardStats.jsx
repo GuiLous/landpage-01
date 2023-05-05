@@ -13,7 +13,7 @@ export default function LevelCardStats({ profile }) {
         </Container>
         <Container column gap={4} justify="center">
           <Text fontSize={16} fontWeight={700} color="#00E4C9" as="span">
-            Level {profile.level}
+            LEVEL {profile.level}
           </Text>
           <Container gap={15}>
             <Text fontSize={14} fontWeight={500} color="#f2f2f2" as="span">

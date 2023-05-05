@@ -20,7 +20,7 @@ describe('LevelCardStats Component', () => {
   it('should renders correctly', () => {
     render(<LevelCardStats profile={profile} />)
 
-    expect(screen.getByText('Level 50')).toBeInTheDocument()
+    expect(screen.getByText('LEVEL 50')).toBeInTheDocument()
     expect(screen.getByText('Abates/Mortes')).toBeInTheDocument()
     expect(screen.getByText('Dano/Rodada')).toBeInTheDocument()
     expect(screen.getByText('68%')).toBeInTheDocument()
