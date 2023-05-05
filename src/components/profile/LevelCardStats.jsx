@@ -19,7 +19,12 @@ export default function LevelCardStats({ profile }) {
             <Text fontSize={14} fontWeight={500} color="#f2f2f2" as="span">
               {profile.stats.wins}V {profile.stats.loses}D
             </Text>
-            <Text fontSize={14} fontWeight={500} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={500}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.win_rate}%
             </Text>
           </Container>
@@ -39,7 +44,12 @@ export default function LevelCardStats({ profile }) {
               Abates/Mortes
             </Text>
 
-            <Text fontSize={14} fontWeight={600} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={600}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.kda_rate}
             </Text>
           </Container>
@@ -52,7 +62,12 @@ export default function LevelCardStats({ profile }) {
             <Text fontSize={12} color="#fff" minW="78px" as="span">
               Dano/Rodada
             </Text>
-            <Text fontSize={14} fontWeight={600} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={600}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.adr_rate}
             </Text>
           </Container>
@@ -69,7 +84,12 @@ export default function LevelCardStats({ profile }) {
             <Text fontSize={12} color="#fff" minW="80px" as="span">
               Headshots
             </Text>
-            <Text fontSize={14} fontWeight={600} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={600}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.hs_percent}%
             </Text>
           </Container>
@@ -82,18 +102,33 @@ export default function LevelCardStats({ profile }) {
             <Text fontSize={12} color="#fff" lineHeight={0.9} as="span">
               Pontuação de Combate
             </Text>
-            <Text fontSize={14} fontWeight={600} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={600}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.combat_points}
             </Text>
           </Container>
         </Container>
 
         <Container align="center" fitContent>
-          <Container align="center" color="#fff" gap={12} className={style.centerStats}>
+          <Container
+            align="center"
+            color="#fff"
+            gap={12}
+            className={style.centerStats}
+          >
             <Text fontSize={12} lineHeight={0.9} minW="80px" as="span">
               Pontuação Econômica
             </Text>
-            <Text fontSize={14} fontWeight={600} color="secondary.400" as="span">
+            <Text
+              fontSize={14}
+              fontWeight={600}
+              color="secondary.400"
+              as="span"
+            >
               {profile.stats.economic_points}%
             </Text>
           </Container>
