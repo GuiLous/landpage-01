@@ -79,6 +79,7 @@ export default function HeatmapCardStats({ profile }) {
                 fontWeight={700}
                 color="secondary.400"
                 as="span"
+                data-testid="hs-percentage"
               >
                 {headShotsPercent}%
               </Text>
@@ -115,6 +116,7 @@ export default function HeatmapCardStats({ profile }) {
                 fontWeight={700}
                 color="secondary.400"
                 as="span"
+                data-testid="body-percentage"
               >
                 {chestShotsPercent}%
               </Text>
@@ -151,6 +153,7 @@ export default function HeatmapCardStats({ profile }) {
                 fontWeight={700}
                 color="secondary.400"
                 as="span"
+                data-testid="other-percentage"
               >
                 {otherShotsPercent}%
               </Text>
