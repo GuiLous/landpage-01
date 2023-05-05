@@ -64,10 +64,10 @@ export default function HeatmapCardStats({ profile }) {
 
         <Container column className={style.centerStats}>
           <Container align="center" justify="between" fitContent>
-            <Container column justify="between" gap={5} fitContent>
+            <Container column justify="between" gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={14}
+                fontSize={12}
                 fontWeight={500}
                 color="#fff"
                 as="span"
@@ -85,8 +85,9 @@ export default function HeatmapCardStats({ profile }) {
               </Text>
             </Container>
 
-            <Container column gap={5} fitContent>
+            <Container column gap={3} fitContent>
               <Text
+                lineHeight={1}
                 fontSize={16}
                 fontWeight={700}
                 color="secondary.400"
@@ -101,10 +102,10 @@ export default function HeatmapCardStats({ profile }) {
           </Container>
 
           <Container align="center" justify="between" fitContent>
-            <Container column justify="between" gap={5} fitContent>
+            <Container column justify="between" gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={14}
+                fontSize={12}
                 fontWeight={500}
                 color="#fff"
                 as="span"
@@ -122,8 +123,9 @@ export default function HeatmapCardStats({ profile }) {
               </Text>
             </Container>
 
-            <Container column gap={5} fitContent>
+            <Container column gap={3} fitContent>
               <Text
+                lineHeight={1}
                 fontSize={16}
                 fontWeight={700}
                 color="secondary.400"
@@ -138,10 +140,10 @@ export default function HeatmapCardStats({ profile }) {
           </Container>
 
           <Container align="center" justify="between" fitContent>
-            <Container column justify="between" gap={5} fitContent>
+            <Container column justify="between" gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={14}
+                fontSize={12}
                 fontWeight={500}
                 color="#fff"
                 as="span"
@@ -159,8 +161,9 @@ export default function HeatmapCardStats({ profile }) {
               </Text>
             </Container>
 
-            <Container column gap={5} fitContent>
+            <Container column gap={3} fitContent>
               <Text
+                lineHeight={1}
                 fontSize={16}
                 fontWeight={700}
                 color="secondary.400"
