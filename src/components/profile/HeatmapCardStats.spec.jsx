@@ -3,16 +3,18 @@ import { render, screen } from '@testing-library/react'
 import { HeatmapCardStats } from '@components'
 
 describe('HeatmapCardStats Component', () => {
-  const profile = {
-    stats: {
-      head_shots: 10,
-      chest_shots: 30,
-      other_shots: 60,
-    },
-  }
+  const head_shots = 10
+  const chest_shots = 30
+  const other_shots = 60
 
   it('should renders correctly', () => {
-    render(<HeatmapCardStats profile={profile} />)
+    render(
+      <HeatmapCardStats
+        head_shots={head_shots}
+        chest_shots={chest_shots}
+        other_shots={other_shots}
+      />
+    )
 
     expect(screen.getByText('CABEÇA')).toBeInTheDocument()
     expect(screen.getByText('CORPO')).toBeInTheDocument()
@@ -20,7 +22,13 @@ describe('HeatmapCardStats Component', () => {
   })
 
   it('should render percentage correctly', () => {
-    render(<HeatmapCardStats profile={profile} />)
+    render(
+      <HeatmapCardStats
+        head_shots={head_shots}
+        chest_shots={chest_shots}
+        other_shots={other_shots}
+      />
+    )
 
     expect(screen.getByTestId('hs-percentage').textContent).toEqual('10.0%')
     expect(screen.getByTestId('body-percentage').textContent).toEqual('30.0%')

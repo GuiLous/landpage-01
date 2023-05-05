@@ -6,21 +6,16 @@ import style from './HeatmapCardStats.module.css'
 
 import FullBodyIcon from '../icons/FullBodyIcon'
 
-export default function HeatmapCardStats({ profile }) {
-  const totalShots =
-    profile.stats.head_shots +
-    profile.stats.chest_shots +
-    profile.stats.other_shots
+export default function HeatmapCardStats({
+  head_shots,
+  chest_shots,
+  other_shots,
+}) {
+  const totalShots = head_shots + chest_shots + other_shots
 
-  const headShotsPercent = Number(
-    (profile.stats.head_shots * 100) / totalShots
-  ).toFixed(1)
-  const chestShotsPercent = Number(
-    (profile.stats.chest_shots * 100) / totalShots
-  ).toFixed(1)
-  const otherShotsPercent = Number(
-    (profile.stats.other_shots * 100) / totalShots
-  ).toFixed(1)
+  const headShotsPercent = Number((head_shots * 100) / totalShots).toFixed(1)
+  const chestShotsPercent = Number((chest_shots * 100) / totalShots).toFixed(1)
+  const otherShotsPercent = Number((other_shots * 100) / totalShots).toFixed(1)
 
   return (
     <Container className={style.container} column gap={40}>
@@ -84,7 +79,7 @@ export default function HeatmapCardStats({ profile }) {
                 color="secondary.400"
                 as="span"
               >
-                {profile.stats.head_shots}
+                {head_shots}
               </Text>
               <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
                 ACERTOS
@@ -122,7 +117,7 @@ export default function HeatmapCardStats({ profile }) {
                 color="secondary.400"
                 as="span"
               >
-                {profile.stats.chest_shots}
+                {chest_shots}
               </Text>
               <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
                 ACERTOS
@@ -160,7 +155,7 @@ export default function HeatmapCardStats({ profile }) {
                 color="secondary.400"
                 as="span"
               >
-                {profile.stats.other_shots}
+                {other_shots}
               </Text>
               <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
                 ACERTOS
