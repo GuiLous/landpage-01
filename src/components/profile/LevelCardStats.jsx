@@ -4,23 +4,23 @@ import { Container, LevelBadge } from '@components'
 
 import style from './LevelCardStats.module.css'
 
-export default function LevelCardStats({ user }) {
+export default function LevelCardStats({ profile }) {
   return (
     <Container className={style.container} column>
       <Container className={style.topStats} gap={20} fitContent>
         <Container className={style.avatar}>
-          <LevelBadge level={user.level} />
+          <LevelBadge level={profile.level} />
         </Container>
         <Container column gap={4} justify="center">
           <Text fontSize={16} fontWeight={700} color="#00E4C9" as="span">
-            Level {user.level}
+            Level {profile.level}
           </Text>
           <Container gap={15}>
             <Text fontSize={14} fontWeight={500} color="#f2f2f2" as="span">
-              {user.wins}V {user.loses}D
+              {profile.stats.wins}V {profile.stats.loses}D
             </Text>
             <Text fontSize={14} fontWeight={500} color="#00E4C9" as="span">
-              {user.win_rate}%
+              {profile.stats.win_rate}%
             </Text>
           </Container>
         </Container>
@@ -40,7 +40,7 @@ export default function LevelCardStats({ user }) {
             </Text>
 
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              {user.kda_rate}
+              {profile.stats.kda_rate}
             </Text>
           </Container>
           <Container
@@ -53,7 +53,7 @@ export default function LevelCardStats({ user }) {
               Dano/Rodada
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              {user.adr_rate}
+              {profile.stats.adr_rate}
             </Text>
           </Container>
         </Container>
@@ -70,7 +70,7 @@ export default function LevelCardStats({ user }) {
               Headshots
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              {user.hs_percent}%
+              {profile.stats.hs_percent}%
             </Text>
           </Container>
           <Container
@@ -83,7 +83,7 @@ export default function LevelCardStats({ user }) {
               Pontuação de Combate
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              {user.combat_points}
+              {profile.stats.combat_points}
             </Text>
           </Container>
         </Container>
@@ -94,7 +94,7 @@ export default function LevelCardStats({ user }) {
               Pontuação Econômica
             </Text>
             <Text fontSize={14} fontWeight={600} color="#00E4C9" as="span">
-              {user.economic_points}%
+              {profile.stats.economic_points}%
             </Text>
           </Container>
         </Container>
