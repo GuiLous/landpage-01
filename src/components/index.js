@@ -58,6 +58,7 @@ import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
 import HeaderProfile from './profile/HeaderProfile'
+import HeatmapCardStats from './profile/HeatmapCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 export {
@@ -107,4 +108,5 @@ export {
   MatchTeamStats,
   MatchHistoryStatsAccordion,
   HeaderProfile,
+  HeatmapCardStats,
 }
