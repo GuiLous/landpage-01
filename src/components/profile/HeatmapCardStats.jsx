@@ -34,15 +34,6 @@ export default function HeatmapCardStats({ profile }) {
         >
           HEATMAP DE ACERTOS
         </Text>
-        {/* <Text
-          fontSize={12}
-          fontWeight={500}
-          lineHeight={1}
-          color="secondary.400"
-          as="span"
-        >
-          Últimas 20 Partidas
-        </Text> */}
       </Container>
 
       <Container gap={40} align="center">
