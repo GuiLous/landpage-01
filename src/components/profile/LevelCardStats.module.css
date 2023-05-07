@@ -2,19 +2,19 @@
 	padding: 24px;
 
 	width: 349px;
-	height: 344px;
+	height: 376px;
 
-	background-color: #222222;
+	background-color: var(--chakra-colors-gray-900);
 
 	border-radius: 8px;
 
-	border: 1px solid #434343;
+	border: 1px solid var(--chakra-colors-gray-600);
 }
 
 .topStats {
 	align-items: center;
 
-	margin-bottom: 32px;
+	margin-bottom: 24px;
 }
 
 .avatar {
@@ -30,4 +30,11 @@
 .centerStats {
 	min-width: 113px;
 	max-width: 113px;
+}
+
+.resultsSeparator {
+	height: 2px;
+	min-width: 6px;
+
+	background-color: var(--chakra-colors-gray-700);
 }

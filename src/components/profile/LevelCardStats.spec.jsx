@@ -8,22 +8,24 @@ describe('LevelCardStats Component', () => {
     stats: {
       wins: 10,
       loses: 5,
-      win_rate: 68,
-      kda_rate: 0.88,
-      adr_rate: 93.5,
-      hs_percent: 8,
-      combat_points: 173,
+      krd_rate: 0.88,
       economic_points: 8,
+      adr_rate: 93.5,
+      max_kills: 15,
+      hs_percent: 88,
+      max_damage: 190,
+      combat_points: 400,
     },
+    last_five_matches: ['win', 'loss', 'win', 'loss', 'loss'],
   }
 
   it('should renders correctly', () => {
     render(<LevelCardStats profile={profile} />)
 
-    expect(screen.getByText('LEVEL 50')).toBeInTheDocument()
-    expect(screen.getByText('Abates/Mortes')).toBeInTheDocument()
-    expect(screen.getByText('Dano/Rodada')).toBeInTheDocument()
-    expect(screen.getByText('68%')).toBeInTheDocument()
+    expect(screen.getByText('VITÓRIAS')).toBeInTheDocument()
+    expect(screen.getByText('ABATES/MORTES')).toBeInTheDocument()
+    expect(screen.getByText('DANO/RODADA')).toBeInTheDocument()
+    expect(screen.getByText('88%')).toBeInTheDocument()
     expect(screen.getByText('0.88')).toBeInTheDocument()
   })
 })
