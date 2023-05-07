@@ -4,9 +4,9 @@ export default {
   title: 'Match/LevelProgressBar',
   component: LevelProgressBar,
   argTypes: {
-    earned_points: { control: 'number' },
-    level_points: { control: 'number' },
-    level: { control: 'number' },
+    earned_points: { control: { type: 'range', min: -20, max: 30 } },
+    level_points: { control: { type: 'range', min: 0, max: 100 } },
+    level: { control: { type: 'range', min: 0, max: 50 } },
   },
   args: {
     earned_points: 10,
