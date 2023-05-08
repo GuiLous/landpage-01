@@ -5,9 +5,8 @@ import UserReducer from '@slices/UserSlice'
 import MatchTeamStats from './MatchTeamStats'
 
 export default {
-  title: 'Common/MatchTeamStats',
+  title: 'Match/MatchTeamStats',
   component: MatchTeamStats,
-  tags: ['autodocs'],
   argTypes: {
     team: { control: 'object' },
     isWinning: { control: 'boolean' },
