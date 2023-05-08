@@ -4,6 +4,7 @@ import Container from './container/Container'
 import Footer from './footer/Footer'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
+import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
@@ -55,8 +56,10 @@ import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
-// profile
+// Profile
 import HeaderProfile from './profile/HeaderProfile'
+import HeatmapCardStats from './profile/HeatmapCardStats'
+import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 export {
   AddUserIcon,
@@ -98,9 +101,12 @@ export {
   Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
+  RequireAuth,
   HeaderProfileMenu,
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
+  MatchHistoryStatsAccordion,
   HeaderProfile,
+  HeatmapCardStats,
 }

@@ -14,6 +14,7 @@ import VerifyView from './accounts/Verify'
 // matchmaking
 import ConnectView from './matchmaking/Connect'
 import LobbyView from './matchmaking/Lobby'
+import MatchView from './matchmaking/Match'
 
 export {
   HomeView,
@@ -27,4 +28,5 @@ export {
   LobbyView,
   ConnectView,
   InactiveView,
+  MatchView,
 }
