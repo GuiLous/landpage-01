@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Componente `LevelProgressBar` agora utiliza novos componentes `Progress` e `LevelBadge`.
 - Componente `LevelBadge` foi alterado para se encaixar melhor nos layouts [#181](https://github.com/3C-gg/reload-frontend/issues/181).
 
 ## [611cea3 - 8/5/2023]

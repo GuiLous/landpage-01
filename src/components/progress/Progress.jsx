@@ -10,11 +10,11 @@ import style from './Progress.module.css'
 export default function Progress({
   value,
   initial,
-  overflow,
-  showLabel,
-  radius,
+  overflow = true,
+  showLabel = true,
+  radius = true,
   horizontalPadding = 0,
-  labelSuffix,
+  labelSuffix = 'pts',
   labelSize = '14px',
   labelGap = 5,
 }) {
@@ -85,10 +85,12 @@ export default function Progress({
                   position: 'relative',
                   right:
                     !isPositive &&
-                    overflowed &&
                     Math.abs(value) - initial < 3 &&
-                    30,
-                  left: isPositive && overflowed && initial + value < 103 && 30,
+                    55 + horizontalPadding,
+                  left:
+                    isPositive &&
+                    initial + value < 103 &&
+                    55 + horizontalPadding,
                 }}
               >
                 <Text fontSize={labelSize || '14px'}>
@@ -125,12 +127,15 @@ export default function Progress({
               justify={isPositive ? 'end' : 'start'}
               style={{
                 visibility: hideNonOverflowedLabel && 'hidden',
+                position: 'relative',
                 paddingLeft:
-                  (initial + value === min || initial + value === max) &&
-                  horizontalPadding,
+                  initial + value === min || initial + value === max
+                    ? 30 + horizontalPadding
+                    : horizontalPadding,
                 paddingRight:
-                  (initial + value === min || initial + value === max) &&
-                  horizontalPadding,
+                  initial + value === min || initial + value === max
+                    ? 30 + horizontalPadding
+                    : horizontalPadding,
               }}
             >
               <Text fontSize={labelSize || '14px'}>
