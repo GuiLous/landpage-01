@@ -1,0 +1,47 @@
+.container {
+	position: relative;
+	overflow-x: hidden;
+	min-height: 32px;
+}
+
+.label {
+	white-space: nowrap;
+}
+
+.bars {
+	position: relative;
+}
+
+.barWrapper {
+	position: absolute;
+}
+
+.bar {
+	min-height: 6px;
+	max-height: 6px;
+	position: relative;
+}
+
+.backgroundBar {
+	background-color: var(--chakra-colors-primary-400);
+	z-index: 0;
+}
+
+.initialBar {
+	background-color: var(--chakra-colors-secondary-400);
+	z-index: 1;
+}
+
+.valueBar {
+	background-color: var(--chakra-colors-success);
+	z-index: 2;
+}
+
+.valueOverflowedBar {
+	background-color: var(--chakra-colors-success);
+	z-index: 3;
+}
+
+.danger {
+	background-color: var(--chakra-colors-danger-400);
+}
