@@ -27,10 +27,15 @@
 	min-width: 120px;
 }
 
-.txt {
-	font-weight: bold;
+.container.fitParent {
+	max-width: 100%;
+	min-width: 100%;
+}
+
+.txtWrapper {
 	position: absolute;
-	text-align: center;
+	height: 100%;
+	width: 100%;
 }
 
 .xs .txt {
