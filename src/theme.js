@@ -350,6 +350,13 @@ export default extendTheme({
       },
     },
     Avatar: {
+      baseStyle: {
+        container: {
+          borderWidth: '3px ',
+          borderColor: 'primary.400',
+          borderStyle: 'solid',
+        },
+      },
       variants: {
         online: {
           container: {
@@ -426,12 +433,6 @@ export default extendTheme({
             right: 0,
           },
         },
-        body: {
-          color: 'white',
-        },
-        header: {
-          color: 'white',
-        },
       },
       sizes: {
         lg: {
@@ -506,7 +507,7 @@ export default extendTheme({
     gray: {
       200: '#F5F6F8',
       300: '#ECECEC',
-      400: '#CCCCCC',
+      400: '#333333',
       500: '#5D5D5D',
       600: '#434343',
       700: '#999999',
