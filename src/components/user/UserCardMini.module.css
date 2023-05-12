@@ -5,6 +5,7 @@
 		#34a5e0 80%
 	);
 	border-radius: 8px;
+	max-height: 80px;
 	padding: 12px;
 	position: relative;
 	width: 100%;
@@ -74,7 +75,7 @@
 }
 
 .level {
-	max-width: 60px;
 	position: relative;
-	top: 4px;
+	min-width: 50px;
+	max-width: 50px;
 }
