@@ -48,8 +48,8 @@ export default function LevelBadge(props) {
           fontWeight="bold"
           fontSize={props.fitParent && props.fontSize}
           position="relative"
-          top={props.fitParent && -12}
-          left={props.fitParent && -1}
+          top={`${props.textYPosition}px`}
+          left={`${props.textXPosition}px`}
         >
           {props.level}
         </Text>

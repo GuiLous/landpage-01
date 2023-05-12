@@ -8,12 +8,16 @@ export default {
     size: { control: 'select', options: ['xs', 'sm', 'md', 'lg', 'xl', ''] },
     fitParent: { control: 'boolean' },
     fontSize: { control: 'number' },
+    textYPosition: { control: 'number' },
+    textXPosition: { control: 'number' },
   },
   args: {
     level: 0,
     size: 'md',
     fitParent: false,
     fontSize: null,
+    textYPosition: null,
+    textXPosition: null,
   },
 }
 
