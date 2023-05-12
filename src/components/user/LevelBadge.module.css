@@ -4,28 +4,38 @@
 
 .container.sm {
 	max-width: 41px;
+	min-width: 41px;
 }
 
 .container.xs {
 	max-width: 25px;
+	min-width: 25px;
 }
 
 .container.md {
 	max-width: 75px;
+	min-width: 75px;
 }
 
 .container.lg {
 	max-width: 90px;
+	min-width: 90px;
 }
 
 .container.xl {
 	max-width: 120px;
+	min-width: 120px;
 }
 
-.txt {
-	font-weight: bold;
+.container.fitParent {
+	max-width: 100%;
+	min-width: 100%;
+}
+
+.txtWrapper {
 	position: absolute;
-	text-align: center;
+	height: 100%;
+	width: 100%;
 }
 
 .xs .txt {
@@ -34,7 +44,7 @@
 }
 
 .sm .txt {
-	font-size: 12px;
+	font-size: 11px;
 	margin-left: -1px;
 	margin-top: -8px;
 }

@@ -28,7 +28,7 @@
 
 .avatar {
 	border-radius: 8px;
-	border: 2px solid white;
+	border: 1px solid white;
 	max-width: 120px;
 }
 
@@ -58,12 +58,13 @@
 }
 
 .lastResults {
+	margin-top: 5px;
 	font-size: 16px;
 	font-weight: 700;
 }
 
-.levelBadge {
-	max-width: 80px;
+.level {
+	margin: 30px 0;
 }
 
 .actions {

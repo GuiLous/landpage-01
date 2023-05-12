@@ -69,8 +69,13 @@ export default function InviteListItem(props) {
   return (
     <Container className={style.container} align="center" justify="center">
       <Container align="center" gap={14}>
-        <Container className={style.level} align="center">
-          <LevelBadge level={props.level} xsmall />
+        <Container
+          className={style.level}
+          align="center"
+          fitContent
+          style={{ top: props.level < 10 && 4 }}
+        >
+          <LevelBadge level={props.level} size="sm" />
         </Container>
         <Text className={style.username}>{props.username}</Text>
       </Container>

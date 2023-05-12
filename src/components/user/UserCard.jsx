@@ -1,6 +1,7 @@
-import { Divider, Icon, Text } from '@chakra-ui/react'
+import { Divider, Icon, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import { SiSteam } from 'react-icons/si'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { CloseIcon, Container, LevelBadge, UserIcon } from '@components'
 import style from './UserCard.module.css'
@@ -31,39 +32,54 @@ export default function UserCard(props) {
       >
         <Container align="center" justify="end" column fitContent>
           <Text>Últimas partidas</Text>
-          <Text className={style.lastResults}>V - D - D</Text>
+          <Text className={style.lastResults}>
+            {props.last_results?.join(' - ')}
+          </Text>
         </Container>
 
-        <Divider orientation="horizontal" style={{ maxWidth: '150px' }} />
+        <Divider
+          bg={'rgba(255, 255, 255, .4)'}
+          orientation="horizontal"
+          style={{ maxWidth: '150px' }}
+        />
 
         <Container className={style.matchCount} justify="center" fitContent>
-          <Text>10 Partidas jogadas</Text>
+          <Text>
+            {props.matches_played} Partida{props.matches_played > 1 && 's'}{' '}
+            jogada{props.matches_played > 1 && 's'}
+          </Text>
         </Container>
       </Container>
 
       <Container className={style.level} align="center" justify="center">
-        <Container className={style.levelBadge}>
-          <LevelBadge level={props.level} />
-        </Container>
+        <LevelBadge level={props.level} />
       </Container>
 
-      <Container className={style.actions} fitContent gap={30} justify="center">
-        <Container
-          align="center"
-          justify="center"
-          fitContent
-          className={style.actionLink}
-        >
-          <Icon as={UserIcon} />
+      <Container
+        className={style.actions}
+        justify="center"
+        align="center"
+        gap={30}
+      >
+        <Container className={style.actionLink} justify="center" fitContent>
+          <Link as={RouterLink} to={`/perfil/${props.userId}/`}>
+            <Icon as={UserIcon} />
+          </Link>
         </Container>
 
         <Container
-          align="center"
+          className={style.actionLink}
           justify="center"
           fitContent
-          className={style.actionLink}
+          align="center"
+          style={{ position: 'relative', top: '5px' }}
         >
-          <Icon as={SiSteam} />
+          <Link
+            href={`https://steamcommunity.com/profiles/${props.steamid}`}
+            isExternal
+          >
+            <Icon as={SiSteam} color="white" />
+          </Link>
         </Container>
       </Container>
     </Container>

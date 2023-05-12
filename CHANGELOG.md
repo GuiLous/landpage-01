@@ -7,8 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
+- Borda com cor primária no componente `Avatar`.
+- Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
+
 ### Changed
 
+- Componente `UserCardMini` foi atualizado para se adequar ao novo componente `LevelBadge`.
+- Componente `UserCard` foi atualizado para remover infos _hard-coded_ e se adequar ao novo componente `LevelBadge`.
+- Componente `InviteListItem` foi atualizado para adequar novo componente `LevelBadge`.
+- Componente `LevelProgressBar` agora utiliza novos componentes `Progress` e `LevelBadge`.
 - Componente `LevelBadge` foi alterado para se encaixar melhor nos layouts [#181](https://github.com/3C-gg/reload-frontend/issues/181).
 
 ## [611cea3 - 8/5/2023]

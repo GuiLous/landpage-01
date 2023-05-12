@@ -1,6 +1,7 @@
 /** @type { import('@storybook/react').Preview } */
 import { ChakraProvider } from '@chakra-ui/react'
 import { themes } from '@storybook/theming'
+import '../src/index.css'
 import theme from '../src/theme'
 
 const preview = {

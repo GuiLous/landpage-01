@@ -9,6 +9,7 @@ const config = {
     '@storybook/addon-interactions',
     '@chakra-ui/storybook-addon',
   ],
+  staticDirs: ['../public'],
   framework: {
     name: '@storybook/react-webpack5',
     options: {},

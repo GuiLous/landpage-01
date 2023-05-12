@@ -1,7 +1,5 @@
 import {
   Avatar,
-  Box,
-  HStack,
   Table,
   TableContainer,
   Tbody,
@@ -14,7 +12,7 @@ import {
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 
-import { LevelBadge } from '@components'
+import { Container } from '@components'
 
 import style from './MatchTeamStats.module.css'
 
@@ -71,10 +69,10 @@ export default function MatchTeamStats({ team, isWinning = false }) {
 
   return (
     <TableContainer className={style.tableContainer}>
-      <Table variant="striped" bgColor="gray.900" colorScheme="stripe">
+      <Table bgColor="gray.900">
         <Thead>
           <Tr>
-            <Th className={isWinning ? style.winning : style.loosing}>
+            <Th className={isWinning ? style.winner : style.loser}>
               {team.name}
             </Th>
             <Tooltip label="Abates" aria-label="Abates tooltip">
@@ -167,23 +165,29 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               className={player.user_id === user.id ? style.highlight : ''}
             >
               <Td className={style.user}>
-                <HStack>
-                  <Avatar
-                    variant="online"
-                    width="40px"
-                    height="40px"
-                    src={player.avatar?.small}
-                    borderWidth={2}
-                  />
+                <Container align="center" gap={20}>
+                  <Container className={style.avatar} fitContent>
+                    <Avatar
+                      width="40px"
+                      height="40px"
+                      src={player.avatar?.medium}
+                      borderWidth={2}
+                    />
+                  </Container>
 
-                  <Box className={style.level}>
-                    <LevelBadge level={player.level} xsmall />
-                  </Box>
+                  <Container className={style.username} column fitContent>
+                    <Text fontWeight={600} fontSize={'14px'}>
+                      {player.username}
+                    </Text>
 
-                  <Text fontWeight={600} fontSize={'14px'}>
-                    {player.username}
-                  </Text>
-                </HStack>
+                    <Text fontSize={'11px'} fontWeight={'normal'}>
+                      LEVEL{' '}
+                      <Text as={'span'} fontWeight={'bold'}>
+                        {player.level}
+                      </Text>
+                    </Text>
+                  </Container>
+                </Container>
               </Td>
               <Td>{player.stats.kills}</Td>
               <Td>{player.stats.deaths}</Td>

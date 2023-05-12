@@ -6,6 +6,7 @@ import style from './LevelBadge.module.css'
 
 export default function LevelBadge(props) {
   const [image, setImage] = useState(null)
+  const size = !props.fitParent && (props.size || 'md')
 
   useEffect(() => {
     const calcLvlRange = () => {
@@ -33,16 +34,27 @@ export default function LevelBadge(props) {
     <Container
       className={[
         style.container,
-        props.size ? style[props.size] : style.md,
+        size && style[size],
+        props.fitParent && style.fitParent,
       ].join(' ')}
       align="center"
       justify="center"
       {...props}
     >
+      <Container className={style.txtWrapper} align="center" justify="center">
+        <Text
+          data-testid="badge-level"
+          className={style.txt}
+          fontWeight="bold"
+          fontSize={props.fitParent && props.fontSize}
+          position="relative"
+          top={`${props.textYPosition}px`}
+          left={`${props.textXPosition}px`}
+        >
+          {props.level}
+        </Text>
+      </Container>
       <img src={image} alt={`Level ${props.level}`} data-testid="badge-image" />
-      <Text className={style.txt} data-testid="badge-level">
-        {props.level}
-      </Text>
     </Container>
   )
 }
