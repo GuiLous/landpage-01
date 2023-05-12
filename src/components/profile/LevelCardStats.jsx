@@ -4,14 +4,19 @@ import { Container, LevelBadge } from '@components'
 
 import style from './LevelCardStats.module.css'
 
-export default function LevelCardStats({ profile }) {
-  const lastFiveMatchesResults = profile.last_five_matches
-
+export default function LevelCardStats({
+  level,
+  highest_level,
+  match_wins,
+  highest_win_streak,
+  latest_matches_results,
+  stats,
+}) {
   return (
     <Container className={style.container} column>
       <Container className={style.topStats} gap={20} fitContent>
         <Container className={style.avatar}>
-          <LevelBadge level={profile.level} />
+          <LevelBadge level={level} />
         </Container>
         <Container column gap={8} justify="center">
           <Text
@@ -21,25 +26,25 @@ export default function LevelCardStats({ profile }) {
             color="secondary.400"
             as="span"
           >
-            {profile.stats.wins}{' '}
+            {match_wins}{' '}
             <Text fontSize={18} fontWeight={700} color="#fff" as="span">
               VITÓRIAS
             </Text>
           </Text>
           <Container gap={4} align="center">
-            {lastFiveMatchesResults.map((result, index) => (
+            {latest_matches_results.map((result, index) => (
               <>
                 <Text
                   fontSize={12}
                   lineHeight={1}
                   fontWeight={500}
-                  color={result === 'win' ? 'secondary.400' : 'gray.700'}
+                  color={result === 'V' ? 'secondary.400' : 'gray.700'}
                   as="span"
                 >
-                  {result === 'win' ? 'V' : 'D'}
+                  {result}
                 </Text>
 
-                {index !== lastFiveMatchesResults.length - 1 && (
+                {index !== latest_matches_results.length - 1 && (
                   <Container fitContent className={style.resultsSeparator} />
                 )}
               </>
@@ -62,7 +67,7 @@ export default function LevelCardStats({ profile }) {
               aria-label="Média de abates e mortes por partida"
             >
               <Text fontSize={12} color="#fff" as="span">
-                ABATES/MORTES
+                KDR
               </Text>
             </Tooltip>
 
@@ -73,13 +78,18 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.krd_rate}
+              {(stats.kills / stats.deaths).toFixed(2)}
             </Text>
           </Container>
           <Container column gap={4} lineHeight={1}>
-            <Text fontSize={12} color="#fff" as="span">
-              PONTUAÇÃO ECONÔMICA
-            </Text>
+            <Tooltip
+              label="Maior level atingido"
+              aria-label="Maior level atingido"
+            >
+              <Text fontSize={12} color="#fff" as="span">
+                MAIOR LEVEL
+              </Text>
+            </Tooltip>
             <Text
               fontSize={14}
               lineHeight={1}
@@ -87,7 +97,7 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.economic_points}
+              {highest_level}
             </Text>
           </Container>
         </Container>
@@ -101,11 +111,11 @@ export default function LevelCardStats({ profile }) {
             className={style.centerStats}
           >
             <Tooltip
-              label="Média de dano por partida"
-              aria-label="Média de dano por partida"
+              label="Rounds vencidos em situações 1vX"
+              aria-label="Rounds vencidos em situações 1vX"
             >
               <Text fontSize={12} color="#fff" as="span">
-                DANO/RODADA
+                CLUTCHS
               </Text>
             </Tooltip>
 
@@ -116,7 +126,11 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.adr_rate}
+              {stats.clutch_v1 +
+                stats.clutch_v2 +
+                stats.clutch_v3 +
+                stats.clutch_v4 +
+                stats.clutch_v5}
             </Text>
           </Container>
           <Container column gap={4} lineHeight={1}>
@@ -135,7 +149,7 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.max_kills}
+              {stats.most_kills_in_a_match}
             </Text>
           </Container>
         </Container>
@@ -148,9 +162,14 @@ export default function LevelCardStats({ profile }) {
             lineHeight={1}
             className={style.centerStats}
           >
-            <Text fontSize={12} color="#fff" as="span">
-              % HEADSHOTS
-            </Text>
+            <Tooltip
+              label="Percentual de acertos na cabeça"
+              aria-label="Percentual de acertos na cabeça"
+            >
+              <Text fontSize={12} color="#fff" as="span">
+                % HEADSHOTS
+              </Text>
+            </Tooltip>
 
             <Text
               fontSize={14}
@@ -159,7 +178,7 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.hs_percent}%
+              {Math.ceil((stats.head_shots / stats.shots_fired) * 100)}%
             </Text>
           </Container>
           <Container column gap={4} lineHeight={1}>
@@ -178,7 +197,7 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.max_damage}
+              {stats.most_damage_in_a_match}
             </Text>
           </Container>
         </Container>
@@ -191,9 +210,14 @@ export default function LevelCardStats({ profile }) {
             lineHeight={1}
             className={style.centerStats}
           >
-            <Text fontSize={12} color="#fff" as="span">
-              PONTUAÇÃO DE COMBATE
-            </Text>
+            <Tooltip
+              label="Maior quantidade de vitórias seguidas"
+              aria-label="Maior quantidade de vitórias seguidas"
+            >
+              <Text fontSize={12} color="#fff" as="span">
+                MAX WIN STREAK
+              </Text>
+            </Tooltip>
 
             <Text
               fontSize={14}
@@ -202,7 +226,7 @@ export default function LevelCardStats({ profile }) {
               color="secondary.400"
               as="span"
             >
-              {profile.stats.combat_points}
+              {highest_win_streak}
             </Text>
           </Container>
         </Container>

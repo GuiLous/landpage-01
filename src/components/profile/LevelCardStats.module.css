@@ -1,40 +1,33 @@
 .container {
-	padding: 24px;
-
-	width: 349px;
-	height: 376px;
-
-	background-color: var(--chakra-colors-gray-900);
-
+	background-color: var(--chakra-colors-gray-800);
 	border-radius: 8px;
-
-	border: 1px solid var(--chakra-colors-gray-600);
+	height: 376px;
+	left: 0px;
+	padding: 24px;
+	width: 349px;
 }
 
 .topStats {
 	align-items: center;
-
 	margin-bottom: 24px;
 }
 
 .avatar {
 	align-items: center;
-	justify-content: center;
-
-	max-width: 90px;
-	max-height: 96px;
 	height: 90px;
+	justify-content: center;
+	max-height: 96px;
+	max-width: 90px;
 	width: 90px;
 }
 
 .centerStats {
-	min-width: 113px;
 	max-width: 113px;
+	min-width: 113px;
 }
 
 .resultsSeparator {
+	background-color: var(--chakra-colors-gray-700);
 	height: 2px;
 	min-width: 6px;
-
-	background-color: var(--chakra-colors-gray-700);
 }
