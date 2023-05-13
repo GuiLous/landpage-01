@@ -33,9 +33,9 @@ describe('LevelCardStats Component', () => {
   it('should renders correctly', () => {
     render(<LevelCardStats {...props} />)
 
-    expect(screen.getByText('VITÓRIAS')).toBeInTheDocument()
+    expect(screen.getByText('Vitórias')).toBeInTheDocument()
     expect(screen.getByText('KDR')).toBeInTheDocument()
-    expect(screen.getByText('MAIOR LEVEL')).toBeInTheDocument()
+    expect(screen.getByText('Max Level')).toBeInTheDocument()
     expect(screen.getByText('1%')).toBeInTheDocument()
   })
 })
