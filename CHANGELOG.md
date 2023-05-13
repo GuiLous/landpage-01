@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Propriedade `last_results` para `last_matches_results` para ficar mais explícito e se adequar ao campo da API [#186](https://github.com/3C-gg/reload-frontend/issues/186).
 - Componente `UserCardMini` foi atualizado para se adequar ao novo componente `LevelBadge`.
 - Componente `UserCard` foi atualizado para remover infos _hard-coded_ e se adequar ao novo componente `LevelBadge`.
 - Componente `InviteListItem` foi atualizado para adequar novo componente `LevelBadge`.

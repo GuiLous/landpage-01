@@ -18,7 +18,7 @@ export default {
     level: 0,
     username: 'Username',
     onLeave: () => {},
-    last_results: ['V', 'D', 'D', 'V', 'V'],
+    last_matches_results: ['V', 'D', 'D', 'V', 'V'],
     matches_played: 10,
     userId: 1,
     steamid: '76561198075990604',
