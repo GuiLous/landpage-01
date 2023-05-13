@@ -1,33 +1,45 @@
 .container {
 	background-color: var(--chakra-colors-gray-800);
 	border-radius: 8px;
-	height: 376px;
-	left: 0px;
 	padding: 24px;
-	width: 349px;
 }
 
-.topStats {
-	align-items: center;
-	margin-bottom: 24px;
+.title {
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
 }
 
-.avatar {
-	align-items: center;
-	height: 90px;
-	justify-content: center;
-	max-height: 96px;
-	max-width: 90px;
-	width: 90px;
+.title span {
+	color: var(--chakra-colors-secondary-400);
 }
 
-.centerStats {
-	max-width: 113px;
-	min-width: 113px;
+.subtitle {
+	color: var(--chakra-colors-gray-700);
+	font-weight: 500;
+	font-size: 12px;
 }
 
-.resultsSeparator {
-	background-color: var(--chakra-colors-gray-700);
-	height: 2px;
-	min-width: 6px;
+.statsList {
+	flex-wrap: wrap;
+}
+
+.statsListItem {
+	margin-bottom: 20px;
+	margin-top: 20px;
+}
+
+.statsListItemTitle {
+	color: var(--chakra-colors-gray-700);
+	font-size: 12px;
+	font-weight: 500;
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.statsListItemValue {
+	color: white;
+	font-size: 16px;
+	font-weight: 600;
 }
