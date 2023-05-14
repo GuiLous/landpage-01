@@ -33,7 +33,7 @@ export default function UserCard(props) {
         <Container align="center" justify="end" column fitContent>
           <Text>Últimas partidas</Text>
           <Text className={style.lastResults}>
-            {props.last_results?.join(' - ')}
+            {props.last_matches_results?.join(' - ')}
           </Text>
         </Container>
 
