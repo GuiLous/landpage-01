@@ -10,6 +10,7 @@
         "color-no-invalid-hex": true,
         "comment-no-empty": true,
         "custom-property-no-missing-var-function": true,
+        "custom-property-empty-line-before": "never",
         "declaration-block-no-duplicate-custom-properties": true,
         "declaration-block-no-duplicate-properties": [
             true,
@@ -47,6 +48,14 @@
         "no-invalid-position-at-import-rule": true,
         "no-irregular-whitespace": true,
         "property-no-unknown": true,
+        "rule-empty-line-before": [
+            "always-multi-line",
+            {
+                "except": [
+                    "inside-block"
+                ]
+            }
+        ],
         "selector-anb-no-unmatchable": true,
         "selector-pseudo-class-no-unknown": true,
         "selector-pseudo-element-no-unknown": true,

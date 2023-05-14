@@ -75,25 +75,20 @@
 		max-width: 100%;
 		min-width: 0;
 	}
-
 	.heroImg img {
 		max-width: 100%;
 	}
-
 	.hero {
 		align-items: center;
 		max-width: 100%;
 		padding: 0;
 	}
-
 	.description {
 		max-width: 305px;
 	}
-
 	.animatedBg {
 		display: none;
 	}
-
 	.brand {
 		max-width: 75%;
 	}
