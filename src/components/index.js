@@ -60,6 +60,7 @@ import MatchTeamStats from './match/MatchTeamStats'
 // Profile
 import HeaderProfile from './profile/HeaderProfile'
 import HeatmapCardStats from './profile/HeatmapCardStats'
+import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 export {
@@ -111,4 +112,5 @@ export {
   HeaderProfile,
   HeatmapCardStats,
   Progress,
+  LevelCardStats,
 }

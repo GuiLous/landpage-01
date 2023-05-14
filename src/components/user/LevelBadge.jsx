@@ -50,6 +50,7 @@ export default function LevelBadge(props) {
           position="relative"
           top={`${props.textYPosition}px`}
           left={`${props.textXPosition}px`}
+          color="white"
         >
           {props.level}
         </Text>
