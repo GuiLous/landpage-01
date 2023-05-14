@@ -3,7 +3,6 @@
 	font-size: 18px;
 	position: relative;
 	text-transform: uppercase;
-
 	transition: all 100ms linear;
 }
 
@@ -16,9 +15,8 @@
 	cursor: pointer;
 	padding-bottom: 22px;
 	position: relative;
-	user-select: none;
-
 	transition: all 100ms linear;
+	user-select: none;
 }
 
 .typeSelection.disabled .lobbyMode {
@@ -26,27 +24,26 @@
 }
 
 .modeActiveCaret {
-	color: var(--chakra-colors-primary-400);
 	bottom: -8px;
+	color: var(--chakra-colors-primary-400);
 	font-size: 24px;
-	position: absolute;
 	opacity: 0;
-
+	position: absolute;
 	transition: all 100ms linear;
 }
 
 .lobbyMode.activeMode,
 .lobbyMode.activeMode:hover {
-	cursor: default;
-	color: var(--chakra-colors-primary-400);
 	border-bottom: 1px solid var(--chakra-colors-primary-400);
+	color: var(--chakra-colors-primary-400);
+	cursor: default;
 }
 
 .lobbyMode.lobbyMode.activeMode .modeActiveCaret {
 	opacity: 1;
 }
 
-.lobbyMode:hover {
+.typeSelection .lobbyMode:hover {
 	border-bottom: 1px solid white;
 	color: white;
 }
@@ -58,9 +55,9 @@
 
 .typeSelection.disabled .lobbyMode.activeMode,
 .typeSelection.disabled .lobbyMode.activeMode:hover {
-	cursor: default;
-	color: var(--chakra-colors-primary-400);
 	border-bottom: 1px solid var(--chakra-colors-primary-400);
+	color: var(--chakra-colors-primary-400);
+	cursor: default;
 }
 
 .typeSelection.disabled .lobbyMode.lobbyMode.activeMode .modeActiveCaret {

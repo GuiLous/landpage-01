@@ -1,7 +1,7 @@
 .container {
-	position: relative;
-	overflow-x: hidden;
 	min-height: 32px;
+	overflow-x: hidden;
+	position: relative;
 }
 
 .label {
@@ -17,8 +17,8 @@
 }
 
 .bar {
-	min-height: 6px;
 	max-height: 6px;
+	min-height: 6px;
 	position: relative;
 }
 

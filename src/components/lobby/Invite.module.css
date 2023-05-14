@@ -1,7 +1,6 @@
 .container {
 	background-color: transparent;
 	padding: 10px 25px;
-
 	transition: all 50ms linear;
 }
 
@@ -18,9 +17,9 @@
 	color: white;
 	font-size: 14px;
 	font-weight: 500;
-	text-overflow: ellipsis;
 	max-width: 120px;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 

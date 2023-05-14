@@ -17,16 +17,15 @@
 	cursor: pointer;
 	font-size: 18px;
 	font-weight: bold;
-	right: -4px;
+	height: 100px;
 	opacity: 0;
 	padding: 3px;
 	position: absolute;
+	right: -4px;
 	top: -4px;
-	z-index: 1;
-	width: 100px;
-	height: 100px;
-
 	transition: all 100ms linear;
+	width: 100px;
+	z-index: 1;
 }
 
 .container:hover .leaveAction {
@@ -44,8 +43,8 @@
 .avatar img {
 	border: 2px solid white;
 	border-radius: 8px;
-	min-width: 60px;
 	max-width: 60px;
+	min-width: 60px;
 }
 
 .username {
@@ -54,8 +53,8 @@
 }
 
 .username p {
-	text-overflow: ellipsis;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
@@ -66,7 +65,6 @@
 .actionLink {
 	cursor: pointer;
 	opacity: 0.8;
-
 	transition: all 100ms linear;
 }
 
@@ -75,7 +73,7 @@
 }
 
 .level {
-	position: relative;
-	min-width: 50px;
 	max-width: 50px;
+	min-width: 50px;
+	position: relative;
 }

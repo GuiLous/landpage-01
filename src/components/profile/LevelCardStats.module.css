@@ -17,8 +17,8 @@
 
 .subtitle {
 	color: var(--chakra-colors-gray-700);
-	font-weight: 500;
 	font-size: 12px;
+	font-weight: 500;
 }
 
 .statsList {
