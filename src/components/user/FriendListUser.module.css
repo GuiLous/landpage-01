@@ -2,7 +2,6 @@
 	background-color: transparent;
 	cursor: pointer;
 	padding: 10px 25px;
-
 	transition: all 50ms linear;
 }
 
@@ -19,9 +18,9 @@
 	color: white;
 	font-size: 14px;
 	font-weight: 500;
-	text-overflow: ellipsis;
 	max-width: 150px;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
@@ -42,9 +41,8 @@
 }
 
 .invite {
-	opacity: 0;
 	font-size: 20px;
-
+	opacity: 0;
 	transition: all 50ms linear;
 }
 

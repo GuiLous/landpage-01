@@ -1,5 +1,5 @@
 .hello {
-	font-size: 14px;
 	color: var(--chakra-colors-gray-700);
+	font-size: 14px;
 	font-weight: 500;
 }

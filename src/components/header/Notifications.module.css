@@ -1,6 +1,5 @@
 .notificationBox {
-	position: relative;
 	cursor: pointer;
-
 	margin: 0 2.188rem 0 3.125rem;
+	position: relative;
 }
