@@ -1,23 +1,18 @@
 .container {
-	padding: 24px;
-
-	width: 349px;
-	height: 287px;
-
 	background-color: #222222;
-
-	border-radius: 8px;
-
 	border: 1px solid #434343;
+	border-radius: 8px;
+	height: 287px;
+	padding: 24px;
+	width: 349px;
 }
 
 .centerStats {
 	height: 100%;
-
 	justify-content: space-evenly;
 }
 
 .bodyContainer {
-	width: 73px;
 	height: 190px;
+	width: 73px;
 }

@@ -13,13 +13,12 @@
 
 .leaveAction {
 	cursor: pointer;
-	right: 18px;
 	opacity: 0.5;
 	position: absolute;
+	right: 18px;
 	top: 18px;
-	z-index: 1;
-
 	transition: all 100ms linear;
+	z-index: 1;
 }
 
 .leaveAction:hover {
@@ -27,8 +26,8 @@
 }
 
 .avatar {
+	border: 1px solid white;
 	border-radius: 8px;
-	border: 2px solid white;
 	max-width: 120px;
 }
 
@@ -44,8 +43,8 @@
 }
 
 .username p {
-	text-overflow: ellipsis;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
@@ -60,10 +59,11 @@
 .lastResults {
 	font-size: 16px;
 	font-weight: 700;
+	margin-top: 5px;
 }
 
-.levelBadge {
-	max-width: 80px;
+.level {
+	margin: 30px 0;
 }
 
 .actions {
@@ -74,7 +74,6 @@
 .actionLink {
 	cursor: pointer;
 	opacity: 0.8;
-
 	transition: all 100ms linear;
 }
 

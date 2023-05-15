@@ -1,9 +1,8 @@
 import MatchInfos from './MatchInfos'
 
 export default {
-  title: 'Common/MatchInfos',
+  title: 'Match/MatchInfos',
   component: MatchInfos,
-  tags: ['autodocs'],
   argTypes: {
     match: { control: 'object' },
   },

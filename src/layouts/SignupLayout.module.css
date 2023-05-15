@@ -1,18 +1,18 @@
 .container {
 	background-color: black;
 	background-image: url('@assets/images/signup_bg.png');
+	background-position: left bottom;
 	background-repeat: no-repeat;
 	background-size: contain;
-	background-position: left bottom;
 	color: white;
 	height: 100vh;
 	position: relative;
 }
 
 .liquidObject {
-	position: absolute;
 	bottom: 140px;
 	left: 0;
+	position: absolute;
 	z-index: 0;
 }
 

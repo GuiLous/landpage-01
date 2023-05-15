@@ -9,8 +9,8 @@
 }
 
 .teamScore {
-	font-weight: bold;
 	font-size: 32px;
+	font-weight: bold;
 }
 
 .teamScore.winner {
@@ -23,8 +23,8 @@
 
 .teamName {
 	font-weight: 500;
+	max-width: 350px;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	max-width: 350px;
 	white-space: nowrap;
 }

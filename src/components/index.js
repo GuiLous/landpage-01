@@ -4,6 +4,7 @@ import Container from './container/Container'
 import Footer from './footer/Footer'
 import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
+import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
@@ -59,6 +60,7 @@ import MatchTeamStats from './match/MatchTeamStats'
 // Profile
 import HeaderProfile from './profile/HeaderProfile'
 import HeatmapCardStats from './profile/HeatmapCardStats'
+import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 export {
@@ -109,4 +111,6 @@ export {
   MatchHistoryStatsAccordion,
   HeaderProfile,
   HeatmapCardStats,
+  Progress,
+  LevelCardStats,
 }

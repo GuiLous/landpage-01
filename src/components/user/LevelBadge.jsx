@@ -1,50 +1,61 @@
 import { Text } from '@chakra-ui/react'
-import React from 'react'
 
-import lvl0To9 from '@assets/images/level_badges/0_9.png'
-import lvl10To19 from '@assets/images/level_badges/10_19.png'
-import lvl20To29 from '@assets/images/level_badges/20_29.png'
-import lvl30To39 from '@assets/images/level_badges/30_39.png'
-import lvl40To49 from '@assets/images/level_badges/40_49.png'
-import lvl50Up from '@assets/images/level_badges/50.png'
 import { Container } from '@components'
+import { useEffect, useState } from 'react'
 import style from './LevelBadge.module.css'
 
-export default function LevelBadge({ level, small, xsmall, xxsmall }) {
+export default function LevelBadge(props) {
+  const [image, setImage] = useState(null)
+  const size = !props.fitParent && (props.size || 'md')
+
+  useEffect(() => {
+    const calcLvlRange = () => {
+      let range = '0-9'
+      if (props.level >= 10) range = '10-19'
+      if (props.level >= 20) range = '20-29'
+      if (props.level >= 30) range = '30-39'
+      if (props.level >= 40) range = '40-49'
+      if (props.level >= 50) range = '50'
+
+      return range
+    }
+
+    const fetchImg = async () => {
+      const response = await import(
+        `@assets/images/level_badges/badge_${calcLvlRange()}.png`
+      )
+      setImage(response.default)
+    }
+
+    fetchImg()
+  }, [props.level])
+
   return (
     <Container
       className={[
         style.container,
-        small && style.small,
-        xsmall && style.xsmall,
-        xxsmall && style.xxsmall,
+        size && style[size],
+        props.fitParent && style.fitParent,
       ].join(' ')}
       align="center"
       justify="center"
+      {...props}
     >
-      <Container className={style.badge} align="center" justify="center">
-        {level <= 9 && <img src={lvl0To9} alt={`Level ${level}`} />}
-
-        {level >= 10 && level <= 19 && (
-          <img src={lvl10To19} alt={`Level ${level}`} />
-        )}
-
-        {level >= 20 && level <= 29 && (
-          <img src={lvl20To29} alt={`Level ${level}`} />
-        )}
-
-        {level >= 30 && level <= 39 && (
-          <img src={lvl30To39} alt={`Level ${level}`} />
-        )}
-
-        {level >= 40 && level <= 49 && (
-          <img src={lvl40To49} alt={`Level ${level}`} />
-        )}
-
-        {level >= 50 && <img src={lvl50Up} alt={`Level ${level}`} />}
+      <Container className={style.txtWrapper} align="center" justify="center">
+        <Text
+          data-testid="badge-level"
+          className={style.txt}
+          fontWeight="bold"
+          fontSize={props.fitParent && props.fontSize}
+          position="relative"
+          top={`${props.textYPosition}px`}
+          left={`${props.textXPosition}px`}
+          color="white"
+        >
+          {props.level}
+        </Text>
       </Container>
-
-      <Text className={style.level}>{level}</Text>
+      <img src={image} alt={`Level ${props.level}`} data-testid="badge-image" />
     </Container>
   )
 }

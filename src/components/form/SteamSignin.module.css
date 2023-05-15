@@ -9,10 +9,10 @@
 
 .container button {
 	background-color: transparent;
-	color: transparent;
 	border: none;
+	color: transparent;
+	cursor: pointer;
 	margin-top: 10px;
 	padding: 0;
-	cursor: pointer;
 	text-align: center;
 }

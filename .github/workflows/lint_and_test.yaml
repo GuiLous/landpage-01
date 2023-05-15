@@ -17,8 +17,8 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      - name: run prettier
-        run: npx prettier --check src
+      - name: run linters
+        run: npm run lint
 
   test:
     runs-on: ubuntu-latest

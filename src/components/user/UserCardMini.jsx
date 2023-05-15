@@ -1,6 +1,7 @@
-import { Icon, Text } from '@chakra-ui/react'
+import { Icon, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import { SiSteam } from 'react-icons/si'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { CloseIcon, Container, LevelBadge, UserIcon } from '@components'
 import style from './UserCardMini.module.css'
@@ -22,28 +23,40 @@ export default function UserCardMini(props) {
         </Container>
 
         <Container className={style.actions} gap={10}>
-          <Container
-            align="center"
-            justify="center"
-            fitContent
-            className={style.actionLink}
-          >
-            <Icon as={UserIcon} />
+          <Container className={style.actionLink} justify="center" fitContent>
+            <Link as={RouterLink} to={`/perfil/${props.user_id}/`}>
+              <Icon as={UserIcon} />
+            </Link>
           </Container>
 
           <Container
-            align="center"
+            className={style.actionLink}
             justify="center"
             fitContent
-            className={style.actionLink}
+            align="center"
+            style={{ position: 'relative', top: '5px' }}
           >
-            <Icon as={SiSteam} />
+            <Link
+              href={`https://steamcommunity.com/profiles/${props.steamid}`}
+              isExternal
+            >
+              <Icon as={SiSteam} color="white" />
+            </Link>
           </Container>
         </Container>
       </Container>
 
-      <Container className={style.level}>
-        <LevelBadge level={props.level} small />
+      <Container
+        className={style.level}
+        style={{ top: props.level < 10 && '4px', maxWidth: '50px' }}
+        justify="end"
+      >
+        <LevelBadge
+          level={props.level}
+          fitParent
+          fontSize={13}
+          textYPosition={-4}
+        />
       </Container>
     </Container>
   )

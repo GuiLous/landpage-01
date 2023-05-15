@@ -1,7 +1,7 @@
 .container {
 	background-color: #222;
-	border-radius: 8px;
 	border: none;
+	border-radius: 8px;
 	height: 100%;
 	position: relative;
 }
@@ -28,9 +28,9 @@
 
 .tablist {
 	box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px -10px;
+	flex: 0;
 	padding: 0 25px;
 	padding-bottom: 10px;
-	flex: 0;
 	position: relative;
 }
 
@@ -59,8 +59,8 @@
 }
 
 .footer {
-	box-shadow: rgba(0, 0, 0, 0.2) 0px -10px 20px -10px;
 	border-top: 1px solid #434343;
+	box-shadow: rgba(0, 0, 0, 0.2) 0px -10px 20px -10px;
 	margin: 0 auto;
 	padding: 12px;
 	width: 90%;

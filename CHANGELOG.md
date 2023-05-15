@@ -5,12 +5,33 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## Unreleased
+
+### Added
+
+- Mais um tom de cinza: `#1E1E1E` ou `gray.800`.
+- Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
+- Borda com cor primária no componente `Avatar`.
+- Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
+
+### Changed
+
+- Propriedade `last_results` para `last_matches_results` para ficar mais explícito e se adequar ao campo da API [#186](https://github.com/3C-gg/reload-frontend/issues/186).
+- Componente `LevelCardStats` foi atualizado para se adequar ao novo componente `LevelBadge`. Também revisamos o layout do componente para refletir mudanças no design [#156](https://github.com/3C-gg/reload-frontend/issues/156).
+- Componente `UserCardMini` foi atualizado para se adequar ao novo componente `LevelBadge`.
+- Componente `UserCard` foi atualizado para remover infos _hard-coded_ e se adequar ao novo componente `LevelBadge`.
+- Componente `InviteListItem` foi atualizado para adequar novo componente `LevelBadge`.
+- Componente `LevelProgressBar` agora utiliza novos componentes `Progress` e `LevelBadge`.
+- Componente `LevelBadge` foi alterado para se encaixar melhor nos layouts [#181](https://github.com/3C-gg/reload-frontend/issues/181).
+
+## [611cea3 - 8/5/2023]
 
 ### Added
 
 - Criado componente `HeatmapCardStats` (https://github.com/3C-gg/reload-frontend/issues/157).
+- Criado `stories` para o componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/171).
 - Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
+- Criado componente `LevelCardStats` (https://github.com/3C-gg/reload-frontend/issues/156).
 - Tema customizado para component Progress do Chakra UI.
 - Criado componente `HeaderProfile` (https://github.com/3C-gg/reload-frontend/issues/153).
 - Adicionado lib `react-countup` para animar um número de 0 a x.
