@@ -14,6 +14,7 @@ module.exports = {
       '@store': path.resolve(__dirname, 'src/store'),
       '@layouts': path.resolve(__dirname, 'src/layouts'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@api': path.resolve(__dirname, 'src/api'),
     },
   },
   jest: {
@@ -33,7 +34,7 @@ module.exports = {
         '^@store(.*)$': '<rootDir>/src/store$1',
         '^@providers(.*)$': '<rootDir>/src/providers$1',
         '^@layouts(.*)$': '<rootDir>/src/layouts$1',
-        '^@hooks(.*)$': '<rootDir>/src/hooks$1',
+        '^@api(.*)$': '<rootDir>/src/api$1',
       },
     },
   },

@@ -8,6 +8,7 @@ const config = {
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     '@chakra-ui/storybook-addon',
+    'storybook-addon-mock',
   ],
   staticDirs: ['../public'],
   framework: {
@@ -32,6 +33,7 @@ const config = {
       '@config': path.resolve(__dirname, '../src/config'),
       '@store': path.resolve(__dirname, '../src/store'),
       '@layouts': path.resolve(__dirname, '../src/layouts'),
+      '@api': path.resolve(__dirname, '../src/api'),
       '@hooks': path.resolve(__dirname, '../src/hooks'),
     }
 
