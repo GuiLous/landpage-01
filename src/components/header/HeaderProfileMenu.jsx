@@ -1,6 +1,5 @@
 import {
   Avatar,
-  Badge,
   Button,
   Flex,
   Menu,
@@ -9,7 +8,7 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { ArrowDownIcon, ArrowUpIcon, Container } from '@components'
@@ -18,8 +17,7 @@ import { updateUser } from '@slices/UserSlice'
 
 import style from './HeaderProfileMenu.module.css'
 
-export default function HeaderProfileMenu() {
-  const user = useSelector((state) => state.user)
+export default function HeaderProfileMenu({ user }) {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
@@ -53,28 +51,22 @@ export default function HeaderProfileMenu() {
             gap={1}
             aria-label="menu button"
           >
-            <Container fitContent align="center">
-              <Flex flexDir="column" mr={6} alignItems="flex-start">
+            <Container
+              fitContent
+              align="center"
+              gap={40}
+              style={{ paddingTop: 5, paddingBottom: 5 }}
+            >
+              <Flex flexDir="column" alignItems="flex-start">
                 <Text className={style.hello}>Olá!</Text>
                 <Text textTransform="initial">{user.account.username}</Text>
               </Flex>
 
               <Avatar
-                variant="online"
-                width="46px"
-                height="46px"
+                size="lg"
                 src={user.account.avatar.small}
                 borderWidth={2}
-              >
-                <Badge
-                  variant="online"
-                  pos="absolute"
-                  top="-1px"
-                  right="-2px"
-                  height="11px"
-                  width="11px"
-                />
-              </Avatar>
+              />
             </Container>
           </MenuButton>
 

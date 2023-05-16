@@ -1,40 +1,22 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
-import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import { HeaderPlayButton } from '@components'
-import MatchReducer from '@slices/MatchSlice'
-import UserReducer from '@slices/UserSlice'
 
 describe('HeaderPlayButton Component', () => {
+  const user = {
+    account: {
+      lobby: {
+        queue: null,
+        queue_time: null,
+      },
+    },
+  }
+
   it('should renders correctly', () => {
-    const user = {
-      account: {
-        lobby: {
-          queue: null,
-        },
-      },
-    }
-
-    const match = {
-      preMatch: null,
-      match: null,
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-        match: MatchReducer,
-      },
-      preloadedState: { user, match },
-    })
-
     render(
       <BrowserRouter>
-        <Provider store={store}>
-          <HeaderPlayButton />
-        </Provider>
+        <HeaderPlayButton user={user} />
       </BrowserRouter>
     )
 
@@ -42,32 +24,11 @@ describe('HeaderPlayButton Component', () => {
   })
 
   it('should renders with text Em partida', () => {
-    const user = {
-      account: {
-        lobby: {
-          queue: null,
-        },
-      },
-    }
-
-    const match = {
-      preMatch: null,
-      match: true,
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-        match: MatchReducer,
-      },
-      preloadedState: { user, match },
-    })
+    const match = true
 
     render(
       <BrowserRouter>
-        <Provider store={store}>
-          <HeaderPlayButton />
-        </Provider>
+        <HeaderPlayButton user={user} match={match} />
       </BrowserRouter>
     )
 
@@ -75,33 +36,12 @@ describe('HeaderPlayButton Component', () => {
   })
 
   it('should renders with Timer component', () => {
-    const user = {
-      account: {
-        lobby: {
-          queue: true,
-          queue_time: 0,
-        },
-      },
-    }
-
-    const match = {
-      preMatch: null,
-      match: null,
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-        match: MatchReducer,
-      },
-      preloadedState: { user, match },
-    })
+    user.account.lobby.queue = true
+    user.account.lobby.queue_time = 0
 
     render(
       <BrowserRouter>
-        <Provider store={store}>
-          <HeaderPlayButton />
-        </Provider>
+        <HeaderPlayButton user={user} />
       </BrowserRouter>
     )
 

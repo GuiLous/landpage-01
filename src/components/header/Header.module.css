@@ -1,8 +1,8 @@
-.header {
+.container {
 	background-color: black;
 	color: white;
 	flex: initial;
-	padding: 0px 60px;
+	padding: 0px 40px;
 }
 
 .logo {
@@ -11,4 +11,33 @@
 
 .logo img {
 	width: 100%;
+}
+
+.notificationsWrapper {
+	height: 100%;
+	position: relative;
+}
+
+.notificationIcon {
+	cursor: pointer;
+	height: 100%;
+	padding: 0 50px;
+	position: relative;
+}
+
+.notificationBadge {
+	left: 50%;
+	position: absolute;
+	top: 15px;
+}
+
+.notificationList {
+	position: absolute;
+	right: 0;
+	top: 100%;
+	width: 353px;
+}
+
+.ignoreClickOutside {
+	flex: 1
 }
