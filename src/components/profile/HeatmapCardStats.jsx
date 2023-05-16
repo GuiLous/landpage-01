@@ -13,9 +13,9 @@ export default function HeatmapCardStats({
 }) {
   const totalShots = head_shots + chest_shots + other_shots
 
-  const headShotsPercent = Number((head_shots * 100) / totalShots).toFixed(1)
-  const chestShotsPercent = Number((chest_shots * 100) / totalShots).toFixed(1)
-  const otherShotsPercent = Number((other_shots * 100) / totalShots).toFixed(1)
+  const headShotsPercent = totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(1)
+  const chestShotsPercent = totalShots === 0 ? 0 : Number((chest_shots * 100) / totalShots).toFixed(1)
+  const otherShotsPercent = totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(1)
 
   return (
     <Container className={style.container} column gap={40}>
