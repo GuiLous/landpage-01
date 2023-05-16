@@ -22,8 +22,10 @@ import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellIcon from './icons/BellIcon'
+import CheckIcon from './icons/CheckIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
 import CloseIcon from './icons/CloseIcon'
+import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
@@ -50,7 +52,6 @@ import UserStatus from './user/UserStatus'
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
 import HeaderProfileMenu from './header/HeaderProfileMenu'
-import Notifications from './header/Notifications'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -62,6 +63,10 @@ import HeaderProfile from './profile/HeaderProfile'
 import HeatmapCardStats from './profile/HeatmapCardStats'
 import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+
+// Notifications
+import NotificationList from './notifications/NotificationList'
+import NotificationListItem from './notifications/NotificationListItem'
 
 export {
   AddUserIcon,
@@ -100,7 +105,6 @@ export {
   UserStatus,
   BellIcon,
   Header,
-  Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
   RequireAuth,
@@ -113,4 +117,8 @@ export {
   HeatmapCardStats,
   Progress,
   LevelCardStats,
+  DoubleCheckIcon,
+  CheckIcon,
+  NotificationList,
+  NotificationListItem,
 }

@@ -125,6 +125,10 @@ export default extendTheme({
             bg: 'transparent',
             backgroundColor: 'transparent',
             color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
           },
           _active: {
             bg: 'transparent',
@@ -294,6 +298,12 @@ export default extendTheme({
       },
     },
     Badge: {
+      baseStyle: {
+        bg: 'primary.400',
+        color: 'white',
+        borderRadius: '10px',
+        padding: '0 8px',
+      },
       variants: {
         online: {
           bg: 'success',
@@ -301,6 +311,7 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
         },
 
         primary: {
@@ -319,6 +330,16 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
+        },
+
+        disabled: {
+          bg: 'gray.700',
+          backgroundColor: 'gray.700',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+          padding: 'initial',
         },
       },
     },
@@ -352,7 +373,7 @@ export default extendTheme({
     Avatar: {
       baseStyle: {
         container: {
-          borderWidth: '3px ',
+          borderWidth: '2px ',
           borderColor: 'primary.400',
           borderStyle: 'solid',
         },
@@ -518,5 +539,16 @@ export default extendTheme({
     stripe: {
       100: '#111111',
     },
+  },
+  fontWeights: {
+    thin: 100,
+    extraLight: 200,
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700,
+    extraBold: 800,
+    black: 900,
   },
 })

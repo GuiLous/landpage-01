@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Novos componentes de Notificações: `NotificationList` e `NotificationListItem` [#129](https://github.com/3C-gg/reload-frontend/issues/129).
+- Adiciona `api`s. Cria o novo padrão de interface com a API do backend para ser seguido. Iniciamos com a `BaseAPI` que contém métodos reutilizáveis genéricos e a `NotificationsAPI` que apresenta uma interface específica para se comunicar com a API do backend de Notificações.
+- Adiciona `hooks` pra que a gente possa criar nossos próprios hooks e já adiciona um hook `useOutsideClick` que replica a lógica do hook do Chakra, mas adicionando uma exceção para determinadas classes.
+- Propriedade `fontWeights` no tema do Chakra pra que a gente possa utilizar sempre o mesmo padrão do Figma.
+- Variante `disabled` e estilo base (`baseStyle`) para o componente `Badge`.
 - Mais um tom de cinza: `#1E1E1E` ou `gray.800`.
 - Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
 - Borda com cor primária no componente `Avatar`.
@@ -16,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Componente `Header` foi adequado para receber o novo componente `NotificationList`.
+- Alterado a espessura da borda do componente `Avatar`.
 - Propriedade `last_results` para `last_matches_results` para ficar mais explícito e se adequar ao campo da API [#186](https://github.com/3C-gg/reload-frontend/issues/186).
 - Componente `LevelCardStats` foi atualizado para se adequar ao novo componente `LevelBadge`. Também revisamos o layout do componente para refletir mudanças no design [#156](https://github.com/3C-gg/reload-frontend/issues/156).
 - Componente `UserCardMini` foi atualizado para se adequar ao novo componente `LevelBadge`.
@@ -53,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- No teste `Lobby.spec.jsx` foi adicionado uma propriedade `notifications` dentro do objeto `user`.
 - Alguns botões estavam com a propriedade `isDisabled` escrita de modo errado (`disabled`). Corrigimos isso nos botões que encontramos com esse problema (https://github.com/3C-gg/reload-frontend/issues/110).
 - Adicionamos algumas verificações para impedir que amigos sejam convidados caso não seja possível, por vários motivos, por exemplo o lobby cheio, que prevê o modo 1x1 (https://github.com/3C-gg/reload-frontend/issues/111).
 - Estrutura ruim de arquivos de apoio (`utils`).
@@ -60,10 +68,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Adicionado tema dark no storybook.
-- Alterado style para o component `MatchTeamStats` ocupar `100%`. 
+- Alterado style para o component `MatchTeamStats` ocupar `100%`.
 - Removido a margin-top de `40px` do component `MatchTeamStats`.
 - Mudado o size `lg` do componente `Avatar` do chakra para 55px no arquivo `theme`.
 - Alterado o link do Discord para `https://discord.gg/mMMKshktfT`.
+- Removido os componentes de `notificação` do `Header`.
+- Serviço websocket que recebe as notificações (`ws_newNotification`).
+- Adicionado o slice de `Notifications` no arquivo de `store`.
+- Alterado o slice de `Notifications` para usar no componente de notificações do header.
+- Mudado `Lobby.spec.js` para `Lobby.spec.jsx`.
 - Mudado a importação do Header no componente `MainLayout`.
 - Alterado o componente `LevelBadge` e sua estilização para receber a prop `xxsmall` para diminuir o tamanho da fonte do level.
 - Adicionado propriedade formatted com valor falso no timer do componente MatchFoundModal.

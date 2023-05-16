@@ -1,0 +1,112 @@
+import { Icon, Text } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { NotificationsAPI } from '@api'
+import {
+  Container,
+  DoubleCheckIcon,
+  NotificationListItem,
+  Scrollbars,
+} from '@components'
+import { StorageService, Toast } from '@services'
+import {
+  readAllNotifications,
+  readNotification,
+} from '@slices/NotificationSlice'
+
+import logoSymbol from '@assets/images/logo_symbol_white.svg'
+import style from './NotificationList.module.css'
+
+export default function NotificationList({ isOpen }) {
+  const notifications = useSelector((state) => state.notifications)
+  const userToken = StorageService.get('token')
+  const dispatch = useDispatch()
+
+  const hasUnread =
+    notifications?.length > 0 &&
+    notifications.filter((notification) => notification.read_date === null)
+      .length > 0
+
+  const readAll = async () => {
+    if (notifications.length <= 0) return
+    const response = await NotificationsAPI.readAll(userToken)
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+      return
+    }
+
+    dispatch(readAllNotifications())
+  }
+
+  const read = async (id) => {
+    const response = await NotificationsAPI.read(userToken, id)
+    if (response.errorMsg) {
+      Toast({
+        title: 'Oops, ocorreu um erro',
+        description: response.errorMsg,
+        status: 'error',
+      })
+      return
+    }
+
+    dispatch(readNotification({ id: id }))
+  }
+
+  return (
+    isOpen && (
+      <Container className={style.container} column align="center">
+        <Container className={style.header}>
+          <Container>
+            <Text fontSize={18} fontWeight="medium">
+              Notificações
+            </Text>
+          </Container>
+
+          <Container
+            align="center"
+            gap={8}
+            justify="end"
+            className={[style.readAllAction, !hasUnread && style.disabled].join(
+              ' '
+            )}
+            onClick={readAll}
+          >
+            <Icon
+              as={DoubleCheckIcon}
+              fill={hasUnread ? 'secondary.400' : 'gray.700'}
+            />
+            <Text color={hasUnread ? 'secondary.400' : 'gray.700'}>
+              Ler todas
+            </Text>
+          </Container>
+        </Container>
+
+        {notifications?.length > 0 && (
+          <Container className={style.list}>
+            <Scrollbars style={{ height: '300px' }} autoHide>
+              {notifications?.map((item, index) => (
+                <Container onMouseEnter={() => read(item.id)} key={item.id}>
+                  <NotificationListItem {...item} />
+                </Container>
+              ))}
+            </Scrollbars>
+          </Container>
+        )}
+
+        {notifications?.length <= 0 && (
+          <Container justify="center" className={style.empty}>
+            <Text color="gray.700">Nada de novo por aqui.</Text>
+          </Container>
+        )}
+
+        <Container className={style.footer} justify="center">
+          <img src={logoSymbol} alt="ReloadClub" />
+        </Container>
+      </Container>
+    )
+  )
+}
