@@ -1,4 +1,4 @@
-import { Avatar, Badge, Text } from '@chakra-ui/react'
+import { Avatar, Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 
 import { Container } from '@components'
@@ -14,14 +14,8 @@ export default function NotificationListItem({
   return (
     <Container
       className={[style.container, !read_date && style.unread].join(' ')}
+      gap={15}
     >
-      <Container className={style.unreadWrapper} fitContent>
-        <Badge
-          variant={read_date ? 'disabled' : 'unread'}
-          className={style.unreadBadge}
-        />
-      </Container>
-
       <Container column className={style.content}>
         <Container>
           <Text fontSize={14}>{content}</Text>
