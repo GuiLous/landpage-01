@@ -311,6 +311,7 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
         },
 
         primary: {
