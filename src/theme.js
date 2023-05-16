@@ -298,6 +298,12 @@ export default extendTheme({
       },
     },
     Badge: {
+      baseStyle: {
+        bg: 'primary.400',
+        color: 'white',
+        borderRadius: '10px',
+        padding: '0 8px',
+      },
       variants: {
         online: {
           bg: 'success',
@@ -323,6 +329,16 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
+        },
+
+        disabled: {
+          bg: 'gray.700',
+          backgroundColor: 'gray.700',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+          padding: 'initial',
         },
       },
     },
