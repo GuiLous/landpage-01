@@ -5,7 +5,7 @@ import style from './ProfileCard.module.css'
 
 export default function ProfileCard({ title, children }) {
   return (
-    <Container className={style.container}>
+    <Container className={style.container} column gap={35}>
       {title && (
         <Container className={style.title}>
           <Text fontWeight="bold" data-testid="title">
