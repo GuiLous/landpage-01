@@ -42,8 +42,8 @@ export default function HeatmapCardStats({
             as={FullBodyIcon}
             w={230}
             h={230}
-            opacityLegs={otherShotsPercent / 100}
-            opacityBody={chestShotsPercent / 100}
+            opacityOthers={otherShotsPercent / 100}
+            opacityChest={chestShotsPercent / 100}
             opacityHead={headShotsPercent / 100}
           />
         </Container>
