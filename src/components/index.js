@@ -59,10 +59,12 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
 import HeatmapCardStats from './profile/HeatmapCardStats'
 import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+import ProfileCard from './profile/ProfileCard'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -121,4 +123,6 @@ export {
   CheckIcon,
   NotificationList,
   NotificationListItem,
+  ProfileCard,
+  FavoriteWeaponCard,
 }

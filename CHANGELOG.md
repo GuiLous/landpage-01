@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Componente `FavoriteWeaponCard` que exibe a arma favorita do usuário [#158](https://github.com/3C-gg/reload-frontend/issues/158).
+- Componente `ProfileCard` para servir de base para os cards do Perfil.
 - Novos componentes de Notificações: `NotificationList` e `NotificationListItem` [#129](https://github.com/3C-gg/reload-frontend/issues/129).
 - Adiciona `api`s. Cria o novo padrão de interface com a API do backend para ser seguido. Iniciamos com a `BaseAPI` que contém métodos reutilizáveis genéricos e a `NotificationsAPI` que apresenta uma interface específica para se comunicar com a API do backend de Notificações.
 - Adiciona `hooks` pra que a gente possa criar nossos próprios hooks e já adiciona um hook `useOutsideClick` que replica a lógica do hook do Chakra, mas adicionando uma exceção para determinadas classes.
