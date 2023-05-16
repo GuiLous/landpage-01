@@ -1,48 +1,20 @@
-.itemContainer .notification {
-	font-size: 14px;
-
-	border-radius: 8px;
-	padding: 12px 11px;
-	height: fit-content;
-
-	transition: all 0.2s ease-in-out;
+.container {
+	background-color: var(--chakra-colors-gray-900);
+	border-top: 1px solid transparent;
+	color: white;
+	padding: 24px;
 }
 
-.itemContainer .readMessageBtn {
-	gap: 6px;
-	min-width: fit-content;
-	min-height: fit-content;
-	margin-left: -103px;
-
-	animation: 0.2s ease-in-out showBtn;
+.container.unread {
+	background-color: var(--chakra-colors-gray-400);
+	border-top: 1px solid var(--chakra-colors-gray-600);
 }
 
-.readMessageBtn :is(span, path) {
-	transition: all 0.2s ease-in-out;
+
+.unreadBadge {
+	margin-top: 5px;
 }
 
-.readMessageBtn:not(:disabled):hover :is(path, span) {
-	fill: #fff;
-	color: #fff;
-}
-
-.itemContainer:hover .readMessageBtn {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-}
-
-.itemContainer:hover .notification {
-	transform: translateX(-115px);
-}
-
-@keyframes showBtn {
-	from {
-		opacity: 0;
-	}
-
-	to {
-		opacity: 1;
-	}
+.content {
+	padding: 0 15px;
 }

@@ -65,8 +65,8 @@ import LevelCardStats from './profile/LevelCardStats'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 
 // Notifications
+import NotificationList from './notifications/NotificationList'
 import NotificationListItem from './notifications/NotificationListItem'
-import Notifications from './notifications/Notifications'
 
 export {
   AddUserIcon,
@@ -105,7 +105,6 @@ export {
   UserStatus,
   BellIcon,
   Header,
-  Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
   RequireAuth,
@@ -120,5 +119,6 @@ export {
   LevelCardStats,
   DoubleCheckIcon,
   CheckIcon,
+  NotificationList,
   NotificationListItem,
 }

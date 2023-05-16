@@ -1,46 +1,32 @@
-import { Menu } from '@chakra-ui/react'
 import { NotificationListItem } from '@components'
 
 export default {
   title: 'Notifications/NotificationListItem',
   component: NotificationListItem,
   argTypes: {
-    index: { control: 'number' },
-    notification: { control: 'object' },
-    isFetching: { control: 'boolean' },
-  },
-  args: {
-    index: 0,
-    notification: {
-      id: 1,
-      to_user_id: 2,
-      content: 'Nova atualização do FiveM disponível.',
-      avatar: 'https://github.com/GuiLous.png',
-      create_date: '2023-04-08T18:23:12',
-      from_user_id: null,
-      read_date: null,
-    },
-    isFetching: false,
-    setIsFetching: () => console.log('test'),
-    notifications: [
-      {
-        id: 1,
-        to_user_id: 2,
-        content: 'Nova atualização do FiveM disponível.',
-        avatar: 'https://github.com/GuiLous.png',
-        create_date: '2023-04-08T18:23:12',
-        from_user_id: null,
-        read_date: null,
-      },
-    ],
-    setNotifications: () => console.log('test'),
+    content: { control: 'text' },
+    avatar: { control: 'text' },
+    read_date: { control: 'date' },
+    create_date: { control: 'date' },
   },
 }
 
-export const Default = {
-  render: (props) => (
-    <Menu>
-      <NotificationListItem {...props} />
-    </Menu>
-  ),
+export const Unread = {
+  args: {
+    content: 'O seu amigo fulaninhodetal acabou de entrar para a ReloadClub!',
+    avatar:
+      'https://avatars.akamai.steamstatic.com/fba2f7ffa02a5501d1fdee81221d87b4504a6159_full.jpg',
+    read_date: null,
+    create_date: '2023-05-15T17:02:30.261Z',
+  },
+}
+
+export const Read = {
+  args: {
+    content: 'O seu amigo fulaninhodetal acabou de entrar para a ReloadClub!',
+    avatar:
+      'https://avatars.akamai.steamstatic.com/fba2f7ffa02a5501d1fdee81221d87b4504a6159_full.jpg',
+    read_date: '2023-05-15T17:02:30.261Z',
+    create_date: '2023-05-15T17:02:30.261Z',
+  },
 }
