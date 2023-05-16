@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Novos componentes de Notificações: `NotificationList` e `NotificationListItem` [#129](https://github.com/3C-gg/reload-frontend/issues/129).
+- Adiciona `api`s. Cria o novo padrão de interface com a API do backend para ser seguido. Iniciamos com a `BaseAPI` que contém métodos reutilizáveis genéricos e a `NotificationsAPI` que apresenta uma interface específica para se comunicar com a API do backend de Notificações.
+- Adiciona `hooks` pra que a gente possa criar nossos próprios hooks e já adiciona um hook `useOutsideClick` que replica a lógica do hook do Chakra, mas adicionando uma exceção para determinadas classes.
+- Propriedade `fontWeights` no tema do Chakra pra que a gente possa utilizar sempre o mesmo padrão do Figma.
+- Variante `disabled` e estilo base (`baseStyle`) para o componente `Badge`.
 - Mais um tom de cinza: `#1E1E1E` ou `gray.800`.
 - Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
 - Borda com cor primária no componente `Avatar`.
@@ -16,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Componente `Header` foi adequado para receber o novo componente `NotificationList`.
+- Alterado a espessura da borda do componente `Avatar`.
 - Propriedade `last_results` para `last_matches_results` para ficar mais explícito e se adequar ao campo da API [#186](https://github.com/3C-gg/reload-frontend/issues/186).
 - Componente `LevelCardStats` foi atualizado para se adequar ao novo componente `LevelBadge`. Também revisamos o layout do componente para refletir mudanças no design [#156](https://github.com/3C-gg/reload-frontend/issues/156).
 - Componente `UserCardMini` foi atualizado para se adequar ao novo componente `LevelBadge`.
