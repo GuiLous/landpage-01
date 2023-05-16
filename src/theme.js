@@ -356,7 +356,7 @@ export default extendTheme({
     Avatar: {
       baseStyle: {
         container: {
-          borderWidth: '3px ',
+          borderWidth: '2px ',
           borderColor: 'primary.400',
           borderStyle: 'solid',
         },
