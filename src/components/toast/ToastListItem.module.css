@@ -2,7 +2,7 @@
 	background-color: var(--chakra-colors-gray-900);
 	border-radius: 4px;
 	color: white;
-	opacity: .9;
+	opacity: 0.9;
 	overflow: hidden;
 	position: relative;
 	transition: opacity 100ms linear;

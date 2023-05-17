@@ -4,7 +4,8 @@ import { BsFillCheckCircleFill, BsFillXCircleFill } from 'react-icons/bs'
 import { useDispatch } from 'react-redux'
 
 import { Avatar, Container, UserStatus } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { removeInvite } from '@slices/UserSlice'
 import style from './Invite.module.css'
 
@@ -27,11 +28,13 @@ export default function Invite({
     )
 
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     } else {
       dispatch(removeInvite({ id: id }))
       changeTab(0)
@@ -45,11 +48,13 @@ export default function Invite({
     )
 
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     } else {
       if (invitesReceivedLen <= 1) changeTab(0)
       dispatch(removeInvite(response))
