@@ -518,6 +518,7 @@ export default extendTheme({
     },
 
     success: '#6BE400',
+    warning: '#FFD426',
 
     online: '#6BE400',
     offline: '#999999',
