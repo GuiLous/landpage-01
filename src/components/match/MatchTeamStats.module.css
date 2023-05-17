@@ -20,7 +20,7 @@
 	border: none;
 	color: var(--chakra-colors-gray-700);
 	font-size: 14px;
-	font-weight: normal;
+	font-weight: var(--chakra-fontWeights-regular);
 	padding: 18px 14px;
 	text-align: center;
 }
@@ -28,7 +28,7 @@
 .tableContainer .winner {
 	color: var(--chakra-colors-success);
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: var(--chakra-fontWeights-regular);
 	text-align: left;
 	text-transform: uppercase;
 }
@@ -36,14 +36,14 @@
 .tableContainer .loser {
 	color: var(--chakra-colors-danger-400);
 	font-size: 16px;
-	font-weight: normal;
+	font-weight: var(--chakra-fontWeights-regular);
 	text-align: left;
 	text-transform: uppercase;
 }
 
 .tableContainer table tbody tr td {
 	border: none;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	padding: 6px 14px;
 	text-align: center;
 }

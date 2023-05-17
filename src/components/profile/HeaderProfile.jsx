@@ -38,7 +38,7 @@ export default function HeaderProfile({ profile }) {
 
       <Container className={style.userStats}>
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Vitórias
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>
@@ -47,7 +47,7 @@ export default function HeaderProfile({ profile }) {
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Derrotas
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>
@@ -56,7 +56,7 @@ export default function HeaderProfile({ profile }) {
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Abates
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>
@@ -65,7 +65,7 @@ export default function HeaderProfile({ profile }) {
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Mortes
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>
@@ -74,7 +74,7 @@ export default function HeaderProfile({ profile }) {
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Assistencias
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>
@@ -83,7 +83,7 @@ export default function HeaderProfile({ profile }) {
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight={'500'} color="gray.700">
+          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
             Headshots
           </Text>
           <Text fontSize={'24px'} fontWeight={'bold'}>

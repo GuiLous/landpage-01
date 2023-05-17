@@ -38,7 +38,7 @@
 .username {
 	cursor: default;
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	max-width: 230px;
 }
 
@@ -58,7 +58,7 @@
 
 .lastResults {
 	font-size: 16px;
-	font-weight: 700;
+	font-weight: var(--chakra-fontWeights-bold);
 	margin-top: 5px;
 }
 

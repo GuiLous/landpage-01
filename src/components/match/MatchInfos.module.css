@@ -3,7 +3,7 @@
 	background-color: var(--chakra-colors-primary-400);
 	border-radius: 8px;
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	height: 40px;
 	padding: 5px 50px;
 }

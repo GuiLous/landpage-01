@@ -176,7 +176,7 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                   </Container>
 
                   <Container className={style.username} column fitContent>
-                    <Text fontWeight={600} fontSize={'14px'}>
+                    <Text fontWeight="semiBold" fontSize={'14px'}>
                       {player.username}
                     </Text>
 

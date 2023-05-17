@@ -65,14 +65,14 @@ export default function LevelProgressBar({
           <Container justify="end">
             <Text
               fontSize={12}
-              fontWeight={500}
+              fontWeight="medium"
               color="secondary.400"
               as={'span'}
             >
               <CountUp start={level_points_before} end={level_points_after} />
             </Text>
 
-            <Text as={'span'} fontWeight={400} fontSize={12} color="white">
+            <Text as={'span'} fontWeight="regular" fontSize={12} color="white">
               /100
             </Text>
           </Container>

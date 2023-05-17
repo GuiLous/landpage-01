@@ -14,6 +14,6 @@
 
 .formTitle {
 	font-size: 24px;
-	font-weight: bolder;
+	font-weight: var(--chakra-fontWeights-bold);
 	text-transform: uppercase;
 }
