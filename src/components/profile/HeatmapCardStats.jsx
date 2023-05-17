@@ -99,7 +99,7 @@ export default function HeatmapCardStats({
                 color="#fff"
                 as="span"
               >
-                CORPO
+                PEITO
               </Text>
               <Text
                 fontSize={16}
@@ -137,7 +137,7 @@ export default function HeatmapCardStats({
                 color="#fff"
                 as="span"
               >
-                PERNAS
+                OUTROS
               </Text>
               <Text
                 fontSize={16}

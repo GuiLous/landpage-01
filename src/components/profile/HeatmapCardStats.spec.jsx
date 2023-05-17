@@ -17,8 +17,8 @@ describe('HeatmapCardStats Component', () => {
     )
 
     expect(screen.getByText('CABEÇA')).toBeInTheDocument()
-    expect(screen.getByText('CORPO')).toBeInTheDocument()
-    expect(screen.getByText('PERNAS')).toBeInTheDocument()
+    expect(screen.getByText('PEITO')).toBeInTheDocument()
+    expect(screen.getByText('OUTROS')).toBeInTheDocument()
   })
 
   it('should render percentage correctly', () => {
