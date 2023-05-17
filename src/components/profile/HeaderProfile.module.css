@@ -1,11 +1,11 @@
 .username {
 	font-size: 24px;
-	font-weight: bold;
+	font-weight: var(--chakra-fontWeights-bold);
 }
 
 .levelTxt {
 	font-size: 18px;
-	font-weight: 600;
+	font-weight: var(--chakra-fontWeights-semiBold);
 	text-transform: uppercase;
 }
 

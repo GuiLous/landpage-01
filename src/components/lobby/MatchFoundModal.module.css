@@ -1,7 +1,7 @@
 .substitle {
 	color: var(--chakra-colors-secondary-400);
 	font-size: 14px;
-	font-weight: normal;
+	font-weight: var(--chakra-fontWeights-regular);
 }
 
 .userIcon {

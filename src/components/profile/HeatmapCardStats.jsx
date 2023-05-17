@@ -25,7 +25,7 @@ export default function HeatmapCardStats({
       <Container gap={5} fitContent column>
         <Text
           fontSize={14}
-          fontWeight={700}
+          fontWeight="bold"
           lineHeight={1}
           color="#fff"
           as="span"
@@ -57,7 +57,7 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
+                fontWeight="medium"
                 color="#fff"
                 as="span"
               >
@@ -65,7 +65,7 @@ export default function HeatmapCardStats({
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="hs-percentage"
@@ -78,13 +78,18 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {head_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
@@ -95,7 +100,7 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
+                fontWeight="medium"
                 color="#fff"
                 as="span"
               >
@@ -103,7 +108,7 @@ export default function HeatmapCardStats({
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="body-percentage"
@@ -116,13 +121,18 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {chest_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
@@ -133,7 +143,7 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
+                fontWeight="medium"
                 color="#fff"
                 as="span"
               >
@@ -141,7 +151,7 @@ export default function HeatmapCardStats({
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="other-percentage"
@@ -154,13 +164,18 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {other_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
