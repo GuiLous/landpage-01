@@ -13,17 +13,15 @@ export default function ToastList() {
   })
 
   return (
-    toasts.length > 0 && (
-      <Container reverseColumn gap={20}>
-        {transitions((style, item) => (
-          <Container
-            style={{ ...style, position: 'relative' }}
-            testID="toast-item"
-          >
-            <ToastListItem {...item} />
-          </Container>
-        ))}
-      </Container>
-    )
+    <Container reverseColumn gap={20}>
+      {transitions((style, item) => (
+        <Container
+          style={{ ...style, position: 'relative' }}
+          testID="toast-item"
+        >
+          <ToastListItem {...item} />
+        </Container>
+      ))}
+    </Container>
   )
 }
