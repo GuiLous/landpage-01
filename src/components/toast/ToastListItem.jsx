@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import {
-  BellFilledIcon,
+  BellCircleIcon,
   CheckCircleIcon,
   CloseCircleIcon,
   CloseIcon,
@@ -55,7 +55,7 @@ export default function ToastListItem({
         return <Icon as={CloseCircleIcon} fill="danger.400" />
 
       default:
-        return <Icon as={BellFilledIcon} fill="gray.900" />
+        return <Icon as={BellCircleIcon} fill="primary.400" />
     }
   }
 

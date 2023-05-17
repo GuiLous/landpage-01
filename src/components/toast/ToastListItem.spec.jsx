@@ -15,13 +15,6 @@ describe('ToastListItem Component', () => {
         duration: 6,
         variant: 'success',
       },
-      {
-        id: 2,
-        title: 'Outro Feedback!',
-        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-        duration: 6,
-        variant: 'error',
-      },
     ],
   }
 

@@ -29,13 +29,6 @@ const preloadedState = {
       duration: 6,
       variant: 'info',
     },
-    {
-      id: 2,
-      title: 'Outro Feedback!',
-      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-      duration: 6,
-      variant: 'info',
-    },
   ],
 }
 
@@ -45,18 +38,12 @@ const store = configureStore({
   preloadedState: preloadedState,
 })
 
-export const Info = {
-  render: (props) => {
-    window.addEventListener('remount', () => {
-      console.log('remounted')
-    })
-
-    return (
-      <Provider store={store}>
-        <ToastListItem {...props} variant="info" />
-      </Provider>
-    )
-  },
+export const Default = {
+  render: (props) => (
+    <Provider store={store}>
+      <ToastListItem {...props} />
+    </Provider>
+  ),
 }
 
 export const Success = {
