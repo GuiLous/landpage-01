@@ -14,7 +14,10 @@ export default function ToastList() {
   return (
     <Container column gap={20}>
       {transitions((style, item) => (
-        <Container style={{ ...style, position: 'relative' }}>
+        <Container
+          style={{ ...style, position: 'relative' }}
+          testID="toast-item"
+        >
           <ToastListItem {...item} />
         </Container>
       ))}
