@@ -16,7 +16,8 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { ArrowRightIcon, Container, LockIcon } from '@components'
 import { SignupLayout } from '@layouts'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Verify.module.css'
 
@@ -50,16 +51,25 @@ export default function VerifyView() {
       setFetching(false)
       if (response.field) setFormError(response)
       else
-        Toast({
-          title: 'Oops, ocorreu um erro',
-          description: response.errorMsg,
-          status: 'error',
-        })
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
       return
     }
 
     setFetching(false)
     dispatch(updateUser(response))
+    dispatch(
+      addToast({
+        title: 'Sua conta foi verificada!',
+        content: 'Convide seus amigos e comece a jogar!',
+        variant: 'success',
+      })
+    )
     if (response.account.is_verified) navigate('/jogar')
   }
 
