@@ -12,7 +12,13 @@ import style from './NotFound.module.css'
 export default function NotFoundView() {
   return (
     <Container className={style.container}>
-      <Container column gap={90} align="center" justify="center">
+      <Container
+        column
+        gap={90}
+        align="center"
+        justify="center"
+        style={{ paddingBottom: '40px' }}
+      >
         <Container justify="center" fitContent>
           <Image src={logo} alt="ReloadClub" width={200} />
         </Container>
