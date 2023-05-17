@@ -10,7 +10,7 @@
 
 .teamScore {
 	font-size: 32px;
-	font-weight: bold;
+	font-weight: var(--chakra-fontWeights-bold);
 }
 
 .teamScore.winner {
@@ -22,7 +22,7 @@
 }
 
 .teamName {
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	max-width: 350px;
 	overflow: hidden;
 	text-overflow: ellipsis;
