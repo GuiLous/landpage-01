@@ -10,7 +10,7 @@
 
 .title {
 	font-size: 20px;
-	font-weight: bolder;
+	font-weight: var(--chakra-fontWeights-bold);
 	text-transform: uppercase;
 }
 

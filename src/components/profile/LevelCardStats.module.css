@@ -7,7 +7,7 @@
 .title {
 	color: white;
 	font-size: 18px;
-	font-weight: bold;
+	font-weight: var(--chakra-fontWeights-bold);
 	text-transform: uppercase;
 }
 
@@ -18,7 +18,7 @@
 .subtitle {
 	color: var(--chakra-colors-gray-700);
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 }
 
 .statsList {
@@ -33,7 +33,7 @@
 .statsListItemTitle {
 	color: var(--chakra-colors-gray-700);
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	text-transform: uppercase;
 	white-space: nowrap;
 }
@@ -41,5 +41,5 @@
 .statsListItemValue {
 	color: white;
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: var(--chakra-fontWeights-semiBold);
 }

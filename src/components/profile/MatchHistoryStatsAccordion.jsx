@@ -69,7 +69,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
               <Text
                 as="span"
                 fontSize={20}
-                fontWeight={500}
+                fontWeight="medium"
                 lineHeight="1"
                 letterSpacing="0.5pt"
                 color={won ? 'success' : 'danger.400'}
@@ -80,7 +80,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 lineHeight="1"
                 color="gray.700"
                 fontSize={14}
-                fontWeight={500}
+                fontWeight="medium"
               >
                 {match.map_name}
               </Text>
@@ -97,7 +97,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
               <Text
                 as="span"
                 fontSize={24}
-                fontWeight={700}
+                fontWeight="bold"
                 textAlign="center"
                 color="#fff"
               >
@@ -125,7 +125,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 <Text
                   as="span"
                   fontSize={16}
-                  fontWeight={700}
+                  fontWeight="bold"
                   color="#fff"
                   align="flex-start"
                 >
@@ -140,7 +140,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 <Text
                   as="span"
                   color="gray.700"
-                  fontWeight={500}
+                  fontWeight="medium"
                   fontSize={14}
                   align="flex-start"
                   data-testid="kda"
@@ -155,7 +155,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 <Text
                   as="span"
                   fontSize={16}
-                  fontWeight={700}
+                  fontWeight="bold"
                   color="#fff"
                   align="flex-start"
                   data-testid="kpr"
@@ -168,7 +168,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 <Text
                   as="span"
                   color="gray.700"
-                  fontWeight={500}
+                  fontWeight="medium"
                   fontSize={14}
                   align="flex-start"
                   data-testid="adr"
@@ -188,7 +188,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 as="span"
                 textAlign="left"
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="#fff"
               >
                 {player.points_earned > 0
@@ -204,7 +204,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 <Text
                   as="span"
                   color="gray.700"
-                  fontWeight={500}
+                  fontWeight="medium"
                   fontSize={14}
                   align="flex-start"
                   data-testid="hs"
@@ -226,7 +226,7 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
                 as="span"
                 mr="3px"
                 fontSize={14}
-                fontWeight={500}
+                fontWeight="medium"
                 color="gray.700"
               >
                 {endDate.toFormat('MMM dd')} - {matchDurationFormatted}
