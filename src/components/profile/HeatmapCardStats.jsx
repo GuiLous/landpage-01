@@ -13,9 +13,12 @@ export default function HeatmapCardStats({
 }) {
   const totalShots = head_shots + chest_shots + other_shots
 
-  const headShotsPercent = Number((head_shots * 100) / totalShots).toFixed(1)
-  const chestShotsPercent = Number((chest_shots * 100) / totalShots).toFixed(1)
-  const otherShotsPercent = Number((other_shots * 100) / totalShots).toFixed(1)
+  const headShotsPercent =
+    totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(1)
+  const chestShotsPercent =
+    totalShots === 0 ? 0 : Number((chest_shots * 100) / totalShots).toFixed(1)
+  const otherShotsPercent =
+    totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(1)
 
   return (
     <Container className={style.container} column gap={40}>
@@ -42,8 +45,8 @@ export default function HeatmapCardStats({
             as={FullBodyIcon}
             w={230}
             h={230}
-            opacityLegs={otherShotsPercent / 100}
-            opacityBody={chestShotsPercent / 100}
+            opacityOthers={otherShotsPercent / 100}
+            opacityChest={chestShotsPercent / 100}
             opacityHead={headShotsPercent / 100}
           />
         </Container>
@@ -101,7 +104,7 @@ export default function HeatmapCardStats({
                 color="#fff"
                 as="span"
               >
-                CORPO
+                PEITO
               </Text>
               <Text
                 fontSize={16}
@@ -144,7 +147,7 @@ export default function HeatmapCardStats({
                 color="#fff"
                 as="span"
               >
-                PERNAS
+                OUTROS
               </Text>
               <Text
                 fontSize={16}
