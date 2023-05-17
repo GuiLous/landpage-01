@@ -18,7 +18,7 @@ export default function ToastListItem({
   title,
   content,
   variant,
-  duration,
+  duration = 6,
 }) {
   const dispatch = useDispatch()
   const [timer, setTimer] = useState(duration - 1)
