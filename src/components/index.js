@@ -23,7 +23,7 @@ import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
-import BellFilledIcon from './icons/BellFilledIcon'
+import BellCircleIcon from './icons/BellCircleIcon'
 import BellIcon from './icons/BellIcon'
 import CheckCircleIcon from './icons/CheckCircleIcon'
 import CheckIcon from './icons/CheckIcon'
@@ -133,7 +133,7 @@ export {
   FavoriteWeaponCard,
   ToastListItem,
   ToastList,
-  BellFilledIcon,
+  BellCircleIcon,
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
