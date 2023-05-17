@@ -5,8 +5,6 @@ import { Provider } from 'react-redux'
 import { NotificationList } from '@components'
 import NotificationReducer from '@slices/NotificationSlice'
 
-jest.mock('@api')
-
 describe('NotificationList Component', () => {
   let notifications = [
     {
