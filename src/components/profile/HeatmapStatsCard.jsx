@@ -2,11 +2,11 @@ import { Icon, Text } from '@chakra-ui/react'
 
 import { Container, ProfileCard } from '@components'
 
-import style from './HeatmapCardStats.module.css'
+import style from './HeatmapStatsCard.module.css'
 
 import FullBodyIcon from '../icons/FullBodyIcon'
 
-export default function HeatmapCardStats({
+export default function HeatmapStatsCard({
   head_shots,
   chest_shots,
   other_shots,

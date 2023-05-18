@@ -2,9 +2,9 @@ import { Text, Tooltip } from '@chakra-ui/react'
 
 import { Container, LevelBadge, ProfileCard } from '@components'
 
-import style from './LevelCardStats.module.css'
+import style from './LevelStatsCard.module.css'
 
-export default function LevelCardStats({
+export default function LevelStatsCard({
   level,
   highest_level,
   match_wins,
