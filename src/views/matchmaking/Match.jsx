@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import {
@@ -11,12 +12,13 @@ import {
   MatchTeamStats,
 } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
-import { useSelector } from 'react-redux'
 import style from './Match.module.css'
 
 export default function MatchView(props) {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
 
   const params = useParams()
@@ -50,11 +52,13 @@ export default function MatchView(props) {
 
       response = await HttpService.get(`matches/${matchId}/`, token)
       if (response.errorMsg) {
-        Toast({
-          title: 'Oops, ocorreu um erro',
-          description: response.errorMsg,
-          status: 'error',
-        })
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
         return
       }
 
@@ -63,6 +67,7 @@ export default function MatchView(props) {
     }
 
     matchId && fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchId])
 
   return fetching || !match ? (

@@ -8,11 +8,12 @@ import {
   NotificationListItem,
   Scrollbars,
 } from '@components'
-import { StorageService, Toast } from '@services'
+import { StorageService } from '@services'
 import {
   readAllNotifications,
   readNotification,
 } from '@slices/NotificationSlice'
+import { addToast } from '@slices/ToastSlice'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import style from './NotificationList.module.css'
@@ -27,33 +28,27 @@ export default function NotificationList({ isOpen }) {
     notifications.filter((notification) => notification.read_date === null)
       .length > 0
 
+  const showErrorToast = (error) => {
+    dispatch(
+      addToast({
+        title: 'Algo saiu errado...',
+        content: error,
+        variant: 'error',
+      })
+    )
+  }
+
   const readAll = async () => {
     if (notifications.length <= 0) return
     const response = await NotificationsAPI.readAll(userToken)
-    if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
-      return
-    }
-
-    dispatch(readAllNotifications())
+    if ('formError' in response) showErrorToast(response.formError.error)
+    else if (response) dispatch(readAllNotifications())
   }
 
   const read = async (id) => {
     const response = await NotificationsAPI.read(userToken, id)
-    if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
-      return
-    }
-
-    dispatch(readNotification({ id: id }))
+    if ('formError' in response) showErrorToast(response.formError.error)
+    else if (response) dispatch(readNotification({ id: id }))
   }
 
   return (

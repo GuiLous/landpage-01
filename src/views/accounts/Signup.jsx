@@ -13,7 +13,8 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { Container, Input } from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { SignupLayout } from '@layouts'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Signup.module.css'
 
@@ -48,17 +49,18 @@ export default function SignupView() {
     if (response.errorMsg) {
       setFetching(false)
       if (response.field) setFormError(response)
-      else
-        Toast({
-          title: 'Oops, ocorreu um erro',
-          description: response.errorMsg,
-          status: 'error',
-        })
       return
     }
 
     setFetching(false)
     dispatch(updateUser(response))
+    dispatch(
+      addToast({
+        title: 'Que bom que você chegou!',
+        content: 'Agora falta pouco, verifique sua conta para começar a jogar!',
+        variant: 'success',
+      })
+    )
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
   }

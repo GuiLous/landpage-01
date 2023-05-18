@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Componentes `ToastList` e `ToastListItem` para lidar com os toasts da aplicação.
 - Componente `FavoriteWeaponCard` que exibe a arma favorita do usuário [#158](https://github.com/3C-gg/reload-frontend/issues/158).
 - Componente `ProfileCard` para servir de base para os cards do Perfil.
 - Novos componentes de Notificações: `NotificationList` e `NotificationListItem` [#129](https://github.com/3C-gg/reload-frontend/issues/129).
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componentes que usavam antigo sistema de Toasts.
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).
 - Componente `Header` foi adequado para receber o novo componente `NotificationList`.
 - Alterado a espessura da borda do componente `Avatar`.
@@ -33,6 +35,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componente `InviteListItem` foi atualizado para adequar novo componente `LevelBadge`.
 - Componente `LevelProgressBar` agora utiliza novos componentes `Progress` e `LevelBadge`.
 - Componente `LevelBadge` foi alterado para se encaixar melhor nos layouts [#181](https://github.com/3C-gg/reload-frontend/issues/181).
+
+### Removed
+
+- Serviço descontinuado `Toast`.
 
 ## [611cea3 - 8/5/2023]
 

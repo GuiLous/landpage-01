@@ -11,7 +11,8 @@ import {
   Timer,
 } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { removeRestartQueue } from '@slices/UserSlice'
 
 import { useEffect, useState } from 'react'
@@ -35,15 +36,18 @@ export default function LobbyView() {
       )
 
       if (response && response.errorMsg) {
-        Toast({
-          title: 'Oops, ocorreu um erro',
-          description: response.errorMsg,
-          status: 'error',
-        })
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
       }
     }
 
     if (preMatch && preMatch.countdown === null) lockIn()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch])
 
   useEffect(() => {
@@ -56,11 +60,13 @@ export default function LobbyView() {
         token
       )
       if (response && response.errorMsg) {
-        Toast({
-          title: 'Oops, ocorreu um erro',
-          description: response.errorMsg,
-          status: 'error',
-        })
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
       }
     }
 
@@ -90,11 +96,13 @@ export default function LobbyView() {
       token
     )
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
   const handleCancelQueue = () => handleQueue('cancel')

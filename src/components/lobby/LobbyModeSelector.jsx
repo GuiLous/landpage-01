@@ -1,14 +1,16 @@
 import { Icon } from '@chakra-ui/react'
 import { AiFillCaretUp } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
 
 import { Container } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
-
-import React from 'react'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
 import style from './LobbyModeSelector.module.css'
 
 export default function LobbyModeSelector({ lobby, disabled }) {
+  const dispatch = useDispatch()
+
   const handleToggleMode = async (lobbyType, lobbyMode) => {
     if (lobby.players_count > 1 || lobby.queue) return
 
@@ -20,11 +22,13 @@ export default function LobbyModeSelector({ lobby, disabled }) {
       token
     )
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
 

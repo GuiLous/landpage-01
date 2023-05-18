@@ -7,13 +7,16 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/react'
-import React from 'react'
+import { useDispatch } from 'react-redux'
 
 import { Container, Timer, UserIcon } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import style from './MatchFoundModal.module.css'
 
 export default function MatchFoundModal({ preMatch }) {
+  const dispatch = useDispatch()
+
   const handleClose = () => {}
 
   const playersLeft = preMatch.players_total - preMatch.players_ready_count
@@ -27,11 +30,13 @@ export default function MatchFoundModal({ preMatch }) {
       token
     )
     if (response && response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
 

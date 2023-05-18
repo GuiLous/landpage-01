@@ -7,6 +7,8 @@ export default {
   argTypes: {
     row: { control: 'boolean' },
     column: { control: 'boolean' },
+    reverseRow: { control: 'boolean' },
+    reverseColumn: { control: 'boolean' },
     align: {
       control: 'select',
       options: ['center', 'start', 'end', 'stretch'],

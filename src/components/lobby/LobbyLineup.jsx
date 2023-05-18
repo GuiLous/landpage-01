@@ -1,13 +1,14 @@
-import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LobbySeat, UserCard, UserCardMini } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
-
-import React, { useEffect, useState } from 'react'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
 import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
+  const dispatch = useDispatch()
   const user = useSelector((state) => state.user)
   const [lineup, setLineup] = useState([])
 
@@ -23,11 +24,13 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
     const token = StorageService.get('token')
     const response = await HttpService.patch('mm/lobby/leave', token)
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
 
@@ -40,11 +43,13 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
       token
     )
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
 
