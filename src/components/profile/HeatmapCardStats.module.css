@@ -1,18 +1,14 @@
 .container {
-	background-color: #222222;
-	border: 1px solid #434343;
-	border-radius: 8px;
-	height: 287px;
-	padding: 24px;
-	width: 349px;
-}
-
-.centerStats {
-	height: 100%;
-	justify-content: space-evenly;
+	align-items: initial;
 }
 
 .bodyContainer {
+	align-items: center;
 	height: 190px;
+	justify-content: center;
 	width: 73px;
+}
+
+.centerStats {
+	justify-content: space-evenly;
 }
