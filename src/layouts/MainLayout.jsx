@@ -11,7 +11,7 @@ export default function MainLayout(props) {
     <Container column className={style.container}>
       {user && <Header />}
 
-      <Container gap={56} className={style.wrapper}>
+      <Container className={style.wrapper}>
         <Container className={style.content}>{props.children}</Container>
 
         {user && (

@@ -4,15 +4,13 @@
 	height: 100vh;
 }
 
-.wrapper {
-	padding: 30px 60px;
-}
-
 .sidebar {
 	height: 100%;
 	max-width: 305px;
+	min-width: 305px;
 }
 
 .content {
 	height: 100%;
+	padding: 30px 40px;
 }
