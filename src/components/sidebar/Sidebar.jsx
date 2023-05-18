@@ -7,7 +7,7 @@ import {
   Tabs,
   Text,
 } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
@@ -21,16 +21,23 @@ import {
 import { readInvites } from '@slices/InviteSlice'
 import style from './Sidebar.module.css'
 
-export default function Sidebar(props) {
+export default function Sidebar() {
   const user = useSelector((state) => state.user)
   const unreadInvites = useSelector((state) => state.invites.unread)
   const dispatch = useDispatch()
   const [tabIndex, setTabIndex] = useState()
+  const scrollbarRef = useRef()
 
   useEffect(() => {
     if (tabIndex === tabs.indexOf('Convites')) dispatch(readInvites())
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unreadInvites])
+
+  useEffect(() => {
+    if (scrollbarRef && scrollbarRef.current) {
+      console.log(scrollbarRef.current.getScrollState())
+    }
+  }, [scrollbarRef])
 
   const onlineFriends = user.account.friends.filter(
     (friend) => friend.is_online
@@ -86,7 +93,7 @@ export default function Sidebar(props) {
           <TabPanels className={style.panels}>
             {onlineFriends.length > 0 ? (
               <TabPanel className={style.panel}>
-                <Scrollbars autoHide>
+                <Scrollbars autoHide fwdref={scrollbarRef}>
                   <SidebarItem
                     title="Amigos Online"
                     meta={onlineFriends.length}

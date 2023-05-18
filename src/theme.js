@@ -381,7 +381,7 @@ export default extendTheme({
       variants: {
         online: {
           container: {
-            borderWidth: '3px ',
+            borderWidth: '2px ',
             borderColor: 'online',
             borderStyle: 'solid',
           },
