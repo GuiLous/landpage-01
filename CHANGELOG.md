@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado componentes que usavam antigo sistema de Toasts.
+- Componente `Sidebar` foi alterado para refletir novo layout e design.
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).
 - Componente `Header` foi adequado para receber o novo componente `NotificationList`.
 - Alterado a espessura da borda do componente `Avatar`.
@@ -39,6 +40,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Serviço descontinuado `Toast`.
+
+### Fixed
+
+- Componente `NotificationList` agora aparece por cima dos outros elementos da página de maneira correta [#205](https://github.com/3C-gg/reload-frontend/issues/205).
 
 ## [611cea3 - 8/5/2023]
 

@@ -6,7 +6,7 @@
 }
 
 .container:hover {
-	background-color: #333;
+	background-color: var(--chakra-colors-gray-400);
 }
 
 .username,
@@ -55,7 +55,6 @@
 }
 
 .container.disabled:hover {
-	background-color: rgba(0, 0, 0, 0.15);
 	cursor: default;
 }
 
