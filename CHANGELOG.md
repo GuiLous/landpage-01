@@ -23,8 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Alterado component `HeatmapCardStats` para user o component `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
-- Alterado component `HeatmapCardStats` para ficar igual ao design.`
+- Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
+- Alterado componente `HeatmapCardStats` para ficar igual ao design.`
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).
 - Componente `Header` foi adequado para receber o novo componente `NotificationList`.
 - Alterado a espessura da borda do componente `Avatar`.
