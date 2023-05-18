@@ -1,4 +1,6 @@
 import { HttpService } from '@services'
+import { addToast } from '@slices/ToastSlice'
+import store from '@store'
 
 export const BaseAPI = {
   async call(endpoint, token, method, payload) {
@@ -7,11 +9,17 @@ export const BaseAPI = {
     try {
       response = await HttpService[method](endpoint, token, payload)
     } catch (error) {
+      store.dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
       return null
     }
 
-    if (response.errorMsg) return null
-    else return response
+    return response
   },
 
   async list(endpoint, token) {
