@@ -4,7 +4,6 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
-  Avatar,
   Text,
   Tooltip,
 } from '@chakra-ui/react'
@@ -12,9 +11,39 @@ import { DateTime } from 'luxon'
 
 import { Container } from '@components'
 
+import { useState } from 'react'
 import style from './MatchHistoryStatsAccordion.module.css'
 
+const statsFields = [
+  {
+    field: 'kda',
+    label: 'Abates e assistências por morte',
+  },
+  {
+    field: 'kdr',
+    label: 'Abates por morte',
+  },
+  {
+    field: 'hs%',
+    label: 'Porcentagem de tiros na cabeça',
+  },
+  {
+    field: 'adr',
+    label: 'Dano médio por round',
+  },
+  {
+    field: 'fk',
+    label: 'Primeiros abates',
+  },
+]
+
 export default function MatchHistoryStatsAccordion({ user, match }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleAccordionToggle = () => {
+    setIsOpen(!isOpen)
+  }
+
   const winner_team_id = match.winner_id
   const winner_team = match.teams.find((team) => team.id === winner_team_id)
   const defeated_team = match.teams.find((team) => team.id !== winner_team_id)
@@ -24,219 +53,119 @@ export default function MatchHistoryStatsAccordion({ user, match }) {
     ? won
     : defeated_team.players.find((player) => player.user_id === user.id)
 
-  const kda = Number(
-    (player.stats.kills + player.stats.deaths) / player.stats.assists
-  ).toFixed(2)
+  const renderStats = () => {
+    const kda = `${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}`
 
-  const kpr = Number(player.stats.kills / match.rounds).toFixed(2)
-  const adr = Number(player.stats.damage / match.rounds).toFixed(2)
+    // calculate Kill-Death Ratio number
+    const kdr = Number(player.stats.kills / player.stats.deaths).toFixed(1)
 
-  const hsPercent = Number(
-    (player.stats.head_shots * 100) /
-      (player.stats.chest_shots +
-        player.stats.other_shots +
-        player.stats.head_shots)
-  ).toFixed(1)
+    const hsPercent =
+      String(
+        Number(
+          (player.stats.head_shots * 100) /
+            (player.stats.chest_shots +
+              player.stats.other_shots +
+              player.stats.head_shots)
+        ).toFixed(1)
+      ) + '%'
 
-  const startDate = DateTime.fromISO(match.start_date)
-  const endDate = DateTime.fromISO(match.end_date)
-  const matchDurationFormatted = endDate
-    .diff(startDate, 'seconds')
-    .toFormat('hh:mm')
+    // calculate Average Damage Ratio
+    const adr = Number(player.stats.damage / match.rounds).toFixed(2)
+
+    const fk = player.stats.firstkills
+
+    const statsValues = [kda, kdr, hsPercent, adr, fk]
+
+    return statsFields.map((stats, index) => (
+      <Container key={index} column gap={11}>
+        <Tooltip label={stats.label} aria-label={`${stats.field} tooltip`}>
+          <Text
+            as="span"
+            color="gray.700"
+            fontWeight="medium"
+            fontSize={12}
+            align="flex-start"
+            textTransform="uppercase"
+          >
+            {stats.field}
+          </Text>
+        </Tooltip>
+        <Text
+          as="span"
+          fontSize={16}
+          fontWeight="semiBold"
+          color="white"
+          align="flex-start"
+          data-testid={stats.field}
+        >
+          {statsValues[index]}
+        </Text>
+      </Container>
+    ))
+  }
 
   return (
     <Accordion
       allowMultiple
       w="full"
-      border="1px solid #434343"
       borderRadius={8}
-      bgColor="gray.900"
+      className={[
+        style.container,
+        won ? style.won : style.defeated,
+        isOpen && style.expand,
+      ].join(' ')}
     >
-      <AccordionItem px="16px" py="18px" border="none">
-        <Container align="stretch">
-          <Container
-            className={[style.borderLeft, won && style.won].join(' ')}
-          />
-
-          <Container className={style.leftInfo} gap={10} align="center">
-            <Avatar
-              variant={user.status}
-              size="lg"
-              src={user.account.avatar.medium}
-            />
-
-            <Container column gap={8}>
-              <Text
-                as="span"
-                fontSize={20}
-                fontWeight="medium"
-                lineHeight="1"
-                letterSpacing="0.5pt"
-                color={won ? 'success' : 'danger.400'}
-              >
-                {won ? 'Vitória' : 'Derrota'}
-              </Text>
-              <Text
-                lineHeight="1"
-                color="gray.700"
-                fontSize={14}
-                fontWeight="medium"
-              >
-                {match.map_name}
-              </Text>
-            </Container>
-          </Container>
-
-          <Container
-            className={style.centerInfo}
-            align="center"
-            justify="center"
-            gap={32}
-          >
-            <Container className={style.statsCenterInfos}>
-              <Text
-                as="span"
-                fontSize={24}
-                fontWeight="bold"
-                textAlign="center"
-                color="#fff"
-              >
-                {won ? winner_team.score : defeated_team.score}
-                <Text
-                  pos="relative"
-                  top={-1}
-                  color="gray.700"
-                  fontSize={20}
-                  w="14px"
-                  as="span"
-                  display="inline-block"
-                >
-                  :
-                </Text>
-                {won ? defeated_team.score : winner_team.score}
-              </Text>
-            </Container>
-
-            <Container column className={style.statsCenterInfos}>
-              <Tooltip
-                label="Abates/Mortes/Assistências"
-                aria-label="Kda tooltip"
-              >
-                <Text
-                  as="span"
-                  fontSize={16}
-                  fontWeight="bold"
-                  color="#fff"
-                  align="flex-start"
-                >
-                  {player.stats.kills}/{player.stats.deaths}/
-                  {player.stats.assists}
-                </Text>
-              </Tooltip>
-              <Tooltip
-                label="Relação de abates e assistências por morte"
-                aria-label="Kill death assist tooltip"
-              >
-                <Text
-                  as="span"
-                  color="gray.700"
-                  fontWeight="medium"
-                  fontSize={14}
-                  align="flex-start"
-                  data-testid="kda"
-                >
-                  {kda} KDA
-                </Text>
-              </Tooltip>
-            </Container>
-
-            <Container column className={style.statsCenterInfos}>
-              <Tooltip label="Abates por round" aria-label="Kpr tooltip">
-                <Text
-                  as="span"
-                  fontSize={16}
-                  fontWeight="bold"
-                  color="#fff"
-                  align="flex-start"
-                  data-testid="kpr"
-                >
-                  {kpr} KPR
-                </Text>
-              </Tooltip>
-
-              <Tooltip label="Dano médio por round" aria-label="Adr tooltip">
-                <Text
-                  as="span"
-                  color="gray.700"
-                  fontWeight="medium"
-                  fontSize={14}
-                  align="flex-start"
-                  data-testid="adr"
-                >
-                  {adr} ADR
-                </Text>
-              </Tooltip>
-            </Container>
-
-            <Container
-              column
-              style={{ minWidth: '100px' }}
-              align="start"
-              className={style.statsCenterInfos}
+      <AccordionItem p={6} border="none">
+        <Container align="center">
+          <Container column gap={10}>
+            <Text
+              as="span"
+              fontSize={20}
+              fontWeight="medium"
+              lineHeight="1"
+              letterSpacing="0.5pt"
+              color="white"
             >
-              <Text
-                as="span"
-                textAlign="left"
-                fontSize={16}
-                fontWeight="bold"
-                color="#fff"
-              >
-                {player.points_earned > 0
-                  ? `+${player.points_earned}`
-                  : player.points_earned}{' '}
-                PTS
-              </Text>
-
-              <Tooltip
-                label="Porcentagem de tiros na cabeça"
-                aria-label="Hs tooltip"
-              >
-                <Text
-                  as="span"
-                  color="gray.700"
-                  fontWeight="medium"
-                  fontSize={14}
-                  align="flex-start"
-                  data-testid="hs"
-                >
-                  {hsPercent}% HS
-                </Text>
-              </Tooltip>
-            </Container>
+              {match.map_name}
+            </Text>
+            <Text
+              lineHeight="1"
+              color="gray.700"
+              fontSize={14}
+              fontWeight="medium"
+            >
+              {DateTime.fromISO(match.end_date).toRelative()}
+            </Text>
           </Container>
 
-          <Container
-            className={style.rightInfo}
-            column
-            align="center"
-            justify="center"
-          >
-            <Tooltip label="Duração da partida" aria-label="Duration tooltip">
+          <Container>
+            <Text
+              as="span"
+              fontSize={24}
+              fontWeight="bold"
+              textAlign="center"
+              color="white"
+            >
+              {won ? winner_team.score : defeated_team.score}
               <Text
-                as="span"
-                mr="3px"
-                fontSize={14}
-                fontWeight="medium"
+                pos="relative"
+                top={-1}
                 color="gray.700"
+                fontSize={20}
+                w="14px"
+                as="span"
+                display="inline-block"
               >
-                {endDate.toFormat('MMM dd')} - {matchDurationFormatted}
+                :
               </Text>
-            </Tooltip>
+              {won ? defeated_team.score : winner_team.score}
+            </Text>
+          </Container>
 
-            <AccordionButton width="fit-content" p={0} color="secondary.400">
-              <Text as="span" textAlign="left" fontSize={14}>
-                Ver detalhes
-              </Text>
+          <Container align="center" justify="center" gap={40}>
+            {renderStats()}
+
+            <AccordionButton p={0} onClick={handleAccordionToggle}>
               <AccordionIcon />
             </AccordionButton>
           </Container>

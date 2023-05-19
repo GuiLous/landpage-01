@@ -1,26 +1,31 @@
-.borderLeft {
-	background-color: var(--chakra-colors-danger-400);
-	border-radius: 8px;
-	margin-right: 20px;
-	max-width: 4px;
-}
-
-.leftInfo {
-	max-width: 160px;
-}
-
-.rightInfo {
-	max-width: 100px;
-}
-
-.centerInfo {
-	padding: 0 37px;
-}
-
-.statsCenterInfos {
-	max-width: fit-content;
-}
-
 .won {
-	background-color: var(--chakra-colors-success);
+	background: linear-gradient(
+		90deg,
+		rgba(0, 228, 201, 0.3) -6.62%,
+		#282828 17.93%
+	);
+}
+
+.defeated {
+	background: linear-gradient(
+		90deg,
+		rgba(246, 53, 53, 0.29) -6.62%,
+		#282828 17.93%
+	);
+}
+
+.won.expand {
+	background: linear-gradient(
+		90deg,
+		rgba(0, 228, 201, 0.3) 0.12%,
+		#282828 55.1%
+	);
+}
+
+.defeated.expand {
+	background: linear-gradient(
+		90deg,
+		rgba(246, 53, 53, 0.29) 0.12%,
+		#282828 55.1%
+	);
 }
