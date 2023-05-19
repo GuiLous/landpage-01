@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
 - Componentes `ToastList` e `ToastListItem` para lidar com os toasts da aplicação.
 - Componente `FavoriteWeaponCard` que exibe a arma favorita do usuário [#158](https://github.com/3C-gg/reload-frontend/issues/158).
 - Componente `ProfileCard` para servir de base para os cards do Perfil.
