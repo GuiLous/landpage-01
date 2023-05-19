@@ -62,50 +62,27 @@ const match = {
 }
 
 describe('MatchHistoryStatsAccordion Component', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(<MatchHistoryStatsAccordion user={user} match={match} />)
 
-    expect(screen.getByText('Derrota')).toBeInTheDocument()
     expect(screen.getByText('Inferno')).toBeInTheDocument()
   })
 
-  it('should renders with text Vitória when user is on winner team', () => {
-    match.winner_id = 10
-
+  it('should render kdr correctly', () => {
     render(<MatchHistoryStatsAccordion user={user} match={match} />)
 
-    expect(screen.getByText('Vitória')).toBeInTheDocument()
+    expect(screen.getByTestId('kdr').textContent).toEqual('2.0')
   })
 
-  it('should renders with text Derrota user is not on winner team', () => {
-    match.winner_id = 11
-
+  it('should render hs percentage correctly', () => {
     render(<MatchHistoryStatsAccordion user={user} match={match} />)
 
-    expect(screen.getByText('Derrota')).toBeInTheDocument()
+    expect(screen.getByTestId('hs%').textContent).toEqual('20.0%')
   })
 
-  it('should renders kda correctly', () => {
+  it('should render adr correctly', () => {
     render(<MatchHistoryStatsAccordion user={user} match={match} />)
 
-    expect(screen.getByTestId('kda').textContent).toEqual('5.00 KDA')
-  })
-
-  it('should renders kpr correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
-
-    expect(screen.getByTestId('kpr').textContent).toEqual('0.67 KPR')
-  })
-
-  it('should renders ADR correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
-
-    expect(screen.getByTestId('adr').textContent).toEqual('33.33 ADR')
-  })
-
-  it('should renders HS% correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
-
-    expect(screen.getByTestId('hs').textContent).toEqual('20.0% HS')
+    expect(screen.getByTestId('adr').textContent).toEqual('33.33')
   })
 })
