@@ -196,6 +196,18 @@ export default extendTheme({
             color: 'secondary.500',
           },
         },
+
+        userMenu: {
+          color: 'gray.700',
+          cursor: 'pointer',
+          textTransform: 'uppercase',
+          _hover: {
+            color: 'gray.700',
+          },
+          _active: {
+            color: 'gray.700',
+          },
+        },
       },
     },
     Input: {
@@ -235,6 +247,17 @@ export default extendTheme({
               bg: 'gray.600',
               backgroundColor: 'gray.600',
             },
+          },
+        },
+        clean: {
+          field: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+          },
+          addon: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
           },
         },
       },
@@ -530,7 +553,7 @@ export default extendTheme({
       200: '#F5F6F8',
       300: '#ECECEC',
       400: '#333333',
-      500: '#5D5D5D',
+      500: '#282828',
       600: '#434343',
       700: '#999999',
       800: '#1E1E1E',
