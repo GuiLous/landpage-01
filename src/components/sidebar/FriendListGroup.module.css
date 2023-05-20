@@ -1,0 +1,43 @@
+.container {
+	background-color: var(--chakra-colors-gray-800);
+	color: white;
+	height: 100%;
+}
+
+.header {
+	background-color: var(--chakra-colors-gray-500);
+	cursor: pointer;
+	padding: 18px;
+}
+
+.header.disabled {
+	background-color: var(--chakra-colors-gray-500);
+	cursor: default;
+}
+
+.container.open .header {
+	background-color: var(--chakra-colors-gray-400);
+}
+
+.list {
+	max-height: 0;
+	overflow: hidden;
+	transition: all 100ms linear;
+}
+
+.container.open .list {
+	max-height: fit-content;
+}
+
+.arrowIcon {
+	opacity: .7;
+	transition: all 100ms linear;
+}
+
+.header:hover .arrowIcon {
+	opacity: 1;
+}
+
+.container.open .arrowIcon {
+	transform: rotate(180deg);
+}
