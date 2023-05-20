@@ -7,11 +7,14 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
-import Sidebar from './sidebar/Sidebar'
-import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
+
+// Sidebar
+import FriendListGroupItem from './sidebar/FriendListGroupItem'
+import Sidebar from './sidebar/Sidebar'
+import SidebarItem from './sidebar/SidebarItem'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -31,6 +34,7 @@ import ClipboardIcon from './icons/ClipboardIcon'
 import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
+import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
@@ -137,4 +141,6 @@ export {
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
+  FriendListGroupItem,
+  GroupAddIcon,
 }
