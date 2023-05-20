@@ -35,6 +35,7 @@ module.exports = {
         '^@providers(.*)$': '<rootDir>/src/providers$1',
         '^@layouts(.*)$': '<rootDir>/src/layouts$1',
         '^@api(.*)$': '<rootDir>/src/api$1',
+        '^@hooks(.*)$': '<rootDir>/src/hooks$1',
       },
     },
   },
