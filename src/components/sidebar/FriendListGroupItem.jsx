@@ -54,6 +54,7 @@ export default function FriendListGroupItem({ id, status, avatar, username }) {
       gap={8}
       align="center"
       testID="action"
+      fitContent
     >
       <Container fitContent>
         <Avatar variant={status} src={avatar} />
