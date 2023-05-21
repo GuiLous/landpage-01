@@ -14,19 +14,17 @@ export default function LevelStatsCard({
 }) {
   const renderLastMatches = latest_matches_results.map(
     (matchResultItem, index) => (
-      <>
+      <Container fitContent key={index}>
         <Text
-          as="span"
-          key={index}
           className={style.matchResultItem}
           color={matchResultItem === 'V' && 'secondary.400'}
         >
           {matchResultItem}
         </Text>
-        <Text as="span" color="rgba(255, 255, 255, .3)">
+        <Text color="rgba(255, 255, 255, .3)" margin="0 3px">
           {latest_matches_results.length !== index + 1 && ' - '}
         </Text>
-      </>
+      </Container>
     )
   )
 
@@ -42,7 +40,9 @@ export default function LevelStatsCard({
             <Text className={style.title}>
               <Text as="span">{match_wins}</Text> Vitórias
             </Text>
-            <Text className={style.subtitle}>{renderLastMatches}</Text>
+            <Container className={style.subtitle}>
+              {renderLastMatches}
+            </Container>
           </Container>
         </Container>
 
