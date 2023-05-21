@@ -12,6 +12,7 @@ import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
 
 // Sidebar
+import FriendList from './sidebar/FriendList'
 import FriendListGroup from './sidebar/FriendListGroup'
 import FriendListGroupItem from './sidebar/FriendListGroupItem'
 import Sidebar from './sidebar/Sidebar'
@@ -145,4 +146,5 @@ export {
   FriendListGroupItem,
   GroupAddIcon,
   FriendListGroup,
+  FriendList,
 }
