@@ -19,16 +19,6 @@
 	background-color: var(--chakra-colors-gray-400);
 }
 
-.list {
-	max-height: 0;
-	overflow: hidden;
-	transition: all 100ms linear;
-}
-
-.container.open .list {
-	max-height: fit-content;
-}
-
 .arrowIcon {
 	opacity: .7;
 	transition: all 100ms linear;

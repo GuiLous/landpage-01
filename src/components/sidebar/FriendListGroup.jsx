@@ -1,12 +1,7 @@
 import { Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import {
-  ArrowDownIcon,
-  Container,
-  FriendListGroupItem,
-  Scrollbars,
-} from '@components'
+import { ArrowDownIcon, Container, FriendListGroupItem } from '@components'
 
 import style from './FriendListGroup.module.css'
 
@@ -66,13 +61,11 @@ export default function FriendListGroup({
         )}
       </Container>
 
-      {items.length > 0 && (
+      {items.length > 0 && isOpen && (
         <Container className={style.list} column>
-          <Scrollbars style={{ height: '100%' }} autoHide>
-            {items.map((item) => (
-              <FriendListGroupItem {...item} key={item.id} />
-            ))}
-          </Scrollbars>
+          {items.map((item) => (
+            <FriendListGroupItem {...item} key={item.id} />
+          ))}
         </Container>
       )}
     </Container>
