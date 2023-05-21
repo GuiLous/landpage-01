@@ -77,9 +77,14 @@ export default function FriendList() {
                   fontSize={14}
                   paddingStart={0}
                   onChange={updateFilter}
+                  data-testid="input-filter"
                 />
               </Container>
-              <Container onClick={toggleFiltering} className={style.filterBtn}>
+              <Container
+                onClick={toggleFiltering}
+                className={style.filterBtn}
+                testID="close-filter"
+              >
                 <InputRightElement height="100%">
                   <Icon as={CloseIcon} fill="white" fontSize={12} />
                 </InputRightElement>
@@ -104,6 +109,7 @@ export default function FriendList() {
               align="center"
               fitContent
               onClick={toggleFiltering}
+              testID="open-filter"
             >
               <Icon as={SearchIcon} fill="white" fontSize={16} />
             </Container>
