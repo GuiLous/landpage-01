@@ -67,8 +67,8 @@ import MatchTeamStats from './match/MatchTeamStats'
 // Profile
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
-import HeatmapCardStats from './profile/HeatmapCardStats'
-import LevelCardStats from './profile/LevelCardStats'
+import HeatmapStatsCard from './profile/HeatmapStatsCard'
+import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 import ProfileCard from './profile/ProfileCard'
 
@@ -122,9 +122,9 @@ export {
   MatchTeamStats,
   MatchHistoryStatsAccordion,
   HeaderProfile,
-  HeatmapCardStats,
+  HeatmapStatsCard,
   Progress,
-  LevelCardStats,
+  LevelStatsCard,
   DoubleCheckIcon,
   CheckIcon,
   NotificationList,

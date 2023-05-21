@@ -1,12 +1,12 @@
 import { Icon, Text } from '@chakra-ui/react'
 
-import { Container } from '@components'
+import { Container, ProfileCard } from '@components'
 
-import style from './HeatmapCardStats.module.css'
+import style from './HeatmapStatsCard.module.css'
 
 import FullBodyIcon from '../icons/FullBodyIcon'
 
-export default function HeatmapCardStats({
+export default function HeatmapStatsCard({
   head_shots,
   chest_shots,
   other_shots,
@@ -21,20 +21,8 @@ export default function HeatmapCardStats({
     totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(1)
 
   return (
-    <Container className={style.container} column gap={40}>
-      <Container gap={5} fitContent column>
-        <Text
-          fontSize={14}
-          fontWeight="bold"
-          lineHeight={1}
-          color="#fff"
-          as="span"
-        >
-          HEATMAP DE ACERTOS
-        </Text>
-      </Container>
-
-      <Container gap={40} align="center">
+    <ProfileCard title="Heatmap de Acertos">
+      <Container gap={40} className={style.container}>
         <Container
           className={style.bodyContainer}
           align="center"
@@ -43,8 +31,9 @@ export default function HeatmapCardStats({
         >
           <Icon
             as={FullBodyIcon}
-            w={230}
-            h={230}
+            w={238}
+            h={238}
+            mt={5}
             opacityOthers={otherShotsPercent / 100}
             opacityChest={chestShotsPercent / 100}
             opacityHead={headShotsPercent / 100}
@@ -58,7 +47,7 @@ export default function HeatmapCardStats({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="#fff"
+                color="gray.700"
                 as="span"
               >
                 CABEÇA
@@ -101,7 +90,7 @@ export default function HeatmapCardStats({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="#fff"
+                color="gray.700"
                 as="span"
               >
                 PEITO
@@ -144,7 +133,7 @@ export default function HeatmapCardStats({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="#fff"
+                color="gray.700"
                 as="span"
               >
                 OUTROS
@@ -182,6 +171,6 @@ export default function HeatmapCardStats({
           </Container>
         </Container>
       </Container>
-    </Container>
+    </ProfileCard>
   )
 }

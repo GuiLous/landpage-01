@@ -1,8 +1,8 @@
-import HeatmapCardStats from './HeatmapCardStats'
+import HeatmapStatsCard from './HeatmapStatsCard'
 
 export default {
-  title: 'Profile/HeatmapCardStats',
-  component: HeatmapCardStats,
+  title: 'Profile/HeatmapStatsCard',
+  component: HeatmapStatsCard,
   argTypes: {
     head_shots: { control: 'number' },
     chest_shots: { control: 'number' },
@@ -16,5 +16,5 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <HeatmapCardStats {...props} />,
+  render: (props) => <HeatmapStatsCard {...props} />,
 }

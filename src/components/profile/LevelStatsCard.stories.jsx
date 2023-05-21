@@ -1,8 +1,8 @@
-import LevelCardStats from './LevelCardStats'
+import LevelStatsCard from './LevelStatsCard'
 
 export default {
-  title: 'Profile/LevelCardStats',
-  component: LevelCardStats,
+  title: 'Profile/LevelStatsCard',
+  component: LevelStatsCard,
   argTypes: {
     level: { control: { type: 'range', min: 0, max: 50 } },
     highest_level: { control: { type: 'range', min: 0, max: 50 } },
@@ -44,5 +44,5 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <LevelCardStats {...props} />,
+  render: (props) => <LevelStatsCard {...props} />,
 }

@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 
-import { LevelCardStats } from '@components'
+import { LevelStatsCard } from '@components'
 
-describe('LevelCardStats Component', () => {
+describe('LevelStatsCard Component', () => {
   const props = {
     level: 20,
     highest_level: 23,
@@ -30,8 +30,8 @@ describe('LevelCardStats Component', () => {
     },
   }
 
-  it('should renders correctly', () => {
-    render(<LevelCardStats {...props} />)
+  it('should render correctly', () => {
+    render(<LevelStatsCard {...props} />)
 
     expect(screen.getByText('Vitórias')).toBeInTheDocument()
     expect(screen.getByText('KDR')).toBeInTheDocument()
