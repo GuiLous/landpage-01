@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `SidebarHeader` que contém menu de usuário.
 - Redux e interface de API para `Friends`.
 - Componente `FriendList`.
 - Componente `FriendListGroup` que representa um grupo de amigos na lista de amigos.
