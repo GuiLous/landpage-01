@@ -20,14 +20,26 @@ export default function LevelBadge(props) {
       return range
     }
 
-    const fetchImg = async () => {
-      const response = await import(
-        `@assets/images/level_badges/badge_${calcLvlRange()}.png`
-      )
-      setImage(response.default)
-    }
+    setImage(
+      <img
+        src={require(`@assets/images/level_badges/badge_${calcLvlRange()}.png`)}
+        alt={`Level ${props.level}`}
+        data-testid="badge-image"
+      />
+    )
 
-    fetchImg()
+    // const fetchImg = async () => {
+    //   const response = await import(
+    //     `@assets/images/level_badges/badge_${calcLvlRange()}.png`
+    //   )
+    //   setImage(response.default)
+    // }
+
+    // const response = import(
+    //   `@assets/images/level_badges/badge_${calcLvlRange()}.png`
+    // )
+
+    // fetchImg()
   }, [props.level])
 
   return (
@@ -55,7 +67,7 @@ export default function LevelBadge(props) {
           {props.level}
         </Text>
       </Container>
-      <img src={image} alt={`Level ${props.level}`} data-testid="badge-image" />
+      {image}
     </Container>
   )
 }
