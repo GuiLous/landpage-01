@@ -1,6 +1,5 @@
 import {
   Icon,
-  Image,
   Input,
   InputGroup,
   InputRightElement,
@@ -20,7 +19,6 @@ import {
 import { StorageService } from '@services'
 import { initFriends } from '@slices/FriendSlice'
 
-import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import style from './FriendList.module.css'
 
 export default function FriendList() {
@@ -131,10 +129,6 @@ export default function FriendList() {
             <FriendListGroup title="Offline" items={filteredOfflineFriends} />
           </Container>
         </Scrollbars>
-      </Container>
-
-      <Container className={style.footer} justify="center" fitContent>
-        <Image src={logoSymbol} maxW={'24px'} />
       </Container>
     </Container>
   )
