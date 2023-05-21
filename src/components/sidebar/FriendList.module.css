@@ -14,7 +14,7 @@
 	max-width: 36px;
 	min-height: 36px;
 	min-width: 36px;
-	opacity: .5;
+	opacity: 0.5;
 	padding: 0 18px;
 	position: relative;
 	transition: all 100ms linear;
@@ -31,5 +31,5 @@
 }
 
 .footer img {
-	opacity: .2;
+	opacity: 0.2;
 }
