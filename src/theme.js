@@ -196,18 +196,6 @@ export default extendTheme({
             color: 'secondary.500',
           },
         },
-
-        userMenu: {
-          color: 'gray.700',
-          cursor: 'pointer',
-          textTransform: 'uppercase',
-          _hover: {
-            color: 'gray.700',
-          },
-          _active: {
-            color: 'gray.700',
-          },
-        },
       },
     },
     Input: {
@@ -363,6 +351,11 @@ export default extendTheme({
           height: '9px',
           width: '9px',
           padding: 'initial',
+        },
+      },
+      sizes: {
+        sm: {
+          fontSize: '10px',
         },
       },
     },
