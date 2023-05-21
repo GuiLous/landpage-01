@@ -7,8 +7,6 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
-import Sidebar from './sidebar/Sidebar'
-import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
@@ -17,6 +15,7 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './sidebar/FriendList'
 import FriendListGroup from './sidebar/FriendListGroup'
 import FriendListGroupItem from './sidebar/FriendListGroupItem'
+import Sidebar from './sidebar/Sidebar'
 import SidebarHeader from './sidebar/SidebarHeader'
 
 // Form
@@ -110,7 +109,6 @@ export {
   Scrollbars,
   SearchIcon,
   Sidebar,
-  SidebarItem,
   SteamSignin,
   UserCard,
   UserCardMini,
