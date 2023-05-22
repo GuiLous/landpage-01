@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom'
 import MatchHistoryStatsAccordion from './MatchHistoryStatsAccordion'
 
 export default {
@@ -61,6 +62,7 @@ export default {
           ],
         },
       ],
+      id: 0,
       winner_id: 10,
       rounds: 15,
       start_date: '2023-05-05T10:00:00',
@@ -71,5 +73,9 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <MatchHistoryStatsAccordion {...props} />,
+  render: (props) => (
+    <BrowserRouter>
+      <MatchHistoryStatsAccordion {...props} />
+    </BrowserRouter>
+  ),
 }
