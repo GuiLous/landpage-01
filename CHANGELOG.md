@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design [#212](https://github.com/3C-gg/reload-frontend/issues/212).
+- Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
+- Alterado componente `HeatmapCardStats` para ficar igual ao design.`
 - Alterado componentes que usavam antigo sistema de Toasts.
 - Componente `Sidebar` foi alterado para refletir novo layout e design.
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).

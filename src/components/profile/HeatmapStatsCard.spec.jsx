@@ -1,15 +1,15 @@
 import { render, screen } from '@testing-library/react'
 
-import { HeatmapCardStats } from '@components'
+import { HeatmapStatsCard } from '@components'
 
-describe('HeatmapCardStats Component', () => {
+describe('HeatmapStatsCard Component', () => {
   const head_shots = 10
   const chest_shots = 30
   const other_shots = 60
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
-      <HeatmapCardStats
+      <HeatmapStatsCard
         head_shots={head_shots}
         chest_shots={chest_shots}
         other_shots={other_shots}
@@ -23,7 +23,7 @@ describe('HeatmapCardStats Component', () => {
 
   it('should render percentage correctly', () => {
     render(
-      <HeatmapCardStats
+      <HeatmapStatsCard
         head_shots={head_shots}
         chest_shots={chest_shots}
         other_shots={other_shots}
