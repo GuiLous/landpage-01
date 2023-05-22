@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react'
 
 import { MatchHistoryStatsAccordion } from '@components'
+import { BrowserRouter } from 'react-router-dom'
 
 const user = {
   id: 1,
@@ -54,6 +55,7 @@ const match = {
       ],
     },
   ],
+  id: 0,
   winner_id: 11,
   rounds: 15,
   start_date: '2023-05-05T10:00:00',
@@ -63,25 +65,41 @@ const match = {
 
 describe('MatchHistoryStatsAccordion Component', () => {
   it('should render correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
+    render(
+      <BrowserRouter>
+        <MatchHistoryStatsAccordion user={user} match={match} />
+      </BrowserRouter>
+    )
 
     expect(screen.getByText('Inferno')).toBeInTheDocument()
   })
 
   it('should render kdr correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
+    render(
+      <BrowserRouter>
+        <MatchHistoryStatsAccordion user={user} match={match} />
+      </BrowserRouter>
+    )
 
     expect(screen.getByTestId('kdr').textContent).toEqual('2.0')
   })
 
   it('should render hs percentage correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
+    render(
+      <BrowserRouter>
+        <MatchHistoryStatsAccordion user={user} match={match} />
+      </BrowserRouter>
+    )
 
     expect(screen.getByTestId('hs%').textContent).toEqual('20.0%')
   })
 
   it('should render adr correctly', () => {
-    render(<MatchHistoryStatsAccordion user={user} match={match} />)
+    render(
+      <BrowserRouter>
+        <MatchHistoryStatsAccordion user={user} match={match} />
+      </BrowserRouter>
+    )
 
     expect(screen.getByTestId('adr').textContent).toEqual('33.33')
   })
