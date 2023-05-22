@@ -7,11 +7,16 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
-import Sidebar from './sidebar/Sidebar'
-import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
+
+// Sidebar
+import FriendList from './sidebar/FriendList'
+import FriendListGroup from './sidebar/FriendListGroup'
+import FriendListGroupItem from './sidebar/FriendListGroupItem'
+import Sidebar from './sidebar/Sidebar'
+import SidebarHeader from './sidebar/SidebarHeader'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -31,6 +36,7 @@ import ClipboardIcon from './icons/ClipboardIcon'
 import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
+import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
@@ -57,7 +63,6 @@ import UserStatus from './user/UserStatus'
 // Header
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
-import HeaderProfileMenu from './header/HeaderProfileMenu'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -67,8 +72,8 @@ import MatchTeamStats from './match/MatchTeamStats'
 // Profile
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
-import HeatmapCardStats from './profile/HeatmapCardStats'
-import LevelCardStats from './profile/LevelCardStats'
+import HeatmapStatsCard from './profile/HeatmapStatsCard'
+import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 import ProfileCard from './profile/ProfileCard'
 
@@ -103,7 +108,6 @@ export {
   Scrollbars,
   SearchIcon,
   Sidebar,
-  SidebarItem,
   SteamSignin,
   UserCard,
   UserCardMini,
@@ -116,15 +120,14 @@ export {
   ArrowDownIcon,
   HeaderPlayButton,
   RequireAuth,
-  HeaderProfileMenu,
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
   MatchHistoryStatsAccordion,
   HeaderProfile,
-  HeatmapCardStats,
+  HeatmapStatsCard,
   Progress,
-  LevelCardStats,
+  LevelStatsCard,
   DoubleCheckIcon,
   CheckIcon,
   NotificationList,
@@ -137,4 +140,9 @@ export {
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
+  FriendListGroupItem,
+  GroupAddIcon,
+  FriendListGroup,
+  FriendList,
+  SidebarHeader,
 }

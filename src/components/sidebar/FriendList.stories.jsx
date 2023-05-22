@@ -1,15 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
 
-import { Container, Sidebar } from '@components'
+import { Container, FriendList } from '@components'
 import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
-  title: 'Sidebar/Sidebar',
-  component: Sidebar,
+  title: 'Sidebar/FriendList',
+  component: FriendList,
   argTypes: {},
   args: {},
   parameters: {
@@ -130,13 +129,8 @@ const user = {
       max_players: 5,
       player_count: 1,
     },
-    avatar: {
-      medium:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    },
     lobby_invites: [],
     lobby_invites_sent: [],
-    username: 'Username',
   },
 }
 
@@ -162,12 +156,10 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => (
-    <BrowserRouter>
-      <Provider store={store}>
-        <Container style={{ height: '90vh' }} column>
-          <Sidebar {...props} />
-        </Container>
-      </Provider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <Container style={{ height: '90vh' }} column>
+        <FriendList {...props} />
+      </Container>
+    </Provider>
   ),
 }

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import FriendReducer from './slices/FriendSlice.js'
 import InviteReducer from './slices/InviteSlice'
 import MatchReducer from './slices/MatchSlice'
 import NotificationReducer from './slices/NotificationSlice'
@@ -13,6 +14,7 @@ export default configureStore({
     match: MatchReducer,
     notifications: NotificationReducer,
     toasts: ToastReducer,
+    friends: FriendReducer,
   },
   devTools: true,
 })

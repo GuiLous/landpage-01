@@ -237,6 +237,17 @@ export default extendTheme({
             },
           },
         },
+        clean: {
+          field: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+          },
+          addon: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+          },
+        },
       },
     },
     Form: {
@@ -340,6 +351,11 @@ export default extendTheme({
           height: '9px',
           width: '9px',
           padding: 'initial',
+        },
+      },
+      sizes: {
+        sm: {
+          fontSize: '10px',
         },
       },
     },
@@ -530,7 +546,7 @@ export default extendTheme({
       200: '#F5F6F8',
       300: '#ECECEC',
       400: '#333333',
-      500: '#5D5D5D',
+      500: '#282828',
       600: '#434343',
       700: '#999999',
       800: '#1E1E1E',
