@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom'
 
 import { ArrowRightSimpleIcon, Container } from '@components'
 
-import style from './MatchHistoryStatsAccordion.module.css'
+import style from './MatchHistoryStatsLink.module.css'
 
 const statsFields = [
   {
@@ -29,7 +29,7 @@ const statsFields = [
   },
 ]
 
-export default function MatchHistoryStatsAccordion({ user, match }) {
+export default function MatchHistoryStatsLink({ user, match }) {
   const winner_team_id = match.winner_id
   const winner_team = match.teams.find((team) => team.id === winner_team_id)
   const defeated_team = match.teams.find((team) => team.id !== winner_team_id)

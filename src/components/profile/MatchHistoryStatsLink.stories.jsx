@@ -1,9 +1,9 @@
 import { BrowserRouter } from 'react-router-dom'
-import MatchHistoryStatsAccordion from './MatchHistoryStatsAccordion'
+import MatchHistoryStatsLink from './MatchHistoryStatsLink'
 
 export default {
-  title: 'Profile/MatchHistoryStatsAccordion',
-  component: MatchHistoryStatsAccordion,
+  title: 'Profile/MatchHistoryStatsLink',
+  component: MatchHistoryStatsLink,
   argTypes: {
     user: { control: 'object' },
     match: { control: 'object' },
@@ -75,7 +75,7 @@ export default {
 export const Default = {
   render: (props) => (
     <BrowserRouter>
-      <MatchHistoryStatsAccordion {...props} />
+      <MatchHistoryStatsLink {...props} />
     </BrowserRouter>
   ),
 }

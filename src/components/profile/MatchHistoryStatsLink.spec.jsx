@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import { MatchHistoryStatsAccordion } from '@components'
+import { MatchHistoryStatsLink } from '@components'
 import { BrowserRouter } from 'react-router-dom'
 
 const user = {
@@ -63,11 +63,11 @@ const match = {
   map_name: 'Inferno',
 }
 
-describe('MatchHistoryStatsAccordion Component', () => {
+describe('MatchHistoryStatsLink Component', () => {
   it('should render correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsAccordion user={user} match={match} />
+        <MatchHistoryStatsLink user={user} match={match} />
       </BrowserRouter>
     )
 
@@ -77,7 +77,7 @@ describe('MatchHistoryStatsAccordion Component', () => {
   it('should render kdr correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsAccordion user={user} match={match} />
+        <MatchHistoryStatsLink user={user} match={match} />
       </BrowserRouter>
     )
 
@@ -87,7 +87,7 @@ describe('MatchHistoryStatsAccordion Component', () => {
   it('should render hs percentage correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsAccordion user={user} match={match} />
+        <MatchHistoryStatsLink user={user} match={match} />
       </BrowserRouter>
     )
 
@@ -97,7 +97,7 @@ describe('MatchHistoryStatsAccordion Component', () => {
   it('should render adr correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsAccordion user={user} match={match} />
+        <MatchHistoryStatsLink user={user} match={match} />
       </BrowserRouter>
     )
 
