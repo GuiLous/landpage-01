@@ -63,7 +63,6 @@ import UserStatus from './user/UserStatus'
 // Header
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
-import HeaderProfileMenu from './header/HeaderProfileMenu'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -121,7 +120,6 @@ export {
   ArrowDownIcon,
   HeaderPlayButton,
   RequireAuth,
-  HeaderProfileMenu,
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
