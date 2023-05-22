@@ -22,6 +22,7 @@ import Input from './input/Input'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellIcon from './icons/BellIcon'
@@ -137,4 +138,5 @@ export {
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
+  ArrowRightSimpleIcon,
 }
