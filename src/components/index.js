@@ -13,6 +13,12 @@ import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
 
+// Sidebar
+import FriendList from './sidebar/FriendList'
+import FriendListGroup from './sidebar/FriendListGroup'
+import FriendListGroupItem from './sidebar/FriendListGroupItem'
+import SidebarHeader from './sidebar/SidebarHeader'
+
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
@@ -31,6 +37,7 @@ import ClipboardIcon from './icons/ClipboardIcon'
 import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
+import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
@@ -137,4 +144,9 @@ export {
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
+  FriendListGroupItem,
+  GroupAddIcon,
+  FriendListGroup,
+  FriendList,
+  SidebarHeader,
 }

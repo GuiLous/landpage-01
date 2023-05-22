@@ -10,8 +10,8 @@ const props = {
 
 test('loads and displays text based on props', async () => {
   render(<LevelBadge {...props} />)
-  const badgeLevel = (await screen.findByTestId('badge-level')).textContent
-  expect(badgeLevel).toBe(props.level.toString())
+  const badgeLevel = await screen.findByTestId('badge-level')
+  expect(badgeLevel.textContent).toBe(props.level.toString())
 })
 
 test('loads and displays image based on props', async () => {
