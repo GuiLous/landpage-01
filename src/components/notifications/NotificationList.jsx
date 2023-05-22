@@ -1,4 +1,5 @@
 import { Icon, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { NotificationsAPI } from '@api'
@@ -10,6 +11,7 @@ import {
 } from '@components'
 import { StorageService } from '@services'
 import {
+  initNotifications,
   readAllNotifications,
   readNotification,
 } from '@slices/NotificationSlice'
@@ -19,6 +21,18 @@ import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import style from './NotificationList.module.css'
 
 export default function NotificationList({ isOpen }) {
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await NotificationsAPI.list(userToken)
+      if (response) dispatch(initNotifications(response))
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const notifications = useSelector((state) => state.notifications)
   const userToken = StorageService.get('token')
   const dispatch = useDispatch()
