@@ -1,3 +1,10 @@
+.container {
+	align-items: center;
+	border-radius: 8px;
+	display: flex;
+	padding: 24px;
+}
+
 .won {
 	background: linear-gradient(
 		90deg,
@@ -11,21 +18,5 @@
 		90deg,
 		rgba(246, 53, 53, 0.29) -6.62%,
 		#282828 17.93%
-	);
-}
-
-.won.expand {
-	background: linear-gradient(
-		90deg,
-		rgba(0, 228, 201, 0.3) 0.12%,
-		#282828 55.1%
-	);
-}
-
-.defeated.expand {
-	background: linear-gradient(
-		90deg,
-		rgba(246, 53, 53, 0.29) 0.12%,
-		#282828 55.1%
 	);
 }
