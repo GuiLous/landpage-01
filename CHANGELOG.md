@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).
 - Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
 - Alterado componente `HeatmapCardStats` para ficar igual ao design.`
 - Componente `SearchIcon` para refletir atualização de design.
@@ -49,6 +50,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `HeaderProfileMenu` que foi movido para a `Sidebar`.
+- Testes de `LobbyView` pois estavam solicitando Redux e mock de API. Criei uma issue para endereçar esse problema de forma mais genérica: https://github.com/3C-gg/reload-frontend/issues/217
+- Componente `SidebarItem`.
 - Serviço descontinuado `Toast`.
 
 ### Fixed

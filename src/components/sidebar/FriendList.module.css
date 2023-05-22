@@ -23,13 +23,3 @@
 .filterBtn:hover {
 	opacity: 1;
 }
-
-.footer {
-	border-top: 1px solid var(--chakra-colors-gray-600);
-	margin-top: auto;
-	padding: 12px;
-}
-
-.footer img {
-	opacity: 0.2;
-}
