@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- `SidebarHeader` que contém menu de usuário.
+- Redux e interface de API para `Friends`.
+- Componente `FriendList`.
+- Componente `FriendListGroup` que representa um grupo de amigos na lista de amigos.
+- Interfaces de API para `Accounts` e `Matchmaking`.
+- Componente `FriendListGroupItem` que representa um amigo na lista de amigos.
 - Componentes `ToastList` e `ToastListItem` para lidar com os toasts da aplicação.
 - Componente `FavoriteWeaponCard` que exibe a arma favorita do usuário [#158](https://github.com/3C-gg/reload-frontend/issues/158).
 - Componente `ProfileCard` para servir de base para os cards do Perfil.
@@ -25,8 +31,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
+- `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
+- Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).
 - Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
 - Alterado componente `HeatmapCardStats` para ficar igual ao design.`
+- Componente `SearchIcon` para refletir atualização de design.
+- Componente `HeaderProfileMenu` foi alterado para `HeaderUserMenu`. Aplicamos o novo design e não utilizamos mais o `Menu` do Chakra [196](https://github.com/3C-gg/reload-frontend/issues/196).
 - Alterado componentes que usavam antigo sistema de Toasts.
 - Componente `Sidebar` foi alterado para refletir novo layout e design.
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).
@@ -42,6 +52,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `HeaderProfileMenu` que foi movido para a `Sidebar`.
+- Testes de `LobbyView` pois estavam solicitando Redux e mock de API. Criei uma issue para endereçar esse problema de forma mais genérica: https://github.com/3C-gg/reload-frontend/issues/217
+- Componente `SidebarItem`.
 - Serviço descontinuado `Toast`.
 
 ### Fixed

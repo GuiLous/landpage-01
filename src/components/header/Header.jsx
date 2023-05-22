@@ -7,7 +7,6 @@ import {
   BellIcon,
   Container,
   HeaderPlayButton,
-  HeaderProfileMenu,
   NotificationList,
 } from '@components'
 
@@ -75,10 +74,6 @@ export default function Header() {
               <NotificationList isOpen={notificationsVisible} />
             </Container>
           </div>
-        </Container>
-
-        <Container fitContent>
-          <HeaderProfileMenu user={user} />
         </Container>
       </Container>
     </Container>
