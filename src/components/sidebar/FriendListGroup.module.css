@@ -10,13 +10,14 @@
 	padding: 18px;
 }
 
-.header.disabled {
-	background-color: var(--chakra-colors-gray-500);
-	cursor: default;
-}
-
 .container.open .header {
 	background-color: var(--chakra-colors-gray-400);
+}
+
+.header.disabled,
+.container.open .header.disabled {
+	background-color: var(--chakra-colors-gray-500);
+	cursor: default;
 }
 
 .arrowIcon {

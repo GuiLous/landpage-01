@@ -19,7 +19,7 @@ export default function FriendListGroup({
   const [isOpen, setIsOpen] = useState()
 
   const handleCollapse = () => {
-    if (!collapse) return
+    if (!collapse || items.length <= 0) return
     setIsOpen(!isOpen)
   }
 
