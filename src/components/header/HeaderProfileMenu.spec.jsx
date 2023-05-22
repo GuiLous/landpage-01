@@ -11,23 +11,24 @@ describe('HeaderProfileMenu Component', () => {
     account: {
       username: 'fakeUser',
       avatar: {
-        small: 'fakeImg',
+        small:
+          'https://avatars.akamai.steamstatic.com/fba2f7ffa02a5501d1fdee81221d87b4504a6159_small.jpg',
       },
     },
   }
 
-  it('should renders correctly', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+    },
+    preloadedState: { user },
+  })
 
+  it('should renders correctly', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <HeaderProfileMenu />
+          <HeaderProfileMenu user={user} />
         </Provider>
       </BrowserRouter>
     )
@@ -36,17 +37,10 @@ describe('HeaderProfileMenu Component', () => {
   })
 
   it('should renders with user', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
-
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <HeaderProfileMenu />
+          <HeaderProfileMenu user={user} />
         </Provider>
       </BrowserRouter>
     )
@@ -55,17 +49,10 @@ describe('HeaderProfileMenu Component', () => {
   })
 
   it('should open menu on click', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
-
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <HeaderProfileMenu />
+          <HeaderProfileMenu user={user} />
         </Provider>
       </BrowserRouter>
     )

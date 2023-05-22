@@ -26,7 +26,7 @@
 .bigTitle {
 	color: white;
 	font-size: 60px;
-	font-weight: 700;
+	font-weight: var(--chakra-fontWeights-bold);
 	/* margin-bottom: 60px; */
 	text-transform: uppercase;
 }
@@ -38,14 +38,14 @@
 .title {
 	color: var(--chakra-colors-secondary-400);
 	font-size: 28px;
-	font-weight: bold;
+	font-weight: var(--chakra-fontWeights-bold);
 	text-transform: uppercase;
 }
 
 .helper {
 	color: var(--chakra-colors-gray-700);
 	font-size: 20px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 	max-width: 600px;
 	text-align: end;
 }
@@ -81,7 +81,7 @@
 	color: white;
 	cursor: default;
 	font-size: 22px;
-	font-weight: 700;
+	font-weight: var(--chakra-fontWeights-bold);
 	margin-bottom: 110px;
 	max-width: 300px;
 	padding: 13px;

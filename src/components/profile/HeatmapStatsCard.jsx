@@ -1,37 +1,28 @@
 import { Icon, Text } from '@chakra-ui/react'
 
-import { Container } from '@components'
+import { Container, ProfileCard } from '@components'
 
-import style from './HeatmapCardStats.module.css'
+import style from './HeatmapStatsCard.module.css'
 
 import FullBodyIcon from '../icons/FullBodyIcon'
 
-export default function HeatmapCardStats({
+export default function HeatmapStatsCard({
   head_shots,
   chest_shots,
   other_shots,
 }) {
   const totalShots = head_shots + chest_shots + other_shots
 
-  const headShotsPercent = Number((head_shots * 100) / totalShots).toFixed(1)
-  const chestShotsPercent = Number((chest_shots * 100) / totalShots).toFixed(1)
-  const otherShotsPercent = Number((other_shots * 100) / totalShots).toFixed(1)
+  const headShotsPercent =
+    totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(1)
+  const chestShotsPercent =
+    totalShots === 0 ? 0 : Number((chest_shots * 100) / totalShots).toFixed(1)
+  const otherShotsPercent =
+    totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(1)
 
   return (
-    <Container className={style.container} column gap={40}>
-      <Container gap={5} fitContent column>
-        <Text
-          fontSize={14}
-          fontWeight={700}
-          lineHeight={1}
-          color="#fff"
-          as="span"
-        >
-          HEATMAP DE ACERTOS
-        </Text>
-      </Container>
-
-      <Container gap={40} align="center">
+    <ProfileCard title="Heatmap de Acertos">
+      <Container gap={40} className={style.container}>
         <Container
           className={style.bodyContainer}
           align="center"
@@ -40,10 +31,11 @@ export default function HeatmapCardStats({
         >
           <Icon
             as={FullBodyIcon}
-            w={230}
-            h={230}
-            opacityLegs={otherShotsPercent / 100}
-            opacityBody={chestShotsPercent / 100}
+            w={238}
+            h={238}
+            mt={5}
+            opacityOthers={otherShotsPercent / 100}
+            opacityChest={chestShotsPercent / 100}
             opacityHead={headShotsPercent / 100}
           />
         </Container>
@@ -54,15 +46,15 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
-                color="#fff"
+                fontWeight="medium"
+                color="gray.700"
                 as="span"
               >
                 CABEÇA
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="hs-percentage"
@@ -75,13 +67,18 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {head_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
@@ -92,15 +89,15 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
-                color="#fff"
+                fontWeight="medium"
+                color="gray.700"
                 as="span"
               >
-                CORPO
+                PEITO
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="body-percentage"
@@ -113,13 +110,18 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {chest_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
@@ -130,15 +132,15 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={12}
-                fontWeight={500}
-                color="#fff"
+                fontWeight="medium"
+                color="gray.700"
                 as="span"
               >
-                PERNAS
+                OUTROS
               </Text>
               <Text
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
                 data-testid="other-percentage"
@@ -151,19 +153,24 @@ export default function HeatmapCardStats({
               <Text
                 lineHeight={1}
                 fontSize={16}
-                fontWeight={700}
+                fontWeight="bold"
                 color="secondary.400"
                 as="span"
               >
                 {other_shots}
               </Text>
-              <Text fontSize={12} fontWeight={500} color="gray.700" as="span">
+              <Text
+                fontSize={12}
+                fontWeight="medium"
+                color="gray.700"
+                as="span"
+              >
                 ACERTOS
               </Text>
             </Container>
           </Container>
         </Container>
       </Container>
-    </Container>
+    </ProfileCard>
   )
 }

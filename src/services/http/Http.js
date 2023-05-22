@@ -49,6 +49,10 @@ export const HttpService = {
             ...json,
             field: json.detail[0].loc[2],
             errorMsg: json.detail[0].msg,
+            formError: {
+              field: json.detail[0].loc[2],
+              error: json.detail[0].msg,
+            },
           }
         } else return { ...json, errorMsg: json.detail }
       } catch {

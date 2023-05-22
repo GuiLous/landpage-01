@@ -1,23 +1,39 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { uuid4 } from '@utils'
-
 export const NotificationReducer = createSlice({
   name: 'notifications',
   initialState: [],
   reducers: {
-    addNotification: (state, action) => {
-      action.payload['id'] = uuid4()
-      return [...state, action.payload]
+    initNotifications: (state, action) => {
+      return action.payload
     },
 
-    removeNotification: (state, action) => {
-      return state.filter((item) => item.id !== action.payload)
+    addNotification: (state, action) => {
+      return [action.payload, ...state]
+    },
+
+    readNotification: (state, action) => {
+      return state.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, read_date: new Date().toISOString() }
+          : item
+      )
+    },
+
+    readAllNotifications: (state, action) => {
+      return state.map((item) => ({
+        ...item,
+        read_date: new Date().toISOString(),
+      }))
     },
   },
 })
 
-export const { addNotification, removeNotification } =
-  NotificationReducer.actions
+export const {
+  addNotification,
+  readNotification,
+  readAllNotifications,
+  initNotifications,
+} = NotificationReducer.actions
 
 export default NotificationReducer.reducer

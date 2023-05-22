@@ -10,6 +10,8 @@ import Scrollbars from './scrollbars/Scrollbars'
 import Sidebar from './sidebar/Sidebar'
 import SidebarItem from './sidebar/SidebarItem'
 import Timer from './timer/Timer'
+import ToastList from './toast/ToastList'
+import ToastListItem from './toast/ToastListItem'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -21,13 +23,19 @@ import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
+import BellCircleIcon from './icons/BellCircleIcon'
 import BellIcon from './icons/BellIcon'
+import CheckCircleIcon from './icons/CheckCircleIcon'
+import CheckIcon from './icons/CheckIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
+import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
+import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import LockIcon from './icons/LockIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
 import UserIcon from './icons/UserIcon'
+import WarningCircleIcon from './icons/WarningCircleIcon'
 
 // Lobby
 import Invite from './lobby/Invite'
@@ -50,7 +58,6 @@ import UserStatus from './user/UserStatus'
 import Header from './header/Header'
 import HeaderPlayButton from './header/HeaderPlayButton'
 import HeaderProfileMenu from './header/HeaderProfileMenu'
-import Notifications from './header/Notifications'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -58,10 +65,16 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
-import HeatmapCardStats from './profile/HeatmapCardStats'
-import LevelCardStats from './profile/LevelCardStats'
+import HeatmapStatsCard from './profile/HeatmapStatsCard'
+import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+import ProfileCard from './profile/ProfileCard'
+
+// Notifications
+import NotificationList from './notifications/NotificationList'
+import NotificationListItem from './notifications/NotificationListItem'
 
 export {
   AddUserIcon,
@@ -100,7 +113,6 @@ export {
   UserStatus,
   BellIcon,
   Header,
-  Notifications,
   ArrowDownIcon,
   HeaderPlayButton,
   RequireAuth,
@@ -110,7 +122,19 @@ export {
   MatchTeamStats,
   MatchHistoryStatsAccordion,
   HeaderProfile,
-  HeatmapCardStats,
+  HeatmapStatsCard,
   Progress,
-  LevelCardStats,
+  LevelStatsCard,
+  DoubleCheckIcon,
+  CheckIcon,
+  NotificationList,
+  NotificationListItem,
+  ProfileCard,
+  FavoriteWeaponCard,
+  ToastListItem,
+  ToastList,
+  BellCircleIcon,
+  CheckCircleIcon,
+  WarningCircleIcon,
+  CloseCircleIcon,
 }

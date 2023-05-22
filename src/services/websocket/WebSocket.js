@@ -2,8 +2,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
-import { StorageService, Toast } from '@services'
+import { StorageService } from '@services'
 import { newInvite } from '@slices/InviteSlice'
+import { addToast } from '@slices/ToastSlice'
 import {
   addFriend,
   addInviteReceived,
@@ -16,6 +17,8 @@ import {
 } from '@slices/UserSlice'
 
 import { match, preMatch } from '@slices/MatchSlice'
+
+import { addNotification } from '@slices/NotificationSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -57,19 +60,21 @@ export const WSS = () => {
       case 'ws_lobbyInviteReceived':
         dispatch(addInviteReceived(data.payload))
         dispatch(newInvite())
-        Toast({
-          title: 'Convite recebido',
-          description: `Você recebeu um convite de ${data.payload.from_player.username}.`,
-          status: 'success',
-        })
+        dispatch(
+          addToast({
+            title: 'Novo convite recebido!',
+            content: `Você recebeu um convite de ${data.payload.from_player.username}.`,
+          })
+        )
         break
 
       case 'ws_refuseInvite':
-        Toast({
-          title: 'Convite recusado',
-          description: `O convite para ${data.payload.to_player.username} foi recusado.`,
-          status: 'info',
-        })
+        dispatch(
+          addToast({
+            title: 'Convite recusado',
+            content: `O convite para ${data.payload.to_player.username} foi recusado.`,
+          })
+        )
         dispatch(removeInvite(data.payload))
         break
 
@@ -79,11 +84,12 @@ export const WSS = () => {
 
       case 'ws_removeInvite':
         if (data.payload.to_player.id === user.id) {
-          Toast({
-            title: 'Convite expirou',
-            description: `O convite de ${data.payload.from_player.username} expirou.`,
-            status: 'info',
-          })
+          dispatch(
+            addToast({
+              title: 'Convite expirado',
+              content: `O convite de ${data.payload.from_player.username} expirou.`,
+            })
+          )
         }
         dispatch(removeInvite(data.payload))
         break
@@ -97,12 +103,14 @@ export const WSS = () => {
         break
 
       case 'ws_preMatchCancelWarn':
-        Toast({
-          title: 'Não aceitou a partida',
-          description:
-            'Um ou mais jogadores desse lobby não aceitaram a partida. Na próxima vez que isso acontecer, os jogadores que não aceitarem podem sofrer penalidades.',
-          status: 'warning',
-        })
+        dispatch(
+          addToast({
+            title: 'Partida cancelada',
+            content:
+              'Seu grupo não aceitou a pré verificação. A partida foi cancelada e seu grupo foi removido da fila.',
+            variant: 'warning',
+          })
+        )
         break
 
       case 'ws_restartQueue':
@@ -111,6 +119,10 @@ export const WSS = () => {
 
       case 'ws_match':
         dispatch(match(data.payload))
+        break
+
+      case 'ws_newNotification':
+        dispatch(addNotification(data.payload))
         break
 
       default:

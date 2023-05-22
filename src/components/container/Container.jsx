@@ -27,6 +27,8 @@ export default function Container(props) {
         style.container,
         props.row && style.row,
         props.column && style.column,
+        props.reverseColumn && style.reverseColumn,
+        props.reverseRow && style.reverseRow,
         props.hidden && style[`hidden-${props.hidden}`],
         props.fitContent && style.fitContent,
         style[alignStyleMap[props.align]],
@@ -36,6 +38,7 @@ export default function Container(props) {
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
+      data-testid={props.testID}
     >
       {props.children}
     </animated.div>

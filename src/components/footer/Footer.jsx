@@ -1,4 +1,4 @@
-import { Hide, Link } from '@chakra-ui/react'
+import { Hide, Link, Text } from '@chakra-ui/react'
 import React from 'react'
 import {
   SiDiscord,
@@ -28,28 +28,14 @@ export default function Footer(props) {
               <Link as={RouterLink} to="/" style={{ width: 170 }}>
                 <img src={logo} alt="Reload" />
               </Link>
-              <p>Copyright ©2023. Todos os direitos reservados.</p>
             </Container>
-            <Container column gap={5}>
-              Informações
-              <ul className={style.links}>
-                <li>
-                  <Link as={RouterLink} to="/termos-de-uso">
-                    Termos de uso
-                  </Link>
-                </li>
-                <li>
-                  <Link as={RouterLink} to="/política-de-privacidade">
-                    Política de privacidade
-                  </Link>
-                </li>
-                <li>
-                  <Link as={RouterLink} to="/codigo-de-conduta">
-                    Código de conduta
-                  </Link>
-                </li>
-              </ul>
+
+            <Container align="center" justify="center">
+              <Text fontSize={12} color="white">
+                Copyright ©2023. Todos os direitos reservados.
+              </Text>
             </Container>
+
             <Container justify="end" gap={24} className={style.social}>
               <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
                 <SiInstagram />
@@ -88,48 +74,31 @@ export default function Footer(props) {
           align="center"
           justify="center"
           column
+          gap={24}
         >
-          <Container
-            column
-            className={style.mobileBrand}
-            gap={12}
-            align="center"
-            justify="center"
-          >
-            <Link as={RouterLink} to="/" style={{ width: 130 }}>
-              <img src={logo} alt="Reload" />
-            </Link>
+          <Container column align="center" justify="center" gap={12}>
+            <Container
+              className={style.mobileBrand}
+              align="center"
+              justify="center"
+            >
+              <Link as={RouterLink} to="/" style={{ width: 130 }}>
+                <img src={logo} alt="Reload" />
+              </Link>
+            </Container>
 
-            <p style={{ fontSize: '14px', color: 'white' }}>
-              Copyright ©2023. Todos os direitos reservados.
-            </p>
-          </Container>
-
-          <Container column gap={5}>
-            <p style={{ color: 'white', marginTop: '32px' }}>Informações</p>
-            <ul className={style.links}>
-              <li>
-                <Link as={RouterLink} to="/termos-de-uso">
-                  Termos de uso
-                </Link>
-              </li>
-              <li>
-                <Link as={RouterLink} to="/política-de-privacidade">
-                  Política de privacidade
-                </Link>
-              </li>
-              <li>
-                <Link as={RouterLink} to="/codigo-de-conduta">
-                  Código de conduta
-                </Link>
-              </li>
-            </ul>
+            <Container align="center" justify="center">
+              <Text fontSize={12} color="white">
+                Copyright ©2023. Todos os direitos reservados.
+              </Text>
+            </Container>
           </Container>
 
           <Container
             gap={24}
             className={style.social}
-            style={{ marginTop: '32px' }}
+            align="center"
+            justify="center"
           >
             <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
               <SiInstagram />

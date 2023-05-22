@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { Loading, LoadingBackdrop, RequireAuth } from '@components'
+import {
+  Container,
+  Loading,
+  LoadingBackdrop,
+  RequireAuth,
+  ToastList,
+} from '@components'
 import { AuthService, StorageService, WSS } from '@services'
 import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -189,7 +195,7 @@ export default function App() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <>
+    <Container style={{ position: 'relative' }}>
       {user && user.account && user.account.is_verified && <WSS />}
 
       <Routes>
@@ -198,6 +204,12 @@ export default function App() {
         <Route path="/404" element={<NotFoundView />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
-    </>
+
+      <Container
+        style={{ position: 'absolute', bottom: 20, left: 20, maxWidth: 370 }}
+      >
+        <ToastList />
+      </Container>
+    </Container>
   )
 }
