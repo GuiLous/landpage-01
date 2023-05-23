@@ -58,7 +58,7 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
       </Container>
 
       {sortedDates.map((date) => (
-        <Container column style={{ marginTop: '36px' }} gap={30}>
+        <Container key={date} column style={{ marginTop: '36px' }} gap={30}>
           <Container align="center" gap={12}>
             <Text fontSize={18} color="white" lineHeight={1}>
               {formatDate(date)}
