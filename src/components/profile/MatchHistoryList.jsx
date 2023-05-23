@@ -1,11 +1,18 @@
 import { Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 
-import { Container, MatchHistoryStatsLink } from '@components'
+import {
+  Container,
+  MatchHistoryPagination,
+  MatchHistoryStatsLink,
+} from '@components'
 
+import { useState } from 'react'
 import style from './MatchHistoryList.module.css'
 
 export default function MatchHistoryList({ matches, user, total_matches }) {
+  const [page, setPage] = useState(1)
+
   const groupByDay = (matches) => {
     return matches.reduce((groups, match) => {
       let matchDate = DateTime.fromISO(match.end_date).toISODate()
@@ -77,6 +84,30 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
           </Container>
         </Container>
       ))}
+
+      {sortedDates.length === 0 ? (
+        <Container
+          align="center"
+          justify="center"
+          style={{ marginTop: '24px' }}
+        >
+          <Text fontSize={16} color="gray.700">
+            Ops, você ainda não tem partidas.
+          </Text>
+        </Container>
+      ) : (
+        <Container
+          align="center"
+          justify="center"
+          style={{ marginTop: '24px' }}
+        >
+          <MatchHistoryPagination
+            totalCountOfRegisters={total_matches}
+            currentPage={page}
+            onPageChange={setPage}
+          />
+        </Container>
+      )}
     </Container>
   )
 }
