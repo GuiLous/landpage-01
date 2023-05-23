@@ -116,6 +116,35 @@ export default extendTheme({
           },
         },
 
+        pagination: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          borderRadius: 'full',
+          border: '1px solid',
+          borderColor: '#444444',
+          fontWeight: 'normal',
+          fontSize: 12,
+          color: '#444444',
+          cursor: 'pointer',
+          _disabled: {
+            bg: 'primary.400',
+            backgroundColor: 'primary.400',
+            color: 'white',
+            cursor: 'initial',
+            border: '1px solid',
+            borderColor: 'primary.400',
+            opacity: 1,
+          },
+          _hover: {
+            color: 'white',
+            borderColor: 'white',
+            bgColor: 'transparent',
+            _disabled: {
+              borderColor: 'primary.400',
+            },
+          },
+        },
+
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',
