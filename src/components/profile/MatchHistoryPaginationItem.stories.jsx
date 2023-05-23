@@ -5,11 +5,10 @@ export default {
   component: MatchHistoryPaginationItem,
   argTypes: {
     isCurrent: { control: 'boolean' },
-    number: { control: 'number' },
   },
   args: {
     isCurrent: true,
-    number: 1,
+    content: '1',
   },
 }
 
