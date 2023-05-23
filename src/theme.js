@@ -129,7 +129,6 @@ export default extendTheme({
           width: '26px',
           height: '26px',
           padding: '0 0 0 1px',
-          letterSpacing: '1px',
           minHeight: 'initial',
           minWidth: 'initial',
           _disabled: {
