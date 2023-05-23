@@ -126,6 +126,11 @@ export default extendTheme({
           fontSize: 12,
           color: '#444444',
           cursor: 'pointer',
+          width: "26px",
+          height: "26px",
+          padding: 0,
+          minHeight: "initial",
+          minWidth: 'initial',
           _disabled: {
             bg: 'primary.400',
             backgroundColor: 'primary.400',
