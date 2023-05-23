@@ -17,6 +17,7 @@ export default function MatchHistoryPaginationItem({
     <Button
       variant="pagination"
       cursor="initial"
+      letterSpacing="1px"
       _hover={{ borderColor: '#444444' }}
     >
       {content}
