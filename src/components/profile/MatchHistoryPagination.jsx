@@ -45,8 +45,9 @@ export default function MatchHistoryPagination({
           fill="#444444"
           h="10px"
           w="6px"
-          _hover={{ fill: 'white', cursor: 'pointer' }}
           transform="scaleX(-1)"
+          _hover={{ fill: 'white', cursor: 'pointer' }}
+          data-testid="previous-icon"
           onClick={() => onPageChange(currentPage - 1)}
         />
       )}
@@ -113,6 +114,7 @@ export default function MatchHistoryPagination({
           h="10px"
           w="6px"
           _hover={{ fill: 'white', cursor: 'pointer' }}
+          data-testid="next-icon"
           onClick={() => onPageChange(currentPage + 1)}
         />
       )}
