@@ -76,6 +76,7 @@ import HeaderProfile from './profile/HeaderProfile'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryList from './profile/MatchHistoryList'
+import MatchHistoryPagination from './profile/MatchHistoryPagination'
 import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
@@ -151,4 +152,5 @@ export {
   SidebarHeader,
   MatchHistoryList,
   MatchHistoryPaginationItem,
+  MatchHistoryPagination,
 }
