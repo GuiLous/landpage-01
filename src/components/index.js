@@ -74,6 +74,7 @@ import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
+import MatchHistoryList from './profile/MatchHistoryList'
 import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
 import ProfileCard from './profile/ProfileCard'
 
@@ -145,4 +146,5 @@ export {
   FriendListGroup,
   FriendList,
   SidebarHeader,
+  MatchHistoryList,
 }

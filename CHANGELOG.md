@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado componente `MatchHistoryList` [#177](https://github.com/3C-gg/reload-frontend/issues/177).
 - `SidebarHeader` que contém menu de usuário.
 - Redux e interface de API para `Friends`.
 - Componente `FriendList`.
