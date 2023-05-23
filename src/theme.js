@@ -126,10 +126,11 @@ export default extendTheme({
           fontSize: 12,
           color: '#444444',
           cursor: 'pointer',
-          width: "26px",
-          height: "26px",
-          padding: 0,
-          minHeight: "initial",
+          width: '26px',
+          height: '26px',
+          padding: '0 0 0 1px',
+          letterSpacing: '1px',
+          minHeight: 'initial',
           minWidth: 'initial',
           _disabled: {
             bg: 'primary.400',
@@ -139,6 +140,15 @@ export default extendTheme({
             border: '1px solid',
             borderColor: 'primary.400',
             opacity: 1,
+            _active: {
+              color: 'white',
+            },
+          },
+          _active: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: '#444444',
+            color: '#444444',
           },
           _hover: {
             color: 'white',
