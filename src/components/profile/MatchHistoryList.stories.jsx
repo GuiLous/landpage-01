@@ -29,7 +29,7 @@ export default {
 
 export const Default = {
   render: (props) => {
-    const dataAtual = DateTime.local()
+    const currentDate = DateTime.local()
 
     const genMatches = Array.from(Array(props.matchesCount).keys()).map(
       (_, index) => ({
@@ -76,8 +76,8 @@ export const Default = {
         ],
         winner_id: 10,
         rounds: 15,
-        start_date: '2023-05-22T10:00:00',
-        end_date: dataAtual.minus({ days: index }).toISO(),
+        start_date: currentDate.minus({ days: index }).toISO(),
+        end_date: currentDate.minus({ days: index }).toISO(),
         map_name: 'Inferno',
       })
     )
