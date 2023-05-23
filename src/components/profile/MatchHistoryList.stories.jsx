@@ -71,7 +71,7 @@ export const Default = {
                   head_shots: 20,
                   chest_shots: 40,
                   other_shots: 50,
-                  firstkills: 5
+                  firstkills: 5,
                 },
               },
             ],
