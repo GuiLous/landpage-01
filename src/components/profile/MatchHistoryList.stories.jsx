@@ -2,6 +2,7 @@
 import { DateTime } from 'luxon'
 
 import { MatchHistoryList } from '@components'
+import { BrowserRouter } from 'react-router-dom'
 
 export default {
   title: 'Profile/MatchHistoryList',
@@ -50,6 +51,7 @@ export const Default = {
                   head_shots: 15,
                   chest_shots: 20,
                   other_shots: 40,
+                  firstkills: 2,
                 },
               },
             ],
@@ -69,6 +71,7 @@ export const Default = {
                   head_shots: 20,
                   chest_shots: 40,
                   other_shots: 50,
+                  firstkills: 5
                 },
               },
             ],
@@ -82,6 +85,10 @@ export const Default = {
       })
     )
 
-    return <MatchHistoryList {...props} matches={genMatches} />
+    return (
+      <BrowserRouter>
+        <MatchHistoryList {...props} matches={genMatches} />
+      </BrowserRouter>
+    )
   },
 }

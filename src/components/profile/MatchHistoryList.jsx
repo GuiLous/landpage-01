@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 
-import { Container, MatchHistoryStatsAccordion } from '@components'
+import { Container, MatchHistoryStatsLink } from '@components'
 
 import style from './MatchHistoryList.module.css'
 
@@ -72,7 +72,7 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
 
           <Container column gap={8}>
             {groupedMatches[date].map((match) => (
-              <MatchHistoryStatsAccordion
+              <MatchHistoryStatsLink
                 key={match.id}
                 user={user}
                 match={match}
