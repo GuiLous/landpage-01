@@ -72,11 +72,7 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
 
           <Container column gap={8}>
             {groupedMatches[date].map((match) => (
-              <MatchHistoryStatsLink
-                key={match.id}
-                user={user}
-                match={match}
-              />
+              <MatchHistoryStatsLink key={match.id} user={user} match={match} />
             ))}
           </Container>
         </Container>
