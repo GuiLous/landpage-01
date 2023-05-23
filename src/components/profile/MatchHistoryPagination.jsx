@@ -1,6 +1,10 @@
 import { Icon } from '@chakra-ui/react'
 
-import { ArrowRightSimpleIcon, Container, MatchHistoryPaginationItem } from '@components'
+import {
+  ArrowRightSimpleIcon,
+  Container,
+  MatchHistoryPaginationItem,
+} from '@components'
 
 const siblingsCount = 1
 
@@ -14,7 +18,7 @@ const generatePagesArray = (from, to) => {
 
 export default function MatchHistoryPagination({
   totalCountOfRegisters,
-  registerPerPage = 10,
+  registerPerPage = 15,
   currentPage = 1,
   onPageChange,
 }) {
@@ -28,13 +32,25 @@ export default function MatchHistoryPagination({
   const nextPages =
     currentPage < lastPage
       ? generatePagesArray(
-        currentPage,
-        Math.min(currentPage + siblingsCount, lastPage)
-      )
+          currentPage,
+          Math.min(currentPage + siblingsCount, lastPage)
+        )
       : []
 
   return (
-    <Container gap={12} align="center">
+    <Container gap={12} align="center" justify="center">
+      {currentPage > 1 && (
+        <Icon
+          as={ArrowRightSimpleIcon}
+          fill="#444444"
+          h="10px"
+          w="6px"
+          _hover={{ fill: 'white', cursor: 'pointer' }}
+          transform="scaleX(-1)"
+          onClick={() => onPageChange(currentPage - 1)}
+        />
+      )}
+
       {currentPage > 1 + siblingsCount && (
         <>
           <MatchHistoryPaginationItem onPageChange={onPageChange} content="1" />
@@ -96,11 +112,10 @@ export default function MatchHistoryPagination({
           fill="#444444"
           h="10px"
           w="6px"
-          _hover={{ fill: "white", cursor: 'pointer' }}
+          _hover={{ fill: 'white', cursor: 'pointer' }}
           onClick={() => onPageChange(currentPage + 1)}
         />
       )}
-
     </Container>
   )
 }
