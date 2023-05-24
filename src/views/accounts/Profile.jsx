@@ -6,7 +6,9 @@ import {
   HeaderProfile,
   HeatmapStatsCard,
   LevelStatsCard,
-  MatchHistoryList,
+  Loading,
+  LoadingBackdrop,
+  MatchHistoryList
 } from '@components'
 
 import { Button } from '@chakra-ui/react'
@@ -104,10 +106,11 @@ export default function ProfileView() {
         py="14px"
         px="16px"
         textTransform="uppercase"
-        color={selectedButton === btnOption ? 'secondary.400' : 'gray.700'}
+        color={selectedButton === btnOption ? 'white' : 'gray.700'}
         borderColor={
-          selectedButton === btnOption ? 'secondary.400' : 'gray.700'
+          selectedButton === btnOption ? 'white' : 'gray.700'
         }
+        _hover={{ bg: 'transparent', borderColor: "white" }}
         onClick={() => setSelectedButton(btnOption)}
       >
         {btnOption}
@@ -115,7 +118,12 @@ export default function ProfileView() {
     ))
   }
 
-  return (
+  return false ? (
+    <LoadingBackdrop>
+      <Loading />
+    </LoadingBackdrop>
+  ) : (
+
     <ProfileLayout>
       <Container column fitContent className={style.container} gap={40}>
         <HeaderProfile profile={profile} />
