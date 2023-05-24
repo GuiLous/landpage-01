@@ -27,6 +27,7 @@ import Input from './input/Input'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
+import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellIcon from './icons/BellIcon'
@@ -74,7 +75,7 @@ import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeaderProfile from './profile/HeaderProfile'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
-import MatchHistoryStatsAccordion from './profile/MatchHistoryStatsAccordion'
+import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
 
 // Notifications
@@ -123,7 +124,7 @@ export {
   ArrowUpIcon,
   LevelProgressBar,
   MatchTeamStats,
-  MatchHistoryStatsAccordion,
+  MatchHistoryStatsLink,
   HeaderProfile,
   HeatmapStatsCard,
   Progress,
@@ -140,6 +141,7 @@ export {
   CheckCircleIcon,
   WarningCircleIcon,
   CloseCircleIcon,
+  ArrowRightSimpleIcon,
   FriendListGroupItem,
   GroupAddIcon,
   FriendListGroup,

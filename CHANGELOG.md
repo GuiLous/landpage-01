@@ -30,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
 - `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
 - Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).
 - Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
@@ -64,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado ícone `ArrowRightSimpleIcon`.
 - Criado componente `HeatmapCardStats` (https://github.com/3C-gg/reload-frontend/issues/157).
 - Criado `stories` para o componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/171).
 - Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
