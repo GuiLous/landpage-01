@@ -52,7 +52,7 @@ export default function MatchHistoryList({ user }) {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await AccountsAPI.list(userToken, user.id)
+      const response = await AccountsAPI.listMatches(userToken, user.id)
       if (response.errorMsg) {
         dispatch(
           addToast({

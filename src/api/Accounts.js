@@ -7,7 +7,7 @@ export const AccountsAPI = {
     return await BaseAPI.update('accounts/logout/', token)
   },
 
-  async list(token, user_id) {
+  async listMatches(token, user_id) {
     return await BaseAPI.list(`accounts/${user_id}/matches/`, token)
   },
 }
