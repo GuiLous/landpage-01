@@ -13,3 +13,7 @@
 	min-width: 24px;
 	padding: 8px 10px;
 }
+
+.empty {
+	min-height: 300px;
+}
