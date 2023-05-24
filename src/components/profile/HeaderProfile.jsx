@@ -6,32 +6,28 @@ import style from './HeaderProfile.module.css'
 
 export default function HeaderProfile({ profile }) {
   return (
-    <Container className={style.container} gap={26} align="end">
+    <Container className={style.container} gap={26} align="center">
       <Container className={style.avatar} fitContent>
         <Avatar
           src={profile.avatar.medium}
           variant={profile.status}
-          size={'xl'}
+          size="xl"
         />
       </Container>
 
-      <Container className={style.userInfo} column gap={6}>
+      <Container className={style.userInfo} column gap={12}>
         <Container className={style.username}>
-          <Text>{profile.username}</Text>
+          <Text lineHeight={1}>{profile.username}</Text>
         </Container>
 
-        <Container className={style.levelInfo} column>
-          <Container className={style.levelTxt}>
-            <Text>Level {profile.level}</Text>
-          </Container>
-
+        <Container className={style.levelInfo} gap={4} column>
           <Container className={style.levelBar}>
-            <Progress h={'7px'} value={profile.level_points} />
+            <Progress h={'9px'} value={profile.level_points} />
           </Container>
 
           <Container className={style.levelHelper} justify="between">
-            <Text>Pontos de Nível</Text>
-            <Text>{profile.level_points}/100</Text>
+            <Text color="gray.700">Pontos de Nível</Text>
+            <Text color="gray.700">{profile.level_points}/100</Text>
           </Container>
         </Container>
       </Container>

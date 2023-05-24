@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
-- Criado layout `ProfileLayout` para a página de perfil (https://github.com/3C-gg/reload-frontend/issues/133).
+- Criado layout `ProfileLayout` para a página de perfil [#133](https://github.com/3C-gg/reload-frontend/issues/133).
 - Adicionado método de `list` na interface de AccountsAPI.
 - Criado componente `MatchHistoryPagination`.
 - Criado componente `MatchHistoryPaginationItem`.
@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Atualizado componente `HeaderProfile` para ficar igual ao design.
 - Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
 - `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
 - Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).

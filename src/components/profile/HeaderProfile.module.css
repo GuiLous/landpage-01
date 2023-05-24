@@ -9,10 +9,6 @@
 	text-transform: uppercase;
 }
 
-.levelBar {
-	margin-top: 5px;
-}
-
 .levelBar * {
 	width: 100%;
 }
