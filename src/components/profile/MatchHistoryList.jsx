@@ -1,16 +1,25 @@
 import { Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { AccountsAPI } from '@api'
 import {
   Container,
   MatchHistoryPagination,
   MatchHistoryStatsLink,
 } from '@components'
+import { StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
-import { useState } from 'react'
 import style from './MatchHistoryList.module.css'
 
-export default function MatchHistoryList({ matches, user, total_matches }) {
+export default function MatchHistoryList({ user }) {
+  const dispatch = useDispatch()
+
+  const [matches, setMatches] = useState([])
+  const [groupedMatches, setGroupedMatches] = useState([])
+  const [sortedDates, setSortedDates] = useState([])
   const [page, setPage] = useState(1)
 
   const groupByDay = (matches) => {
@@ -39,10 +48,40 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
     }
   }
 
-  const groupedMatches = groupByDay(matches)
-  let sortedDates = Object.keys(groupedMatches).sort(
-    (a, b) => DateTime.fromISO(b).valueOf() - DateTime.fromISO(a).valueOf()
-  )
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await AccountsAPI.list(userToken, user.id)
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        return
+      }
+
+      setMatches(response)
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (matches) {
+      const groupedMatches = groupByDay(matches)
+      setGroupedMatches(groupedMatches)
+
+      let sortedDates = Object.keys(groupedMatches).sort(
+        (a, b) => DateTime.fromISO(b).valueOf() - DateTime.fromISO(a).valueOf()
+      )
+      setSortedDates(sortedDates)
+    }
+  }, [matches])
 
   return (
     <Container className={style.container} column>
@@ -59,7 +98,9 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
             Últimas Partidas
           </Text>
           <Text as="span" color="gray.700" fontSize={14} lineHeight={1}>
-            {total_matches} Partidas
+            {matches.length === 1
+              ? matches.length + ' Partida'
+              : matches.length + ' Partidas'}
           </Text>
         </Container>
       </Container>
@@ -90,6 +131,7 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
           align="center"
           justify="center"
           style={{ marginTop: '24px' }}
+          className={style.empty}
         >
           <Text fontSize={16} color="gray.700">
             Ops, você ainda não tem partidas.
@@ -102,7 +144,7 @@ export default function MatchHistoryList({ matches, user, total_matches }) {
           style={{ marginTop: '24px' }}
         >
           <MatchHistoryPagination
-            totalCountOfRegisters={total_matches}
+            totalCountOfRegisters={matches.length}
             currentPage={page}
             onPageChange={setPage}
           />
