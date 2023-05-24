@@ -1,54 +1,139 @@
-import { useSelector } from 'react-redux'
-
-import { Button, Flex } from '@chakra-ui/react'
 import { ProfileLayout } from '@layouts'
 
-import { HeaderProfile } from '@components'
+import {
+  Container,
+  FavoriteWeaponCard,
+  HeaderProfile,
+  HeatmapStatsCard,
+  LevelStatsCard,
+  MatchHistoryList,
+} from '@components'
 
+import { Button } from '@chakra-ui/react'
 import { useState } from 'react'
 import style from './Profile.module.css'
 
-export default function ProfileView() {
-  const user = useSelector((state) => state.user)
+const buttonsOptions = ['perfil', 'inventário', 'configurações']
 
-  const [selectedButton, setSelectedButton] = useState('history')
+export default function ProfileView() {
+  // const user = useSelector((state) => state.user)
+
+  const [selectedButton, setSelectedButton] = useState('perfil')
+
+  const profile = {
+    avatar: {
+      medium:
+        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+    },
+    status: 'online',
+    username: 'fulaninhodetal',
+    level: 20,
+    level_points: 80,
+    stats: {
+      wins: 80,
+    },
+  }
+
+  const levelCardStats = {
+    level: 20,
+    highest_level: 23,
+    match_wins: 102,
+    highest_win_streak: 8,
+    latest_matches_results: ['V', 'D', 'D', 'V', 'V'],
+    stats: {
+      kills: 240,
+      deaths: 640,
+      assists: 350,
+      damage: 65020,
+      hs_kills: 45,
+      clutch_v1: 39,
+      clutch_v2: 25,
+      clutch_v3: 9,
+      clutch_v4: 0,
+      clutch_v5: 1,
+      shots_fired: 4500,
+      head_shots: 45,
+      chest_shots: 4065,
+      other_shots: 390,
+      most_kills_in_a_match: 14,
+      most_damage_in_a_match: 890,
+    },
+  }
+
+  const heatmapCardStats = {
+    head_shots: 10,
+    chest_shots: 30,
+    other_shots: 60,
+  }
+
+  const weapon = {
+    avatar:
+      'https://static.wikia.nocookie.net/gtawiki/images/5/56/AssaultSMG-GTAV-SocialClub.png',
+    name: 'SMG',
+    type: 'Submetralhadora',
+    stats: {
+      kills: 450,
+      assists: 900,
+      head_shots: 133,
+      shots_fired: 3450,
+      hit_shots: 1390,
+      matches: 230,
+      wins: 103,
+    },
+  }
+
+  const user = {
+    id: 2,
+    status: 'online',
+    account: {
+      avatar: {
+        medium:
+          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+      },
+    },
+  }
+
+  const renderButtonsNavigation = () => {
+    return buttonsOptions.map((btnOption) => (
+      <Button
+        key={btnOption}
+        w="fit-content"
+        variant="secondary"
+        fontSize={14}
+        fontWeight={400}
+        py="14px"
+        px="16px"
+        textTransform="uppercase"
+        color={selectedButton === btnOption ? 'secondary.400' : 'gray.700'}
+        borderColor={
+          selectedButton === btnOption ? 'secondary.400' : 'gray.700'
+        }
+        onClick={() => setSelectedButton(btnOption)}
+      >
+        {btnOption}
+      </Button>
+    ))
+  }
 
   return (
     <ProfileLayout>
-      <Flex className={style.backgroundImg} />
-      <Flex direction="column" margin="0 auto">
-        <HeaderProfile />
+      <Container column fitContent className={style.container} gap={40}>
+        <HeaderProfile profile={profile} />
 
-        <Flex align="center" justifyContent="flex-start" gap={4} mt={10}>
-          <Button
-            w="fit-content"
-            variant="secondary"
-            fontSize={12}
-            fontWeight={600}
-            color={selectedButton === 'history' ? 'secondary.400' : 'gray.700'}
-            borderColor={
-              selectedButton === 'history' ? 'secondary.400' : 'gray.700'
-            }
-            onClick={() => setSelectedButton('history')}
-          >
-            HISTÓRICO DE PARTIDAS
-          </Button>
+        <Container align="center" justify="flex-start" gap={14}>
+          {renderButtonsNavigation()}
+        </Container>
 
-          <Button
-            w="fit-content"
-            variant="secondary"
-            fontSize={12}
-            fontWeight={600}
-            color={selectedButton === 'config' ? 'secondary.400' : 'gray.700'}
-            borderColor={
-              selectedButton === 'config' ? 'secondary.400' : 'gray.700'
-            }
-            onClick={() => setSelectedButton('config')}
-          >
-            CONFIGURAÇÕES
-          </Button>
-        </Flex>
-      </Flex>
+        <Container gap={18}>
+          <Container column gap={18} style={{ maxWidth: '350px' }}>
+            <LevelStatsCard {...levelCardStats} />
+            <HeatmapStatsCard {...heatmapCardStats} />
+            <FavoriteWeaponCard weapon={weapon} />
+          </Container>
+
+          <MatchHistoryList user={user} />
+        </Container>
+      </Container>
     </ProfileLayout>
   )
 }
