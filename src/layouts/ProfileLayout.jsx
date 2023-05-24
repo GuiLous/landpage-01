@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import { Container, Header } from '@components'
+import { Container, Footer, Header } from '@components'
 
 import style from './ProfileLayout.module.css'
 
@@ -12,6 +12,8 @@ export default function ProfileLayout(props) {
       {user && <Header />}
 
       <Container className={style.content}>{props.children}</Container>
+
+      <Footer />
     </Container>
   )
 }
