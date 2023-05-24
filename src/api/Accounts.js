@@ -6,6 +6,10 @@ export const AccountsAPI = {
     // https://github.com/3C-gg/reload-backend/issues/401
     return await BaseAPI.update('accounts/logout/', token)
   },
+
+  async listMatches(token, user_id) {
+    return await BaseAPI.list(`accounts/${user_id}/matches/`, token)
+  },
 }
 
 export default AccountsAPI
