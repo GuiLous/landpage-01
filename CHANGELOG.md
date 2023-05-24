@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado método de `list` na interface de AccountsAPI.
 - Criado componente `MatchHistoryPagination`.
 - Criado componente `MatchHistoryPaginationItem`.
 - Criado variante `pagination` para os Buttons no tema do Chakra.
