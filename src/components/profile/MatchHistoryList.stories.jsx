@@ -145,12 +145,6 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => {
-    // const genMatches = Array.from(Array(props.matchesCount).keys()).map(
-    //   (_, index) => ({
-
-    //   })
-    // )
-
     return (
       <BrowserRouter>
         <Provider store={store}>
