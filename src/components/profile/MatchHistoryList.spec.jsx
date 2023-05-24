@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { render, screen, waitFor } from '@testing-library/react'
 import { DateTime } from 'luxon'
 import { rest } from 'msw'
 import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
 
 import { MatchHistoryList } from '@components'
 import { BrowserRouter } from 'react-router-dom'
@@ -86,14 +86,12 @@ describe('MatchHistoryList Component', () => {
     },
   }
 
-  const store = configureStore({
-    reducer: {},
-  })
+  const mockStore = configureStore()({}) // Cria um mock store
 
   it('should render correctly', async () => {
     render(
       <BrowserRouter>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <MatchHistoryList user={user} />
         </Provider>
       </BrowserRouter>
@@ -110,7 +108,7 @@ describe('MatchHistoryList Component', () => {
   it('should render message when there is not matches', () => {
     render(
       <BrowserRouter>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <MatchHistoryList user={user} />
         </Provider>
       </BrowserRouter>
