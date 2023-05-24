@@ -521,6 +521,12 @@ export default extendTheme({
             height: '55px',
           },
         },
+        xl: {
+          container: {
+            width: '80px',
+            height: '80px',
+          },
+        },
       },
     },
     Alert: {

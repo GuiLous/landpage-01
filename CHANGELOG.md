@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
 - Criado layout `ProfileLayout` para a página de perfil (https://github.com/3C-gg/reload-frontend/issues/133).
 - Adicionado método de `list` na interface de AccountsAPI.
 - Criado componente `MatchHistoryPagination`.
