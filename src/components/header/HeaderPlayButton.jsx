@@ -2,15 +2,10 @@ import { Link, Text } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import { Timer } from '@components'
-import { useSelector } from 'react-redux'
 
 import style from './HeaderPlayButton.module.css'
 
-export default function HeaderPlayButton() {
-  const user = useSelector((state) => state.user)
-  const preMatch = useSelector((state) => state.match.preMatch)
-  const match = useSelector((state) => state.match.match)
-
+export default function HeaderPlayButton({ user, preMatch, match }) {
   const lobby = user && user.account.lobby
 
   return (

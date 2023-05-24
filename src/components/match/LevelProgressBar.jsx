@@ -1,205 +1,93 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useSpring } from '@react-spring/web'
+import { useState } from 'react'
 import CountUp from 'react-countup'
 
-import { Container, LevelBadge } from '@components'
+import { Container, LevelBadge, Progress } from '@components'
 
 import style from './LevelProgressBar.module.css'
 
 export default function LevelProgressBar({
   earned_points,
-  level_points,
-  level,
+  level_points_before,
+  level_points_after,
+  level_before,
+  level_after,
 }) {
-  const [userLevel, setUserLevel] = useState(level)
-  const [nextLevelValue, setNextLevelValue] = useState(level + 1)
-  const [userPoints, setUserPoints] = useState(level_points)
-  const [pointsToRender, setPointsToRender] = useState(0)
-  const [isNextLevel, setIsNextLevel] = useState(false)
-  const [isPreviousLevel, setIsPreviousLevel] = useState(false)
+  const [levelUpdateReady, setLevelUpdateReady] = useState(false)
 
-  const maxPoints = 100
-  const minPoints = 0
-  const levelToImageGrow = 30
-  const levelTextCloserToRightEdge = 98
+  const levelChange = level_before !== level_after
 
-  useEffect(() => {
-    // add 1 to user level
-    if (isNextLevel) {
-      setTimeout(() => {
-        setNextLevelValue(nextLevelValue + 1)
-        setUserLevel(userLevel + 1)
-      }, 1500)
-    }
-  }, [isNextLevel])
-
-  useEffect(() => {
-    // decrease 1 to user level
-    if (isPreviousLevel) {
-      setTimeout(() => {
-        setNextLevelValue(nextLevelValue - 1)
-        setUserLevel(userLevel - 1)
-      }, 1500)
-    }
-  }, [isPreviousLevel])
-
-  useEffect(() => {
-    if (userPoints + earned_points >= maxPoints) {
-      const pointsDiffTo100 = maxPoints - userPoints
-
-      setPointsToRender(pointsDiffTo100)
-
-      setIsPreviousLevel(false)
-      setIsNextLevel(true)
-
-      setTimeout(() => {
-        setUserPoints(minPoints)
-        setPointsToRender(minPoints)
-
-        if (userPoints + earned_points === maxPoints) return
-
-        setTimeout(() => {
-          setPointsToRender((earned_points - pointsDiffTo100) % maxPoints)
-        }, 100)
-      }, 1500)
-    } else if (userPoints + earned_points < minPoints) {
-      setPointsToRender(userPoints * -1)
-
-      if (userLevel > minPoints) {
-        setIsPreviousLevel(true)
-        setIsNextLevel(false)
-
-        setTimeout(() => {
-          setUserPoints(maxPoints)
-          setPointsToRender(minPoints)
-
-          if (userPoints + earned_points === -1) return
-
-          setTimeout(() => {
-            setPointsToRender(earned_points + userPoints)
-          }, 100)
-        }, 1500)
-      }
-    } else {
-      setPointsToRender(earned_points)
-    }
-  }, [])
+  const levelAnimation = useSpring({
+    from: { transform: 'scale(1)' },
+    to: async (next, cancel) => {
+      if (levelChange) await next({ transform: 'scale(1.4)', reverse: true })
+    },
+    config: { duration: 200 },
+    delay: 550,
+    onRest: () => {
+      setLevelUpdateReady(true)
+    },
+  })
 
   return (
-    <Container align="center" style={{ marginTop: '40px' }}>
+    <Container align="end" className={style.container}>
       <Container
-        className={
-          isPreviousLevel
-            ? `${style.leftImage} ${style.animateScale} `
-            : style.leftImage
-        }
+        className={style.level}
+        fitContent
+        style={{ left: 30, ...levelAnimation }}
       >
-        <LevelBadge level={userLevel} small />
+        <LevelBadge
+          level={levelUpdateReady ? level_after : level_before}
+          size="sm"
+        />
       </Container>
 
-      <Container column gap={4} style={{ marginTop: '18px' }}>
+      <Container column gap={5}>
+        <Container>
+          <Progress
+            initial={level_points_before}
+            value={earned_points}
+            horizontalPadding={18}
+          />
+        </Container>
+
         <Container
-          className={style.progressBackGround}
-          style={{ position: pointsToRender < 0 ? 'relative' : 'initial' }}
+          justify="between"
+          style={{ paddingLeft: 45, paddingRight: 45 }}
         >
-          <Container
-            className={
-              pointsToRender < 0
-                ? `${style.initialProgress} ${style.transition}`
-                : style.initialProgress
-            }
-            style={{
-              width:
-                pointsToRender < 0
-                  ? `${userPoints + pointsToRender}%`
-                  : `${userPoints}%`,
-              position: pointsToRender < 0 ? 'absolute' : 'relative',
-            }}
-          >
-            {pointsToRender < 0 && (
-              <Text className={style.points} right={-16}>
-                <CountUp
-                  end={pointsToRender}
-                  prefix={pointsToRender >= 0 ? '+' : ''}
-                />
-                pts
-              </Text>
-            )}
+          <Container>
+            <Text textTransform={'uppercase'} fontSize={12}>
+              Classificação Ranqueada
+            </Text>
           </Container>
 
-          {pointsToRender < 0 ? (
-            <Container
-              className={style.progressDown}
-              style={{ width: `${Math.abs(userPoints)}%` }}
-            />
-          ) : (
-            <Container
-              style={{
-                maxWidth: `${Math.abs(pointsToRender)}%`,
-              }}
+          <Container justify="end">
+            <Text
+              fontSize={12}
+              fontWeight="medium"
+              color="secondary.400"
+              as={'span'}
             >
-              <Container className={`${style.progressBar} ${style.progressUp}`}>
-                {/*
-                    verifications to calcule the necessary gap on the sides of the text
-                    (right or left) so the level icons don`t overflow the quantity points text.
-                */}
-                <Text
-                  className={style.points}
-                  right={
-                    userLevel >= levelToImageGrow
-                      ? pointsToRender <= 4 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0
-                        ? pointsToRender + userPoints >=
-                          levelTextCloserToRightEdge
-                          ? '10px'
-                          : pointsToRender === 0
-                          ? '-54px'
-                          : '-38px'
-                        : pointsToRender + userPoints >=
-                          levelTextCloserToRightEdge
-                        ? '10px'
-                        : '6px'
-                      : pointsToRender <= 3 // to grant the text level will not be overflowed by the level icon when userPoints are close to 0    and userLevel is lower than 30
-                      ? userPoints + pointsToRender >=
-                        levelTextCloserToRightEdge
-                        ? '12px'
-                        : pointsToRender === 0
-                        ? '-46px'
-                        : '-30px'
-                      : '6px'
-                  }
-                >
-                  <CountUp
-                    end={pointsToRender}
-                    prefix={pointsToRender >= 0 ? '+' : ''}
-                  />
-                  pts
-                </Text>
-              </Container>
-            </Container>
-          )}
-        </Container>
-
-        <Container style={{ padding: '0 10px' }} justify="between">
-          <Text fontSize={14}>CLASSIFICAÇÃO RANQUEADA</Text>
-          <Text fontSize={12}>
-            <Text as="span" color="secondary.400">
-              {userPoints}
+              <CountUp start={level_points_before} end={level_points_after} />
             </Text>
 
-            <Text as="span">/100</Text>
-          </Text>
+            <Text as={'span'} fontWeight="regular" fontSize={12} color="white">
+              /100
+            </Text>
+          </Container>
         </Container>
       </Container>
 
       <Container
-        className={
-          isNextLevel
-            ? `${style.rightImage} ${style.animateScale} `
-            : style.rightImage
-        }
+        className={style.level}
+        fitContent
+        style={{ right: 30, ...levelAnimation }}
       >
-        <LevelBadge level={nextLevelValue} small />
+        <LevelBadge
+          level={levelUpdateReady ? level_after + 1 : level_before + 1}
+          size="sm"
+        />
       </Container>
     </Container>
   )

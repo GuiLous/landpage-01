@@ -1,0 +1,26 @@
+.borderLeft {
+	background-color: var(--chakra-colors-danger-400);
+	border-radius: 8px;
+	margin-right: 20px;
+	max-width: 4px;
+}
+
+.leftInfo {
+	max-width: 160px;
+}
+
+.rightInfo {
+	max-width: 100px;
+}
+
+.centerInfo {
+	padding: 0 37px;
+}
+
+.statsCenterInfos {
+	max-width: fit-content;
+}
+
+.won {
+	background-color: var(--chakra-colors-success);
+}

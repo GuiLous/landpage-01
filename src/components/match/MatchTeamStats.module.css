@@ -1,45 +1,50 @@
 .tableContainer {
-	flex: 1;
-
 	background-color: var(--chakra-colors-gray-600);
-
-	border-radius: 14px;
-
 	border: 1px solid var(--chakra-colors-gray-900);
+	border-radius: 14px;
+	display: flex;
+	flex: 1;
+	width: 100%;
+}
+
+.tableContainer table thead tr,
+.tableContainer table tbody tr {
+	border-bottom: 1px solid var(--chakra-colors-gray-600);
+}
+
+.tableContainer table tbody tr:last-child {
+	border-bottom: none;
 }
 
 .tableContainer table thead tr th {
-	padding: 20px 14px;
-
+	border: none;
 	color: var(--chakra-colors-gray-700);
 	font-size: 14px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-regular);
+	padding: 18px 14px;
 	text-align: center;
-
-	border: none;
 }
 
-.tableContainer .winning {
+.tableContainer .winner {
 	color: var(--chakra-colors-success);
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: var(--chakra-fontWeights-regular);
 	text-align: left;
-	text-transform: initial;
+	text-transform: uppercase;
 }
 
-.tableContainer .loosing {
+.tableContainer .loser {
 	color: var(--chakra-colors-danger-400);
 	font-size: 16px;
-	font-weight: 600;
+	font-weight: var(--chakra-fontWeights-regular);
 	text-align: left;
-	text-transform: initial;
+	text-transform: uppercase;
 }
 
 .tableContainer table tbody tr td {
 	border: none;
-
+	font-weight: var(--chakra-fontWeights-medium);
 	padding: 6px 14px;
-
 	text-align: center;
 }
 
@@ -47,14 +52,6 @@
 	text-align: left;
 }
 
-.level {
-	display: flex;
-	padding-top: 5px;
-
-	height: 40px;
-	width: 40px;
-}
-
-.tableContainer table tbody .highlight {
-	border: 1px solid var(--chakra-colors-secondary-500);
+.tableContainer table tbody tr.highlight {
+	background-color: var(--chakra-colors-gray-400);
 }

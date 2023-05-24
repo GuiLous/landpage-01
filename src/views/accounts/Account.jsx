@@ -17,7 +17,8 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { updateUser } from '@slices/UserSlice'
 
 export default function AccountView() {
@@ -38,11 +39,13 @@ export default function AccountView() {
     setFetching(false)
 
     if (response && response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
       return
     }
 

@@ -1,19 +1,16 @@
 .statusLobbyLinkBtn {
+	align-items: center;
+	background-color: var(--chakra-colors-primary-400);
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-
-	background-color: var(--chakra-colors-primary-400);
-
 	font-size: 20px;
-	font-weight: 700;
-	text-align: center;
-	line-height: 24px;
-	text-transform: uppercase;
-
-	width: 141px;
+	font-weight: var(--chakra-fontWeights-bold);
 	height: 66px;
+	justify-content: center;
+	line-height: 24px;
+	text-align: center;
+	text-transform: uppercase;
+	width: 141px;
 }
 
 .statusLobbyLinkBtn:hover {

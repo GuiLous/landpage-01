@@ -8,18 +8,18 @@ export default function MainLayout(props) {
   const user = useSelector((state) => state.user)
 
   return (
-    <Container column className={style.container}>
-      {user && <Header />}
+    <Container className={style.container}>
+      <Container column className={style.wrapper}>
+        {user && <Header />}
 
-      <Container gap={56} className={style.wrapper}>
         <Container className={style.content}>{props.children}</Container>
-
-        {user && (
-          <Container className={style.sidebar}>
-            <Sidebar />
-          </Container>
-        )}
       </Container>
+
+      {user && (
+        <Container className={style.sidebar}>
+          <Sidebar />
+        </Container>
+      )}
     </Container>
   )
 }

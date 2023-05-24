@@ -1,14 +1,18 @@
 import { Icon, Switch, Text } from '@chakra-ui/react'
 import { AiFillLock, AiFillUnlock } from 'react-icons/ai'
+import { useDispatch } from 'react-redux'
 
 import { Container } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
 import React from 'react'
 
 import style from './LobbyHeader.module.css'
 
 export default function LobbyHeader({ lobby }) {
+  const dispatch = useDispatch()
+
   const handleToggleVisibilty = async () => {
     const token = StorageService.get('token')
     const endpoint = lobby.is_public ? 'set-private' : 'set-public'
@@ -19,11 +23,13 @@ export default function LobbyHeader({ lobby }) {
       token
     )
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
     }
   }
 

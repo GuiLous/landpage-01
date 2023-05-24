@@ -1,17 +1,26 @@
-.progressBar {
-	height: 6px;
-	width: 300px;
-
-	background-color: #d9d9d9;
-
-	border-radius: 8px;
-	overflow: hidden;
+.username {
+	font-size: 24px;
+	font-weight: var(--chakra-fontWeights-bold);
 }
 
-.progress {
-	height: 6px;
+.levelTxt {
+	font-size: 18px;
+	font-weight: var(--chakra-fontWeights-semiBold);
+	text-transform: uppercase;
+}
 
-	border-radius: 8px;
+.levelBar {
+	margin-top: 5px;
+}
 
-	background-color: var(--chakra-colors-primary-400);
+.levelBar * {
+	width: 100%;
+}
+
+.levelHelper {
+	font-size: 12px;
+}
+
+.userStats {
+	min-width: 600px;
 }

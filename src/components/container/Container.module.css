@@ -12,6 +12,14 @@
 	flex-direction: column;
 }
 
+.reverseRow {
+	flex-direction: row-reverse;
+}
+
+.reverseColumn {
+	flex-direction: column-reverse;
+}
+
 .alignCenter {
 	align-items: center;
 }

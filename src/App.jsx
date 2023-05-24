@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { Loading, LoadingBackdrop } from '@components'
+import {
+  Container,
+  Loading,
+  LoadingBackdrop,
+  RequireAuth,
+  ToastList,
+} from '@components'
 import { AuthService, StorageService, WSS } from '@services'
 import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -13,6 +19,7 @@ import {
   HomeView,
   InactiveView,
   LobbyView,
+  MatchView,
   NotFoundView,
   ProfileView,
   SignupView,
@@ -67,37 +74,40 @@ export default function App() {
         <Route
           path="/jogar"
           element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) ||
-            (userMatch && userMatch.status === 'loading' && (
-              <Navigate to="/conectar" replace />
-            )) || <LobbyView />
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={
+                (userMatch && userMatch.status === 'loading' && (
+                  <Navigate to="/conectar" replace />
+                )) || <LobbyView />
+              }
+            />
           }
         />
 
         <Route
           path="/minha-conta"
           element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <AccountView />
-            )
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={<AccountView />}
+            />
           }
         />
 
         <Route
           path="/perfil"
           element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <ProfileView />
-            )
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={<ProfileView />}
+            />
           }
         />
 
@@ -151,14 +161,29 @@ export default function App() {
         <Route
           path="/conectar"
           element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) ||
-            (!userMatch && <Navigate to="/jogar" replace />) ||
-            (userMatch && userMatch.status !== 'loading' && (
-              <Navigate to="/jogar" replace />
-            )) || <ConnectView />
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={
+                (!userMatch && <Navigate to="/jogar" replace />) ||
+                (userMatch && userMatch.status !== 'loading' && (
+                  <Navigate to="/jogar" replace />
+                )) || <ConnectView />
+              }
+            />
+          }
+        />
+
+        <Route
+          path="/partidas/:matchId"
+          element={
+            <RequireAuth
+              user={user}
+              isUnverified={unverifiedUser}
+              isNew={newUser}
+              element={<MatchView />}
+            />
           }
         />
       </>
@@ -170,7 +195,7 @@ export default function App() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <>
+    <Container style={{ position: 'relative' }}>
       {user && user.account && user.account.is_verified && <WSS />}
 
       <Routes>
@@ -179,6 +204,12 @@ export default function App() {
         <Route path="/404" element={<NotFoundView />} />
         <Route path="*" element={<Navigate to="/404" />} />
       </Routes>
-    </>
+
+      <Container
+        style={{ position: 'absolute', bottom: 20, left: 20, maxWidth: 370 }}
+      >
+        <ToastList />
+      </Container>
+    </Container>
   )
 }

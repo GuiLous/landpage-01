@@ -1,35 +1,26 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
-import { Provider } from 'react-redux'
 
 import { HeaderProfile } from '@components'
-import UserReducer from '@slices/UserSlice'
 
 describe('HeaderProfile Component', () => {
-  const user = {
-    account: {
-      username: 'fakeUser',
-      avatar: {
-        medium: 'fakeImg',
-      },
+  const profile = {
+    avatar: {
+      medium:
+        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+    },
+    status: 'online',
+    username: 'fulaninhodetal',
+    level: 20,
+    level_points: 80,
+    stats: {
+      wins: 80,
     },
   }
 
   it('should renders correctly', () => {
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-      },
-      preloadedState: { user },
-    })
+    render(<HeaderProfile profile={profile} />)
 
-    render(
-      <Provider store={store}>
-        <HeaderProfile />
-      </Provider>
-    )
-
-    expect(screen.getByText('Platinum 20')).toBeInTheDocument()
+    expect(screen.getByText('Level 20')).toBeInTheDocument()
     expect(screen.getByText('Vitórias')).toBeInTheDocument()
   })
 })

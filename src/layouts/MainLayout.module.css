@@ -5,14 +5,16 @@
 }
 
 .wrapper {
-	padding: 30px 60px;
-}
-
-.sidebar {
-	max-width: 305px;
 	height: 100%;
 }
 
 .content {
 	height: 100%;
+	padding: 30px 40px;
+}
+
+.sidebar {
+	height: 100%;
+	max-width: 305px;
+	min-width: 305px;
 }

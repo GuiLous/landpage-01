@@ -4,7 +4,8 @@ import { SiSteam } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LevelBadge, UserIcon } from '@components'
-import { HttpService, StorageService, Toast } from '@services'
+import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 import { addInviteSent } from '@slices/UserSlice'
 import style from './InviteListItem.module.css'
 
@@ -55,11 +56,13 @@ export default function InviteListItem(props) {
     )
 
     if (response.errorMsg) {
-      Toast({
-        title: 'Oops, ocorreu um erro',
-        description: response.errorMsg,
-        status: 'error',
-      })
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
       return
     }
 
@@ -69,8 +72,13 @@ export default function InviteListItem(props) {
   return (
     <Container className={style.container} align="center" justify="center">
       <Container align="center" gap={14}>
-        <Container className={style.level} align="center">
-          <LevelBadge level={props.level} xsmall />
+        <Container
+          className={style.level}
+          align="center"
+          fitContent
+          style={{ top: props.level < 10 && 4 }}
+        >
+          <LevelBadge level={props.level} size="sm" />
         </Container>
         <Text className={style.username}>{props.username}</Text>
       </Container>

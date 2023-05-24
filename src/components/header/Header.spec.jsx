@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Header } from '@components'
 import MatchReducer from '@slices/MatchSlice'
+import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('Header Component', () => {
@@ -20,6 +21,8 @@ describe('Header Component', () => {
     },
   }
 
+  const notifications = []
+
   const match = {
     preMatch: null,
     match: null,
@@ -30,8 +33,9 @@ describe('Header Component', () => {
       reducer: {
         user: UserReducer,
         match: MatchReducer,
+        notifications: NotificationReducer,
       },
-      preloadedState: { user, match },
+      preloadedState: { user, match, notifications },
     })
 
     render(
@@ -43,6 +47,5 @@ describe('Header Component', () => {
     )
 
     expect(screen.getByText('Jogar')).toBeInTheDocument()
-    expect(screen.getByText('Olá!')).toBeInTheDocument()
   })
 })

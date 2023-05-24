@@ -2,12 +2,11 @@
 	background-color: transparent;
 	cursor: pointer;
 	padding: 10px 25px;
-
 	transition: all 50ms linear;
 }
 
 .container:hover {
-	background-color: #333;
+	background-color: var(--chakra-colors-gray-400);
 }
 
 .username,
@@ -18,17 +17,17 @@
 .username {
 	color: white;
 	font-size: 14px;
-	font-weight: 500;
-	text-overflow: ellipsis;
+	font-weight: var(--chakra-fontWeights-medium);
 	max-width: 150px;
 	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
 
 .status {
 	color: #999;
 	font-size: 12px;
-	font-weight: 500;
+	font-weight: var(--chakra-fontWeights-medium);
 }
 
 .avatar {
@@ -42,9 +41,8 @@
 }
 
 .invite {
-	opacity: 0;
 	font-size: 20px;
-
+	opacity: 0;
 	transition: all 50ms linear;
 }
 
@@ -57,7 +55,6 @@
 }
 
 .container.disabled:hover {
-	background-color: rgba(0, 0, 0, 0.15);
 	cursor: default;
 }
 

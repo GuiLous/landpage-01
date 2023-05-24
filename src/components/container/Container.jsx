@@ -1,3 +1,4 @@
+import { animated } from '@react-spring/web'
 import PropTypes from 'prop-types'
 
 import style from './Container.module.css'
@@ -20,12 +21,14 @@ export default function Container(props) {
   }
 
   return (
-    <div
+    <animated.div
       className={[
         props.className,
         style.container,
         props.row && style.row,
         props.column && style.column,
+        props.reverseColumn && style.reverseColumn,
+        props.reverseRow && style.reverseRow,
         props.hidden && style[`hidden-${props.hidden}`],
         props.fitContent && style.fitContent,
         style[alignStyleMap[props.align]],
@@ -35,10 +38,10 @@ export default function Container(props) {
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
-      ref={props.reference}
+      data-testid={props.testID}
     >
       {props.children}
-    </div>
+    </animated.div>
   )
 }
 

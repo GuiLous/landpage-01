@@ -125,6 +125,10 @@ export default extendTheme({
             bg: 'transparent',
             backgroundColor: 'transparent',
             color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
           },
           _active: {
             bg: 'transparent',
@@ -233,6 +237,17 @@ export default extendTheme({
             },
           },
         },
+        clean: {
+          field: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+          },
+          addon: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+          },
+        },
       },
     },
     Form: {
@@ -294,6 +309,12 @@ export default extendTheme({
       },
     },
     Badge: {
+      baseStyle: {
+        bg: 'primary.400',
+        color: 'white',
+        borderRadius: '10px',
+        padding: '0 8px',
+      },
       variants: {
         online: {
           bg: 'success',
@@ -301,6 +322,7 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
         },
 
         primary: {
@@ -319,6 +341,21 @@ export default extendTheme({
           borderRadius: '50%',
           height: '9px',
           width: '9px',
+          padding: 'initial',
+        },
+
+        disabled: {
+          bg: 'gray.700',
+          backgroundColor: 'gray.700',
+          borderRadius: '50%',
+          height: '9px',
+          width: '9px',
+          padding: 'initial',
+        },
+      },
+      sizes: {
+        sm: {
+          fontSize: '10px',
         },
       },
     },
@@ -350,10 +387,17 @@ export default extendTheme({
       },
     },
     Avatar: {
+      baseStyle: {
+        container: {
+          borderWidth: '2px ',
+          borderColor: 'primary.400',
+          borderStyle: 'solid',
+        },
+      },
       variants: {
         online: {
           container: {
-            borderWidth: '3px ',
+            borderWidth: '2px ',
             borderColor: 'online',
             borderStyle: 'solid',
           },
@@ -426,11 +470,13 @@ export default extendTheme({
             right: 0,
           },
         },
-        body: {
-          color: 'white',
-        },
-        header: {
-          color: 'white',
+      },
+      sizes: {
+        lg: {
+          container: {
+            width: '55px',
+            height: '55px',
+          },
         },
       },
     },
@@ -457,6 +503,17 @@ export default extendTheme({
         },
       },
     },
+    Progress: {
+      baseStyle: {
+        track: {
+          bg: '#d9d9d9',
+          borderRadius: '8px',
+        },
+        filledTrack: {
+          bg: 'primary.400',
+        },
+      },
+    },
   },
   colors: {
     primary: {
@@ -477,6 +534,7 @@ export default extendTheme({
     },
 
     success: '#6BE400',
+    warning: '#FFD426',
 
     online: '#6BE400',
     offline: '#999999',
@@ -487,15 +545,27 @@ export default extendTheme({
     gray: {
       200: '#F5F6F8',
       300: '#ECECEC',
-      400: '#CCCCCC',
-      500: '#5D5D5D',
+      400: '#333333',
+      500: '#282828',
       600: '#434343',
       700: '#999999',
+      800: '#1E1E1E',
       900: '#222222',
     },
 
     stripe: {
       100: '#111111',
     },
+  },
+  fontWeights: {
+    thin: 100,
+    extraLight: 200,
+    light: 300,
+    regular: 400,
+    medium: 500,
+    semiBold: 600,
+    bold: 700,
+    extraBold: 800,
+    black: 900,
   },
 })

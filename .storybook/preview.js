@@ -1,8 +1,14 @@
 /** @type { import('@storybook/react').Preview } */
-const theme = require('../src/theme')
+import { ChakraProvider } from '@chakra-ui/react'
+import { themes } from '@storybook/theming'
+import '../src/index.css'
+import theme from '../src/theme'
 
 const preview = {
   parameters: {
+    chakra: {
+      theme,
+    },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
       matchers: {
@@ -10,8 +16,15 @@ const preview = {
         date: /Date$/,
       },
     },
-    chakra: {
-      theme,
+    decorators: [
+      (Story) => (
+        <ChakraProvider theme={theme}>
+          <Story />
+        </ChakraProvider>
+      ),
+    ],
+    docs: {
+      theme: themes.dark,
     },
   },
 }

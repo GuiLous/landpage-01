@@ -6,10 +6,10 @@
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@react-spring/web": "^9.7.2",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
     "framer-motion": "^10.12.4",
     "luxon": "^3.3.0",
     "rc-scrollbars": "^1.1.5",
@@ -30,8 +30,8 @@
     "build": "craco build",
     "test": "craco test --watchAll=false",
     "test-w-coverage": "craco test --coverage --watchAll=false",
-    "format": "npx prettier --write src public",
-    "lint": "npx prettier --check src public",
+    "format": "npx prettier --write src public && npx stylelint \"**/*.css\" --fix",
+    "lint": "npx prettier --check src public && npx stylelint \"**/*.css\"",
     "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
@@ -85,10 +85,15 @@
     "@storybook/react": "^7.0.6",
     "@storybook/react-webpack5": "^7.0.6",
     "@storybook/testing-library": "^0.0.14-next.2",
+    "@testing-library/user-event": "^14.4.3",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "msw": "^1.2.1",
     "prettier": "2.8.7",
     "prop-types": "^15.8.1",
     "storybook": "^7.0.6",
+    "storybook-addon-mock": "^4.0.0",
+    "stylelint": "^15.6.1",
+    "stylelint-order": "^6.0.3",
     "webpack": "^5.80.0"
   }
 }
