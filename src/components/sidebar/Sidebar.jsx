@@ -14,6 +14,7 @@ export default function Sidebar() {
         <SidebarHeader
           username={user.account.username}
           avatar={user.account.avatar.medium}
+          userId={user.id}
         />
       </Container>
 

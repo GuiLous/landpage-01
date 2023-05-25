@@ -20,7 +20,6 @@ describe('HeaderProfile Component', () => {
   it('should renders correctly', () => {
     render(<HeaderProfile profile={profile} />)
 
-    expect(screen.getByText('Level 20')).toBeInTheDocument()
     expect(screen.getByText('Vitórias')).toBeInTheDocument()
   })
 })

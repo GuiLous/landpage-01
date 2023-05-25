@@ -24,6 +24,10 @@
 	margin-top: 20px;
 }
 
+.maxWinStreak {
+	margin-bottom: 0px;
+}
+
 .statsListItemTitle {
 	color: var(--chakra-colors-gray-700);
 	font-size: 12px;

@@ -70,7 +70,10 @@ export default function LevelStatsCard({
               <Text className={style.statsListItemValue}>{highest_level}</Text>
             </Container>
 
-            <Container column className={style.statsListItem}>
+            <Container
+              column
+              className={[style.statsListItem, style.maxWinStreak].join(' ')}
+            >
               <Tooltip
                 label="Maior quantidade de vitórias seguidas"
                 aria-label="Maior quantidade de vitórias seguidas"
@@ -117,7 +120,7 @@ export default function LevelStatsCard({
             </Container>
           </Container>
 
-          <Container column fitContent>
+          <Container column fitContent style={{ paddingLeft: '32px' }}>
             <Container className={style.statsListItem}>
               <Container column fitContent>
                 <Tooltip
