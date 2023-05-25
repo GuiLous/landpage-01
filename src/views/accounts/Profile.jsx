@@ -1,5 +1,9 @@
-import { ProfileLayout } from '@layouts'
+import { Button } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
+import { AccountsAPI } from '@api'
 import {
   Container,
   FavoriteWeaponCard,
@@ -8,19 +12,25 @@ import {
   LevelStatsCard,
   Loading,
   LoadingBackdrop,
-  MatchHistoryList
+  MatchHistoryList,
 } from '@components'
+import { ProfileLayout } from '@layouts'
+import { StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
 
-import { Button } from '@chakra-ui/react'
-import { useState } from 'react'
 import style from './Profile.module.css'
 
 const buttonsOptions = ['perfil', 'inventário', 'configurações']
 
 export default function ProfileView() {
-  // const user = useSelector((state) => state.user)
+  const params = useParams()
+  const dispatch = useDispatch()
 
+  const { userId } = params
+
+  const [fetching, setFetching] = useState(true)
   const [selectedButton, setSelectedButton] = useState('perfil')
+  const [userStats, setUserStats] = useState(null)
 
   const profile = {
     avatar: {
@@ -107,10 +117,8 @@ export default function ProfileView() {
         px="16px"
         textTransform="uppercase"
         color={selectedButton === btnOption ? 'white' : 'gray.700'}
-        borderColor={
-          selectedButton === btnOption ? 'white' : 'gray.700'
-        }
-        _hover={{ bg: 'transparent', borderColor: "white" }}
+        borderColor={selectedButton === btnOption ? 'white' : 'gray.700'}
+        _hover={{ bg: 'transparent', borderColor: 'white' }}
         onClick={() => setSelectedButton(btnOption)}
       >
         {btnOption}
@@ -118,17 +126,40 @@ export default function ProfileView() {
     ))
   }
 
-  return false ? (
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await AccountsAPI.detail(userToken, userId)
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        return
+      }
+
+      setUserStats(response)
+    }
+
+    fetch()
+    setFetching(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  return fetching ? (
     <LoadingBackdrop>
       <Loading />
     </LoadingBackdrop>
   ) : (
-
     <ProfileLayout>
       <Container column fitContent className={style.container} gap={40}>
         <HeaderProfile profile={profile} />
 
-        <Container align="center" justify="flex-start" gap={14}>
+        <Container align="center" gap={14}>
           {renderButtonsNavigation()}
         </Container>
 
