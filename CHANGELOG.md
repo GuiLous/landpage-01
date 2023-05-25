@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
 - Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
 - Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.
 - Adicionado Skeleton no componente `MatchHistoryList`.
