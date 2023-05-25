@@ -3,16 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { MatchHistoryStatsLink } from '@components'
 import { BrowserRouter } from 'react-router-dom'
 
-const user = {
-  id: 1,
-  status: 'online',
-  account: {
-    avatar: {
-      medium:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    },
-  },
-}
+const user_id = 1
 
 const match = {
   teams: [
@@ -67,7 +58,7 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsLink user={user} match={match} />
+        <MatchHistoryStatsLink user_id={user_id} match={match} />
       </BrowserRouter>
     )
 
@@ -77,7 +68,7 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render kdr correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsLink user={user} match={match} />
+        <MatchHistoryStatsLink user_id={user_id} match={match} />
       </BrowserRouter>
     )
 
@@ -87,7 +78,7 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render hs percentage correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsLink user={user} match={match} />
+        <MatchHistoryStatsLink user_id={user_id} match={match} />
       </BrowserRouter>
     )
 
@@ -97,7 +88,7 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render adr correctly', () => {
     render(
       <BrowserRouter>
-        <MatchHistoryStatsLink user={user} match={match} />
+        <MatchHistoryStatsLink user_id={user_id} match={match} />
       </BrowserRouter>
     )
 

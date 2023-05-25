@@ -29,15 +29,15 @@ const statsFields = [
   },
 ]
 
-export default function MatchHistoryStatsLink({ user, match }) {
+export default function MatchHistoryStatsLink({ user_id, match }) {
   const winner_team_id = match.winner_id
   const winner_team = match.teams.find((team) => team.id === winner_team_id)
   const defeated_team = match.teams.find((team) => team.id !== winner_team_id)
-  const won = winner_team.players.find((player) => player.user_id === user.id)
+  const won = winner_team.players.find((player) => player.user_id === user_id)
 
   const player = won
     ? won
-    : defeated_team.players.find((player) => player.user_id === user.id)
+    : defeated_team.players.find((player) => player.user_id === user_id)
 
   const renderStats = () => {
     const kda = `${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}`

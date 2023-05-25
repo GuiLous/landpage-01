@@ -5,20 +5,11 @@ export default {
   title: 'Profile/MatchHistoryStatsLink',
   component: MatchHistoryStatsLink,
   argTypes: {
-    user: { control: 'object' },
+    user_id: { control: 'number' },
     match: { control: 'object' },
   },
   args: {
-    user: {
-      id: 1,
-      status: 'online',
-      account: {
-        avatar: {
-          medium:
-            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-        },
-      },
-    },
+    user_id: 1,
     match: {
       teams: [
         {
