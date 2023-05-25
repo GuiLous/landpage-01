@@ -116,6 +116,49 @@ export default extendTheme({
           },
         },
 
+        pagination: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          borderRadius: 'full',
+          border: '1px solid',
+          borderColor: '#444444',
+          fontWeight: 'normal',
+          fontSize: 12,
+          color: '#444444',
+          cursor: 'pointer',
+          width: '26px',
+          height: '26px',
+          padding: '0 0 0 1px',
+          minHeight: 'initial',
+          minWidth: 'initial',
+          _disabled: {
+            bg: 'primary.400',
+            backgroundColor: 'primary.400',
+            color: 'white',
+            cursor: 'initial',
+            border: '1px solid',
+            borderColor: 'primary.400',
+            opacity: 1,
+            _active: {
+              color: 'white',
+            },
+          },
+          _active: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: '#444444',
+            color: '#444444',
+          },
+          _hover: {
+            color: 'white',
+            borderColor: 'white',
+            bgColor: 'transparent',
+            _disabled: {
+              borderColor: 'primary.400',
+            },
+          },
+        },
+
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',
@@ -549,6 +592,7 @@ export default extendTheme({
       500: '#282828',
       600: '#434343',
       700: '#999999',
+      750: '#282828',
       800: '#1E1E1E',
       900: '#222222',
     },

@@ -1,8 +1,9 @@
-import MatchHistoryStatsAccordion from './MatchHistoryStatsAccordion'
+import { BrowserRouter } from 'react-router-dom'
+import MatchHistoryStatsLink from './MatchHistoryStatsLink'
 
 export default {
-  title: 'Profile/MatchHistoryStatsAccordion',
-  component: MatchHistoryStatsAccordion,
+  title: 'Profile/MatchHistoryStatsLink',
+  component: MatchHistoryStatsLink,
   argTypes: {
     user: { control: 'object' },
     match: { control: 'object' },
@@ -35,6 +36,7 @@ export default {
                 head_shots: 15,
                 chest_shots: 20,
                 other_shots: 40,
+                firstkills: 5,
               },
             },
           ],
@@ -54,11 +56,13 @@ export default {
                 head_shots: 20,
                 chest_shots: 40,
                 other_shots: 50,
+                firstkills: 2,
               },
             },
           ],
         },
       ],
+      id: 0,
       winner_id: 10,
       rounds: 15,
       start_date: '2023-05-05T10:00:00',
@@ -69,5 +73,9 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <MatchHistoryStatsAccordion {...props} />,
+  render: (props) => (
+    <BrowserRouter>
+      <MatchHistoryStatsLink {...props} />
+    </BrowserRouter>
+  ),
 }

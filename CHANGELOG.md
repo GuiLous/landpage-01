@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
+- Adicionado método de `list` na interface de AccountsAPI.
+- Criado componente `MatchHistoryPagination`.
+- Criado componente `MatchHistoryPaginationItem`.
+- Criado variante `pagination` para os Buttons no tema do Chakra.
+- Criado componente `MatchHistoryList` [#177](https://github.com/3C-gg/reload-frontend/issues/177).
 - `SidebarHeader` que contém menu de usuário.
 - Redux e interface de API para `Friends`.
 - Componente `FriendList`.
@@ -32,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
+- Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
 - `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
 - Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).
 - Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
@@ -66,6 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado ícone `ArrowRightSimpleIcon`.
 - Criado componente `HeatmapCardStats` (https://github.com/3C-gg/reload-frontend/issues/157).
 - Criado `stories` para o componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/171).
 - Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).
