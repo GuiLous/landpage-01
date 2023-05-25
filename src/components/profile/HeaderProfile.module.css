@@ -1,5 +1,5 @@
 .username {
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: var(--chakra-fontWeights-bold);
 }
 
@@ -14,7 +14,7 @@
 }
 
 .levelHelper {
-	font-size: 12px;
+	font-size: 10px;
 }
 
 .userStats {

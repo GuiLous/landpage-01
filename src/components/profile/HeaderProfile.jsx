@@ -22,7 +22,7 @@ export default function HeaderProfile({ profile }) {
 
         <Container className={style.levelInfo} gap={4} column>
           <Container className={style.levelBar}>
-            <Progress h={'9px'} value={profile.level_points} />
+            <Progress h={'8px'} value={profile.level_points} />
           </Container>
 
           <Container className={style.levelHelper} justify="between">
@@ -34,55 +34,55 @@ export default function HeaderProfile({ profile }) {
 
       <Container className={style.userStats}>
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Vitórias
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Derrotas
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Abates
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Mortes
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Assistencias
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
 
         <Container column align="center" justify="center">
-          <Text fontSize={'16px'} fontWeight="medium" color="gray.700">
+          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
             Headshots
           </Text>
-          <Text fontSize={'24px'} fontWeight={'bold'}>
+          <Text fontSize={'22px'} fontWeight={'bold'}>
             {profile.stats.wins}
           </Text>
         </Container>
