@@ -100,7 +100,7 @@ export default function App() {
         />
 
         <Route
-          path="/perfil"
+          path="/perfil/:userId"
           element={
             <RequireAuth
               user={user}
