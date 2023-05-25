@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
 - Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
 - Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.

@@ -5,6 +5,11 @@ import MatchmakingAPI from './Matchmaking'
 import NotificationsAPI from './Notifications'
 import ProfilesAPI from './Profiles'
 
-export { NotificationsAPI, AccountsAPI, MatchmakingAPI, FriendsAPI, MatchesAPI, ProfilesAPI }
-
-
+export {
+  NotificationsAPI,
+  AccountsAPI,
+  MatchmakingAPI,
+  FriendsAPI,
+  MatchesAPI,
+  ProfilesAPI,
+}
