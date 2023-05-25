@@ -12,19 +12,10 @@ export default {
   title: 'Profile/MatchHistoryList',
   component: MatchHistoryList,
   argTypes: {
-    user: { control: 'object' },
+    user_id: { control: 'number' },
   },
   args: {
-    user: {
-      id: 1,
-      status: 'online',
-      account: {
-        avatar: {
-          medium:
-            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-        },
-      },
-    },
+    user_id: 1,
   },
   parameters: {
     mockData: [
