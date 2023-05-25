@@ -10,6 +10,10 @@ export const AccountsAPI = {
   async listMatches(token, user_id) {
     return await BaseAPI.list(`accounts/${user_id}/matches/`, token)
   },
+
+  async detail(token, user_id) {
+    return await BaseAPI.detail(`accounts/profiles/${user_id}/`, token)
+  },
 }
 
 export default AccountsAPI
