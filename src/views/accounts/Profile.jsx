@@ -110,11 +110,13 @@ export default function ProfileView() {
       <Button
         key={btnOption}
         w="fit-content"
+        borderRadius="4px"
         variant="secondary"
         fontSize={14}
         fontWeight={400}
         py="14px"
         px="16px"
+        minH="40px"
         textTransform="uppercase"
         color={selectedButton === btnOption ? 'white' : 'gray.700'}
         borderColor={selectedButton === btnOption ? 'white' : 'gray.700'}
