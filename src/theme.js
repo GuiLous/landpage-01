@@ -523,8 +523,8 @@ export default extendTheme({
         },
         xl: {
           container: {
-            width: '80px',
-            height: '80px',
+            width: '70px',
+            height: '70px',
           },
         },
       },
