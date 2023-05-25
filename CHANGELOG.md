@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Atualizado componentes `SideBar` e `SideBarHeader` para para o user id para a página de perfil. 
 - Atualizado componentes `LevelStatsCard` e `HeatmapStatsCard` para ficar igual ao design.
 - Atualizado componente `HeaderProfile` para ficar igual ao design.
 - Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).

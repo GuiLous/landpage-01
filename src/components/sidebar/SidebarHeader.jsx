@@ -5,7 +5,7 @@ import { Container } from '@components'
 
 import style from './SidebarHeader.module.css'
 
-export default function SidebarHeader({ username, avatar }) {
+export default function SidebarHeader({ username, avatar, userId }) {
   return (
     <Container className={style.container} column gap={24}>
       <Container gap={18} className={style.userInfo} align="center">
@@ -29,7 +29,7 @@ export default function SidebarHeader({ username, avatar }) {
 
       <Container column gap={8}>
         <Container>
-          <Link as={RouterLink} to="/perfil" className={style.link}>
+          <Link as={RouterLink} to={`/perfil/${userId}`} className={style.link}>
             Perfil
           </Link>
         </Container>
