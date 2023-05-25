@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Skeleton, Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -14,9 +14,10 @@ import { addToast } from '@slices/ToastSlice'
 
 import style from './MatchHistoryList.module.css'
 
-export default function MatchHistoryList({ user }) {
+export default function MatchHistoryList({ user_id }) {
   const dispatch = useDispatch()
 
+  const [fetching, setIsFetching] = useState(true)
   const [matches, setMatches] = useState([])
   const [groupedMatches, setGroupedMatches] = useState([])
   const [sortedDates, setSortedDates] = useState([])
@@ -52,7 +53,7 @@ export default function MatchHistoryList({ user }) {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await AccountsAPI.listMatches(userToken, user.id)
+      const response = await AccountsAPI.listMatches(userToken, user_id)
       if (response.errorMsg) {
         dispatch(
           addToast({
@@ -65,6 +66,7 @@ export default function MatchHistoryList({ user }) {
       }
 
       setMatches(response)
+      setIsFetching(false)
     }
 
     fetch()
@@ -84,72 +86,86 @@ export default function MatchHistoryList({ user }) {
   }, [matches])
 
   return (
-    <Container className={style.container} column>
-      <Container align="center" justify="between">
-        <Container gap={12} style={{ alignItems: 'baseline' }}>
-          <Text
-            as="h2"
-            color="white"
-            fontSize={22}
-            fontWeight="bold"
-            textTransform="uppercase"
-            lineHeight={1}
-          >
-            Últimas Partidas
-          </Text>
-          <Text as="span" color="gray.700" fontSize={14} lineHeight={1}>
-            {matches.length === 1
-              ? matches.length + ' Partida'
-              : matches.length + ' Partidas'}
-          </Text>
-        </Container>
-      </Container>
-
-      {sortedDates.map((date) => (
-        <Container key={date} column style={{ marginTop: '36px' }} gap={30}>
-          <Container align="center" gap={12}>
-            <Text fontSize={18} color="white" lineHeight={1}>
-              {formatDate(date)}
+    <Skeleton
+      isLoaded={!fetching}
+      flex="1"
+      borderRadius="8px"
+      startColor="gray.400"
+      endColor="500"
+    >
+      <Container className={style.container} column>
+        <Container align="center" justify="between" fitContent>
+          <Container gap={12} style={{ alignItems: 'baseline' }}>
+            <Text
+              as="h2"
+              color="white"
+              fontSize={22}
+              fontWeight="bold"
+              textTransform="uppercase"
+              lineHeight={1}
+            >
+              Últimas Partidas
             </Text>
-            <Container className={style.matchesNumber} fitContent>
-              <Text lineHeight={1} color="gray.700" fontSize={12}>
-                {groupedMatches[date].length}
+            <Text as="span" color="gray.700" fontSize={14} lineHeight={1}>
+              {matches.length === 1
+                ? matches.length + ' Partida'
+                : matches.length + ' Partidas'}
+            </Text>
+          </Container>
+        </Container>
+
+        {sortedDates.map((date) => (
+          <Container
+            key={date}
+            fitContent
+            column
+            style={{ marginTop: '36px' }}
+            gap={30}
+          >
+            <Container align="center" gap={12}>
+              <Text fontSize={18} color="white" lineHeight={1}>
+                {formatDate(date)}
               </Text>
+              <Container className={style.matchesNumber} fitContent>
+                <Text lineHeight={1} color="gray.700" fontSize={12}>
+                  {groupedMatches[date].length}
+                </Text>
+              </Container>
+            </Container>
+
+            <Container column gap={8}>
+              {groupedMatches[date].map((match) => (
+                <MatchHistoryStatsLink
+                  key={match.id}
+                  user_id={user_id}
+                  match={match}
+                />
+              ))}
             </Container>
           </Container>
+        ))}
 
-          <Container column gap={8}>
-            {groupedMatches[date].map((match) => (
-              <MatchHistoryStatsLink key={match.id} user={user} match={match} />
-            ))}
+        {sortedDates.length === 0 ? (
+          <Container
+            align="center"
+            justify="center"
+            style={{ marginTop: '24px' }}
+            className={style.empty}
+          >
+            <Text fontSize={16} color="gray.700">
+              Ops, você ainda não tem partidas.
+            </Text>
           </Container>
-        </Container>
-      ))}
-
-      {sortedDates.length === 0 ? (
-        <Container
-          align="center"
-          justify="center"
-          style={{ marginTop: '24px' }}
-          className={style.empty}
-        >
-          <Text fontSize={16} color="gray.700">
-            Ops, você ainda não tem partidas.
-          </Text>
-        </Container>
-      ) : (
-        <Container
-          align="center"
-          justify="center"
-          style={{ marginTop: '24px' }}
-        >
-          <MatchHistoryPagination
-            totalCountOfRegisters={matches.length}
-            currentPage={page}
-            onPageChange={setPage}
-          />
-        </Container>
-      )}
-    </Container>
+        ) : (
+          <Container align="end" justify="center" style={{ marginTop: '24px' }}>
+            <MatchHistoryPagination
+              totalCountOfRegisters={matches.length}
+              currentPage={page}
+              onPageChange={setPage}
+            />
+          </Container>
+        )}
+      </Container>
+    </Skeleton>
   )
 }

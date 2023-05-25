@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Adicionado Skeleton no componente `MatchHistoryList`.
 - Atualizado componentes `SideBar` e `SideBarHeader` para para o user id para a página de perfil. 
 - Atualizado componentes `LevelStatsCard` e `HeatmapStatsCard` para ficar igual ao design.
 - Atualizado componente `HeaderProfile` para ficar igual ao design.
