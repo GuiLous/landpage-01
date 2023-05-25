@@ -1,9 +1,8 @@
 import { Button } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { AccountsAPI } from '@api'
+import { ProfilesAPI } from '@api'
 import {
   Container,
   FavoriteWeaponCard,
@@ -16,7 +15,6 @@ import {
 } from '@components'
 import { ProfileLayout } from '@layouts'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
 
 import style from './Profile.module.css'
 
@@ -24,59 +22,14 @@ const buttonsOptions = ['perfil', 'inventário', 'configurações']
 
 export default function ProfileView() {
   const params = useParams()
-  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const { userId } = params
 
   const [fetching, setFetching] = useState(true)
   const [selectedButton, setSelectedButton] = useState('perfil')
   const [userStats, setUserStats] = useState(null)
-
-  const profile = {
-    avatar: {
-      medium:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    },
-    status: 'online',
-    username: 'fulaninhodetal',
-    level: 20,
-    level_points: 80,
-    stats: {
-      wins: 80,
-    },
-  }
-
-  const levelCardStats = {
-    level: 20,
-    highest_level: 23,
-    match_wins: 102,
-    highest_win_streak: 8,
-    latest_matches_results: ['V', 'D', 'D', 'V', 'V'],
-    stats: {
-      kills: 240,
-      deaths: 640,
-      assists: 350,
-      damage: 65020,
-      hs_kills: 45,
-      clutch_v1: 39,
-      clutch_v2: 25,
-      clutch_v3: 9,
-      clutch_v4: 0,
-      clutch_v5: 1,
-      shots_fired: 4500,
-      head_shots: 45,
-      chest_shots: 4065,
-      other_shots: 390,
-      most_kills_in_a_match: 14,
-      most_damage_in_a_match: 890,
-    },
-  }
-
-  const heatmapCardStats = {
-    head_shots: 10,
-    chest_shots: 30,
-    other_shots: 60,
-  }
+  const [headerStats, setHeaderStats] = useState(null)
 
   const weapon = {
     avatar:
@@ -91,17 +44,6 @@ export default function ProfileView() {
       hit_shots: 1390,
       matches: 230,
       wins: 103,
-    },
-  }
-
-  const user = {
-    id: 2,
-    status: 'online',
-    account: {
-      avatar: {
-        medium:
-          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-      },
     },
   }
 
@@ -132,25 +74,33 @@ export default function ProfileView() {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await AccountsAPI.detail(userToken, userId)
+      const response = await ProfilesAPI.detail(userToken, userId)
       if (response.errorMsg) {
-        dispatch(
-          addToast({
-            title: 'Algo saiu errado...',
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
-        return
+        navigate('/404')
       }
 
       setUserStats(response)
+      setFetching(false)
     }
 
     fetch()
-    setFetching(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (userStats) {
+      const headerStats = {
+        avatar: userStats.avatar,
+        status: userStats.status,
+        username: userStats.username,
+        level: userStats.level,
+        level_points: userStats.level_points,
+        stats: userStats.stats,
+      }
+
+      setHeaderStats(headerStats)
+    }
+  }, [userStats])
 
   return fetching ? (
     <LoadingBackdrop>
@@ -159,7 +109,7 @@ export default function ProfileView() {
   ) : (
     <ProfileLayout>
       <Container column fitContent className={style.container} gap={40}>
-        <HeaderProfile profile={profile} />
+        <HeaderProfile profile={headerStats} />
 
         <Container align="center" gap={14}>
           {renderButtonsNavigation()}
@@ -167,12 +117,23 @@ export default function ProfileView() {
 
         <Container gap={18}>
           <Container column gap={18} style={{ maxWidth: '350px' }}>
-            <LevelStatsCard {...levelCardStats} />
-            <HeatmapStatsCard {...heatmapCardStats} />
+            <LevelStatsCard
+              level={userStats.level}
+              highest_level={userStats.highest_level}
+              match_wins={userStats.matches_won}
+              highest_win_streak={userStats.highest_win_streak}
+              latest_matches_results={userStats.latest_matches_results}
+              stats={userStats.stats}
+            />
+            <HeatmapStatsCard
+              head_shots={userStats.stats.head_shots}
+              chest_shots={userStats.stats.chest_shots}
+              other_shots={userStats.stats.other_shots}
+            />
             <FavoriteWeaponCard weapon={weapon} />
           </Container>
 
-          <MatchHistoryList user={user} />
+          <MatchHistoryList user_id={userStats.user_id} />
         </Container>
       </Container>
     </ProfileLayout>
