@@ -18,6 +18,11 @@ export default {
       level_points: 80,
       stats: {
         wins: 80,
+        losses: 100,
+        kills: 2000,
+        deaths: 1800,
+        assists: 800,
+        head_shots: 1200,
       },
     },
   },

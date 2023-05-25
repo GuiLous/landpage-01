@@ -1,5 +1,5 @@
 .username {
-	font-size: 20px;
+	font-size: 22px;
 	font-weight: var(--chakra-fontWeights-bold);
 }
 
@@ -19,4 +19,8 @@
 
 .userStats {
 	min-width: 600px;
+}
+
+.profileWrapper {
+	max-width: 407px;
 }
