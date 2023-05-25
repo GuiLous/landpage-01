@@ -75,16 +75,7 @@ describe('MatchHistoryList Component', () => {
   afterEach(() => server.resetHandlers())
   afterAll(() => server.close())
 
-  const user = {
-    id: 1,
-    status: 'online',
-    account: {
-      avatar: {
-        medium:
-          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-      },
-    },
-  }
+  const user_id = 1
 
   const mockStore = configureStore()({}) // Cria um mock store
 
@@ -92,7 +83,7 @@ describe('MatchHistoryList Component', () => {
     render(
       <BrowserRouter>
         <Provider store={mockStore}>
-          <MatchHistoryList user={user} />
+          <MatchHistoryList user_id={user_id} />
         </Provider>
       </BrowserRouter>
     )
@@ -109,7 +100,7 @@ describe('MatchHistoryList Component', () => {
     render(
       <BrowserRouter>
         <Provider store={mockStore}>
-          <MatchHistoryList user={user} />
+          <MatchHistoryList user_id={user_id} />
         </Provider>
       </BrowserRouter>
     )
