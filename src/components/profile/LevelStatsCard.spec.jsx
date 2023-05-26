@@ -7,7 +7,7 @@ describe('LevelStatsCard Component', () => {
     level: 20,
     highest_level: 23,
     matches_played: 340,
-    match_wins: 102,
+    match_won: 102,
     highest_win_streak: 8,
     latest_matches_results: ['V', 'D', 'D', 'V', 'V'],
     stats: {

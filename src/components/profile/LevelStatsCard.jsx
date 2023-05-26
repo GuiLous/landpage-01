@@ -7,7 +7,7 @@ import style from './LevelStatsCard.module.css'
 export default function LevelStatsCard({
   level,
   highest_level,
-  match_wins,
+  match_won,
   highest_win_streak,
   latest_matches_results,
   stats,
@@ -38,7 +38,7 @@ export default function LevelStatsCard({
 
           <Container column>
             <Text className={style.title}>
-              <Text as="span">{match_wins}</Text> Vitórias
+              <Text as="span">{match_won}</Text> Vitórias
             </Text>
             <Container className={style.subtitle}>
               {renderLastMatches}
