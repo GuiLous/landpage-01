@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
 - Criado interface `ProfilesAPI`.
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
 - Criado layout `ProfileLayout` para a página de perfil [#133](https://github.com/3C-gg/reload-frontend/issues/133).
@@ -39,6 +40,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
+- Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
+- Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
+- Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
 - Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
 - Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.
 - Adicionado Skeleton no componente `MatchHistoryList`.
