@@ -120,7 +120,7 @@ export default function ProfileView() {
             <LevelStatsCard
               level={userStats.level}
               highest_level={userStats.highest_level}
-              match_wins={userStats.matches_won}
+              match_won={userStats.matches_won}
               highest_win_streak={userStats.highest_win_streak}
               latest_matches_results={userStats.latest_matches_results}
               stats={userStats.stats}
