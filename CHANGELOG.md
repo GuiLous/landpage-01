@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado hook `usePersistentTimer` para persistir o timer na view `Connect`.
 - Adicionado método de `list` na interface de AccountsAPI.
 - Criado componente `MatchHistoryPagination`.
 - Criado componente `MatchHistoryPaginationItem`.
