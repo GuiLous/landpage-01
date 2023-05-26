@@ -22,6 +22,8 @@ export default function MatchHistoryList({ user_id }) {
   const [groupedMatches, setGroupedMatches] = useState([])
   const [sortedDates, setSortedDates] = useState([])
   const [page, setPage] = useState(1)
+  const [pageSize, setPageSize] = useState(10)
+  const [totalPages, setTotalPages] = useState(0)
 
   const groupByDay = (matches) => {
     return matches.reduce((groups, match) => {
@@ -81,9 +83,12 @@ export default function MatchHistoryList({ user_id }) {
       let sortedDates = Object.keys(groupedMatches).sort(
         (a, b) => DateTime.fromISO(b).valueOf() - DateTime.fromISO(a).valueOf()
       )
+
+      setTotalPages(Math.ceil(matches.length / pageSize))
+
       setSortedDates(sortedDates)
     }
-  }, [matches])
+  }, [matches, pageSize])
 
   return (
     <Skeleton
@@ -157,13 +162,20 @@ export default function MatchHistoryList({ user_id }) {
             </Text>
           </Container>
         ) : (
-          <Container align="end" justify="center" style={{ marginTop: '24px' }}>
-            <MatchHistoryPagination
-              totalCountOfRegisters={matches.length}
-              currentPage={page}
-              onPageChange={setPage}
-            />
-          </Container>
+          totalPages > 1 && (
+            <Container
+              align="start"
+              justify="center"
+              style={{ marginTop: '24px' }}
+            >
+              <MatchHistoryPagination
+                totalCountOfRegisters={matches.length}
+                currentPage={page}
+                onPageChange={setPage}
+                registerPerPage={pageSize}
+              />
+            </Container>
+          )
         )}
       </Container>
     </Skeleton>
