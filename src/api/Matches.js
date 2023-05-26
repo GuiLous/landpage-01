@@ -5,8 +5,8 @@ export const MatchesAPI = {
     return await BaseAPI.detail(`matches/${match_id}/`, token)
   },
 
-  async listMatches(token, user_id) {
-    return await BaseAPI.list(`accounts/${user_id}/matches/`, token)
+  async list(token, user_id) {
+    return await BaseAPI.list(`matches?user_id=${user_id}`, token)
   },
 }
 
