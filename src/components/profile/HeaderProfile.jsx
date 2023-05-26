@@ -14,11 +14,7 @@ export default function HeaderProfile({ profile }) {
     >
       <Container gap={16} align="center" className={style.profileWrapper}>
         <Container className={style.avatar} fitContent>
-          <Avatar
-            src={profile.avatar.medium}
-            variant={profile.status}
-            size="xl"
-          />
+          <Avatar src={profile.avatar.medium} variant="teaming" size="xl" />
         </Container>
 
         <Container className={style.userInfo} column gap={12}>
