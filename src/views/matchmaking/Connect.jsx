@@ -7,8 +7,11 @@ import loadingGif from '@assets/images/loading.gif'
 import logo from '@assets/images/logo_type_white.svg'
 
 import { ClipboardIcon, Container, Timer } from '@components'
+import { usePersistentTimer } from '@hooks'
 
 import style from './Connect.module.css'
+
+const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 
 export default function Connect(props) {
   const match = useSelector((state) => state.match.match)
@@ -16,7 +19,12 @@ export default function Connect(props) {
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
 
-  const timeInMinutes = 180
+  const timeLeft = usePersistentTimer(COUNTDOWN_TIME)
+
+  const handleClipboard = () => {
+    navigator.clipboard.writeText(match.server_ip)
+    setCopied(match.server_ip)
+  }
 
   useEffect(() => {
     if (copied) {
@@ -32,11 +40,6 @@ export default function Connect(props) {
       return () => clearInterval(interval)
     }
   })
-
-  const handleClipboard = () => {
-    navigator.clipboard.writeText('teste')
-    setCopied(match.server_ip)
-  }
 
   return (
     <Container className={style.container} align="end">
@@ -88,7 +91,7 @@ export default function Connect(props) {
 
           <Container justify="end" gap={14}>
             <Text fontSize={24} color="white" fontWeight="semibold">
-              <Timer initialTime={timeInMinutes} reverse />
+              <Timer initialTime={timeLeft || 1} reverse />
             </Text>
 
             <Image src={loadingGif} alt="loading" width="48px" />
