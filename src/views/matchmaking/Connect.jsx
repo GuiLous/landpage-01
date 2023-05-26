@@ -12,6 +12,7 @@ import { usePersistentTimer } from '@hooks'
 import style from './Connect.module.css'
 
 const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
+const TIMER_NAME = 'matchConnectTimer'
 
 export default function Connect(props) {
   const match = useSelector((state) => state.match.match)
@@ -19,7 +20,7 @@ export default function Connect(props) {
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
 
-  const timeLeft = usePersistentTimer(COUNTDOWN_TIME)
+  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME)
 
   const handleClipboard = () => {
     navigator.clipboard.writeText(match.server_ip)

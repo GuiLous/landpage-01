@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 
 import { StorageService } from '@services'
 
-const usePersistentTimer = (initialTime) => {
+const usePersistentTimer = (initialTime, timerName) => {
   const getRemainingTime = () => {
-    const expiryTime = StorageService.load('expiryTime')
+    const expiryTime = StorageService.load(timerName)
     const currentTime = Math.floor(Date.now() / 1000)
 
     if (expiryTime) {
@@ -19,7 +19,7 @@ const usePersistentTimer = (initialTime) => {
   useEffect(() => {
     if (timeLeft === initialTime) {
       const currentTime = Math.floor(Date.now() / 1000)
-      StorageService.save('expiryTime', currentTime + initialTime)
+      StorageService.save(timerName, currentTime + initialTime)
     }
 
     if (timeLeft > 0) {
@@ -28,7 +28,7 @@ const usePersistentTimer = (initialTime) => {
     }
 
     if (timeLeft === 0) {
-      StorageService.remove('expiryTime')
+      StorageService.remove(timerName)
     }
   }, [timeLeft, initialTime])
 
