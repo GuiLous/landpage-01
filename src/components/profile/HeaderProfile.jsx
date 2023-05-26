@@ -6,7 +6,12 @@ import style from './HeaderProfile.module.css'
 
 export default function HeaderProfile({ profile }) {
   return (
-    <Container className={style.container} align="center" justify="between">
+    <Container
+      className={style.container}
+      align="center"
+      gap={32}
+      justify="between"
+    >
       <Container gap={16} align="center" className={style.profileWrapper}>
         <Container className={style.avatar} fitContent>
           <Avatar
