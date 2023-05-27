@@ -10,6 +10,8 @@ export default function LevelStatsCard({
   match_won,
   highest_win_streak,
   latest_matches_results,
+  most_kills_in_a_match,
+  most_damage_in_a_match,
   stats,
 }) {
   const renderLastMatches = latest_matches_results.map(
@@ -96,7 +98,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Kills</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.most_kills_in_a_match}
+                  {most_kills_in_a_match}
                 </Text>
               </Container>
             </Container>
@@ -144,7 +146,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Dano</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.most_damage_in_a_match}
+                  {most_damage_in_a_match}
                 </Text>
               </Container>
             </Container>
