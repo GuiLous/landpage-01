@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
 - Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
