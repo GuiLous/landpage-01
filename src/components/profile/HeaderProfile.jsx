@@ -41,7 +41,7 @@ export default function HeaderProfile({ profile }) {
             Vitórias
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.wins}
+            {profile.matches_won}
           </Text>
         </Container>
 
@@ -50,7 +50,7 @@ export default function HeaderProfile({ profile }) {
             Derrotas
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.losses}
+            {profile.matches_lost}
           </Text>
         </Container>
 

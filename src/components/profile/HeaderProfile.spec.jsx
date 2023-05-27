@@ -12,9 +12,9 @@ describe('HeaderProfile Component', () => {
     username: 'fulaninhodetal',
     level: 20,
     level_points: 80,
+    matches_won: 80,
+    matches_lost: 100,
     stats: {
-      wins: 80,
-      losses: 100,
       kills: 2000,
       deaths: 1800,
       assists: 800,
