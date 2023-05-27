@@ -18,7 +18,7 @@ import { StorageService } from '@services'
 
 import style from './Profile.module.css'
 
-const buttonsOptions = ['perfil', 'inventário', 'configurações']
+const buttonsOptions = ['perfil', 'configurações']
 
 export default function ProfileView() {
   const params = useParams()
@@ -91,10 +91,11 @@ export default function ProfileView() {
     if (userStats) {
       const headerStats = {
         avatar: userStats.avatar,
-        status: userStats.status,
         username: userStats.username,
         level: userStats.level,
         level_points: userStats.level_points,
+        matches_won: userStats.matches_won,
+        matches_lost: userStats.matches_played - userStats.matches_won,
         stats: userStats.stats,
       }
 
@@ -123,6 +124,8 @@ export default function ProfileView() {
               match_won={userStats.matches_won}
               highest_win_streak={userStats.highest_win_streak}
               latest_matches_results={userStats.latest_matches_results}
+              most_kills_in_a_match={userStats.most_kills_in_a_match}
+              most_damage_in_a_match={userStats.most_damage_in_a_match}
               stats={userStats.stats}
             />
             <HeatmapStatsCard
@@ -133,7 +136,7 @@ export default function ProfileView() {
             <FavoriteWeaponCard weapon={weapon} />
           </Container>
 
-          <MatchHistoryList user_id={userStats.user_id} />
+          <MatchHistoryList user_id={userId} />
         </Container>
       </Container>
     </ProfileLayout>
