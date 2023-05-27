@@ -22,7 +22,7 @@ export default function MatchHistoryList({ user_id }) {
   const [groupedMatches, setGroupedMatches] = useState([])
   const [sortedDates, setSortedDates] = useState([])
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(10)
+  const [pageSize, setPageSize] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
   const groupByDay = (matches) => {
@@ -55,7 +55,7 @@ export default function MatchHistoryList({ user_id }) {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await MatchesAPI.list(userToken, user_id)
+      const response = await MatchesAPI.list(userToken, user_id, page)
       if (response.errorMsg) {
         dispatch(
           addToast({
@@ -67,13 +67,15 @@ export default function MatchHistoryList({ user_id }) {
         return
       }
 
-      setMatches(response)
+      setTotalPages(response.total_pages)
+      setPageSize(response.page_size)
+      setMatches(response.results)
       setIsFetching(false)
     }
 
     fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [page])
 
   useEffect(() => {
     if (matches) {
@@ -84,11 +86,9 @@ export default function MatchHistoryList({ user_id }) {
         (a, b) => DateTime.fromISO(b).valueOf() - DateTime.fromISO(a).valueOf()
       )
 
-      setTotalPages(Math.ceil(matches.length / pageSize))
-
       setSortedDates(sortedDates)
     }
-  }, [matches, pageSize])
+  }, [matches])
 
   return (
     <Skeleton
@@ -162,7 +162,7 @@ export default function MatchHistoryList({ user_id }) {
             </Text>
           </Container>
         ) : (
-          totalPages > 1 && (
+          totalPages > 0 && (
             <Container
               align="start"
               justify="center"
