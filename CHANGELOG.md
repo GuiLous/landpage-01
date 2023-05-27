@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
 - Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
+- Alterado tamanho `xl` do `Avatar` para `80px`.
+- Atualizado componente `HeaderProfile` para refletir o design [#225](https://github.com/3C-gg/reload-frontend/issues/225). 
 - Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
 - Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.
 - Adicionado Skeleton no componente `MatchHistoryList`.
