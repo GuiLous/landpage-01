@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
-import { AccountsAPI } from '@api'
+import { MatchesAPI } from '@api'
 import {
   Container,
   MatchHistoryPagination,
@@ -53,7 +53,7 @@ export default function MatchHistoryList({ user_id }) {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await AccountsAPI.listMatches(userToken, user_id)
+      const response = await MatchesAPI.list(userToken, user_id)
       if (response.errorMsg) {
         dispatch(
           addToast({

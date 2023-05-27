@@ -11,7 +11,7 @@ import { BrowserRouter } from 'react-router-dom'
 const currentDate = DateTime.local()
 
 const server = setupServer(
-  rest.get('http://localhost:8000/api/accounts/1/matches/', (req, res, ctx) => {
+  rest.get('http://localhost:8000/api/matches?user_id=1', (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json([
