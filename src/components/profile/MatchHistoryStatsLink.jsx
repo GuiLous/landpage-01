@@ -29,31 +29,37 @@ const statsFields = [
   },
 ]
 
-export default function MatchHistoryStatsLink({ user, match }) {
+export default function MatchHistoryStatsLink({ user_id, match }) {
   const winner_team_id = match.winner_id
   const winner_team = match.teams.find((team) => team.id === winner_team_id)
   const defeated_team = match.teams.find((team) => team.id !== winner_team_id)
-  const won = winner_team.players.find((player) => player.user_id === user.id)
+  const won = winner_team.players.find((player) => player.user_id === user_id)
 
   const player = won
     ? won
-    : defeated_team.players.find((player) => player.user_id === user.id)
+    : defeated_team.players.find((player) => player.user_id === user_id)
 
   const renderStats = () => {
     const kda = `${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}`
 
     // calculate Kill-Death Ratio number
-    const kdr = Number(player.stats.kills / player.stats.deaths).toFixed(1)
+    let kdr = 0
+    if (player.stats.deaths !== 0) {
+      kdr = Number(player.stats.kills / player.stats.deaths).toFixed(1)
+    }
 
-    const hsPercent =
-      String(
-        Number(
-          (player.stats.head_shots * 100) /
-            (player.stats.chest_shots +
-              player.stats.other_shots +
-              player.stats.head_shots)
-        ).toFixed(1)
-      ) + '%'
+    const totalShots =
+      player.stats.chest_shots +
+      player.stats.other_shots +
+      player.stats.head_shots
+
+    let hsPercent = '0.0%'
+    if (totalShots !== 0) {
+      hsPercent =
+        String(
+          Number((player.stats.head_shots * 100) / totalShots).toFixed(1)
+        ) + '%'
+    }
 
     // calculate Average Damage Ratio
     const adr = Number(player.stats.damage / match.rounds).toFixed(2)
@@ -108,7 +114,7 @@ export default function MatchHistoryStatsLink({ user, match }) {
           letterSpacing="0.5pt"
           color="white"
         >
-          {match.map_name}
+          {match.map_name || 'Map Name'}
         </Text>
         <Text lineHeight={1} color="gray.700" fontSize={14} fontWeight="medium">
           {DateTime.fromISO(match.end_date).toRelative()}

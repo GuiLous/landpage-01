@@ -1,8 +1,9 @@
 import { Text } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useNavigate, useParams } from 'react-router-dom'
 
+import { MatchesAPI } from '@api'
 import {
   Container,
   LevelProgressBar,
@@ -12,13 +13,12 @@ import {
   MatchTeamStats,
 } from '@components'
 import { MainLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { StorageService } from '@services'
 
 import style from './Match.module.css'
 
 export default function MatchView(props) {
-  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
 
   const params = useParams()
@@ -47,19 +47,12 @@ export default function MatchView(props) {
 
   useEffect(() => {
     const fetch = async () => {
-      const token = StorageService.get('token')
-      let response
+      const userToken = StorageService.get('token')
 
-      response = await HttpService.get(`matches/${matchId}/`, token)
+      const response = await MatchesAPI.detail(userToken, matchId)
+
       if (response.errorMsg) {
-        dispatch(
-          addToast({
-            title: 'Algo saiu errado...',
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
-        return
+        navigate('/404')
       }
 
       setMatch(response)

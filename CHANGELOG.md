@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
+- Criado interface `ProfilesAPI`.
+- Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
+- Criado layout `ProfileLayout` para a página de perfil [#133](https://github.com/3C-gg/reload-frontend/issues/133).
 - Algumas tags para melhorar o SEO [#239](https://github.com/3C-gg/reload-frontend/issues/239).
 - Criado hook `usePersistentTimer` para persistir o timer na view `Connect`.
 - Adicionado método de `list` na interface de AccountsAPI.
@@ -37,6 +41,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
+- Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
+- Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
+- Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
+- Alterado tamanho `xl` do `Avatar` para `80px`.
+- Atualizado componente `HeaderProfile` para refletir o design [#225](https://github.com/3C-gg/reload-frontend/issues/225). 
+- Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
+- Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.
+- Adicionado Skeleton no componente `MatchHistoryList`.
+- Atualizado componentes `SideBar` e `SideBarHeader` para para o user id para a página de perfil. 
+- Atualizado componentes `LevelStatsCard` e `HeatmapStatsCard` para ficar igual ao design.
+- Atualizado componente `HeaderProfile` para ficar igual ao design.
 - Alterado view `Connect` para ficar igual ao design [#175] (https://github.com/3C-gg/reload-frontend/issues/175).
 - Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
 - `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
@@ -67,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Componente `MatchHistoryStatsLink` renderizando `NaN` quando os stats vêm zerados.
 - Componente `NotificationList` agora aparece por cima dos outros elementos da página de maneira correta [#205](https://github.com/3C-gg/reload-frontend/issues/205).
 
 ## [611cea3 - 8/5/2023]

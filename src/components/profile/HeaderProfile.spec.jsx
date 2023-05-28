@@ -12,15 +12,25 @@ describe('HeaderProfile Component', () => {
     username: 'fulaninhodetal',
     level: 20,
     level_points: 80,
+    matches_won: 80,
+    matches_lost: 100,
     stats: {
-      wins: 80,
+      kills: 2000,
+      deaths: 1800,
+      assists: 800,
+      head_shots: 1200,
     },
   }
 
   it('should renders correctly', () => {
     render(<HeaderProfile profile={profile} />)
 
-    expect(screen.getByText('Level 20')).toBeInTheDocument()
     expect(screen.getByText('Vitórias')).toBeInTheDocument()
+    expect(screen.getByText('80')).toBeInTheDocument()
+    expect(screen.getByText('100')).toBeInTheDocument()
+    expect(screen.getByText('2000')).toBeInTheDocument()
+    expect(screen.getByText('1800')).toBeInTheDocument()
+    expect(screen.getByText('800')).toBeInTheDocument()
+    expect(screen.getByText('1200')).toBeInTheDocument()
   })
 })

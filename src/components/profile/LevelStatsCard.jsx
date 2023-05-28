@@ -7,9 +7,11 @@ import style from './LevelStatsCard.module.css'
 export default function LevelStatsCard({
   level,
   highest_level,
-  match_wins,
+  match_won,
   highest_win_streak,
   latest_matches_results,
+  most_kills_in_a_match,
+  most_damage_in_a_match,
   stats,
 }) {
   const renderLastMatches = latest_matches_results.map(
@@ -38,7 +40,7 @@ export default function LevelStatsCard({
 
           <Container column>
             <Text className={style.title}>
-              <Text as="span">{match_wins}</Text> Vitórias
+              <Text as="span">{match_won}</Text> Vitórias
             </Text>
             <Container className={style.subtitle}>
               {renderLastMatches}
@@ -70,7 +72,10 @@ export default function LevelStatsCard({
               <Text className={style.statsListItemValue}>{highest_level}</Text>
             </Container>
 
-            <Container column className={style.statsListItem}>
+            <Container
+              column
+              className={[style.statsListItem, style.maxWinStreak].join(' ')}
+            >
               <Tooltip
                 label="Maior quantidade de vitórias seguidas"
                 aria-label="Maior quantidade de vitórias seguidas"
@@ -93,7 +98,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Kills</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.most_kills_in_a_match}
+                  {most_kills_in_a_match}
                 </Text>
               </Container>
             </Container>
@@ -117,7 +122,7 @@ export default function LevelStatsCard({
             </Container>
           </Container>
 
-          <Container column fitContent>
+          <Container column fitContent style={{ paddingLeft: '32px' }}>
             <Container className={style.statsListItem}>
               <Container column fitContent>
                 <Tooltip
@@ -141,7 +146,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Dano</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.most_damage_in_a_match}
+                  {most_damage_in_a_match}
                 </Text>
               </Container>
             </Container>
