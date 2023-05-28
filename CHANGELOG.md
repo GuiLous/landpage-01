@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Criado interface `ProfilesAPI`.
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
 - Criado layout `ProfileLayout` para a página de perfil [#133](https://github.com/3C-gg/reload-frontend/issues/133).
+- Algumas tags para melhorar o SEO [#239](https://github.com/3C-gg/reload-frontend/issues/239).
 - Criado hook `usePersistentTimer` para persistir o timer na view `Connect`.
 - Adicionado método de `list` na interface de AccountsAPI.
 - Criado componente `MatchHistoryPagination`.
