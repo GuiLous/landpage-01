@@ -85,6 +85,10 @@ import ProfileCard from './profile/ProfileCard'
 import NotificationList from './notifications/NotificationList'
 import NotificationListItem from './notifications/NotificationListItem'
 
+// Account
+import AccountCard from './account/AccountCard'
+import ChangeEmailCard from './account/ChangeEmailCard'
+
 export {
   AddUserIcon,
   ArrowRightIcon,
@@ -153,4 +157,6 @@ export {
   MatchHistoryList,
   MatchHistoryPaginationItem,
   MatchHistoryPagination,
+  AccountCard,
+  ChangeEmailCard,
 }
