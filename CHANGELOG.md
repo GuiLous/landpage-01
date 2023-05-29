@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
+- Criado componente `AccountCard`.
+- Adicionado variant `disabled` para input no tema do chakra ui.
 - Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
 - Criado interface `ProfilesAPI`.
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
@@ -43,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado gray 800 para `#1B1B1B`.
 - Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
