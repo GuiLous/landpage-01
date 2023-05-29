@@ -58,7 +58,9 @@ export default function LevelStatsCard({
                 <Text className={style.statsListItemTitle}>KDR</Text>
               </Tooltip>
               <Text className={style.statsListItemValue}>
-                {(stats.kills / stats.deaths).toFixed(2)}
+                {stats.deaths === 0
+                  ? 0
+                  : (stats.kills / stats.deaths).toFixed(2)}
               </Text>
             </Container>
 
@@ -132,7 +134,10 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Headshots %</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {Math.ceil((stats.head_shots / stats.shots_fired) * 100)}%
+                  {stats.shots_fired === 0
+                    ? '0%'
+                    : Math.ceil((stats.head_shots / stats.shots_fired) * 100) +
+                      '%'}
                 </Text>
               </Container>
             </Container>
