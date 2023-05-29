@@ -88,7 +88,7 @@ export default function ProfileView() {
   }, [])
 
   useEffect(() => {
-    if (userStats) {
+    if (userStats !== null) {
       const headerStats = {
         avatar: userStats.avatar,
         username: userStats.username,
@@ -110,7 +110,7 @@ export default function ProfileView() {
   ) : (
     <ProfileLayout>
       <Container column fitContent className={style.container} gap={40}>
-        <HeaderProfile profile={headerStats} />
+        {headerStats && <HeaderProfile profile={headerStats} />}
 
         <Container align="center" gap={14}>
           {renderButtonsNavigation()}
