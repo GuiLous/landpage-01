@@ -112,9 +112,9 @@ export default function ProfileView() {
               stats={userStats.stats}
             />
             <HeatmapStatsCard
-              head_shots={userStats.stats.head_shots}
-              chest_shots={userStats.stats.chest_shots}
-              other_shots={userStats.stats.other_shots}
+              head_shots={userStats.stats?.head_shots || 0}
+              chest_shots={userStats.stats?.chest_shots || 0}
+              other_shots={userStats.stats?.other_shots || 0}
             />
           </Container>
 
