@@ -37,7 +37,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
 
   const player = won
     ? won
-    : defeated_team.players.find((player) => player.user_id === user_id)
+    : defeated_team.players.find((player) => player.user_id === Number(user_id))
 
   const renderStats = () => {
     const kda = `${player.stats.kills}/${player.stats.deaths}/${player.stats.assists}`
@@ -145,7 +145,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
       </Container>
 
       <Container align="center" justify="center" gap={40}>
-        {renderStats()}
+        {player && renderStats()}
 
         <Icon as={ArrowRightSimpleIcon} fill="white" h="12px" w="7px" />
       </Container>
