@@ -30,8 +30,9 @@ export default function LevelStatsCard({
     )
   )
 
-  const calculateKRD = () => {
-    if (!stats || stats.deaths === 0) {
+  const calculateKDR = () => {
+    debugger
+    if (!stats || !stats.deaths || stats.deaths === 0) {
       return '0.00'
     }
 
@@ -78,7 +79,7 @@ export default function LevelStatsCard({
               >
                 <Text className={style.statsListItemTitle}>KDR</Text>
               </Tooltip>
-              <Text className={style.statsListItemValue}>{calculateKRD()}</Text>
+              <Text className={style.statsListItemValue}>{calculateKDR()}</Text>
             </Container>
 
             <Container column className={style.statsListItem}>
