@@ -280,6 +280,32 @@ export default extendTheme({
             },
           },
         },
+        disabled: {
+          field: {
+            color: 'gray.700',
+            bg: 'black.900',
+            backgroundColor: 'black.900',
+            fontSize: '14px',
+            fontWeight: '400',
+            pl: '16px',
+            pr: '16px',
+            borderRadius: 4,
+            _hover: {
+              color: 'gray.700',
+              bg: 'black.900',
+              backgroundColor: 'black.900',
+            },
+            _focus: {
+              color: 'gray.700',
+              bg: 'black.900',
+              backgroundColor: 'black.900',
+            },
+            _disabled: {
+              cursor: 'initial',
+              opacity: 1,
+            },
+          },
+        },
         clean: {
           field: {
             bg: 'transparent',
@@ -603,8 +629,8 @@ export default extendTheme({
       900: '#222222',
     },
 
-    stripe: {
-      100: '#111111',
+    black: {
+      900: '#111111',
     },
   },
   fontWeights: {
