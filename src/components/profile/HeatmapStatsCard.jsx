@@ -55,7 +55,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
                 data-testid="hs-percentage"
               >
@@ -68,7 +68,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
               >
                 {head_shots}
@@ -98,7 +98,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
                 data-testid="body-percentage"
               >
@@ -111,7 +111,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
               >
                 {chest_shots}
@@ -141,7 +141,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
                 data-testid="other-percentage"
               >
@@ -154,7 +154,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={16}
                 fontWeight="bold"
-                color="secondary.400"
+                color="white"
                 as="span"
               >
                 {other_shots}

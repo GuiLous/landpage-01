@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
+- Criado interface `ProfilesAPI`.
+- Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
+- Criado layout `ProfileLayout` para a página de perfil [#133](https://github.com/3C-gg/reload-frontend/issues/133).
+- Algumas tags para melhorar o SEO [#239](https://github.com/3C-gg/reload-frontend/issues/239).
+- Criado hook `usePersistentTimer` para persistir o timer na view `Connect`.
+- Adicionado método de `list` na interface de AccountsAPI.
+- Criado componente `MatchHistoryPagination`.
+- Criado componente `MatchHistoryPaginationItem`.
+- Criado variante `pagination` para os Buttons no tema do Chakra.
+- Criado componente `MatchHistoryList` [#177](https://github.com/3C-gg/reload-frontend/issues/177).
+- `SidebarHeader` que contém menu de usuário.
+- Redux e interface de API para `Friends`.
+- Componente `FriendList`.
+- Componente `FriendListGroup` que representa um grupo de amigos na lista de amigos.
+- Interfaces de API para `Accounts` e `Matchmaking`.
+- Componente `FriendListGroupItem` que representa um amigo na lista de amigos.
 - Componentes `ToastList` e `ToastListItem` para lidar com os toasts da aplicação.
 - Componente `FavoriteWeaponCard` que exibe a arma favorita do usuário [#158](https://github.com/3C-gg/reload-frontend/issues/158).
 - Componente `ProfileCard` para servir de base para os cards do Perfil.
@@ -24,8 +41,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
+- Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
+- Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
+- Mudado `match_wins` para `match_won` no componente `LevelStatsCard` e view `Profile` [#222] (https://github.com/3C-gg/reload-frontend/issues/222).
+- Alterado tamanho `xl` do `Avatar` para `80px`.
+- Atualizado componente `HeaderProfile` para refletir o design [#225](https://github.com/3C-gg/reload-frontend/issues/225). 
+- Mudado extensao da interface `MatchmakingAPI` de `jsx` para `js`.
+- Atualizado componente `MatchHistoryStatsLink` para receber prop user_id.
+- Adicionado Skeleton no componente `MatchHistoryList`.
+- Atualizado componentes `SideBar` e `SideBarHeader` para para o user id para a página de perfil. 
+- Atualizado componentes `LevelStatsCard` e `HeatmapStatsCard` para ficar igual ao design.
+- Atualizado componente `HeaderProfile` para ficar igual ao design.
+- Alterado view `Connect` para ficar igual ao design [#175] (https://github.com/3C-gg/reload-frontend/issues/175).
+- Alterado o componente `MatchHistoryStatsAccordion` para ficar igual ao design e agora é um Link que leva para a página de detalhes da partida [#212](https://github.com/3C-gg/reload-frontend/issues/212).
+- `NotificationList` passa a ir na API para popular as notificações [#164](https://github.com/3C-gg/reload-frontend/issues/164).
+- Layout `MainLayout` alterado para comportar nova sidebar [#215](https://github.com/3C-gg/reload-frontend/issues/215).
 - Alterado componente `HeatmapCardStats` e `LevelCardStats` para usar o componente `ProfileCard` [#202](https://github.com/3C-gg/reload-frontend/issues/202).
 - Alterado componente `HeatmapCardStats` para ficar igual ao design.`
+- Componente `SearchIcon` para refletir atualização de design.
+- Componente `HeaderProfileMenu` foi alterado para `HeaderUserMenu`. Aplicamos o novo design e não utilizamos mais o `Menu` do Chakra [196](https://github.com/3C-gg/reload-frontend/issues/196).
 - Alterado componentes que usavam antigo sistema de Toasts.
 - Componente `Sidebar` foi alterado para refletir novo layout e design.
 - Alterado estilos `font-weight` e `fontWeight` para user os tamanhos definidos no tema customizado do chakra ui [#194](https://github.com/3C-gg/reload-frontend/issues/194).
@@ -41,16 +76,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `HeaderProfileMenu` que foi movido para a `Sidebar`.
+- Testes de `LobbyView` pois estavam solicitando Redux e mock de API. Criei uma issue para endereçar esse problema de forma mais genérica: https://github.com/3C-gg/reload-frontend/issues/217
+- Componente `SidebarItem`.
 - Serviço descontinuado `Toast`.
 
 ### Fixed
 
+- Componente `MatchHistoryStatsLink` renderizando `NaN` quando os stats vêm zerados.
 - Componente `NotificationList` agora aparece por cima dos outros elementos da página de maneira correta [#205](https://github.com/3C-gg/reload-frontend/issues/205).
 
 ## [611cea3 - 8/5/2023]
 
 ### Added
 
+- Criado ícone `ArrowRightSimpleIcon`.
 - Criado componente `HeatmapCardStats` (https://github.com/3C-gg/reload-frontend/issues/157).
 - Criado `stories` para o componente `LevelProgressBar` (https://github.com/3C-gg/reload-frontend/issues/171).
 - Criado o componente `MatchHistoryStatsAccordion` (https://github.com/3C-gg/reload-frontend/issues/154).

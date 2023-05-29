@@ -1,0 +1,23 @@
+.container {
+	align-items: center;
+	border-radius: 8px;
+	display: flex;
+	padding: 24px;
+	width: 100%;
+}
+
+.won {
+	background: linear-gradient(
+		90deg,
+		rgba(0, 228, 201, 0.3) -6.62%,
+		#282828 17.93%
+	);
+}
+
+.defeated {
+	background: linear-gradient(
+		90deg,
+		rgba(246, 53, 53, 0.29) -6.62%,
+		#282828 17.93%
+	);
+}
