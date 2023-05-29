@@ -18,7 +18,7 @@ import { StorageService } from '@services'
 
 import style from './Profile.module.css'
 
-const buttonsOptions = ['perfil', 'configurações']
+const buttonsOptions = ['perfil', 'conta']
 
 export default function ProfileView() {
   const params = useParams()
