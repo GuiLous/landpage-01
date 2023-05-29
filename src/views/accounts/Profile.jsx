@@ -5,7 +5,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { ProfilesAPI } from '@api'
 import {
   Container,
-  FavoriteWeaponCard,
   HeaderProfile,
   HeatmapStatsCard,
   LevelStatsCard,
@@ -30,22 +29,6 @@ export default function ProfileView() {
   const [selectedButton, setSelectedButton] = useState('perfil')
   const [userStats, setUserStats] = useState(null)
   const [headerStats, setHeaderStats] = useState(null)
-
-  const weapon = {
-    avatar:
-      'https://static.wikia.nocookie.net/gtawiki/images/5/56/AssaultSMG-GTAV-SocialClub.png',
-    name: 'SMG',
-    type: 'Submetralhadora',
-    stats: {
-      kills: 450,
-      assists: 900,
-      head_shots: 133,
-      shots_fired: 3450,
-      hit_shots: 1390,
-      matches: 230,
-      wins: 103,
-    },
-  }
 
   const renderButtonsNavigation = () => {
     return buttonsOptions.map((btnOption) => (
@@ -133,7 +116,6 @@ export default function ProfileView() {
               chest_shots={userStats.stats.chest_shots}
               other_shots={userStats.stats.other_shots}
             />
-            <FavoriteWeaponCard weapon={weapon} />
           </Container>
 
           <MatchHistoryList user_id={userId} />
