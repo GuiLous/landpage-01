@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 - Alterado `HttpService` para adicionar uma `/` no final da url apenas quando não tiver uma interrogação `?` [#243] (https://github.com/3C-gg/reload-frontend/issues/243).
 - Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
@@ -79,6 +80,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido componente `FavoriteWeaponCard` da view `Profile`.
 - Componente `HeaderProfileMenu` que foi movido para a `Sidebar`.
 - Testes de `LobbyView` pois estavam solicitando Redux e mock de API. Criei uma issue para endereçar esse problema de forma mais genérica: https://github.com/3C-gg/reload-frontend/issues/217
 - Componente `SidebarItem`.
