@@ -1,8 +1,8 @@
-import { ModalConfirmation } from '@components'
+import { Modal } from '@components'
 
 export default {
-  title: 'Modal/ModalConfirmation',
-  component: ModalConfirmation,
+  title: 'Modal/Modal',
+  component: Modal,
   argTypes: {
     title: { control: 'text' },
     isOpen: { control: 'boolean' },
@@ -16,5 +16,5 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <ModalConfirmation {...props} />,
+  render: (props) => <Modal {...props} />,
 }

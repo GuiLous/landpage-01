@@ -1,5 +1,5 @@
 import {
-  Modal,
+  Modal as ChakraModal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
@@ -10,7 +10,7 @@ import {
 
 import { Container } from '@components'
 
-export default function ModalConfirmation({
+export default function Modal({
   isOpen,
   onClose,
   title,
@@ -18,7 +18,7 @@ export default function ModalConfirmation({
   showCloseButton = true,
 }) {
   return (
-    <Modal
+    <ChakraModal
       size="3xl"
       isCentered
       isOpen={isOpen}
@@ -54,6 +54,6 @@ export default function ModalConfirmation({
 
         <ModalBody p={0}>{children}</ModalBody>
       </ModalContent>
-    </Modal>
+    </ChakraModal>
   )
 }
