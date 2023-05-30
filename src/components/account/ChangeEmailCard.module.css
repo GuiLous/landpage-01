@@ -1,5 +1,6 @@
 .container {
 	display: flex;
-	margin-bottom: 38px;
+	flex-direction: column;
+	margin-bottom: 20px;
 	margin-top: 40px;
 }
