@@ -88,6 +88,8 @@ import NotificationListItem from './notifications/NotificationListItem'
 // Account
 import AccountCard from './account/AccountCard'
 import ChangeEmailCard from './account/ChangeEmailCard'
+import InactivateAccountCard from './account/InactivateAccountCard'
+import ModalConfirmation from './account/ModalConfirmation'
 
 export {
   AddUserIcon,
@@ -159,4 +161,6 @@ export {
   MatchHistoryPagination,
   AccountCard,
   ChangeEmailCard,
+  InactivateAccountCard,
+  ModalConfirmation,
 }
