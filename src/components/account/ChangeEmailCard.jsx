@@ -53,7 +53,7 @@ export default function ChangeEmailCard() {
     const token = StorageService.get('token')
 
     let response
-    response = await AccountsAPI.update(token, email)
+    response = await AccountsAPI.updateEmail(token, email)
 
     if (response.formError) {
       if (response.formError.field === 'email')
