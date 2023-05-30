@@ -89,7 +89,9 @@ import NotificationListItem from './notifications/NotificationListItem'
 import AccountCard from './account/AccountCard'
 import ChangeEmailCard from './account/ChangeEmailCard'
 import InactivateAccountCard from './account/InactivateAccountCard'
-import ModalConfirmation from './account/ModalConfirmation'
+
+// Modal
+import Modal from './modal/Modal'
 
 export {
   AddUserIcon,
@@ -162,5 +164,5 @@ export {
   AccountCard,
   ChangeEmailCard,
   InactivateAccountCard,
-  ModalConfirmation,
+  Modal,
 }
