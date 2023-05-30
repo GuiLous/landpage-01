@@ -11,6 +11,11 @@ export const AccountsAPI = {
     const payload = { email: email }
     return await BaseAPI.update('accounts/update-email/', token, payload)
   },
+
+  async updateIsActive(token, is_active) {
+    const payload = { is_active: is_active }
+    return await BaseAPI.update('accounts/', token, payload)
+  },
 }
 
 export default AccountsAPI
