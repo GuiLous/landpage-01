@@ -1,41 +1,46 @@
 import { Button, Text } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { AccountCard, Container, ModalConfirmation } from '@components'
+import { AccountsAPI } from '@api'
+import { AccountCard, Container, Modal } from '@components'
+import { StorageService } from '@services'
+import { addToast } from '@slices/ToastSlice'
+import { updateUser } from '@slices/UserSlice'
 
 import style from './InactivateAccountCard.module.css'
 
 export default function InactivateAccountCard() {
-  const user = useSelector((state) => state.user)
-
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
+  const [fetching, setFetching] = useState(false)
 
-  // const handleSubmit = async () => {
-  //   const token = StorageService.get('token')
+  const handleAccountInactivation = async () => {
+    if (fetching) return
 
-  //   let response
-  //   response = await AccountsAPI.update(token, email)
+    setFetching(true)
+    const token = StorageService.get('token')
+    const response = await AccountsAPI.updateIsActive(token, false)
+    setFetching(false)
 
-  //   if (response.errorMsg) {
-  //     if (response.field) setFormError(response)
-  //     return
-  //   }
+    if (response.formError) {
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.formError.error,
+          variant: 'error',
+        })
+      )
+      return
+    }
 
-  //   setEmail(response.email)
-
-  //   dispatch(updateUser(response))
-  //   dispatch(
-  //     addToast({
-  //       title: 'E-mail atualizado com sucesso!',
-  //       variant: 'success',
-  //     })
-  //   )
-
-  //   setIsEditing(false)
-  // }
+    dispatch(updateUser(null))
+    StorageService.remove('token')
+    navigate('/')
+  }
 
   const handleClose = () => {
     setIsOpenModal(false)
@@ -60,7 +65,7 @@ export default function InactivateAccountCard() {
       </Container>
 
       {isOpenModal && (
-        <ModalConfirmation
+        <Modal
           isOpen={isOpenModal}
           title="INATIVAR CONTA"
           onClose={handleClose}
@@ -79,11 +84,14 @@ export default function InactivateAccountCard() {
               fontSize={14}
               borderRadius="4px"
               minHeight="37px"
+              loadingText="Inativando..."
+              isLoading={fetching}
+              onClick={handleAccountInactivation}
             >
               Prosseguir com a inativação
             </Button>
           </Container>
-        </ModalConfirmation>
+        </Modal>
       )}
     </AccountCard>
   )
