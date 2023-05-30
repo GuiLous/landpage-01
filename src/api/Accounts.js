@@ -8,7 +8,8 @@ export const AccountsAPI = {
   },
 
   async update(token, email) {
-    return await BaseAPI.update('accounts/update-email/', token, email)
+    const payload = { email: email }
+    return await BaseAPI.update('accounts/update-email/', token, payload)
   },
 }
 
