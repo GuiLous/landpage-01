@@ -439,7 +439,7 @@ describe('ChangeEmailCard Component', () => {
     preloadedState: { user },
   })
 
-  it('should render component without crash', () => {
+  it('should render correctly', () => {
     render(
       <Provider store={store}>
         <ChangeEmailCard />
