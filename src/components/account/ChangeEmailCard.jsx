@@ -1,4 +1,10 @@
-import { Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react'
+import {
+  Input,
+  InputGroup,
+  InputRightElement,
+  Text,
+  useOutsideClick,
+} from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -16,15 +22,14 @@ export default function ChangeEmailCard() {
 
   const dispatch = useDispatch()
 
-  const inputRef = useRef(null)
+  const inputGroupRef = useRef(null)
 
   const [email, setEmail] = useState(user.email)
-  const [isEditEnabled, setIsEditEnabled] = useState(false)
-  const [fetching, setFetching] = useState(false)
-  const [formError, setFormError] = useState()
+  const [isEditing, setIsEditing] = useState(false)
+  const [formError, setFormError] = useState(null)
 
-  const toggleInput = () => {
-    setIsEditEnabled(true)
+  const setEditingTrue = () => {
+    setIsEditing(true)
   }
 
   const handleChange = (event) => {
@@ -32,6 +37,7 @@ export default function ChangeEmailCard() {
   }
 
   const handleButtonClick = (event) => {
+    debugger
     event.preventDefault()
 
     isEmailValid(email) && handleSubmit()
@@ -44,38 +50,44 @@ export default function ChangeEmailCard() {
   }
 
   const handleSubmit = async () => {
-    setFetching(true)
-
     const token = StorageService.get('token')
 
     let response
     response = await AccountsAPI.update(token, email)
 
     if (response.errorMsg) {
-      setFetching(false)
       if (response.field) setFormError(response)
       return
     }
 
     setEmail(response.email)
-    setFetching(false)
 
     dispatch(updateUser(response))
     dispatch(
       addToast({
-        title: 'E-mail atualizado!',
+        title: 'E-mail atualizado com sucesso!',
         variant: 'success',
       })
     )
 
-    setIsEditEnabled(false)
+    setIsEditing(false)
   }
 
+  const handleOutsideClick = () => {
+    setIsEditing(false)
+    setFormError(null)
+  }
+
+  useOutsideClick({
+    ref: inputGroupRef,
+    handler: handleOutsideClick,
+  })
+
   useEffect(() => {
-    if (isEditEnabled && inputRef.current) {
-      inputRef.current.focus()
+    if (isEditing && inputGroupRef.current) {
+      inputGroupRef.current.focus()
     }
-  }, [isEditEnabled])
+  }, [isEditing])
 
   return (
     <AccountCard
@@ -83,20 +95,21 @@ export default function ChangeEmailCard() {
       description="Essa informação é particular e não será compartilhada com outras pessoas."
     >
       <Container className={style.container} gap={12}>
-        <InputGroup maxW={424}>
+        <InputGroup maxW={424} ref={inputGroupRef}>
           <Input
-            ref={inputRef}
             autoFocus
             pl="16px"
             pr="16px"
             fontSize="14px"
-            variant={isEditEnabled ? '' : 'disabled'}
-            disabled={!isEditEnabled || fetching}
+            borderRadius="4px"
+            variant={isEditing ? '' : 'disabled'}
+            disabled={!isEditing}
             value={email}
             _focus={{
-              border: formError ? '2px solid #F63535' : '2px solid #00E4C9',
-              pl: '14px',
+              border: formError ? '1px solid #F63535' : '1px solid #00E4C9',
+              pl: '15px',
             }}
+            border={formError ? '1px solid #F63535' : ''}
             onChange={handleChange}
             onKeyDown={handleKeyEnterDown}
           />
@@ -104,29 +117,41 @@ export default function ChangeEmailCard() {
           <InputRightElement
             right={4}
             cursor="pointer"
-            onClick={isEditEnabled ? handleButtonClick : toggleInput}
+            onClick={isEditing ? handleButtonClick : setEditingTrue}
             width="fit-content"
             as="button"
             type="submit"
           >
             <Text
               fontSize={14}
-              fontWeight={isEditEnabled ? 'medium' : 'regular'}
-              color={isEditEnabled ? 'secondary.400' : 'white'}
+              fontWeight={isEditing ? 'medium' : 'regular'}
+              color={isEditing ? 'secondary.400' : 'white'}
             >
-              {isEditEnabled ? 'confirmar' : 'editar'}
+              {isEditing ? 'confirmar' : 'editar'}
             </Text>
           </InputRightElement>
         </InputGroup>
 
         {formError && (
-          <Text fontSize={12} color="danger.400" pl="5px" fontWeight="medium">
+          <Text
+            fontSize={12}
+            mb="-30px"
+            color="danger.400"
+            pl="5px"
+            fontWeight="medium"
+          >
             {formError.errorMsg}
           </Text>
         )}
 
         {!user.account.is_verified && !formError && (
-          <Text fontSize={12} color="danger.400" pl="5px" fontWeight="medium">
+          <Text
+            fontSize={12}
+            mb="-30px"
+            color="danger.400"
+            pl="5px"
+            fontWeight="medium"
+          >
             X email não verificado.
           </Text>
         )}
