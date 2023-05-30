@@ -23,7 +23,7 @@ export default function InactivateAccountCard() {
 
     setFetching(true)
     const token = StorageService.get('token')
-    const response = await AccountsAPI.updateIsActive(token, false)
+    const response = await AccountsAPI.inactivate(token)
     setFetching(false)
 
     if (response.formError) {
