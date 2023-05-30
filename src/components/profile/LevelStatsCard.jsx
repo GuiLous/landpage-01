@@ -31,7 +31,6 @@ export default function LevelStatsCard({
   )
 
   const calculateKDR = () => {
-    debugger
     if (!stats || !stats.deaths || stats.deaths === 0) {
       return '0.00'
     }
