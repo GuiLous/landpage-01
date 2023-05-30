@@ -8,7 +8,7 @@ export default function AccountCard({ title, description, children }) {
   return (
     <Container className={style.container} column>
       {title && (
-        <Container className={style.title} gap={14}>
+        <Container className={style.title} gap={12}>
           <Text
             fontWeight="bold"
             fontSize={18}
