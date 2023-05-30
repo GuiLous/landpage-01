@@ -404,10 +404,13 @@ const fakeResponse = {
   status: 'string',
 }
 
+let requestReceived = false
+
 const server = setupServer(
   rest.patch(
     'http://localhost:8000/api/accounts/update-email/',
     (req, res, ctx) => {
+      requestReceived = true
       return res(ctx.status(200), ctx.json(fakeResponse))
     }
   )
@@ -415,7 +418,10 @@ const server = setupServer(
 
 describe('ChangeEmailCard Component', () => {
   beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
+  afterEach(() => {
+    server.resetHandlers()
+    requestReceived = false
+  })
   afterAll(() => server.close())
 
   const user = {
@@ -467,7 +473,7 @@ describe('ChangeEmailCard Component', () => {
     fireEvent.click(screen.getByText('confirmar'))
 
     await waitFor(() => {
-      expect(screen.getByRole('textbox').value).toBe('userUpdate@example.com')
+      expect(requestReceived).toBe(true)
     })
   })
 })

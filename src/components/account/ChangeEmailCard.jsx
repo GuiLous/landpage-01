@@ -23,6 +23,7 @@ export default function ChangeEmailCard() {
   const dispatch = useDispatch()
 
   const inputGroupRef = useRef(null)
+  const inputRef = useRef(null)
 
   const [email, setEmail] = useState(user.email)
   const [isEditing, setIsEditing] = useState(false)
@@ -36,8 +37,7 @@ export default function ChangeEmailCard() {
     setEmail(event.target.value)
   }
 
-  const handleButtonClick = (event) => {
-    debugger
+  const handleButtonClickConfirm = (event) => {
     event.preventDefault()
 
     isEmailValid(email) && handleSubmit()
@@ -55,14 +55,14 @@ export default function ChangeEmailCard() {
     let response
     response = await AccountsAPI.update(token, email)
 
-    if (response.errorMsg) {
-      if (response.field) setFormError(response)
+    if (response.formError) {
+      if (response.formError.field === 'email')
+        setFormError(response.formError.error)
       return
     }
 
-    setEmail(response.email)
-
     dispatch(updateUser(response))
+
     dispatch(
       addToast({
         title: 'E-mail atualizado com sucesso!',
@@ -84,8 +84,8 @@ export default function ChangeEmailCard() {
   })
 
   useEffect(() => {
-    if (isEditing && inputGroupRef.current) {
-      inputGroupRef.current.focus()
+    if (isEditing && inputRef.current) {
+      inputRef.current.focus()
     }
   }, [isEditing])
 
@@ -95,8 +95,9 @@ export default function ChangeEmailCard() {
       description="Essa informação é particular e não será compartilhada com outras pessoas."
     >
       <Container className={style.container} gap={12}>
-        <InputGroup maxW={424} ref={inputGroupRef}>
+        <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
           <Input
+            ref={inputRef}
             autoFocus
             pl="16px"
             pr="16px"
@@ -117,7 +118,7 @@ export default function ChangeEmailCard() {
           <InputRightElement
             right={4}
             cursor="pointer"
-            onClick={isEditing ? handleButtonClick : setEditingTrue}
+            onClick={isEditing ? handleButtonClickConfirm : setEditingTrue}
             width="fit-content"
             as="button"
             type="submit"
@@ -140,19 +141,7 @@ export default function ChangeEmailCard() {
             pl="5px"
             fontWeight="medium"
           >
-            {formError.errorMsg}
-          </Text>
-        )}
-
-        {!user.account.is_verified && !formError && (
-          <Text
-            fontSize={12}
-            mb="-30px"
-            color="danger.400"
-            pl="5px"
-            fontWeight="medium"
-          >
-            X email não verificado.
+            {formError}
           </Text>
         )}
       </Container>

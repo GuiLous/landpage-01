@@ -301,7 +301,7 @@ export default extendTheme({
               backgroundColor: 'black.900',
             },
             _disabled: {
-              cursor: 'initial',
+              cursor: 'pointer',
               opacity: 1,
             },
           },
