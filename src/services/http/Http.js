@@ -13,7 +13,10 @@ export const HttpService = {
   async request(method, endpoint, token, payload, custom_unknown_error) {
     if (endpoint[0] !== '/') endpoint = '/' + endpoint
     if (endpoint.slice(-1) === '/') endpoint = endpoint.slice(0, -1)
-    const url = REACT_APP_API_URL + '/api' + endpoint + '/'
+    let url = REACT_APP_API_URL + '/api' + endpoint
+    if (!url.includes('?')) {
+      url += '/'
+    }
 
     let headers = {
       Accept: 'application/json',
