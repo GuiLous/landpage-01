@@ -11,9 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado método `updateIsActive` na interface de AccountsAPI.
 - Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
 - Criado componente `ModalConfirmation`.
-- Adicionado método de `update` na interface de AccountsAPI.
+- Adicionado método de `updateEmail` na interface de AccountsAPI.
 - Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
 - Criado componente `AccountCard`.
 - Adicionado variant `disabled` para input no tema do chakra ui.
@@ -49,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
 - Alterado background do `Modal` para `gray.800` no tema do chakra.
 - Alterado gray 800 para `#1B1B1B`.
 - Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
