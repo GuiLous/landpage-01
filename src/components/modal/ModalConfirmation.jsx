@@ -15,6 +15,7 @@ export default function ModalConfirmation({
   onClose,
   title,
   children,
+  showCloseButton = true,
 }) {
   return (
     <Modal
@@ -40,13 +41,15 @@ export default function ModalConfirmation({
               </Text>
             )}
           </Container>
-          <ModalCloseButton
-            fontSize={15}
-            width="fit-content"
-            height="fit-content"
-            top={5}
-            right={5}
-          />
+          {showCloseButton && (
+            <ModalCloseButton
+              fontSize={15}
+              width="fit-content"
+              height="fit-content"
+              top={5}
+              right={5}
+            />
+          )}
         </ModalHeader>
 
         <ModalBody p={0}>{children}</ModalBody>
