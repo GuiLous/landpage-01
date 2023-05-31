@@ -20,7 +20,7 @@ describe('DeleteAccountCard Component', () => {
     expect(screen.getByText('EXCLUIR CONTA')).toBeInTheDocument()
     expect(
       screen.getByText(
-        'Exclua permanentemente a sua conta. Você perderá todo histórico de partidas e o seu elo atual.'
+        'Exclua permanentemente a sua conta. Essa ação é permanente e não pode ser desfeita.'
       )
     ).toBeInTheDocument()
     expect(screen.getByText('Prosseguir com a exclusão')).toBeInTheDocument()
