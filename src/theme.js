@@ -633,7 +633,7 @@ export default extendTheme({
     black: {
       300: '#1B1B1B',
       400: '#000000',
-      900: '#111111'
+      900: '#111111',
     },
   },
   fontWeights: {
