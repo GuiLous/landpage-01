@@ -290,6 +290,7 @@ export default extendTheme({
             pl: '16px',
             pr: '16px',
             borderRadius: 4,
+            minHeight: '42px',
             _hover: {
               color: 'gray.700',
               bg: 'black.900',
@@ -625,11 +626,13 @@ export default extendTheme({
       600: '#434343',
       700: '#999999',
       750: '#282828',
-      800: '#1B1B1B',
+      800: '#1E1E1E',
       900: '#222222',
     },
 
     black: {
+      300: '#1B1B1B',
+      400: '#000000',
       900: '#111111',
     },
   },

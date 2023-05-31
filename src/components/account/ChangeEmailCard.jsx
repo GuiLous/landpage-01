@@ -103,16 +103,22 @@ export default function ChangeEmailCard() {
             pr="16px"
             fontSize="14px"
             borderRadius="4px"
+            minH="42px"
+            border={
+              formError || !isEmailValid(email) ? '1px solid #F63535' : ''
+            }
             variant={isEditing ? '' : 'disabled'}
             disabled={!isEditing}
             value={email}
-            _focus={{
-              border: formError ? '1px solid #F63535' : '1px solid #00E4C9',
-              pl: '15px',
-            }}
-            border={formError ? '1px solid #F63535' : ''}
             onChange={handleChange}
             onKeyDown={handleKeyEnterDown}
+            _focus={{
+              border:
+                formError | !isEmailValid(email)
+                  ? '1px solid #F63535'
+                  : '1px solid #00E4C9',
+              pl: '15px',
+            }}
           />
 
           <InputRightElement

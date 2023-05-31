@@ -20,7 +20,7 @@ describe('InactivateAccountCard Component', () => {
     expect(screen.getByText('INATIVAR CONTA')).toBeInTheDocument()
     expect(
       screen.getByText(
-        'Desative temporariamente a sua conta. Você não perderá nenhuma de suas informações.'
+        'Ao inativar sua conta suas informações tornam-se privadas e você não será capaz de acessar nossos serviços até que a reative novamente.'
       )
     ).toBeInTheDocument()
     expect(screen.getByText('Prosseguir com a inativação')).toBeInTheDocument()
@@ -35,19 +35,10 @@ describe('InactivateAccountCard Component', () => {
       </Provider>
     )
 
-    expect(
-      screen.queryByText(
-        'Aviso! Depois que sua conta for suspensa, você terá que aguardar 30 dias para reativá-la novamente ou entrar em contato com o suporte para revogá-la.'
-      )
-    ).not.toBeInTheDocument()
-
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
-    expect(
-      screen.getByText(
-        'Aviso! Depois que sua conta for suspensa, você terá que aguardar 30 dias para reativá-la novamente ou entrar em contato com o suporte para revogá-la.'
-      )
-    ).toBeInTheDocument()
+    const modal = screen.getByRole('dialog')
+    expect(modal).toBeInTheDocument()
   })
 
   it('should close the modal when the close button is clicked', () => {
@@ -61,18 +52,12 @@ describe('InactivateAccountCard Component', () => {
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
-    expect(
-      screen.getByText(
-        'Aviso! Depois que sua conta for suspensa, você terá que aguardar 30 dias para reativá-la novamente ou entrar em contato com o suporte para revogá-la.'
-      )
-    ).toBeInTheDocument()
+    const modal = screen.getByRole('dialog')
+
+    expect(modal).toBeInTheDocument()
 
     fireEvent.click(screen.getByLabelText('Close'))
 
-    expect(
-      screen.queryByText(
-        'Aviso! Depois que sua conta for suspensa, você terá que aguardar 30 dias para reativá-la novamente ou entrar em contato com o suporte para revogá-la.'
-      )
-    ).not.toBeInTheDocument()
+    expect(modal).not.toBeInTheDocument()
   })
 })

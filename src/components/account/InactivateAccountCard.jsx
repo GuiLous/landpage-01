@@ -49,7 +49,7 @@ export default function InactivateAccountCard() {
   return (
     <AccountCard
       title="INATIVAR CONTA"
-      description="Desative temporariamente a sua conta. Você não perderá nenhuma de suas informações."
+      description="Ao inativar sua conta suas informações tornam-se privadas e você não será capaz de acessar nossos serviços até que a reative novamente."
     >
       <Container className={style.container}>
         <Button
@@ -72,10 +72,13 @@ export default function InactivateAccountCard() {
         >
           <Container justify="center" align="center" column gap={40}>
             <Text color="gray.700" fontSize={14} textAlign="center">
-              Aviso! Depois que sua conta for suspensa, você terá que aguardar
-              30 dias para <br />
-              reativá-la novamente ou entrar em contato com o suporte para
-              revogá-la.
+              Atenção! Ao inativar sua conta você pode perder quaisquer
+              benefícios adquiridos <br /> e seu perfil não aparecerá nos
+              resultados e buscas. Pare reativar a conta, será <br /> necessário
+              entrar em contato com suporte pelo e-mail <br />{' '}
+              <Text color="secondary.400" as="span">
+                suporte@reloadclub.gg
+              </Text>
             </Text>
 
             <Button
