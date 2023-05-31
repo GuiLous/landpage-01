@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
+- Adicionado método `delete` na interface de AccountsAPI.
 - Adicionado método `updateIsActive` na interface de AccountsAPI.
 - Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
 - Criado componente `ModalConfirmation`.
