@@ -49,7 +49,7 @@ export default function DeleteAccountCard() {
   return (
     <AccountCard
       title="EXCLUIR CONTA"
-      description="Exclua permanentemente a sua conta. Você perderá todo histórico de partidas e o seu elo atual."
+      description="Exclua permanentemente a sua conta. Essa ação é permanente e não pode ser desfeita."
     >
       <Container className={style.container}>
         <Button
@@ -66,18 +66,19 @@ export default function DeleteAccountCard() {
 
       {isOpenModal && (
         <Modal isOpen={isOpenModal} title="EXCLUIR CONTA" onClose={handleClose}>
-          <Container justify="center" align="center" column gap={40}>
+          <Container
+            justify="center"
+            align="center"
+            column
+            gap={40}
+            style={{ padding: '0 80px' }}
+          >
             <Text color="gray.700" fontSize={14} textAlign="center">
-              Aviso! Se continuar, os detalhes da sua conta e perfil serão
-              excluídos em{' '}
-              <Text lineHeight={1} color="secondary.400" as="span">
-                outubro 21,
-                <br /> 2023
-              </Text>
-              . Você não ficará visível no Reload Club no período de agora até
-              essa data. Se <br /> mudar de ideia, poderá entrar novamente antes
-              da data da exclusão permanente e <br /> escolher a opção para
-              manter a conta.
+              Atenção! Ao confirmar, você perderá todo histórico de partidas,
+              nível, itens adquiridos na loja ou por outros meios. A exclusão
+              apaga permanentemente todas as informações associadas à sua conta.
+              Caso queira utilizar nossos serviços novamente, terá que fazer um
+              novo cadastro para criar uma nova conta. Deseja mesmo prosseguir?
             </Text>
 
             <Button
