@@ -88,6 +88,7 @@ import NotificationListItem from './notifications/NotificationListItem'
 // Account
 import AccountCard from './account/AccountCard'
 import ChangeEmailCard from './account/ChangeEmailCard'
+import DeleteAccountCard from './account/DeleteAccountCard'
 import InactivateAccountCard from './account/InactivateAccountCard'
 
 // Modal
@@ -165,4 +166,5 @@ export {
   ChangeEmailCard,
   InactivateAccountCard,
   Modal,
+  DeleteAccountCard,
 }
