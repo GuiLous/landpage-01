@@ -16,6 +16,10 @@ export const AccountsAPI = {
     const payload = { is_active: false }
     return await BaseAPI.update('accounts/', token, payload)
   },
+
+  async delete(token) {
+    return await BaseAPI.delete('accounts/', token)
+  },
 }
 
 export default AccountsAPI
