@@ -47,7 +47,7 @@ export default function ChangeEmailCard() {
     setEmail(event.target.value)
   }
 
-  const handleButtonClickConfirm = (event) => {
+  const handleClickButtonSave = (event) => {
     event.preventDefault()
 
     isEmailValid(email) && handleSubmit()
@@ -197,6 +197,8 @@ export default function ChangeEmailCard() {
           fontSize={14}
           minH="34px"
           h="fit-content"
+          isDisabled={formError || !isEmailValid(email) || user.email === email}
+          onClick={handleClickButtonSave}
         >
           Salvar Alterações
         </Button>
