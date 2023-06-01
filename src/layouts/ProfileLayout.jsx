@@ -12,6 +12,7 @@ export default function ProfileLayout({
   headerStats,
   children,
   activePage = 'perfil',
+  user_id,
 }) {
   const user = useSelector((state) => state.user)
 
@@ -32,7 +33,9 @@ export default function ProfileLayout({
         borderColor={activePage === btnOption ? 'white' : 'gray.700'}
         _hover={{ bg: 'transparent', borderColor: 'white' }}
         as={Link}
-        to={`/${btnOption}/${user.id}`}
+        to={
+          btnOption === 'perfil' ? `/${btnOption}/${user.id}` : `/${btnOption}`
+        }
       >
         {btnOption}
       </Button>
@@ -45,9 +48,11 @@ export default function ProfileLayout({
       <Container column fitContent className={style.content} gap={40}>
         {headerStats && <HeaderProfile profile={headerStats} />}
 
-        <Container align="center" gap={14}>
-          {renderButtonsNavigation()}
-        </Container>
+        {Number(user_id) === user.id && (
+          <Container align="center" gap={14}>
+            {renderButtonsNavigation()}
+          </Container>
+        )}
 
         {children}
       </Container>
