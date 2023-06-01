@@ -301,7 +301,7 @@ export default extendTheme({
               color: 'gray.700',
               bg: 'gray.400',
               backgroundColor: 'gray.400',
-              border: '1px solid #6BE400',
+              border: '1px solid #999999',
               pl: '15px',
             },
             _disabled: {
