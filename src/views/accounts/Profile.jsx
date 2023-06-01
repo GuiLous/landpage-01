@@ -38,7 +38,7 @@ export default function ProfileView() {
         borderRadius="4px"
         variant="secondary"
         fontSize={14}
-        fontWeight={400}
+        fontWeight="regular"
         py="14px"
         px="16px"
         minH="40px"

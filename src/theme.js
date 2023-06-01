@@ -280,6 +280,42 @@ export default extendTheme({
             },
           },
         },
+        secondary: {
+          field: {
+            color: 'gray.700',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+            fontSize: '14px',
+            fontWeight: '400',
+            pl: '16px',
+            pr: '16px',
+            borderRadius: 4,
+            minHeight: '42px',
+            cursor: 'pointer',
+            _hover: {
+              color: 'gray.700',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
+            },
+            _focus: {
+              color: 'gray.700',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
+              border: '1px solid #999999',
+              pl: '15px',
+            },
+            _disabled: {
+              cursor: 'pointer',
+              opacity: 1,
+              bg: 'black.900',
+              backgroundColor: 'black.900',
+              _hover: {
+                bg: 'black.900',
+                backgroundColor: 'black.900',
+              },
+            },
+          },
+        },
         clean: {
           field: {
             bg: 'transparent',
@@ -327,8 +363,8 @@ export default extendTheme({
     Modal: {
       baseStyle: {
         dialog: {
-          backgroundColor: '#222222',
-          bg: '#222222',
+          backgroundColor: 'gray.800',
+          bg: 'gray.800',
           color: 'white',
           position: 'relative',
         },
@@ -563,6 +599,12 @@ export default extendTheme({
         },
       },
     },
+    Tooltip: {
+      baseStyle: {
+        bg: '#1E1E1E',
+        color: 'white',
+      },
+    },
   },
   colors: {
     primary: {
@@ -603,8 +645,10 @@ export default extendTheme({
       900: '#222222',
     },
 
-    stripe: {
-      100: '#111111',
+    black: {
+      300: '#1B1B1B',
+      400: '#000000',
+      900: '#111111',
     },
   },
   fontWeights: {

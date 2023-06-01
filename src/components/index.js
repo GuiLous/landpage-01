@@ -39,6 +39,7 @@ import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
+import PencilIcon from './icons/PencilIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
 import UserIcon from './icons/UserIcon'
@@ -84,6 +85,15 @@ import ProfileCard from './profile/ProfileCard'
 // Notifications
 import NotificationList from './notifications/NotificationList'
 import NotificationListItem from './notifications/NotificationListItem'
+
+// Account
+import AccountCard from './account/AccountCard'
+import ChangeEmailCard from './account/ChangeEmailCard'
+import DeleteAccountCard from './account/DeleteAccountCard'
+import InactivateAccountCard from './account/InactivateAccountCard'
+
+// Modal
+import Modal from './modal/Modal'
 
 export {
   AddUserIcon,
@@ -153,4 +163,10 @@ export {
   MatchHistoryList,
   MatchHistoryPaginationItem,
   MatchHistoryPagination,
+  AccountCard,
+  ChangeEmailCard,
+  InactivateAccountCard,
+  Modal,
+  DeleteAccountCard,
+  PencilIcon,
 }
