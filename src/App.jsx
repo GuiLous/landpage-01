@@ -88,7 +88,7 @@ export default function App() {
         />
 
         <Route
-          path="/minha-conta"
+          path="/conta/:userId"
           element={
             <RequireAuth
               user={user}
