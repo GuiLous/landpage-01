@@ -617,6 +617,8 @@ export default extendTheme({
       baseStyle: {
         bg: '#1E1E1E',
         color: 'white',
+      },
+    },
     Divider: {
       baseStyle: {
         borderColor: 'gray.600',

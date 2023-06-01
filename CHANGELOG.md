@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+- Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
+
 ## [7360381 - 29/5/2023]
 
 ### Added
