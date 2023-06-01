@@ -53,6 +53,7 @@ export default function InactivateAccountCard() {
     >
       <Container className={style.container}>
         <Button
+          id="inactivate"
           textTransform="uppercase"
           fontWeight="semibold"
           fontSize={14}
