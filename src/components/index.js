@@ -39,6 +39,7 @@ import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
+import PencilIcon from './icons/PencilIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
 import UserIcon from './icons/UserIcon'
@@ -159,4 +160,5 @@ export {
   MatchHistoryPagination,
   AccountCard,
   ChangeEmailCard,
+  PencilIcon,
 }
