@@ -87,6 +87,20 @@ export default function ChangeEmailCard() {
   const handleOutsideClick = () => {
     setIsEditing(false)
     setFormError(null)
+
+    let isCurrentEmailValid = false
+
+    if (email === '') {
+      setEmail(user.email)
+      isCurrentEmailValid = isEmailValid(user.email)
+    } else {
+      isCurrentEmailValid = isEmailValid(email)
+    }
+
+    if (!isCurrentEmailValid) {
+      setEditingTrue(true)
+      inputRef.current.focus()
+    }
   }
 
   const hasErrors = () => {
@@ -122,16 +136,16 @@ export default function ChangeEmailCard() {
               _focus={
                 email === user.email || email === ''
                   ? {
-                    border: '1px solid #999999',
-                    pl: '15px',
-                  }
+                      border: '1px solid #999999',
+                      pl: '15px',
+                    }
                   : {
-                    border:
-                      hasErrors() && email !== ''
-                        ? '1px solid #F63535'
-                        : '1px solid #6BE400',
-                    pl: '15px',
-                  }
+                      border:
+                        hasErrors() && email !== ''
+                          ? '1px solid #F63535'
+                          : '1px solid #6BE400',
+                      pl: '15px',
+                    }
               }
               disabled={!isEditing}
               onChange={handleChange}
