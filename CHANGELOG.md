@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
 - Criado componente `ModalConfirmation`.
 - Adicionado método de `updateEmail` na interface de AccountsAPI.
+- Criado componente `PencilIcon`.
+- Adicionado método de `update` na interface de AccountsAPI.
 - Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
 - Criado componente `AccountCard`.
 - Adicionado variant `disabled` para input no tema do chakra ui.

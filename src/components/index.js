@@ -41,6 +41,7 @@ import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
 import MessageIcon from './icons/MessageIcon'
+import PencilIcon from './icons/PencilIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
 import TrashIcon from './icons/TrashIcon'
@@ -173,4 +174,5 @@ export {
   MessageIcon,
   BlockIcon,
   TrashIcon,
+  PencilIcon,
 }

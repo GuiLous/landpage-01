@@ -280,30 +280,39 @@ export default extendTheme({
             },
           },
         },
-        disabled: {
+        secondary: {
           field: {
             color: 'gray.700',
-            bg: 'black.900',
-            backgroundColor: 'black.900',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
             fontSize: '14px',
             fontWeight: '400',
             pl: '16px',
             pr: '16px',
             borderRadius: 4,
             minHeight: '42px',
+            cursor: 'pointer',
             _hover: {
               color: 'gray.700',
-              bg: 'black.900',
-              backgroundColor: 'black.900',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
             },
             _focus: {
               color: 'gray.700',
-              bg: 'black.900',
-              backgroundColor: 'black.900',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
+              border: '1px solid #6BE400',
+              pl: '15px',
             },
             _disabled: {
               cursor: 'pointer',
               opacity: 1,
+              bg: 'black.900',
+              backgroundColor: 'black.900',
+              _hover: {
+                bg: 'black.900',
+                backgroundColor: 'black.900',
+              },
             },
           },
         },
@@ -588,6 +597,12 @@ export default extendTheme({
         filledTrack: {
           bg: 'primary.400',
         },
+      },
+    },
+    Tooltip: {
+      baseStyle: {
+        bg: '#1E1E1E',
+        color: 'white',
       },
     },
   },
