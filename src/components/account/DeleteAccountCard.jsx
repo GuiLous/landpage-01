@@ -53,6 +53,7 @@ export default function DeleteAccountCard() {
     >
       <Container className={style.container}>
         <Button
+          id="delete"
           textTransform="uppercase"
           fontWeight="semibold"
           fontSize={14}

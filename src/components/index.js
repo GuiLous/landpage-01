@@ -31,6 +31,7 @@ import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellIcon from './icons/BellIcon'
+import BlockIcon from './icons/BlockIcon'
 import CheckCircleIcon from './icons/CheckCircleIcon'
 import CheckIcon from './icons/CheckIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
@@ -39,9 +40,11 @@ import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
+import MessageIcon from './icons/MessageIcon'
 import PencilIcon from './icons/PencilIcon'
 import PlusIcon from './icons/PlusIcon'
 import SearchIcon from './icons/SearchIcon'
+import TrashIcon from './icons/TrashIcon'
 import UserIcon from './icons/UserIcon'
 import WarningCircleIcon from './icons/WarningCircleIcon'
 
@@ -168,5 +171,8 @@ export {
   InactivateAccountCard,
   Modal,
   DeleteAccountCard,
+  MessageIcon,
+  BlockIcon,
+  TrashIcon,
   PencilIcon,
 }
