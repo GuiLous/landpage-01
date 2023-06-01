@@ -470,5 +470,4 @@ describe('ChangeEmailCard Component', () => {
 
     expect(input.value).toBe('test@example.com')
   })
-
 })
