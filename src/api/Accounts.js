@@ -7,7 +7,7 @@ export const AccountsAPI = {
     return await BaseAPI.update('accounts/logout/', token)
   },
 
-  async update(token, email) {
+  async updateEmail(token, email) {
     const payload = { email: email }
     return await BaseAPI.update('accounts/update-email/', token, payload)
   },
