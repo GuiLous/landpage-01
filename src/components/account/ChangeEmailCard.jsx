@@ -180,23 +180,23 @@ export default function ChangeEmailCard() {
               {user.email !== email &&
                 !isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} fill="#6BE400" fontSize={22} />
+                  <Icon as={CheckCircleIcon} color="success" fontSize={22} />
                 ) : (
                   <Icon
                     as={WarningCircleIcon}
-                    fill="danger.400"
+                    color="danger.400"
                     fontSize={22}
                   />
                 ))}
 
               {isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} fill="#6BE400" fontSize={22} />
+                  <Icon as={CheckCircleIcon} color="success" fontSize={22} />
                 ) : (
                   email !== '' && (
                     <Icon
                       as={WarningCircleIcon}
-                      fill="danger.400"
+                      color="danger.400"
                       fontSize={22}
                     />
                   )
