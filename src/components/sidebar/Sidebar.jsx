@@ -41,25 +41,26 @@ import { StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
 import style from './Sidebar.module.css'
 
-export default function Sidebar({ collapsed = true }) {
+export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [isCollapsed, setIsCollapsed] = useState(true)
+  const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
 
   useEffect(() => {
-    setIsCollapsed(collapsed)
-  }, [collapsed])
+    if (collapsable) setIsCollapsed(collapsed)
+    else setIsCollapsed(false)
+  }, [collapsed, collapsable])
 
   const open = () => {
-    setIsCollapsed(false)
+    collapsable && setIsCollapsed(false)
   }
 
   const collapse = () => {
-    setIsCollapsed(true)
+    collapsable && setIsCollapsed(true)
   }
 
   const handleLogout = async () => {
@@ -73,7 +74,10 @@ export default function Sidebar({ collapsed = true }) {
   return (
     <Container
       column
-      className={[style.container, isCollapsed && style.collapsed].join(' ')}
+      className={[
+        style.container,
+        collapsable && isCollapsed && style.collapsed,
+      ].join(' ')}
       justify="between"
       onMouseEnter={open}
       onMouseLeave={collapse}

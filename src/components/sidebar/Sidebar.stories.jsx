@@ -14,12 +14,14 @@ export default {
     unreadInvites: { control: { type: 'range', min: 0 } },
     unreadNotifications: { control: { type: 'range', min: 0 } },
     collapsed: { control: 'boolean' },
+    collapsable: { control: 'boolean' },
     userLevel: { control: { type: 'range', min: 0, max: 50 } },
   },
   args: {
     unreadInvites: 0,
     unreadNotifications: 0,
     collapsed: true,
+    collapsable: true,
     userLevel: 0,
   },
 }

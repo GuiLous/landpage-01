@@ -40,13 +40,35 @@ describe('Sidebar Component', () => {
     preloadedState: { user, notifications, invites },
   })
 
-  it('should expand when user hover on and collapse when hover out', async () => {
+  it('should respect collapsable prop', async () => {
     const user = userEvent.setup()
 
     render(
       <BrowserRouter>
         <Provider store={store}>
           <Sidebar />
+        </Provider>
+      </BrowserRouter>
+    )
+
+    expect(screen.getByText('Amigos')).toBeInTheDocument()
+    expect(screen.getByText('Notificações')).toBeInTheDocument()
+
+    const container = screen.getByTestId('container')
+    expect(container).toHaveClass('container')
+    expect(container).not.toHaveClass('collapsed')
+
+    await waitFor(() => user.hover(container))
+    expect(container).not.toHaveClass('collapsed')
+  })
+
+  it('should expand when user hover on and collapse when hover out', async () => {
+    const user = userEvent.setup()
+
+    render(
+      <BrowserRouter>
+        <Provider store={store}>
+          <Sidebar collapsable />
         </Provider>
       </BrowserRouter>
     )
@@ -65,7 +87,7 @@ describe('Sidebar Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <Sidebar />
+          <Sidebar collapsable />
         </Provider>
       </BrowserRouter>
     )
@@ -84,7 +106,7 @@ describe('Sidebar Component', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
-          <Sidebar />
+          <Sidebar collapsable />
         </Provider>
       </BrowserRouter>
     )
