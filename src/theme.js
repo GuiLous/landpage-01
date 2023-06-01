@@ -213,11 +213,11 @@ export default extendTheme({
       baseStyle: {
         color: '#999999',
         _hover: {
-          color: 'secondary.400',
+          color: 'white',
           textDecoration: 'none',
         },
         _active: {
-          color: 'secondary.500',
+          color: 'white',
         },
       },
       variants: {
