@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado componente `PencilIcon`.
 - Adicionado método de `update` na interface de AccountsAPI.
 - Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
 - Criado componente `AccountCard`.
