@@ -1,6 +1,7 @@
 import { Icon, Link, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { ProfilesAPI } from '@api'
 import {
@@ -41,10 +42,9 @@ const icons = {
 }
 
 export default function AccountView() {
-  const params = useParams()
-  const navigate = useNavigate()
+  const user = useSelector((state) => state.user)
 
-  const { userId } = params
+  const navigate = useNavigate()
 
   const [fetching, setFetching] = useState(true)
   const [userStats, setUserStats] = useState(null)
@@ -77,7 +77,7 @@ export default function AccountView() {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await ProfilesAPI.detail(userToken, userId)
+      const response = await ProfilesAPI.detail(userToken, user.id)
       if (response.errorMsg) {
         navigate('/404')
       }
@@ -111,7 +111,11 @@ export default function AccountView() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <ProfileLayout headerStats={headerStats} activePage="conta">
+    <ProfileLayout
+      headerStats={headerStats}
+      activePage="conta"
+      user_id={user.id}
+    >
       <Container gap={80}>
         <Container column style={{ maxWidth: '350px' }}>
           <Container fitContent style={{ marginBottom: '40px' }}>
