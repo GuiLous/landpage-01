@@ -1,15 +1,25 @@
 import {
+  Box,
+  Button,
+  Icon,
   Input,
   InputGroup,
   InputRightElement,
   Text,
+  Tooltip,
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { AccountsAPI } from '@api'
-import { AccountCard, Container } from '@components'
+import {
+  AccountCard,
+  CheckCircleIcon,
+  Container,
+  PencilIcon,
+  WarningCircleIcon,
+} from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { StorageService } from '@services'
 import { addToast } from '@slices/ToastSlice'
@@ -37,7 +47,7 @@ export default function ChangeEmailCard() {
     setEmail(event.target.value)
   }
 
-  const handleButtonClickConfirm = (event) => {
+  const handleClickButtonSave = (event) => {
     event.preventDefault()
 
     isEmailValid(email) && handleSubmit()
@@ -94,62 +104,104 @@ export default function ChangeEmailCard() {
       title="ALTERAR E-MAIL"
       description="Essa informação é particular e não será compartilhada com outras pessoas."
     >
-      <Container className={style.container} gap={12}>
-        <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
-          <Input
-            ref={inputRef}
-            autoFocus
-            pl="16px"
-            pr="16px"
-            fontSize="14px"
-            borderRadius="4px"
-            minH="42px"
-            border={
-              formError || !isEmailValid(email) ? '1px solid #F63535' : ''
-            }
-            variant={isEditing ? '' : 'disabled'}
-            disabled={!isEditing}
-            value={email}
-            onChange={handleChange}
-            onKeyDown={handleKeyEnterDown}
-            _focus={{
-              border:
-                formError | !isEmailValid(email)
-                  ? '1px solid #F63535'
-                  : '1px solid #00E4C9',
-              pl: '15px',
-            }}
-          />
+      <Container className={style.container} gap={25}>
+        <Container column>
+          <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
+            <Input
+              ref={inputRef}
+              autoFocus
+              variant="secondary"
+              value={email}
+              pl={(formError || !isEmailValid(email)) && '15px'}
+              border={
+                formError || !isEmailValid(email) ? '1px solid #F63535' : ''
+              }
+              _focus={{
+                border:
+                  formError || !isEmailValid(email)
+                    ? '1px solid #F63535'
+                    : '1px solid #6BE400',
+                pl: '15px',
+              }}
+              disabled={!isEditing}
+              onChange={handleChange}
+              onKeyDown={handleKeyEnterDown}
+            />
 
-          <InputRightElement
-            right={4}
-            cursor="pointer"
-            onClick={isEditing ? handleButtonClickConfirm : setEditingTrue}
-            width="fit-content"
-            as="button"
-            type="submit"
-          >
-            <Text
-              fontSize={14}
-              fontWeight={isEditing ? 'medium' : 'regular'}
-              color={isEditing ? 'secondary.400' : 'white'}
+            <InputRightElement
+              right={4}
+              cursor="pointer"
+              width="fit-content"
+              height="100%"
+              as="button"
+              type="submit"
             >
-              {isEditing ? 'confirmar' : 'editar'}
-            </Text>
-          </InputRightElement>
-        </InputGroup>
+              {user.email === email && !isEditing && (
+                <Tooltip
+                  label="Editar e-mail"
+                  aria-label="edit icon"
+                  placement="right-start"
+                >
+                  <Box display="flex">
+                    <Icon
+                      as={PencilIcon}
+                      fill="gray.700"
+                      _hover={{ fill: 'white' }}
+                      transition="all 0.2s ease"
+                    />
+                  </Box>
+                </Tooltip>
+              )}
 
-        {formError && (
-          <Text
-            fontSize={12}
-            mb="-30px"
-            color="danger.400"
-            pl="5px"
-            fontWeight="medium"
-          >
-            {formError}
-          </Text>
-        )}
+              {user.email !== email &&
+                !isEditing &&
+                (isEmailValid(email) ? (
+                  <Icon as={CheckCircleIcon} fill="#6BE400" fontSize={22} />
+                ) : (
+                  <Icon
+                    as={WarningCircleIcon}
+                    fill="danger.400"
+                    fontSize={22}
+                  />
+                ))}
+
+              {isEditing &&
+                (isEmailValid(email) ? (
+                  <Icon as={CheckCircleIcon} fill="#6BE400" fontSize={22} />
+                ) : (
+                  <Icon
+                    as={WarningCircleIcon}
+                    fill="danger.400"
+                    fontSize={22}
+                  />
+                ))}
+            </InputRightElement>
+          </InputGroup>
+
+          {formError && (
+            <Text
+              fontSize={12}
+              color="danger.400"
+              pl="5px"
+              mb="-18px"
+              fontWeight="medium"
+            >
+              {formError}
+            </Text>
+          )}
+        </Container>
+
+        <Button
+          borderRadius="4px"
+          fontWeight="semiBold"
+          fontSize={14}
+          minH="34px"
+          h="fit-content"
+          isDisabled={formError || !isEmailValid(email) || user.email === email}
+          onClick={handleClickButtonSave}
+        >
+          Salvar Alterações
+        </Button>
       </Container>
     </AccountCard>
   )
