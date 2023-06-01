@@ -61,7 +61,7 @@ export default function ProfileView() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <ProfileLayout headerStats={headerStats}>
+    <ProfileLayout headerStats={headerStats} user_id={userId}>
       <Container gap={18}>
         <Container column gap={18} style={{ maxWidth: '350px' }}>
           <LevelStatsCard
