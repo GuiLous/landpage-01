@@ -40,6 +40,7 @@ export default function ChangeEmailCard() {
   const [formError, setFormError] = useState(null)
 
   const setEditingTrue = () => {
+    email === user.email && setEmail('')
     setIsEditing(true)
   }
 
@@ -86,6 +87,24 @@ export default function ChangeEmailCard() {
   const handleOutsideClick = () => {
     setIsEditing(false)
     setFormError(null)
+
+    let isCurrentEmailValid = false
+
+    if (email === '') {
+      setEmail(user.email)
+      isCurrentEmailValid = isEmailValid(user.email)
+    } else {
+      isCurrentEmailValid = isEmailValid(email)
+    }
+
+    if (!isCurrentEmailValid) {
+      setEditingTrue(true)
+      inputRef.current.focus()
+    }
+  }
+
+  const hasErrors = () => {
+    return formError || !isEmailValid(email)
   }
 
   useOutsideClick({
@@ -104,7 +123,7 @@ export default function ChangeEmailCard() {
       title="ALTERAR E-MAIL"
       description="Essa informação é particular e não será compartilhada com outras pessoas."
     >
-      <Container className={style.container} gap={25}>
+      <Container className={style.container} gap={24}>
         <Container column>
           <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
             <Input
@@ -112,17 +131,22 @@ export default function ChangeEmailCard() {
               autoFocus
               variant="secondary"
               value={email}
-              pl={(formError || !isEmailValid(email)) && '15px'}
-              border={
-                formError || !isEmailValid(email) ? '1px solid #F63535' : ''
+              pl={hasErrors() && '15px'}
+              border={hasErrors() && email !== '' ? '1px solid #F63535' : ''}
+              _focus={
+                email === user.email || email === ''
+                  ? {
+                      border: '1px solid #999999',
+                      pl: '15px',
+                    }
+                  : {
+                      border:
+                        hasErrors() && email !== ''
+                          ? '1px solid #F63535'
+                          : '1px solid #6BE400',
+                      pl: '15px',
+                    }
               }
-              _focus={{
-                border:
-                  formError || !isEmailValid(email)
-                    ? '1px solid #F63535'
-                    : '1px solid #6BE400',
-                pl: '15px',
-              }}
               disabled={!isEditing}
               onChange={handleChange}
               onKeyDown={handleKeyEnterDown}
@@ -169,11 +193,13 @@ export default function ChangeEmailCard() {
                 (isEmailValid(email) ? (
                   <Icon as={CheckCircleIcon} fill="#6BE400" fontSize={22} />
                 ) : (
-                  <Icon
-                    as={WarningCircleIcon}
-                    fill="danger.400"
-                    fontSize={22}
-                  />
+                  email !== '' && (
+                    <Icon
+                      as={WarningCircleIcon}
+                      fill="danger.400"
+                      fontSize={22}
+                    />
+                  )
                 ))}
             </InputRightElement>
           </InputGroup>
@@ -183,7 +209,7 @@ export default function ChangeEmailCard() {
               fontSize={12}
               color="danger.400"
               pl="5px"
-              mb="-18px"
+              mt="12px"
               fontWeight="medium"
             >
               {formError}
