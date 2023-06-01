@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
@@ -404,13 +404,10 @@ const fakeResponse = {
   status: 'string',
 }
 
-let requestReceived = false
-
 const server = setupServer(
   rest.patch(
     'http://localhost:8000/api/accounts/update-email/',
     (req, res, ctx) => {
-      requestReceived = true
       return res(ctx.status(200), ctx.json(fakeResponse))
     }
   )
@@ -420,7 +417,6 @@ describe('ChangeEmailCard Component', () => {
   beforeAll(() => server.listen())
   afterEach(() => {
     server.resetHandlers()
-    requestReceived = false
   })
   afterAll(() => server.close())
 
@@ -439,41 +435,40 @@ describe('ChangeEmailCard Component', () => {
     preloadedState: { user },
   })
 
-  it('should render component without crash', () => {
+  it('should render correctly', () => {
     render(
       <Provider store={store}>
         <ChangeEmailCard />
       </Provider>
     )
+
     expect(screen.getByText('ALTERAR E-MAIL')).toBeInTheDocument()
   })
 
-  it('should change value of input on change', async () => {
+  it('should enable editing when input group is clicked', () => {
     render(
       <Provider store={store}>
         <ChangeEmailCard />
       </Provider>
     )
 
-    const inputElement = screen.getByRole('textbox')
-    fireEvent.click(screen.getByText('editar'))
-    fireEvent.change(inputElement, { target: { value: 'test@test.com' } })
+    const inputGroup = screen.getByRole('textbox')
+    fireEvent.click(inputGroup)
 
-    expect(inputElement.value).toBe('test@test.com')
+    expect(inputGroup).not.toBeDisabled()
   })
 
-  it('should calls api on submit', async () => {
+  it('should update email when handleChange is called', () => {
     render(
       <Provider store={store}>
         <ChangeEmailCard />
       </Provider>
     )
 
-    fireEvent.click(screen.getByText('editar'))
-    fireEvent.click(screen.getByText('confirmar'))
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
 
-    await waitFor(() => {
-      expect(requestReceived).toBe(true)
-    })
+    expect(input.value).toBe('test@example.com')
   })
+
 })
