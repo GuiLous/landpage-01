@@ -99,6 +99,7 @@ export default function ChangeEmailCard() {
           <Input
             ref={inputRef}
             autoFocus
+            id="email"
             pl="16px"
             pr="16px"
             fontSize="14px"
