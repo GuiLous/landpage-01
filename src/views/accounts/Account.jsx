@@ -1,116 +1,139 @@
-import {
-  Button,
-  Link,
-  ListItem,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  UnorderedList,
-  useDisclosure,
-} from '@chakra-ui/react'
-import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { Icon, Link, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { Container } from '@components'
-import { MainLayout } from '@layouts'
-import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
-import { updateUser } from '@slices/UserSlice'
+import { ProfilesAPI } from '@api'
+import {
+  BlockIcon,
+  ChangeEmailCard,
+  Container,
+  DeleteAccountCard,
+  InactivateAccountCard,
+  Loading,
+  LoadingBackdrop,
+  MessageIcon,
+  TrashIcon,
+} from '@components'
+import { ProfileLayout } from '@layouts'
+import { StorageService } from '@services'
+
+import style from './Account.module.css'
+
+const linksOptions = [
+  {
+    id: 'email',
+    label: 'Alterar e-mail',
+  },
+  {
+    id: 'inactive',
+    label: 'Inativar conta',
+  },
+  {
+    id: 'delete',
+    label: 'Excluir conta',
+  },
+]
+
+const icons = {
+  email: MessageIcon,
+  inactive: BlockIcon,
+  delete: TrashIcon,
+}
 
 export default function AccountView() {
-  const user = useSelector((state) => state.user)
-  const dispatch = useDispatch()
+  const params = useParams()
   const navigate = useNavigate()
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
-  const [fetching, setFetching] = useState(false)
+  const { userId } = params
 
-  const handleAccountInactivation = async () => {
-    if (fetching) return
+  const [fetching, setFetching] = useState(true)
+  const [userStats, setUserStats] = useState(null)
+  const [headerStats, setHeaderStats] = useState(null)
 
-    setFetching(true)
-    const token = StorageService.get('token')
-    await HttpService.patch('accounts/logout/', token)
-    const response = await HttpService.delete('accounts/', token)
-    setFetching(false)
-
-    if (response && response.errorMsg) {
-      dispatch(
-        addToast({
-          title: 'Algo saiu errado...',
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
-      return
-    }
-
-    dispatch(updateUser(null))
-    StorageService.remove('token')
-    navigate('/')
+  const renderLinks = () => {
+    return (
+      <Container gap={22} column>
+        {linksOptions.map((linkItem) => (
+          <Link
+            href={'#' + linkItem.id}
+            color="gray.700"
+            fontWeight="regular"
+            fontSize={18}
+            lineHeight={1}
+            display="flex"
+            alignItems="center"
+            gap="10px"
+            className={style.link}
+          >
+            <Icon as={icons[`${linkItem.id}`]} fill="gray.700" />
+            <Text>{linkItem.label}</Text>
+          </Link>
+        ))}
+      </Container>
+    )
   }
 
-  return (
-    <MainLayout>
-      <Modal isOpen={isOpen} onClose={onClose} closeOnOverlayClick={false}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Inativar conta</ModalHeader>
-          <ModalBody>
-            <p>
-              Ao inativar sua conta você perde acesso a ela e a exclusão dos
-              seus dados é agendada para 7 dias após a solicitação.
-              <br />
-              <br />
-              Seu progresso será perdido, bem como suas conquistas e quaisquer
-              valores ou moedas que possua na sua carteira ou na loja.
-              <br />
-              <br />
-              <strong>
-                Você está ciente dos riscos e tem certeza absoluta que deseja
-                realizar essa ação?
-              </strong>
-            </p>
-          </ModalBody>
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
 
-          <ModalFooter>
-            <Button size="sm" mr={3} onClick={onClose} isDisabled={fetching}>
-              Voltar
-            </Button>
-            <Button
-              size="sm"
-              variant="danger"
-              loadingText="Inativando..."
-              isLoading={fetching}
-              onClick={handleAccountInactivation}
+      const response = await ProfilesAPI.detail(userToken, userId)
+      if (response.errorMsg) {
+        navigate('/404')
+      }
+
+      setUserStats(response)
+      setFetching(false)
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  useEffect(() => {
+    if (userStats !== null) {
+      const headerStats = {
+        avatar: userStats.avatar,
+        username: userStats.username,
+        level: userStats.level,
+        level_points: userStats.level_points,
+        matches_won: userStats.matches_won,
+        matches_lost: userStats.matches_played - userStats.matches_won,
+        stats: userStats.stats,
+      }
+
+      setHeaderStats(headerStats)
+    }
+  }, [userStats])
+
+  return fetching ? (
+    <LoadingBackdrop>
+      <Loading />
+    </LoadingBackdrop>
+  ) : (
+    <ProfileLayout headerStats={headerStats} activePage="conta">
+      <Container gap={80}>
+        <Container column style={{ maxWidth: '350px' }}>
+          <Container fitContent style={{ marginBottom: '40px' }}>
+            <Text
+              color="white"
+              fontWeight="bold"
+              fontSize={20}
+              textTransform="uppercase"
             >
-              Quero inativar minha conta
-            </Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+              Gerenciamento de conta
+            </Text>
+          </Container>
 
-      <Container column gap={30}>
-        <Container>{user.account.username}'s account page</Container>
+          {renderLinks()}
+        </Container>
 
-        <Container>
-          <UnorderedList>
-            <ListItem>
-              <Link as={RouterLink} to="/alterar-email">
-                Alterar e-mail
-              </Link>
-            </ListItem>
-
-            <ListItem>
-              <Link onClick={onOpen}>Inativar conta</Link>
-            </ListItem>
-          </UnorderedList>
+        <Container column gap={24}>
+          <ChangeEmailCard />
+          <InactivateAccountCard />
+          <DeleteAccountCard />
         </Container>
       </Container>
-    </MainLayout>
+    </ProfileLayout>
   )
 }
