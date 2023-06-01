@@ -363,8 +363,8 @@ export default extendTheme({
     Modal: {
       baseStyle: {
         dialog: {
-          backgroundColor: '#222222',
-          bg: '#222222',
+          backgroundColor: 'gray.800',
+          bg: 'gray.800',
           color: 'white',
           position: 'relative',
         },
