@@ -72,8 +72,6 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(
-      screen.getByText('Você não tem notificações não lidas.')
-    ).toBeInTheDocument()
+    expect(screen.getByText('Você não tem notificações.')).toBeInTheDocument()
   })
 })
