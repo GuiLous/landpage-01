@@ -307,12 +307,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         </Container>
       </Container>
 
-      {openNotifications && (
-        <NotificationList
-          isOpen={openNotifications}
-          onClose={handleCloseDrawerNotifications}
-        />
-      )}
+      <NotificationList
+        isOpen={openNotifications}
+        onClose={handleCloseDrawerNotifications}
+      />
     </>
   )
 }
