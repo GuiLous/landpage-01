@@ -9,8 +9,12 @@ import UserReducer from '@slices/UserSlice'
 export default {
   title: 'Friends/FriendList',
   component: FriendList,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    isOpen: { control: 'boolean' },
+  },
+  args: {
+    isOpen: true,
+  },
   parameters: {
     mockData: [
       {
@@ -25,6 +29,11 @@ export default {
               username: 'Amigo 2',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 1,
+                },
+              },
             },
             {
               id: 4,
@@ -32,6 +41,11 @@ export default {
               username: 'Amigo 4',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 2,
+                },
+              },
             },
             {
               id: 5,
@@ -39,6 +53,11 @@ export default {
               username: 'Amigo 5',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 3,
+                },
+              },
             },
             {
               id: 6,
@@ -46,6 +65,11 @@ export default {
               username: 'Amigo 6',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 4,
+                },
+              },
             },
             {
               id: 7,
@@ -53,6 +77,11 @@ export default {
               username: 'Amigo 7',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 7,
+                },
+              },
             },
             {
               id: 8,
@@ -60,6 +89,11 @@ export default {
               username: 'Amigo 8',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 1,
+                },
+              },
             },
             {
               id: 9,
@@ -67,6 +101,11 @@ export default {
               username: 'Amigo 9',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 9,
+                },
+              },
             },
             {
               id: 10,
@@ -74,6 +113,11 @@ export default {
               username: 'Amigo 10',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 10,
+                },
+              },
             },
             {
               id: 11,
@@ -81,6 +125,11 @@ export default {
               username: 'Amigo 11',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 11,
+                },
+              },
             },
             {
               id: 12,
@@ -88,6 +137,11 @@ export default {
               username: 'Amigo 12',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 12,
+                },
+              },
             },
             {
               id: 13,
@@ -95,6 +149,11 @@ export default {
               username: 'Amigo 13',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 14,
+                },
+              },
             },
           ],
           offline: [
@@ -104,6 +163,11 @@ export default {
               username: 'Amigo 3',
               avatar:
                 'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+              account: {
+                lobby: {
+                  id: 1,
+                },
+              },
             },
           ],
         },

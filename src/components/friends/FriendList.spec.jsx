@@ -20,15 +20,37 @@ const server = setupServer(
             username: 'Amigo 2',
             avatar:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            account: {
+              lobby: {
+                id: 1,
+              },
+            },
+          },
+          {
+            id: 3,
+            status: 'online',
+            username: 'Amigo 3',
+            avatar:
+              'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            account: {
+              lobby: {
+                id: 3,
+              },
+            },
           },
         ],
         offline: [
           {
-            id: 3,
+            id: 4,
             status: 'offline',
-            username: 'Amigo 3',
+            username: 'Amigo 4',
             avatar:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            account: {
+              lobby: {
+                id: 4,
+              },
+            },
           },
         ],
       })
@@ -64,37 +86,46 @@ describe('FriendList Component', () => {
     preloadedState: { user, friends },
   })
 
-  it('should render header correctly', () => {
+  it('should not render if closed', () => {
     render(
       <Provider store={store}>
         <FriendList />
       </Provider>
     )
-    expect(screen.getByText('Amigos')).toBeInTheDocument()
-    expect(screen.getByText('Online (0)')).toBeInTheDocument()
-    expect(screen.getByText('Offline (0)')).toBeInTheDocument()
+    expect(screen.queryByTestId('friendlist-container')).not.toBeInTheDocument()
+    expect(screen.queryByText('Amigos')).not.toBeInTheDocument()
   })
 
-  it('should open filtering upon user click', async () => {
+  it('should render if open', async () => {
+    render(
+      <Provider store={store}>
+        <FriendList isOpen />
+      </Provider>
+    )
+    expect(
+      await screen.findByTestId('friendlist-container')
+    ).toBeInTheDocument()
+    expect(await screen.findByText('Amigos')).toBeInTheDocument()
+  })
+
+  it('should filter results on input change', async () => {
     const user = userEvent.setup()
 
     render(
       <Provider store={store}>
-        <FriendList />
+        <FriendList isOpen />
       </Provider>
     )
 
-    const openFilterBtn = screen.getByTestId('open-filter')
-    const closeFilterBtn = screen.queryByTestId('close-filter')
+    const filterInput = screen.queryByTestId('filter-input')
+    const friend2 = screen.queryByText('Amigo 2')
+    const friend3 = screen.queryByText('Amigo 3')
+    expect(filterInput).toBeInTheDocument()
+    expect(friend2).toBeInTheDocument()
+    expect(friend3).toBeInTheDocument()
 
-    expect(openFilterBtn).toBeInTheDocument()
-    expect(closeFilterBtn).not.toBeInTheDocument()
-
-    await waitFor(() => user.click(openFilterBtn))
-    expect(await screen.findByTestId('close-filter')).toBeInTheDocument()
-    expect(screen.queryByTestId('open-filter')).not.toBeInTheDocument()
-
-    const input = screen.getByTestId('input-filter')
-    expect(input).toBeInTheDocument()
+    await waitFor(() => user.type(filterInput, '2'))
+    expect(friend2).toBeInTheDocument()
+    expect(friend3).not.toBeInTheDocument()
   })
 })

@@ -2,10 +2,10 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputRightElement,
+  InputLeftElement,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { FriendsAPI } from '@api'
@@ -21,7 +21,7 @@ import { initFriends } from '@slices/FriendSlice'
 
 import style from './FriendList.module.css'
 
-export default function FriendList() {
+export default function FriendList({ isOpen }) {
   useEffect(() => {
     const fetch = async () => {
       const userToken = StorageService.get('token')
@@ -34,13 +34,30 @@ export default function FriendList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setVisible(isOpen)
+  }, [isOpen])
+
+  const user = useSelector((state) => state.user)
   const friends = useSelector((state) => state.friends)
   const [filter, setFilter] = useState('')
-  const [filtering, setFiltering] = useState(false)
+  const [visible, setVisible] = useState(isOpen)
   const dispatch = useDispatch()
-  const inputFilterRef = useRef()
 
-  const filteredOnlineFriends = friends.online.filter(
+  const teamingFriends = friends.online.filter(
+    (friend) => friend.account.lobby.id === user.account.lobby.id
+  )
+  const onlineFriends = friends.online.filter(
+    (friend) => friend.account.lobby.id !== user.account.lobby.id
+  )
+
+  const filteredTeamingFriends = teamingFriends.filter(
+    (friend) =>
+      filter === '' ||
+      friend.username.toLowerCase().includes(filter.toLowerCase())
+  )
+
+  const filteredOnlineFriends = onlineFriends.filter(
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
@@ -52,48 +69,27 @@ export default function FriendList() {
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const updateFilter = () => setFilter(inputFilterRef.current.value)
-  const toggleFiltering = () => {
-    setFilter('')
-    setFiltering(!filtering)
-  }
+  const updateFilter = (event) => setFilter(event.target.value)
+  const handleClose = () => setVisible(false)
 
   return (
-    <Container className={style.container} column>
-      <Container className={style.header} align="center" fitContent>
-        {filtering ? (
-          <Container className={style.filter} align="center">
-            <InputGroup>
-              <Container>
-                <Input
-                  variant="clean"
-                  maxHeight="36px"
-                  ref={inputFilterRef}
-                  autoFocus={filtering}
-                  color="gray.300"
-                  fontWeight="light"
-                  fontSize={14}
-                  paddingStart={0}
-                  onChange={updateFilter}
-                  data-testid="input-filter"
-                />
-              </Container>
-              <Container
-                onClick={toggleFiltering}
-                className={style.filterBtn}
-                testID="close-filter"
-              >
-                <InputRightElement height="100%">
-                  <Icon as={CloseIcon} fill="white" fontSize={12} />
-                </InputRightElement>
-              </Container>
-            </InputGroup>
-          </Container>
-        ) : (
+    visible && (
+      <Container
+        className={style.container}
+        column
+        testID="friendlist-container"
+      >
+        <Container
+          className={style.header}
+          align="center"
+          fitContent
+          column
+          gap={24}
+        >
           <Container className={style.title} align="center">
             <Container>
               <Text
-                fontSize={14}
+                fontSize={16}
                 fontWeight="semibold"
                 textTransform="uppercase"
               >
@@ -102,34 +98,60 @@ export default function FriendList() {
             </Container>
 
             <Container
-              justify="center"
-              className={style.filterBtn}
+              className={style.closeBtn}
               align="center"
               fitContent
-              onClick={toggleFiltering}
-              testID="open-filter"
+              testID="close-btn"
+              onClick={handleClose}
             >
-              <Icon as={SearchIcon} fill="white" fontSize={16} />
+              <Icon as={CloseIcon} fill="white" fontSize={12} />
             </Container>
           </Container>
-        )}
-      </Container>
 
-      <Container className={style.groups} column>
-        <Scrollbars autoHide>
-          <Container className={style.group}>
-            <FriendListGroup
-              title="Online"
-              items={filteredOnlineFriends}
-              open
-            />
+          <Container className={style.filter} align="center">
+            <InputGroup>
+              <InputLeftElement height="100%">
+                <Icon as={SearchIcon} fontSize={14} color="gray.700" />
+              </InputLeftElement>
+              <Input
+                variant="lighter"
+                color="gray.300"
+                fontWeight="light"
+                placeholder="Pesquisar..."
+                fontSize={14}
+                onChange={updateFilter}
+                data-testid="filter-input"
+              />
+            </InputGroup>
           </Container>
+        </Container>
 
-          <Container className={style.group}>
-            <FriendListGroup title="Offline" items={filteredOfflineFriends} />
-          </Container>
-        </Scrollbars>
+        <Container className={style.groups} column>
+          <Scrollbars autoHide>
+            {teamingFriends && (
+              <Container className={style.group}>
+                <FriendListGroup
+                  title="Em grupo"
+                  items={filteredTeamingFriends}
+                  open
+                />
+              </Container>
+            )}
+
+            <Container className={style.group}>
+              <FriendListGroup
+                title="Online"
+                items={filteredOnlineFriends}
+                open
+              />
+            </Container>
+
+            <Container className={style.group}>
+              <FriendListGroup title="Offline" items={filteredOfflineFriends} />
+            </Container>
+          </Scrollbars>
+        </Container>
       </Container>
-    </Container>
+    )
   )
 }

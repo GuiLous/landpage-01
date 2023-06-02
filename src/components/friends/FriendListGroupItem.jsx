@@ -11,7 +11,13 @@ import { addInviteSent } from '@slices/UserSlice'
 
 import style from './FriendListGroupItem.module.css'
 
-export default function FriendListGroupItem({ id, status, avatar, username }) {
+export default function FriendListGroupItem({
+  id,
+  status,
+  avatar,
+  username,
+  lobbyId,
+}) {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const humanStatus = useHumanizeStatus(status)
@@ -22,10 +28,11 @@ export default function FriendListGroupItem({ id, status, avatar, username }) {
     user.account.lobby_invites_sent.filter((invite) => {
       return invite.to_player.id === id
     }).length > 0
-  const isAvailable = availableStatuses.includes(status)
+  const alreadyOnTeam = user.account.lobby.id === lobbyId
+  const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
 
   const handleInvite = async () => {
-    if (!isAvailable || alreadyInvited) return
+    if (!isAvailable || alreadyInvited || alreadyOnTeam) return
 
     const response = await MatchmakingAPI.lobbyInvite(
       userToken,
