@@ -31,8 +31,8 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(screen.getByText('Notificações')).toBeInTheDocument()
-    expect(screen.getByText('Ler todas')).toBeInTheDocument()
+    expect(screen.getByText('NOTIFICAÇÕES')).toBeInTheDocument()
+    expect(screen.getByText('LER TUDO')).toBeInTheDocument()
   })
 
   it('should not renders if is not open', () => {
@@ -42,8 +42,8 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(screen.queryByText('Notificações')).not.toBeInTheDocument()
-    expect(screen.queryByText('Ler todas')).not.toBeInTheDocument()
+    expect(screen.queryByText('NOTIFICAÇÕES')).not.toBeInTheDocument()
+    expect(screen.queryByText('LER TUDO')).not.toBeInTheDocument()
   })
 
   it('should renders notifications with items when has notification', () => {
@@ -72,6 +72,8 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(screen.getByText('Nada de novo por aqui.')).toBeInTheDocument()
+    expect(
+      screen.getByText('Você não tem notificações não lidas.')
+    ).toBeInTheDocument()
   })
 })
