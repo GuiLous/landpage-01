@@ -51,6 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+- Move componentes de `FriendList` para uma pasta separada `friends`.
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
