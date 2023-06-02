@@ -12,7 +12,7 @@ export default extendTheme({
         minHeight: '44px',
         paddingLeft: 20,
         paddingRight: 20,
-        borderRadius: 8,
+        borderRadius: 4,
         _loading: {
           _hover: {
             bg: 'primary.400',
@@ -20,11 +20,11 @@ export default extendTheme({
           },
         },
         _hover: {
-          bg: 'primary.500',
-          backgroundColor: 'primary.500',
+          bg: 'primary.300',
+          backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'primary.400',
-            backgroundColor: 'primary.400',
+            bg: 'primary.300',
+            backgroundColor: 'primary.300',
           },
         },
         _active: {
@@ -393,6 +393,7 @@ export default extendTheme({
         color: 'white',
         borderRadius: '10px',
         padding: '0 8px',
+        fontWeight: 'regular',
       },
       variants: {
         online: {
@@ -415,12 +416,25 @@ export default extendTheme({
         },
 
         unread: {
-          bg: 'secondary.400',
-          backgroundColor: 'secondary.400',
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
           borderRadius: '50%',
           height: '9px',
           width: '9px',
           padding: 'initial',
+        },
+
+        counter: {
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
+          borderRadius: '50%',
+          padding: 'initial',
+          fontSize: '12px',
+          fontWeight: 'regular',
+          textAlign: 'center',
+          width: '22px',
+          height: '22px',
+          paddingTop: '2px',
         },
 
         disabled: {
@@ -605,6 +619,13 @@ export default extendTheme({
         color: 'white',
       },
     },
+    Divider: {
+      baseStyle: {
+        borderColor: 'gray.600',
+        margin: 0,
+        padding: 0,
+      },
+    },
   },
   colors: {
     primary: {
@@ -649,6 +670,10 @@ export default extendTheme({
       300: '#1B1B1B',
       400: '#000000',
       900: '#111111',
+    },
+
+    stripe: {
+      100: '#111111',
     },
   },
   fontWeights: {

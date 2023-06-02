@@ -30,6 +30,7 @@ import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
+import BellFilledIcon from './icons/BellFilledIcon'
 import BellIcon from './icons/BellIcon'
 import BlockIcon from './icons/BlockIcon'
 import CheckCircleIcon from './icons/CheckCircleIcon'
@@ -38,12 +39,22 @@ import ClipboardIcon from './icons/ClipboardIcon'
 import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
+import ExitIcon from './icons/ExitIcon'
+import FriendsIcon from './icons/FriendsIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import LockIcon from './icons/LockIcon'
 import MessageIcon from './icons/MessageIcon'
 import PencilIcon from './icons/PencilIcon'
+import PlayIcon from './icons/PlayIcon'
 import PlusIcon from './icons/PlusIcon'
+import PodiumIcon from './icons/PodiumIcon'
 import SearchIcon from './icons/SearchIcon'
+import SettingsIcon from './icons/SettingsIcon'
+import ShareIcon from './icons/ShareIcon'
+import ShopIcon from './icons/ShopIcon'
+import StarIcon from './icons/StarIcon'
+import StoreIcon from './icons/StoreIcon'
+import SupportIcon from './icons/SupportIcon'
 import TrashIcon from './icons/TrashIcon'
 import UserIcon from './icons/UserIcon'
 import WarningCircleIcon from './icons/WarningCircleIcon'
@@ -175,4 +186,15 @@ export {
   BlockIcon,
   TrashIcon,
   PencilIcon,
+  PlayIcon,
+  FriendsIcon,
+  BellFilledIcon,
+  SettingsIcon,
+  ExitIcon,
+  SupportIcon,
+  StoreIcon,
+  StarIcon,
+  PodiumIcon,
+  ShareIcon,
+  ShopIcon,
 }

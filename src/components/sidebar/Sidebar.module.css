@@ -1,68 +1,97 @@
 .container {
-	background-color: var(--chakra-colors-gray-800);
-	border: none;
-	color: white;
+	background-color: var(--chakra-colors-black-300);
 	height: 100%;
-	position: relative;
+	max-width: 300px;
+	min-width: 300px;
+	overflow: hidden;
+	padding: 40px 24px;
 }
 
 .header {
-	padding: 25px;
+	padding-left: 12px;
 }
 
-.title {
-	color: #f2f2f2;
-	font-size: 16px;
+.userInfo {
+	padding-left: 2px;
+	padding-right: 6px;
 }
 
-.body {
+.playBtn {
+	box-shadow: 0px 0px 20px 5px rgba(104, 71, 255, 0.4);
+	width: 100%;
+}
+
+.menuItem {
+	border-radius: 4px;
+	font-size: 18px;
+	min-height: 42px;
+}
+
+.menuItem:hover {
+	background-color: var(--chakra-colors-gray-400);
+}
+
+.menuItem.soon:hover {
+	background-color: transparent;
+}
+
+.menuItem a {
+	align-items: center;
+	display: flex;
+	flex: 1;
+	gap: 14px;
+	padding: 10px 16px;
 	position: relative;
 }
 
-.tabs {
-	display: flex !important;
-	flex: 1;
-	flex-direction: column;
-	height: 100%;
+.menuItem.soon a,
+.menuItem.soon a:hover {
+	cursor: default;
+	opacity: 0.7;
+	pointer-events: none;
 }
 
-.tablist {
-	box-shadow: rgba(0, 0, 0, 0.2) 0px 10px 20px -10px;
-	flex: 0;
-	padding: 0 25px;
-	padding-bottom: 24px;
-	position: relative;
+.menuItem a p {
+	font-size: 14px;
 }
 
-.unreadBadge {
-	margin-left: 5px;
+.container.collapsed {
+	max-width: 100px;
+	min-width: 100px;
+	padding: 40px 18px;
 }
 
-.panels {
-	display: flex;
-	flex: 1;
+.container.collapsed .header {
+	align-items: center;
+	padding-left: 0;
 }
 
-.panel {
-	display: flex;
-	flex: 1;
+.container.collapsed .header img {
+	max-width: 40px;
 }
 
-.panel.empty {
+.container.collapsed .menu,
+.container.collapsed .menuItem,
+.container.collapsed .menuItem a,
+.container.collapsed .userInfo {
+	justify-content: center;
+}
+
+.container.collapsed .userInfo {
+	padding: 0;
+}
+
+.container.collapsed .menuItem:hover {
+	background-color: transparent;
+}
+
+.container.collapsed .menuLinkWrapper {
 	align-items: center;
 	justify-content: center;
 }
 
-.panel.empty p {
-	font-size: 14px;
-}
-
-.footer {
-	border-top: 1px solid var(--chakra-colors-gray-600);
-	margin-top: auto;
-	padding: 12px;
-}
-
-.footer img {
-	opacity: 0.2;
+.container.collapsed .unreadBadge {
+	position: absolute;
+	right: 10px;
+	width: auto;
 }
