@@ -387,6 +387,32 @@ export default extendTheme({
         },
       },
     },
+    Drawer: {
+      baseStyle: {
+        dialog: {
+          backgroundColor: 'gray.900',
+          bg: 'gray.900',
+          color: 'white',
+          position: 'relative',
+        },
+        closeButton: {
+          color: '#F5F6F8',
+          opacity: 0.5,
+          fontSize: '18px',
+          _hover: {
+            opacity: 1,
+          },
+        },
+        header: {
+          textTransform: 'uppercase',
+          fontSize: '16px',
+          fontWeight: 'semiBold',
+          mb: 6,
+          py: 0,
+          px: 6,
+        },
+      },
+    },
     Badge: {
       baseStyle: {
         bg: 'primary.400',
@@ -660,6 +686,7 @@ export default extendTheme({
       400: '#333333',
       500: '#282828',
       600: '#434343',
+      650: '#B7B7B7',
       700: '#999999',
       750: '#282828',
       800: '#1E1E1E',
