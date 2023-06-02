@@ -6,6 +6,7 @@ import {
   DrawerContent,
   DrawerFooter,
   DrawerHeader,
+  DrawerOverlay,
   Text,
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
@@ -65,7 +66,15 @@ export default function NotificationList({ isOpen, onClose }) {
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
-      <DrawerContent py={6} w="350px" maxW="350px" bgColor="gray.900">
+      <DrawerOverlay bg="transparent" />
+
+      <DrawerContent
+        py={6}
+        w="350px"
+        maxW="350px"
+        bgColor="gray.900"
+        transition="all 0s"
+      >
         <DrawerCloseButton
           fontSize={12}
           width="fit-content"
@@ -97,7 +106,7 @@ export default function NotificationList({ isOpen, onClose }) {
             </Scrollbars>
           ) : (
             <Text fontSize={12} color="white">
-              Você não tem notificações não lidas.
+              Você não tem notificações.
             </Text>
           )}
         </DrawerBody>
