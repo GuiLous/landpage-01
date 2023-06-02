@@ -1,8 +1,6 @@
 .container {
 	background-color: var(--chakra-colors-black-300);
 	height: 100%;
-	max-width: 300px;
-	min-width: 300px;
 	overflow: hidden;
 	padding: 40px 24px;
 }
@@ -68,7 +66,6 @@
 
 .container.collapsed {
 	max-width: 100px;
-	min-width: 100px;
 	padding: 40px 18px;
 }
 

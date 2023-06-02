@@ -25,7 +25,7 @@ export default {
     unreadInvites: 0,
     unreadNotifications: 0,
     collapsed: true,
-    collapsable: true,
+    collapsable: false,
     userLevel: 0,
     isInQueue: false,
     isInMatch: false,
