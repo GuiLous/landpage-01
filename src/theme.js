@@ -267,6 +267,7 @@ export default extendTheme({
           color: 'gray.600',
           bg: 'white',
           backgroundColor: 'white',
+          borderRadius: '4px',
           fontSize: '16px',
           _placeholder: {
             color: 'gray.700',
@@ -343,6 +344,18 @@ export default extendTheme({
           addon: {
             bg: 'transparent',
             backgroundColor: 'transparent',
+          },
+        },
+        darker: {
+          field: {
+            bg: 'gray.800',
+            backgroundColor: 'gray.800',
+          },
+        },
+        lighter: {
+          field: {
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
           },
         },
       },
