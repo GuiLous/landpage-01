@@ -174,10 +174,19 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem}>
-              <Link href="#" onClick={handleOpenDrawerNotifications}>
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+                onClick={handleOpenDrawerNotifications}
+              >
                 <Container className={style.menuLinkWrapper} gap={14}>
                   <Icon as={BellFilledIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Notificações</Text>}
+                  {!isCollapsed && <Text fontSize={14}>Notificações</Text>}
                 </Container>
 
                 <Container
