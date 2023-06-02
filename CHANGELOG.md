@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
 - Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
 - Adicionado método `delete` na interface de AccountsAPI.
@@ -58,7 +59,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
 
 ### Changed
-
+ 
+- Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
+- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado estilos para o `Drawer` no tema do chakra ui.
 - Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
 - Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
 - Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
