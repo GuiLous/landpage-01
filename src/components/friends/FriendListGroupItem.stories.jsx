@@ -6,7 +6,7 @@ import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
-  title: 'Sidebar/FriendListGroupItem',
+  title: 'Friends/FriendListGroupItem',
   component: FriendListGroupItem,
   argTypes: {
     id: { control: 'number' },

@@ -7,16 +7,15 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
+import Sidebar from './sidebar/Sidebar'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
 
-// Sidebar
-import FriendList from './sidebar/FriendList'
-import FriendListGroup from './sidebar/FriendListGroup'
-import FriendListGroupItem from './sidebar/FriendListGroupItem'
-import Sidebar from './sidebar/Sidebar'
-import SidebarHeader from './sidebar/SidebarHeader'
+// Friends
+import FriendList from './friends/FriendList'
+import FriendListGroup from './friends/FriendListGroup'
+import FriendListGroupItem from './friends/FriendListGroupItem'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -175,7 +174,6 @@ export {
   GroupAddIcon,
   FriendListGroup,
   FriendList,
-  SidebarHeader,
   MatchHistoryList,
   MatchHistoryPaginationItem,
   MatchHistoryPagination,

@@ -7,7 +7,7 @@ import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
-  title: 'Sidebar/FriendList',
+  title: 'Friends/FriendList',
   component: FriendList,
   argTypes: {},
   args: {},
