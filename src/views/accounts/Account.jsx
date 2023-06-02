@@ -55,6 +55,7 @@ export default function AccountView() {
       <Container gap={22} column>
         {linksOptions.map((linkItem) => (
           <Link
+            key={linkItem.id}
             href={'#' + linkItem.id}
             color="gray.700"
             fontWeight="regular"
