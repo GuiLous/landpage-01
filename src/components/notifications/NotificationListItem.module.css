@@ -1,18 +1,10 @@
 .container {
 	background-color: var(--chakra-colors-gray-900);
-	border-left: 6px solid transparent;
-	border-top: 1px solid transparent;
 	color: white;
-	padding: 24px 24px 24px 18px;
+	padding: 18px 24px 18px 16px;
 	transition: all 100ms linear;
 }
 
 .container.unread {
-	background-color: var(--chakra-colors-gray-400);
-	border-left: 6px solid var(--chakra-colors-primary-400);
-	border-top: 1px solid var(--chakra-colors-gray-600);
-}
-
-.unreadBadge {
-	margin-top: 5px;
+	background-color: var(--chakra-colors-gray-750);
 }
