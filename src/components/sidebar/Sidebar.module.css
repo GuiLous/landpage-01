@@ -3,6 +3,8 @@
 	height: 100%;
 	overflow: hidden;
 	padding: 40px 24px;
+	position: relative;
+	z-index: 999999;
 }
 
 .header {

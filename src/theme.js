@@ -435,6 +435,13 @@ export default extendTheme({
           px: 6,
         },
       },
+      variants: {
+        friendList: {
+          dialog: {
+            marginLeft: '300px',
+          },
+        },
+      },
     },
     Badge: {
       baseStyle: {
