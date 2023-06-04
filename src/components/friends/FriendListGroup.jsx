@@ -66,7 +66,7 @@ export default function FriendListGroup({
           {items.map((item) => (
             <FriendListGroupItem
               {...item}
-              lobbyId={item.account.lobby.id}
+              lobbyId={item.lobby && item.lobby.id}
               key={item.id}
             />
           ))}
