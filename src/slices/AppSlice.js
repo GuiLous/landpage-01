@@ -10,15 +10,18 @@ export const AppReducer = createSlice({
   reducers: {
     addToast: (state, action) => {
       action.payload['id'] = uuid4()
-      return [action.payload, ...state]
+      return { ...state, toasts: [...state.toasts, action.payload] }
     },
 
     removeToast: (state, action) => {
-      return state.filter((item) => item.id !== action.payload)
+      return {
+        ...state,
+        toasts: state.toasts.filter((item) => item.id !== action.payload),
+      }
     },
 
     toggleFriendList: (state, action) => {
-      return { ...state, friendListOpen: action }
+      return { ...state, friendListOpen: action.payload }
     },
   },
 })
