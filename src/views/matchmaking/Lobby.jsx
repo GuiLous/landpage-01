@@ -5,7 +5,6 @@ import {
   BlockIcon,
   CloseIcon,
   Container,
-  InviteModal,
   LobbyLineup,
   LobbyModeSelector,
   MatchFoundModal,
@@ -13,6 +12,7 @@ import {
 } from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
+import { toggleFriendList } from '@slices/AppSlice'
 import { addToast } from '@slices/ToastSlice'
 import { removeRestartQueue } from '@slices/UserSlice'
 
@@ -27,7 +27,6 @@ export default function LobbyView() {
 
   const buttonRef = useRef()
 
-  const [inviteModalVisible, setInviteModalVisible] = useState(false)
   const [isButtonHovered, setIsButtonHovered] = useState(false)
 
   const lobby = user && user.account.lobby
@@ -37,7 +36,6 @@ export default function LobbyView() {
     (player) => player.id === lobby.owner_id
   )[0]
   const isOwner = userPlayer.id === owner.id
-  const is1v1 = lobby.max_players === 1
 
   const handleQueue = async (action) => {
     if (!isOwner || preMatch || match) return
@@ -64,8 +62,7 @@ export default function LobbyView() {
     setIsButtonHovered(false)
     handleQueue('start')
   }
-  const handleInviteModalShow = () => setInviteModalVisible(true)
-  const handleInviteModalClose = () => setInviteModalVisible(false)
+  const handleInviteModalShow = () => dispatch(toggleFriendList(true))
 
   const renderButtons = () => {
     const showPlayButton =
@@ -243,13 +240,6 @@ export default function LobbyView() {
 
   return (
     <MainLayout>
-      {!is1v1 && (
-        <InviteModal
-          isOpen={inviteModalVisible}
-          onClose={handleInviteModalClose}
-        />
-      )}
-
       {preMatch && preMatch.state === 'lock_in' && (
         <MatchFoundModal preMatch={preMatch} />
       )}

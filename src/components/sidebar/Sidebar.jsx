@@ -30,6 +30,7 @@ import {
   ClockIcon,
   Container,
   ExitIcon,
+  FriendList,
   FriendsIcon,
   JoystickIcon,
   NotificationList,
@@ -54,25 +55,23 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const notifications = useSelector((state) => state.notifications)
 
   const invites = useSelector((state) => state.invites)
+  const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
-  const [openNotifications, setOpenNotifications] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
-
-  const handleOpenDrawerNotifications = () => {
-    setOpenNotifications(true)
-  }
-
-  const handleCloseDrawerNotifications = () => {
-    setOpenNotifications(false)
-  }
 
   useEffect(() => {
     if (collapsable) setIsCollapsed(collapsed)
     else setIsCollapsed(false)
   }, [collapsed, collapsable])
+
+  useEffect(() => {
+    setFriendListOpen(friendListOpenByApp)
+  }, [friendListOpenByApp])
 
   const open = () => {
     collapsable && setIsCollapsed(false)
@@ -191,6 +190,22 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     )
   }
 
+  const handleToggleNotificationsDrawer = () => {
+    setNotificationsOpen(!notificationsOpen)
+  }
+
+  const handleCloseDrawerNotifications = () => {
+    setNotificationsOpen(false)
+  }
+
+  const handleCloseDrawerFriendList = () => {
+    setFriendListOpen(false)
+  }
+
+  const handleToggleFriendListDrawer = () => {
+    setFriendListOpen(!friendListOpen)
+  }
+
   return (
     <>
       <Container
@@ -257,7 +272,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
 
           <Container className={style.menu} column>
-            <Container className={style.menuItem}>
+            <Container
+              className={style.menuItem}
+              onClick={handleToggleFriendListDrawer}
+            >
               <Link href="#">
                 <Container className={style.menuLinkWrapper} gap={14}>
                   <Icon as={FriendsIcon} fill="gray.700" />
@@ -286,7 +304,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
-                onClick={handleOpenDrawerNotifications}
+                onClick={handleToggleNotificationsDrawer}
               >
                 <Container className={style.menuLinkWrapper} gap={14}>
                   <Icon as={BellFilledIcon} fill="gray.700" />
@@ -428,8 +446,13 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       </Container>
 
       <NotificationList
-        isOpen={openNotifications}
+        isOpen={notificationsOpen}
         onClose={handleCloseDrawerNotifications}
+      />
+
+      <FriendList
+        isOpen={friendListOpen}
+        onClose={handleCloseDrawerFriendList}
       />
     </>
   )
