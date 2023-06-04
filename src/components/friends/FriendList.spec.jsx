@@ -20,10 +20,8 @@ const server = setupServer(
             username: 'Amigo 2',
             avatar:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-            account: {
-              lobby: {
-                id: 1,
-              },
+            lobby: {
+              id: 1,
             },
           },
           {
@@ -32,10 +30,8 @@ const server = setupServer(
             username: 'Amigo 3',
             avatar:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-            account: {
-              lobby: {
-                id: 3,
-              },
+            lobby: {
+              id: 3,
             },
           },
         ],
@@ -46,10 +42,8 @@ const server = setupServer(
             username: 'Amigo 4',
             avatar:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-            account: {
-              lobby: {
-                id: 4,
-              },
+            lobby: {
+              id: 4,
             },
           },
         ],
@@ -118,8 +112,8 @@ describe('FriendList Component', () => {
     )
 
     const filterInput = screen.queryByTestId('filter-input')
-    const friend2 = screen.queryByText('Amigo 2')
-    const friend3 = screen.queryByText('Amigo 3')
+    const friend2 = await screen.findByText('Amigo 2')
+    const friend3 = await screen.findByText('Amigo 3')
     expect(filterInput).toBeInTheDocument()
     expect(friend2).toBeInTheDocument()
     expect(friend3).toBeInTheDocument()

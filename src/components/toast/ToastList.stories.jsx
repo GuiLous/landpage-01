@@ -29,9 +29,9 @@ const preloadedState = {
 }
 
 const store = configureStore({
-  reducer: { toasts: AppReducer.toasts },
+  reducer: { app: AppReducer },
   devTools: true,
-  preloadedState: preloadedState,
+  preloadedState: { preloadedState },
 })
 
 export const Default = {

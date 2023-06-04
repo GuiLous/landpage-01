@@ -6,7 +6,7 @@ import { ToastListItem } from '@components'
 import AppReducer from '@slices/AppSlice'
 
 describe('ToastListItem Component', () => {
-  const preloadedState = {
+  const app = {
     toasts: [
       {
         id: 1,
@@ -15,19 +15,27 @@ describe('ToastListItem Component', () => {
         duration: 6,
         variant: 'success',
       },
+      {
+        id: 2,
+        title: 'Outro Feedback!',
+        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+        duration: 6,
+        variant: 'error',
+      },
     ],
+    friendListOpen: false,
   }
 
   const store = configureStore({
-    reducer: { toasts: AppReducer.toasts },
+    reducer: { app: AppReducer },
     devTools: true,
-    preloadedState: preloadedState,
+    preloadedState: { app },
   })
 
   it('should renders correctly', () => {
     render(
       <Provider store={store}>
-        <ToastListItem {...preloadedState.toasts[0]} />
+        <ToastListItem {...app.toasts[0]} />
       </Provider>
     )
     expect(screen.getByText('Feedback!')).toBeInTheDocument()

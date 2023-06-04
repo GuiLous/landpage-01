@@ -6,7 +6,7 @@ import { ToastList } from '@components'
 import AppReducer from '@slices/AppSlice'
 
 describe('ToastList Component', () => {
-  const preloadedState = {
+  const app = {
     toasts: [
       {
         id: 1,
@@ -23,12 +23,13 @@ describe('ToastList Component', () => {
         variant: 'error',
       },
     ],
+    friendListOpen: false,
   }
 
   const store = configureStore({
-    reducer: { toasts: AppReducer.toasts },
+    reducer: { app: AppReducer },
     devTools: true,
-    preloadedState: preloadedState,
+    preloadedState: { app },
   })
 
   it('should renders correctly', () => {
