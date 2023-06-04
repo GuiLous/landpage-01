@@ -6,7 +6,7 @@ import { MatchmakingAPI } from '@api'
 import { Container, GroupAddIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { addInviteSent } from '@slices/UserSlice'
 
 import style from './FriendListGroupItem.module.css'

@@ -17,7 +17,7 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 import { ArrowRightIcon, Container, LockIcon } from '@components'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Verify.module.css'
 

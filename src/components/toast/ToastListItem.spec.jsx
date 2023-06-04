@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { ToastListItem } from '@components'
-import ToastReducer from '@slices/ToastSlice'
+import AppReducer from '@slices/AppSlice'
 
 describe('ToastListItem Component', () => {
   const preloadedState = {
@@ -19,7 +19,7 @@ describe('ToastListItem Component', () => {
   }
 
   const store = configureStore({
-    reducer: { toasts: ToastReducer },
+    reducer: { toasts: AppReducer.toasts },
     devTools: true,
     preloadedState: preloadedState,
   })

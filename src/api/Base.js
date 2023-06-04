@@ -1,5 +1,5 @@
 import { HttpService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import store from '@store'
 
 export const BaseAPI = {

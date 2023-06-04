@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { removeInvite } from '@slices/UserSlice'
 import style from './Invite.module.css'
 

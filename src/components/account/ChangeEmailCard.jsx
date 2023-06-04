@@ -22,7 +22,7 @@ import {
 } from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './ChangeEmailCard.module.css'

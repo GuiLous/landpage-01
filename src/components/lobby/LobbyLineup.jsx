@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LobbySeat, UserCard, UserCardMini } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 
 import style from './LobbyLineup.module.css'
 

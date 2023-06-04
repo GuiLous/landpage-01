@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 
 import { ToastListItem } from '@components'
-import ToastReducer from '@slices/ToastSlice'
+import AppReducer from '@slices/AppSlice'
 
 export default {
   title: 'Common/Toast/ToastListItem',
@@ -33,7 +33,7 @@ const preloadedState = {
 }
 
 const store = configureStore({
-  reducer: { toasts: ToastReducer },
+  reducer: { toasts: AppReducer.toasts },
   devTools: true,
   preloadedState: preloadedState,
 })

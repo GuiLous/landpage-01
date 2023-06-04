@@ -44,6 +44,7 @@ import {
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
+import { toggleFriendList } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './Sidebar.module.css'
@@ -194,16 +195,20 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     setNotificationsOpen(!notificationsOpen)
   }
 
-  const handleCloseDrawerNotifications = () => {
+  const handleCloseNotificationsDrawer = () => {
     setNotificationsOpen(false)
   }
 
-  const handleCloseDrawerFriendList = () => {
+  const handleCloseFriendListDrawer = () => {
     setFriendListOpen(false)
+    dispatch(toggleFriendList(false))
   }
 
   const handleToggleFriendListDrawer = () => {
-    setFriendListOpen(!friendListOpen)
+    if (friendListOpen) {
+      dispatch(toggleFriendList(false))
+      setFriendListOpen(false)
+    } else setFriendListOpen(true)
   }
 
   return (
@@ -447,12 +452,12 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
       <NotificationList
         isOpen={notificationsOpen}
-        onClose={handleCloseDrawerNotifications}
+        onClose={handleCloseNotificationsDrawer}
       />
 
       <FriendList
         isOpen={friendListOpen}
-        onClose={handleCloseDrawerFriendList}
+        onClose={handleCloseFriendListDrawer}
       />
     </>
   )

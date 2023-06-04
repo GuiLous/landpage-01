@@ -12,8 +12,7 @@ import {
 } from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { toggleFriendList } from '@slices/AppSlice'
-import { addToast } from '@slices/ToastSlice'
+import { addToast, toggleFriendList } from '@slices/AppSlice'
 import { removeRestartQueue } from '@slices/UserSlice'
 
 import { useEffect, useRef, useState } from 'react'

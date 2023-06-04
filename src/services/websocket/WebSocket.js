@@ -3,8 +3,8 @@ import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 import { newInvite } from '@slices/InviteSlice'
-import { addToast } from '@slices/ToastSlice'
 import {
   addFriend,
   addInviteReceived,
