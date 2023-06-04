@@ -38,7 +38,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 - Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 
-## [5abd121 - 5/6/2023]
+### Removed
+
+- Componente `Header` em virtude da nova `Sidebar`.
+- `ToastSlice` em virtude do novo centralizador de stado redux global `AppSlice`.
+
+## [7360381 - 29/5/2023]
 
 ### Added
 
