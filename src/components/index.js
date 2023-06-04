@@ -77,10 +77,6 @@ import UserCard from './user/UserCard'
 import UserCardMini from './user/UserCardMini'
 import UserStatus from './user/UserStatus'
 
-// Header
-import Header from './header/Header'
-import HeaderPlayButton from './header/HeaderPlayButton'
-
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
 import MatchInfos from './match/MatchInfos'
@@ -145,9 +141,7 @@ export {
   Timer,
   UserStatus,
   BellIcon,
-  Header,
   ArrowDownIcon,
-  HeaderPlayButton,
   RequireAuth,
   ArrowUpIcon,
   LevelProgressBar,
