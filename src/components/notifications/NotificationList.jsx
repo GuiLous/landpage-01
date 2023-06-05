@@ -1,14 +1,19 @@
-import { Icon, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  Text,
+} from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { NotificationsAPI } from '@api'
-import {
-  Container,
-  DoubleCheckIcon,
-  NotificationListItem,
-  Scrollbars,
-} from '@components'
+import { Container, NotificationListItem, Scrollbars } from '@components'
 import { StorageService } from '@services'
 import {
   initNotifications,
@@ -17,30 +22,12 @@ import {
 } from '@slices/NotificationSlice'
 import { addToast } from '@slices/ToastSlice'
 
-import logoSymbol from '@assets/images/logo_symbol_white.svg'
-import style from './NotificationList.module.css'
-
-export default function NotificationList({ isOpen }) {
-  useEffect(() => {
-    const fetch = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await NotificationsAPI.list(userToken)
-      if (response) dispatch(initNotifications(response))
-    }
-
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
+export default function NotificationList({ isOpen, onClose }) {
   const notifications = useSelector((state) => state.notifications)
-  const userToken = StorageService.get('token')
+
   const dispatch = useDispatch()
 
-  const hasUnread =
-    notifications?.length > 0 &&
-    notifications.filter((notification) => notification.read_date === null)
-      .length > 0
+  const userToken = StorageService.get('token')
 
   const showErrorToast = (error) => {
     dispatch(
@@ -65,57 +52,87 @@ export default function NotificationList({ isOpen }) {
     else if (response) dispatch(readNotification({ id: id }))
   }
 
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await NotificationsAPI.list(userToken)
+      if (response) dispatch(initNotifications(response))
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
-    isOpen && (
-      <Container className={style.container} column align="center">
-        <Container className={style.header}>
-          <Container>
-            <Text fontSize={18} fontWeight="medium">
-              Notificações
-            </Text>
-          </Container>
+    <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+      <DrawerOverlay bg="transparent" />
 
-          <Container
-            align="center"
-            gap={8}
-            justify="end"
-            className={[style.readAllAction, !hasUnread && style.disabled].join(
-              ' '
-            )}
-            onClick={readAll}
-          >
-            <Icon
-              as={DoubleCheckIcon}
-              fill={hasUnread ? 'secondary.400' : 'gray.700'}
-            />
-            <Text color={hasUnread ? 'secondary.400' : 'gray.700'}>
-              Ler todas
-            </Text>
-          </Container>
-        </Container>
+      <DrawerContent
+        py={6}
+        w="350px"
+        maxW="350px"
+        bgColor="gray.900"
+        transition="all 0s"
+      >
+        <DrawerCloseButton
+          fontSize={12}
+          width="fit-content"
+          height="fit-content"
+          top={5}
+          right={5}
+        />
 
-        {notifications?.length > 0 && (
-          <Container className={style.list}>
-            <Scrollbars style={{ height: '300px' }} autoHide>
-              {notifications?.map((item, index) => (
-                <Container onMouseEnter={() => read(item.id)} key={item.id}>
+        <DrawerHeader>NOTIFICAÇÕES</DrawerHeader>
+
+        <DrawerBody
+          p={0}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent={notifications?.length > 0 ? 'flex-start' : 'center'}
+        >
+          {notifications?.length > 0 ? (
+            <Scrollbars autoHide>
+              {notifications?.map((item) => (
+                <Container
+                  onMouseEnter={() => read(item.id)}
+                  key={item.id}
+                  fitContent
+                >
                   <NotificationListItem {...item} />
                 </Container>
               ))}
             </Scrollbars>
-          </Container>
-        )}
+          ) : (
+            <Text fontSize={12} color="white">
+              Você não tem notificações.
+            </Text>
+          )}
+        </DrawerBody>
 
-        {notifications?.length <= 0 && (
-          <Container justify="center" className={style.empty}>
-            <Text color="gray.700">Nada de novo por aqui.</Text>
-          </Container>
-        )}
-
-        <Container className={style.footer} justify="center">
-          <img src={logoSymbol} alt="ReloadClub" />
-        </Container>
-      </Container>
-    )
+        <DrawerFooter py={0} px={6}>
+          <Button
+            w="100%"
+            minH="37px"
+            h="37px"
+            fontSize={14}
+            fontWeight="semiBold"
+            isDisabled={notifications?.length === 0}
+            _disabled={{
+              backgroundColor: 'gray.400',
+              cursor: 'not-allowed',
+              color: 'gray.700',
+              _hover: {
+                backgroundColor: 'gray.400',
+              },
+            }}
+            onClick={readAll}
+          >
+            LER TUDO
+          </Button>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
   )
 }

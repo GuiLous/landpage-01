@@ -8,7 +8,7 @@ export default function ArrowUpIcon(props) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M10.59 7L6 2.67341L1.41 7L1.16446e-07 5.66802L6 -5.24537e-07L12 5.66802L10.59 7Z"
-        fill={props.fill}
+        fill="currentColor"
       />
     </Icon>
   )

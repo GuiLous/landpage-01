@@ -41,7 +41,7 @@ export default function HeaderProfile({ profile }) {
             Vitórias
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.matches_won}
+            {profile.matches_won?.toLocaleString('en-US')}
           </Text>
         </Container>
 
@@ -50,7 +50,7 @@ export default function HeaderProfile({ profile }) {
             Derrotas
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.matches_lost}
+            {profile.matches_lost?.toLocaleString('en-US')}
           </Text>
         </Container>
 
@@ -59,7 +59,7 @@ export default function HeaderProfile({ profile }) {
             Abates
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.kills}
+            {profile.stats?.kills?.toLocaleString('en-US') || 0}
           </Text>
         </Container>
 
@@ -68,16 +68,16 @@ export default function HeaderProfile({ profile }) {
             Mortes
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.deaths}
+            {profile.stats?.deaths?.toLocaleString('en-US') || 0}
           </Text>
         </Container>
 
         <Container column align="center" justify="center" fitContent>
           <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
-            Assistencias
+            Assistências
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.assists}
+            {profile.stats?.assists?.toLocaleString('en-US') || 0}
           </Text>
         </Container>
 
@@ -86,7 +86,7 @@ export default function HeaderProfile({ profile }) {
             Headshots
           </Text>
           <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.head_shots}
+            {profile.stats?.head_shots?.toLocaleString('en-US') || 0}
           </Text>
         </Container>
       </Container>

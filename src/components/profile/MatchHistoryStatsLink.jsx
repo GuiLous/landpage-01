@@ -33,10 +33,12 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
   const winner_team_id = match.winner_id
   const winner_team = match.teams.find((team) => team.id === winner_team_id)
   const defeated_team = match.teams.find((team) => team.id !== winner_team_id)
-  const won = winner_team.players.find((player) => player.user_id === user_id)
+  const userWon = winner_team.players.find(
+    (player) => player.user_id === user_id
+  )
 
-  const player = won
-    ? won
+  const player = userWon
+    ? userWon
     : defeated_team.players.find((player) => player.user_id === user_id)
 
   const renderStats = () => {
@@ -103,7 +105,9 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
       as={RouterLink}
       to={`/partidas/${match.id}`}
       align="center"
-      className={[style.container, won ? style.won : style.defeated].join(' ')}
+      className={[style.container, userWon ? style.won : style.defeated].join(
+        ' '
+      )}
     >
       <Container column gap={8}>
         <Text
@@ -129,7 +133,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
           textAlign="center"
           color="white"
         >
-          {won ? winner_team.score : defeated_team.score}
+          {userWon ? winner_team.score : defeated_team.score}
           <Text
             pos="relative"
             color="white"
@@ -140,12 +144,12 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
           >
             :
           </Text>
-          {won ? defeated_team.score : winner_team.score}
+          {userWon ? defeated_team.score : winner_team.score}
         </Text>
       </Container>
 
       <Container align="center" justify="center" gap={40}>
-        {renderStats()}
+        {player && renderStats()}
 
         <Icon as={ArrowRightSimpleIcon} fill="white" h="12px" w="7px" />
       </Container>

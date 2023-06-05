@@ -12,7 +12,7 @@ export default extendTheme({
         minHeight: '44px',
         paddingLeft: 20,
         paddingRight: 20,
-        borderRadius: 8,
+        borderRadius: 4,
         _loading: {
           _hover: {
             bg: 'primary.400',
@@ -20,11 +20,11 @@ export default extendTheme({
           },
         },
         _hover: {
-          bg: 'primary.500',
-          backgroundColor: 'primary.500',
+          bg: 'primary.300',
+          backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'primary.400',
-            backgroundColor: 'primary.400',
+            bg: 'primary.300',
+            backgroundColor: 'primary.300',
           },
         },
         _active: {
@@ -213,11 +213,11 @@ export default extendTheme({
       baseStyle: {
         color: '#999999',
         _hover: {
-          color: 'secondary.400',
+          color: 'white',
           textDecoration: 'none',
         },
         _active: {
-          color: 'secondary.500',
+          color: 'white',
         },
       },
       variants: {
@@ -280,6 +280,42 @@ export default extendTheme({
             },
           },
         },
+        secondary: {
+          field: {
+            color: 'gray.700',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+            fontSize: '14px',
+            fontWeight: '400',
+            pl: '16px',
+            pr: '16px',
+            borderRadius: 4,
+            minHeight: '42px',
+            cursor: 'pointer',
+            _hover: {
+              color: 'gray.700',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
+            },
+            _focus: {
+              color: 'gray.700',
+              bg: 'gray.400',
+              backgroundColor: 'gray.400',
+              border: '1px solid #999999',
+              pl: '15px',
+            },
+            _disabled: {
+              cursor: 'pointer',
+              opacity: 1,
+              bg: 'black.900',
+              backgroundColor: 'black.900',
+              _hover: {
+                bg: 'black.900',
+                backgroundColor: 'black.900',
+              },
+            },
+          },
+        },
         clean: {
           field: {
             bg: 'transparent',
@@ -327,8 +363,8 @@ export default extendTheme({
     Modal: {
       baseStyle: {
         dialog: {
-          backgroundColor: '#222222',
-          bg: '#222222',
+          backgroundColor: 'gray.800',
+          bg: 'gray.800',
           color: 'white',
           position: 'relative',
         },
@@ -351,12 +387,39 @@ export default extendTheme({
         },
       },
     },
+    Drawer: {
+      baseStyle: {
+        dialog: {
+          backgroundColor: 'gray.900',
+          bg: 'gray.900',
+          color: 'white',
+          position: 'relative',
+        },
+        closeButton: {
+          color: '#F5F6F8',
+          opacity: 0.5,
+          fontSize: '18px',
+          _hover: {
+            opacity: 1,
+          },
+        },
+        header: {
+          textTransform: 'uppercase',
+          fontSize: '16px',
+          fontWeight: 'semiBold',
+          mb: 6,
+          py: 0,
+          px: 6,
+        },
+      },
+    },
     Badge: {
       baseStyle: {
         bg: 'primary.400',
         color: 'white',
         borderRadius: '10px',
         padding: '0 8px',
+        fontWeight: 'regular',
       },
       variants: {
         online: {
@@ -379,12 +442,25 @@ export default extendTheme({
         },
 
         unread: {
-          bg: 'secondary.400',
-          backgroundColor: 'secondary.400',
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
           borderRadius: '50%',
           height: '9px',
           width: '9px',
           padding: 'initial',
+        },
+
+        counter: {
+          bg: 'primary.400',
+          backgroundColor: 'primary.400',
+          borderRadius: '50%',
+          padding: 'initial',
+          fontSize: '12px',
+          fontWeight: 'regular',
+          textAlign: 'center',
+          width: '22px',
+          height: '22px',
+          paddingTop: '2px',
         },
 
         disabled: {
@@ -563,6 +639,19 @@ export default extendTheme({
         },
       },
     },
+    Tooltip: {
+      baseStyle: {
+        bg: '#1E1E1E',
+        color: 'white',
+      },
+    },
+    Divider: {
+      baseStyle: {
+        borderColor: 'gray.600',
+        margin: 0,
+        padding: 0,
+      },
+    },
   },
   colors: {
     primary: {
@@ -597,10 +686,17 @@ export default extendTheme({
       400: '#333333',
       500: '#282828',
       600: '#434343',
+      650: '#B7B7B7',
       700: '#999999',
       750: '#282828',
       800: '#1E1E1E',
       900: '#222222',
+    },
+
+    black: {
+      300: '#1B1B1B',
+      400: '#000000',
+      900: '#111111',
     },
 
     stripe: {

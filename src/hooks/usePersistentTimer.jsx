@@ -30,6 +30,7 @@ const usePersistentTimer = (initialTime, timerName) => {
     if (timeLeft === 0) {
       StorageService.remove(timerName)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, initialTime])
 
   return timeLeft

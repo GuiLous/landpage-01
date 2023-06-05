@@ -30,6 +30,27 @@ export default function LevelStatsCard({
     )
   )
 
+  const calculateKDR = () => {
+    if (!stats || !stats.deaths || stats.deaths === 0) {
+      return '0.00'
+    }
+
+    return (stats.kills / stats.deaths).toFixed(2)
+  }
+
+  function calculateHeadShots() {
+    if (
+      !stats ||
+      !stats.head_shots ||
+      !stats.shots_fired ||
+      stats.shots_fired === 0
+    ) {
+      return '0%'
+    }
+
+    return Math.ceil((stats.head_shots / stats.shots_fired) * 100) + '%'
+  }
+
   return (
     <ProfileCard>
       <Container column>
@@ -57,9 +78,7 @@ export default function LevelStatsCard({
               >
                 <Text className={style.statsListItemTitle}>KDR</Text>
               </Tooltip>
-              <Text className={style.statsListItemValue}>
-                {(stats.kills / stats.deaths).toFixed(2)}
-              </Text>
+              <Text className={style.statsListItemValue}>{calculateKDR()}</Text>
             </Container>
 
             <Container column className={style.statsListItem}>
@@ -98,7 +117,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Kills</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {most_kills_in_a_match}
+                  {most_kills_in_a_match || 0}
                 </Text>
               </Container>
             </Container>
@@ -116,7 +135,7 @@ export default function LevelStatsCard({
                     stats.clutch_v2 +
                     stats.clutch_v3 +
                     stats.clutch_v4 +
-                    stats.clutch_v5}
+                    stats.clutch_v5 || 0}
                 </Text>
               </Container>
             </Container>
@@ -129,10 +148,10 @@ export default function LevelStatsCard({
                   label="Percentual de acertos na cabeça"
                   aria-label="Percentual de acertos na cabeça"
                 >
-                  <Text className={style.statsListItemTitle}>Headshots %</Text>
+                  <Text className={style.statsListItemTitle}>HeadShots %</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {Math.ceil((stats.head_shots / stats.shots_fired) * 100)}%
+                  {calculateHeadShots()}
                 </Text>
               </Container>
             </Container>
@@ -146,7 +165,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>Max Dano</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {most_damage_in_a_match}
+                  {most_damage_in_a_match || 0}
                 </Text>
               </Container>
             </Container>

@@ -65,14 +65,6 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => {
-    // {
-    //   id: 2,
-    //   status: 'online',
-    //   username: 'Username',
-    //   avatar:
-    //     'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    // }
-
     const genItems = Array.from(Array(props.friendsCount).keys()).map(
       (friend, index) => ({
         id: index,

@@ -7,8 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+
+- Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
+
+## [7360381 - 29/5/2023]
+
 ### Added
 
+- Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
+- Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
+- Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
+- Adicionado método `delete` na interface de AccountsAPI.
+- Adicionado método `updateIsActive` na interface de AccountsAPI.
+- Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
+- Criado componente `ModalConfirmation`.
+- Adicionado método de `updateEmail` na interface de AccountsAPI.
+- Criado componente `PencilIcon`.
+- Adicionado método de `update` na interface de AccountsAPI.
+- Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
+- Criado componente `AccountCard`.
+- Adicionado variant `disabled` para input no tema do chakra ui.
 - Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
 - Criado interface `ProfilesAPI`.
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
@@ -40,7 +59,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
 
 ### Changed
-
+ 
+- Adicionado uma `key` no map na View `Account`.
+- Alterado `Link` na `SideBar` de notificações para um `button`.
+- Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
+- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado estilos para o `Drawer` no tema do chakra ui.
+- Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
+- Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
+- Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
+- Alterado path da `AccountView` para `/conta/:userId`.
+- Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
+- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado gray 800 para `#1B1B1B`.
+- Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
+- Alterado `HttpService` para adicionar uma `/` no final da url apenas quando não tiver uma interrogação `?` [#243] (https://github.com/3C-gg/reload-frontend/issues/243).
 - Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
 - Alterado `MatchView` para usar a interface MatchesApi para fazer requisições de partidas.
@@ -76,6 +109,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido componente `FavoriteWeaponCard` da view `Profile`.
 - Componente `HeaderProfileMenu` que foi movido para a `Sidebar`.
 - Testes de `LobbyView` pois estavam solicitando Redux e mock de API. Criei uma issue para endereçar esse problema de forma mais genérica: https://github.com/3C-gg/reload-frontend/issues/217
 - Componente `SidebarItem`.

@@ -142,7 +142,7 @@ export default function MatchHistoryList({ user_id }) {
               {groupedMatches[date].map((match) => (
                 <MatchHistoryStatsLink
                   key={match.id}
-                  user_id={user_id}
+                  user_id={Number(user_id)}
                   match={match}
                 />
               ))}
