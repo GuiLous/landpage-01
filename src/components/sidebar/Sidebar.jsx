@@ -121,16 +121,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         gap={60}
       >
         <Container className={style.header} column>
-          <Image
-            src={logoSymbol}
-            style={{ height: isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-symbol"
-          />
-          <Image
-            src={logoFull}
-            style={{ height: !isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-full"
-          />
+          <Link as={ReactRouterLink} to="/">
+            <Image
+              src={logoSymbol}
+              style={{ height: isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-symbol"
+            />
+            <Image
+              src={logoFull}
+              style={{ height: !isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-full"
+            />
+          </Link>
         </Container>
 
         <Container className={style.body} column gap={32}>
