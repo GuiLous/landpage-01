@@ -51,6 +51,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
+  const [isSupportOpen, setIsSupportOpen] = useState(false)
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -96,16 +97,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         gap={60}
       >
         <Container className={style.header} column>
-          <Image
-            src={logoSymbol}
-            style={{ height: isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-symbol"
-          />
-          <Image
-            src={logoFull}
-            style={{ height: !isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-full"
-          />
+          <Link as={ReactRouterLink} to="/">
+            <Image
+              src={logoSymbol}
+              style={{ height: isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-symbol"
+            />
+            <Image
+              src={logoFull}
+              style={{ height: !isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-full"
+            />
+          </Link>
         </Container>
 
         <Container className={style.body} column gap={32}>
@@ -247,17 +250,38 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Link>
             </Container>
 
-            <Container className={style.menuItem}>
-              <Link href="#">
+            <Container
+              className={[style.menuItem, isSupportOpen && style.active].join(
+                ' '
+              )}
+            >
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+                color={isSupportOpen ? 'white' : 'gray.700'}
+              >
                 <Icon as={SupportIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Suporte</Text>}
+                {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
               </Link>
             </Container>
 
             <Container className={style.menuItem} onClick={handleLogout}>
-              <Link href="#">
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+              >
                 <Icon as={ExitIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Sair</Text>}
+                {!isCollapsed && <Text fontSize={14}>Sair</Text>}
               </Link>
             </Container>
           </Container>
