@@ -91,6 +91,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     await AccountsAPI.logout(token)
     dispatch(updateUser(null))
     StorageService.remove('token')
+    window.FreshworksWidget('hide', 'launcher')
+    window.FreshworksWidget('close')
     navigate('/')
   }
 
