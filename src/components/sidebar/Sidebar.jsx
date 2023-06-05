@@ -290,9 +290,17 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem} onClick={handleLogout}>
-              <Link href="#">
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+              >
                 <Icon as={ExitIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Sair</Text>}
+                {!isCollapsed && <Text fontSize={14}>Sair</Text>}
               </Link>
             </Container>
           </Container>
