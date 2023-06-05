@@ -206,7 +206,13 @@ export default function App() {
       </Routes>
 
       <Container
-        style={{ position: 'absolute', bottom: 20, left: 20, maxWidth: 370 }}
+        style={{
+          position: 'fixed',
+          bottom: 40,
+          right: 40,
+          maxWidth: 370,
+          zIndex: 999999,
+        }}
       >
         <ToastList />
       </Container>
