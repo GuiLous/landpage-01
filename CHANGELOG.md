@@ -28,6 +28,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223). 
+- Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
