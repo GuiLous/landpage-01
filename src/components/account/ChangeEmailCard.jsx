@@ -136,7 +136,7 @@ export default function ChangeEmailCard() {
               _focus={
                 email === user.email || email === ''
                   ? {
-                      border: '1px solid #999999',
+                      border: '1px solid #6847FF',
                       pl: '15px',
                     }
                   : {

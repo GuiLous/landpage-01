@@ -292,6 +292,7 @@ export default extendTheme({
             borderRadius: 4,
             minHeight: '42px',
             cursor: 'pointer',
+            border: '1px solid #6847FF',
             _hover: {
               color: 'gray.700',
               bg: 'gray.400',
@@ -301,7 +302,7 @@ export default extendTheme({
               color: 'gray.700',
               bg: 'gray.400',
               backgroundColor: 'gray.400',
-              border: '1px solid #999999',
+              border: '1px solid #6847FF',
               pl: '15px',
             },
             _disabled: {
@@ -309,6 +310,7 @@ export default extendTheme({
               opacity: 1,
               bg: 'black.900',
               backgroundColor: 'black.900',
+              border: '1px solid #6847FF',
               _hover: {
                 bg: 'black.900',
                 backgroundColor: 'black.900',
