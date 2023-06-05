@@ -60,6 +60,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       setIsSupportOpen(false)
     } else {
       window.FreshworksWidget('show', 'launcher')
+      window.FreshworksWidget('open')
       setIsSupportOpen(true)
     }
   }
