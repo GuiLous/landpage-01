@@ -51,6 +51,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
+  const [isSupportOpen, setIsSupportOpen] = useState(false)
+
+  const handleToggleWidget = () => {
+    if (isSupportOpen) {
+      window.FreshworksWidget('hide', 'launcher')
+      window.FreshworksWidget('close')
+      setIsSupportOpen(false)
+    } else {
+      window.FreshworksWidget('show', 'launcher')
+      setIsSupportOpen(true)
+    }
+  }
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -248,9 +260,19 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem}>
-              <Link href="#">
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+                onClick={handleToggleWidget}
+                color={isSupportOpen ? 'white' : 'gray.700'}
+              >
                 <Icon as={SupportIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Suporte</Text>}
+                {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
               </Link>
             </Container>
 
