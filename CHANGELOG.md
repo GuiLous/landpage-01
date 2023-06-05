@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
 - Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.

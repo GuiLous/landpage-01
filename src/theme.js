@@ -371,12 +371,8 @@ export default extendTheme({
           position: 'relative',
         },
         closeButton: {
-          color: '#F5F6F8',
-          opacity: 0.5,
+          color: '#fff',
           fontSize: '18px',
-          _hover: {
-            opacity: 1,
-          },
         },
         overlay: {
           bg: 'rgba(0, 0, 0, .85)',
@@ -398,12 +394,8 @@ export default extendTheme({
           position: 'relative',
         },
         closeButton: {
-          color: '#F5F6F8',
-          opacity: 0.5,
+          color: '#fff',
           fontSize: '18px',
-          _hover: {
-            opacity: 1,
-          },
         },
         header: {
           textTransform: 'uppercase',
