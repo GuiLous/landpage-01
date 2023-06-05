@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
 - Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
