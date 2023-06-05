@@ -10,5 +10,11 @@
 
 .content {
 	height: 100%;
-	padding: 80px 90px 56px 90px;
+	margin-left: 264px;
+	padding: 140px 90px 56px 90px;
+}
+
+.sidebar {
+	height: 100%;
+	position: fixed;
 }

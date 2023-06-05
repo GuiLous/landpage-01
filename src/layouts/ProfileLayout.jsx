@@ -1,9 +1,9 @@
 import { Button } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
-
-import { Container, Header, HeaderProfile } from '@components'
-
 import { Link } from 'react-router-dom'
+
+import { Container, HeaderProfile, Sidebar } from '@components'
+
 import style from './ProfileLayout.module.css'
 
 const buttonsOptions = ['perfil', 'conta']
@@ -42,10 +42,14 @@ export default function ProfileLayout({
     ))
   }
   return (
-    <Container column className={style.container}>
-      {user && <Header />}
+    <Container className={style.container}>
+      {user && (
+        <Container className={style.sidebar} fitContent>
+          <Sidebar />
+        </Container>
+      )}
 
-      <Container column fitContent className={style.content} gap={40}>
+      <Container column className={style.content} gap={40}>
         {headerStats && <HeaderProfile profile={headerStats} />}
 
         {Number(user_id) === user.id && (
