@@ -19,7 +19,11 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import {
+  Link as ReactRouterLink,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
 
 import { AccountsAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
@@ -48,6 +52,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
@@ -95,6 +100,11 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     window.FreshworksWidget('close')
     navigate('/')
   }
+
+  useEffect(() => {
+    window.FreshworksWidget('hide', 'launcher')
+    window.FreshworksWidget('close')
+  }, [location.pathname])
 
   return (
     <>
