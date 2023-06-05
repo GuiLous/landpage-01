@@ -60,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Removido `Freshdesk` da aplicação [#135](https://github.com/3C-gg/reload-frontend/issues/135).
 - Adicionado link para `/` na imagem da logo na `SideBar`.
 - Adicionado style `active` no `Container` de `Suporte` da `SideBar`.
 - Alterado `Link` na `SideBar` de sair para um `button`.

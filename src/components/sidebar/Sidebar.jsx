@@ -19,11 +19,7 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-  Link as ReactRouterLink,
-  useLocation,
-  useNavigate,
-} from 'react-router-dom'
+import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
 
 import { AccountsAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
@@ -52,23 +48,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
   const [isSupportOpen, setIsSupportOpen] = useState(false)
-
-  const handleToggleWidget = () => {
-    if (isSupportOpen) {
-      window.FreshworksWidget('hide', 'launcher')
-      window.FreshworksWidget('close')
-      setIsSupportOpen(false)
-    } else {
-      window.FreshworksWidget('show', 'launcher')
-      window.FreshworksWidget('open')
-      setIsSupportOpen(true)
-    }
-  }
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -96,15 +79,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     await AccountsAPI.logout(token)
     dispatch(updateUser(null))
     StorageService.remove('token')
-    window.FreshworksWidget('hide', 'launcher')
-    window.FreshworksWidget('close')
     navigate('/')
   }
-
-  useEffect(() => {
-    window.FreshworksWidget('hide', 'launcher')
-    window.FreshworksWidget('close')
-  }, [location.pathname])
 
   return (
     <>
@@ -287,7 +263,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
-                onClick={handleToggleWidget}
                 color={isSupportOpen ? 'white' : 'gray.700'}
               >
                 <Icon as={SupportIcon} fill="gray.700" />
