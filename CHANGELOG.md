@@ -60,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Adicionado style `active` no `Container` de `Suporte` da `SideBar`.
 - Alterado `Link` na `SideBar` de sair para um `button`.
 - Adicionado função `handleToggleWidget` no componente `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
 - Adicionado script do `freshdesk` no `index.html` [#135](https://github.com/3C-gg/reload-frontend/issues/135). 

@@ -272,7 +272,11 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Link>
             </Container>
 
-            <Container className={style.menuItem}>
+            <Container
+              className={[style.menuItem, isSupportOpen && style.active].join(
+                ' '
+              )}
+            >
               <Link
                 as="button"
                 alignItems="center"
