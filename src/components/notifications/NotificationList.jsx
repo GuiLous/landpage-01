@@ -47,9 +47,15 @@ export default function NotificationList({ isOpen, onClose }) {
   }
 
   const read = async (id) => {
-    const response = await NotificationsAPI.read(userToken, id)
-    if ('formError' in response) showErrorToast(response.formError.error)
-    else if (response) dispatch(readNotification({ id: id }))
+    const isAlreadyRead =
+      notifications.find((notification) => notification.id === id).read_date !==
+      null
+
+    if (!isAlreadyRead) {
+      const response = await NotificationsAPI.read(userToken, id)
+      if ('formError' in response) showErrorToast(response.formError.error)
+      else if (response) dispatch(readNotification({ id: id }))
+    }
   }
 
   useEffect(() => {
