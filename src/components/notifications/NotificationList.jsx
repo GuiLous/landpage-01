@@ -9,7 +9,7 @@ import {
   DrawerOverlay,
   Text,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { NotificationsAPI } from '@api'
@@ -29,6 +29,8 @@ export default function NotificationList({ isOpen, onClose }) {
 
   const userToken = StorageService.get('token')
 
+  const [totalNotificationsNotRead, setTotalNotificationsNotRead] = useState(0)
+
   const showErrorToast = (error) => {
     dispatch(
       addToast({
@@ -47,9 +49,15 @@ export default function NotificationList({ isOpen, onClose }) {
   }
 
   const read = async (id) => {
-    const response = await NotificationsAPI.read(userToken, id)
-    if ('formError' in response) showErrorToast(response.formError.error)
-    else if (response) dispatch(readNotification({ id: id }))
+    const isAlreadyRead =
+      notifications.find((notification) => notification.id === id).read_date !==
+      null
+
+    if (!isAlreadyRead) {
+      const response = await NotificationsAPI.read(userToken, id)
+      if ('formError' in response) showErrorToast(response.formError.error)
+      else if (response) dispatch(readNotification({ id: id }))
+    }
   }
 
   useEffect(() => {
@@ -63,6 +71,17 @@ export default function NotificationList({ isOpen, onClose }) {
     fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      const totalNotificationsNotRead =
+        notifications.filter(
+          (notification) => notification.read_date === null
+        ) || 0
+
+      setTotalNotificationsNotRead(totalNotificationsNotRead)
+    }
+  }, [notifications])
 
   return (
     <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
@@ -118,7 +137,10 @@ export default function NotificationList({ isOpen, onClose }) {
             h="37px"
             fontSize={14}
             fontWeight="semiBold"
-            isDisabled={notifications?.length === 0}
+            isDisabled={
+              notifications?.length === 0 ||
+              totalNotificationsNotRead.length === 0
+            }
             _disabled={{
               backgroundColor: 'gray.400',
               cursor: 'not-allowed',
