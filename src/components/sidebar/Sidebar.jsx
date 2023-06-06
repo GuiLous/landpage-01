@@ -26,9 +26,12 @@ import logoFull from '@assets/images/logo.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
   BellFilledIcon,
+  BlockIcon,
+  ClockIcon,
   Container,
   ExitIcon,
   FriendsIcon,
+  JoystickIcon,
   NotificationList,
   PlayIcon,
   PodiumIcon,
@@ -36,14 +39,18 @@ import {
   ShareIcon,
   ShopIcon,
   SupportIcon,
+  Timer,
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
+
 import style from './Sidebar.module.css'
 
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
+  const preMatch = useSelector((state) => state.match.preMatch)
+  const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
 
   const invites = useSelector((state) => state.invites)
@@ -93,6 +100,94 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     }
   }, [notifications])
 
+  const renderButtons = () => {
+    const lobby = user && user.account.lobby
+
+    const showPlayButton =
+      !lobby.queue && !match && !lobby.restriction_countdown
+    const showQueueButton =
+      lobby.queue && !match && !lobby.restriction_countdown
+
+    return (
+      <>
+        {showPlayButton && (
+          <Button
+            leftIcon={<FaPlay />}
+            className={style.playBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+          >
+            JOGAR
+          </Button>
+        )}
+
+        {showQueueButton && (
+          <Button
+            leftIcon={<ClockIcon />}
+            className={style.queueBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+            variant="queue"
+          >
+            <Text w={10}>
+              <Timer initialTime={lobby.queue_time} stop={preMatch} />
+            </Text>
+          </Button>
+        )}
+
+        {match && (
+          <Button
+            leftIcon={<JoystickIcon />}
+            className={style.queueBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/"
+            variant="queue"
+          >
+            EM PARTIDA
+          </Button>
+        )}
+
+        {lobby.restriction_countdown && !match && (
+          <Button
+            className={style.dangerBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+            variant="restricted"
+          >
+            <Container column align="center" gap={4}>
+              <Text fontSize={12} color="white" fontWeight="semiBold">
+                GRUPO COM RESTRIÇÃO
+              </Text>
+
+              <Container justify="center" align="center" gap={4}>
+                <Icon as={BlockIcon} fill="white" w="16px" h="16px" />
+                <Text fontSize={18} fontWeight="bold" w={10} lineHeight={1}>
+                  <Timer initialTime={lobby.restriction_countdown} reverse />
+                </Text>
+              </Container>
+            </Container>
+          </Button>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <Container
@@ -135,15 +230,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 className={style.playBtn}
               />
             ) : (
-              <Button
-                leftIcon={<FaPlay />}
-                className={style.playBtn}
-                fontSize={18}
-                fontWeight="bold"
-                height={55}
-              >
-                Jogar
-              </Button>
+              renderButtons()
             )}
           </Container>
 
