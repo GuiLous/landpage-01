@@ -45,12 +45,14 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const notifications = useSelector((state) => state.notifications)
+
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
+  const [notificationsNotRead, setNotificationsNotRead] = useState(0)
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -80,6 +82,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     StorageService.remove('token')
     navigate('/')
   }
+
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      const notificationsNotRead = notifications.filter(
+        (notification) => notification.read_date === null
+      ).length
+
+      setNotificationsNotRead(notificationsNotRead)
+    }
+  }, [notifications])
 
   return (
     <>
@@ -197,9 +209,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 >
                   <Badge
                     variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: notifications.length > 0 ? 1 : 0 }}
+                    style={{ opacity: notificationsNotRead > 0 ? 1 : 0 }}
                   >
-                    {!isCollapsed && notifications.length}
+                    {!isCollapsed && notificationsNotRead}
                   </Badge>
                 </Container>
               </Link>
