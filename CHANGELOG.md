@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
 - Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
@@ -81,7 +82,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
 
 ### Changed
- 
+
+- Removido `Freshdesk` da aplicação [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado link para `/` na imagem da logo na `SideBar`.
+- Adicionado style `active` no `Container` de `Suporte` da `SideBar`.
+- Alterado `Link` na `SideBar` de sair para um `button`.
+- Adicionado função `handleToggleWidget` no componente `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado script do `freshdesk` no `index.html` [#135](https://github.com/3C-gg/reload-frontend/issues/135). 
+- Adicionado uma `key` no map na View `Account`.
+- Alterado `Link` na `SideBar` de notificações para um `button`.
+- Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
+- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado estilos para o `Drawer` no tema do chakra ui.
+- Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
+- Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
+- Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
+- Alterado path da `AccountView` para `/conta/:userId`.
+- Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
+- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado gray 800 para `#1B1B1B`.
+- Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 - Alterado `HttpService` para adicionar uma `/` no final da url apenas quando não tiver uma interrogação `?` [#243] (https://github.com/3C-gg/reload-frontend/issues/243).
 - Alterado componente `MatchHistoryList` para exibir paginação apenas quando tiver mais que 1 página [#228] (https://github.com/3C-gg/reload-frontend/issues/228).
 - Removido método `listMatches` da interface de `AccountsAPI` e movido para `MatchesAPI`.
