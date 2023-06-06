@@ -51,7 +51,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
-  const [isSupportOpen, setIsSupportOpen] = useState(false)
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -250,11 +249,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Link>
             </Container>
 
-            <Container
-              className={[style.menuItem, isSupportOpen && style.active].join(
-                ' '
-              )}
-            >
+            <Container className={style.menuItem}>
               <Link
                 as="button"
                 alignItems="center"
@@ -263,7 +258,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
-                color={isSupportOpen ? 'white' : 'gray.700'}
               >
                 <Icon as={SupportIcon} fill="gray.700" />
                 {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
