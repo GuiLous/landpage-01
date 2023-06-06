@@ -33,6 +33,16 @@ export default extendTheme({
         },
       },
       variants: {
+        queue: {
+          bg: 'primary.500',
+          backgroundColor: 'primary.500',
+          cursor: 'pointer',
+          _hover: {
+            bg: 'primary.500',
+            backgroundColor: 'primary.500',
+          },
+        },
+
         secondary: {
           color: 'white',
           bg: 'transparent',
@@ -94,23 +104,29 @@ export default extendTheme({
         },
 
         restricted: {
-          bg: 'rgba(246, 53, 53, .8)',
-          backgroundColor: 'rgba(246, 53, 53, .8)',
-          borderColor: 'rgba(246, 53, 53, .8)',
+          bg: 'danger.400',
+          backgroundColor: 'danger.400',
+          borderColor: 'danger.400',
           color: 'white',
           _disabled: {
-            bg: 'rgba(246, 53, 53, .8)',
-            backgroundColor: 'rgba(246, 53, 53, .8)',
+            bg: 'danger.400',
+            backgroundColor: 'danger.400',
             color: 'white',
             opacity: 1,
           },
+          _active: {
+            bg: 'danger.600',
+            backgroundColor: 'danger.600',
+            borderColor: 'danger.600',
+            color: 'white',
+          },
           _hover: {
-            bg: 'rgba(246, 53, 53, .8)',
-            backgroundColor: 'rgba(246, 53, 53, .8)',
+            bg: 'danger.400',
+            backgroundColor: 'danger.400',
             color: 'white',
             _disabled: {
-              bg: 'rgba(246, 53, 53, .8)',
-              backgroundColor: 'rgba(246, 53, 53, .8)',
+              bg: 'danger.400',
+              backgroundColor: 'danger.400',
               color: 'white',
             },
           },
