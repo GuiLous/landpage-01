@@ -136,7 +136,7 @@ export default function LobbyView() {
 
         {match && (
           <Button
-            leftIcon={<JoystickIcon />}
+            leftIcon={<JoystickIcon width="35px" height="35px" />}
             fontWeight="bold"
             size="xl"
             variant="queue"
