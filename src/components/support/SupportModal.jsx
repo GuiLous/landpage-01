@@ -1,11 +1,16 @@
-import { FormControl, Text, Textarea } from '@chakra-ui/react'
+import { Text, Textarea } from '@chakra-ui/react'
+import { useState } from 'react'
 
-import { Container, Modal } from '@components'
+import { Container, FileInput, Modal } from '@components'
 
 export default function SupportModal({ isOpenModal, handleClose }) {
+  const [file, setFile] = useState(null)
+  console.log('🚀 - file:', file)
+
   const handleSubmit = (event) => {
     event.preventDefault()
   }
+
   return (
     <Modal
       isOpen={isOpenModal}
@@ -18,7 +23,7 @@ export default function SupportModal({ isOpenModal, handleClose }) {
         justify="center"
         align="center"
         column
-        gap={40}
+        gap={32}
         style={{ padding: '0 40px' }}
       >
         <Text color="gray.700" fontSize={14} textAlign="center">
@@ -35,9 +40,11 @@ export default function SupportModal({ isOpenModal, handleClose }) {
             gap: '14px',
           }}
         >
-          <FormControl>
-            <Textarea placeholder="Descrição" h="98px" resize="none" />
-          </FormControl>
+          <Container column gap={14}>
+            <Textarea placeholder="Descrição" variant="primary" />
+
+            <FileInput setFile={setFile} />
+          </Container>
         </form>
       </Container>
     </Modal>
