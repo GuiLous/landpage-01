@@ -60,12 +60,7 @@
 	cursor: pointer;
 	font-size: 15px;
 	min-height: 100%;
-	opacity: 0.6;
 	transition: opacity 100ms linear;
-}
-
-.closeBtn:hover {
-	opacity: 1;
 }
 
 .countdownBar {
