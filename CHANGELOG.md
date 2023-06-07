@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
 - Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
 - Alterado função `read` no componente `NotificationList` para não fazer requisição caso a notificação já tenha sido lida.
 - Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223). 
