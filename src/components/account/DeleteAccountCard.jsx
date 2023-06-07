@@ -66,7 +66,12 @@ export default function DeleteAccountCard() {
       </Container>
 
       {isOpenModal && (
-        <Modal isOpen={isOpenModal} title="EXCLUIR CONTA" onClose={handleClose}>
+        <Modal
+          isOpen={isOpenModal}
+          title="EXCLUIR CONTA"
+          onClose={handleClose}
+          size="3xl"
+        >
           <Container
             justify="center"
             align="center"
