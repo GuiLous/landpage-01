@@ -21,6 +21,7 @@ import SidebarHeader from './sidebar/SidebarHeader'
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
 import SteamSignin from './form/SteamSignin'
+import FileInput from './input/FileInput'
 import Input from './input/Input'
 
 // Icons
@@ -201,4 +202,5 @@ export {
   ShareIcon,
   ShopIcon,
   SupportModal,
+  FileInput,
 }
