@@ -52,7 +52,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
-  const [notificationsNotRead, setNotificationsNotRead] = useState(0)
+  const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -89,7 +89,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         (notification) => notification.read_date === null
       ).length
 
-      setNotificationsNotRead(notificationsNotRead)
+      setUnreadNotificationsCount(notificationsNotRead)
     }
   }, [notifications])
 
@@ -209,9 +209,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 >
                   <Badge
                     variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: notificationsNotRead > 0 ? 1 : 0 }}
+                    style={{ opacity: unreadNotificationsCount > 0 ? 1 : 0 }}
                   >
-                    {!isCollapsed && notificationsNotRead}
+                    {!isCollapsed && unreadNotificationsCount}
                   </Badge>
                 </Container>
               </Link>
