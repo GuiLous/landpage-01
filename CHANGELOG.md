@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
+- Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
 - Adicionado variantes do botão `JOGAR` na `SideBar` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
 - Adicionado ícones `ClockIcon` e `JoystickIcon`.
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
@@ -34,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
 - Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
 - Alterado `SideBar` para mostrar as notificações não lidas vindo da const `notificationsNotRead` [#268](https://github.com/3C-gg/reload-frontend/issues/268).
+- Alterado path do ícone `BlockIcon`.
+- Alterado css da `SideBar` no `ProfileLayout` que estava bugando o clique nos links na rota `/conta`.
 - Alterado e adicionado variantes do botão `JOGAR` para ficar igual ao design [#266](https://github.com/3C-gg/reload-frontend/issues/266).
 - Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
 - Alterado função `read` no componente `NotificationList` para não fazer requisição caso a notificação já tenha sido lida.
