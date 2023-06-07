@@ -105,8 +105,11 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
     const showPlayButton =
       !lobby.queue && !match && !lobby.restriction_countdown
+
     const showQueueButton =
       lobby.queue && !match && !lobby.restriction_countdown
+
+    const showRestrictedButton = lobby.restriction_countdown && !match
 
     return (
       <>
@@ -159,7 +162,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Button>
         )}
 
-        {lobby.restriction_countdown && !match && (
+        {showRestrictedButton && (
           <Button
             className={style.dangerBtn}
             fontSize={18}
