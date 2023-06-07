@@ -109,6 +109,9 @@ import InactivateAccountCard from './account/InactivateAccountCard'
 // Modal
 import Modal from './modal/Modal'
 
+// Support
+import SupportModal from './support/SupportModal'
+
 export {
   AddUserIcon,
   ArrowRightIcon,
@@ -197,4 +200,5 @@ export {
   PodiumIcon,
   ShareIcon,
   ShopIcon,
+  SupportModal,
 }
