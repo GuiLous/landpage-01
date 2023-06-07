@@ -1,14 +1,11 @@
 import { Button, Icon, Text } from '@chakra-ui/react'
-import { FaPlay } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
   BlockIcon,
-  ClockIcon,
   CloseIcon,
   Container,
   InviteModal,
-  JoystickIcon,
   LobbyLineup,
   LobbyModeSelector,
   MatchFoundModal,
@@ -83,8 +80,8 @@ export default function LobbyView() {
       <>
         {showPlayButton && (
           <Button
-            leftIcon={<FaPlay />}
             size="xl"
+            borderRadius={8}
             onClick={handleStartQueue}
             isDisabled={!isOwner || preMatch || match}
           >
@@ -97,15 +94,10 @@ export default function LobbyView() {
             ref={buttonRef}
             leftIcon={
               isButtonHovered ? (
-                <CloseIcon />
-              ) : (
-                <ClockIcon
-                  width="26px"
-                  height="26px"
-                  style={{ marginBottom: '2px' }}
-                />
-              )
+                <CloseIcon style={{ marginBottom: '2px' }} />
+              ) : null
             }
+            borderRadius={8}
             fontWeight="bold"
             size="xl"
             fontSize={20}
@@ -136,30 +128,36 @@ export default function LobbyView() {
 
         {match && (
           <Button
-            leftIcon={<JoystickIcon width="35px" height="35px" />}
             fontWeight="bold"
             size="xl"
             variant="queue"
+            letterSpacing={0}
+            borderRadius={8}
           >
             EM PARTIDA
           </Button>
         )}
 
         {showRestrictedButton && (
-          <Button size="xl" variant="restricted" isDisabled>
+          <Button size="xl" borderRadius={8} variant="restricted" isDisabled>
             <Container column align="center" gap={4}>
-              <Text fontSize={12} color="white" fontWeight="semiBold">
+              <Text
+                fontSize={14}
+                color="white"
+                fontWeight="semiBold"
+                letterSpacing={0}
+              >
                 GRUPO COM RESTRIÇÃO
               </Text>
 
               <Container justify="center" align="center" gap={4}>
-                <Icon as={BlockIcon} fill="white" w="24px" h="24px" />
+                <Icon as={BlockIcon} fill="white" w="16px" h="16px" mb="2px" />
                 <Text
-                  fontSize={28}
+                  fontSize={18}
                   fontWeight="bold"
-                  w="65px"
-                  mt="2px"
+                  w="45px"
                   lineHeight={1}
+                  display="flex"
                   as="span"
                 >
                   <Timer initialTime={lobby.restriction_countdown} reverse />
