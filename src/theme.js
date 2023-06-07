@@ -282,7 +282,7 @@ export default extendTheme({
         },
         secondary: {
           field: {
-            color: 'gray.700',
+            color: 'white',
             bg: 'gray.400',
             backgroundColor: 'gray.400',
             fontSize: '14px',
@@ -292,9 +292,8 @@ export default extendTheme({
             borderRadius: 4,
             minHeight: '42px',
             cursor: 'pointer',
-            border: '1px solid #6847FF',
+            border: '1px solid gray.400',
             _hover: {
-              color: 'gray.700',
               bg: 'gray.400',
               backgroundColor: 'gray.400',
             },
@@ -310,7 +309,8 @@ export default extendTheme({
               opacity: 1,
               bg: 'black.900',
               backgroundColor: 'black.900',
-              border: '1px solid #6847FF',
+              border: '1px solid #333333',
+              color: 'gray.700',
               _hover: {
                 bg: 'black.900',
                 backgroundColor: 'black.900',
