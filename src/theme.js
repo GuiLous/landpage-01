@@ -329,6 +329,34 @@ export default extendTheme({
         },
       },
     },
+    Textarea: {
+      variants: {
+        primary: {
+          bg: 'black.900',
+          color: 'gray.700',
+          border: '1px solid',
+          borderColor: 'gray.400',
+          borderRadius: 4,
+          resize: 'none',
+          minHeight: '98px',
+          lineHeight: 1,
+          p: 4,
+          _placeholder: {
+            color: 'gray.700',
+          },
+          _hover: {
+            borderColor: 'primary.400',
+          },
+          _focus: {
+            color: 'white',
+          },
+          _invalid: {
+            borderColor: 'danger.400',
+            color: 'danger.400',
+          },
+        },
+      },
+    },
     Form: {
       baseStyle: {
         helperText: {
