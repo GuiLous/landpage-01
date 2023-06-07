@@ -124,8 +124,8 @@ export default function LobbyView() {
             </Text>
 
             <Text
-              w="70px"
-              display={isButtonHovered ? 'none' : 'initial'}
+              w="65px"
+              display={isButtonHovered ? 'none' : 'flex'}
               fontSize={28}
               fontWeight="bold"
             >
