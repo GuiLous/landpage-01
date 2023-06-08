@@ -3,6 +3,10 @@
 	padding: 12px 18px;
 }
 
+.container:hover {
+	background-color: var(--chakra-colors-gray-400);
+}
+
 .actions {
 	max-width: 60px;
 }

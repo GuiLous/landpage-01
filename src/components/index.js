@@ -16,6 +16,7 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
+import InviteListGroup from './friends/InviteListGroup'
 import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Form
@@ -197,4 +198,5 @@ export {
   JoystickIcon,
   RefuseIcon,
   AcceptIcon,
+  InviteListGroup,
 }
