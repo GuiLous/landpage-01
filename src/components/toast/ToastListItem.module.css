@@ -19,7 +19,7 @@
 		rgba(104, 71, 255, 0) 50%
 	);
 	border-radius: 4px;
-	padding: 15px;
+	padding: 14px;
 }
 
 .container.success .containerWrapper {
@@ -58,7 +58,7 @@
 
 .closeBtn {
 	cursor: pointer;
-	font-size: 15px;
+	font-size: 10px;
 	min-height: 100%;
 	transition: opacity 100ms linear;
 }

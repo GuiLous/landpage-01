@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
 - Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
 - Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
 - Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
