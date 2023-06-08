@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Container, Sidebar } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import MatchReducer from '@slices/MatchSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
@@ -16,6 +17,9 @@ export default {
     collapsed: { control: 'boolean' },
     collapsable: { control: 'boolean' },
     userLevel: { control: { type: 'range', min: 0, max: 50 } },
+    isInQueue: { control: 'boolean' },
+    isInMatch: { control: 'boolean' },
+    isRestricted: { control: 'boolean' },
   },
   args: {
     unreadInvites: 0,
@@ -23,6 +27,9 @@ export default {
     collapsed: true,
     collapsable: true,
     userLevel: 0,
+    isInQueue: false,
+    isInMatch: false,
+    isRestricted: false,
   },
 }
 
@@ -38,6 +45,11 @@ export const Default = {
             'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
         },
         username: 'Username',
+        lobby: {
+          queue: props.isInQueue,
+          queue_time: 300,
+          restriction_countdown: props.isRestricted ? 300 : null,
+        },
       },
     }
 
@@ -45,6 +57,11 @@ export const Default = {
       received: [],
       sent: [],
       unread: props.unreadInvites,
+    }
+
+    const match = {
+      preMatch: null,
+      match: props.isInMatch,
     }
 
     const notifications = Array.from(
@@ -56,8 +73,9 @@ export const Default = {
         user: UserReducer,
         notifications: NotificationReducer,
         invites: InviteReducer,
+        match: MatchReducer,
       },
-      preloadedState: { user, notifications, invites },
+      preloadedState: { user, notifications, invites, match },
     })
 
     return (
