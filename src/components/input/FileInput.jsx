@@ -1,32 +1,43 @@
-import { Box, Image, Input, Text } from '@chakra-ui/react';
-import { useState } from 'react';
+import { Box, Image, Input, Text } from '@chakra-ui/react'
+import { useState } from 'react'
 
-import uploadImg from '@assets/images/upload.png';
+import uploadImg from '@assets/images/upload.png'
 
-import { Container } from '@components';
+import { Container } from '@components'
 
-import style from './FileInput.module.css';
+import style from './FileInput.module.css'
 
-export default function FileInput({ setFile }) {
+export default function FileInput({
+  files,
+  setFiles,
+  isSingleFile = false,
+  setValue,
+}) {
+  const [isDragging, setIsDragging] = useState(false)
 
-  const [isDragging, setIsDragging] = useState(false);
+  const handleFileChange = (event) => {
+    const newFiles = event.target.files
+    setValue('files', [...files, ...newFiles])
+    setFiles([...files, ...newFiles])
+  }
 
   const handleDrop = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-    const droppedFile = e.dataTransfer.files[0];
-    setFile(droppedFile);
-  };
+    e.preventDefault()
+    setIsDragging(false)
+    const droppedFiles = e.dataTransfer.files
+    setValue('files', [...files, ...droppedFiles])
+    setFiles([...files, ...droppedFiles])
+  }
 
   const handleDragEnter = (e) => {
-    e.preventDefault();
-    setIsDragging(true);
-  };
+    e.preventDefault()
+    setIsDragging(true)
+  }
 
   const handleDragLeave = (e) => {
-    e.preventDefault();
-    setIsDragging(false);
-  };
+    e.preventDefault()
+    setIsDragging(false)
+  }
 
   return (
     <Box
@@ -44,6 +55,8 @@ export default function FileInput({ setFile }) {
         h="full"
         cursor="pointer"
         label=""
+        onChange={handleFileChange}
+        multiple={!isSingleFile}
       />
 
       <Container className={style.content} column gap={16}>
@@ -52,7 +65,13 @@ export default function FileInput({ setFile }) {
         </Container>
 
         <Container fitContent gap={14} column align="center" justify="center">
-          <Text fontSize={12} fontWeight="regular" lineHeight={1} color="gray.700" as="span">
+          <Text
+            fontSize={12}
+            fontWeight="regular"
+            lineHeight={1}
+            color="gray.700"
+            as="span"
+          >
             Solte os arquivos aqui ou{' '}
             <Text fontWeight="semiBold" color="primary.400" as="span">
               Procure
@@ -60,21 +79,32 @@ export default function FileInput({ setFile }) {
           </Text>
 
           <Container column gap={8} align="center" justify="center">
-            <Text fontSize={10} lineHeight={1} fontWeight="regular" color="gray.700" as="span">
+            <Text
+              fontSize={10}
+              lineHeight={1}
+              fontWeight="regular"
+              color="gray.700"
+              as="span"
+            >
               Arquivos suportados:{' '}
               <Text fontWeight="medium" as="span">
                 JPG, PNG, GIF, PDF
               </Text>
             </Text>
 
-            <Text fontSize={10} lineHeight={1} fontWeight="regular" color="gray.700" as="span">
+            <Text
+              fontSize={10}
+              lineHeight={1}
+              fontWeight="regular"
+              color="gray.700"
+              as="span"
+            >
               Tamanho máximo:{' '}
               <Text fontWeight="medium" as="span">
                 3MB
               </Text>
             </Text>
           </Container>
-
         </Container>
       </Container>
     </Box>
