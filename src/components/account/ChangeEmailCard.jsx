@@ -131,20 +131,16 @@ export default function ChangeEmailCard() {
               autoFocus
               variant="secondary"
               value={email}
-              pl={hasErrors() && '15px'}
-              border={hasErrors() && email !== '' ? '1px solid #F63535' : ''}
               _focus={
                 email === user.email || email === ''
                   ? {
-                      border: '1px solid #999999',
-                      pl: '15px',
+                      border: '1px solid',
+                      borderColor: 'primary.400',
                     }
                   : {
-                      border:
-                        hasErrors() && email !== ''
-                          ? '1px solid #F63535'
-                          : '1px solid #6BE400',
-                      pl: '15px',
+                      border: '1px solid',
+                      borderColor:
+                        hasErrors() && email !== '' ? 'danger.400' : 'success',
                     }
               }
               disabled={!isEditing}

@@ -63,10 +63,6 @@
 	transition: opacity 100ms linear;
 }
 
-.closeBtn:hover {
-	opacity: 1;
-}
-
 .countdownBar {
 	animation-name: progress;
 	animation-timing-function: linear;
