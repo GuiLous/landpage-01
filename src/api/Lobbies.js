@@ -16,6 +16,14 @@ export const LobbiesAPI = {
       accept: true,
     })
   },
+
+  async createInvite(token, lobby_id, from_user_id, to_user_id) {
+    return await BaseAPI.create('lobbies/invites/', token, {
+      lobby_id: lobby_id,
+      from_user_id: from_user_id,
+      to_user_id: to_user_id,
+    })
+  },
 }
 
 export default LobbiesAPI

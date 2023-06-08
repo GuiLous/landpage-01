@@ -2,7 +2,7 @@ import { Avatar, Icon, Text } from '@chakra-ui/react'
 import { BsPersonFillCheck } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { MatchmakingAPI } from '@api'
+import { LobbiesAPI } from '@api'
 import { Container, GroupAddIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { StorageService } from '@services'
@@ -34,9 +34,10 @@ export default function FriendListGroupItem({
   const handleInvite = async () => {
     if (!isAvailable || alreadyInvited || alreadyOnTeam) return
 
-    const response = await MatchmakingAPI.lobbyInvite(
+    const response = await LobbiesAPI.createInvite(
       userToken,
       user.account.lobby.id,
+      user.id,
       id
     )
 

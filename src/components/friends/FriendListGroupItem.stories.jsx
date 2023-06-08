@@ -27,11 +27,14 @@ export default {
   parameters: {
     mockData: [
       {
-        url: 'http://localhost:8000/api/mm/lobby/1/invite-player/2/',
+        url: 'http://localhost:8000/api/lobbies/invites/',
         method: 'POST',
         status: 200,
         response: {
-          to_player: { id: 2 },
+          id: 2,
+          lobby_id: 1,
+          from_player: { user_id: 1 },
+          to_player: { user_id: 2 },
         },
       },
     ],
