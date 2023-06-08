@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { LobbiesAPI } from '@api'
 import { AcceptIcon, Container, RefuseIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
+import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
 import style from './InviteListGroupItem.module.css'
@@ -16,9 +17,10 @@ export default function InviteListGroupItem({
 }) {
   const humanStatus = useHumanizeStatus(status)
   const dispatch = useDispatch()
+  const userToken = StorageService.get('token')
 
   const handleAccept = async () => {
-    const response = await LobbiesAPI.acceptInvite()
+    const response = await LobbiesAPI.acceptInvite(userToken, invite_id)
 
     if (response.errorMsg) {
       dispatch(
@@ -32,7 +34,7 @@ export default function InviteListGroupItem({
   }
 
   const handleRefuse = async () => {
-    const response = await LobbiesAPI.refuseInvite()
+    const response = await LobbiesAPI.refuseInvite(userToken, invite_id)
 
     if (response.errorMsg) {
       dispatch(
