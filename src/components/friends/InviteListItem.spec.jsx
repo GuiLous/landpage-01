@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
 
-import { InviteListItem } from '@components'
+import { InviteListGroupItem } from '@components'
 
-describe('InviteListItem Component', () => {
+describe('InviteListGroupItem Component', () => {
   it('should render correctly', () => {
-    render(<InviteListItem />)
+    render(<InviteListGroupItem />)
     expect(screen.getByText('')).toBeInTheDocument()
   })
 })

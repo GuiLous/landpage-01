@@ -6,9 +6,9 @@ import { AcceptIcon, Container, RefuseIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { addToast } from '@slices/AppSlice'
 
-import style from './InviteListItem.module.css'
+import style from './InviteListGroupItem.module.css'
 
-export default function InviteListItem({
+export default function InviteListGroupItem({
   invite_id,
   avatar,
   status,

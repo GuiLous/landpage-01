@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 
-import { InviteListItem } from '@components'
+import { InviteListGroupItem } from '@components'
 import AppReducer from '@slices/AppSlice'
 
 export default {
-  title: 'Friends/Invites/InviteListItem',
-  component: InviteListItem,
+  title: 'Friends/Invites/InviteListGroupItem',
+  component: InviteListGroupItem,
   argTypes: {
     status: {
       control: 'select',
@@ -47,7 +47,7 @@ const store = configureStore({
 export const Default = {
   render: (props) => (
     <Provider store={store}>
-      <InviteListItem {...props} />
+      <InviteListGroupItem {...props} />
     </Provider>
   ),
 }

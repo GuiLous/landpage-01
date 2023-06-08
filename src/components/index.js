@@ -16,7 +16,7 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
-import InviteListItem from './friends/InviteListItem'
+import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -119,7 +119,7 @@ export {
   Container,
   FakeSigninForm,
   FriendListUser,
-  InviteListItem,
+  InviteListGroupItem,
   InviteModal,
   Footer,
   Input,
