@@ -7,8 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [5abd121 - 5/6/2023]
-
 ### Added
 
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
@@ -17,6 +15,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado ícones `ClockIcon` e `JoystickIcon`.
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
+
+### Changed
+
+- Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
+- Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
+- Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
+- Alterado `SideBar` para mostrar as notificações não lidas vindo da const `notificationsNotRead` [#268](https://github.com/3C-gg/reload-frontend/issues/268).
+- Alterado path do ícone `BlockIcon`.
+- Alterado css da `SideBar` no `ProfileLayout` que estava bugando o clique nos links na rota `/conta`.
+- Alterado e adicionado variantes do botão `JOGAR` para ficar igual ao design [#266](https://github.com/3C-gg/reload-frontend/issues/266).
+- Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
+- Alterado função `read` no componente `NotificationList` para não fazer requisição caso a notificação já tenha sido lida.
+- Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223).
+- Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
+
+## [5abd121 - 5/6/2023]
+
+### Added
+
 - Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
 - Adicionado método `delete` na interface de AccountsAPI.
 - Adicionado método `updateIsActive` na interface de AccountsAPI.
@@ -31,17 +48,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
-- Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
-- Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
-- Alterado `SideBar` para mostrar as notificações não lidas vindo da const `notificationsNotRead` [#268](https://github.com/3C-gg/reload-frontend/issues/268).
-- Alterado path do ícone `BlockIcon`.
-- Alterado css da `SideBar` no `ProfileLayout` que estava bugando o clique nos links na rota `/conta`.
-- Alterado e adicionado variantes do botão `JOGAR` para ficar igual ao design [#266](https://github.com/3C-gg/reload-frontend/issues/266).
-- Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
-- Alterado função `read` no componente `NotificationList` para não fazer requisição caso a notificação já tenha sido lida.
-- Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223). 
-- Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
