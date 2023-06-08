@@ -11,6 +11,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado estilização para o `Textarea` no tema do chakra ui.
+- Criado componente `FileInput`.
 - Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135)
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
