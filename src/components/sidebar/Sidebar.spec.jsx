@@ -58,7 +58,25 @@ const server = setupServer(
 
   rest.get('http://localhost:8000/api/notifications/', (req, res, ctx) =>
     res(ctx.json([]))
-  )
+  ),
+
+  rest.get('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: '100:1',
+          from_player: {
+            avatar: {
+              medium:
+                'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+            },
+            status: 'online',
+            username: `User 100`,
+          },
+        },
+      ])
+    )
+  })
 )
 
 beforeAll(() => server.listen())
