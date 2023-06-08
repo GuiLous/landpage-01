@@ -12,28 +12,44 @@ import {
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { FriendsAPI } from '@api'
-import { Container, FriendListGroup, Scrollbars, SearchIcon } from '@components'
+import { FriendsAPI, LobbiesAPI } from '@api'
+import {
+  Container,
+  FriendListGroup,
+  InviteListGroup,
+  Scrollbars,
+  SearchIcon,
+} from '@components'
 import { StorageService } from '@services'
 import { initFriends } from '@slices/FriendSlice'
+import { initInvites } from '@slices/InviteSlice'
 
 import style from './FriendList.module.css'
 
 export default function FriendList({ isOpen, onClose }) {
   useEffect(() => {
-    const fetch = async () => {
+    const fetchFriends = async () => {
       const userToken = StorageService.get('token')
 
       const response = await FriendsAPI.list(userToken)
       if (response) dispatch(initFriends(response))
     }
 
-    fetch()
+    const fetchInvites = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await LobbiesAPI.listReceivedInvites(userToken)
+      if (!response.errorMsg) dispatch(initInvites(response))
+    }
+
+    fetchFriends()
+    fetchInvites()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const user = useSelector((state) => state.user)
   const friends = useSelector((state) => state.friends)
+  const invites = useSelector((state) => state.invites)
   const [filter, setFilter] = useState('')
   const dispatch = useDispatch()
 
@@ -60,6 +76,12 @@ export default function FriendList({ isOpen, onClose }) {
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
+  )
+
+  const filteredInvites = invites.list.filter(
+    (invite) =>
+      filter === '' ||
+      invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const updateFilter = (event) => setFilter(event.target.value)
@@ -133,6 +155,17 @@ export default function FriendList({ isOpen, onClose }) {
 
           <Container className={style.groups} column>
             <Scrollbars autoHide>
+              {invites.list.length > 0 && (
+                <Container className={style.group}>
+                  <InviteListGroup
+                    title="Convites"
+                    items={filteredInvites}
+                    open
+                    unread={invites.unreadCount > 0}
+                  />
+                </Container>
+              )}
+
               {teamingFriends.length > 0 && (
                 <Container className={style.group}>
                   <FriendListGroup

@@ -50,8 +50,7 @@ const user = {
 }
 
 const invites = {
-  received: [],
-  sent: [],
+  list: [],
   unread: 0,
 }
 

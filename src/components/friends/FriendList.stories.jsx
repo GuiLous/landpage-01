@@ -156,6 +156,24 @@ export default {
           to_player: { id: 2 },
         },
       },
+      {
+        url: 'http://localhost:8000/api/lobbies/invites/?received=true',
+        method: 'GET',
+        status: 200,
+        response: [
+          {
+            id: '100:1',
+            from_player: {
+              avatar: {
+                medium:
+                  'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+              },
+              status: 'online',
+              username: `User 100`,
+            },
+          },
+        ],
+      },
     ],
   },
 }
@@ -180,8 +198,7 @@ const friends = {
 }
 
 const invites = {
-  received: [],
-  sent: [],
+  list: [],
   unread: 0,
 }
 
@@ -197,7 +214,7 @@ const store = configureStore({
 export const Default = {
   render: (props) => (
     <Provider store={store}>
-      <Container style={{ height: '90vh' }} column>
+      <Container style={{ height: '100vh' }} column>
         <FriendList {...props} />
       </Container>
     </Provider>

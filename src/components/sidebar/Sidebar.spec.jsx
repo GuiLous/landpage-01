@@ -84,8 +84,7 @@ describe('Sidebar Component', () => {
   }
 
   const invites = {
-    received: [],
-    sent: [],
+    list: [],
     unread: 0,
   }
 

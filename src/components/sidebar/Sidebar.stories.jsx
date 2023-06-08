@@ -200,8 +200,7 @@ export const Default = {
     }
 
     const invites = {
-      received: [],
-      sent: [],
+      list: [],
       unread: props.unreadInvites,
     }
 
