@@ -6,5 +6,5 @@ export default {
 }
 
 export const Default = {
-  render: (props) => <FileInput {...props} />
+  render: (props) => <FileInput {...props} />,
 }
