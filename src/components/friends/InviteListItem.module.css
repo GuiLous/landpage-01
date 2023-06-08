@@ -1,0 +1,20 @@
+.container {
+	background-color: var(--chakra-colors-gray-800);
+	padding: 12px 18px;
+}
+
+.actions {
+	max-width: 60px;
+}
+
+.actionBtn {
+	cursor: pointer;
+	height: 100%;
+	opacity: .8;
+	padding: 0 8px;
+	transition: opacity 100ms linear;
+}
+
+.actionBtn:hover {
+	opacity: 1;
+}
