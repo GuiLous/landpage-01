@@ -1,14 +1,50 @@
-import { Text, Textarea } from '@chakra-ui/react'
+import { Button, Text, Textarea } from '@chakra-ui/react'
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import * as yup from 'yup'
 
 import { Container, FileInput, Modal } from '@components'
 
-export default function SupportModal({ isOpenModal, handleClose }) {
-  const [file, setFile] = useState(null)
-  console.log('🚀 - file:', file)
+let formSchema = yup.object({
+  description: yup.string().required(),
+  files: yup.array().of(
+    yup
+      .mixed()
+      .test(
+        'fileSize',
+        'File size is too large',
+        (value) => value && value.size <= 3 * 1024 * 1024 // 3MB
+      )
+      .test(
+        'fileFormat',
+        'Unsupported Format',
+        (value) =>
+          value &&
+          ['image/jpg', 'image/gif', 'image/png', 'application/pdf'].includes(
+            value.type
+          )
+      )
+  ),
+})
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+export default function SupportModal({ isOpenModal, handleClose }) {
+  const [files, setFiles] = useState([])
+  console.log('🚀 - files:', files)
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(formSchema),
+  })
+  console.log('🚀 - errors:', errors)
+
+  const SubmitForm = (data) => {
+    console.log('data', data)
   }
 
   return (
@@ -17,7 +53,7 @@ export default function SupportModal({ isOpenModal, handleClose }) {
       title="SUPORTE RELOAD CLUB"
       onClose={handleClose}
       headerMarginBottom={24}
-      size="2xl"
+      size="xl"
     >
       <Container
         justify="center"
@@ -32,7 +68,7 @@ export default function SupportModal({ isOpenModal, handleClose }) {
 
         <form
           method="POST"
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(SubmitForm)}
           style={{
             width: '100%',
             display: 'flex',
@@ -41,10 +77,30 @@ export default function SupportModal({ isOpenModal, handleClose }) {
           }}
         >
           <Container column gap={14}>
-            <Textarea placeholder="Descrição" variant="primary" />
+            <Textarea
+              placeholder="Descrição"
+              variant="primary"
+              {...register('description')}
+            />
 
-            <FileInput setFile={setFile} />
+            <Controller
+              name="files"
+              control={control}
+              defaultValue={[]}
+              render={({ field: { onChange } }) => (
+                <FileInput
+                  files={files}
+                  setFiles={setFiles}
+                  register={register}
+                  setValue={setValue}
+                />
+              )}
+            />
           </Container>
+
+          <Button minH="42px" mt="18px" type="submit">
+            ENVIAR
+          </Button>
         </form>
       </Container>
     </Modal>
