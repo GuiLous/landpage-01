@@ -16,6 +16,7 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
+import InviteListItem from './friends/InviteListItem'
 
 // Form
 import FakeSigninForm from './form/FakeSigninForm'
@@ -23,6 +24,7 @@ import SteamSignin from './form/SteamSignin'
 import Input from './input/Input'
 
 // Icons
+import AcceptIcon from './icons/AcceptIcon'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
@@ -49,6 +51,7 @@ import PencilIcon from './icons/PencilIcon'
 import PlayIcon from './icons/PlayIcon'
 import PlusIcon from './icons/PlusIcon'
 import PodiumIcon from './icons/PodiumIcon'
+import RefuseIcon from './icons/RefuseIcon'
 import SearchIcon from './icons/SearchIcon'
 import SettingsIcon from './icons/SettingsIcon'
 import ShareIcon from './icons/ShareIcon'
@@ -71,7 +74,6 @@ import MatchFoundModal from './lobby/MatchFoundModal'
 
 // User
 import FriendListUser from './user/FriendListUser'
-import InviteListItem from './user/InviteListItem'
 import LevelBadge from './user/LevelBadge'
 import UserCard from './user/UserCard'
 import UserCardMini from './user/UserCardMini'
@@ -193,4 +195,6 @@ export {
   ShopIcon,
   ClockIcon,
   JoystickIcon,
+  RefuseIcon,
+  AcceptIcon,
 }
