@@ -42,8 +42,8 @@ export const BaseAPI = {
     return await this.call(endpoint, token, 'post', payload)
   },
 
-  async delete(endpoint, token) {
-    return await this.call(endpoint, token, 'delete')
+  async delete(endpoint, token, payload) {
+    return await this.call(endpoint, token, 'delete', payload)
   },
 }
 
