@@ -7,12 +7,7 @@ import { Container } from '@components'
 
 import style from './FileInput.module.css'
 
-export default function FileInput({
-  files,
-  setFiles,
-  isSingleFile = false,
-  setValue,
-}) {
+export default function FileInput({ files, isSingleFile = false, setValue }) {
   const [isDragging, setIsDragging] = useState(false)
 
   const maxFiles = 4
@@ -43,7 +38,6 @@ export default function FileInput({
 
     if (canUploadFile && filteredFiles.length > 0) {
       setValue('files', [...files, ...filteredFiles])
-      setFiles([...files, ...filteredFiles])
     }
   }
 
@@ -61,7 +55,6 @@ export default function FileInput({
 
     if (canUploadFile && filteredFiles.length > 0) {
       setValue('files', [...files, ...filteredFiles])
-      setFiles([...files, ...filteredFiles])
     }
   }
 
