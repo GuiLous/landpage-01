@@ -56,6 +56,13 @@ export const HttpService = {
               field: json.detail[0].loc[2],
               error: json.detail[0].msg,
             },
+            fieldsErrors: json.detail.reduce((acc, currentValue) => {
+              const field = currentValue.loc[currentValue.loc.length - 1]
+              const errorMsg = currentValue.msg
+
+              acc[field] = errorMsg
+              return acc
+            }, {}),
           }
         } else return { ...json, errorMsg: json.detail }
       } catch {
