@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { Sidebar } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import MatchReducer from '@slices/MatchSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
@@ -20,6 +21,9 @@ describe('Sidebar Component', () => {
           'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
       },
       username: 'Username',
+      lobby: {
+        queue: null,
+      },
     },
   }
 
@@ -29,6 +33,11 @@ describe('Sidebar Component', () => {
     unread: 0,
   }
 
+  const match = {
+    preMatch: null,
+    match: null,
+  }
+
   const notifications = []
 
   const store = configureStore({
@@ -36,8 +45,9 @@ describe('Sidebar Component', () => {
       user: UserReducer,
       notifications: NotificationReducer,
       invites: InviteReducer,
+      match: MatchReducer,
     },
-    preloadedState: { user, notifications, invites },
+    preloadedState: { user, notifications, invites, match },
   })
 
   it('should respect collapsable prop', async () => {

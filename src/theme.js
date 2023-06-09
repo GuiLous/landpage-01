@@ -43,6 +43,16 @@ export default extendTheme({
         },
       },
       variants: {
+        queue: {
+          bg: 'primary.500',
+          backgroundColor: 'primary.500',
+          cursor: 'pointer',
+          _hover: {
+            bg: 'primary.500',
+            backgroundColor: 'primary.500',
+          },
+        },
+
         secondary: {
           color: 'white',
           bg: 'transparent',
@@ -104,23 +114,29 @@ export default extendTheme({
         },
 
         restricted: {
-          bg: 'rgba(246, 53, 53, .8)',
-          backgroundColor: 'rgba(246, 53, 53, .8)',
-          borderColor: 'rgba(246, 53, 53, .8)',
+          bg: 'danger.400',
+          backgroundColor: 'danger.400',
+          borderColor: 'danger.400',
           color: 'white',
           _disabled: {
-            bg: 'rgba(246, 53, 53, .8)',
-            backgroundColor: 'rgba(246, 53, 53, .8)',
+            bg: 'danger.400',
+            backgroundColor: 'danger.400',
             color: 'white',
             opacity: 1,
           },
+          _active: {
+            bg: 'danger.600',
+            backgroundColor: 'danger.600',
+            borderColor: 'danger.600',
+            color: 'white',
+          },
           _hover: {
-            bg: 'rgba(246, 53, 53, .8)',
-            backgroundColor: 'rgba(246, 53, 53, .8)',
+            bg: 'danger.400',
+            backgroundColor: 'danger.400',
             color: 'white',
             _disabled: {
-              bg: 'rgba(246, 53, 53, .8)',
-              backgroundColor: 'rgba(246, 53, 53, .8)',
+              bg: 'danger.400',
+              backgroundColor: 'danger.400',
               color: 'white',
             },
           },
@@ -292,7 +308,7 @@ export default extendTheme({
         },
         secondary: {
           field: {
-            color: 'gray.700',
+            color: 'white',
             bg: 'gray.400',
             backgroundColor: 'gray.400',
             fontSize: '14px',
@@ -302,8 +318,8 @@ export default extendTheme({
             borderRadius: 4,
             minHeight: '42px',
             cursor: 'pointer',
+            border: '1px solid gray.400',
             _hover: {
-              color: 'gray.700',
               bg: 'gray.400',
               backgroundColor: 'gray.400',
             },
@@ -311,7 +327,7 @@ export default extendTheme({
               color: 'gray.700',
               bg: 'gray.400',
               backgroundColor: 'gray.400',
-              border: '1px solid #999999',
+              border: '1px solid #6847FF',
               pl: '15px',
             },
             _disabled: {
@@ -319,6 +335,8 @@ export default extendTheme({
               opacity: 1,
               bg: 'black.900',
               backgroundColor: 'black.900',
+              border: '1px solid #333333',
+              color: 'gray.700',
               _hover: {
                 bg: 'black.900',
                 backgroundColor: 'black.900',
@@ -412,12 +430,8 @@ export default extendTheme({
           position: 'relative',
         },
         closeButton: {
-          color: '#F5F6F8',
-          opacity: 0.5,
+          color: '#fff',
           fontSize: '18px',
-          _hover: {
-            opacity: 1,
-          },
         },
         overlay: {
           bg: 'rgba(0, 0, 0, .85)',
@@ -439,12 +453,8 @@ export default extendTheme({
           position: 'relative',
         },
         closeButton: {
-          color: '#F5F6F8',
-          opacity: 0.5,
+          color: '#fff',
           fontSize: '18px',
-          _hover: {
-            opacity: 1,
-          },
         },
         header: {
           textTransform: 'uppercase',

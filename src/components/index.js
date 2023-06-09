@@ -37,12 +37,14 @@ import BlockIcon from './icons/BlockIcon'
 import CheckCircleIcon from './icons/CheckCircleIcon'
 import CheckIcon from './icons/CheckIcon'
 import ClipboardIcon from './icons/ClipboardIcon'
+import ClockIcon from './icons/ClockIcon'
 import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import ExitIcon from './icons/ExitIcon'
 import FriendsIcon from './icons/FriendsIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
+import JoystickIcon from './icons/JoystickIcon'
 import LockIcon from './icons/LockIcon'
 import MessageIcon from './icons/MessageIcon'
 import PencilIcon from './icons/PencilIcon'
@@ -134,6 +136,7 @@ export {
   CheckCircleIcon,
   CheckIcon,
   ClipboardIcon,
+  ClockIcon,
   CloseCircleIcon,
   CloseIcon,
   ConfirmationContent,
@@ -161,6 +164,7 @@ export {
   Invite,
   InviteListItem,
   InviteModal,
+  JoystickIcon,
   LevelBadge,
   LevelProgressBar,
   LevelStatsCard,
@@ -210,5 +214,6 @@ export {
   UserCardMini,
   UserIcon,
   UserStatus,
-  WarningCircleIcon,
+  WarningCircleIcon
 }
+

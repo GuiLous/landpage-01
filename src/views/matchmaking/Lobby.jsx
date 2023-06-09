@@ -1,7 +1,8 @@
-import { Button } from '@chakra-ui/react'
+import { Button, Icon, Text } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+  BlockIcon,
   CloseIcon,
   Container,
   InviteModal,
@@ -15,7 +16,7 @@ import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/ToastSlice'
 import { removeRestartQueue } from '@slices/UserSlice'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import style from './Lobby.module.css'
 
 export default function LobbyView() {
@@ -23,7 +24,151 @@ export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const preMatch = useSelector((state) => state.match.preMatch)
   const match = useSelector((state) => state.match.match)
+
+  const buttonRef = useRef()
+
   const [inviteModalVisible, setInviteModalVisible] = useState(false)
+  const [isButtonHovered, setIsButtonHovered] = useState(false)
+
+  const lobby = user && user.account.lobby
+
+  const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
+  const owner = lobby.players.filter(
+    (player) => player.id === lobby.owner_id
+  )[0]
+  const isOwner = userPlayer.id === owner.id
+  const is1v1 = lobby.max_players === 1
+
+  const handleQueue = async (action) => {
+    if (!isOwner || preMatch || match) return
+
+    const token = StorageService.get('token')
+    let response
+
+    response = await HttpService.patch(
+      `mm/lobby/${lobby.id}/${action}-queue/`,
+      token
+    )
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+    }
+  }
+  const handleCancelQueue = () => handleQueue('cancel')
+  const handleStartQueue = () => {
+    setIsButtonHovered(false)
+    handleQueue('start')
+  }
+  const handleInviteModalShow = () => setInviteModalVisible(true)
+  const handleInviteModalClose = () => setInviteModalVisible(false)
+
+  const renderButtons = () => {
+    const showPlayButton =
+      !lobby.queue && !match && !lobby.restriction_countdown
+
+    const showQueueButton =
+      lobby.queue && !match && !lobby.restriction_countdown
+
+    const showRestrictedButton = lobby.restriction_countdown && !match
+
+    return (
+      <>
+        {showPlayButton && (
+          <Button
+            size="xl"
+            borderRadius={8}
+            onClick={handleStartQueue}
+            isDisabled={!isOwner || preMatch || match}
+          >
+            Jogar
+          </Button>
+        )}
+
+        {showQueueButton && (
+          <Button
+            ref={buttonRef}
+            leftIcon={
+              isButtonHovered ? (
+                <CloseIcon style={{ marginBottom: '2px' }} />
+              ) : null
+            }
+            borderRadius={8}
+            fontWeight="bold"
+            size="xl"
+            fontSize={20}
+            onClick={isButtonHovered ? handleCancelQueue : null}
+            variant={isButtonHovered ? 'restricted' : 'queue'}
+          >
+            <Text
+              fontSize={26}
+              fontWeight="bold"
+              color="white"
+              letterSpacing={0}
+              lineHeight={1}
+              display={isButtonHovered ? 'initial' : 'none'}
+            >
+              CANCELAR
+            </Text>
+
+            <Text
+              w="65px"
+              display={isButtonHovered ? 'none' : 'flex'}
+              fontSize={28}
+              fontWeight="bold"
+            >
+              <Timer initialTime={lobby.queue_time} stop={preMatch} />
+            </Text>
+          </Button>
+        )}
+
+        {match && (
+          <Button
+            fontWeight="bold"
+            size="xl"
+            variant="queue"
+            letterSpacing={0}
+            borderRadius={8}
+          >
+            EM PARTIDA
+          </Button>
+        )}
+
+        {showRestrictedButton && (
+          <Button size="xl" borderRadius={8} variant="restricted" isDisabled>
+            <Container column align="center" gap={4}>
+              <Text
+                fontSize={14}
+                color="white"
+                fontWeight="semiBold"
+                letterSpacing={0}
+              >
+                GRUPO COM RESTRIÇÃO
+              </Text>
+
+              <Container justify="center" align="center" gap={4}>
+                <Icon as={BlockIcon} fill="white" w="16px" h="16px" mb="2px" />
+                <Text
+                  fontSize={18}
+                  fontWeight="bold"
+                  w="45px"
+                  lineHeight={1}
+                  display="flex"
+                  as="span"
+                >
+                  <Timer initialTime={lobby.restriction_countdown} reverse />
+                </Text>
+              </Container>
+            </Container>
+          </Button>
+        )}
+      </>
+    )
+  }
 
   useEffect(() => {
     const lockIn = async () => {
@@ -77,38 +222,24 @@ export default function LobbyView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
 
-  const lobby = user && user.account.lobby
-  const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
-  const owner = lobby.players.filter(
-    (player) => player.id === lobby.owner_id
-  )[0]
-  const isOwner = userPlayer.id === owner.id
-  const is1v1 = lobby.max_players === 1
+  useEffect(() => {
+    if (buttonRef.current) {
+      const button = buttonRef.current
 
-  const handleQueue = async (action) => {
-    if (!isOwner || preMatch || match) return
+      const handleMouseEnter = () => {
+        setIsButtonHovered(true)
+      }
 
-    const token = StorageService.get('token')
-    let response
+      const handleMouseLeave = () => {
+        setIsButtonHovered(false)
+      }
 
-    response = await HttpService.patch(
-      `mm/lobby/${lobby.id}/${action}-queue/`,
-      token
-    )
-    if (response.errorMsg) {
-      dispatch(
-        addToast({
-          title: 'Algo saiu errado...',
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      button.addEventListener('mouseenter', handleMouseEnter)
+      button.addEventListener('mouseleave', handleMouseLeave)
     }
-  }
-  const handleCancelQueue = () => handleQueue('cancel')
-  const handleStartQueue = () => handleQueue('start')
-  const handleInviteModalShow = () => setInviteModalVisible(true)
-  const handleInviteModalClose = () => setInviteModalVisible(false)
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [buttonRef.current, lobby.queue])
 
   return (
     <MainLayout>
@@ -151,43 +282,7 @@ export default function LobbyView() {
           fitContent
           className={style.actionBtns}
         >
-          {!lobby.queue && !lobby.restriction_countdown && (
-            <Button
-              onClick={handleStartQueue}
-              size="xl"
-              isDisabled={!isOwner || preMatch || match}
-            >
-              Jogar
-            </Button>
-          )}
-          {lobby.queue && !lobby.restriction_countdown && (
-            <Button
-              onClick={handleCancelQueue}
-              className={style.cancelQueueBtn}
-              size="xl"
-            >
-              <Container justify="center">
-                <Timer initialTime={lobby.queue_time} stop={preMatch} />
-              </Container>
-
-              <Container justify="end" className={style.cancelQueueBtnIcon}>
-                <CloseIcon />
-              </Container>
-            </Button>
-          )}
-          {lobby.restriction_countdown && (
-            <Button size="xl" variant="restricted" isDisabled>
-              <Container column>
-                <Container justify="center">
-                  <Timer initialTime={lobby.restriction_countdown} reverse />
-                </Container>
-
-                <Container justify="center" className={style.restrictedText}>
-                  Fila restringida
-                </Container>
-              </Container>
-            </Button>
-          )}
+          {renderButtons()}
         </Container>
       </Container>
     </MainLayout>
