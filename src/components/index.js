@@ -111,6 +111,7 @@ import InactivateAccountCard from './account/InactivateAccountCard'
 import Modal from './modal/Modal'
 
 // Support
+import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
 
 export {
@@ -203,4 +204,5 @@ export {
   ShopIcon,
   SupportModal,
   FileInput,
+  FileCard,
 }
