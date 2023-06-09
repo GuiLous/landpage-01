@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
-import { Container, FileInput, Modal } from '@components'
+import { Container, FileCard, FileInput, Modal } from '@components'
 
 let formSchema = yup.object({
   description: yup.string().required(),
@@ -21,6 +21,12 @@ export default function SupportModal({ isOpenModal, handleClose }) {
   } = useForm({
     resolver: yupResolver(formSchema),
   })
+
+  const onRemoveFiles = (fileName) => {
+    const filesFiltered = files.filter((file) => file.name !== fileName)
+
+    setFiles(filesFiltered)
+  }
 
   const SubmitForm = (data) => {
     console.log('data', data)
@@ -70,6 +76,20 @@ export default function SupportModal({ isOpenModal, handleClose }) {
               setValue={setValue}
             />
 
+            <Container
+              align="center"
+              justify="between"
+              gap={12}
+              style={{ flexWrap: 'wrap' }}
+            >
+              {files.map((file, index) => (
+                <FileCard
+                  key={index}
+                  file={file}
+                  onRemoveFiles={onRemoveFiles}
+                />
+              ))}
+            </Container>
           </Container>
 
           <Button minH="42px" mt="18px" type="submit">
