@@ -1,8 +1,6 @@
-import { Button, Text, Textarea } from '@chakra-ui/react'
-import { yupResolver } from '@hookform/resolvers/yup'
+import { Button, Text, Textarea, VStack } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 
 import { SupportAPI } from '@api'
 import {
@@ -14,11 +12,8 @@ import {
   Select,
 } from '@components'
 import { StorageService } from '@services'
-
-let formSchema = yup.object({
-  description: yup.string().required(),
-  subject: yup.string().required(),
-})
+import { addToast } from '@slices/ToastSlice'
+import { useDispatch } from 'react-redux'
 
 const options = [
   {
@@ -30,17 +25,14 @@ const options = [
   { value: 'Ajuda', label: 'Ajuda' },
 ]
 
-export default function SupportModal({ isOpen, onClose }) {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    control,
-    reset,
-    watch,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(formSchema),
+export default function SupportModal({ isOpen, setOpenSupport }) {
+  const dispatch = useDispatch()
+
+  const [fetching, setFetching] = useState(false)
+  const [formSent, setFormSent] = useState(false)
+  const [fieldsErrors, setFieldsErrors] = useState(null)
+
+  const { register, handleSubmit, setValue, control, reset, watch } = useForm({
     defaultValues: {
       description: '',
       subject: '',
@@ -49,11 +41,12 @@ export default function SupportModal({ isOpen, onClose }) {
   })
 
   const { description, files, subject } = watch()
-
   const canSubmit = description !== '' && subject !== ''
 
-  const [fetching, setFetching] = useState(false)
-  const [formSent, setFormSent] = useState(false)
+  const handleCloseModalSupport = () => {
+    reset()
+    setOpenSupport(false)
+  }
 
   const onRemoveFiles = (fileName) => {
     const filesFiltered = files.filter((file) => file.name !== fileName)
@@ -76,8 +69,19 @@ export default function SupportModal({ isOpen, onClose }) {
 
     const response = await SupportAPI.createTicket(userToken, formData)
 
-    if (response.errorMsg) {
-      console.log(response)
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
+      setFetching(false)
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          title: 'Algo saiu errado...',
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
@@ -90,7 +94,7 @@ export default function SupportModal({ isOpen, onClose }) {
     <Modal
       isOpen={isOpen}
       title="SUPORTE RELOAD CLUB"
-      onClose={onClose}
+      onClose={handleCloseModalSupport}
       headerMarginBottom={formSent ? 32 : 24}
       size="xl"
     >
@@ -119,18 +123,46 @@ export default function SupportModal({ isOpen, onClose }) {
             }}
           >
             <Container column gap={14}>
-              <Select
-                control={control}
-                options={options}
-                isInvalid={errors.subject}
-              />
+              <VStack alignItems="initial" w="100%">
+                <Select
+                  control={control}
+                  options={options}
+                  isInvalid={fieldsErrors?.subject}
+                />
 
-              <Textarea
-                isInvalid={errors.description}
-                placeholder="Descrição"
-                variant="primary"
-                {...register('description')}
-              />
+                {fieldsErrors?.subject && (
+                  <Text
+                    fontSize={12}
+                    color="danger.400"
+                    pl="5px"
+                    mt="12px"
+                    fontWeight="medium"
+                  >
+                    {fieldsErrors?.subject}
+                  </Text>
+                )}
+              </VStack>
+
+              <Container column>
+                <Textarea
+                  isInvalid={fieldsErrors?.description}
+                  placeholder="Descrição"
+                  variant="primary"
+                  {...register('description')}
+                />
+
+                {fieldsErrors?.description && (
+                  <Text
+                    fontSize={12}
+                    color="danger.400"
+                    pl="5px"
+                    mt="12px"
+                    fontWeight="medium"
+                  >
+                    {fieldsErrors?.description}
+                  </Text>
+                )}
+              </Container>
 
               <FileInput
                 files={files}
