@@ -66,10 +66,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     setOpenSupport(true)
   }
 
-  const handleCloseModalSupport = () => {
-    setOpenSupport(false)
-  }
-
   useEffect(() => {
     if (collapsable) setIsCollapsed(collapsed)
     else setIsCollapsed(false)
@@ -341,7 +337,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onClose={handleCloseDrawerNotifications}
       />
 
-      <SupportModal isOpen={openSupport} onClose={handleCloseModalSupport} />
+      <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />
     </>
   )
 }
