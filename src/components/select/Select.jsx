@@ -18,8 +18,8 @@ export default function Select({ options, control, isInvalid }) {
               border: isInvalid
                 ? '1px solid #F63535'
                 : state.isFocused
-                  ? '1px solid #6847FF'
-                  : '1px solid #333333',
+                ? '1px solid #6847FF'
+                : '1px solid #333333',
               minHeight: '42px',
               ':hover': {
                 borderColor: '#6847FF',
@@ -63,8 +63,8 @@ export default function Select({ options, control, isInvalid }) {
             }),
             input: (baseStyles) => ({
               ...baseStyles,
-              color: isInvalid ? '#F63535' : '#ffffff'
-            })
+              color: isInvalid ? '#F63535' : '#ffffff',
+            }),
           }}
           theme={(theme) => ({
             ...theme,
