@@ -52,12 +52,14 @@ export default function Select({ options, control, isInvalid }) {
               ...baseStyles,
               padding: '14px',
             }),
-            dropdownIndicator: (baseStyles) => ({
+            dropdownIndicator: (baseStyles, state) => ({
               ...baseStyles,
-              color: '#999999',
+              color: state.selectProps.menuIsOpen ? '#ffffff' : '#999999',
               ':hover': {
                 color: '#ffffff',
               },
+              transition: 'all .2s ease',
+              transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
             }),
           }}
           theme={(theme) => ({
