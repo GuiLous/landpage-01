@@ -2,13 +2,25 @@ import { Button, Text, Textarea } from '@chakra-ui/react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+
 import * as yup from 'yup'
 
-import { Container, FileCard, FileInput, Modal } from '@components'
+import { Container, FileCard, FileInput, Modal, Select } from '@components'
 
 let formSchema = yup.object({
   description: yup.string().required(),
+  subject: yup.string().required(),
 })
+
+const options = [
+  {
+    value: 'Relatar um bug - algo não está funcionando corretamente',
+    label: 'Relatar um bug - algo não está funcionando corretamente',
+  },
+  { value: 'Reportar um usuário', label: 'Reportar um usuário' },
+  { value: 'Sugestão de funcionalidade', label: 'Sugestão de funcionalidade' },
+  { value: 'Ajuda', label: 'Ajuda' },
+]
 
 export default function SupportModal({ isOpenModal, handleClose }) {
   const [files, setFiles] = useState([])
@@ -17,10 +29,12 @@ export default function SupportModal({ isOpenModal, handleClose }) {
     register,
     handleSubmit,
     setValue,
+    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
   })
+  console.log('🚀 - errors:', errors)
 
   const onRemoveFiles = (fileName) => {
     const filesFiltered = files.filter((file) => file.name !== fileName)
@@ -62,6 +76,14 @@ export default function SupportModal({ isOpenModal, handleClose }) {
           }}
         >
           <Container column gap={14}>
+            <Container style={{ display: 'block' }}>
+              <Select
+                control={control}
+                options={options}
+                isInvalid={errors.subject}
+              />
+            </Container>
+
             <Textarea
               isInvalid={errors.description}
               placeholder="Descrição"
