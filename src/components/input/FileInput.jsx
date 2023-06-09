@@ -15,18 +15,54 @@ export default function FileInput({
 }) {
   const [isDragging, setIsDragging] = useState(false)
 
+  const maxFiles = 4
+
+  const filterFileFormatAndSize = (newFiles) => {
+    const filteredFiles = []
+    const fileTypes = ['image/jpg', 'image/gif', 'image/png', 'application/pdf']
+    const maxFileSize = 3 * 1024 * 1024 //3MB
+
+    Array.from(newFiles).forEach((file) => {
+      if (fileTypes.includes(file.type) && file.size <= maxFileSize) {
+        filteredFiles.push(file)
+      }
+    })
+
+    return filteredFiles
+  }
+
   const handleFileChange = (event) => {
     const newFiles = event.target.files
-    setValue('files', [...files, ...newFiles])
-    setFiles([...files, ...newFiles])
+
+    const canUploadFile =
+      files.length <= maxFiles &&
+      newFiles.length <= maxFiles &&
+      files.length + newFiles.length <= maxFiles
+
+    const filteredFiles = filterFileFormatAndSize(newFiles)
+
+    if (canUploadFile) {
+      setValue('files', [...files, ...filteredFiles])
+      setFiles([...files, ...filteredFiles])
+    }
   }
 
   const handleDrop = (e) => {
     e.preventDefault()
     setIsDragging(false)
     const droppedFiles = e.dataTransfer.files
-    setValue('files', [...files, ...droppedFiles])
-    setFiles([...files, ...droppedFiles])
+
+    const canUploadFile =
+      files.length <= maxFiles &&
+      droppedFiles.length <= maxFiles &&
+      files.length + droppedFiles.length <= maxFiles
+
+    const filteredFiles = filterFileFormatAndSize(droppedFiles)
+
+    if (canUploadFile) {
+      setValue('files', [...files, ...filteredFiles])
+      setFiles([...files, ...filteredFiles])
+    }
   }
 
   const handleDragEnter = (e) => {
