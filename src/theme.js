@@ -23,13 +23,23 @@ export default extendTheme({
           bg: 'primary.300',
           backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'primary.300',
-            backgroundColor: 'primary.300',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
           },
         },
         _active: {
           bg: 'primary.600',
           backgroundColor: 'primary.600',
+        },
+        _disabled: {
+          backgroundColor: 'gray.400',
+          color: 'gray.700',
+          opacity: 1,
+          _hover: {
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
+          },
         },
       },
       variants: {
