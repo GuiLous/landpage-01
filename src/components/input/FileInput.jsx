@@ -41,7 +41,7 @@ export default function FileInput({
 
     const filteredFiles = filterFileFormatAndSize(newFiles)
 
-    if (canUploadFile) {
+    if (canUploadFile && filteredFiles.length > 0) {
       setValue('files', [...files, ...filteredFiles])
       setFiles([...files, ...filteredFiles])
     }
@@ -59,7 +59,7 @@ export default function FileInput({
 
     const filteredFiles = filterFileFormatAndSize(droppedFiles)
 
-    if (canUploadFile) {
+    if (canUploadFile && filteredFiles.length > 0) {
       setValue('files', [...files, ...filteredFiles])
       setFiles([...files, ...filteredFiles])
     }
@@ -82,6 +82,7 @@ export default function FileInput({
       onDragEnter={handleDragEnter}
       onDragLeave={handleDragLeave}
       onDragOver={(e) => e.preventDefault()}
+      data-testid="drop-zone"
     >
       <Input
         type="file"
@@ -91,6 +92,7 @@ export default function FileInput({
         h="full"
         cursor="pointer"
         label=""
+        data-testid="input"
         onChange={handleFileChange}
         multiple={!isSingleFile}
       />
