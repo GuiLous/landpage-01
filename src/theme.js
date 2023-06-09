@@ -333,7 +333,7 @@ export default extendTheme({
       variants: {
         primary: {
           bg: 'black.900',
-          color: 'gray.700',
+          color: 'white',
           border: '1px solid',
           borderColor: 'gray.400',
           borderRadius: 4,
@@ -341,6 +341,8 @@ export default extendTheme({
           minHeight: '98px',
           lineHeight: 1,
           p: 4,
+          fontSize: '12px',
+          fontWeight: '400',
           _placeholder: {
             color: 'gray.700',
           },
@@ -349,6 +351,9 @@ export default extendTheme({
           },
           _focus: {
             color: 'white',
+            _placeholder: {
+              color: 'white',
+            },
           },
           _invalid: {
             borderColor: 'danger.400',
