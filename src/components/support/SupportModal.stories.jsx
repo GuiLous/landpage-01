@@ -4,10 +4,10 @@ export default {
   title: 'Support/SupportModal',
   component: SupportModal,
   argTypes: {
-    isOpenModal: { control: 'boolean' },
+    isOpen: { control: 'boolean' },
   },
   args: {
-    isOpenModal: false,
+    isOpen: false,
   },
 }
 
