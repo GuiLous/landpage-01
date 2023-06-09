@@ -11,9 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado component `ConfirmationContent`.
+- Criado interface `SupportAPI`.
+- Criado componente `Select`
+- Criado componente `FileCard`
 - Adicionado estilização para o `Textarea` no tema do chakra ui.
 - Criado componente `FileInput`.
-- Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135)
+- Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
@@ -31,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
+- Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra._disabled
+- Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
 - Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
 - Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
 - Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
