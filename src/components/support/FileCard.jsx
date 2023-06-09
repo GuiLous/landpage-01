@@ -68,6 +68,7 @@ export default function FileCard({ file, onRemoveFiles }) {
           w="10px"
           h="10px"
           cursor="pointer"
+          data-testid="close"
           onClick={() => onRemoveFiles(file.name)}
         />
       </Container>
