@@ -111,6 +111,7 @@ import InactivateAccountCard from './account/InactivateAccountCard'
 import Modal from './modal/Modal'
 
 // Support
+import ConfirmationContent from './support/ConfirmationContent'
 import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
 
@@ -135,6 +136,7 @@ export {
   ClipboardIcon,
   CloseCircleIcon,
   CloseIcon,
+  ConfirmationContent,
   Container,
   DeleteAccountCard,
   DoubleCheckIcon,
