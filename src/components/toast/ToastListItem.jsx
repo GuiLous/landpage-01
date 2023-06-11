@@ -57,7 +57,7 @@ export default function ToastListItem({
         break
 
       default:
-        setDefaultTitle(null)
+        setDefaultTitle('Info')
         break
     }
   }, [variant, title])
@@ -69,21 +69,25 @@ export default function ToastListItem({
   const renderIcon = () => {
     switch (variant) {
       case 'success':
-        return <Icon as={CheckCircleIcon} fill="success" />
+        return <Icon as={CheckCircleIcon} color="success" />
 
       case 'warning':
-        return <Icon as={WarningCircleIcon} fill="warning" />
+        return <Icon as={WarningCircleIcon} color="warning" />
 
       case 'error':
-        return <Icon as={CloseCircleIcon} fill="danger.400" />
+        return <Icon as={CloseCircleIcon} color="danger.400" />
 
       default:
-        return <Icon as={BellCircleIcon} fill="primary.400" />
+        return <Icon as={BellCircleIcon} color="primary.400" />
     }
   }
 
   return (
-    <Container className={[style.container, style[variant]].join(' ')} column>
+    <Container
+      className={[style.container, style[variant]].join(' ')}
+      column
+      testID="container"
+    >
       <Container className={style.containerWrapper} gap={16}>
         <Container align="center" gap={16}>
           <Container
@@ -96,8 +100,8 @@ export default function ToastListItem({
 
           <Container column>
             <Container className={style.title}>
-              <Text fontSize={16} fontWeight="semibold">
-                {title}
+              <Text fontSize={14} fontWeight="medium">
+                {title || defaultTitle}
               </Text>
             </Container>
             <Container className={style.content}>
