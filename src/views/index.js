@@ -1,4 +1,5 @@
 // common
+import BaseView from './common/BaseView'
 import HomeView from './common/Home'
 import NotFoundView from './common/NotFound'
 
@@ -29,4 +30,5 @@ export {
   ConnectView,
   InactiveView,
   MatchView,
+  BaseView,
 }
