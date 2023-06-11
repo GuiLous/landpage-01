@@ -20,6 +20,7 @@ describe('LobbyPlayButton Component', () => {
   it('should render queued', () => {
     render(<LobbyPlayButton queueTime={1} />)
     expect(screen.getByText('0:01')).toBeInTheDocument()
+    expect(screen.getByText('Cancelar')).toBeInTheDocument()
     expect(screen.getByTestId('container')).toHaveClass('queued')
   })
 

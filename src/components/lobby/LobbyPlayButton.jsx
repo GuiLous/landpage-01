@@ -1,6 +1,6 @@
 import { Icon, Text } from '@chakra-ui/react'
 
-import { BlockIcon, Container, Timer } from '@components'
+import { BlockIcon, CloseIcon, Container, Timer } from '@components'
 
 import style from './LobbyPlayButton.module.css'
 
@@ -51,8 +51,26 @@ export default function LobbyPlayButton({
       )}
 
       {!restricted && queueTime && (
-        <Container className={style.queueTime} align="center" justify="center">
-          <Timer initialTime={queueTime} />
+        <Container column>
+          <Container
+            align="center"
+            justify="center"
+            className={style.queueTime}
+          >
+            <Timer initialTime={queueTime} />
+          </Container>
+
+          <Container
+            align="center"
+            justify="center"
+            className={style.cancelQueue}
+            gap={10}
+          >
+            <Icon as={CloseIcon} fontSize={16} />
+            <Text fontSize={22} fontWeight="bold" textTransform="uppercase">
+              Cancelar
+            </Text>
+          </Container>
         </Container>
       )}
 
