@@ -44,7 +44,6 @@ export default function FriendListGroupItem({
     if ('formError' in response)
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.formError.error,
           variant: 'error',
         })

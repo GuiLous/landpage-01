@@ -47,7 +47,6 @@ export default function SignupView() {
       else
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

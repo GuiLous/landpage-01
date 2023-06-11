@@ -51,7 +51,6 @@ export default function LobbyView() {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -181,7 +180,6 @@ export default function LobbyView() {
       if (response && response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })
@@ -205,7 +203,6 @@ export default function LobbyView() {
       if (response && response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

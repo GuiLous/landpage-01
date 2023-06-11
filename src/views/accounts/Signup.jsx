@@ -53,7 +53,6 @@ export default function SignupView() {
     }
 
     setFetching(false)
-    dispatch(updateUser(response))
     dispatch(
       addToast({
         title: 'Que bom que você chegou!',
@@ -61,6 +60,7 @@ export default function SignupView() {
         variant: 'success',
       })
     )
+    dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
   }

@@ -34,7 +34,6 @@ export default function NotificationList({ isOpen, onClose }) {
   const showErrorToast = (error) => {
     dispatch(
       addToast({
-        title: 'Algo saiu errado...',
         content: error,
         variant: 'error',
       })

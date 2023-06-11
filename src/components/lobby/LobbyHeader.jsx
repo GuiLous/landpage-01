@@ -25,7 +25,6 @@ export default function LobbyHeader({ lobby }) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

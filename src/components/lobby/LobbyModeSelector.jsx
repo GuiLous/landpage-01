@@ -24,7 +24,6 @@ export default function LobbyModeSelector({ lobby, disabled }) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

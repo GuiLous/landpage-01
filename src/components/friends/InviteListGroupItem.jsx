@@ -25,7 +25,6 @@ export default function InviteListGroupItem({
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -39,7 +38,6 @@ export default function InviteListGroupItem({
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

@@ -58,7 +58,6 @@ export default function InviteListItem(props) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

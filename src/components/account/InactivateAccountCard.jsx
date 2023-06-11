@@ -29,7 +29,6 @@ export default function InactivateAccountCard() {
     if (response.formError) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.formError.error,
           variant: 'error',
         })

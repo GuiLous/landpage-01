@@ -60,7 +60,6 @@ export default function FriendListUser(props) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

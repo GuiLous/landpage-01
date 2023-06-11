@@ -26,7 +26,6 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -45,7 +44,6 @@ export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
