@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `Invite` e `InviteModal`, visto que a lista de amigos agora é um drawer e deve ser mostrada ao invés desses componentes.
 - Componente `Header` em virtude da nova `Sidebar`.
 - `ToastSlice` em virtude do novo centralizador de stado redux global `AppSlice`.
 

@@ -65,8 +65,6 @@ import UserIcon from './icons/UserIcon'
 import WarningCircleIcon from './icons/WarningCircleIcon'
 
 // Lobby
-import Invite from './lobby/Invite'
-import InviteModal from './lobby/InviteModal'
 import LobbyHeader from './lobby/LobbyHeader'
 import LobbyLineup from './lobby/LobbyLineup'
 import LobbyModeSelector from './lobby/LobbyModeSelector'
@@ -121,7 +119,6 @@ export {
   FakeSigninForm,
   FriendListUser,
   InviteListGroupItem,
-  InviteModal,
   Footer,
   Input,
   LevelBadge,
@@ -140,7 +137,6 @@ export {
   UserCard,
   UserCardMini,
   UserIcon,
-  Invite,
   Timer,
   UserStatus,
   BellIcon,

@@ -30,9 +30,11 @@ export default function LobbyView() {
 
   const lobby = user && user.account.lobby
 
-  const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
+  const userPlayer = lobby.players.filter(
+    (player) => player.user_id === user.id
+  )[0]
   const owner = lobby.players.filter(
-    (player) => player.id === lobby.owner_id
+    (player) => player.user_id === lobby.owner_id
   )[0]
   const isOwner = userPlayer.id === owner.id
 
@@ -61,7 +63,7 @@ export default function LobbyView() {
     setIsButtonHovered(false)
     handleQueue('start')
   }
-  const handleInviteModalShow = () => dispatch(toggleFriendList(true))
+  const handleToggleFriendList = () => dispatch(toggleFriendList(true))
 
   const renderButtons = () => {
     const showPlayButton =
@@ -257,7 +259,7 @@ export default function LobbyView() {
         >
           <LobbyLineup
             lobby={lobby}
-            onSeatClick={handleInviteModalShow}
+            onSeatClick={handleToggleFriendList}
             user={user}
             owner={owner}
             userPlayer={userPlayer}
