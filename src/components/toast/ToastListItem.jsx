@@ -15,13 +15,14 @@ import style from './ToastListItem.module.css'
 
 export default function ToastListItem({
   id,
-  title,
   content,
   variant,
   duration = 6,
+  title = null,
 }) {
   const dispatch = useDispatch()
   const [timer, setTimer] = useState(duration - 1)
+  const [defaultTitle, setDefaultTitle] = useState(title)
 
   useEffect(() => {
     let interval
@@ -38,6 +39,28 @@ export default function ToastListItem({
     return () => interval && clearTimeout(interval)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timer])
+
+  useEffect(() => {
+    if (title !== null) return
+
+    switch (variant) {
+      case 'success':
+        setDefaultTitle('Tudo certo!')
+        break
+
+      case 'error':
+        setDefaultTitle('Algo saiu errado...')
+        break
+
+      case 'warning':
+        setDefaultTitle('Atenção!')
+        break
+
+      default:
+        setDefaultTitle(null)
+        break
+    }
+  }, [variant, title])
 
   const handleClose = () => {
     setTimer(-1)
