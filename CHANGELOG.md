@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Hook `useLatestMatchesResults` para renderizar os últimos resultados de partidas do jogador.
+- Componente `LobbyPlayButton`.
 - Novo `store` para gravar informações de contexto geral da aplicação.
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
@@ -23,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
+- Refatora componente `LobbyPlayerCard` [#281](https://github.com/3C-gg/reload-frontend/issues/281).
+- Altera componente `LevelStatsCard` para usar novo hook de últimas partidas `useLatestMatchesResults`.
 - Agora o component `ToastListItem` não precisa receber a prop `title`. Nesse caso, ele baseia o título na prop `variant` [#272](https://github.com/3C-gg/reload-frontend/issues/272).
 - Move store de toasts pra dentro do `AppSlice`.
 - Coloca `FriendList` por baixo da sidebar e adiciona margem a esquerda.
