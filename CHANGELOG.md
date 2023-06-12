@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+
 ## [6d97c56 - 12/6/2023]
 
 ### Added
@@ -24,7 +26,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Move store de toasts pra dentro do `AppSlice`.
 - Coloca `FriendList` por baixo da sidebar e adiciona margem a esquerda.
 - Remove modal de convite de lobby. Ao clicar em um assento vazio, o drawer de lista de amigos é exibido.
-- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 - Move componentes de `FriendList` para uma pasta separada `friends`.
 - Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
 - Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
