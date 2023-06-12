@@ -12,7 +12,7 @@ const options = [
 ]
 
 export default {
-  title: 'Select/Select',
+  title: 'Forms/Select',
   component: Select,
   argTypes: {
     options: { control: 'array' },

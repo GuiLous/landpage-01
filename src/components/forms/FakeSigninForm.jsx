@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
 import { Container, Input } from '@components'
-import { isEmailValid } from '@components/input/Validators'
+import { isEmailValid } from '@components/forms/Validators'
 import { REACT_APP_API_URL } from '@config'
 import style from './FakeSigninForm.module.css'
 

@@ -1,7 +1,7 @@
 import { FileInput } from '@components'
 
 export default {
-  title: 'Input/FileInput',
+  title: 'Forms/FileInput',
   component: FileInput,
 }
 
