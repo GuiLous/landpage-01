@@ -3,6 +3,7 @@
 	border-radius: 8px;
 	cursor: pointer;
 	height: 100%;
+	min-width: 280px;
 	opacity: 1;
 	overflow: visible;
 	padding: 2px;

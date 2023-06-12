@@ -53,7 +53,6 @@ export default function VerifyView() {
       else
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

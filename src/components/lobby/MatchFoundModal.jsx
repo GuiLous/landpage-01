@@ -32,7 +32,6 @@ export default function MatchFoundModal({ preMatch }) {
     if (response && response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

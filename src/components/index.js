@@ -30,6 +30,7 @@ import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
+import ArrowUpFilledIcon from './icons/ArrowUpFilledIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellFilledIcon from './icons/BellFilledIcon'
@@ -68,6 +69,8 @@ import WarningCircleIcon from './icons/WarningCircleIcon'
 import LobbyHeader from './lobby/LobbyHeader'
 import LobbyLineup from './lobby/LobbyLineup'
 import LobbyModeSelector from './lobby/LobbyModeSelector'
+import LobbyPlayButton from './lobby/LobbyPlayButton'
+import LobbyPlayerCard from './lobby/LobbyPlayerCard'
 import LobbySeat from './lobby/LobbySeat'
 import MatchFoundModal from './lobby/MatchFoundModal'
 
@@ -195,4 +198,7 @@ export {
   RefuseIcon,
   AcceptIcon,
   InviteListGroup,
+  ArrowUpFilledIcon,
+  LobbyPlayButton,
+  LobbyPlayerCard,
 }

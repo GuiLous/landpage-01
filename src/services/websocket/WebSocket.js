@@ -105,7 +105,6 @@ export const WSS = () => {
       case 'ws_preMatchCancelWarn':
         dispatch(
           addToast({
-            title: 'Partida cancelada',
             content:
               'Seu grupo não aceitou a pré verificação. A partida foi cancelada e seu grupo foi removido da fila.',
             variant: 'warning',

@@ -447,9 +447,10 @@ export default extendTheme({
       baseStyle: {
         bg: 'primary.400',
         color: 'white',
-        borderRadius: '10px',
-        padding: '0 8px',
+        borderRadius: '67px',
+        padding: '4px 10px',
         fontWeight: 'regular',
+        fontSize: '10px',
       },
       variants: {
         online: {
@@ -619,18 +620,53 @@ export default extendTheme({
             right: 0,
           },
         },
+        white: {
+          container: {
+            borderColor: 'white',
+          },
+        },
       },
       sizes: {
+        xxs: {
+          container: {
+            width: '16px',
+            height: '16px',
+          },
+        },
+        xs: {
+          container: {
+            width: '24px',
+            height: '24px',
+          },
+        },
+        sm: {
+          container: {
+            width: '32px',
+            height: '32px',
+          },
+        },
+        md: {
+          container: {
+            width: '44px',
+            height: '44px',
+          },
+        },
         lg: {
           container: {
-            width: '55px',
-            height: '55px',
+            width: '64px',
+            height: '64px',
           },
         },
         xl: {
           container: {
-            width: '80px',
-            height: '80px',
+            width: '96px',
+            height: '96px',
+          },
+        },
+        xxl: {
+          container: {
+            width: '128px',
+            height: '128px',
           },
         },
       },

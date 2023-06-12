@@ -59,7 +59,6 @@ export default function MatchHistoryList({ user_id }) {
       if (response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

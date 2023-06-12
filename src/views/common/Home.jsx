@@ -41,7 +41,6 @@ export default function HomeView() {
       else
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

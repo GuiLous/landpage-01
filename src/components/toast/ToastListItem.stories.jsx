@@ -14,7 +14,7 @@ export default {
   },
   args: {
     id: 1,
-    title: 'Feedback!',
+    title: null,
     content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
     duration: 6,
   },

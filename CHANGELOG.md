@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Nova `LobbyView` [#280](https://github.com/3C-gg/reload-frontend/issues/280).
+- Slice para `Lobby` e nova chamada `detail` na `LobbiesAPI`
+- Método para remover player de um lobby em `LobbiesAPI`.
+- Hook `useLatestMatchesResults` para renderizar os últimos resultados de partidas do jogador.
+- Componente `LobbyPlayButton`.
 - Novo `store` para gravar informações de contexto geral da aplicação.
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
@@ -23,6 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
+- Altera borda do avatar para refletir design.
+- Refatora componente `LobbyPlayerCard` [#281](https://github.com/3C-gg/reload-frontend/issues/281).
+- Refatoramos o componente `LobbyLineup` para conter o novo design, comportamento e componentes [#282](https://github.com/3C-gg/reload-frontend/issues/282).
+- Altera componente `LevelStatsCard` para usar novo hook de últimas partidas `useLatestMatchesResults`.
+- Agora o component `ToastListItem` não precisa receber a prop `title`. Nesse caso, ele baseia o título na prop `variant` [#272](https://github.com/3C-gg/reload-frontend/issues/272).
 - Move store de toasts pra dentro do `AppSlice`.
 - Coloca `FriendList` por baixo da sidebar e adiciona margem a esquerda.
 - Remove modal de convite de lobby. Ao clicar em um assento vazio, o drawer de lista de amigos é exibido.
@@ -41,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Prop `title` das chamadas `addToast`, uma vez que o componente agora possui títulos padrão.
 - Componente `Invite` e `InviteModal`, visto que a lista de amigos agora é um drawer e deve ser mostrada ao invés desses componentes.
 - Componente `Header` em virtude da nova `Sidebar`.
 - `ToastSlice` em virtude do novo centralizador de stado redux global `AppSlice`.
@@ -63,7 +74,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 - Move componentes de `FriendList` para uma pasta separada `friends`.
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
