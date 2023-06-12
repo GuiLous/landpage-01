@@ -5,18 +5,35 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
-### Changed
-
-- Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
-
-## [7360381 - 29/5/2023]
+## [Unreleased]
 
 ### Added
 
+- Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
+- Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
+- Adicionado variantes do botão `JOGAR` na `SideBar` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
+- Adicionado ícones `ClockIcon` e `JoystickIcon`.
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
+
+### Changed
+
+- Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
+- Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
+- Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
+- Alterado `SideBar` para mostrar as notificações não lidas vindo da const `notificationsNotRead` [#268](https://github.com/3C-gg/reload-frontend/issues/268).
+- Alterado path do ícone `BlockIcon`.
+- Alterado css da `SideBar` no `ProfileLayout` que estava bugando o clique nos links na rota `/conta`.
+- Alterado e adicionado variantes do botão `JOGAR` para ficar igual ao design [#266](https://github.com/3C-gg/reload-frontend/issues/266).
+- Alterado Botão `LER TUDO` no componente `NotificationList` para ficar desabilitado caso todas as notificações já estejam lidas [#264](https://github.com/3C-gg/reload-frontend/issues/264).
+- Alterado função `read` no componente `NotificationList` para não fazer requisição caso a notificação já tenha sido lida.
+- Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223).
+- Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
+
+## [5abd121 - 5/6/2023]
+
+### Added
+
 - Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
 - Adicionado método `delete` na interface de AccountsAPI.
 - Adicionado método `updateIsActive` na interface de AccountsAPI.
@@ -28,6 +45,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
 - Criado componente `AccountCard`.
 - Adicionado variant `disabled` para input no tema do chakra ui.
+
+### Changed
+
+- Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
+- Adicionado uma `key` no map na View `Account`.
+- Alterado `Link` na `SideBar` de notificações para um `button`.
+- Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
+- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado estilos para o `Drawer` no tema do chakra ui.
+- Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
+- Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
+- Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
+- Alterado path da `AccountView` para `/conta/:userId`.
+- Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
+- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado gray 800 para `#1B1B1B`.
+- Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
+
+## [7360381 - 29/5/2023]
+
+### Added
+
 - Adicionado interface `MatchAPI` para controlar as requisições de partidas [#206](https://github.com/3C-gg/reload-frontend/issues/206).
 - Criado interface `ProfilesAPI`.
 - Adicionado tamanho `xl` de `80px` para o componente de `Avatar` no tema do chakra.
@@ -59,7 +98,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
 
 ### Changed
- 
+
+- Removido `Freshdesk` da aplicação [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado link para `/` na imagem da logo na `SideBar`.
+- Adicionado style `active` no `Container` de `Suporte` da `SideBar`.
+- Alterado `Link` na `SideBar` de sair para um `button`.
+- Adicionado função `handleToggleWidget` no componente `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado script do `freshdesk` no `index.html` [#135](https://github.com/3C-gg/reload-frontend/issues/135). 
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
 - Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).

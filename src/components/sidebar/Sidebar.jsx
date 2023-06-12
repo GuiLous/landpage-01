@@ -26,9 +26,12 @@ import logoFull from '@assets/images/logo.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
   BellFilledIcon,
+  BlockIcon,
+  ClockIcon,
   Container,
   ExitIcon,
   FriendsIcon,
+  JoystickIcon,
   NotificationList,
   PlayIcon,
   PodiumIcon,
@@ -36,21 +39,27 @@ import {
   ShareIcon,
   ShopIcon,
   SupportIcon,
+  Timer,
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
 import { updateUser } from '@slices/UserSlice'
+
 import style from './Sidebar.module.css'
 
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
+  const preMatch = useSelector((state) => state.match.preMatch)
+  const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
+
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openNotifications, setOpenNotifications] = useState(false)
+  const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
 
   const handleOpenDrawerNotifications = () => {
     setOpenNotifications(true)
@@ -81,6 +90,107 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     navigate('/')
   }
 
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      const notificationsNotRead = notifications.filter(
+        (notification) => notification.read_date === null
+      ).length
+
+      setUnreadNotificationsCount(notificationsNotRead)
+    }
+  }, [notifications])
+
+  const renderButtons = () => {
+    const lobby = user && user.account.lobby
+
+    const showPlayButton =
+      !lobby.queue && !match && !lobby.restriction_countdown
+
+    const showQueueButton =
+      lobby.queue && !match && !lobby.restriction_countdown
+
+    const showRestrictedButton = lobby.restriction_countdown && !match
+
+    return (
+      <>
+        {showPlayButton && (
+          <Button
+            leftIcon={<FaPlay />}
+            className={style.playBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+          >
+            JOGAR
+          </Button>
+        )}
+
+        {showQueueButton && (
+          <Button
+            leftIcon={<ClockIcon />}
+            className={style.queueBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+            variant="queue"
+          >
+            <Text w={10}>
+              <Timer initialTime={lobby.queue_time} stop={preMatch} />
+            </Text>
+          </Button>
+        )}
+
+        {match && (
+          <Button
+            leftIcon={<JoystickIcon />}
+            className={style.queueBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/"
+            variant="queue"
+          >
+            EM PARTIDA
+          </Button>
+        )}
+
+        {showRestrictedButton && (
+          <Button
+            className={style.dangerBtn}
+            fontSize={18}
+            fontWeight="bold"
+            height={55}
+            w="full"
+            as={ReactRouterLink}
+            to="/jogar"
+            variant="restricted"
+          >
+            <Container column align="center" gap={4}>
+              <Text fontSize={12} color="white" fontWeight="semiBold">
+                GRUPO COM RESTRIÇÃO
+              </Text>
+
+              <Container justify="center" align="center" gap={4}>
+                <Icon as={BlockIcon} fill="white" w="16px" h="16px" />
+                <Text fontSize={18} fontWeight="bold" w={10} lineHeight={1}>
+                  <Timer initialTime={lobby.restriction_countdown} reverse />
+                </Text>
+              </Container>
+            </Container>
+          </Button>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
       <Container
@@ -96,16 +206,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         gap={60}
       >
         <Container className={style.header} column>
-          <Image
-            src={logoSymbol}
-            style={{ height: isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-symbol"
-          />
-          <Image
-            src={logoFull}
-            style={{ height: !isCollapsed ? 'auto' : 0 }}
-            data-testid="logo-full"
-          />
+          <Link as={ReactRouterLink} to="/">
+            <Image
+              src={logoSymbol}
+              style={{ height: isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-symbol"
+            />
+            <Image
+              src={logoFull}
+              style={{ height: !isCollapsed ? 'auto' : 0 }}
+              data-testid="logo-full"
+            />
+          </Link>
         </Container>
 
         <Container className={style.body} column gap={32}>
@@ -121,15 +233,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 className={style.playBtn}
               />
             ) : (
-              <Button
-                leftIcon={<FaPlay />}
-                className={style.playBtn}
-                fontSize={18}
-                fontWeight="bold"
-                height={55}
-              >
-                Jogar
-              </Button>
+              renderButtons()
             )}
           </Container>
 
@@ -195,9 +299,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 >
                   <Badge
                     variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: notifications.length > 0 ? 1 : 0 }}
+                    style={{ opacity: unreadNotificationsCount > 0 ? 1 : 0 }}
                   >
-                    {!isCollapsed && notifications.length}
+                    {!isCollapsed && unreadNotificationsCount}
                   </Badge>
                 </Container>
               </Link>
@@ -248,16 +352,32 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem}>
-              <Link href="#">
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+              >
                 <Icon as={SupportIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Suporte</Text>}
+                {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
               </Link>
             </Container>
 
             <Container className={style.menuItem} onClick={handleLogout}>
-              <Link href="#">
+              <Link
+                as="button"
+                alignItems="center"
+                display="flex"
+                flex="1"
+                gap="14px"
+                py="10px"
+                px="16px"
+              >
                 <Icon as={ExitIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Sair</Text>}
+                {!isCollapsed && <Text fontSize={14}>Sair</Text>}
               </Link>
             </Container>
           </Container>

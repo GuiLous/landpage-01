@@ -73,12 +73,12 @@ export default function ToastListItem({
 
           <Container column>
             <Container className={style.title}>
-              <Text fontSize={17} fontWeight="semibold">
+              <Text fontSize={16} fontWeight="semibold">
                 {title}
               </Text>
             </Container>
             <Container className={style.content}>
-              <Text fontSize={13} color="gray.700">
+              <Text fontSize={12} color="gray.700">
                 {content}
               </Text>
             </Container>

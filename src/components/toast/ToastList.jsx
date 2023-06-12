@@ -6,9 +6,9 @@ import { Container, ToastListItem } from '@components'
 export default function ToastList() {
   const toasts = useSelector((state) => state.toasts)
   const transitions = useTransition(toasts, {
-    from: { opacity: 0, left: -50 },
-    enter: { opacity: 1, left: 0 },
-    leave: { opacity: 0, left: -50 },
+    from: { opacity: 0, right: -40 },
+    enter: { opacity: 1, right: 0 },
+    leave: { opacity: 0, right: -40 },
     config: { duration: 200, easing: easings.easeOutCubic },
   })
 

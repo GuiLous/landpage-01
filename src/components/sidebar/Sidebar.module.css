@@ -18,13 +18,24 @@
 
 .playBtn {
 	box-shadow: 0px 0px 20px 5px rgba(104, 71, 255, 0.4);
-	width: 100%;
+}
+
+.queueBtn {
+	box-shadow: 0px 0px 20px 5px rgba(52, 33, 140, 0.4);
+}
+
+.dangerBtn {
+	box-shadow: 0px 0px 20px 5px rgba(246, 53, 53, 0.4);
 }
 
 .menuItem {
 	border-radius: 4px;
 	font-size: 18px;
 	min-height: 42px;
+}
+
+.menuItem.active {
+	background-color: var(--chakra-colors-gray-400);
 }
 
 .menuItem:hover {
