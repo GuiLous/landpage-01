@@ -6,7 +6,7 @@ import style from './LobbyPlayButton.module.css'
 
 export default function LobbyPlayButton({
   queueTime,
-  countdown,
+  restrictionCountdown,
   disabled,
   restricted,
   onClick,
@@ -17,7 +17,7 @@ export default function LobbyPlayButton({
       className={[
         style.container,
         disabled && style.disabled,
-        restricted && style.restricted,
+        restrictionCountdown && style.restricted,
         queueTime && style.queued,
       ].join(' ')}
       onClick={onClick}
@@ -38,7 +38,7 @@ export default function LobbyPlayButton({
         </Container>
       )}
 
-      {countdown && (
+      {restrictionCountdown && (
         <Container
           className={style.restrictedTime}
           align="center"
@@ -46,7 +46,7 @@ export default function LobbyPlayButton({
           gap={4}
         >
           <Icon as={BlockIcon} color="white" fontSize={15} />
-          <Timer initialTime={countdown} reverse />
+          <Timer initialTime={restrictionCountdown} reverse />
         </Container>
       )}
 

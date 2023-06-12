@@ -10,7 +10,12 @@ describe('LobbyPlayButton Component', () => {
 
   it('should render with restriction', () => {
     render(
-      <LobbyPlayButton restricted countdown={60} queueTime={10} disabled />
+      <LobbyPlayButton
+        restricted
+        restrictionCountdown={60}
+        queueTime={10}
+        disabled
+      />
     )
     expect(screen.getByText('Grupo com restrição')).toBeInTheDocument()
     expect(screen.getByText('1:00')).toBeInTheDocument()

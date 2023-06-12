@@ -21,7 +21,7 @@ export const Default = {
     <LobbyPlayButton
       {...props}
       queueTime={props.queued && 1}
-      countdown={props.restricted && 3600}
+      restrictionCountdown={props.restricted && 3600}
     />
   ),
 }
