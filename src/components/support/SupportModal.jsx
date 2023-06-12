@@ -46,6 +46,7 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
   const handleCloseModalSupport = () => {
     reset()
     setOpenSupport(false)
+    setFormSent(false)
   }
 
   const onRemoveFiles = (fileName) => {
