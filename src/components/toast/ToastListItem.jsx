@@ -10,7 +10,7 @@ import {
   Container,
   WarningCircleIcon,
 } from '@components'
-import { removeToast } from '@slices/ToastSlice'
+import { removeToast } from '@slices/AppSlice'
 import style from './ToastListItem.module.css'
 
 export default function ToastListItem({

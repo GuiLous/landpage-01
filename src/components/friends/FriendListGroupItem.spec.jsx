@@ -10,16 +10,13 @@ import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 const server = setupServer(
-  rest.post(
-    'http://localhost:8000/api/mm/lobby/1/invite-player/2/',
-    (req, res, ctx) => {
-      return res(
-        ctx.json({
-          to_player: { id: 2 },
-        })
-      )
-    }
-  )
+  rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        to_player: { id: 2 },
+      })
+    )
+  })
 )
 
 beforeAll(() => server.listen())
@@ -38,8 +35,7 @@ describe('FriendListGroupItem Component', () => {
   }
 
   const invites = {
-    received: [],
-    sent: [],
+    list: [],
     unread: 0,
   }
 

@@ -267,6 +267,7 @@ export default extendTheme({
           color: 'gray.600',
           bg: 'white',
           backgroundColor: 'white',
+          borderRadius: '4px',
           fontSize: '16px',
           _placeholder: {
             color: 'gray.700',
@@ -345,6 +346,18 @@ export default extendTheme({
             backgroundColor: 'transparent',
           },
         },
+        darker: {
+          field: {
+            bg: 'gray.800',
+            backgroundColor: 'gray.800',
+          },
+        },
+        lighter: {
+          field: {
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+          },
+        },
       },
     },
     Form: {
@@ -420,6 +433,13 @@ export default extendTheme({
           mb: 6,
           py: 0,
           px: 6,
+        },
+      },
+      variants: {
+        friendList: {
+          dialog: {
+            marginLeft: '300px',
+          },
         },
       },
     },

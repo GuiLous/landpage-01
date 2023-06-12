@@ -14,7 +14,7 @@ import { Container, Input } from '@components'
 import { isEmailValid } from '@components/input/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Signup.module.css'
 

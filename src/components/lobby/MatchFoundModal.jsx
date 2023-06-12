@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 
 import { Container, Timer, UserIcon } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import style from './MatchFoundModal.module.css'
 
 export default function MatchFoundModal({ preMatch }) {

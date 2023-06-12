@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { AddUserIcon, Avatar, Container, UserStatus } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { addInviteSent } from '@slices/UserSlice'
 import style from './FriendListUser.module.css'
 

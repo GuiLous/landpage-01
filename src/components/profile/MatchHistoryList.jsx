@@ -10,7 +10,7 @@ import {
   MatchHistoryStatsLink,
 } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 
 import style from './MatchHistoryList.module.css'
 

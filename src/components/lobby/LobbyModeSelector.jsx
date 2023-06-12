@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { Container } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 
 import style from './LobbyModeSelector.module.css'
 

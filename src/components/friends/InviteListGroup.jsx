@@ -1,26 +1,32 @@
 import { Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import { ArrowDownIcon, Container, FriendListGroupItem } from '@components'
+import { ArrowDownIcon, Container, InviteListGroupItem } from '@components'
+import style from './InviteListGroup.module.css'
 
-import style from './FriendListGroup.module.css'
-
-export default function FriendListGroup({
+export default function InviteListGroup({
   title,
   items,
   collapse = true,
   open = false,
+  unread = false,
 }) {
   useEffect(() => {
     if (collapse) setIsOpen(open)
     else setIsOpen(true)
   }, [open, collapse])
 
+  useEffect(() => {
+    setIsUnread(unread)
+  }, [unread])
+
   const [isOpen, setIsOpen] = useState()
+  const [isUnread, setIsUnread] = useState()
 
   const handleCollapse = () => {
     if (!collapse || items.length <= 0) return
     setIsOpen(!isOpen)
+    setIsUnread(false)
   }
 
   const renderItemsLength = () => {
@@ -30,7 +36,11 @@ export default function FriendListGroup({
 
   return (
     <Container
-      className={[style.container, isOpen && style.open].join(' ')}
+      className={[
+        style.container,
+        isOpen && style.open,
+        isUnread && style.unread,
+      ].join(' ')}
       column
       testID="container"
     >
@@ -63,8 +73,14 @@ export default function FriendListGroup({
 
       {items.length > 0 && isOpen && (
         <Container className={style.list} column>
-          {items.map((item) => (
-            <FriendListGroupItem {...item} key={item.id} />
+          {items.map((invite) => (
+            <InviteListGroupItem
+              key={invite.id}
+              invite_id={invite.id}
+              avatar={invite.from_player.avatar.medium}
+              status={invite.from_player.status}
+              username={invite.from_player.username}
+            />
           ))}
         </Container>
       )}

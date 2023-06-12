@@ -7,13 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+
 ## [6d97c56 - 12/6/2023]
 
 ### Added
 
+- Novo `store` para gravar informações de contexto geral da aplicação.
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
-- Adicionado variantes do botão `JOGAR` na `SideBar` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
 - Adicionado ícones `ClockIcon` e `JoystickIcon`.
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
@@ -21,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
+- Move store de toasts pra dentro do `AppSlice`.
+- Coloca `FriendList` por baixo da sidebar e adiciona margem a esquerda.
+- Remove modal de convite de lobby. Ao clicar em um assento vazio, o drawer de lista de amigos é exibido.
+- Move componentes de `FriendList` para uma pasta separada `friends`.
 - Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
 - Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
 - Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
@@ -33,24 +39,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 - Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 
-## [5abd121 - 5/6/2023]
+### Removed
+
+- Componente `Invite` e `InviteModal`, visto que a lista de amigos agora é um drawer e deve ser mostrada ao invés desses componentes.
+- Componente `Header` em virtude da nova `Sidebar`.
+- `ToastSlice` em virtude do novo centralizador de stado redux global `AppSlice`.
+
+## [7360381 - 29/5/2023]
 
 ### Added
 
-- Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
-- Adicionado método `delete` na interface de AccountsAPI.
-- Adicionado método `updateIsActive` na interface de AccountsAPI.
-- Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
-- Criado componente `ModalConfirmation`.
-- Adicionado método de `updateEmail` na interface de AccountsAPI.
-- Criado componente `PencilIcon`.
-- Adicionado método de `update` na interface de AccountsAPI.
-- Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
-- Criado componente `AccountCard`.
-- Adicionado variant `disabled` para input no tema do chakra ui.
+- Criado componente DeleteAccountCard [#236] (#236).
+- Adicionado método delete na interface de AccountsAPI.
+- Adicionado método updateIsActive na interface de AccountsAPI.
+- Criado componente InactivateAccountCard [#235] (#235).
+- Criado componente ModalConfirmation.
+- Adicionado método de updateEmail na interface de AccountsAPI.
+- Criado componente PencilIcon.
+- Adicionado método de update na interface de AccountsAPI.
+- Criado componente ChangeEmailCard [#231] (#231).
+- Criado componente AccountCard.
+- Adicionado variant disabled para input no tema do chakra ui.
 
 ### Changed
 
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+- Move componentes de `FriendList` para uma pasta separada `friends`.
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.

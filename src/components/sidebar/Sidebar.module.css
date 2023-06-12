@@ -1,10 +1,10 @@
 .container {
 	background-color: var(--chakra-colors-black-300);
 	height: 100%;
-	max-width: 300px;
-	min-width: 300px;
 	overflow: hidden;
 	padding: 40px 24px;
+	position: relative;
+	z-index: 10000;
 }
 
 .header {
@@ -46,7 +46,8 @@
 	background-color: transparent;
 }
 
-.menuItem a {
+.menuItem a,
+.menuItem button {
 	align-items: center;
 	display: flex;
 	flex: 1;
@@ -56,19 +57,21 @@
 }
 
 .menuItem.soon a,
-.menuItem.soon a:hover {
+.menuItem.soon a:hover,
+.menuItem.soon button,
+.menuItem.soon button:hover {
 	cursor: default;
 	opacity: 0.7;
 	pointer-events: none;
 }
 
-.menuItem a p {
+.menuItem a p,
+.menuItem button p {
 	font-size: 14px;
 }
 
 .container.collapsed {
 	max-width: 100px;
-	min-width: 100px;
 	padding: 40px 18px;
 }
 
@@ -84,6 +87,7 @@
 .container.collapsed .menu,
 .container.collapsed .menuItem,
 .container.collapsed .menuItem a,
+.container.collapsed .menuItem button,
 .container.collapsed .userInfo {
 	justify-content: center;
 }

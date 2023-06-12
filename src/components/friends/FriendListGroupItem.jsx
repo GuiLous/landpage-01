@@ -2,16 +2,22 @@ import { Avatar, Icon, Text } from '@chakra-ui/react'
 import { BsPersonFillCheck } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { MatchmakingAPI } from '@api'
+import { LobbiesAPI } from '@api'
 import { Container, GroupAddIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { addInviteSent } from '@slices/UserSlice'
 
 import style from './FriendListGroupItem.module.css'
 
-export default function FriendListGroupItem({ id, status, avatar, username }) {
+export default function FriendListGroupItem({
+  id,
+  status,
+  avatar,
+  username,
+  lobbyId,
+}) {
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const humanStatus = useHumanizeStatus(status)
@@ -22,14 +28,16 @@ export default function FriendListGroupItem({ id, status, avatar, username }) {
     user.account.lobby_invites_sent.filter((invite) => {
       return invite.to_player.id === id
     }).length > 0
-  const isAvailable = availableStatuses.includes(status)
+  const alreadyOnTeam = user.account.lobby.id === lobbyId
+  const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
 
   const handleInvite = async () => {
-    if (!isAvailable || alreadyInvited) return
+    if (!isAvailable || alreadyInvited || alreadyOnTeam) return
 
-    const response = await MatchmakingAPI.lobbyInvite(
+    const response = await LobbiesAPI.createInvite(
       userToken,
       user.account.lobby.id,
+      user.id,
       id
     )
 

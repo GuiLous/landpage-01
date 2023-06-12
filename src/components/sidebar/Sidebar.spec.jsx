@@ -1,20 +1,93 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { rest } from 'msw'
+import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import { Sidebar } from '@components'
+import AppReducer from '@slices/AppSlice'
+import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
 import MatchReducer from '@slices/MatchSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
+const server = setupServer(
+  rest.get('http://localhost:8000/api/friends/', (req, res, ctx) => {
+    return res(
+      ctx.json({
+        online: [
+          {
+            id: 2,
+            status: 'online',
+            username: 'Amigo 2',
+            avatar:
+              'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            lobby: {
+              id: 1,
+            },
+          },
+          {
+            id: 3,
+            status: 'online',
+            username: 'Amigo 3',
+            avatar:
+              'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            lobby: {
+              id: 3,
+            },
+          },
+        ],
+        offline: [
+          {
+            id: 4,
+            status: 'offline',
+            username: 'Amigo 4',
+            avatar:
+              'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+            lobby: {
+              id: 4,
+            },
+          },
+        ],
+      })
+    )
+  }),
+
+  rest.get('http://localhost:8000/api/notifications/', (req, res, ctx) =>
+    res(ctx.json([]))
+  ),
+
+  rest.get('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
+    return res(
+      ctx.json([
+        {
+          id: '100:1',
+          from_player: {
+            avatar: {
+              medium:
+                'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+            },
+            status: 'online',
+            username: `User 100`,
+          },
+        },
+      ])
+    )
+  })
+)
+
+beforeAll(() => server.listen())
+afterEach(() => server.resetHandlers())
+afterAll(() => server.close())
+
 describe('Sidebar Component', () => {
   const user = {
     id: 1,
     account: {
-      level: 5,
+      level: 2,
       level_points: 56,
       avatar: {
         medium:
@@ -23,19 +96,29 @@ describe('Sidebar Component', () => {
       username: 'Username',
       lobby: {
         queue: null,
+        id: 1,
       },
     },
   }
 
   const invites = {
-    received: [],
-    sent: [],
+    list: [],
     unread: 0,
   }
 
   const match = {
     preMatch: null,
     match: null,
+  }
+
+  const app = {
+    toasts: [],
+    friendListOpen: false,
+  }
+
+  const friends = {
+    online: [],
+    offline: [],
   }
 
   const notifications = []
@@ -46,8 +129,10 @@ describe('Sidebar Component', () => {
       notifications: NotificationReducer,
       invites: InviteReducer,
       match: MatchReducer,
+      app: AppReducer,
+      friends: FriendReducer,
     },
-    preloadedState: { user, notifications, invites, match },
+    preloadedState: { user, friends, notifications, invites, app, match },
   })
 
   it('should respect collapsable prop', async () => {

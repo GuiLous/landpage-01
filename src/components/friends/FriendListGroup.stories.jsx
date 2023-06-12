@@ -6,7 +6,7 @@ import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
-  title: 'Sidebar/FriendListGroup',
+  title: 'Friends/FriendListGroup',
   component: FriendListGroup,
   argTypes: {
     title: { control: 'text' },
@@ -23,7 +23,7 @@ export default {
   parameters: {
     mockData: [
       {
-        url: 'http://localhost:8000/api/mm/lobby/1/invite-player/2/',
+        url: 'http://localhost:8000/api/lobbies/invites/',
         method: 'POST',
         status: 200,
         response: {
@@ -50,8 +50,7 @@ const user = {
 }
 
 const invites = {
-  received: [],
-  sent: [],
+  list: [],
   unread: 0,
 }
 
