@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
-import { isEmailValid } from '@components/input/Validators'
+import { isEmailValid } from '@components/forms/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/ToastSlice'

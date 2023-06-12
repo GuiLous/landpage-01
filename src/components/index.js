@@ -18,11 +18,12 @@ import FriendListGroupItem from './sidebar/FriendListGroupItem'
 import Sidebar from './sidebar/Sidebar'
 import SidebarHeader from './sidebar/SidebarHeader'
 
-// Form
-import FakeSigninForm from './form/FakeSigninForm'
-import SteamSignin from './form/SteamSignin'
-import FileInput from './input/FileInput'
-import Input from './input/Input'
+// Forms
+import FakeSigninForm from './forms/FakeSigninForm'
+import FileInput from './forms/FileInput'
+import Input from './forms/Input'
+import Select from './forms/Select'
+import SteamSignin from './forms/SteamSignin'
 
 // Icons
 import AddUserIcon from './icons/AddUserIcon'
@@ -116,9 +117,6 @@ import Modal from './modal/Modal'
 import ConfirmationContent from './support/ConfirmationContent'
 import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
-
-// Select
-import Select from './select/Select'
 
 export {
   AccountCard,
