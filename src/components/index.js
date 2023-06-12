@@ -70,6 +70,7 @@ import LobbyHeader from './lobby/LobbyHeader'
 import LobbyLineup from './lobby/LobbyLineup'
 import LobbyModeSelector from './lobby/LobbyModeSelector'
 import LobbyPlayButton from './lobby/LobbyPlayButton'
+import LobbyPlayerCard from './lobby/LobbyPlayerCard'
 import LobbySeat from './lobby/LobbySeat'
 import MatchFoundModal from './lobby/MatchFoundModal'
 
@@ -199,4 +200,5 @@ export {
   InviteListGroup,
   ArrowUpFilledIcon,
   LobbyPlayButton,
+  LobbyPlayerCard,
 }
