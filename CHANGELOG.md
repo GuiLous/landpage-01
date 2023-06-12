@@ -7,10 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
-
-## [6d97c56 - 12/6/2023]
-
 ### Added
 
 - Criado component `ConfirmationContent`.
@@ -20,6 +16,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado estilização para o `Textarea` no tema do chakra ui.
 - Criado componente `FileInput`.
 - Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+
+### Changed
+
+- Alterado pasta `form` para `forms` para agrupar componentes de formulário.
+- Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
+- Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra.
+- Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
+- Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+
+## [6d97c56 - 12/6/2023]
+
+### Added
+
 - Nova `LobbyView` [#280](https://github.com/3C-gg/reload-frontend/issues/280).
 - Slice para `Lobby` e nova chamada `detail` na `LobbiesAPI`
 - Método para remover player de um lobby em `LobbiesAPI`.
@@ -34,12 +45,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Alterado pasta `form` para `forms` para agrupar componentes de formulário.
-- Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
-- Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra._disabled
-- Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
-- Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
-- Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
 - Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
 - Altera borda do avatar para refletir design.
 - Refatora componente `LobbyPlayerCard` [#281](https://github.com/3C-gg/reload-frontend/issues/281).
