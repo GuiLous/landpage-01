@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { Container } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 
 import style from './LobbyModeSelector.module.css'
 
@@ -24,7 +24,6 @@ export default function LobbyModeSelector({ lobby, disabled }) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

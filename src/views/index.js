@@ -1,4 +1,5 @@
 // common
+import BaseView from './common/BaseView'
 import HomeView from './common/Home'
 import NotFoundView from './common/NotFound'
 
@@ -12,8 +13,8 @@ import UpdateEmailView from './accounts/UpdateEmail'
 import VerifyView from './accounts/Verify'
 
 // matchmaking
+import LobbyView from './lobby/LobbyView'
 import ConnectView from './matchmaking/Connect'
-import LobbyView from './matchmaking/Lobby'
 import MatchView from './matchmaking/Match'
 
 export {
@@ -29,4 +30,5 @@ export {
   ConnectView,
   InactiveView,
   MatchView,
+  BaseView,
 }

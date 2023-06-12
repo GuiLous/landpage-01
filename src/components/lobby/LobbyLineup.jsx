@@ -1,228 +1,94 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { Container, LobbySeat, UserCard, UserCardMini } from '@components'
-import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
-
+import { LobbiesAPI } from '@api'
+import { Container, LobbyPlayerCard, LobbySeat } from '@components'
+import { StorageService } from '@services'
+import { addToast, toggleFriendList } from '@slices/AppSlice'
 import style from './LobbyLineup.module.css'
 
-export default function LobbyLineup({ lobby, onSeatClick, owner, userPlayer }) {
-  const dispatch = useDispatch()
-  const user = useSelector((state) => state.user)
+export default function LobbyLineup({
+  userPlayer,
+  isOwner,
+  otherPlayers,
+  lobbyId,
+  maxPlayers = 5,
+}) {
   const [lineup, setLineup] = useState([])
 
   useEffect(() => {
-    renderLineup()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lobby])
+    const lineupList = Array.from(Array(maxPlayers).keys()).map(() => null)
+    const fillOrder = [1, 3, 0, 4]
+    lineupList[2] = userPlayer
 
-  const isOwner = userPlayer.id === owner.id
-  const otherPlayers = lobby.players.filter((player) => player.id !== user.id)
-
-  const handleLeave = async () => {
-    const token = StorageService.get('token')
-    const response = await HttpService.patch('mm/lobby/leave', token)
-    if (response.errorMsg) {
-      dispatch(
-        addToast({
-          title: 'Algo saiu errado...',
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+    for (let index = 0; index < otherPlayers.length; index++) {
+      const player = otherPlayers[index]
+      lineupList[fillOrder[index]] = player
     }
-  }
 
-  const handleKick = async (user) => {
-    const token = StorageService.get('token')
-    let response
+    setLineup(lineupList)
+  }, [maxPlayers, otherPlayers, userPlayer])
 
-    response = await HttpService.patch(
-      `mm/lobby/${lobby.id}/remove-player/${user.id}/`,
-      token
+  const dispatch = useDispatch()
+  const userToken = StorageService.get('token')
+
+  const handleRemove = async (player) => {
+    const response = await LobbiesAPI.removePlayer(
+      userToken,
+      lobbyId,
+      player.user_id
     )
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          title: 'Algo saiu errado...',
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      dispatch(addToast({ variant: 'error', content: response.errorMsg }))
     }
   }
 
-  const renderLineup = () => {
-    let lineup = []
+  const renderCloseLabel = (player) => {
+    if (otherPlayers.length < 1) return null
+    else if (player.user_id === userPlayer.user_id) return 'Sair'
+    else if (isOwner) return 'Expulsar'
+    else return null
+  }
 
-    if (lobby.max_players === 5) {
-      const fillOrder = [1, 3, 0, 4]
+  const renderCloseButton = (player) => {
+    if (otherPlayers.length < 1) return false
+    else if (player.user_id === userPlayer.user_id || isOwner)
+      return () => handleRemove(player)
+    else return false
+  }
 
-      lineup = [
-        <Container
-          align="center"
-          justify="center"
-          key={`5-pos0`}
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-          onClick={onSeatClick}
-        >
-          <LobbySeat />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key={`5-pos1`}
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-          onClick={onSeatClick}
-        >
-          <LobbySeat />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key={`5-pos2`}
-          className={style.seat}
-        >
-          <UserCard
-            {...userPlayer}
-            onLeave={handleLeave}
-            showLeave={lobby.players_count > 1 && !lobby.queue}
-          />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key={`5-pos3`}
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-          onClick={onSeatClick}
-        >
-          <LobbySeat />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key={`5-pos4`}
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-          onClick={onSeatClick}
-        >
-          <LobbySeat />
-        </Container>,
-      ]
+  const renderPlayerCard = (player) => {
+    const closeButton = renderCloseButton(player)
+    const closeLabel = renderCloseLabel(player)
+    return (
+      <LobbyPlayerCard
+        player={player}
+        onClose={closeButton}
+        closeLabel={closeLabel}
+      />
+    )
+  }
 
-      for (let i = 0; i < otherPlayers.length; i++) {
-        lineup[fillOrder[i]] = (
-          <Container
-            align="center"
-            justify="center"
-            key={`5-${otherPlayers[i].id}`}
-            className={style.seat}
-            style={{ maxHeight: '95%' }}
-            column
-          >
-            <UserCard
-              {...otherPlayers[i]}
-              showLeave={isOwner && lobby.players_count > 1 && !lobby.queue}
-              onLeave={() => handleKick(otherPlayers[i])}
-            />
-          </Container>
-        )
-      }
-    } else if (lobby.max_players === 1) {
-      lineup = [
+  const handleSeatClick = () => {
+    dispatch(toggleFriendList(true))
+  }
+
+  return (
+    <Container className={style.container} gap={18} align="center">
+      {lineup.map((player, index) => (
         <Container
-          align="center"
-          justify="center"
-          key="pos0"
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
+          key={player ? player.user_id : `seat-${index}`}
+          style={{ height: index === 2 ? '100%' : '95%' }}
         >
-          <LobbySeat disabled />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key="pos1"
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-        >
-          <LobbySeat disabled />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key="pos2"
-          className={style.seat}
-        >
-          <UserCard
-            {...owner}
-            onLeave={handleLeave}
-            showLeave={lobby.players_count > 1 && !lobby.queue}
-          />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key="pos3"
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-        >
-          <LobbySeat disabled />
-        </Container>,
-        <Container
-          align="center"
-          justify="center"
-          key="pos4"
-          className={style.seat}
-          style={{ maxHeight: '95%' }}
-        >
-          <LobbySeat disabled />
-        </Container>,
-      ]
-    } else if (lobby.max_players === 20) {
-      lineup = Array.from(Array(20)).map((el, idx) => {
-        if (idx === 0)
-          return (
-            <Container key={`20-pos0`} className={style.customSeat}>
-              <UserCardMini
-                {...userPlayer}
-                onLeave={handleLeave}
-                showLeave={lobby.players_count > 1 && !lobby.queue}
-              />
+          {player ? (
+            renderPlayerCard(player)
+          ) : (
+            <Container onClick={handleSeatClick} style={{ height: '100%' }}>
+              <LobbySeat />
             </Container>
-          )
-        else {
-          if (typeof otherPlayers[idx - 1] !== 'undefined') {
-            return (
-              <Container key={`20-pos${idx}`} className={style.customSeat}>
-                <UserCardMini
-                  {...otherPlayers[idx - 1]}
-                  showLeave={isOwner && lobby.players_count > 1}
-                  onLeave={() => handleKick(otherPlayers[idx - 1])}
-                />
-              </Container>
-            )
-          } else {
-            return (
-              <Container
-                key={`20-pos${idx}`}
-                className={style.customSeat}
-                onClick={onSeatClick}
-              >
-                <LobbySeat mini />
-              </Container>
-            )
-          }
-        }
-      })
-    }
-
-    setLineup(lineup)
-  }
-
-  return lineup
+          )}
+        </Container>
+      ))}
+    </Container>
+  )
 }

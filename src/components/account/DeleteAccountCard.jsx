@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { AccountsAPI } from '@api'
 import { AccountCard, Container, Modal } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './DeleteAccountCard.module.css'
@@ -29,7 +29,6 @@ export default function DeleteAccountCard() {
     if (response.formError) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.formError.error,
           variant: 'error',
         })

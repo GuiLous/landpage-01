@@ -4,7 +4,7 @@ import { Container, Sidebar } from '@components'
 
 import style from './MainLayout.module.css'
 
-export default function MainLayout(props) {
+export default function MainLayout({ children }) {
   const user = useSelector((state) => state.user)
 
   return (
@@ -14,7 +14,7 @@ export default function MainLayout(props) {
           <Sidebar />
         </Container>
       )}
-      <Container className={style.content}>{props.children}</Container>
+      <Container className={style.content}>{children}</Container>
     </Container>
   )
 }

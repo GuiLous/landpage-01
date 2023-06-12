@@ -5,7 +5,6 @@ import {
   BlockIcon,
   CloseIcon,
   Container,
-  InviteModal,
   LobbyLineup,
   LobbyModeSelector,
   MatchFoundModal,
@@ -13,7 +12,7 @@ import {
 } from '@components'
 import { MainLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast, toggleFriendList } from '@slices/AppSlice'
 import { removeRestartQueue } from '@slices/UserSlice'
 
 import { useEffect, useRef, useState } from 'react'
@@ -27,17 +26,17 @@ export default function LobbyView() {
 
   const buttonRef = useRef()
 
-  const [inviteModalVisible, setInviteModalVisible] = useState(false)
   const [isButtonHovered, setIsButtonHovered] = useState(false)
 
   const lobby = user && user.account.lobby
 
-  const userPlayer = lobby.players.filter((player) => player.id === user.id)[0]
+  const userPlayer = lobby.players.filter(
+    (player) => player.user_id === user.id
+  )[0]
   const owner = lobby.players.filter(
-    (player) => player.id === lobby.owner_id
+    (player) => player.user_id === lobby.owner_id
   )[0]
   const isOwner = userPlayer.id === owner.id
-  const is1v1 = lobby.max_players === 1
 
   const handleQueue = async (action) => {
     if (!isOwner || preMatch || match) return
@@ -52,7 +51,6 @@ export default function LobbyView() {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -64,8 +62,7 @@ export default function LobbyView() {
     setIsButtonHovered(false)
     handleQueue('start')
   }
-  const handleInviteModalShow = () => setInviteModalVisible(true)
-  const handleInviteModalClose = () => setInviteModalVisible(false)
+  const handleToggleFriendList = () => dispatch(toggleFriendList(true))
 
   const renderButtons = () => {
     const showPlayButton =
@@ -183,7 +180,6 @@ export default function LobbyView() {
       if (response && response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })
@@ -207,7 +203,6 @@ export default function LobbyView() {
       if (response && response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })
@@ -243,13 +238,6 @@ export default function LobbyView() {
 
   return (
     <MainLayout>
-      {!is1v1 && (
-        <InviteModal
-          isOpen={inviteModalVisible}
-          onClose={handleInviteModalClose}
-        />
-      )}
-
       {preMatch && preMatch.state === 'lock_in' && (
         <MatchFoundModal preMatch={preMatch} />
       )}
@@ -268,7 +256,7 @@ export default function LobbyView() {
         >
           <LobbyLineup
             lobby={lobby}
-            onSeatClick={handleInviteModalShow}
+            onSeatClick={handleToggleFriendList}
             user={user}
             owner={owner}
             userPlayer={userPlayer}

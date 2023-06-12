@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { Container, ToastListItem } from '@components'
 
 export default function ToastList() {
-  const toasts = useSelector((state) => state.toasts)
+  const toasts = useSelector((state) => state.app.toasts)
   const transitions = useTransition(toasts, {
     from: { opacity: 0, right: -40 },
     enter: { opacity: 1, right: 0 },
@@ -13,7 +13,7 @@ export default function ToastList() {
   })
 
   return (
-    <Container reverseColumn gap={20}>
+    <Container reverseColumn gap={20} style={{ zIndex: 20000 }}>
       {transitions((style, item) => (
         <Container
           style={{ ...style, position: 'relative' }}

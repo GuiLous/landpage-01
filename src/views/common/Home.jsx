@@ -13,8 +13,8 @@ import logo from '@assets/images/logo_type_white.svg'
 import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 import { match, preMatch } from '@slices/MatchSlice'
-import { addToast } from '@slices/ToastSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
@@ -41,7 +41,6 @@ export default function HomeView() {
       else
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

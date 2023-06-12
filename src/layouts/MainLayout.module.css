@@ -6,9 +6,11 @@
 
 .content {
 	height: 100%;
-	padding: 30px 40px;
+	padding: 40px;
 }
 
 .sidebar {
 	height: 100%;
+	max-width: 300px;
+	min-width: 300px;
 }

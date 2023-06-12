@@ -3,31 +3,32 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { ToastListItem } from '@components'
-import ToastReducer from '@slices/ToastSlice'
+import AppReducer from '@slices/AppSlice'
 
 describe('ToastListItem Component', () => {
-  const preloadedState = {
-    toasts: [
-      {
-        id: 1,
-        title: 'Feedback!',
-        content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-        duration: 6,
-        variant: 'success',
-      },
-    ],
+  let app = {
+    toasts: [],
+    friendListOpen: false,
   }
 
   const store = configureStore({
-    reducer: { toasts: ToastReducer },
+    reducer: { app: AppReducer },
     devTools: true,
-    preloadedState: preloadedState,
+    preloadedState: { app },
   })
 
   it('should renders correctly', () => {
+    app.toasts.push({
+      id: 1,
+      title: 'Feedback!',
+      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+      duration: 6,
+      variant: 'success',
+    })
+
     render(
       <Provider store={store}>
-        <ToastListItem {...preloadedState.toasts[0]} />
+        <ToastListItem {...app.toasts[0]} />
       </Provider>
     )
     expect(screen.getByText('Feedback!')).toBeInTheDocument()
@@ -36,5 +37,47 @@ describe('ToastListItem Component', () => {
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit.'
       )
     ).toBeInTheDocument()
+  })
+
+  it('should render variant correctly', () => {
+    render(
+      <Provider store={store}>
+        <ToastListItem {...app.toasts[0]} />
+      </Provider>
+    )
+
+    expect(screen.getByTestId('container')).toHaveClass(app.toasts[0].variant)
+  })
+
+  it('should render default title', () => {
+    app.toasts = []
+    app.toasts.push({
+      id: 1,
+      content: 'Default title toast.',
+      duration: 6,
+      variant: 'success',
+    })
+    render(
+      <Provider store={store}>
+        <ToastListItem {...app.toasts[0]} />
+      </Provider>
+    )
+    expect(screen.getByText('Tudo certo!')).toBeInTheDocument()
+
+    app.toasts[0].variant = 'warning'
+    render(
+      <Provider store={store}>
+        <ToastListItem {...app.toasts[0]} />
+      </Provider>
+    )
+    expect(screen.getByText('Atenção!')).toBeInTheDocument()
+
+    app.toasts[0].variant = 'error'
+    render(
+      <Provider store={store}>
+        <ToastListItem {...app.toasts[0]} />
+      </Provider>
+    )
+    expect(screen.getByText('Algo saiu errado...')).toBeInTheDocument()
   })
 })

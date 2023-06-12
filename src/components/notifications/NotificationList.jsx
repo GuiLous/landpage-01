@@ -15,12 +15,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NotificationsAPI } from '@api'
 import { Container, NotificationListItem, Scrollbars } from '@components'
 import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 import {
   initNotifications,
   readAllNotifications,
   readNotification,
 } from '@slices/NotificationSlice'
-import { addToast } from '@slices/ToastSlice'
 
 export default function NotificationList({ isOpen, onClose }) {
   const notifications = useSelector((state) => state.notifications)
@@ -34,7 +34,6 @@ export default function NotificationList({ isOpen, onClose }) {
   const showErrorToast = (error) => {
     dispatch(
       addToast({
-        title: 'Algo saiu errado...',
         content: error,
         variant: 'error',
       })

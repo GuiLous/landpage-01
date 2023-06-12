@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { Container, LevelBadge, UserIcon } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { addInviteSent } from '@slices/UserSlice'
 import style from './InviteListItem.module.css'
 
@@ -58,7 +58,6 @@ export default function InviteListItem(props) {
     if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

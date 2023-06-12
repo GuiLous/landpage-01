@@ -1,0 +1,29 @@
+.container {
+	background-color: var(--chakra-colors-black-900);
+	color: white;
+	height: 100%;
+}
+
+.gameTypeItem {
+	border-bottom: 1px solid var(--chakra-colors-gray-700);
+	color: var(--chakra-colors-gray-700);
+	font-weight: var(--chakra-fontWeights-light);
+	padding-bottom: 32px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.gameTypeItem.active {
+	border-bottom: 1px solid var(--chakra-colors-primary-400);
+	color: var(--chakra-colors-primary-400);
+	font-weight: var(--chakra-fontWeights-medium);
+}
+
+.gameTypeItem.active .arrowUpIcon {
+	bottom: -8px;
+	position: absolute;
+}
+
+.footer {
+	max-width: 273px;
+}

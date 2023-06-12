@@ -1,5 +1,5 @@
 import { HttpService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import store from '@store'
 
 export const BaseAPI = {
@@ -16,7 +16,6 @@ export const BaseAPI = {
     } catch (error) {
       store.dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -65,8 +64,8 @@ export const BaseAPI = {
     )
   },
 
-  async delete(endpoint, token) {
-    return await this.call(endpoint, token, 'delete')
+  async delete(endpoint, token, payload) {
+    return await this.call(endpoint, token, 'delete', payload)
   },
 }
 

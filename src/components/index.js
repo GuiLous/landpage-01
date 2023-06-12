@@ -7,16 +7,17 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
+import Sidebar from './sidebar/Sidebar'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
 
-// Sidebar
-import FriendList from './sidebar/FriendList'
-import FriendListGroup from './sidebar/FriendListGroup'
-import FriendListGroupItem from './sidebar/FriendListGroupItem'
-import Sidebar from './sidebar/Sidebar'
-import SidebarHeader from './sidebar/SidebarHeader'
+// Friends
+import FriendList from './friends/FriendList'
+import FriendListGroup from './friends/FriendListGroup'
+import FriendListGroupItem from './friends/FriendListGroupItem'
+import InviteListGroup from './friends/InviteListGroup'
+import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Forms
 import FakeSigninForm from './forms/FakeSigninForm'
@@ -26,10 +27,12 @@ import Select from './forms/Select'
 import SteamSignin from './forms/SteamSignin'
 
 // Icons
+import AcceptIcon from './icons/AcceptIcon'
 import AddUserIcon from './icons/AddUserIcon'
 import ArrowDownIcon from './icons/ArrowDownIcon'
 import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
+import ArrowUpFilledIcon from './icons/ArrowUpFilledIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellFilledIcon from './icons/BellFilledIcon'
@@ -52,6 +55,7 @@ import PencilIcon from './icons/PencilIcon'
 import PlayIcon from './icons/PlayIcon'
 import PlusIcon from './icons/PlusIcon'
 import PodiumIcon from './icons/PodiumIcon'
+import RefuseIcon from './icons/RefuseIcon'
 import SearchIcon from './icons/SearchIcon'
 import SettingsIcon from './icons/SettingsIcon'
 import ShareIcon from './icons/ShareIcon'
@@ -64,25 +68,20 @@ import UserIcon from './icons/UserIcon'
 import WarningCircleIcon from './icons/WarningCircleIcon'
 
 // Lobby
-import Invite from './lobby/Invite'
-import InviteModal from './lobby/InviteModal'
 import LobbyHeader from './lobby/LobbyHeader'
 import LobbyLineup from './lobby/LobbyLineup'
 import LobbyModeSelector from './lobby/LobbyModeSelector'
+import LobbyPlayButton from './lobby/LobbyPlayButton'
+import LobbyPlayerCard from './lobby/LobbyPlayerCard'
 import LobbySeat from './lobby/LobbySeat'
 import MatchFoundModal from './lobby/MatchFoundModal'
 
 // User
 import FriendListUser from './user/FriendListUser'
-import InviteListItem from './user/InviteListItem'
 import LevelBadge from './user/LevelBadge'
 import UserCard from './user/UserCard'
 import UserCardMini from './user/UserCardMini'
 import UserStatus from './user/UserStatus'
-
-// Header
-import Header from './header/Header'
-import HeaderPlayButton from './header/HeaderPlayButton'
 
 // Match
 import LevelProgressBar from './match/LevelProgressBar'
@@ -119,11 +118,13 @@ import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
 
 export {
+  AcceptIcon,
   AccountCard,
   AddUserIcon,
   ArrowDownIcon,
   ArrowRightIcon,
   ArrowRightSimpleIcon,
+  ArrowUpFilledIcon,
   ArrowUpIcon,
   Avatar,
   BellCircleIcon,
@@ -153,15 +154,12 @@ export {
   FriendListUser,
   FriendsIcon,
   GroupAddIcon,
-  Header,
-  HeaderPlayButton,
   HeaderProfile,
   HeatmapStatsCard,
   InactivateAccountCard,
   Input,
-  Invite,
-  InviteListItem,
-  InviteModal,
+  InviteListGroup,
+  InviteListGroupItem,
   JoystickIcon,
   LevelBadge,
   LevelProgressBar,
@@ -171,6 +169,8 @@ export {
   LobbyHeader,
   LobbyLineup,
   LobbyModeSelector,
+  LobbyPlayButton,
+  LobbyPlayerCard,
   LobbySeat,
   LockIcon,
   MatchFoundModal,
@@ -190,6 +190,7 @@ export {
   PodiumIcon,
   ProfileCard,
   Progress,
+  RefuseIcon,
   RequireAuth,
   Scrollbars,
   SearchIcon,
@@ -198,7 +199,6 @@ export {
   ShareIcon,
   ShopIcon,
   Sidebar,
-  SidebarHeader,
   StarIcon,
   SteamSignin,
   StoreIcon,
@@ -212,5 +212,6 @@ export {
   UserCardMini,
   UserIcon,
   UserStatus,
-  WarningCircleIcon,
+  WarningCircleIcon
 }
+

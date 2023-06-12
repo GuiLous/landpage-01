@@ -30,6 +30,7 @@ import {
   ClockIcon,
   Container,
   ExitIcon,
+  FriendList,
   FriendsIcon,
   JoystickIcon,
   NotificationList,
@@ -44,6 +45,7 @@ import {
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
+import { toggleFriendList } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './Sidebar.module.css'
@@ -55,21 +57,15 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const notifications = useSelector((state) => state.notifications)
 
   const invites = useSelector((state) => state.invites)
+  const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
-  const [openNotifications, setOpenNotifications] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
-
-  const handleOpenDrawerNotifications = () => {
-    setOpenNotifications(true)
-  }
-
-  const handleCloseDrawerNotifications = () => {
-    setOpenNotifications(false)
-  }
 
   const handleOpenModalSupport = () => {
     setOpenSupport(true)
@@ -79,6 +75,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     if (collapsable) setIsCollapsed(collapsed)
     else setIsCollapsed(false)
   }, [collapsed, collapsable])
+
+  useEffect(() => {
+    setFriendListOpen(friendListOpenByApp)
+  }, [friendListOpenByApp])
 
   const open = () => {
     collapsable && setIsCollapsed(false)
@@ -197,6 +197,26 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     )
   }
 
+  const handleToggleNotificationsDrawer = () => {
+    setNotificationsOpen(!notificationsOpen)
+  }
+
+  const handleCloseNotificationsDrawer = () => {
+    setNotificationsOpen(false)
+  }
+
+  const handleCloseFriendListDrawer = () => {
+    setFriendListOpen(false)
+    dispatch(toggleFriendList(false))
+  }
+
+  const handleToggleFriendListDrawer = () => {
+    if (friendListOpen) {
+      dispatch(toggleFriendList(false))
+      setFriendListOpen(false)
+    } else setFriendListOpen(true)
+  }
+
   return (
     <>
       <Container
@@ -263,9 +283,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
 
           <Container className={style.menu} column>
-            <Container className={style.menuItem}>
-              <Link href="#">
-                <Container className={style.menuLinkWrapper} gap={14}>
+            <Container
+              className={style.menuItem}
+              onClick={handleToggleFriendListDrawer}
+            >
+              <Link as="button">
+                <Container
+                  className={style.menuLinkWrapper}
+                  gap={14}
+                  align="center"
+                >
                   <Icon as={FriendsIcon} fill="gray.700" />
                   {!isCollapsed && <Text>Amigos</Text>}
                 </Container>
@@ -292,7 +319,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
-                onClick={handleOpenDrawerNotifications}
+                onClick={handleToggleNotificationsDrawer}
               >
                 <Container className={style.menuLinkWrapper} gap={14}>
                   <Icon as={BellFilledIcon} fill="gray.700" />
@@ -435,8 +462,13 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       </Container>
 
       <NotificationList
-        isOpen={openNotifications}
-        onClose={handleCloseDrawerNotifications}
+        isOpen={notificationsOpen}
+        onClose={handleCloseNotificationsDrawer}
+      />
+
+      <FriendList
+        isOpen={friendListOpen}
+        onClose={handleCloseFriendListDrawer}
       />
 
       <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />

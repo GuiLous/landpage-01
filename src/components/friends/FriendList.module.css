@@ -1,0 +1,12 @@
+.container {
+	background-color: var(--chakra-colors-gray-800);
+	color: white;
+}
+
+.header {
+	padding: 24px 18px;
+}
+
+.closeBtn {
+	cursor: pointer;
+}

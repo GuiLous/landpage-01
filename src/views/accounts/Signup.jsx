@@ -14,7 +14,7 @@ import { Container, Input } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Signup.module.css'
 
@@ -53,7 +53,6 @@ export default function SignupView() {
     }
 
     setFetching(false)
-    dispatch(updateUser(response))
     dispatch(
       addToast({
         title: 'Que bom que você chegou!',
@@ -61,6 +60,7 @@ export default function SignupView() {
         variant: 'success',
       })
     )
+    dispatch(updateUser(response))
     if (response.account.is_verified) navigate('/jogar')
     else navigate('/verificar')
   }

@@ -13,7 +13,7 @@ import { Container, Input } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './UpdateEmail.module.css'
 
@@ -47,7 +47,6 @@ export default function SignupView() {
       else
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })
