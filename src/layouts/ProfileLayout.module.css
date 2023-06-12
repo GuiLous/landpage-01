@@ -16,6 +16,8 @@
 
 .sidebar {
 	height: 100%;
+	max-width: 300px;
+	min-width: 300px;
 	position: fixed;
-	width: fit-content;
+	z-index: 9999;
 }
