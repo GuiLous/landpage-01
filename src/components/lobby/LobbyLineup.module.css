@@ -1,9 +1,4 @@
-.seat {
+.container {
+	background-color: var(--chakra-colors-black-900);
 	height: 100%;
-	width: 20%;
-}
-
-.customSeat {
-	flex: 1 0 20%;
-	margin: 3px 11px;
 }
