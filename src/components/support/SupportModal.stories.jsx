@@ -1,3 +1,6 @@
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+
 import { SupportModal } from '@components'
 
 export default {
@@ -11,6 +14,12 @@ export default {
   },
 }
 
+const mockStore = configureStore()({})
+
 export const Default = {
-  render: (props) => <SupportModal {...props} />,
+  render: (props) => (
+    <Provider store={mockStore}>
+      <SupportModal {...props} />
+    </Provider>
+  ),
 }
