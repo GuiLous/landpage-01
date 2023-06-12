@@ -189,11 +189,26 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
                 )}
               </Container>
 
-              <FileInput
-                files={files}
-                register={register}
-                setValue={setValue}
-              />
+              <Container column>
+                <FileInput
+                  files={files}
+                  register={register}
+                  setValue={setValue}
+                  setFieldsErrors={setFieldsErrors}
+                />
+
+                {fieldsErrors?.files && (
+                  <Text
+                    fontSize={12}
+                    color="danger.400"
+                    pl="5px"
+                    mt="12px"
+                    fontWeight="medium"
+                  >
+                    {fieldsErrors?.files}
+                  </Text>
+                )}
+              </Container>
 
               <Container
                 align="center"
