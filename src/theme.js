@@ -447,9 +447,10 @@ export default extendTheme({
       baseStyle: {
         bg: 'primary.400',
         color: 'white',
-        borderRadius: '10px',
-        padding: '0 8px',
+        borderRadius: '67px',
+        padding: '4px 10px',
         fontWeight: 'regular',
+        fontSize: '10px',
       },
       variants: {
         online: {
