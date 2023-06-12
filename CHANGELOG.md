@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [6d97c56 - 12/6/2023]
+
 ### Added
 
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
