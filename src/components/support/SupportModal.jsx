@@ -12,7 +12,7 @@ import {
   Select,
 } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
 export default function SupportModal({ isOpen, setOpenSupport }) {
@@ -77,7 +77,6 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
     } else if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })
@@ -100,7 +99,6 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
       if (response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })
