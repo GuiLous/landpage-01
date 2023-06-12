@@ -28,7 +28,7 @@ describe('SupportModal Component', () => {
   it('should render correctly', async () => {
     render(
       <Provider store={mockStore}>
-        <SupportModal isOpen={true} onClose={() => { }} />
+        <SupportModal isOpen={true} onClose={() => {}} />
       </Provider>
     )
 
