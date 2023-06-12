@@ -385,7 +385,6 @@ export default extendTheme({
           },
           _invalid: {
             borderColor: 'danger.400',
-            color: 'danger.400',
           },
         },
       },
