@@ -7,7 +7,12 @@ import { Container } from '@components'
 
 import style from './FileInput.module.css'
 
-export default function FileInput({ files, isSingleFile = false, setValue }) {
+export default function FileInput({
+  files,
+  isSingleFile = false,
+  setValue,
+  setFieldsErrors,
+}) {
   const [isDragging, setIsDragging] = useState(false)
 
   const maxFiles = 4
@@ -20,6 +25,11 @@ export default function FileInput({ files, isSingleFile = false, setValue }) {
     Array.from(newFiles).forEach((file) => {
       if (fileTypes.includes(file.type) && file.size <= maxFileSize) {
         filteredFiles.push(file)
+        setFieldsErrors({ files: null })
+      } else if (newFiles.length === 1) {
+        setFieldsErrors({
+          files: 'Formato ou tamanho do arquivo ' + file.name + ' inválido.',
+        })
       }
     })
 
