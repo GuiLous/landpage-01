@@ -3,11 +3,16 @@ import { addToast } from '@slices/ToastSlice'
 import store from '@store'
 
 export const BaseAPI = {
-  async call(endpoint, token, method, payload) {
+  async call(endpoint, token, method, payload, headers_content_type) {
     let response
 
     try {
-      response = await HttpService[method](endpoint, token, payload)
+      response = await HttpService[method](
+        endpoint,
+        token,
+        payload,
+        headers_content_type
+      )
     } catch (error) {
       store.dispatch(
         addToast({
@@ -30,16 +35,34 @@ export const BaseAPI = {
     return await this.call(endpoint, token, 'get')
   },
 
-  async replace(endpoint, token, payload) {
-    return await this.call(endpoint, token, 'put', payload)
+  async replace(endpoint, token, payload, headers_content_type) {
+    return await this.call(
+      endpoint,
+      token,
+      'put',
+      payload,
+      headers_content_type
+    )
   },
 
-  async update(endpoint, token, payload) {
-    return await this.call(endpoint, token, 'patch', payload)
+  async update(endpoint, token, payload, headers_content_type) {
+    return await this.call(
+      endpoint,
+      token,
+      'patch',
+      payload,
+      headers_content_type
+    )
   },
 
-  async create(endpoint, token, payload) {
-    return await this.call(endpoint, token, 'post', payload)
+  async create(endpoint, token, payload, headers_content_type) {
+    return await this.call(
+      endpoint,
+      token,
+      'post',
+      payload,
+      headers_content_type
+    )
   },
 
   async delete(endpoint, token) {

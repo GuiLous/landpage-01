@@ -5,8 +5,13 @@ export const SupportAPI = {
     return await BaseAPI.list('support/tickets/subjects/', token)
   },
 
-  async createTicket(token, form) {
-    return await BaseAPI.create('support/tickets/', token, form)
+  async createTicket(token, payload) {
+    return await BaseAPI.create(
+      'support/tickets/',
+      token,
+      payload,
+      'multipart/form-data'
+    )
   },
 }
 

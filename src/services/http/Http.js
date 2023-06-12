@@ -10,7 +10,14 @@ export class HttpException extends Error {
 }
 
 export const HttpService = {
-  async request(method, endpoint, token, payload, custom_unknown_error) {
+  async request(
+    method,
+    endpoint,
+    token,
+    payload,
+    headers_content_type = 'application/json',
+    custom_unknown_error
+  ) {
     if (endpoint[0] !== '/') endpoint = '/' + endpoint
     if (endpoint.slice(-1) === '/') endpoint = endpoint.slice(0, -1)
     let url = REACT_APP_API_URL + '/api' + endpoint
@@ -19,8 +26,8 @@ export const HttpService = {
     }
 
     let headers = {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
+      Accept: headers_content_type,
+      'Content-Type': headers_content_type,
     }
     if (token)
       headers = {
@@ -33,7 +40,16 @@ export const HttpService = {
       headers: headers,
     }
 
-    if (payload) request = { ...request, body: JSON.stringify(payload) }
+    if (payload) {
+      request = {
+        ...request,
+        body:
+          headers_content_type === 'application/json'
+            ? JSON.stringify(payload)
+            : payload,
+      }
+    }
+
     const defaultError = custom_unknown_error || 'Ocorreu um erro desconhecido.'
     let response
 
@@ -75,16 +91,34 @@ export const HttpService = {
     return HttpService.request('GET', endpoint, token)
   },
 
-  post(endpoint, token, payload) {
-    return HttpService.request('POST', endpoint, token, payload)
+  post(endpoint, token, payload, headers_content_type) {
+    return HttpService.request(
+      'POST',
+      endpoint,
+      token,
+      payload,
+      headers_content_type
+    )
   },
 
-  patch(endpoint, token, payload) {
-    return HttpService.request('PATCH', endpoint, token, payload)
+  patch(endpoint, token, payload, headers_content_type) {
+    return HttpService.request(
+      'PATCH',
+      endpoint,
+      token,
+      payload,
+      headers_content_type
+    )
   },
 
-  put(endpoint, token, payload) {
-    return HttpService.request('PUT', endpoint, token, payload)
+  put(endpoint, token, payload, headers_content_type) {
+    return HttpService.request(
+      'PUT',
+      endpoint,
+      token,
+      payload,
+      headers_content_type
+    )
   },
 
   delete(endpoint, token) {
