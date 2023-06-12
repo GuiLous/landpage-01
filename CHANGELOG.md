@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
 - Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
 - Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
+- Alterado css do layout `ProfileLayout` para padronizar o padding.
 - Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 
 ## [6d97c56 - 12/6/2023]
