@@ -12,6 +12,16 @@ export default {
   args: {
     isOpen: false,
   },
+  parameters: {
+    mockData: [
+      {
+        url: 'http://localhost:8000/api/support/tickets/subjects/',
+        method: 'GET',
+        status: 200,
+        response: ['option 1', 'option 2', 'option 3', 'option 4'],
+      },
+    ],
+  },
 }
 
 const mockStore = configureStore()({})
