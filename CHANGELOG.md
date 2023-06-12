@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Nova `LobbyView` [#280](https://github.com/3C-gg/reload-frontend/issues/280).
+- Slice para `Lobby` e nova chamada `detail` na `LobbiesAPI`
 - Método para remover player de um lobby em `LobbiesAPI`.
 - Hook `useLatestMatchesResults` para renderizar os últimos resultados de partidas do jogador.
 - Componente `LobbyPlayButton`.
@@ -26,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
+- Altera borda do avatar para refletir design.
 - Refatora componente `LobbyPlayerCard` [#281](https://github.com/3C-gg/reload-frontend/issues/281).
 - Refatoramos o componente `LobbyLineup` para conter o novo design, comportamento e componentes [#282](https://github.com/3C-gg/reload-frontend/issues/282).
 - Altera componente `LevelStatsCard` para usar novo hook de últimas partidas `useLatestMatchesResults`.
@@ -71,7 +74,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 - Move componentes de `FriendList` para uma pasta separada `friends`.
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
