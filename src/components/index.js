@@ -212,6 +212,5 @@ export {
   UserCardMini,
   UserIcon,
   UserStatus,
-  WarningCircleIcon
+  WarningCircleIcon,
 }
-

@@ -15,6 +15,5 @@ export {
   MatchmakingAPI,
   NotificationsAPI,
   ProfilesAPI,
-  SupportAPI
+  SupportAPI,
 }
-
