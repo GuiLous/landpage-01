@@ -1,5 +1,5 @@
 import { Button, Text, Textarea, VStack } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { SupportAPI } from '@api'
@@ -15,19 +15,10 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/ToastSlice'
 import { useDispatch } from 'react-redux'
 
-const options = [
-  {
-    value: 'Relatar um bug - algo não está funcionando corretamente',
-    label: 'Relatar um bug - algo não está funcionando corretamente',
-  },
-  { value: 'Reportar um usuário', label: 'Reportar um usuário' },
-  { value: 'Sugestão de funcionalidade', label: 'Sugestão de funcionalidade' },
-  { value: 'Ajuda', label: 'Ajuda' },
-]
-
 export default function SupportModal({ isOpen, setOpenSupport }) {
   const dispatch = useDispatch()
 
+  const [subjectOptions, setSubjectOptions] = useState([])
   const [fetching, setFetching] = useState(false)
   const [formSent, setFormSent] = useState(false)
   const [fieldsErrors, setFieldsErrors] = useState(null)
@@ -42,6 +33,15 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
 
   const { description, files, subject } = watch()
   const canSubmit = description !== '' && subject !== ''
+
+  const formatSubjectOptions = (options) => {
+    const optionsFormatted = options.reduce((acc, currentValue) => {
+      acc.push({ value: currentValue, label: currentValue })
+      return acc
+    }, [])
+
+    return optionsFormatted
+  }
 
   const handleCloseModalSupport = () => {
     reset()
@@ -90,6 +90,30 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
     setFetching(false)
   }
 
+  useEffect(() => {
+    const fetch = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await SupportAPI.listTickets(userToken)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            title: 'Algo saiu errado...',
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        return
+      }
+
+      setSubjectOptions(formatSubjectOptions(response))
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   return (
     <Modal
       isOpen={isOpen}
@@ -126,7 +150,7 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
               <VStack alignItems="initial" w="100%">
                 <Select
                   control={control}
-                  options={options}
+                  options={subjectOptions}
                   isInvalid={fieldsErrors?.subject}
                 />
 
