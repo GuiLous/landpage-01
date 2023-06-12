@@ -46,7 +46,8 @@
 	background-color: transparent;
 }
 
-.menuItem a {
+.menuItem a,
+.menuItem button {
 	align-items: center;
 	display: flex;
 	flex: 1;
@@ -56,13 +57,16 @@
 }
 
 .menuItem.soon a,
-.menuItem.soon a:hover {
+.menuItem.soon a:hover,
+.menuItem.soon button,
+.menuItem.soon button:hover {
 	cursor: default;
 	opacity: 0.7;
 	pointer-events: none;
 }
 
-.menuItem a p {
+.menuItem a p,
+.menuItem button p {
 	font-size: 14px;
 }
 
@@ -83,6 +87,7 @@
 .container.collapsed .menu,
 .container.collapsed .menuItem,
 .container.collapsed .menuItem a,
+.container.collapsed .menuItem button,
 .container.collapsed .userInfo {
 	justify-content: center;
 }

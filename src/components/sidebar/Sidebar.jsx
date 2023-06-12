@@ -281,8 +281,12 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               className={style.menuItem}
               onClick={handleToggleFriendListDrawer}
             >
-              <Link href="#">
-                <Container className={style.menuLinkWrapper} gap={14}>
+              <Link as="button">
+                <Container
+                  className={style.menuLinkWrapper}
+                  gap={14}
+                  align="center"
+                >
                   <Icon as={FriendsIcon} fill="gray.700" />
                   {!isCollapsed && <Text>Amigos</Text>}
                 </Container>
