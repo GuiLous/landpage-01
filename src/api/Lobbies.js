@@ -24,6 +24,13 @@ export const LobbiesAPI = {
       to_user_id: to_user_id,
     })
   },
+
+  async removePlayer(token, lobby_id, player_id) {
+    return await BaseAPI.delete(
+      `lobbies/${lobby_id}/players/${player_id}/`,
+      token
+    )
+  },
 }
 
 export default LobbiesAPI
