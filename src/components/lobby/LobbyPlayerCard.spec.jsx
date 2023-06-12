@@ -17,7 +17,7 @@ describe('LobbyPlayerCard Component', () => {
       level: 1,
       steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
     },
-    onClose: true,
+    onClose: () => false,
     closeLabel: 'Sair',
   }
 
