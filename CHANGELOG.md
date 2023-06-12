@@ -7,8 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Criado component `ConfirmationContent`.
+- Criado interface `SupportAPI`.
+- Criado componente `Select`
+- Criado componente `FileCard`
+- Adicionado estilização para o `Textarea` no tema do chakra ui.
+- Criado componente `FileInput`.
+- Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+
 ### Changed
 
+- Alterado pasta `form` para `forms` para agrupar componentes de formulário.
+- Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
+- Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra.
+- Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
+- Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
 - Alterado css do layout `ProfileLayout` para padronizar o padding.
 - Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 

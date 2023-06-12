@@ -20,7 +20,7 @@ import {
   PencilIcon,
   WarningCircleIcon,
 } from '@components'
-import { isEmailValid } from '@components/input/Validators'
+import { isEmailValid } from '@components/forms/Validators'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'

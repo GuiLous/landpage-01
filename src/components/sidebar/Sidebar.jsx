@@ -40,6 +40,7 @@ import {
   ShareIcon,
   ShopIcon,
   SupportIcon,
+  SupportModal,
   Timer,
   UserIcon,
 } from '@components'
@@ -61,9 +62,14 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
+  const [openSupport, setOpenSupport] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
+
+  const handleOpenModalSupport = () => {
+    setOpenSupport(true)
+  }
 
   useEffect(() => {
     if (collapsable) setIsCollapsed(collapsed)
@@ -387,6 +393,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
+                onClick={handleOpenModalSupport}
               >
                 <Icon as={SupportIcon} fill="gray.700" />
                 {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
@@ -463,6 +470,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         isOpen={friendListOpen}
         onClose={handleCloseFriendListDrawer}
       />
+
+      <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />
     </>
   )
 }

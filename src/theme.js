@@ -23,13 +23,23 @@ export default extendTheme({
           bg: 'primary.300',
           backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'primary.300',
-            backgroundColor: 'primary.300',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
           },
         },
         _active: {
           bg: 'primary.600',
           backgroundColor: 'primary.600',
+        },
+        _disabled: {
+          backgroundColor: 'gray.400',
+          color: 'gray.700',
+          opacity: 1,
+          _hover: {
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
+          },
         },
       },
       variants: {
@@ -356,6 +366,38 @@ export default extendTheme({
           field: {
             bg: 'gray.400',
             backgroundColor: 'gray.400',
+          },
+        },
+      },
+    },
+    Textarea: {
+      variants: {
+        primary: {
+          bg: 'black.900',
+          color: 'white',
+          border: '1px solid',
+          borderColor: 'gray.400',
+          borderRadius: 4,
+          resize: 'none',
+          minHeight: '98px',
+          lineHeight: 1,
+          p: 4,
+          fontSize: '12px',
+          fontWeight: '400',
+          _placeholder: {
+            color: 'gray.700',
+          },
+          _hover: {
+            borderColor: 'primary.400',
+          },
+          _focus: {
+            color: 'white',
+            _placeholder: {
+              color: 'white',
+            },
+          },
+          _invalid: {
+            borderColor: 'danger.400',
           },
         },
       },

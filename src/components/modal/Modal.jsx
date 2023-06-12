@@ -16,18 +16,20 @@ export default function Modal({
   title,
   children,
   showCloseButton = true,
+  headerMarginBottom = 40,
+  ...props
 }) {
   return (
     <ChakraModal
-      size="3xl"
       isCentered
       isOpen={isOpen}
       onClose={onClose}
       scrollBehavior="inside"
+      {...props}
     >
       <ModalOverlay />
       <ModalContent py="40px">
-        <ModalHeader p={0} mb="40px">
+        <ModalHeader p={0} mb={headerMarginBottom + 'px'}>
           <Container justify="center">
             {title && (
               <Text
@@ -43,11 +45,11 @@ export default function Modal({
           </Container>
           {showCloseButton && (
             <ModalCloseButton
-              fontSize={15}
+              fontSize={12}
               width="fit-content"
               height="fit-content"
-              top={5}
-              right={5}
+              top={4}
+              right={4}
             />
           )}
         </ModalHeader>
