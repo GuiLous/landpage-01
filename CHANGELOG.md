@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Alterado css do layout `ProfileLayout` para padronizar o padding.
 - Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
 
 ## [6d97c56 - 12/6/2023]
