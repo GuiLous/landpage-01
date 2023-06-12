@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado pasta `form` para `forms` para agrupar componentes de formulário.
 - Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
 - Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra._disabled
 - Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
