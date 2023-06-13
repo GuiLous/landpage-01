@@ -7,6 +7,10 @@ export const MatchmakingAPI = {
       token
     )
   },
+
+  async playerLockIn(token, matchId) {
+    return await BaseAPI.update(`/mm/match/${matchId}/player-lock-in/`, token)
+  },
 }
 
 export default MatchmakingAPI
