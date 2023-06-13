@@ -99,6 +99,7 @@ describe('Sidebar Component', () => {
         id: 1,
       },
     },
+    status: 'online',
   }
 
   const invites = {
