@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado `variant` no `Avatar` da `SideBar` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
 - Criado component `ConfirmationContent`.
 - Criado interface `SupportAPI`.
 - Criado componente `Select`
@@ -27,6 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
 - Alterado css do layout `ProfileLayout` para padronizar o padding.
 - Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+
+
+## Removed
+
+- Removido `variant` do `Avatar` de `HeaderProfile` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
 
 ## [6d97c56 - 12/6/2023]
 
