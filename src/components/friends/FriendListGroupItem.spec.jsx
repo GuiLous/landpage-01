@@ -13,7 +13,7 @@ const server = setupServer(
   rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
     return res(
       ctx.json({
-        to_player: { id: 2 },
+        to_player: { user_id: 2 },
       })
     )
   })
