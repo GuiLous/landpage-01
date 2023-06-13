@@ -52,6 +52,7 @@ import style from './Sidebar.module.css'
 
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
+  const lobby = useSelector((state) => state.lobby)
   const preMatch = useSelector((state) => state.match.preMatch)
   const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
@@ -107,8 +108,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   }, [notifications])
 
   const renderButtons = () => {
-    const lobby = user && user.account.lobby
-
     const showPlayButton =
       !lobby.queue && !match && !lobby.restriction_countdown
 
@@ -147,7 +146,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             variant="queue"
           >
             <Text w={10}>
-              <Timer initialTime={lobby.queue_time} stop={preMatch} />
+              <Timer
+                initialTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
+                stop={preMatch}
+              />
             </Text>
           </Button>
         )}
