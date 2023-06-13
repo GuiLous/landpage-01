@@ -267,7 +267,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
-              <Avatar src={user.account.avatar.medium} />
+              <Avatar src={user.account.avatar.medium} variant={user.status} />
               {!isCollapsed && (
                 <Container column>
                   <Text color="white" fontWeight={'medium'}>

@@ -197,6 +197,7 @@ export const Default = {
           id: 1,
         },
       },
+      status: 'online',
     }
 
     const invites = {
