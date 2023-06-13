@@ -43,7 +43,7 @@ export default function NotificationList({ isOpen, onClose }) {
   const readAll = async () => {
     if (notifications.length <= 0) return
     const response = await NotificationsAPI.readAll(userToken)
-    if ('formError' in response) showErrorToast(response.formError.error)
+    if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) dispatch(readAllNotifications())
   }
 
@@ -54,7 +54,7 @@ export default function NotificationList({ isOpen, onClose }) {
 
     if (!isAlreadyRead) {
       const response = await NotificationsAPI.read(userToken, id)
-      if ('formError' in response) showErrorToast(response.formError.error)
+      if (response.errorMsg) showErrorToast(response.errorMsg)
       else if (response) dispatch(readNotification({ id: id }))
     }
   }

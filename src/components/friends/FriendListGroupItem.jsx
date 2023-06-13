@@ -41,10 +41,10 @@ export default function FriendListGroupItem({
       id
     )
 
-    if ('formError' in response)
+    if (response.errorMsg)
       dispatch(
         addToast({
-          content: response.formError.error,
+          content: response.errorMsg,
           variant: 'error',
         })
       )
