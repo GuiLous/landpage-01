@@ -27,7 +27,7 @@ export default function VerifyView() {
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
-  const [formError, setFormError] = useState()
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   useEffect(() => {
     if (!user || !user.account || user.account.is_verified) navigate('/')
@@ -39,7 +39,7 @@ export default function VerifyView() {
 
   const handleChange = (value) => {
     setValue(value)
-    setFormError(null)
+    setFieldsErrors(null)
   }
 
   const handleSubmit = async (form) => {
@@ -47,16 +47,18 @@ export default function VerifyView() {
     const token = StorageService.get('token')
 
     const response = await HttpService.post('accounts/verify/', token, form)
-    if (response.errorMsg) {
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
       setFetching(false)
-      if (response.field) setFormError(response)
-      else
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
@@ -98,7 +100,7 @@ export default function VerifyView() {
           </Container>
 
           <Container justify="center">
-            <FormControl isInvalid={formError}>
+            <FormControl isInvalid={fieldsErrors?.pin}>
               <FormLabel style={{ textAlign: 'center', fontSize: 16 }}>
                 Informe o código recebido para verificar sua conta
               </FormLabel>
@@ -114,7 +116,7 @@ export default function VerifyView() {
                     onChange={handleChange}
                     type="alphanumeric"
                     autoFocus
-                    isInvalid={formError}
+                    isInvalid={fieldsErrors?.pin}
                     manageFocus
                   >
                     <PinInputField fontSize="24px" minH="48px" minW="48px" />
@@ -142,10 +144,10 @@ export default function VerifyView() {
                 </Container>
               </Container>
 
-              {formError && (
+              {fieldsErrors?.pin && (
                 <Container justify="center">
                   <FormErrorMessage style={{ textAlign: 'center' }}>
-                    {formError.errorMsg}
+                    {fieldsErrors?.pin}
                   </FormErrorMessage>
                 </Container>
               )}
@@ -167,18 +169,6 @@ export default function VerifyView() {
               </FormHelperText>
             </FormControl>
           </Container>
-
-          {/* <Container justify="center">
-            <Button
-              style={{ flex: 1, marginTop: 16 }}
-              onClick={handleButtonClick}
-              isDisabled={!value || value.length !== 6}
-              isLoading={fetching}
-              loadingText="Enviando"
-            >
-              Validar e jogar agora!
-            </Button>
-          </Container> */}
         </Container>
       </SignupLayout>
     )

@@ -37,7 +37,7 @@ export default function ChangeEmailCard() {
 
   const [email, setEmail] = useState(user.email)
   const [isEditing, setIsEditing] = useState(false)
-  const [formError, setFormError] = useState(null)
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   const setEditingTrue = () => {
     email === user.email && setEmail('')
@@ -66,9 +66,16 @@ export default function ChangeEmailCard() {
     let response
     response = await AccountsAPI.updateEmail(token, email)
 
-    if (response.formError) {
-      if (response.formError.field === 'email')
-        setFormError(response.formError.error)
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
       return
     }
 
@@ -86,7 +93,7 @@ export default function ChangeEmailCard() {
 
   const handleOutsideClick = () => {
     setIsEditing(false)
-    setFormError(null)
+    setFieldsErrors(null)
 
     let isCurrentEmailValid = false
 
@@ -104,7 +111,7 @@ export default function ChangeEmailCard() {
   }
 
   const hasErrors = () => {
-    return formError || !isEmailValid(email)
+    return fieldsErrors?.email || !isEmailValid(email)
   }
 
   useOutsideClick({
@@ -200,7 +207,7 @@ export default function ChangeEmailCard() {
             </InputRightElement>
           </InputGroup>
 
-          {formError && (
+          {fieldsErrors?.email && (
             <Text
               fontSize={12}
               color="danger.400"
@@ -208,7 +215,7 @@ export default function ChangeEmailCard() {
               mt="12px"
               fontWeight="medium"
             >
-              {formError}
+              {fieldsErrors?.email}
             </Text>
           )}
         </Container>
@@ -219,7 +226,9 @@ export default function ChangeEmailCard() {
           fontSize={14}
           minH="34px"
           h="fit-content"
-          isDisabled={formError || !isEmailValid(email) || user.email === email}
+          isDisabled={
+            fieldsErrors?.email || !isEmailValid(email) || user.email === email
+          }
           onClick={handleClickButtonSave}
         >
           Salvar Alterações

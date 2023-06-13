@@ -26,10 +26,10 @@ export default function DeleteAccountCard() {
     const response = await AccountsAPI.delete(token)
     setFetching(false)
 
-    if (response.formError) {
+    if (response.errorMsg) {
       dispatch(
         addToast({
-          content: response.formError.error,
+          content: response.errorMsg,
           variant: 'error',
         })
       )

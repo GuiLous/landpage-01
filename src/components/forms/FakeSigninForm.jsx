@@ -14,7 +14,7 @@ import { isEmailValid } from '@components/forms/Validators'
 import { REACT_APP_API_URL } from '@config'
 import style from './FakeSigninForm.module.css'
 
-export default function FakeSigninForm({ fetching, onSubmit, formError }) {
+export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
   const [value, setValue] = useState()
 
   const handleButtonClick = () => {
@@ -46,7 +46,7 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
         style={{ width: '100%' }}
       >
         <Container className={style.formset} column>
-          <FormControl isInvalid={formError}>
+          <FormControl isInvalid={fieldsErrors?.email}>
             <FormLabel>Entrar sem Steam</FormLabel>
 
             <InputGroup>
@@ -58,7 +58,7 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
                 placeholder="exemplo@email.com"
               />
 
-              {formError && (
+              {fieldsErrors?.email && (
                 <InputRightElement
                   color="danger.400"
                   fontSize={22}
@@ -67,8 +67,8 @@ export default function FakeSigninForm({ fetching, onSubmit, formError }) {
               )}
             </InputGroup>
 
-            {formError && (
-              <FormErrorMessage>{formError.errorMsg}</FormErrorMessage>
+            {fieldsErrors?.email && (
+              <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
             )}
           </FormControl>
 
