@@ -19,6 +19,7 @@ export default function FriendListGroupItem({
   lobbyId,
 }) {
   const user = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
   const humanStatus = useHumanizeStatus(status)
 
@@ -29,11 +30,11 @@ export default function FriendListGroupItem({
       return invite.to_player.id === id
     }).length > 0
   const alreadyOnTeam = user.account.lobby.id === lobbyId
+
   const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
 
   const handleInvite = async () => {
     if (!isAvailable || alreadyInvited || alreadyOnTeam) return
-
     const response = await LobbiesAPI.createInvite(
       userToken,
       user.account.lobby.id,
@@ -48,7 +49,15 @@ export default function FriendListGroupItem({
           variant: 'error',
         })
       )
-    else if (response) dispatch(addInviteSent(response))
+    else if (response) {
+      dispatch(addInviteSent(response))
+      dispatch(
+        addToast({
+          title: 'Convite enviado',
+          variant: 'success',
+        })
+      )
+    }
   }
 
   return (
