@@ -66,12 +66,7 @@ export const HttpService = {
         if (Array.isArray(json.detail)) {
           return {
             ...json,
-            field: json.detail[0].loc[2],
             errorMsg: json.detail[0].msg,
-            formError: {
-              field: json.detail[0].loc[2],
-              error: json.detail[0].msg,
-            },
             fieldsErrors: json.detail.reduce((acc, currentValue) => {
               const field = currentValue.loc[currentValue.loc.length - 1]
               const errorMsg = currentValue.msg

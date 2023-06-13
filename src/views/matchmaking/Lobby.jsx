@@ -177,7 +177,7 @@ export default function LobbyView() {
         token
       )
 
-      if (response && response.errorMsg) {
+      if (response.errorMsg) {
         dispatch(
           addToast({
             content: response.errorMsg,

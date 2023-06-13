@@ -24,7 +24,7 @@ export default function HomeView() {
   const dispatch = useDispatch()
 
   const [fetching, setFetching] = useState(false)
-  const [formError, setFormError] = useState()
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   useEffect(() => {
     if (user && user.account && user.account.is_verified) navigate('/jogar')
@@ -35,16 +35,18 @@ export default function HomeView() {
     let response
 
     response = await HttpService.post('accounts/fake-signup/', null, form)
-    if (response.errorMsg) {
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
       setFetching(false)
-      if (response.field) setFormError(response)
-      else
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
@@ -130,7 +132,7 @@ export default function HomeView() {
                 <Container className={style.fakeSigninForm} column>
                   <Divider />
                   <FakeSigninForm
-                    formError={formError}
+                    fieldsErrors={fieldsErrors}
                     fetching={fetching}
                     onSubmit={onFakeSigninFormSubmit}
                   />

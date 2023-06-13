@@ -27,19 +27,6 @@ export default function LevelBadge(props) {
         data-testid="badge-image"
       />
     )
-
-    // const fetchImg = async () => {
-    //   const response = await import(
-    //     `@assets/images/level_badges/badge_${calcLvlRange()}.png`
-    //   )
-    //   setImage(response.default)
-    // }
-
-    // const response = import(
-    //   `@assets/images/level_badges/badge_${calcLvlRange()}.png`
-    // )
-
-    // fetchImg()
   }, [props.level])
 
   return (
