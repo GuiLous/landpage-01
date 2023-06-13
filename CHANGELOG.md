@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componentes `ChangeEmailCard`, `DeleteAccountCard`, `InactivateAccountCard`, `FakeSigninForm`, `FriendListGroupItem`, `MatchFoundModal`, `NotificationList`, `LevelBadge`, `Signup`, `UpdateEmail`, `Verify`, `Home` e `Lobby` para usar `fieldsErrors` e `errorMsg` da `response` [#275](https://github.com/3C-gg/reload-frontend/issues/275).
 - Alterado pasta `form` para `forms` para agrupar componentes de formulário.
 - Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
 - Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra.
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
 `InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
+- Removido campos `field` e `FormError` do `HttpService` pois não será mais usado [#275](https://github.com/3C-gg/reload-frontend/issues/275).
 
 ## [6d97c56 - 12/6/2023]
 
