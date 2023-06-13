@@ -15,7 +15,8 @@ import {
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
-import { initLobby } from '@slices/LobbySlice'
+import { addToast } from '@slices/AppSlice'
+import { initLobby, updateLobby } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -30,10 +31,37 @@ export default function LobbyView() {
 
   const [fetching, setFetching] = useState(true)
 
+  const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
   const otherPlayers = lobby.players?.filter(
     (player) => player.user_id !== user.id
   )
+
+  const handleQueue = async (action) => {
+    if (!isOwner || preMatch || match) return
+
+    const userToken = StorageService.get('token')
+
+    let response = null
+
+    if (action === 'start')
+      response = await LobbiesAPI.startQueue(userToken, lobby.id)
+    else response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+    }
+
+    dispatch(updateLobby(response))
+  }
+
+  const handleCancelQueue = () => handleQueue('cancel')
+  const handleStartQueue = () => handleQueue('start')
 
   useEffect(() => {
     const userToken = StorageService.get('token')
