@@ -11,6 +11,7 @@ export default function Select({ options, control, isInvalid }) {
           ref={ref}
           options={options}
           placeholder="Assunto"
+          isOptionDisabled={(option) => option.disabled}
           styles={{
             control: (baseStyles, state) => ({
               ...baseStyles,
