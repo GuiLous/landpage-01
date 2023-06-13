@@ -27,31 +27,13 @@ import { initInvites } from '@slices/InviteSlice'
 import style from './FriendList.module.css'
 
 export default function FriendList({ isOpen, onClose }) {
-  useEffect(() => {
-    const fetchFriends = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await FriendsAPI.list(userToken)
-      if (response) dispatch(initFriends(response))
-    }
-
-    const fetchInvites = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await LobbiesAPI.listReceivedInvites(userToken)
-      if (!response.errorMsg) dispatch(initInvites(response))
-    }
-
-    fetchFriends()
-    fetchInvites()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const user = useSelector((state) => state.user)
   const friends = useSelector((state) => state.friends)
   const invites = useSelector((state) => state.invites)
-  const [filter, setFilter] = useState('')
   const dispatch = useDispatch()
+
+  const [filter, setFilter] = useState('')
+  const [fetching, setFetching] = useState(true)
 
   const teamingFriends = friends.online.filter(
     (friend) => friend.lobby.id === user.account.lobby.id
@@ -85,6 +67,28 @@ export default function FriendList({ isOpen, onClose }) {
   )
 
   const updateFilter = (event) => setFilter(event.target.value)
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await FriendsAPI.list(userToken)
+      if (response) dispatch(initFriends(response))
+    }
+
+    const fetchInvites = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await LobbiesAPI.listReceivedInvites(userToken)
+      if (!response.errorMsg) dispatch(initInvites(response))
+    }
+
+    setFetching(true)
+    fetchFriends()
+    fetchInvites()
+    setFetching(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <Drawer
@@ -153,44 +157,53 @@ export default function FriendList({ isOpen, onClose }) {
             </Container>
           </Container>
 
-          <Container className={style.groups} column>
-            <Scrollbars autoHide>
-              {invites.list.length > 0 && (
-                <Container className={style.group}>
-                  <InviteListGroup
-                    title="Convites"
-                    items={filteredInvites}
-                    open
-                    unread={invites.unreadCount > 0}
-                  />
-                </Container>
-              )}
+          <Container
+            className={[style.groups, fetching && style.loading].join(' ')}
+            column
+          >
+            {fetching ? (
+              <Text fontSize={12} color="white">
+                Carregando...
+              </Text>
+            ) : (
+              <Scrollbars autoHide>
+                {invites.list.length > 0 && (
+                  <Container className={style.group}>
+                    <InviteListGroup
+                      title="Convites"
+                      items={filteredInvites}
+                      open
+                      unread={invites.unreadCount > 0}
+                    />
+                  </Container>
+                )}
 
-              {teamingFriends.length > 0 && (
+                {teamingFriends.length > 0 && (
+                  <Container className={style.group}>
+                    <FriendListGroup
+                      title="Em grupo"
+                      items={filteredTeamingFriends}
+                      open
+                    />
+                  </Container>
+                )}
+
                 <Container className={style.group}>
                   <FriendListGroup
-                    title="Em grupo"
-                    items={filteredTeamingFriends}
+                    title="Online"
+                    items={filteredOnlineFriends}
                     open
                   />
                 </Container>
-              )}
 
-              <Container className={style.group}>
-                <FriendListGroup
-                  title="Online"
-                  items={filteredOnlineFriends}
-                  open
-                />
-              </Container>
-
-              <Container className={style.group}>
-                <FriendListGroup
-                  title="Offline"
-                  items={filteredOfflineFriends}
-                />
-              </Container>
-            </Scrollbars>
+                <Container className={style.group}>
+                  <FriendListGroup
+                    title="Offline"
+                    items={filteredOfflineFriends}
+                  />
+                </Container>
+              </Scrollbars>
+            )}
           </Container>
         </Container>
       </DrawerContent>
