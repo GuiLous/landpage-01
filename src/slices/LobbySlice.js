@@ -7,9 +7,13 @@ export const LobbyReducer = createSlice({
     initLobby: (state, action) => {
       return action.payload
     },
+
+    updateLobby: (state, action) => {
+      return action.payload
+    },
   },
 })
 
-export const { initLobby } = LobbyReducer.actions
+export const { initLobby, updateLobby } = LobbyReducer.actions
 
 export default LobbyReducer.reducer
