@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { LobbiesAPI } from '@api'
+import { LobbiesAPI, MatchmakingAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -62,6 +62,27 @@ export default function LobbyView() {
 
   const handleCancelQueue = () => handleQueue('cancel')
   const handleStartQueue = () => handleQueue('start')
+
+  useEffect(() => {
+    const lockIn = async () => {
+      const userToken = StorageService.get('token')
+      let response = null
+
+      response = await MatchmakingAPI.playerLockIn(userToken, preMatch.id)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+      }
+    }
+
+    if (preMatch && preMatch.countdown === null) lockIn()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preMatch])
 
   useEffect(() => {
     const userToken = StorageService.get('token')
