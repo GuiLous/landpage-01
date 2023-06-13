@@ -30,6 +30,7 @@ export default function NotificationList({ isOpen, onClose }) {
   const userToken = StorageService.get('token')
 
   const [totalNotificationsNotRead, setTotalNotificationsNotRead] = useState(0)
+  const [fetching, setFetching] = useState(true)
 
   const showErrorToast = (error) => {
     dispatch(
@@ -61,10 +62,12 @@ export default function NotificationList({ isOpen, onClose }) {
 
   useEffect(() => {
     const fetch = async () => {
+      setFetching(true)
       const userToken = StorageService.get('token')
 
       const response = await NotificationsAPI.list(userToken)
       if (response) dispatch(initNotifications(response))
+      setFetching(false)
     }
 
     fetch()
@@ -108,7 +111,9 @@ export default function NotificationList({ isOpen, onClose }) {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          justifyContent={notifications?.length > 0 ? 'flex-start' : 'center'}
+          justifyContent={
+            notifications?.length > 0 && !fetching ? 'flex-start' : 'center'
+          }
         >
           {notifications?.length > 0 ? (
             <Scrollbars autoHide>
@@ -122,6 +127,10 @@ export default function NotificationList({ isOpen, onClose }) {
                 </Container>
               ))}
             </Scrollbars>
+          ) : fetching ? (
+            <Text fontSize={12} color="white">
+              Carregando...
+            </Text>
           ) : (
             <Text fontSize={12} color="white">
               Você não tem notificações.
