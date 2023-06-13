@@ -18,7 +18,9 @@ import { useDispatch } from 'react-redux'
 export default function SupportModal({ isOpen, setOpenSupport }) {
   const dispatch = useDispatch()
 
-  const [subjectOptions, setSubjectOptions] = useState([])
+  const [subjectOptions, setSubjectOptions] = useState([
+    { value: null, label: 'Carregando opções...', disabled: true },
+  ])
   const [fetching, setFetching] = useState(false)
   const [formSent, setFormSent] = useState(false)
   const [fieldsErrors, setFieldsErrors] = useState(null)
