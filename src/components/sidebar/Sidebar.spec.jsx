@@ -10,6 +10,7 @@ import { Sidebar } from '@components'
 import AppReducer from '@slices/AppSlice'
 import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
@@ -102,6 +103,11 @@ describe('Sidebar Component', () => {
     status: 'online',
   }
 
+  const lobby = {
+    queue: null,
+    id: 1,
+  }
+
   const invites = {
     list: [],
     unread: 0,
@@ -132,8 +138,17 @@ describe('Sidebar Component', () => {
       match: MatchReducer,
       app: AppReducer,
       friends: FriendReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, friends, notifications, invites, app, match },
+    preloadedState: {
+      user,
+      friends,
+      notifications,
+      invites,
+      app,
+      match,
+      lobby,
+    },
   })
 
   it('should respect collapsable prop', async () => {
