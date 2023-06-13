@@ -111,9 +111,11 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
       setSubjectOptions(formatSubjectOptions(response))
     }
 
-    fetch()
+    if (isOpen) {
+      fetch()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isOpen])
 
   return (
     <Modal
