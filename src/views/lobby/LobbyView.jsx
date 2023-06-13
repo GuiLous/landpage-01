@@ -16,7 +16,7 @@ import {
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { initLobby, updateLobby } from '@slices/LobbySlice'
+import { initLobby, removeRestartQueue, updateLobby } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -83,6 +83,30 @@ export default function LobbyView() {
     if (preMatch && preMatch.countdown === null) lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch])
+
+  useEffect(() => {
+    const restartQueue = async () => {
+      const userToken = StorageService.get('token')
+      let response
+
+      response = await LobbiesAPI.startQueue(userToken, lobby.id)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+      }
+    }
+
+    if (lobby && lobby.restart) {
+      restartQueue()
+      dispatch(removeRestartQueue())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lobby])
 
   useEffect(() => {
     const userToken = StorageService.get('token')
