@@ -27,7 +27,7 @@ export default function FriendListGroupItem({
   const availableStatuses = ['online', 'away', 'teaming']
   const alreadyInvited =
     user.account.lobby_invites_sent.filter((invite) => {
-      return invite.to_player.id === id
+      return invite.to_player.user_id === id
     }).length > 0
   const alreadyOnTeam = user.account.lobby.id === lobbyId
 
