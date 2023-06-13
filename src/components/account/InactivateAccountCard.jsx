@@ -26,10 +26,10 @@ export default function InactivateAccountCard() {
     const response = await AccountsAPI.inactivate(token)
     setFetching(false)
 
-    if (response.formError) {
+    if (response.errorMsg) {
       dispatch(
         addToast({
-          content: response.formError.error,
+          content: response.errorMsg,
           variant: 'error',
         })
       )
