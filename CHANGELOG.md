@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado config `isOptionDisabled` no componente `Select` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Adicionado opção `Carregando opções...` no state `subjectOptions` no componente `SupportModal` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado `variant` no `Avatar` da `SideBar` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
 - Criado component `ConfirmationContent`.
 - Criado interface `SupportAPI`.
@@ -20,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componentes `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Alterado componentes `ChangeEmailCard`, `DeleteAccountCard`, `InactivateAccountCard`, `FakeSigninForm`, `FriendListGroupItem`, `MatchFoundModal`, `NotificationList`, `LevelBadge`, `Signup`, `UpdateEmail`, `Verify`, `Home` e `Lobby` para usar `fieldsErrors` e `errorMsg` da `response` [#275](https://github.com/3C-gg/reload-frontend/issues/275).
 - Alterado pasta `form` para `forms` para agrupar componentes de formulário.
 - Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
