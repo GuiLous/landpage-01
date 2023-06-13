@@ -35,6 +35,20 @@ export const LobbiesAPI = {
   async detail(token, lobbyId) {
     return await BaseAPI.detail(`/lobbies/${lobbyId}/`, token)
   },
+
+  async startQueue(token, lobbyId) {
+    return await BaseAPI.update(`/lobbies/${lobbyId}/`, token, {
+      start_queue: true,
+      cancel_queue: false,
+    })
+  },
+
+  async cancelQueue(token, lobbyId) {
+    return await BaseAPI.update(`/lobbies/${lobbyId}/`, token, {
+      start_queue: false,
+      cancel_queue: true,
+    })
+  },
 }
 
 export default LobbiesAPI
