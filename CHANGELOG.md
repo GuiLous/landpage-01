@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado `Toast` de sucesso ao enviar convite no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
 - Adicionado config `isOptionDisabled` no componente `Select` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado opção `Carregando opções...` no state `subjectOptions` no componente `SupportModal` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado `variant` no `Avatar` da `SideBar` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
@@ -22,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado verificação de `invite.to_player.id` para `invite.to_player.user_id` no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
 - Ajusta fetch de `subjects` para ser chamada a `api` apenas quando abrir o modal de suporte [#303](https://github.com/3C-gg/reload-frontend/issues/303).
 - Alterado ` `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Alterado componentes `ChangeEmailCard`, `DeleteAccountCard`, `InactivateAccountCard`, `FakeSigninForm`, `FriendListGroupItem`, `MatchFoundModal`, `NotificationList`, `LevelBadge`, `Signup`, `UpdateEmail`, `Verify`, `Home` e `Lobby` para usar `fieldsErrors` e `errorMsg` da `response` [#275](https://github.com/3C-gg/reload-frontend/issues/275).
