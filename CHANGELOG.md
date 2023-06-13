@@ -43,6 +43,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removido `variant` do `Avatar` de `HeaderProfile` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
 - Removido campos `field` e `FormError` do `HttpService` pois não será mais usado [#275](https://github.com/3C-gg/reload-frontend/issues/275).
 
+### Fixed
+
+- Método `DELETE` do `HttpService` estava ignorando o parâmetro `payload`, necessário para enviar dados no corpo da requisição. Passamos a tratar esse parâmetro [#300](https://github.com/3C-gg/reload-frontend/issues/300).
+
 ## [6d97c56 - 12/6/2023]
 
 ### Added
