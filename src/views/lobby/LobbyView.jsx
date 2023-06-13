@@ -1,6 +1,7 @@
 import { Badge, Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI } from '@api'
 import {
@@ -16,15 +17,23 @@ import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { initLobby } from '@slices/LobbySlice'
 
-import { useNavigate } from 'react-router-dom'
 import style from './LobbyView.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const navigate = useNavigate()
+  const preMatch = useSelector((state) => state.match.preMatch)
+  const match = useSelector((state) => state.match.match)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [fetching, setFetching] = useState(true)
+
+  const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
+  const otherPlayers = lobby.players?.filter(
+    (player) => player.user_id !== user.id
+  )
 
   useEffect(() => {
     const userToken = StorageService.get('token')
@@ -36,14 +45,8 @@ export default function LobbyView() {
     }
 
     fetch()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-
-  const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
-  const otherPlayers = lobby.players?.filter(
-    (player) => player.user_id !== user.id
-  )
 
   return fetching ? (
     <LoadingBackdrop>
@@ -112,8 +115,9 @@ export default function LobbyView() {
         </Container>
         <Container className={style.footer} fitContent>
           <LobbyPlayButton
-            queueTime={lobby.queue_time}
+            queueTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
             countdown={lobby.restriction_countdown}
+            onClick={lobby.queue_time ? handleCancelQueue : handleStartQueue}
           />
         </Container>
       </Container>
