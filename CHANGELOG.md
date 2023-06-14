@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado estilo do `IconButton` e do `FormHelperText` da página de `Verify` para melhorar o visual [#310](https://github.com/3C-gg/reload-frontend/issues/310).
 - Alterado view `LobbyView` para adicionar ação no botão de `jogar` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
 - Alterado `SideBar` para usar o `lobby` do próprio slice de `lobby`.
 - Alterado verificação de `invite.to_player.id` para `invite.to_player.user_id` no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
