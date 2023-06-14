@@ -116,8 +116,8 @@ export const HttpService = {
     )
   },
 
-  delete(endpoint, token) {
-    return HttpService.request('DELETE', endpoint, token)
+  delete(endpoint, token, payload) {
+    return HttpService.request('DELETE', endpoint, token, payload)
   },
 }
 
