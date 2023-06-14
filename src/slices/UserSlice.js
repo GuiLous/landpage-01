@@ -57,6 +57,10 @@ export const UserReducer = createSlice({
       }
     },
 
+    updateLobbyId: (state, action) => {
+      return { ...state, lobby_id: action.payload }
+    },
+
     addInviteSent: (state, action) => {
       return {
         ...state,
@@ -148,6 +152,7 @@ export const {
   addInviteSent,
   restartQueue,
   removeRestartQueue,
+  updateLobbyId,
 } = UserReducer.actions
 
 export default UserReducer.reducer

@@ -11,24 +11,34 @@ export const FriendReducer = createSlice({
       return action.payload
     },
 
-    updateOrCreateFriend: (state, action) => {
-      const online = state.online.filter(
-        (friend) => friend.id !== action.payload.friend.id
-      )
-      const offline = state.online.filter(
-        (friend) => friend.id !== action.payload.friend.id
-      )
-      const newState = { online: online, offline: offline }
-
-      if (action.payload.current === 'online') {
-        return { ...newState, online: [...online, action.payload.friend] }
+    addFriend: (state, action) => {
+      if (action.payload.status === 'offline') {
+        return { ...state, offline: [...state.offline, action.payload] }
       } else {
-        return { ...newState, offline: [...offline, action.payload.friend] }
+        return { ...state, online: [...state.online, action.payload] }
+      }
+    },
+
+    updateFriend: (state, action) => {
+      const onlineFriend = state.online.find(
+        (friend) => friend.id === action.payload.id
+      )
+
+      if (onlineFriend) {
+        return {
+          ...state,
+          online: [...state.online, action.payload],
+        }
+      } else {
+        return {
+          ...state,
+          offline: [...state.offline, action.payload],
+        }
       }
     },
   },
 })
 
-export const { initFriends, updateOrCreateFriend } = FriendReducer.actions
+export const { initFriends, addFriend, updateFriend } = FriendReducer.actions
 
 export default FriendReducer.reducer

@@ -4,7 +4,8 @@ import useWebSocket from 'react-use-websocket'
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { newInvite } from '@slices/InviteSlice'
+import { addInvite, deleteInvite } from '@slices/InviteSlice'
+import { updateLobby } from '@slices/LobbySlice'
 import {
   addFriend,
   addInviteReceived,
@@ -12,8 +13,9 @@ import {
   restartQueue,
   updateFriend,
   updateInviteReceived,
-  updateLobby,
+  updateLobbyId,
   updateUser,
+  updateLobby as userUpdateLobby,
 } from '@slices/UserSlice'
 
 import { match, preMatch } from '@slices/MatchSlice'
@@ -41,6 +43,63 @@ export const WSS = () => {
     const data = JSON.parse(event.data)
 
     switch (data.meta.action) {
+      // ==== New Websockets ==== //
+
+      // User
+      case 'user/update_lobby_id':
+        dispatch(updateLobbyId(data.payload))
+        break
+
+      // Invites
+      case 'invites/create':
+        dispatch(
+          addToast({
+            content: `${data.payload.from_player.username} te convidou para um grupo.`,
+          })
+        )
+        dispatch(addInvite(data.payload))
+        break
+
+      case 'invites/delete':
+        dispatch(deleteInvite(data.payload.invite))
+        if (
+          data.payload.invite.from_player.user_id === user.id &&
+          data.payload.status === 'refused'
+        ) {
+          dispatch(
+            addToast({
+              content: `${data.payload.to_player.username} recusou seu convite.`,
+            })
+          )
+        }
+        break
+
+      // Friends
+      case 'friends/update':
+        dispatch(updateFriend(data.payload))
+        break
+
+      // Lobbies
+      case 'lobbies/player_join':
+        dispatch(updateLobby(data.payload.lobby))
+        dispatch(
+          addToast({
+            content: `${data.payload.player.username} entrou para o seu grupo.`,
+          })
+        )
+        break
+
+      case 'lobbies/player_leave':
+        dispatch(updateLobby(data.payload.lobby))
+        dispatch(
+          addToast({
+            content: `${data.payload.player.username} deixou o seu grupo.`,
+          })
+        )
+        break
+
+      // ==== Old Websockets ==== //
+
       case 'ws_userUpdate':
         dispatch(updateUser(data.payload))
         break
@@ -54,12 +113,12 @@ export const WSS = () => {
         break
 
       case 'ws_lobbyUpdate':
-        dispatch(updateLobby(data.payload))
+        dispatch(userUpdateLobby(data.payload))
         break
 
       case 'ws_lobbyInviteReceived':
         dispatch(addInviteReceived(data.payload))
-        dispatch(newInvite())
+        dispatch(addInvite())
         dispatch(
           addToast({
             title: 'Novo convite recebido!',
