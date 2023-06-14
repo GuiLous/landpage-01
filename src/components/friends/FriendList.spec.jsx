@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import { FriendList } from '@components'
 import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 const server = setupServer(
@@ -95,13 +96,20 @@ describe('FriendList Component', () => {
     unread: 0,
   }
 
+  const lobby = {
+    queue: null,
+    id: 1,
+    players: []
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,
       friends: FriendReducer,
       invites: InviteReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, friends, invites },
+    preloadedState: { user, friends, invites, lobby },
   })
 
   it('should not render if closed', () => {
