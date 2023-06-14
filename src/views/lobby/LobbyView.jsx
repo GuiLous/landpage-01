@@ -190,7 +190,9 @@ export default function LobbyView() {
           <LobbyPlayButton
             queueTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
             countdown={lobby.restriction_countdown}
-            onClick={lobby.queue_time ? handleCancelQueue : handleStartQueue}
+            onClick={
+              lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
+            }
           />
         </Container>
       </Container>
