@@ -159,7 +159,11 @@ export default function VerifyView() {
                 }}
               />
 
-              <FormHelperText style={{ textAlign: 'center', marginTop: 25 }}>
+              <FormHelperText
+                textAlign="center"
+                marginTop="25px"
+                color="gray.200"
+              >
                 Enviamos um código para <strong>{user.email}</strong>. <br />{' '}
                 Não é seu e-mail?{' '}
                 <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
