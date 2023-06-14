@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado useEffect na `SideBar` para atualizar o slice de `lobby` toda vez que mudar página.
 - Adicionado reducers de `restartQueue`, `removeRestartQueue` e `updateLobby` no slice de `LobbyReducer` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
 - Adicionado método `playerLockIn` na interface de `MatchmakingAPI`.
 - Adicionado métodos `startQueue` e `cancelQueue` na interface de `LobbiesAPI` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
