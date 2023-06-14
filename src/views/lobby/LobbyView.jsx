@@ -189,7 +189,8 @@ export default function LobbyView() {
         <Container className={style.footer} fitContent>
           <LobbyPlayButton
             queueTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
-            countdown={lobby.restriction_countdown}
+            restrictionCountdown={lobby.restriction_countdown}
+            restricted={lobby.restriction_countdown}
             onClick={
               lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
             }
