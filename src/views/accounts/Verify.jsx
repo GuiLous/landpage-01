@@ -132,7 +132,7 @@ export default function VerifyView() {
                     />
                   </PinInput>
                   <IconButton
-                    variant="secondary"
+                    variant="pin"
                     isDisabled={!value || value.length !== 6}
                     isLoading={fetching}
                     onClick={handleButtonClick}
