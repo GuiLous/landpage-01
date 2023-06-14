@@ -16,7 +16,7 @@ import {
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { initLobby, removeRestartQueue, updateLobby } from '@slices/LobbySlice'
+import { initLobby, removeRestartQueue } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -55,7 +55,7 @@ export default function LobbyView() {
           variant: 'error',
         })
       )
-    } else dispatch(updateLobby(response))
+    }
   }
 
   const handleCancelQueue = () => handleQueue('cancel')
