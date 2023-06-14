@@ -55,9 +55,7 @@ export default function LobbyView() {
           variant: 'error',
         })
       )
-    }
-
-    dispatch(updateLobby(response))
+    } else dispatch(updateLobby(response))
   }
 
   const handleCancelQueue = () => handleQueue('cancel')
