@@ -98,6 +98,10 @@ export const WSS = () => {
         )
         break
 
+      case 'lobbies/update':
+        dispatch(updateLobby(data.payload))
+        break
+
       // ==== Old Websockets ==== //
 
       case 'ws_userUpdate':
