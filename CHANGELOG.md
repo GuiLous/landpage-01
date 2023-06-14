@@ -17,6 +17,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado config `isOptionDisabled` no componente `Select` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado opção `Carregando opções...` no state `subjectOptions` no componente `SupportModal` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado `variant` no `Avatar` da `SideBar` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
+- Novos handlers de websockets e ações de slices no serviço de websocket.
+- Ação `updateLobbyId` no `UserSlice`.
+- Ação `updateLobby` no `LobbySlice`.
 - Criado component `ConfirmationContent`.
 - Criado interface `SupportAPI`.
 - Criado componente `Select`
@@ -31,7 +34,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado `SideBar` para usar o `lobby` do próprio slice de `lobby`.
 - Alterado verificação de `invite.to_player.id` para `invite.to_player.user_id` no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
 - Ajusta fetch de `subjects` para ser chamada a `api` apenas quando abrir o modal de suporte [#303](https://github.com/3C-gg/reload-frontend/issues/303).
-- Alterado ` `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Alterado `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Altera `newInvite` para `addInvite` como action do `InviteSlice`.
+- Altera `InviteListItem` para usar `user.lobby_id` ao invés de pegar o `lobby` de `user.account`.
+- Altera Lista de Amigos para usar `user.lobby_id` ao invés de pegar o `lobby` de `user.account` e atualiza também para pegar dados do estado `lobby` direto do `LobbySlice` ao invés de puxar do usuário.
 - Alterado componentes `ChangeEmailCard`, `DeleteAccountCard`, `InactivateAccountCard`, `FakeSigninForm`, `FriendListGroupItem`, `MatchFoundModal`, `NotificationList`, `LevelBadge`, `Signup`, `UpdateEmail`, `Verify`, `Home` e `Lobby` para usar `fieldsErrors` e `errorMsg` da `response` [#275](https://github.com/3C-gg/reload-frontend/issues/275).
 - Alterado pasta `form` para `forms` para agrupar componentes de formulário.
 - Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
@@ -47,7 +53,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
 `InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
 - Removido `variant` do `Avatar` de `HeaderProfile` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
+- `addOrUpdateFriend` do `FriendSlice` e adiciona `addFriend` e `updateFriend` em seu lugar.
 - Removido campos `field` e `FormError` do `HttpService` pois não será mais usado [#275](https://github.com/3C-gg/reload-frontend/issues/275).
+
+### Fixed
+
+- Método `DELETE` do `HttpService` estava ignorando o parâmetro `payload`, necessário para enviar dados no corpo da requisição. Passamos a tratar esse parâmetro [#300](https://github.com/3C-gg/reload-frontend/issues/300).
 
 ## [6d97c56 - 12/6/2023]
 

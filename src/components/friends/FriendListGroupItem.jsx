@@ -37,7 +37,7 @@ export default function FriendListGroupItem({
     if (!isAvailable || alreadyInvited || alreadyOnTeam) return
     const response = await LobbiesAPI.createInvite(
       userToken,
-      user.account.lobby.id,
+      user.lobby_id,
       user.id,
       id
     )

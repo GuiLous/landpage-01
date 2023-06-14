@@ -11,7 +11,7 @@ export const InviteReducer = createSlice({
       return { ...state, list: action.payload }
     },
 
-    newInvite: (state, action) => {
+    addInvite: (state, action) => {
       return {
         list: [...state.list, action.payload],
         unreadCount: state.unreadCount + 1,
@@ -22,7 +22,7 @@ export const InviteReducer = createSlice({
       return {
         ...state,
         list: [
-          ...state.list.filter((invite) => invite.id === action.payload.id),
+          ...state.list.filter((invite) => invite.id !== action.payload.id),
         ],
       }
     },
@@ -33,7 +33,7 @@ export const InviteReducer = createSlice({
   },
 })
 
-export const { newInvite, readInvites, initInvites, deleteInvite } =
+export const { addInvite, readInvites, initInvites, deleteInvite } =
   InviteReducer.actions
 
 export default InviteReducer.reducer

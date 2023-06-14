@@ -130,6 +130,12 @@ describe('Sidebar Component', () => {
 
   const notifications = []
 
+  const lobby = {
+    queue: null,
+    id: 1,
+    players: [],
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,

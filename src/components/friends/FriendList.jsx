@@ -28,6 +28,7 @@ import style from './FriendList.module.css'
 
 export default function FriendList({ isOpen, onClose }) {
   const user = useSelector((state) => state.user)
+  const lobby = useSelector((state) => state.lobby)
   const friends = useSelector((state) => state.friends)
   const invites = useSelector((state) => state.invites)
   const dispatch = useDispatch()
@@ -35,11 +36,12 @@ export default function FriendList({ isOpen, onClose }) {
   const [filter, setFilter] = useState('')
   const [fetching, setFetching] = useState(true)
 
-  const teamingFriends = friends.online.filter(
-    (friend) => friend.lobby.id === user.account.lobby.id
+  const teamingFriends = lobby.players.filter(
+    (player) => player.user_id !== user.id
   )
+
   const onlineFriends = friends.online.filter(
-    (friend) => friend.lobby.id !== user.account.lobby.id
+    (friend) => friend.lobby.id !== user.lobby_id
   )
 
   const filteredTeamingFriends = teamingFriends.filter(
