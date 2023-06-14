@@ -99,7 +99,7 @@ describe('FriendList Component', () => {
   const lobby = {
     queue: null,
     id: 1,
-    players: []
+    players: [],
   }
 
   const store = configureStore({

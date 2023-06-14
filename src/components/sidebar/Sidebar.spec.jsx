@@ -128,7 +128,7 @@ describe('Sidebar Component', () => {
   const lobby = {
     queue: null,
     id: 1,
-    players: []
+    players: [],
   }
 
   const store = configureStore({
@@ -141,7 +141,15 @@ describe('Sidebar Component', () => {
       friends: FriendReducer,
       lobby: LobbyReducer,
     },
-    preloadedState: { user, friends, notifications, invites, app, match, lobby },
+    preloadedState: {
+      user,
+      friends,
+      notifications,
+      invites,
+      app,
+      match,
+      lobby,
+    },
   })
 
   it('should respect collapsable prop', async () => {
