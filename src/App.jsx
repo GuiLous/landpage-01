@@ -23,7 +23,6 @@ import {
   NotFoundView,
   ProfileView,
   SignupView,
-  UpdateEmailView,
   VerifyView,
 } from '@views'
 
@@ -116,9 +115,7 @@ export default function App() {
           element={
             (!user && <Navigate to="/" replace />) ||
             (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) || (
-              <UpdateEmailView />
-            )
+            (newUser && <Navigate to="/cadastrar" replace />)
           }
         />
 
