@@ -36,7 +36,7 @@ export default function FriendList({ isOpen, onClose }) {
   const [filter, setFilter] = useState('')
   const [fetching, setFetching] = useState(true)
 
-  const teamingFriends = lobby.players.filter(
+  const teamingFriends = lobby.players?.filter(
     (player) => player.user_id !== user.id
   )
 
@@ -44,7 +44,7 @@ export default function FriendList({ isOpen, onClose }) {
     (friend) => friend.lobby.id !== user.lobby_id
   )
 
-  const filteredTeamingFriends = teamingFriends.filter(
+  const filteredTeamingFriends = teamingFriends?.filter(
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
@@ -180,7 +180,7 @@ export default function FriendList({ isOpen, onClose }) {
                   </Container>
                 )}
 
-                {teamingFriends.length > 0 && (
+                {teamingFriends?.length > 0 && (
                   <Container className={style.group}>
                     <FriendListGroup
                       title="Em grupo"
