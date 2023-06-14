@@ -18,7 +18,6 @@ export const HttpService = {
     headers_content_type = 'application/json',
     custom_unknown_error
   ) {
-    console.log(payload)
     if (endpoint[0] !== '/') endpoint = '/' + endpoint
     if (endpoint.slice(-1) === '/') endpoint = endpoint.slice(0, -1)
     let url = REACT_APP_API_URL + '/api' + endpoint
