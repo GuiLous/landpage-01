@@ -19,9 +19,13 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import {
+  Link as ReactRouterLink,
+  useLocation,
+  useNavigate,
+} from 'react-router-dom'
 
-import { AccountsAPI } from '@api'
+import { AccountsAPI, LobbiesAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
@@ -45,7 +49,8 @@ import {
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
-import { toggleFriendList } from '@slices/AppSlice'
+import { addToast, toggleFriendList } from '@slices/AppSlice'
+import { updateLobby } from '@slices/LobbySlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './Sidebar.module.css'
@@ -53,33 +58,27 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
+
   const preMatch = useSelector((state) => state.match.preMatch)
   const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
-
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openSupport, setOpenSupport] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
+  const [isFetching, setIsFetching] = useState(false)
 
   const handleOpenModalSupport = () => {
     setOpenSupport(true)
   }
-
-  useEffect(() => {
-    if (collapsable) setIsCollapsed(collapsed)
-    else setIsCollapsed(false)
-  }, [collapsed, collapsable])
-
-  useEffect(() => {
-    setFriendListOpen(friendListOpenByApp)
-  }, [friendListOpenByApp])
 
   const open = () => {
     collapsable && setIsCollapsed(false)
@@ -96,16 +95,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     StorageService.remove('token')
     navigate('/')
   }
-
-  useEffect(() => {
-    if (notifications && notifications.length > 0) {
-      const notificationsNotRead = notifications.filter(
-        (notification) => notification.read_date === null
-      ).length
-
-      setUnreadNotificationsCount(notificationsNotRead)
-    }
-  }, [notifications])
 
   const renderButtons = () => {
     const showPlayButton =
@@ -146,10 +135,14 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             variant="queue"
           >
             <Text w={10}>
-              <Timer
-                initialTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
-                stop={preMatch}
-              />
+              {isFetching ? (
+                '...'
+              ) : (
+                <Timer
+                  initialTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
+                  stop={preMatch}
+                />
+              )}
             </Text>
           </Button>
         )}
@@ -218,6 +211,46 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       setFriendListOpen(false)
     } else setFriendListOpen(true)
   }
+
+  useEffect(() => {
+    if (collapsable) setIsCollapsed(collapsed)
+    else setIsCollapsed(false)
+  }, [collapsed, collapsable])
+
+  useEffect(() => {
+    setFriendListOpen(friendListOpenByApp)
+  }, [friendListOpenByApp])
+
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      const notificationsNotRead = notifications.filter(
+        (notification) => notification.read_date === null
+      ).length
+
+      setUnreadNotificationsCount(notificationsNotRead)
+    }
+  }, [notifications])
+
+  useEffect(() => {
+    const fetch = async () => {
+      setIsFetching(true)
+      const userToken = StorageService.get('token')
+      const response = await LobbiesAPI.detail(userToken, user.lobby_id)
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        return
+      } else dispatch(updateLobby(response))
+      setIsFetching(false)
+    }
+
+    fetch()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, location.pathname])
 
   return (
     <>
