@@ -139,7 +139,7 @@ export default function VerifyView() {
                     aria-label="Validar e jogar agora!"
                     fontSize="18px"
                     style={{ minHeight: '48px', minWidth: '48px' }}
-                    icon={<ArrowRightIcon />}
+                    icon={<ArrowRightIcon color="white" />}
                   />
                 </Container>
               </Container>
