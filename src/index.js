@@ -8,7 +8,6 @@ import reportWebVitals from './reportWebVitals'
 
 import store from '@store'
 import App from './App'
-import { InitLobbyProvider } from './contexts/InitLobbyContext'
 import './index.css'
 import theme from './theme'
 
@@ -18,11 +17,9 @@ const root = createRoot(container)
 root.render(
   <ChakraProvider theme={theme}>
     <BrowserRouter>
-      <InitLobbyProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
-      </InitLobbyProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </BrowserRouter>
   </ChakraProvider>
 )
