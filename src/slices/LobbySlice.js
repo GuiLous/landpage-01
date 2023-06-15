@@ -22,7 +22,6 @@ export const LobbyReducer = createSlice({
       return action.payload
     },
   },
-
 })
 
 export const { initLobby, restartQueue, removeRestartQueue, updateLobby } =
