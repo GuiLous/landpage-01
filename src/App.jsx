@@ -59,8 +59,6 @@ export default function App() {
     }
 
     if (user?.lobby_id) {
-      console.log('🚀 - user:', user)
-
       initLobby()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
