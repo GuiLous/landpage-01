@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado função `formatSecondsToMinutes` em `utils`.
+- Adicionado `useEffect` na view `lobbyView` e no componente `SideBar` para fazer a contagem do timer da fila com base na diferença da data da `queue` para a data atual [#315](https://github.com/3C-gg/reload-frontend/issues/315). 
 - Adicionado `useEffect` no `App` para setar valor inicial no slice de `lobby` [#316](https://github.com/3C-gg/reload-frontend/issues/316).
 - Adicionado variante `pin` para o `Button`.
 - Adicionado case de `lobbies/update` no `WebSocket Service`.
@@ -33,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado componente `LobbyPlayButton` para usar a função `formatSecondsToMinutes`.
 - Alterado prop `otherPlayers` no componente `LobbyLineup` para iniciar com `[]`.
 - Alterado estilo do `IconButton` e do `FormHelperText` da página de `Verify` para melhorar o visual [#310](https://github.com/3C-gg/reload-frontend/issues/310).
 - Alterado view `LobbyView` para adicionar ação no botão de `jogar` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
