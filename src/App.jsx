@@ -111,15 +111,6 @@ export default function App() {
         />
 
         <Route
-          path="/alterar-email"
-          element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />)
-          }
-        />
-
-        <Route
           path="/verificar"
           element={
             (!user && <Navigate to="/" replace />) ||

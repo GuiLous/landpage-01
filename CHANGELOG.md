@@ -53,7 +53,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- removido views que não estão sendo usadas `BaseView` e `UpdateEmail` [#311](https://github.com/3C-gg/reload-frontend/issues/311). 
+- Removido rota `/alterar-email`.
+- Removido views que não estão sendo usadas `BaseView` e `UpdateEmail` [#311](https://github.com/3C-gg/reload-frontend/issues/311). 
 - Removido antiga view de `Lobby`.
 - Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
 `InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
