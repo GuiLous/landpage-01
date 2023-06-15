@@ -2,6 +2,8 @@ import { Icon, Text } from '@chakra-ui/react'
 
 import { BlockIcon, CloseIcon, Container, Timer } from '@components'
 
+import { formatSecondsToMinutes } from '@utils'
+
 import style from './LobbyPlayButton.module.css'
 
 export default function LobbyPlayButton({
@@ -57,7 +59,7 @@ export default function LobbyPlayButton({
             justify="center"
             className={style.queueTime}
           >
-            <Timer initialTime={queueTime} />
+            {formatSecondsToMinutes(queueTime)}
           </Container>
 
           <Container
