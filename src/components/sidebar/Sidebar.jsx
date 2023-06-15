@@ -55,8 +55,6 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-
-  const preMatch = useSelector((state) => state.match.preMatch)
   const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
