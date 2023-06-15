@@ -9,6 +9,7 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa'
 import {
@@ -47,6 +48,7 @@ import {
 import { StorageService } from '@services'
 import { toggleFriendList } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
+import { formatSecondsToMinutes } from '@utils'
 
 import style from './Sidebar.module.css'
 
@@ -68,6 +70,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
+  const [secondsDiff, setSecondsDiff] = useState(null)
 
   const handleOpenModalSupport = () => {
     setOpenSupport(true)
@@ -127,12 +130,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             to="/jogar"
             variant="queue"
           >
-            <Text w={10}>
-              <Timer
-                initialTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
-                stop={preMatch}
-              />
-            </Text>
+            <Text w={10}>{formatSecondsToMinutes(secondsDiff)}</Text>
           </Button>
         )}
 
@@ -219,6 +217,31 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       setUnreadNotificationsCount(notificationsNotRead)
     }
   }, [notifications])
+
+  useEffect(() => {
+    if (lobby.queue) {
+      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
+        .minus({ hours: 3 })
+        .setZone('America/Sao_Paulo')
+
+      const calculateDiffInSeconds = () => {
+        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const diff = Math.floor(now.diff(date, 'seconds').seconds)
+
+        if (diff > 0) {
+          setSecondsDiff(diff)
+        }
+      }
+
+      const interval = setInterval(calculateDiffInSeconds, 1000)
+
+      return () => {
+        clearInterval(interval)
+      }
+    } else {
+      setSecondsDiff(null)
+    }
+  }, [lobby])
 
   return (
     <>
