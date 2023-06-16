@@ -1,5 +1,6 @@
 import { Badge, Icon, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { DateTime } from 'luxon'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { LobbiesAPI, MatchmakingAPI } from '@api'
@@ -25,6 +26,8 @@ export default function LobbyView() {
 
   const dispatch = useDispatch()
 
+  const [secondsDiff, setSecondsDiff] = useState(null)
+
   const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
   const otherPlayers = lobby.players?.filter(
@@ -38,9 +41,12 @@ export default function LobbyView() {
 
     let response = null
 
-    if (action === 'start')
+    if (action === 'start') {
       response = await LobbiesAPI.startQueue(userToken, lobby.id)
-    else response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
+    } else {
+      response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
+      setSecondsDiff(null)
+    }
 
     if (response.errorMsg) {
       dispatch(
@@ -98,6 +104,27 @@ export default function LobbyView() {
       dispatch(removeRestartQueue())
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lobby])
+
+  useEffect(() => {
+    if (lobby.queue) {
+      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
+        .minus({ hours: 3 })
+        .setZone('America/Sao_Paulo')
+
+      const calculateDiffInSeconds = () => {
+        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const diff = Math.floor(now.diff(date, 'seconds').seconds)
+
+        setSecondsDiff(diff)
+      }
+
+      const interval = setInterval(calculateDiffInSeconds, 1000)
+
+      return () => {
+        clearInterval(interval)
+      }
+    }
   }, [lobby])
 
   return (
@@ -163,7 +190,7 @@ export default function LobbyView() {
         </Container>
         <Container className={style.footer} fitContent>
           <LobbyPlayButton
-            queueTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
+            queueTime={lobby.queue && secondsDiff}
             restrictionCountdown={lobby.restriction_countdown}
             restricted={lobby.restriction_countdown}
             onClick={
