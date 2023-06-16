@@ -1,0 +1,9 @@
+.container {
+	margin-top: 55px;
+	max-width: 430px;
+	position: relative;
+}
+
+.cancelBtn {
+	margin-top: 12px;
+}
