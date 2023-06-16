@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { LobbiesAPI } from '@api'
 import {
   Container,
   Loading,
@@ -10,6 +11,8 @@ import {
   ToastList,
 } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
+import { addToast } from '@slices/AppSlice'
+import { updateLobby } from '@slices/LobbySlice'
 import { match, preMatch } from '@slices/MatchSlice'
 import { updateUser } from '@slices/UserSlice'
 import {
@@ -30,7 +33,36 @@ export default function App() {
   const user = useSelector((state) => state.user)
   const userMatch = useSelector((state) => state.match.match)
   const dispatch = useDispatch()
+
   const [fetching, setFetching] = useState(true)
+
+  const unverifiedUser = user && user.account && !user.account.is_verified
+  const newUser = user && !user.account
+
+  useEffect(() => {
+    const initLobby = async () => {
+      const userToken = StorageService.get('token')
+
+      const response = await LobbiesAPI.detail(userToken, user.lobby_id)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        return
+      }
+
+      dispatch(updateLobby(response))
+    }
+
+    if (user?.lobby_id) {
+      initLobby()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   useEffect(() => {
     const authenticate = async (token) => {
@@ -51,9 +83,6 @@ export default function App() {
     else setFetching(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
-
-  const unverifiedUser = user && user.account && !user.account.is_verified
-  const newUser = user && !user.account
 
   const render = () => {
     return (

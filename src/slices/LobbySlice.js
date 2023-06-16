@@ -4,10 +4,6 @@ export const LobbyReducer = createSlice({
   name: 'lobby',
   initialState: {},
   reducers: {
-    initLobby: (state, action) => {
-      return action.payload
-    },
-
     restartQueue: (state) => {
       return {
         ...state,
