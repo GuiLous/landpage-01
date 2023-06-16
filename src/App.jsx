@@ -26,6 +26,7 @@ import {
   NotFoundView,
   ProfileView,
   SignupView,
+  UpdateEmailView,
   VerifyView,
 } from '@views'
 
@@ -136,6 +137,17 @@ export default function App() {
               isNew={newUser}
               element={<ProfileView />}
             />
+          }
+        />
+
+        <Route
+          path="/alterar-email"
+          element={
+            (!user && <Navigate to="/" replace />) ||
+            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
+            (newUser && <Navigate to="/cadastrar" replace />) || (
+              <UpdateEmailView />
+            )
           }
         />
 
