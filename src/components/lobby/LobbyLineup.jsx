@@ -47,14 +47,14 @@ export default function LobbyLineup({
 
   const renderCloseLabel = (player) => {
     if (otherPlayers.length < 1) return null
-    else if (player.user_id === userPlayer.user_id) return 'Sair'
+    else if (player?.user_id === userPlayer?.user_id) return 'Sair'
     else if (isOwner) return 'Expulsar'
     else return null
   }
 
   const renderCloseButton = (player) => {
     if (otherPlayers.length < 1) return false
-    else if (player.user_id === userPlayer.user_id || isOwner)
+    else if (player?.user_id === userPlayer?.user_id || isOwner)
       return () => handleRemove(player)
     else return false
   }
