@@ -58,8 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removido reducer `initLobby` de `LobbySlice` pois é redundante com o reducer `updateLobby`.
 - Removido `useEffect` que faz fetch de lobby `detail` no componente `SideBar`.
 - Removido `useEffect` que faz fetch de lobby `detail` na view `LobbyView`.
-- Removido rota `/alterar-email`.
-- Removido views que não estão sendo usadas `BaseView` e `UpdateEmail` [#311](https://github.com/3C-gg/reload-frontend/issues/311). 
+- Removido view que não está sendo usada `BaseView` [#311](https://github.com/3C-gg/reload-frontend/issues/311). 
 - Removido antiga view de `Lobby`.
 - Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
 `InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
