@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado case de `lobbies/update` no `WebSocket Service`.
+- Adicionado useEffect na `SideBar` para atualizar o slice de `lobby` toda vez que mudar página.
+- Adicionado reducers de `restartQueue`, `removeRestartQueue` e `updateLobby` no slice de `LobbyReducer` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
+- Adicionado método `playerLockIn` na interface de `MatchmakingAPI`.
+- Adicionado métodos `startQueue` e `cancelQueue` na interface de `LobbiesAPI` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
 - Adicionado `Toast` de sucesso ao enviar convite no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
 - Adicionado config `isOptionDisabled` no componente `Select` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
 - Adicionado opção `Carregando opções...` no state `subjectOptions` no componente `SupportModal` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
@@ -26,6 +31,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado view `LobbyView` para adicionar ação no botão de `jogar` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
+- Alterado `SideBar` para usar o `lobby` do próprio slice de `lobby`.
 - Alterado verificação de `invite.to_player.id` para `invite.to_player.user_id` no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
 - Ajusta fetch de `subjects` para ser chamada a `api` apenas quando abrir o modal de suporte [#303](https://github.com/3C-gg/reload-frontend/issues/303).
 - Alterado `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
@@ -44,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido antiga view de `Lobby`.
 - Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
 `InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
 - Removido `variant` do `Avatar` de `HeaderProfile` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
@@ -52,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `FriendList` estava quebrando ao tentar acessar `lobby.players.filter` quando o objeto `lobby` está vazio ao dar refresh.
 - Método `DELETE` do `HttpService` estava ignorando o parâmetro `payload`, necessário para enviar dados no corpo da requisição. Passamos a tratar esse parâmetro [#300](https://github.com/3C-gg/reload-frontend/issues/300).
 
 ## [6d97c56 - 12/6/2023]

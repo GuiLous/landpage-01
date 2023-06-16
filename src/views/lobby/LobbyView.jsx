@@ -1,8 +1,9 @@
 import { Badge, Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { LobbiesAPI } from '@api'
+import { LobbiesAPI, MatchmakingAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -14,17 +15,96 @@ import {
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
-import { initLobby } from '@slices/LobbySlice'
+import { addToast } from '@slices/AppSlice'
+import { initLobby, removeRestartQueue } from '@slices/LobbySlice'
 
-import { useNavigate } from 'react-router-dom'
 import style from './LobbyView.module.css'
 
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const navigate = useNavigate()
+  const preMatch = useSelector((state) => state.match.preMatch)
+  const match = useSelector((state) => state.match.match)
+
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+
   const [fetching, setFetching] = useState(true)
+
+  const isOwner = lobby.owner_id === user.id
+  const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
+  const otherPlayers = lobby.players?.filter(
+    (player) => player.user_id !== user.id
+  )
+
+  const handleQueue = async (action) => {
+    if (!isOwner || preMatch || match) return
+
+    const userToken = StorageService.get('token')
+
+    let response = null
+
+    if (action === 'start')
+      response = await LobbiesAPI.startQueue(userToken, lobby.id)
+    else response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+    }
+  }
+
+  const handleCancelQueue = () => handleQueue('cancel')
+  const handleStartQueue = () => handleQueue('start')
+
+  useEffect(() => {
+    const lockIn = async () => {
+      const userToken = StorageService.get('token')
+      let response = null
+
+      response = await MatchmakingAPI.playerLockIn(userToken, preMatch.id)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+      }
+    }
+
+    if (preMatch && preMatch.countdown === null) lockIn()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preMatch])
+
+  useEffect(() => {
+    const restartQueue = async () => {
+      const userToken = StorageService.get('token')
+      let response
+
+      response = await LobbiesAPI.startQueue(userToken, lobby.id)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+      }
+    }
+
+    if (lobby && lobby.restart) {
+      restartQueue()
+      dispatch(removeRestartQueue())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lobby])
 
   useEffect(() => {
     const userToken = StorageService.get('token')
@@ -36,14 +116,8 @@ export default function LobbyView() {
     }
 
     fetch()
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user])
-
-  const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
-  const otherPlayers = lobby.players?.filter(
-    (player) => player.user_id !== user.id
-  )
 
   return fetching ? (
     <LoadingBackdrop>
@@ -112,8 +186,12 @@ export default function LobbyView() {
         </Container>
         <Container className={style.footer} fitContent>
           <LobbyPlayButton
-            queueTime={lobby.queue_time}
-            countdown={lobby.restriction_countdown}
+            queueTime={lobby.queue_time === 0 ? 1 : lobby.queue_time}
+            restrictionCountdown={lobby.restriction_countdown}
+            restricted={lobby.restriction_countdown}
+            onClick={
+              lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
+            }
           />
         </Container>
       </Container>

@@ -6,6 +6,7 @@ import { Container, Sidebar } from '@components'
 import AppReducer from '@slices/AppSlice'
 import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
@@ -191,13 +192,18 @@ export const Default = {
         },
         username: 'Username',
         lobby: {
-          queue: props.isInQueue,
-          queue_time: 300,
-          restriction_countdown: props.isRestricted ? 300 : null,
+          queue: null,
           id: 1,
         },
       },
       status: 'online',
+    }
+
+    const lobby = {
+      queue: props.isInQueue,
+      queue_time: 300,
+      restriction_countdown: props.isRestricted ? 300 : null,
+      id: 1,
     }
 
     const invites = {
@@ -231,8 +237,17 @@ export const Default = {
         match: MatchReducer,
         app: AppReducer,
         friends: FriendReducer,
+        lobby: LobbyReducer,
       },
-      preloadedState: { user, friends, notifications, invites, app, match },
+      preloadedState: {
+        user,
+        friends,
+        notifications,
+        invites,
+        app,
+        match,
+        lobby,
+      },
     })
 
     return (
