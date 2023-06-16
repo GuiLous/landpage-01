@@ -10,7 +10,7 @@ import style from './LobbyLineup.module.css'
 export default function LobbyLineup({
   userPlayer,
   isOwner,
-  otherPlayers,
+  otherPlayers = [],
   lobbyId,
   maxPlayers = 5,
 }) {

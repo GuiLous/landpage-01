@@ -1,5 +1,4 @@
 // common
-import BaseView from './common/BaseView'
 import HomeView from './common/Home'
 import NotFoundView from './common/NotFound'
 
@@ -18,17 +17,16 @@ import ConnectView from './matchmaking/Connect'
 import MatchView from './matchmaking/Match'
 
 export {
-  HomeView,
-  NotFoundView,
-  AuthView,
   AccountView,
-  UpdateEmailView,
-  SignupView,
-  VerifyView,
-  ProfileView,
-  LobbyView,
+  AuthView,
   ConnectView,
+  HomeView,
   InactiveView,
+  LobbyView,
   MatchView,
-  BaseView,
+  NotFoundView,
+  ProfileView,
+  SignupView,
+  UpdateEmailView,
+  VerifyView,
 }

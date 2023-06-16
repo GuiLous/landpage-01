@@ -1,22 +1,19 @@
 import { Badge, Icon, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI, MatchmakingAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
   JoystickIcon,
-  Loading,
-  LoadingBackdrop,
   LobbyLineup,
   LobbyPlayButton,
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { initLobby, removeRestartQueue } from '@slices/LobbySlice'
+import { removeRestartQueue } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -27,9 +24,6 @@ export default function LobbyView() {
   const match = useSelector((state) => state.match.match)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
-
-  const [fetching, setFetching] = useState(true)
 
   const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
@@ -106,24 +100,7 @@ export default function LobbyView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lobby])
 
-  useEffect(() => {
-    const userToken = StorageService.get('token')
-    const fetch = async () => {
-      const response = await LobbiesAPI.detail(userToken, user.lobby_id)
-      setFetching(false)
-      if (response.errorMsg) navigate('/404')
-      else dispatch(initLobby(response))
-    }
-
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
-
-  return fetching ? (
-    <LoadingBackdrop>
-      <Loading />
-    </LoadingBackdrop>
-  ) : (
+  return (
     <MainLayout>
       <Container className={style.container} column gap={40} align="center">
         <Container className={style.header} gap={12} fitContent>
