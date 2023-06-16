@@ -185,6 +185,34 @@ export default extendTheme({
           },
         },
 
+        pin: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          color: 'white',
+          border: '1px solid',
+          borderColor: 'secondary.400',
+          _disabled: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+            opacity: 0.4,
+          },
+          _hover: {
+            backgroundColor: 'secondary.400',
+            _disabled: {
+              backgroundColor: 'transparent',
+            },
+          },
+          _loading: {
+            _hover: {
+              backgroundColor: 'transparent',
+            },
+          },
+          _active: {
+            backgroundColor: 'transparent',
+          },
+        },
+
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',

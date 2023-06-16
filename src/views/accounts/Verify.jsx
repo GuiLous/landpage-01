@@ -132,14 +132,14 @@ export default function VerifyView() {
                     />
                   </PinInput>
                   <IconButton
-                    variant="secondary"
+                    variant="pin"
                     isDisabled={!value || value.length !== 6}
                     isLoading={fetching}
                     onClick={handleButtonClick}
                     aria-label="Validar e jogar agora!"
                     fontSize="18px"
                     style={{ minHeight: '48px', minWidth: '48px' }}
-                    icon={<ArrowRightIcon />}
+                    icon={<ArrowRightIcon color="white" />}
                   />
                 </Container>
               </Container>
@@ -159,7 +159,11 @@ export default function VerifyView() {
                 }}
               />
 
-              <FormHelperText style={{ textAlign: 'center', marginTop: 25 }}>
+              <FormHelperText
+                textAlign="center"
+                marginTop="25px"
+                color="gray.200"
+              >
                 Enviamos um código para <strong>{user.email}</strong>. <br />{' '}
                 Não é seu e-mail?{' '}
                 <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
