@@ -8,6 +8,7 @@ import AuthView from './accounts/Auth'
 import InactiveView from './accounts/Inactive'
 import ProfileView from './accounts/Profile'
 import SignupView from './accounts/Signup'
+import UpdateEmailView from './accounts/UpdateEmail'
 import VerifyView from './accounts/Verify'
 
 // matchmaking
@@ -26,5 +27,6 @@ export {
   NotFoundView,
   ProfileView,
   SignupView,
+  UpdateEmailView,
   VerifyView,
 }
