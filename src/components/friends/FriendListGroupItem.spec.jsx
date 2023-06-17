@@ -13,6 +13,9 @@ const server = setupServer(
   rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
     return res(
       ctx.json({
+        id: '1:2',
+        lobby_id: 1,
+        from_player: { user_id: 1 },
         to_player: { user_id: 2 },
       })
     )
@@ -26,12 +29,7 @@ afterAll(() => server.close())
 describe('FriendListGroupItem Component', () => {
   const user = {
     id: 1,
-    account: {
-      lobby: {
-        id: 1,
-      },
-      lobby_invites_sent: [],
-    },
+    lobby_id: 1,
   }
 
   const invites = {
@@ -49,7 +47,8 @@ describe('FriendListGroupItem Component', () => {
 
   it('should render an online friend corretcly', () => {
     const friend = {
-      id: 2,
+      user_id: 2,
+      lobby_id: 2,
       status: 'online',
       avatar:
         'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
@@ -67,7 +66,8 @@ describe('FriendListGroupItem Component', () => {
 
   it('should not render action if friend is offline', () => {
     const friend = {
-      id: 2,
+      user_id: 2,
+      lobby_id: 2,
       status: 'offline',
       avatar:
         'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
@@ -86,7 +86,8 @@ describe('FriendListGroupItem Component', () => {
     const user = userEvent.setup()
 
     const friend = {
-      id: 2,
+      user_id: 2,
+      lobby_id: 2,
       status: 'online',
       avatar:
         'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
@@ -98,12 +99,12 @@ describe('FriendListGroupItem Component', () => {
         <FriendListGroupItem {...friend} />
       </Provider>
     )
-    const action = await screen.findByTestId('action')
-    expect(action).toBeInTheDocument()
+    const inviteButton = await screen.findByTestId('invite-button')
+    expect(inviteButton).toBeInTheDocument()
     expect(screen.queryByTestId('icon-invited')).not.toBeInTheDocument()
     expect(await screen.findByTestId('icon-available')).toBeInTheDocument()
 
-    await waitFor(() => user.click(action))
+    await waitFor(() => user.click(inviteButton))
 
     expect(await screen.findByTestId('icon-invited')).toBeInTheDocument()
     expect(screen.queryByTestId('icon-available')).not.toBeInTheDocument()

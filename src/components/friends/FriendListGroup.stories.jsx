@@ -27,7 +27,10 @@ export default {
         method: 'POST',
         status: 200,
         response: {
-          to_player: { id: 2 },
+          to_player: { user_id: 2 },
+          from_player: { user_id: 1 },
+          id: '1:2',
+          lobby_id: 1,
         },
       },
     ],
@@ -36,21 +39,18 @@ export default {
 
 const user = {
   id: 1,
-  account: {
-    friends: [],
-    lobby: {
-      id: 1,
-      players_ids: [1],
-      max_players: 5,
-      player_count: 1,
-    },
-    lobby_invites: [],
-    lobby_invites_sent: [],
-  },
+  lobby_id: 1,
 }
 
 const invites = {
-  list: [],
+  list: [
+    {
+      to_player: { user_id: 2 },
+      from_player: { user_id: 1 },
+      id: '1:2',
+      lobby_id: 1,
+    },
+  ],
   unread: 0,
 }
 
@@ -66,9 +66,10 @@ export const Default = {
   render: (props) => {
     const genItems = Array.from(Array(props.friendsCount).keys()).map(
       (friend, index) => ({
-        id: index,
+        user_id: index + 2,
+        lobby_id: index + 2,
         status: 'online',
-        username: 'Username',
+        username: `Friend ${index + 2}`,
         avatar:
           'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
       })

@@ -3,24 +3,26 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { FriendListGroup } from '@components'
+import InviteReducer from '@slices/InviteSlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('FriendListGroup Component', () => {
   const user = {
     id: 1,
-    account: {
-      lobby: {
-        id: 1,
-      },
-      lobby_invites_sent: [],
-    },
+    lobby_id: 1,
+  }
+
+  const invites = {
+    list: [],
+    unread: 0,
   }
 
   const store = configureStore({
     reducer: {
       user: UserReducer,
+      invites: InviteReducer,
     },
-    preloadedState: { user },
+    preloadedState: { user, invites },
   })
 
   it('should render title and count correctly', () => {
@@ -34,16 +36,12 @@ describe('FriendListGroup Component', () => {
 
     args.title = 'Offline'
     args.items.push({
-      id: 11,
+      user_id: 11,
       status: 'offline',
       username: 'Username',
       avatar:
         'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-      account: {
-        lobby: {
-          id: 2,
-        },
-      },
+      lobby_id: 2,
     })
 
     render(
@@ -59,16 +57,12 @@ describe('FriendListGroup Component', () => {
       title: 'Disponível',
       items: [
         {
-          id: 11,
+          user_id: 11,
           status: 'offline',
           username: 'Username',
           avatar:
             'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-          account: {
-            lobby: {
-              id: 2,
-            },
-          },
+          lobby_id: 2,
         },
       ],
       collapse: false,

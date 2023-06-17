@@ -36,7 +36,7 @@ export default function FriendList({ isOpen, onClose }) {
   const [filter, setFilter] = useState('')
   const [fetching, setFetching] = useState(true)
 
-  const teamingFriends = lobby.players?.filter(
+  const teamingFriends = lobby.players.filter(
     (player) => player.user_id !== user.id
   )
 
