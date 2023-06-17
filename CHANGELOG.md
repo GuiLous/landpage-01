@@ -58,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido componente `LobbyModeSelector` [#326](https://github.com/3C-gg/reload-frontend/issues/326)
 - Removido reducer `initLobby` de `LobbySlice` pois é redundante com o reducer `updateLobby`.
 - Removido `useEffect` que faz fetch de lobby `detail` no componente `SideBar`.
 - Removido `useEffect` que faz fetch de lobby `detail` na view `LobbyView`.

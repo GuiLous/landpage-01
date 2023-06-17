@@ -68,7 +68,6 @@ import WarningCircleIcon from './icons/WarningCircleIcon'
 
 // Lobby
 import LobbyLineup from './lobby/LobbyLineup'
-import LobbyModeSelector from './lobby/LobbyModeSelector'
 import LobbyPlayButton from './lobby/LobbyPlayButton'
 import LobbyPlayerCard from './lobby/LobbyPlayerCard'
 import LobbySeat from './lobby/LobbySeat'
@@ -160,7 +159,6 @@ export {
   Loading,
   LoadingBackdrop,
   LobbyLineup,
-  LobbyModeSelector,
   LobbyPlayButton,
   LobbyPlayerCard,
   LobbySeat,
