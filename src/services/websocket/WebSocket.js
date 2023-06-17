@@ -4,23 +4,13 @@ import useWebSocket from 'react-use-websocket'
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
+import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
-import {
-  addFriend,
-  addInviteReceived,
-  removeInvite,
-  restartQueue,
-  updateFriend,
-  updateInviteReceived,
-  updateLobbyId,
-  updateUser,
-  updateLobby as userUpdateLobby,
-} from '@slices/UserSlice'
+import { addNotification } from '@slices/NotificationSlice'
+import { restartQueue, updateLobbyId, updateUser } from '@slices/UserSlice'
 
 import { match, preMatch } from '@slices/MatchSlice'
-
-import { addNotification } from '@slices/NotificationSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -74,9 +64,29 @@ export const WSS = () => {
         }
         break
 
+      case 'invites/expire':
+        const invite = data.payload.invite
+        const was_sent = invite.from_player.user_id === user.id
+
+        dispatch(deleteInvite(invite))
+        dispatch(
+          addToast({
+            content: `O convite ${
+              was_sent
+                ? 'para ' + invite.to_player.username
+                : 'de ' + invite.from_player.username
+            } expirou.`,
+          })
+        )
+        break
+
       // Friends
       case 'friends/update':
         dispatch(updateFriend(data.payload))
+        break
+
+      case 'friends/create':
+        dispatch(addFriend(data.payload))
         break
 
       // Lobbies
@@ -102,59 +112,15 @@ export const WSS = () => {
         dispatch(updateLobby(data.payload))
         break
 
+      // Notifications
+      case 'notifications/create':
+        dispatch(addNotification(data.payload))
+        break
+
       // ==== Old Websockets ==== //
 
       case 'ws_userUpdate':
         dispatch(updateUser(data.payload))
-        break
-
-      case 'ws_userStatusChange':
-        dispatch(updateFriend(data.payload))
-        break
-
-      case 'ws_friendlistAdd':
-        dispatch(addFriend(data.payload))
-        break
-
-      case 'ws_lobbyUpdate':
-        dispatch(userUpdateLobby(data.payload))
-        break
-
-      case 'ws_lobbyInviteReceived':
-        dispatch(addInviteReceived(data.payload))
-        dispatch(addInvite())
-        dispatch(
-          addToast({
-            title: 'Novo convite recebido!',
-            content: `Você recebeu um convite de ${data.payload.from_player.username}.`,
-          })
-        )
-        break
-
-      case 'ws_refuseInvite':
-        dispatch(
-          addToast({
-            title: 'Convite recusado',
-            content: `O convite para ${data.payload.to_player.username} foi recusado.`,
-          })
-        )
-        dispatch(removeInvite(data.payload))
-        break
-
-      case 'ws_updateInvite':
-        dispatch(updateInviteReceived(data.payload))
-        break
-
-      case 'ws_removeInvite':
-        if (data.payload.to_player.id === user.id) {
-          dispatch(
-            addToast({
-              title: 'Convite expirado',
-              content: `O convite de ${data.payload.from_player.username} expirou.`,
-            })
-          )
-        }
-        dispatch(removeInvite(data.payload))
         break
 
       case 'ws_preMatch':
@@ -181,10 +147,6 @@ export const WSS = () => {
 
       case 'ws_match':
         dispatch(match(data.payload))
-        break
-
-      case 'ws_newNotification':
-        dispatch(addNotification(data.payload))
         break
 
       default:
