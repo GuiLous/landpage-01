@@ -7,6 +7,7 @@ import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { addNotification } from '@slices/NotificationSlice'
 import { restartQueue, updateLobbyId, updateUser } from '@slices/UserSlice'
 
 import { match, preMatch } from '@slices/MatchSlice'
@@ -109,6 +110,11 @@ export const WSS = () => {
 
       case 'lobbies/update':
         dispatch(updateLobby(data.payload))
+        break
+
+      // Notifications
+      case 'notifications/create':
+        dispatch(addNotification(data.payload))
         break
 
       // ==== Old Websockets ==== //
