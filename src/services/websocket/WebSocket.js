@@ -63,6 +63,22 @@ export const WSS = () => {
         }
         break
 
+      case 'invites/expire':
+        const invite = data.payload.invite
+        const was_sent = invite.from_player.user_id === user.id
+
+        dispatch(deleteInvite(invite))
+        dispatch(
+          addToast({
+            content: `O convite ${
+              was_sent
+                ? 'para ' + invite.to_player.username
+                : 'de ' + invite.from_player.username
+            } expirou.`,
+          })
+        )
+        break
+
       // Friends
       case 'friends/update':
         dispatch(updateFriend(data.payload))
