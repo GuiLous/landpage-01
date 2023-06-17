@@ -58,6 +58,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Adiciona action `notifications/create` ao serviço de websocket.
+- Adiciona action `friends/create` ao serviço de websocket.
+- Adiciona action `invites/expire` ao serviço de websocket.
+- Actions antigas não utilizadas do serviço de websocket `WSS`.
 - Removido componente `LobbyModeSelector` [#326](https://github.com/3C-gg/reload-frontend/issues/326)
 - Removido reducer `initLobby` de `LobbySlice` pois é redundante com o reducer `updateLobby`.
 - Removido `useEffect` que faz fetch de lobby `detail` no componente `SideBar`.
