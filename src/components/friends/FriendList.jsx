@@ -36,12 +36,12 @@ export default function FriendList({ isOpen, onClose }) {
   const [filter, setFilter] = useState('')
   const [fetching, setFetching] = useState(true)
 
-  const teamingFriends = lobby.players?.filter(
+  const teamingFriends = lobby.players.filter(
     (player) => player.user_id !== user.id
   )
 
   const onlineFriends = friends.online.filter(
-    (friend) => friend.lobby.id !== user.lobby_id
+    (friend) => friend.lobby_id !== user.lobby_id
   )
 
   const filteredTeamingFriends = teamingFriends?.filter(

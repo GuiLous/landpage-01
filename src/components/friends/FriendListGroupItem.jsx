@@ -7,18 +7,19 @@ import { Container, GroupAddIcon } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { addInviteSent } from '@slices/UserSlice'
+import { addInvite } from '@slices/InviteSlice'
 
 import style from './FriendListGroupItem.module.css'
 
 export default function FriendListGroupItem({
-  id,
+  user_id,
   status,
   avatar,
   username,
-  lobbyId,
+  lobby_id,
 }) {
   const user = useSelector((state) => state.user)
+  const invites = useSelector((state) => state.invites)
 
   const dispatch = useDispatch()
   const humanStatus = useHumanizeStatus(status)
@@ -26,10 +27,9 @@ export default function FriendListGroupItem({
   const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
   const alreadyInvited =
-    user.account.lobby_invites_sent.filter((invite) => {
-      return invite.to_player.user_id === id
-    }).length > 0
-  const alreadyOnTeam = user.account.lobby.id === lobbyId
+    invites.list.filter((invite) => invite.to_player.user_id === user_id)
+      .length > 0
+  const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
 
@@ -39,7 +39,7 @@ export default function FriendListGroupItem({
       userToken,
       user.lobby_id,
       user.id,
-      id
+      user_id
     )
 
     if (response.errorMsg)
@@ -50,7 +50,7 @@ export default function FriendListGroupItem({
         })
       )
     else if (response) {
-      dispatch(addInviteSent(response))
+      dispatch(addInvite(response))
       dispatch(
         addToast({
           title: 'Convite enviado',
@@ -69,7 +69,7 @@ export default function FriendListGroupItem({
       ].join(' ')}
       gap={8}
       align="center"
-      testID="action"
+      testID="invite-button"
       fitContent
     >
       <Container fitContent>
