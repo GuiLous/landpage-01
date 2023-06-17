@@ -58,6 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Actions antigas não utilizadas no `UserSlice` [#332](https://github.com/3C-gg/reload-frontend/issues/332).
 - Adiciona action `notifications/create` ao serviço de websocket.
 - Adiciona action `friends/create` ao serviço de websocket.
 - Adiciona action `invites/expire` ao serviço de websocket.
