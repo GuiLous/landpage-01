@@ -4,7 +4,7 @@ import useWebSocket from 'react-use-websocket'
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { updateFriend } from '@slices/FriendSlice'
+import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
 import { restartQueue, updateLobbyId, updateUser } from '@slices/UserSlice'
@@ -82,6 +82,10 @@ export const WSS = () => {
       // Friends
       case 'friends/update':
         dispatch(updateFriend(data.payload))
+        break
+
+      case 'friends/create':
+        dispatch(addFriend(data.payload))
         break
 
       // Lobbies
