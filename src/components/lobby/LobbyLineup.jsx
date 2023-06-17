@@ -10,13 +10,15 @@ import style from './LobbyLineup.module.css'
 export default function LobbyLineup({
   userPlayer,
   isOwner,
-  otherPlayers = [],
   lobbyId,
+  otherPlayers = [],
   maxPlayers = 5,
 }) {
   const [lineup, setLineup] = useState([])
 
   useEffect(() => {
+    if (!userPlayer) return
+
     const lineupList = Array.from(Array(maxPlayers).keys()).map(() => null)
     const fillOrder = [1, 3, 0, 4]
     lineupList[2] = userPlayer
@@ -74,21 +76,23 @@ export default function LobbyLineup({
   }
 
   return (
-    <Container className={style.container} gap={18} align="center">
-      {lineup.map((player, index) => (
-        <Container
-          key={player ? player.user_id : `seat-${index}`}
-          style={{ height: index === 2 ? '100%' : '95%' }}
-        >
-          {player ? (
-            renderPlayerCard(player)
-          ) : (
-            <Container onClick={handleSeatClick} style={{ height: '100%' }}>
-              <LobbySeat />
-            </Container>
-          )}
-        </Container>
-      ))}
-    </Container>
+    userPlayer && (
+      <Container className={style.container} gap={18} align="center">
+        {lineup.map((player, index) => (
+          <Container
+            key={player ? player.user_id : `seat-${index}`}
+            style={{ height: index === 2 ? '100%' : '95%' }}
+          >
+            {player ? (
+              renderPlayerCard(player)
+            ) : (
+              <Container onClick={handleSeatClick} style={{ height: '100%' }}>
+                <LobbySeat />
+              </Container>
+            )}
+          </Container>
+        ))}
+      </Container>
+    )
   )
 }

@@ -41,7 +41,7 @@ export default function FriendList({ isOpen, onClose }) {
   )
 
   const onlineFriends = friends.online.filter(
-    (friend) => friend.lobby.id !== user.lobby_id
+    (friend) => friend.lobby_id !== user.lobby_id
   )
 
   const filteredTeamingFriends = teamingFriends?.filter(
