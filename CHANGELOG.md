@@ -84,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ícone de convidado aparecendo na lista "Em grupo" na lista de amigos [#307](https://github.com/3C-gg/reload-frontend/issues/307).
 - Componentes de `friends` não estavam adequados aos novos retornos da API relativos as propriedades `user_id` e `lobby_id`. Consertamos os componentes, stories e testes.
 - `FriendList` e `LobbyLineup` estavam com erro após um novo cadastro, quando já haviam amigos desses novos cadastros online. Consertamos uma propriedade errada em `FriendList` (removemos `lobby.id` em detrenimento de da nova propriedade `lobby_id`)  e em `LobbyLineup`, fizemos uma proteção caso o usuário autenticado ainda não tenha sido totalmente carregado [#324](https://github.com/3C-gg/reload-frontend/issues/324).
 - `FriendList` estava quebrando ao tentar acessar `lobby.players.filter` quando o objeto `lobby` está vazio ao dar refresh.
