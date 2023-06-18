@@ -200,16 +200,23 @@ export const Default = {
     }
 
     const lobby = {
-      queue: props.isInQueue,
+      queue: props.isInQueue
+        ? new Date().toISOString().replace('T', ' ').replace('Z', '')
+        : null,
       queue_time: 300,
       restriction_countdown: props.isRestricted ? 300 : null,
       id: 1,
+      players: [],
     }
 
-    const invites = {
-      list: [],
-      unread: props.unreadInvites,
-    }
+    const invites = Array.from(Array(props.unreadInvites).keys()).map(
+      (item, index) => ({
+        to_player: { user_id: 1 },
+        from_player: { user_id: index + 2 },
+        id: `${index + 2}:1`,
+        lobby_id: index + 2,
+      })
+    )
 
     const match = {
       preMatch: null,
@@ -227,7 +234,7 @@ export const Default = {
 
     const notifications = Array.from(
       Array(props.unreadNotifications).keys()
-    ).map((notification, index) => ({ id: index }))
+    ).map((notification, index) => ({ id: index, read_date: null }))
 
     const store = configureStore({
       reducer: {
