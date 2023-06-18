@@ -18,6 +18,35 @@ export const WSS = () => {
   const user = useSelector((state) => state.user)
   const token = StorageService.get('token')
 
+  const showInviteRefusedToast = (payload) => {
+    const invite = payload.invite
+    const refused = payload.status === 'refused'
+
+    if (refused) {
+      dispatch(
+        addToast({
+          content: `${invite.to_player.username} recusou seu convite.`,
+        })
+      )
+    }
+  }
+
+  const showInviteExpiredToast = (payload) => {
+    const invite = payload.invite
+    const was_sent = invite.from_player.user_id === user.id
+    const content = `O convite ${
+      was_sent
+        ? 'para ' + invite.to_player.username
+        : 'de ' + invite.from_player.username
+    } expirou.`
+
+    dispatch(
+      addToast({
+        content: content,
+      })
+    )
+  }
+
   useWebSocket(
     REACT_APP_WS_URL,
     {
@@ -52,32 +81,12 @@ export const WSS = () => {
 
       case 'invites/delete':
         dispatch(deleteInvite(data.payload.invite))
-        if (
-          data.payload.invite.from_player.user_id === user.id &&
-          data.payload.status === 'refused'
-        ) {
-          dispatch(
-            addToast({
-              content: `${data.payload.to_player.username} recusou seu convite.`,
-            })
-          )
-        }
+        showInviteRefusedToast(data.payload)
         break
 
       case 'invites/expire':
-        const invite = data.payload.invite
-        const was_sent = invite.from_player.user_id === user.id
-
-        dispatch(deleteInvite(invite))
-        dispatch(
-          addToast({
-            content: `O convite ${
-              was_sent
-                ? 'para ' + invite.to_player.username
-                : 'de ' + invite.from_player.username
-            } expirou.`,
-          })
-        )
+        dispatch(deleteInvite(data.payload.invite))
+        showInviteExpiredToast(data.payload)
         break
 
       // Friends
