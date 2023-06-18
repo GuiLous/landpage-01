@@ -1,34 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 
 import { NotificationList } from '@components'
 import NotificationReducer from '@slices/NotificationSlice'
 
-let mockedNotifications = [
-  {
-    id: 1,
-    content: 'Nova notificação 1',
-    avatar:
-      'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    read_date: null,
-    create_date: new Date().toISOString(),
-  },
-]
-
-const server = setupServer(
-  rest.get('http://localhost:8000/api/notifications/', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockedNotifications))
-  })
-)
-
 describe('NotificationList Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
-
   let notifications = []
 
   const store = configureStore({
@@ -38,7 +15,7 @@ describe('NotificationList Component', () => {
     preloadedState: { notifications },
   })
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <Provider store={store}>
         <NotificationList isOpen />
@@ -49,7 +26,7 @@ describe('NotificationList Component', () => {
     expect(screen.getByText('LER TUDO')).toBeInTheDocument()
   })
 
-  it('should not renders if is not open', () => {
+  it('should not render if is not open', () => {
     render(
       <Provider store={store}>
         <NotificationList isOpen={false} />
@@ -60,7 +37,16 @@ describe('NotificationList Component', () => {
     expect(screen.queryByText('LER TUDO')).not.toBeInTheDocument()
   })
 
-  it('should renders notifications with items when has notification', async () => {
+  it('should render notifications items when not empty', async () => {
+    notifications.push({
+      id: 1,
+      content: 'Nova notificação 1',
+      avatar:
+        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+      read_date: null,
+      create_date: new Date().toISOString(),
+    })
+
     render(
       <Provider store={store}>
         <NotificationList isOpen />
@@ -71,8 +57,8 @@ describe('NotificationList Component', () => {
     expect(screen.getByText('Nova notificação 1')).toBeInTheDocument()
   })
 
-  it('should not renders notifications when is empty', async () => {
-    mockedNotifications = []
+  it('should render empty message when empty', async () => {
+    notifications = []
 
     const store = configureStore({
       reducer: {

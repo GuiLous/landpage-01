@@ -17,7 +17,6 @@ import { Container, NotificationListItem, Scrollbars } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import {
-  initNotifications,
   readAllNotifications,
   readNotification,
 } from '@slices/NotificationSlice'
@@ -30,7 +29,6 @@ export default function NotificationList({ isOpen, onClose }) {
   const userToken = StorageService.get('token')
 
   const [totalNotificationsNotRead, setTotalNotificationsNotRead] = useState(0)
-  const [fetching, setFetching] = useState(true)
 
   const showErrorToast = (error) => {
     dispatch(
@@ -59,20 +57,6 @@ export default function NotificationList({ isOpen, onClose }) {
       else if (response) dispatch(readNotification({ id: id }))
     }
   }
-
-  useEffect(() => {
-    const fetch = async () => {
-      setFetching(true)
-      const userToken = StorageService.get('token')
-
-      const response = await NotificationsAPI.list(userToken)
-      if (response) dispatch(initNotifications(response))
-      setFetching(false)
-    }
-
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   useEffect(() => {
     if (notifications && notifications.length > 0) {
@@ -111,13 +95,11 @@ export default function NotificationList({ isOpen, onClose }) {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          justifyContent={
-            notifications?.length > 0 && !fetching ? 'flex-start' : 'center'
-          }
+          justifyContent={notifications.length > 0 ? 'flex-start' : 'center'}
         >
-          {notifications?.length > 0 ? (
+          {notifications.length > 0 ? (
             <Scrollbars autoHide>
-              {notifications?.map((item) => (
+              {notifications.map((item) => (
                 <Container
                   onMouseEnter={() => read(item.id)}
                   key={item.id}
@@ -127,10 +109,6 @@ export default function NotificationList({ isOpen, onClose }) {
                 </Container>
               ))}
             </Scrollbars>
-          ) : fetching ? (
-            <Text fontSize={12} color="white">
-              Carregando...
-            </Text>
           ) : (
             <Text fontSize={12} color="white">
               Você não tem notificações.
@@ -146,7 +124,7 @@ export default function NotificationList({ isOpen, onClose }) {
             fontSize={14}
             fontWeight="semiBold"
             isDisabled={
-              notifications?.length === 0 ||
+              notifications.length === 0 ||
               totalNotificationsNotRead.length === 0
             }
             _disabled={{
