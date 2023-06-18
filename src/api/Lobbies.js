@@ -5,6 +5,10 @@ export const LobbiesAPI = {
     return await BaseAPI.list('lobbies/invites/?received=true', token)
   },
 
+  async listInvites(token) {
+    return await BaseAPI.list('lobbies/invites/', token)
+  },
+
   async refuseInvite(token, inviteId) {
     return await BaseAPI.delete(`lobbies/invites/${inviteId}/`, token, {
       refuse: true,
