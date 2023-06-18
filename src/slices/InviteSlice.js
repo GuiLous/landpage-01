@@ -2,38 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const InviteReducer = createSlice({
   name: 'invite',
-  initialState: {
-    list: [],
-    unreadCount: 0,
-  },
+  initialState: [],
   reducers: {
     initInvites: (state, action) => {
-      return { ...state, list: action.payload }
+      return action.payload
     },
 
     addInvite: (state, action) => {
-      return {
-        list: [...state.list, action.payload],
-        unreadCount: state.unreadCount + 1,
-      }
+      return [...state, action.payload]
     },
 
     deleteInvite: (state, action) => {
-      return {
-        ...state,
-        list: [
-          ...state.list.filter((invite) => invite.id !== action.payload.id),
-        ],
-      }
-    },
-
-    readInvites: (state) => {
-      return { ...state, unreadCount: 0 }
+      return [...state.filter((invite) => invite.id !== action.payload.id)]
     },
   },
 })
 
-export const { addInvite, readInvites, initInvites, deleteInvite } =
-  InviteReducer.actions
+export const { addInvite, initInvites, deleteInvite } = InviteReducer.actions
 
 export default InviteReducer.reducer
