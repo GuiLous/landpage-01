@@ -104,10 +104,7 @@ describe('Sidebar Component', () => {
     status: 'online',
   }
 
-  const invites = {
-    list: [],
-    unread: 0,
-  }
+  const invites = []
 
   const match = {
     preMatch: null,

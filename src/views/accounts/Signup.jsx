@@ -70,8 +70,7 @@ export default function SignupView() {
       })
     )
     dispatch(updateUser(response))
-    if (response.account.is_verified) navigate('/jogar')
-    else navigate('/verificar')
+    if (response.account) navigate('/verificar')
   }
 
   const handleKeyEnterDown = (event) => {

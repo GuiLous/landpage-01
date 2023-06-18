@@ -109,12 +109,27 @@ describe('InviteListGroup Component', () => {
   it('should render unread', () => {
     let args = {
       title: 'Convites',
-      items: [],
+      items: [
+        {
+          id: '2:1',
+          from_player: {
+            avatar: {
+              medium:
+                'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+            },
+            status: 'online',
+            username: `User 2`,
+          },
+        },
+      ],
       open: true,
-      unread: true,
     }
 
-    render(<InviteListGroup {...args} />)
+    render(
+      <Provider store={store}>
+        <InviteListGroup {...args} />
+      </Provider>
+    )
     expect(screen.getByTestId('container')).toHaveClass('unread')
   })
 })

@@ -70,6 +70,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
   const [secondsDiff, setSecondsDiff] = useState(null)
 
+  const receivedInvites = invites.filter(
+    (invite) => invite.to_player.user_id === user.id
+  )
+
   const handleOpenModalSupport = () => {
     setOpenSupport(true)
   }
@@ -326,9 +330,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 >
                   <Badge
                     variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: invites.unread > 0 ? 1 : 0 }}
+                    style={{ opacity: receivedInvites.length > 0 ? 1 : 0 }}
                   >
-                    {!isCollapsed && invites.unread}
+                    {!isCollapsed && receivedInvites.length}
                   </Badge>
                 </Container>
               </Link>

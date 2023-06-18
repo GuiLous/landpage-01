@@ -27,14 +27,14 @@ export default function FriendListGroupItem({
   const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
   const alreadyInvited =
-    invites.list.filter((invite) => invite.to_player.user_id === user_id)
-      .length > 0
+    invites.filter((invite) => invite.to_player.user_id === user_id).length > 0
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
 
   const handleInvite = async () => {
     if (!isAvailable || alreadyInvited || alreadyOnTeam) return
+    console.log(userToken, user.lobby_id, user.id, user_id)
     const response = await LobbiesAPI.createInvite(
       userToken,
       user.lobby_id,

@@ -9,10 +9,9 @@ import {
   InputLeftElement,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import { FriendsAPI, LobbiesAPI } from '@api'
 import {
   Container,
   FriendListGroup,
@@ -20,9 +19,6 @@ import {
   Scrollbars,
   SearchIcon,
 } from '@components'
-import { StorageService } from '@services'
-import { initFriends } from '@slices/FriendSlice'
-import { initInvites } from '@slices/InviteSlice'
 
 import style from './FriendList.module.css'
 
@@ -31,10 +27,8 @@ export default function FriendList({ isOpen, onClose }) {
   const lobby = useSelector((state) => state.lobby)
   const friends = useSelector((state) => state.friends)
   const invites = useSelector((state) => state.invites)
-  const dispatch = useDispatch()
 
   const [filter, setFilter] = useState('')
-  const [fetching, setFetching] = useState(true)
 
   const teamingFriends = lobby.players.filter(
     (player) => player.user_id !== user.id
@@ -44,7 +38,7 @@ export default function FriendList({ isOpen, onClose }) {
     (friend) => friend.lobby_id !== user.lobby_id
   )
 
-  const filteredTeamingFriends = teamingFriends?.filter(
+  const filteredTeamingFriends = teamingFriends.filter(
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
@@ -62,35 +56,17 @@ export default function FriendList({ isOpen, onClose }) {
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const filteredInvites = invites.list.filter(
+  const receivedInvites = invites.filter(
+    (invite) => invite.to_player.user_id === user.id
+  )
+
+  const filteredInvites = receivedInvites.filter(
     (invite) =>
       filter === '' ||
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const updateFilter = (event) => setFilter(event.target.value)
-
-  useEffect(() => {
-    const fetchFriends = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await FriendsAPI.list(userToken)
-      if (response) dispatch(initFriends(response))
-    }
-
-    const fetchInvites = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await LobbiesAPI.listReceivedInvites(userToken)
-      if (!response.errorMsg) dispatch(initInvites(response))
-    }
-
-    setFetching(true)
-    fetchFriends()
-    fetchInvites()
-    setFetching(false)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   return (
     <Drawer
@@ -159,53 +135,44 @@ export default function FriendList({ isOpen, onClose }) {
             </Container>
           </Container>
 
-          <Container
-            className={[style.groups, fetching && style.loading].join(' ')}
-            column
-          >
-            {fetching ? (
-              <Text fontSize={12} color="white">
-                Carregando...
-              </Text>
-            ) : (
-              <Scrollbars autoHide>
-                {invites.list.length > 0 && (
-                  <Container className={style.group}>
-                    <InviteListGroup
-                      title="Convites"
-                      items={filteredInvites}
-                      open
-                      unread={invites.unreadCount > 0}
-                    />
-                  </Container>
-                )}
+          <Container className={style.groups} column>
+            <Scrollbars autoHide>
+              {receivedInvites.length > 0 && (
+                <Container className={style.group}>
+                  <InviteListGroup
+                    title="Convites"
+                    items={filteredInvites}
+                    open
+                    unread={receivedInvites.length > 0}
+                  />
+                </Container>
+              )}
 
-                {teamingFriends?.length > 0 && (
-                  <Container className={style.group}>
-                    <FriendListGroup
-                      title="Em grupo"
-                      items={filteredTeamingFriends}
-                      open
-                    />
-                  </Container>
-                )}
-
+              {teamingFriends.length > 0 && (
                 <Container className={style.group}>
                   <FriendListGroup
-                    title="Online"
-                    items={filteredOnlineFriends}
+                    title="Em grupo"
+                    items={filteredTeamingFriends}
                     open
                   />
                 </Container>
+              )}
 
-                <Container className={style.group}>
-                  <FriendListGroup
-                    title="Offline"
-                    items={filteredOfflineFriends}
-                  />
-                </Container>
-              </Scrollbars>
-            )}
+              <Container className={style.group}>
+                <FriendListGroup
+                  title="Online"
+                  items={filteredOnlineFriends}
+                  open
+                />
+              </Container>
+
+              <Container className={style.group}>
+                <FriendListGroup
+                  title="Offline"
+                  items={filteredOfflineFriends}
+                />
+              </Container>
+            </Scrollbars>
           </Container>
         </Container>
       </DrawerContent>

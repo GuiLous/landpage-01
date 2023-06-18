@@ -9,24 +9,19 @@ export default function InviteListGroup({
   items,
   collapse = true,
   open = false,
-  unread = false,
 }) {
   useEffect(() => {
     if (collapse) setIsOpen(open)
     else setIsOpen(true)
   }, [open, collapse])
 
-  useEffect(() => {
-    setIsUnread(unread)
-  }, [unread])
-
   const [isOpen, setIsOpen] = useState()
-  const [isUnread, setIsUnread] = useState()
+
+  const isUnread = items.length > 0
 
   const handleCollapse = () => {
     if (!collapse || items.length <= 0) return
     setIsOpen(!isOpen)
-    setIsUnread(false)
   }
 
   const renderItemsLength = () => {

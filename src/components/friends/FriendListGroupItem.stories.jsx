@@ -36,10 +36,7 @@ const user = {
   },
 }
 
-const invites = {
-  list: [],
-  unread: 0,
-}
+const invites = []
 
 const store = configureStore({
   reducer: {

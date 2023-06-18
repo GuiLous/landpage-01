@@ -10,29 +10,22 @@ import {
   PinInput,
   PinInputField,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { ArrowRightIcon, Container, LockIcon } from '@components'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { updateUser } from '@slices/UserSlice'
 import style from './Verify.module.css'
 
 export default function VerifyView() {
   const user = useSelector((state) => state.user)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
   const [fieldsErrors, setFieldsErrors] = useState(null)
-
-  useEffect(() => {
-    if (!user || !user.account || user.account.is_verified) navigate('/')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
 
   const handleButtonClick = () =>
     value && value.length === 6 && handleSubmit({ verification_token: value })
@@ -63,15 +56,16 @@ export default function VerifyView() {
     }
 
     setFetching(false)
-    dispatch(updateUser(response))
-    dispatch(
-      addToast({
-        title: 'Sua conta foi verificada!',
-        content: 'Convide seus amigos e comece a jogar!',
-        variant: 'success',
-      })
-    )
-    if (response.account.is_verified) navigate('/jogar')
+    if (response.account.is_verified) {
+      dispatch(
+        addToast({
+          title: 'Sua conta foi verificada!',
+          content: 'Convide seus amigos e comece a jogar!',
+          variant: 'success',
+        })
+      )
+    }
+    window.location.href = '/'
   }
 
   const handleKeyEnterDown = (event) => {

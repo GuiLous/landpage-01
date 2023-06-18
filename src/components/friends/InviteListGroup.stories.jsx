@@ -12,14 +12,12 @@ export default {
     collapse: { control: 'boolean' },
     open: { control: 'boolean' },
     invitesCount: { control: 'number' },
-    unread: { control: 'boolean' },
   },
   args: {
     title: 'Convites',
     collapse: true,
     open: false,
     invitesCount: 0,
-    unread: false,
   },
 }
 
