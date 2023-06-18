@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Movemos tratamentos de convites expirados e recusados para uma função específica dentro dos `cases` do `WSS`. Assim temos mais controle e podemos tratar melhor os dados recebidos, fazendo verificações mais precisas para mostrar os `Toasts` adequados.
+- Componentes de `friends` e `sidebar` agora tratam corretamente os convites [#299](https://github.com/3C-gg/reload-frontend/issues/299).
+- `InviteSlice` agora não possui mais `list` e `unreadCount`. Somente um array com os convites. Essa mudança é necessária para que a gente possa sempre exibir o contador de convites "em aberto" na `Sidebar`, derrubando o conceito de "convites não lidos".
 - `App.js` foi totalmente alterado visando realizar as chamadas API cruciais da aplicação (`auth`, `lobbies`, `friends`, `invites` e `notifications`) em ordem, antes de remover o loading da tela e exibir UI do app [#449](https://github.com/3C-gg/reload-backend/issues/449).
 - View `Verify` foi alterada de modo que depois de uma verificação de conta bem sucedida, a aplicação seja reiniciada.
 - View `Signup` foi alterada para ter uma melhor verificação após o cadastro.
