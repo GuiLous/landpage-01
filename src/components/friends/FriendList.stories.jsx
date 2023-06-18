@@ -141,32 +141,29 @@ const friends = {
   ],
 }
 
-const invites = {
-  list: [
-    {
-      id: '12:1',
-      from_player: {
-        user_id: 12,
-        avatar: {
-          medium:
-            'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-        },
-        status: 'online',
-        username: `Amigo 12`,
+const invites = [
+  {
+    id: '12:1',
+    from_player: {
+      user_id: 12,
+      avatar: {
+        medium:
+          'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
       },
-      to_player: {
-        user_id: 1,
-        avatar: {
-          medium:
-            'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-        },
-        status: 'online',
-        username: `User 1`,
-      },
+      status: 'online',
+      username: `Amigo 12`,
     },
-  ],
-  unread: 0,
-}
+    to_player: {
+      user_id: 1,
+      avatar: {
+        medium:
+          'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+      },
+      status: 'online',
+      username: `User 1`,
+    },
+  },
+]
 
 const lobby = {
   id: 1,

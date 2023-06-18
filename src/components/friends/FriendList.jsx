@@ -56,7 +56,11 @@ export default function FriendList({ isOpen, onClose }) {
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const filteredInvites = invites.list.filter(
+  const receivedInvites = invites.filter(
+    (invite) => invite.to_player.user_id === user.id
+  )
+
+  const filteredInvites = receivedInvites.filter(
     (invite) =>
       filter === '' ||
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
@@ -133,13 +137,13 @@ export default function FriendList({ isOpen, onClose }) {
 
           <Container className={style.groups} column>
             <Scrollbars autoHide>
-              {invites.list.length > 0 && (
+              {receivedInvites.length > 0 && (
                 <Container className={style.group}>
                   <InviteListGroup
                     title="Convites"
                     items={filteredInvites}
                     open
-                    unread={invites.unreadCount > 0}
+                    unread={receivedInvites.length > 0}
                   />
                 </Container>
               )}

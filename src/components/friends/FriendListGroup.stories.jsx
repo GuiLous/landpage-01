@@ -42,17 +42,14 @@ const user = {
   lobby_id: 1,
 }
 
-const invites = {
-  list: [
-    {
-      to_player: { user_id: 2 },
-      from_player: { user_id: 1 },
-      id: '1:2',
-      lobby_id: 1,
-    },
-  ],
-  unread: 0,
-}
+const invites = [
+  {
+    to_player: { user_id: 2 },
+    from_player: { user_id: 1 },
+    id: '1:2',
+    lobby_id: 1,
+  },
+]
 
 const store = configureStore({
   reducer: {

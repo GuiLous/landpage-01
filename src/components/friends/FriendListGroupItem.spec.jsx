@@ -32,10 +32,7 @@ describe('FriendListGroupItem Component', () => {
     lobby_id: 1,
   }
 
-  const invites = {
-    list: [],
-    unread: 0,
-  }
+  const invites = []
 
   const store = configureStore({
     reducer: {
