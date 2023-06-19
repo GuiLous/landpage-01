@@ -36,6 +36,8 @@ export default function Router({ user }) {
       verificationRequired
     ) {
       return <Navigate to="/verificar" replace />
+    } else if (location.pathname === '/verificar' && verifiedUser) {
+      return <Navigate to="/jogar" replace />
     }
   }
 
