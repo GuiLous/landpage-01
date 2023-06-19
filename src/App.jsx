@@ -35,9 +35,13 @@ export default function App() {
       })
     )
 
+  const verifyIfApiIsReady = () => {
+    return Object.values(apisReady).every((item) => item === true)
+  }
+
   useEffect(() => {
-    if (Object.values(apisReady).every((item) => item === true))
-      setFetching(false)
+    if (verifyIfApiIsReady()) setFetching(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apisReady])
 
   // =================== //
