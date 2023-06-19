@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Fixed
 
+- Ajusta action `updateFriend` do `FriendSlice` para atualizar corretamente lista de amigos online e offline [#354](https://github.com/3C-gg/reload-frontend/issues/354).
 - Remove erros de console do Storybook para o componente `LobbyPlayerCard` [#331](https://github.com/3C-gg/reload-frontend/issues/331).
 - Adiciona retorno de função para prop `onPageChange` do componente `MatchHistoryPagination`, mas não resolve erro no console do Storybook para esse componente.
 
