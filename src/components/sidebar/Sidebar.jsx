@@ -20,7 +20,7 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 
 import { AccountsAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
@@ -47,7 +47,6 @@ import {
 } from '@components'
 import { StorageService } from '@services'
 import { toggleFriendList } from '@slices/AppSlice'
-import { updateUser } from '@slices/UserSlice'
 import { formatSecondsToMinutes } from '@utils'
 
 import style from './Sidebar.module.css'
@@ -61,7 +60,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openSupport, setOpenSupport] = useState(false)
@@ -89,9 +87,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const handleLogout = async () => {
     const token = StorageService.get('token')
     await AccountsAPI.logout(token)
-    dispatch(updateUser(null))
     StorageService.remove('token')
-    navigate('/')
+    window.location.href = '/'
   }
 
   const renderButtons = () => {
