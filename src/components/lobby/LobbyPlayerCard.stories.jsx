@@ -7,7 +7,7 @@ export default {
   component: LobbyPlayerCard,
   argTypes: {
     player: { control: 'object' },
-    onClose: { control: 'boolean' },
+    onClose: { control: 'object' },
     closeLabel: { control: 'text' },
   },
   args: {
@@ -23,7 +23,7 @@ export default {
       level: 1,
       steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
     },
-    onClose: true,
+    onClose: () => {},
     closeLabel: 'Sair',
   },
 }
