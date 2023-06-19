@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+const addIfNotExists = (list, item, assertionProp) => {
+  const exists = list.find(
+    (listItem) => listItem[assertionProp] === item[assertionProp]
+  )
+  return exists ? list : [...list, item]
+}
+
 export const FriendReducer = createSlice({
   name: 'friends',
   initialState: {
@@ -20,19 +27,23 @@ export const FriendReducer = createSlice({
     },
 
     updateFriend: (state, action) => {
-      const onlineFriend = state.online.find(
-        (friend) => friend.id === action.payload.id
-      )
-
-      if (onlineFriend) {
+      if (action.payload.status === 'offline') {
         return {
-          ...state,
-          online: [...state.online, action.payload],
+          online: [
+            ...state.online.filter(
+              (friend) => friend.user_id !== action.payload.user_id
+            ),
+          ],
+          offline: addIfNotExists(state.offline, action.payload, 'user_id'),
         }
       } else {
         return {
-          ...state,
-          offline: [...state.offline, action.payload],
+          offline: [
+            ...state.offline.filter(
+              (friend) => friend.user_id !== action.payload.user_id
+            ),
+          ],
+          online: addIfNotExists(state.online, action.payload, 'user_id'),
         }
       }
     },
