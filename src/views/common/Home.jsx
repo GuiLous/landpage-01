@@ -15,7 +15,6 @@ import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { match, preMatch } from '@slices/MatchSlice'
-import { updateUser } from '@slices/UserSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -55,7 +54,6 @@ export default function HomeView() {
 
     if (!response.is_active) navigate(`/conta-inativa?token=${response.token}`)
     else {
-      dispatch(updateUser(response))
       if (response.account) {
         if (response.account.pre_match) {
           dispatch(preMatch(response.account.pre_match))
@@ -63,8 +61,8 @@ export default function HomeView() {
           dispatch(match(response.account.match))
         }
       }
-      if (response.account.is_verified) navigate('/jogar')
-      else navigate('/verificar')
+      // refresh and redirect to /jogar or /verificar
+      navigate(0)
     }
   }
 
