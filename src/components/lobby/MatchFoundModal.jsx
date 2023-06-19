@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 
 import { Container, Timer, UserIcon } from '@components'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import style from './MatchFoundModal.module.css'
 
 export default function MatchFoundModal({ preMatch }) {
@@ -29,10 +29,9 @@ export default function MatchFoundModal({ preMatch }) {
       `mm/match/${preMatch.id}/player-ready/`,
       token
     )
-    if (response && response.errorMsg) {
+    if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
           content: response.errorMsg,
           variant: 'error',
         })

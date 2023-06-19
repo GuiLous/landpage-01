@@ -1,6 +1,7 @@
 import { Text, Tooltip } from '@chakra-ui/react'
 
 import { Container, LevelBadge, ProfileCard } from '@components'
+import { useLatestMatchesResults } from '@hooks'
 
 import style from './LevelStatsCard.module.css'
 
@@ -14,21 +15,7 @@ export default function LevelStatsCard({
   most_damage_in_a_match,
   stats,
 }) {
-  const renderLastMatches = latest_matches_results.map(
-    (matchResultItem, index) => (
-      <Container fitContent key={index}>
-        <Text
-          className={style.matchResultItem}
-          color={matchResultItem === 'V' && 'secondary.400'}
-        >
-          {matchResultItem}
-        </Text>
-        <Text color="rgba(255, 255, 255, .3)" margin="0 3px">
-          {latest_matches_results.length !== index + 1 && ' - '}
-        </Text>
-      </Container>
-    )
-  )
+  const latestResults = useLatestMatchesResults(latest_matches_results)
 
   const calculateKDR = () => {
     if (!stats || !stats.deaths || stats.deaths === 0) {
@@ -63,9 +50,7 @@ export default function LevelStatsCard({
             <Text className={style.title}>
               <Text as="span">{match_won}</Text> Vitórias
             </Text>
-            <Container className={style.subtitle}>
-              {renderLastMatches}
-            </Container>
+            <Container className={style.subtitle}>{latestResults}</Container>
           </Container>
         </Container>
 

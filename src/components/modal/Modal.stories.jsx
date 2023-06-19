@@ -7,11 +7,13 @@ export default {
     title: { control: 'text' },
     isOpen: { control: 'boolean' },
     showCloseButton: { control: 'boolean' },
+    headerMarginBottom: { control: 'number' },
   },
   args: {
     title: 'Teste',
     isOpen: true,
     showCloseButton: true,
+    headerMarginBottom: 40,
   },
 }
 

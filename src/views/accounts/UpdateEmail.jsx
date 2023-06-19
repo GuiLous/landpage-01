@@ -10,10 +10,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
-import { isEmailValid } from '@components/input/Validators'
+import { isEmailValid } from '@components/forms/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './UpdateEmail.module.css'
 
@@ -23,7 +23,7 @@ export default function SignupView() {
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
-  const [formError, setFormError] = useState()
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   useEffect(() => {
     if (!user || !user.account) navigate('/')
@@ -41,17 +41,18 @@ export default function SignupView() {
     let response
 
     response = await HttpService.patch('accounts/update-email/', token, form)
-    if (response.errorMsg) {
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
       setFetching(false)
-      if (response.field) setFormError(response)
-      else
-        dispatch(
-          addToast({
-            title: 'Algo saiu errado...',
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
@@ -80,7 +81,7 @@ export default function SignupView() {
         justify="center"
         fitContent
       >
-        <FormControl isInvalid={formError}>
+        <FormControl isInvalid={fieldsErrors?.email}>
           <FormLabel>Altere seu e-mail</FormLabel>
 
           <Input
@@ -91,8 +92,8 @@ export default function SignupView() {
             placeholder="exemplo@email.com"
           />
 
-          {formError && (
-            <FormErrorMessage>{formError.errorMsg}</FormErrorMessage>
+          {fieldsErrors?.email && (
+            <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
           )}
         </FormControl>
 

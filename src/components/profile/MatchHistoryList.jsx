@@ -10,7 +10,7 @@ import {
   MatchHistoryStatsLink,
 } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 
 import style from './MatchHistoryList.module.css'
 
@@ -59,7 +59,6 @@ export default function MatchHistoryList({ user_id }) {
       if (response.errorMsg) {
         dispatch(
           addToast({
-            title: 'Algo saiu errado...',
             content: response.errorMsg,
             variant: 'error',
           })

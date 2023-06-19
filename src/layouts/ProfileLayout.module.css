@@ -11,11 +11,13 @@
 .content {
 	height: 100%;
 	margin-left: 300px;
-	padding: 140px 90px 56px 67px;
+	padding: 140px 40px 40px;
 }
 
 .sidebar {
 	height: 100%;
+	max-width: 300px;
+	min-width: 300px;
 	position: fixed;
-	width: fit-content;
+	z-index: 9999;
 }

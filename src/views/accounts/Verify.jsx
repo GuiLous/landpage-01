@@ -10,36 +10,29 @@ import {
   PinInput,
   PinInputField,
 } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 
 import { ArrowRightIcon, Container, LockIcon } from '@components'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
-import { updateUser } from '@slices/UserSlice'
+import { addToast } from '@slices/AppSlice'
 import style from './Verify.module.css'
 
 export default function VerifyView() {
   const user = useSelector((state) => state.user)
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
-  const [formError, setFormError] = useState()
-
-  useEffect(() => {
-    if (!user || !user.account || user.account.is_verified) navigate('/')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   const handleButtonClick = () =>
     value && value.length === 6 && handleSubmit({ verification_token: value })
 
   const handleChange = (value) => {
     setValue(value)
-    setFormError(null)
+    setFieldsErrors(null)
   }
 
   const handleSubmit = async (form) => {
@@ -47,30 +40,32 @@ export default function VerifyView() {
     const token = StorageService.get('token')
 
     const response = await HttpService.post('accounts/verify/', token, form)
-    if (response.errorMsg) {
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
       setFetching(false)
-      if (response.field) setFormError(response)
-      else
-        dispatch(
-          addToast({
-            title: 'Algo saiu errado...',
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
     setFetching(false)
-    dispatch(updateUser(response))
-    dispatch(
-      addToast({
-        title: 'Sua conta foi verificada!',
-        content: 'Convide seus amigos e comece a jogar!',
-        variant: 'success',
-      })
-    )
-    if (response.account.is_verified) navigate('/jogar')
+    if (response.account.is_verified) {
+      dispatch(
+        addToast({
+          title: 'Sua conta foi verificada!',
+          content: 'Convide seus amigos e comece a jogar!',
+          variant: 'success',
+        })
+      )
+    }
+    window.location.href = '/'
   }
 
   const handleKeyEnterDown = (event) => {
@@ -99,7 +94,7 @@ export default function VerifyView() {
           </Container>
 
           <Container justify="center">
-            <FormControl isInvalid={formError}>
+            <FormControl isInvalid={fieldsErrors?.pin}>
               <FormLabel style={{ textAlign: 'center', fontSize: 16 }}>
                 Informe o código recebido para verificar sua conta
               </FormLabel>
@@ -115,7 +110,7 @@ export default function VerifyView() {
                     onChange={handleChange}
                     type="alphanumeric"
                     autoFocus
-                    isInvalid={formError}
+                    isInvalid={fieldsErrors?.pin}
                     manageFocus
                   >
                     <PinInputField fontSize="24px" minH="48px" minW="48px" />
@@ -131,22 +126,22 @@ export default function VerifyView() {
                     />
                   </PinInput>
                   <IconButton
-                    variant="secondary"
+                    variant="pin"
                     isDisabled={!value || value.length !== 6}
                     isLoading={fetching}
                     onClick={handleButtonClick}
                     aria-label="Validar e jogar agora!"
                     fontSize="18px"
                     style={{ minHeight: '48px', minWidth: '48px' }}
-                    icon={<ArrowRightIcon />}
+                    icon={<ArrowRightIcon color="white" />}
                   />
                 </Container>
               </Container>
 
-              {formError && (
+              {fieldsErrors?.pin && (
                 <Container justify="center">
                   <FormErrorMessage style={{ textAlign: 'center' }}>
-                    {formError.errorMsg}
+                    {fieldsErrors?.pin}
                   </FormErrorMessage>
                 </Container>
               )}
@@ -158,7 +153,11 @@ export default function VerifyView() {
                 }}
               />
 
-              <FormHelperText style={{ textAlign: 'center', marginTop: 25 }}>
+              <FormHelperText
+                textAlign="center"
+                marginTop="25px"
+                color="gray.200"
+              >
                 Enviamos um código para <strong>{user.email}</strong>. <br />{' '}
                 Não é seu e-mail?{' '}
                 <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
@@ -168,18 +167,6 @@ export default function VerifyView() {
               </FormHelperText>
             </FormControl>
           </Container>
-
-          {/* <Container justify="center">
-            <Button
-              style={{ flex: 1, marginTop: 16 }}
-              onClick={handleButtonClick}
-              isDisabled={!value || value.length !== 6}
-              isLoading={fetching}
-              loadingText="Enviando"
-            >
-              Validar e jogar agora!
-            </Button>
-          </Container> */}
         </Container>
       </SignupLayout>
     )

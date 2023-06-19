@@ -15,12 +15,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { NotificationsAPI } from '@api'
 import { Container, NotificationListItem, Scrollbars } from '@components'
 import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 import {
-  initNotifications,
   readAllNotifications,
   readNotification,
 } from '@slices/NotificationSlice'
-import { addToast } from '@slices/ToastSlice'
 
 export default function NotificationList({ isOpen, onClose }) {
   const notifications = useSelector((state) => state.notifications)
@@ -34,7 +33,6 @@ export default function NotificationList({ isOpen, onClose }) {
   const showErrorToast = (error) => {
     dispatch(
       addToast({
-        title: 'Algo saiu errado...',
         content: error,
         variant: 'error',
       })
@@ -44,7 +42,7 @@ export default function NotificationList({ isOpen, onClose }) {
   const readAll = async () => {
     if (notifications.length <= 0) return
     const response = await NotificationsAPI.readAll(userToken)
-    if ('formError' in response) showErrorToast(response.formError.error)
+    if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) dispatch(readAllNotifications())
   }
 
@@ -55,22 +53,10 @@ export default function NotificationList({ isOpen, onClose }) {
 
     if (!isAlreadyRead) {
       const response = await NotificationsAPI.read(userToken, id)
-      if ('formError' in response) showErrorToast(response.formError.error)
+      if (response.errorMsg) showErrorToast(response.errorMsg)
       else if (response) dispatch(readNotification({ id: id }))
     }
   }
-
-  useEffect(() => {
-    const fetch = async () => {
-      const userToken = StorageService.get('token')
-
-      const response = await NotificationsAPI.list(userToken)
-      if (response) dispatch(initNotifications(response))
-    }
-
-    fetch()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   useEffect(() => {
     if (notifications && notifications.length > 0) {
@@ -109,11 +95,11 @@ export default function NotificationList({ isOpen, onClose }) {
           display="flex"
           flexDirection="column"
           alignItems="center"
-          justifyContent={notifications?.length > 0 ? 'flex-start' : 'center'}
+          justifyContent={notifications.length > 0 ? 'flex-start' : 'center'}
         >
-          {notifications?.length > 0 ? (
+          {notifications.length > 0 ? (
             <Scrollbars autoHide>
-              {notifications?.map((item) => (
+              {notifications.map((item) => (
                 <Container
                   onMouseEnter={() => read(item.id)}
                   key={item.id}
@@ -138,7 +124,7 @@ export default function NotificationList({ isOpen, onClose }) {
             fontSize={14}
             fontWeight="semiBold"
             isDisabled={
-              notifications?.length === 0 ||
+              notifications.length === 0 ||
               totalNotificationsNotRead.length === 0
             }
             _disabled={{

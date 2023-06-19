@@ -23,13 +23,23 @@ export default extendTheme({
           bg: 'primary.300',
           backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'primary.300',
-            backgroundColor: 'primary.300',
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
           },
         },
         _active: {
           bg: 'primary.600',
           backgroundColor: 'primary.600',
+        },
+        _disabled: {
+          backgroundColor: 'gray.400',
+          color: 'gray.700',
+          opacity: 1,
+          _hover: {
+            backgroundColor: 'gray.400',
+            color: 'gray.700',
+          },
         },
       },
       variants: {
@@ -175,6 +185,34 @@ export default extendTheme({
           },
         },
 
+        pin: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          color: 'white',
+          border: '1px solid',
+          borderColor: 'secondary.400',
+          _disabled: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            color: 'white',
+            opacity: 0.4,
+          },
+          _hover: {
+            backgroundColor: 'secondary.400',
+            _disabled: {
+              backgroundColor: 'transparent',
+            },
+          },
+          _loading: {
+            _hover: {
+              backgroundColor: 'transparent',
+            },
+          },
+          _active: {
+            backgroundColor: 'transparent',
+          },
+        },
+
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',
@@ -267,6 +305,7 @@ export default extendTheme({
           color: 'gray.600',
           bg: 'white',
           backgroundColor: 'white',
+          borderRadius: '4px',
           fontSize: '16px',
           _placeholder: {
             color: 'gray.700',
@@ -343,6 +382,50 @@ export default extendTheme({
           addon: {
             bg: 'transparent',
             backgroundColor: 'transparent',
+          },
+        },
+        darker: {
+          field: {
+            bg: 'gray.800',
+            backgroundColor: 'gray.800',
+          },
+        },
+        lighter: {
+          field: {
+            bg: 'gray.400',
+            backgroundColor: 'gray.400',
+          },
+        },
+      },
+    },
+    Textarea: {
+      variants: {
+        primary: {
+          bg: 'black.900',
+          color: 'white',
+          border: '1px solid',
+          borderColor: 'gray.400',
+          borderRadius: 4,
+          resize: 'none',
+          minHeight: '98px',
+          lineHeight: 1,
+          p: 4,
+          fontSize: '12px',
+          fontWeight: '400',
+          _placeholder: {
+            color: 'gray.700',
+          },
+          _hover: {
+            borderColor: 'primary.400',
+          },
+          _focus: {
+            color: 'white',
+            _placeholder: {
+              color: 'white',
+            },
+          },
+          _invalid: {
+            borderColor: 'danger.400',
           },
         },
       },
@@ -422,14 +505,22 @@ export default extendTheme({
           px: 6,
         },
       },
+      variants: {
+        friendList: {
+          dialog: {
+            marginLeft: '300px',
+          },
+        },
+      },
     },
     Badge: {
       baseStyle: {
         bg: 'primary.400',
         color: 'white',
-        borderRadius: '10px',
-        padding: '0 8px',
+        borderRadius: '67px',
+        padding: '4px 10px',
         fontWeight: 'regular',
+        fontSize: '10px',
       },
       variants: {
         online: {
@@ -599,18 +690,53 @@ export default extendTheme({
             right: 0,
           },
         },
+        white: {
+          container: {
+            borderColor: 'white',
+          },
+        },
       },
       sizes: {
+        xxs: {
+          container: {
+            width: '16px',
+            height: '16px',
+          },
+        },
+        xs: {
+          container: {
+            width: '24px',
+            height: '24px',
+          },
+        },
+        sm: {
+          container: {
+            width: '32px',
+            height: '32px',
+          },
+        },
+        md: {
+          container: {
+            width: '44px',
+            height: '44px',
+          },
+        },
         lg: {
           container: {
-            width: '55px',
-            height: '55px',
+            width: '64px',
+            height: '64px',
           },
         },
         xl: {
           container: {
-            width: '80px',
-            height: '80px',
+            width: '96px',
+            height: '96px',
+          },
+        },
+        xxl: {
+          container: {
+            width: '128px',
+            height: '128px',
           },
         },
       },

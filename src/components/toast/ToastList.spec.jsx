@@ -3,10 +3,10 @@ import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { ToastList } from '@components'
-import ToastReducer from '@slices/ToastSlice'
+import AppReducer from '@slices/AppSlice'
 
 describe('ToastList Component', () => {
-  const preloadedState = {
+  const app = {
     toasts: [
       {
         id: 1,
@@ -23,12 +23,13 @@ describe('ToastList Component', () => {
         variant: 'error',
       },
     ],
+    friendListOpen: false,
   }
 
   const store = configureStore({
-    reducer: { toasts: ToastReducer },
+    reducer: { app: AppReducer },
     devTools: true,
-    preloadedState: preloadedState,
+    preloadedState: { app },
   })
 
   it('should renders correctly', () => {

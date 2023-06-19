@@ -9,15 +9,115 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criado função `formatSecondsToMinutes` em `utils`.
+- Adicionado `useEffect` na view `lobbyView` e no componente `SideBar` para fazer a contagem do timer da fila com base na diferença da data da `queue` para a data atual [#315](https://github.com/3C-gg/reload-frontend/issues/315). 
+- Adicionado `useEffect` no `App` para setar valor inicial no slice de `lobby` [#316](https://github.com/3C-gg/reload-frontend/issues/316).
+- Adicionado variante `pin` para o `Button`.
+- Adicionado case de `lobbies/update` no `WebSocket Service`.
+- Adicionado useEffect na `SideBar` para atualizar o slice de `lobby` toda vez que mudar página.
+- Adicionado reducers de `restartQueue`, `removeRestartQueue` e `updateLobby` no slice de `LobbyReducer` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
+- Adicionado método `playerLockIn` na interface de `MatchmakingAPI`.
+- Adicionado métodos `startQueue` e `cancelQueue` na interface de `LobbiesAPI` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
+- Adicionado `Toast` de sucesso ao enviar convite no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
+- Adicionado config `isOptionDisabled` no componente `Select` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Adicionado opção `Carregando opções...` no state `subjectOptions` no componente `SupportModal` [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Adicionado `variant` no `Avatar` da `SideBar` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
+- Novos handlers de websockets e ações de slices no serviço de websocket.
+- Ação `updateLobbyId` no `UserSlice`.
+- Ação `updateLobby` no `LobbySlice`.
+- Criado component `ConfirmationContent`.
+- Criado interface `SupportAPI`.
+- Criado componente `Select`
+- Criado componente `FileCard`
+- Adicionado estilização para o `Textarea` no tema do chakra ui.
+- Criado componente `FileInput`.
+- Criado component `SupportModal` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+
+### Changed
+
+- Movemos tratamentos de convites expirados e recusados para uma função específica dentro dos `cases` do `WSS`. Assim temos mais controle e podemos tratar melhor os dados recebidos, fazendo verificações mais precisas para mostrar os `Toasts` adequados.
+- Componentes de `friends` e `sidebar` agora tratam corretamente os convites [#299](https://github.com/3C-gg/reload-frontend/issues/299).
+- `InviteSlice` agora não possui mais `list` e `unreadCount`. Somente um array com os convites. Essa mudança é necessária para que a gente possa sempre exibir o contador de convites "em aberto" na `Sidebar`, derrubando o conceito de "convites não lidos".
+- `App.js` foi totalmente alterado visando realizar as chamadas API cruciais da aplicação (`auth`, `lobbies`, `friends`, `invites` e `notifications`) em ordem, antes de remover o loading da tela e exibir UI do app [#449](https://github.com/3C-gg/reload-backend/issues/449).
+- View `Verify` foi alterada de modo que depois de uma verificação de conta bem sucedida, a aplicação seja reiniciada.
+- View `Signup` foi alterada para ter uma melhor verificação após o cadastro.
+- Alterado componente `LobbyPlayButton` para usar a função `formatSecondsToMinutes`.
+- Alterado prop `otherPlayers` no componente `LobbyLineup` para iniciar com `[]`.
+- Alterado estilo do `IconButton` e do `FormHelperText` da página de `Verify` para melhorar o visual [#310](https://github.com/3C-gg/reload-frontend/issues/310).
+- Alterado view `LobbyView` para adicionar ação no botão de `jogar` [#302](https://github.com/3C-gg/reload-frontend/issues/302).
+- Alterado `SideBar` para usar o `lobby` do próprio slice de `lobby`.
+- Alterado verificação de `invite.to_player.id` para `invite.to_player.user_id` no componente `FriendListGroupItem` [#305](https://github.com/3C-gg/reload-frontend/issues/305).
+- Ajusta fetch de `subjects` para ser chamada a `api` apenas quando abrir o modal de suporte [#303](https://github.com/3C-gg/reload-frontend/issues/303).
+- Alterado `FriendList` e `NotificationList` para adicionar o text ` Carregando...` quando estiver fazendo fetch na api [#276](https://github.com/3C-gg/reload-frontend/issues/276).
+- Altera `newInvite` para `addInvite` como action do `InviteSlice`.
+- Altera `InviteListItem` para usar `user.lobby_id` ao invés de pegar o `lobby` de `user.account`.
+- Altera Lista de Amigos para usar `user.lobby_id` ao invés de pegar o `lobby` de `user.account` e atualiza também para pegar dados do estado `lobby` direto do `LobbySlice` ao invés de puxar do usuário.
+- Alterado componentes `ChangeEmailCard`, `DeleteAccountCard`, `InactivateAccountCard`, `FakeSigninForm`, `FriendListGroupItem`, `MatchFoundModal`, `NotificationList`, `LevelBadge`, `Signup`, `UpdateEmail`, `Verify`, `Home` e `Lobby` para usar `fieldsErrors` e `errorMsg` da `response` [#275](https://github.com/3C-gg/reload-frontend/issues/275).
+- Alterado pasta `form` para `forms` para agrupar componentes de formulário.
+- Alterado return do `HttpService` para adicionar o campo `fieldsErrors`.
+- Alterado estilo base bo `Button` quando esta `disabled` no tema do chakra.
+- Adicionado `SupportModal` componente na `SideBar` [#135](https://github.com/3C-gg/reload-frontend/issues/135).
+- Adicionado prop `headerMarginBottom` no componente `Modal` e alterado style do `ModalCloseButton`.
+- Componentes `InactivateAccountCard` e `DeleteAccountCard` agora passam uma prop `size` para o `Modal`.
+- Alterado css do layout `ProfileLayout` para padronizar o padding.
+- Ajusta `FriendList` para refletir novo design [#251](https://github.com/3C-gg/reload-frontend/issues/251).
+
+### Removed
+
+- Chamadas de APIs cruciais (`auth`, `lobbies`, `friends`, `invites` e `notifications`) de componentes.
+- Actions antigas não utilizadas no `UserSlice` [#332](https://github.com/3C-gg/reload-frontend/issues/332).
+- Adiciona action `notifications/create` ao serviço de websocket.
+- Adiciona action `friends/create` ao serviço de websocket.
+- Adiciona action `invites/expire` ao serviço de websocket.
+- Actions antigas não utilizadas do serviço de websocket `WSS`.
+- Removido componente `LobbyModeSelector` [#326](https://github.com/3C-gg/reload-frontend/issues/326)
+- Removido reducer `initLobby` de `LobbySlice` pois é redundante com o reducer `updateLobby`.
+- Removido `useEffect` que faz fetch de lobby `detail` no componente `SideBar`.
+- Removido `useEffect` que faz fetch de lobby `detail` na view `LobbyView`.
+- Removido view que não está sendo usada `BaseView` [#311](https://github.com/3C-gg/reload-frontend/issues/311). 
+- Removido antiga view de `Lobby`.
+- Removido componentes que não estão sendo utilizados `SteamSignin`, `LobbyHeader`, `FriendListUser`, 
+`InviteIstItem`, `UserCard`, `UserCardMini`, `UserStatus` [#253](https://github.com/3C-gg/reload-frontend/issues/253).
+- Removido `variant` do `Avatar` de `HeaderProfile` [#238](https://github.com/3C-gg/reload-frontend/issues/238).
+- `addOrUpdateFriend` do `FriendSlice` e adiciona `addFriend` e `updateFriend` em seu lugar.
+- Removido campos `field` e `FormError` do `HttpService` pois não será mais usado [#275](https://github.com/3C-gg/reload-frontend/issues/275).
+
+### Fixed
+
+- Ícone de convidado aparecendo na lista "Em grupo" na lista de amigos [#307](https://github.com/3C-gg/reload-frontend/issues/307).
+- Componentes de `friends` não estavam adequados aos novos retornos da API relativos as propriedades `user_id` e `lobby_id`. Consertamos os componentes, stories e testes.
+- `FriendList` e `LobbyLineup` estavam com erro após um novo cadastro, quando já haviam amigos desses novos cadastros online. Consertamos uma propriedade errada em `FriendList` (removemos `lobby.id` em detrenimento de da nova propriedade `lobby_id`)  e em `LobbyLineup`, fizemos uma proteção caso o usuário autenticado ainda não tenha sido totalmente carregado [#324](https://github.com/3C-gg/reload-frontend/issues/324).
+- `FriendList` estava quebrando ao tentar acessar `lobby.players.filter` quando o objeto `lobby` está vazio ao dar refresh.
+- Método `DELETE` do `HttpService` estava ignorando o parâmetro `payload`, necessário para enviar dados no corpo da requisição. Passamos a tratar esse parâmetro [#300](https://github.com/3C-gg/reload-frontend/issues/300).
+
+## [6d97c56 - 12/6/2023]
+
+### Added
+
+- Nova `LobbyView` [#280](https://github.com/3C-gg/reload-frontend/issues/280).
+- Slice para `Lobby` e nova chamada `detail` na `LobbiesAPI`
+- Método para remover player de um lobby em `LobbiesAPI`.
+- Hook `useLatestMatchesResults` para renderizar os últimos resultados de partidas do jogador.
+- Componente `LobbyPlayButton`.
+- Novo `store` para gravar informações de contexto geral da aplicação.
 - Adicionado `SideBar` no `ProfileLayout` [#259](https://github.com/3C-gg/reload-frontend/issues/259).
 - Adicionado variantes do botão `JOGAR` no `Lobby` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
-- Adicionado variantes do botão `JOGAR` na `SideBar` [#266](https://github.com/3C-gg/reload-frontend/issues/266).
 - Adicionado ícones `ClockIcon` e `JoystickIcon`.
 - Adicionado Drawer `NotificationList` na `SideBar` [#252](https://github.com/3C-gg/reload-frontend/issues/252).
 - Criado ícones `BlockIcon`, `MessageIcon` e `TrashIcon`.
 
 ### Changed
 
+- Alterado css do layout `ProfileLayout` para padronizar o tamanho do componente `SideBar` [#285](https://github.com/3C-gg/reload-frontend/issues/285).
+- Altera borda do avatar para refletir design.
+- Refatora componente `LobbyPlayerCard` [#281](https://github.com/3C-gg/reload-frontend/issues/281).
+- Refatoramos o componente `LobbyLineup` para conter o novo design, comportamento e componentes [#282](https://github.com/3C-gg/reload-frontend/issues/282).
+- Altera componente `LevelStatsCard` para usar novo hook de últimas partidas `useLatestMatchesResults`.
+- Agora o component `ToastListItem` não precisa receber a prop `title`. Nesse caso, ele baseia o título na prop `variant` [#272](https://github.com/3C-gg/reload-frontend/issues/272).
+- Move store de toasts pra dentro do `AppSlice`.
+- Coloca `FriendList` por baixo da sidebar e adiciona margem a esquerda.
+- Remove modal de convite de lobby. Ao clicar em um assento vazio, o drawer de lista de amigos é exibido.
+- Move componentes de `FriendList` para uma pasta separada `friends`.
 - Alterado css do componente `ToastListItem` para refletir o design [#267](https://github.com/3C-gg/reload-frontend/issues/267).
 - Alterado cor dos botões de close X para #fff [#261](https://github.com/3C-gg/reload-frontend/issues/261).
 - Alterado cor da borda da variante `secondary` do `input` para `#6847FF` [#261](https://github.com/3C-gg/reload-frontend/issues/261). 
@@ -30,24 +130,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado `App` para fixar os toasts no canto direito inferior [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 - Alterado animação do componente `ToastListItem` para começar da direita [#223](https://github.com/3C-gg/reload-frontend/issues/223).
 
-## [5abd121 - 5/6/2023]
+### Removed
+
+- Prop `title` das chamadas `addToast`, uma vez que o componente agora possui títulos padrão.
+- Componente `Invite` e `InviteModal`, visto que a lista de amigos agora é um drawer e deve ser mostrada ao invés desses componentes.
+- Componente `Header` em virtude da nova `Sidebar`.
+- `ToastSlice` em virtude do novo centralizador de stado redux global `AppSlice`.
+
+## [7360381 - 29/5/2023]
 
 ### Added
 
-- Criado componente `DeleteAccountCard` [#236] (https://github.com/3C-gg/reload-frontend/issues/236).
-- Adicionado método `delete` na interface de AccountsAPI.
-- Adicionado método `updateIsActive` na interface de AccountsAPI.
-- Criado componente `InactivateAccountCard` [#235] (https://github.com/3C-gg/reload-frontend/issues/235).
-- Criado componente `ModalConfirmation`.
-- Adicionado método de `updateEmail` na interface de AccountsAPI.
-- Criado componente `PencilIcon`.
-- Adicionado método de `update` na interface de AccountsAPI.
-- Criado componente `ChangeEmailCard` [#231] (https://github.com/3C-gg/reload-frontend/issues/231).
-- Criado componente `AccountCard`.
-- Adicionado variant `disabled` para input no tema do chakra ui.
+- Criado componente DeleteAccountCard [#236] (#236).
+- Adicionado método delete na interface de AccountsAPI.
+- Adicionado método updateIsActive na interface de AccountsAPI.
+- Criado componente InactivateAccountCard [#235] (#235).
+- Criado componente ModalConfirmation.
+- Adicionado método de updateEmail na interface de AccountsAPI.
+- Criado componente PencilIcon.
+- Adicionado método de update na interface de AccountsAPI.
+- Criado componente ChangeEmailCard [#231] (#231).
+- Criado componente AccountCard.
+- Adicionado variant disabled para input no tema do chakra ui.
 
 ### Changed
 
+- Move componentes de `FriendList` para uma pasta separada `friends`.
 - Altera sidebar para refletir novo design [#245](https://github.com/3C-gg/reload-frontend/issues/245).
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.

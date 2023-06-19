@@ -9,6 +9,7 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa'
 import {
@@ -30,6 +31,7 @@ import {
   ClockIcon,
   Container,
   ExitIcon,
+  FriendList,
   FriendsIcon,
   JoystickIcon,
   NotificationList,
@@ -39,40 +41,42 @@ import {
   ShareIcon,
   ShopIcon,
   SupportIcon,
+  SupportModal,
   Timer,
   UserIcon,
 } from '@components'
 import { StorageService } from '@services'
+import { toggleFriendList } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
+import { formatSecondsToMinutes } from '@utils'
 
 import style from './Sidebar.module.css'
 
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
-  const preMatch = useSelector((state) => state.match.preMatch)
+  const lobby = useSelector((state) => state.lobby)
   const match = useSelector((state) => state.match.match)
   const notifications = useSelector((state) => state.notifications)
-
   const invites = useSelector((state) => state.invites)
+  const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
-  const [openNotifications, setOpenNotifications] = useState(false)
+  const [openSupport, setOpenSupport] = useState(false)
+  const [notificationsOpen, setNotificationsOpen] = useState(false)
+  const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
+  const [secondsDiff, setSecondsDiff] = useState(null)
 
-  const handleOpenDrawerNotifications = () => {
-    setOpenNotifications(true)
+  const receivedInvites = invites.filter(
+    (invite) => invite.to_player.user_id === user.id
+  )
+
+  const handleOpenModalSupport = () => {
+    setOpenSupport(true)
   }
-
-  const handleCloseDrawerNotifications = () => {
-    setOpenNotifications(false)
-  }
-
-  useEffect(() => {
-    if (collapsable) setIsCollapsed(collapsed)
-    else setIsCollapsed(false)
-  }, [collapsed, collapsable])
 
   const open = () => {
     collapsable && setIsCollapsed(false)
@@ -90,19 +94,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     navigate('/')
   }
 
-  useEffect(() => {
-    if (notifications && notifications.length > 0) {
-      const notificationsNotRead = notifications.filter(
-        (notification) => notification.read_date === null
-      ).length
-
-      setUnreadNotificationsCount(notificationsNotRead)
-    }
-  }, [notifications])
-
   const renderButtons = () => {
-    const lobby = user && user.account.lobby
-
     const showPlayButton =
       !lobby.queue && !match && !lobby.restriction_countdown
 
@@ -140,9 +132,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             to="/jogar"
             variant="queue"
           >
-            <Text w={10}>
-              <Timer initialTime={lobby.queue_time} stop={preMatch} />
-            </Text>
+            <Text w={10}>{formatSecondsToMinutes(secondsDiff)}</Text>
           </Button>
         )}
 
@@ -190,6 +180,70 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       </>
     )
   }
+
+  const handleToggleNotificationsDrawer = () => {
+    setNotificationsOpen(!notificationsOpen)
+  }
+
+  const handleCloseNotificationsDrawer = () => {
+    setNotificationsOpen(false)
+  }
+
+  const handleCloseFriendListDrawer = () => {
+    setFriendListOpen(false)
+    dispatch(toggleFriendList(false))
+  }
+
+  const handleToggleFriendListDrawer = () => {
+    if (friendListOpen) {
+      dispatch(toggleFriendList(false))
+      setFriendListOpen(false)
+    } else setFriendListOpen(true)
+  }
+
+  useEffect(() => {
+    if (collapsable) setIsCollapsed(collapsed)
+    else setIsCollapsed(false)
+  }, [collapsed, collapsable])
+
+  useEffect(() => {
+    setFriendListOpen(friendListOpenByApp)
+  }, [friendListOpenByApp])
+
+  useEffect(() => {
+    if (notifications && notifications.length > 0) {
+      const notificationsNotRead = notifications.filter(
+        (notification) => notification.read_date === null
+      ).length
+
+      setUnreadNotificationsCount(notificationsNotRead)
+    }
+  }, [notifications])
+
+  useEffect(() => {
+    if (lobby.queue) {
+      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
+        .minus({ hours: 3 })
+        .setZone('America/Sao_Paulo')
+
+      const calculateDiffInSeconds = () => {
+        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const diff = Math.floor(now.diff(date, 'seconds').seconds)
+
+        if (diff > 0) {
+          setSecondsDiff(diff)
+        }
+      }
+
+      const interval = setInterval(calculateDiffInSeconds, 1000)
+
+      return () => {
+        clearInterval(interval)
+      }
+    } else {
+      setSecondsDiff(null)
+    }
+  }, [lobby])
 
   return (
     <>
@@ -241,7 +295,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
-              <Avatar src={user.account.avatar.medium} />
+              <Avatar src={user.account.avatar.medium} variant={user.status} />
               {!isCollapsed && (
                 <Container column>
                   <Text color="white" fontWeight={'medium'}>
@@ -257,9 +311,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
 
           <Container className={style.menu} column>
-            <Container className={style.menuItem}>
-              <Link href="#">
-                <Container className={style.menuLinkWrapper} gap={14}>
+            <Container
+              className={style.menuItem}
+              onClick={handleToggleFriendListDrawer}
+            >
+              <Link as="button">
+                <Container
+                  className={style.menuLinkWrapper}
+                  gap={14}
+                  align="center"
+                >
                   <Icon as={FriendsIcon} fill="gray.700" />
                   {!isCollapsed && <Text>Amigos</Text>}
                 </Container>
@@ -269,9 +330,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 >
                   <Badge
                     variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: invites.unread > 0 ? 1 : 0 }}
+                    style={{ opacity: receivedInvites.length > 0 ? 1 : 0 }}
                   >
-                    {!isCollapsed && invites.unread}
+                    {!isCollapsed && receivedInvites.length}
                   </Badge>
                 </Container>
               </Link>
@@ -286,7 +347,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
-                onClick={handleOpenDrawerNotifications}
+                onClick={handleToggleNotificationsDrawer}
               >
                 <Container className={style.menuLinkWrapper} gap={14}>
                   <Icon as={BellFilledIcon} fill="gray.700" />
@@ -360,6 +421,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 gap="14px"
                 py="10px"
                 px="16px"
+                onClick={handleOpenModalSupport}
               >
                 <Icon as={SupportIcon} fill="gray.700" />
                 {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
@@ -428,9 +490,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       </Container>
 
       <NotificationList
-        isOpen={openNotifications}
-        onClose={handleCloseDrawerNotifications}
+        isOpen={notificationsOpen}
+        onClose={handleCloseNotificationsDrawer}
       />
+
+      <FriendList
+        isOpen={friendListOpen}
+        onClose={handleCloseFriendListDrawer}
+      />
+
+      <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />
     </>
   )
 }

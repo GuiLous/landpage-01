@@ -12,21 +12,21 @@ import UpdateEmailView from './accounts/UpdateEmail'
 import VerifyView from './accounts/Verify'
 
 // matchmaking
+import LobbyView from './lobby/LobbyView'
 import ConnectView from './matchmaking/Connect'
-import LobbyView from './matchmaking/Lobby'
 import MatchView from './matchmaking/Match'
 
 export {
-  HomeView,
-  NotFoundView,
-  AuthView,
   AccountView,
-  UpdateEmailView,
-  SignupView,
-  VerifyView,
-  ProfileView,
-  LobbyView,
+  AuthView,
   ConnectView,
+  HomeView,
   InactiveView,
+  LobbyView,
   MatchView,
+  NotFoundView,
+  ProfileView,
+  SignupView,
+  UpdateEmailView,
+  VerifyView,
 }

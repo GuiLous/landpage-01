@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { AccountsAPI } from '@api'
 import { AccountCard, Container, Modal } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './DeleteAccountCard.module.css'
@@ -26,11 +26,10 @@ export default function DeleteAccountCard() {
     const response = await AccountsAPI.delete(token)
     setFetching(false)
 
-    if (response.formError) {
+    if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
-          content: response.formError.error,
+          content: response.errorMsg,
           variant: 'error',
         })
       )
@@ -66,7 +65,12 @@ export default function DeleteAccountCard() {
       </Container>
 
       {isOpenModal && (
-        <Modal isOpen={isOpenModal} title="EXCLUIR CONTA" onClose={handleClose}>
+        <Modal
+          isOpen={isOpenModal}
+          title="EXCLUIR CONTA"
+          onClose={handleClose}
+          size="3xl"
+        >
           <Container
             justify="center"
             align="center"

@@ -1,194 +1,136 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, Route, Routes } from 'react-router-dom'
 
-import {
-  Container,
-  Loading,
-  LoadingBackdrop,
-  RequireAuth,
-  ToastList,
-} from '@components'
+import { FriendsAPI, LobbiesAPI, NotificationsAPI } from '@api'
+import { Container, Loading, LoadingBackdrop, ToastList } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
-import { match, preMatch } from '@slices/MatchSlice'
+import { addToast } from '@slices/AppSlice'
+import { initFriends } from '@slices/FriendSlice'
+import { initInvites } from '@slices/InviteSlice'
+import { updateLobby } from '@slices/LobbySlice'
+import { initNotifications } from '@slices/NotificationSlice'
 import { updateUser } from '@slices/UserSlice'
-import {
-  AccountView,
-  AuthView,
-  ConnectView,
-  HomeView,
-  InactiveView,
-  LobbyView,
-  MatchView,
-  NotFoundView,
-  ProfileView,
-  SignupView,
-  UpdateEmailView,
-  VerifyView,
-} from '@views'
+import Router from './Router'
 
 export default function App() {
   const user = useSelector((state) => state.user)
-  const userMatch = useSelector((state) => state.match.match)
   const dispatch = useDispatch()
-  const [fetching, setFetching] = useState(true)
 
+  const [fetching, setFetching] = useState(true)
+  const [apisReady, setApisReady] = useState({
+    auth: false,
+    lobby: false,
+    friends: false,
+    invites: false,
+    notifications: false,
+  })
+
+  const userToken = StorageService.get('token')
+
+  const showErrorToast = (error) =>
+    dispatch(
+      addToast({
+        content: error,
+        variant: 'error',
+      })
+    )
+
+  useEffect(() => {
+    if (Object.values(apisReady).every((item) => item === true))
+      setFetching(false)
+  }, [apisReady])
+
+  // =================== //
+  // User authentication //
+  // =================== //
   useEffect(() => {
     const authenticate = async (token) => {
       const user = await AuthService.login(token)
+      dispatch(updateUser(user))
 
-      if (user) {
-        dispatch(updateUser(user))
-        if (user.account) {
-          if (user.account.pre_match) dispatch(preMatch(user.account.pre_match))
-          else if (user.account.match) dispatch(match(user.account.match))
-        }
-      }
-      setFetching(false)
+      if (
+        user !== null &&
+        user.is_active &&
+        user.account !== null &&
+        user.account.is_verified &&
+        user.lobby_id !== null
+      )
+        setApisReady({ ...apisReady, auth: true })
+      else setFetching(false)
     }
 
-    const token = StorageService.get('token')
-    if (token && !user) authenticate(token)
+    if (userToken && !user) authenticate(userToken)
     else setFetching(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const unverifiedUser = user && user.account && !user.account.is_verified
-  const newUser = user && !user.account
+  // ================ //
+  // Initialize lobby //
+  // ================ //
+  useEffect(() => {
+    const initializeLobby = async () => {
+      const response = await LobbiesAPI.detail(userToken, user.lobby_id)
 
-  const render = () => {
-    return (
-      <>
-        <Route
-          path="/"
-          element={
-            (!user && <HomeView />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <Navigate to="/jogar" replace />
-            )
-          }
-        />
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(updateLobby(response))
 
-        <Route
-          path="/jogar"
-          element={
-            <RequireAuth
-              user={user}
-              isUnverified={unverifiedUser}
-              isNew={newUser}
-              element={
-                (userMatch && userMatch.status === 'loading' && (
-                  <Navigate to="/conectar" replace />
-                )) || <LobbyView />
-              }
-            />
-          }
-        />
+      setApisReady({ ...apisReady, lobby: true })
+    }
 
-        <Route
-          path="/conta"
-          element={
-            <RequireAuth
-              user={user}
-              isUnverified={unverifiedUser}
-              isNew={newUser}
-              element={<AccountView />}
-            />
-          }
-        />
+    if (apisReady.auth) initializeLobby()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.auth])
 
-        <Route
-          path="/perfil/:userId"
-          element={
-            <RequireAuth
-              user={user}
-              isUnverified={unverifiedUser}
-              isNew={newUser}
-              element={<ProfileView />}
-            />
-          }
-        />
+  // ================== //
+  // Initialize friends //
+  // ================== //
+  useEffect(() => {
+    const initializeFriends = async () => {
+      const response = await FriendsAPI.list(userToken)
 
-        <Route
-          path="/alterar-email"
-          element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) || (
-              <UpdateEmailView />
-            )
-          }
-        />
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(initFriends(response))
 
-        <Route
-          path="/verificar"
-          element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <VerifyView />) || (
-              <Navigate to="/jogar" replace />
-            )
-          }
-        />
+      setApisReady({ ...apisReady, friends: true })
+    }
 
-        <Route
-          path="/cadastrar"
-          element={
-            (!user && <Navigate to="/" replace />) ||
-            (!user.is_active && <Navigate to="/conta-inativa" replace />) ||
-            (newUser && <SignupView />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <Navigate to="/jogar" replace />
-            )
-          }
-        />
+    if (apisReady.lobby) initializeFriends()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.lobby])
 
-        <Route
-          path="/conta-inativa"
-          element={
-            (!user && <Navigate to="/" replace />) ||
-            (user.is_active && <Navigate to="/" replace />) ||
-            (newUser && <Navigate to="/cadastrar" replace />) ||
-            (unverifiedUser && <Navigate to="/verificar" replace />) || (
-              <InactiveView />
-            )
-          }
-        />
+  // ======================== //
+  // Initialize lobby invites //
+  // ======================== //
+  useEffect(() => {
+    const initializeLobbyInvites = async () => {
+      const response = await LobbiesAPI.listInvites(userToken)
 
-        <Route
-          path="/conectar"
-          element={
-            <RequireAuth
-              user={user}
-              isUnverified={unverifiedUser}
-              isNew={newUser}
-              element={
-                (!userMatch && <Navigate to="/jogar" replace />) ||
-                (userMatch && userMatch.status !== 'loading' && (
-                  <Navigate to="/jogar" replace />
-                )) || <ConnectView />
-              }
-            />
-          }
-        />
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(initInvites(response))
 
-        <Route
-          path="/partidas/:matchId"
-          element={
-            <RequireAuth
-              user={user}
-              isUnverified={unverifiedUser}
-              isNew={newUser}
-              element={<MatchView />}
-            />
-          }
-        />
-      </>
-    )
-  }
+      setApisReady({ ...apisReady, invites: true })
+    }
+
+    if (apisReady.friends) initializeLobbyInvites()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.friends])
+
+  // ======================== //
+  // Initialize notifications //
+  // ======================== //
+  useEffect(() => {
+    const initializeNotifications = async () => {
+      const response = await NotificationsAPI.list(userToken)
+
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(initNotifications(response))
+
+      setApisReady({ ...apisReady, notifications: true })
+    }
+
+    if (apisReady.invites) initializeNotifications()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.invites])
 
   return fetching ? (
     <LoadingBackdrop>
@@ -198,12 +140,7 @@ export default function App() {
     <Container style={{ position: 'relative' }}>
       {user && user.account && user.account.is_verified && <WSS />}
 
-      <Routes>
-        {render()}
-        <Route path="/auth" element={<AuthView />} />
-        <Route path="/404" element={<NotFoundView />} />
-        <Route path="*" element={<Navigate to="/404" />} />
-      </Routes>
+      <Router user={user} />
 
       <Container
         style={{

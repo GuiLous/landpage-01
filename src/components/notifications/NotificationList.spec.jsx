@@ -6,16 +6,7 @@ import { NotificationList } from '@components'
 import NotificationReducer from '@slices/NotificationSlice'
 
 describe('NotificationList Component', () => {
-  let notifications = [
-    {
-      id: 1,
-      content: 'Nova notificação 1',
-      avatar:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-      read_date: null,
-      create_date: new Date().toISOString(),
-    },
-  ]
+  let notifications = []
 
   const store = configureStore({
     reducer: {
@@ -24,7 +15,7 @@ describe('NotificationList Component', () => {
     preloadedState: { notifications },
   })
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <Provider store={store}>
         <NotificationList isOpen />
@@ -35,7 +26,7 @@ describe('NotificationList Component', () => {
     expect(screen.getByText('LER TUDO')).toBeInTheDocument()
   })
 
-  it('should not renders if is not open', () => {
+  it('should not render if is not open', () => {
     render(
       <Provider store={store}>
         <NotificationList isOpen={false} />
@@ -46,18 +37,28 @@ describe('NotificationList Component', () => {
     expect(screen.queryByText('LER TUDO')).not.toBeInTheDocument()
   })
 
-  it('should renders notifications with items when has notification', () => {
+  it('should render notifications items when not empty', async () => {
+    notifications.push({
+      id: 1,
+      content: 'Nova notificação 1',
+      avatar:
+        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+      read_date: null,
+      create_date: new Date().toISOString(),
+    })
+
     render(
       <Provider store={store}>
         <NotificationList isOpen />
       </Provider>
     )
 
+    await screen.findByText('Nova notificação 1')
     expect(screen.getByText('Nova notificação 1')).toBeInTheDocument()
   })
 
-  it('should not renders notifications when is empty', () => {
-    const notifications = []
+  it('should render empty message when empty', async () => {
+    notifications = []
 
     const store = configureStore({
       reducer: {
@@ -72,6 +73,7 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
+    await screen.findByText('Você não tem notificações.')
     expect(screen.getByText('Você não tem notificações.')).toBeInTheDocument()
   })
 })

@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { AccountsAPI } from '@api'
 import { AccountCard, Container, Modal } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 
 import style from './InactivateAccountCard.module.css'
@@ -26,11 +26,10 @@ export default function InactivateAccountCard() {
     const response = await AccountsAPI.inactivate(token)
     setFetching(false)
 
-    if (response.formError) {
+    if (response.errorMsg) {
       dispatch(
         addToast({
-          title: 'Algo saiu errado...',
-          content: response.formError.error,
+          content: response.errorMsg,
           variant: 'error',
         })
       )
@@ -70,6 +69,7 @@ export default function InactivateAccountCard() {
           isOpen={isOpenModal}
           title="INATIVAR CONTA"
           onClose={handleClose}
+          size="3xl"
         >
           <Container justify="center" align="center" column gap={40}>
             <Text color="gray.700" fontSize={14} textAlign="center">

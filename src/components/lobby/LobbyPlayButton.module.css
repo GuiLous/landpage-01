@@ -1,0 +1,70 @@
+.container {
+	background-color: var(--chakra-colors-primary-400);
+	border-radius: 8px;
+	color: white;
+	cursor: pointer;
+	height: 73px;
+	overflow: hidden;
+	padding-bottom: 18px;
+	padding-top: 18px;
+	transition: background-color 100ms linear;
+	width: 274px;
+}
+
+.container:hover {
+	background-color: var(--chakra-colors-primary-300);
+}
+
+.container.queued {
+	background-color: var(--chakra-colors-primary-500);
+}
+
+.container.queued:hover {
+	background-color: var(--chakra-colors-danger-400);
+}
+
+.cancelQueue {
+	opacity: 0;
+}
+
+.queueTime {
+	font-size: 28px;
+	font-weight: var(--chakra-fontWeights-bold);
+	margin-top: 38px;
+	transition: all 100ms ease-out;
+}
+
+.container.queued:hover .cancelQueue {
+	opacity: 1;
+}
+
+.container.queued:hover .queueTime {
+	margin-top: -40px;
+	opacity: 0;
+}
+
+.container.disabled,
+.container.disabled:hover {
+	background-color: var(--chakra-colors-primary-500);
+	cursor: not-allowed;
+}
+
+.container.disabled.queued:hover .queueTime {
+	margin-top: 38px;
+	opacity: 1;
+}
+
+.container.disabled.queued:hover .cancelQueue {
+	opacity: 0;
+}
+
+.container.restricted,
+.container.restricted:hover {
+	background-color: var(--chakra-colors-danger-400);
+	cursor: not-allowed;
+}
+
+.restrictedTime {
+	font-size: 18px;
+	font-weight: var(--chakra-fontWeights-bold);
+}

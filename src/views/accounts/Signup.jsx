@@ -11,10 +11,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
-import { isEmailValid } from '@components/input/Validators'
+import { isEmailValid } from '@components/forms/Validators'
 import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
-import { addToast } from '@slices/ToastSlice'
+import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './Signup.module.css'
 
@@ -24,7 +24,7 @@ export default function SignupView() {
   const dispatch = useDispatch()
   const [value, setValue] = useState()
   const [fetching, setFetching] = useState()
-  const [formError, setFormError] = useState()
+  const [fieldsErrors, setFieldsErrors] = useState(null)
 
   useEffect(() => {
     if (!user || user.account) navigate('/')
@@ -37,7 +37,7 @@ export default function SignupView() {
 
   const handleChange = (event) => {
     setValue(event.target.value)
-    setFormError(null)
+    setFieldsErrors(null)
   }
 
   const handleSubmit = async (form) => {
@@ -46,14 +46,22 @@ export default function SignupView() {
     let response
 
     response = await HttpService.post('accounts/', token, form)
-    if (response.errorMsg) {
+    if (response.fieldsErrors) {
+      setFieldsErrors(response.fieldsErrors)
       setFetching(false)
-      if (response.field) setFormError(response)
+      return
+    } else if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setFetching(false)
       return
     }
 
     setFetching(false)
-    dispatch(updateUser(response))
     dispatch(
       addToast({
         title: 'Que bom que você chegou!',
@@ -61,8 +69,8 @@ export default function SignupView() {
         variant: 'success',
       })
     )
-    if (response.account.is_verified) navigate('/jogar')
-    else navigate('/verificar')
+    dispatch(updateUser(response))
+    if (response.account) navigate('/verificar')
   }
 
   const handleKeyEnterDown = (event) => {
@@ -75,7 +83,7 @@ export default function SignupView() {
   return (
     <SignupLayout>
       <Container className={style.container} column align="center" fitContent>
-        <FormControl isInvalid={formError}>
+        <FormControl isInvalid={fieldsErrors?.email}>
           <FormLabel>Cadastre seu e-mail</FormLabel>
 
           <Input
@@ -86,8 +94,8 @@ export default function SignupView() {
             placeholder="exemplo@email.com"
           />
 
-          {formError && (
-            <FormErrorMessage>{formError.errorMsg}</FormErrorMessage>
+          {fieldsErrors?.email && (
+            <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
           )}
 
           <Container column align="stretch">
