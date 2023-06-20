@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado o `WebSocket` no case de `invite/expire` para passar o payload corretamente [#358](https://github.com/3C-gg/reload-frontend/issues/358).
 - Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Signup` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 - Alterado as imagens de background do layout `SignupLayout`.
 - Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Verify`.
@@ -22,6 +23,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Fixed
 
+- Ajustado stories dos componentes `ToastList` e `ToastListItem` pois estavam passando um objeto `toasts` ao invés de `app` para o `preloadedState` e gerando um erro no console do navegador.
+- Ajustado stories do componente `MatchHistoryList` que estava dando erro no console do navegador por não não ter um `store` válido mockado para o reducer.
 - Ajusta action `updateFriend` do `FriendSlice` para atualizar corretamente lista de amigos online e offline [#354](https://github.com/3C-gg/reload-frontend/issues/354).
 - Remove erros de console do Storybook para o componente `LobbyPlayerCard` [#331](https://github.com/3C-gg/reload-frontend/issues/331).
 - Adiciona retorno de função para prop `onPageChange` do componente `MatchHistoryPagination`, mas não resolve erro no console do Storybook para esse componente.
