@@ -29,6 +29,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove erros de console do Storybook para o componente `LobbyPlayerCard` [#331](https://github.com/3C-gg/reload-frontend/issues/331).
 - Adiciona retorno de função para prop `onPageChange` do componente `MatchHistoryPagination`, mas não resolve erro no console do Storybook para esse componente.
 
+### Removed
+
+- Toast de conta verificada, pois o usuário agora é redirecionado para a raiz da aplicação [#368](https://github.com/3C-gg/reload-frontend/issues/368).
+
 ## [78f7a49 - 19/6/2023]
 
 ### Added
