@@ -2,6 +2,7 @@ import { Badge, Icon, Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI, MatchmakingAPI } from '@api'
 import {
@@ -19,6 +20,8 @@ import { removeRestartQueue, updateLobby } from '@slices/LobbySlice'
 import style from './LobbyView.module.css'
 
 export default function LobbyView() {
+  const navigate = useNavigate()
+
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const preMatch = useSelector((state) => state.match.preMatch)
@@ -135,12 +138,7 @@ export default function LobbyView() {
       response = await LobbiesAPI.detail(userToken, user.lobby_id)
 
       if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        navigate('/404')
         return
       }
 
