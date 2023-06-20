@@ -24,3 +24,9 @@
 	width: 100%;
 }
 
+.cancelBtn {
+	left: 32px;
+	position: absolute;
+	top: 32px;
+	width: fit-content;
+}
