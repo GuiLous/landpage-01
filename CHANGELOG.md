@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
+
 ### Changed
 
+- Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Signup` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
+- Alterado as imagens de background do layout `SignupLayout`.
+- Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Verify`.
 - Alterado função `handleLogout` na `SideBar` para apenas remover o token e redirecionar para `/` com `window.location` [#349](https://github.com/3C-gg/reload-frontend/issues/349).
 - Alterado view `Home` para não inicializar o slice de `user` e fazer apenas um refresh quando é feito um `fakeLogin`, assim o arquivo `App` vai inicializar todas as `apis críticas` corretamente e redirecionar o usuário para a página certa [#345](https://github.com/3C-gg/reload-frontend/issues/345). 
 - Separado a verificação se as `apis` estão prontas do `useEffect` e criado uma função `verifyIfApiIsReady`.
