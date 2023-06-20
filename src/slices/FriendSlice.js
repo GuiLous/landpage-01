@@ -4,6 +4,15 @@ const addIfNotExists = (list, item, assertionProp) => {
   const exists = list.find(
     (listItem) => listItem[assertionProp] === item[assertionProp]
   )
+
+  if (exists && exists !== item[assertionProp]) {
+    const onlineFiltered = list.filter(
+      (listItem) => listItem[assertionProp] !== item[assertionProp]
+    )
+
+    return [...onlineFiltered, item]
+  }
+
   return exists ? list : [...list, item]
 }
 
