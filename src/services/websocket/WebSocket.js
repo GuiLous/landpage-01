@@ -32,7 +32,7 @@ export const WSS = () => {
   }
 
   const showInviteExpiredToast = (payload) => {
-    const invite = payload.invite
+    const invite = payload
     const was_sent = invite.from_player.user_id === user.id
     const content = `O convite ${
       was_sent
@@ -85,7 +85,7 @@ export const WSS = () => {
         break
 
       case 'invites/expire':
-        dispatch(deleteInvite(data.payload.invite))
+        dispatch(deleteInvite(data.payload))
         showInviteExpiredToast(data.payload)
         break
 
