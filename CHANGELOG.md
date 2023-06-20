@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado `useEffect` na view `LobbyView` para atualizar o slice de `lobby` [#359](https://github.com/3C-gg/reload-frontend/issues/359).
 - Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 
 ### Changed
