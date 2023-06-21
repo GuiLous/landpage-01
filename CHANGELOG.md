@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionado uma verificação na função `handleRemove` do componente `lobbyLineup` para atualizar o lobby do usuário dono do lobby [#362](https://github.com/3C-gg/reload-frontend/issues/362).
 - Adicionado `useEffect` na view `LobbyView` para atualizar o slice de `lobby` [#359](https://github.com/3C-gg/reload-frontend/issues/359).
 - Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 

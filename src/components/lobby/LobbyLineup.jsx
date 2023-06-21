@@ -5,7 +5,6 @@ import { LobbiesAPI } from '@api'
 import { Container, LobbyPlayerCard, LobbySeat } from '@components'
 import { StorageService } from '@services'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
-import { updateLobby } from '@slices/LobbySlice'
 
 import style from './LobbyLineup.module.css'
 
@@ -45,10 +44,6 @@ export default function LobbyLineup({
 
     if (response.errorMsg) {
       dispatch(addToast({ variant: 'error', content: response.errorMsg }))
-    }
-
-    if (response.id === userPlayer.lobby_id) {
-      dispatch(updateLobby(response))
     }
   }
 
