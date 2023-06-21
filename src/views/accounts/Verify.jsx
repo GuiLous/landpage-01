@@ -56,15 +56,6 @@ export default function VerifyView() {
     }
 
     setFetching(false)
-    if (response.account.is_verified) {
-      dispatch(
-        addToast({
-          title: 'Sua conta foi verificada!',
-          content: 'Convide seus amigos e comece a jogar!',
-          variant: 'success',
-        })
-      )
-    }
     window.location.href = '/'
   }
 
