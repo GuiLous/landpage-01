@@ -22,7 +22,7 @@ export const WSS = () => {
     const invite = payload.invite
     const refused = payload.status === 'refused'
 
-    if (refused) {
+    if (refused && invite.to_player.user_id !== user.id) {
       dispatch(
         addToast({
           content: `${invite.to_player.username} recusou seu convite.`,
@@ -47,6 +47,11 @@ export const WSS = () => {
     )
   }
 
+  const logout = async () => {
+    StorageService.remove('token')
+    window.location.href = '/'
+  }
+
   useWebSocket(
     REACT_APP_WS_URL,
     {
@@ -67,6 +72,10 @@ export const WSS = () => {
       // User
       case 'user/update_lobby_id':
         dispatch(updateLobbyId(data.payload))
+        break
+
+      case 'user/logout':
+        logout()
         break
 
       // Invites
