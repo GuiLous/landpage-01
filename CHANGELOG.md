@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionado uma verificação na função `handleRemove` do componente `lobbyLineup` para atualizar o lobby do usuário dono do lobby [#362](https://github.com/3C-gg/reload-frontend/issues/362).
 - Adicionado `useEffect` na view `LobbyView` para atualizar o slice de `lobby` [#359](https://github.com/3C-gg/reload-frontend/issues/359).
 - Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 
@@ -28,9 +27,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ajustado função `addIfNotExists` dentro do slice de `Friend` para atualizar corretamente a lista de amigos online [#322](https://github.com/3C-gg/reload-frontend/issues/322).
 - Ajustado stories dos componentes `ToastList` e `ToastListItem` pois estavam passando um objeto `toasts` ao invés de `app` para o `preloadedState` e gerando um erro no console do navegador.
 - Ajustado stories do componente `MatchHistoryList` que estava dando erro no console do navegador por não não ter um `store` válido mockado para o reducer.
+- Corrige redirecionamento de usuário depois de login bem sucedido via Steam [#369](https://github.com/3C-gg/reload-frontend/issues/369).
 - Ajusta action `updateFriend` do `FriendSlice` para atualizar corretamente lista de amigos online e offline [#354](https://github.com/3C-gg/reload-frontend/issues/354).
 - Remove erros de console do Storybook para o componente `LobbyPlayerCard` [#331](https://github.com/3C-gg/reload-frontend/issues/331).
 - Adiciona retorno de função para prop `onPageChange` do componente `MatchHistoryPagination`, mas não resolve erro no console do Storybook para esse componente.
+
+### Removed
+
+- Toast de conta verificada, pois o usuário agora é redirecionado para a raiz da aplicação [#368](https://github.com/3C-gg/reload-frontend/issues/368).
 
 ## [78f7a49 - 19/6/2023]
 
