@@ -2,6 +2,7 @@ import { Badge, Icon, Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI, MatchmakingAPI } from '@api'
 import {
@@ -14,11 +15,13 @@ import {
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { removeRestartQueue } from '@slices/LobbySlice'
+import { removeRestartQueue, updateLobby } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
 export default function LobbyView() {
+  const navigate = useNavigate()
+
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const preMatch = useSelector((state) => state.match.preMatch)
@@ -126,6 +129,25 @@ export default function LobbyView() {
       }
     }
   }, [lobby])
+
+  useEffect(() => {
+    const lobbyDetail = async () => {
+      const userToken = StorageService.get('token')
+      let response = null
+
+      response = await LobbiesAPI.detail(userToken, user.lobby_id)
+
+      if (response.errorMsg) {
+        navigate('/404')
+        return
+      }
+
+      dispatch(updateLobby(response))
+    }
+
+    user.lobby_id && user.lobby_id !== lobby.id && lobbyDetail()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user.lobby_id])
 
   return (
     <MainLayout>
