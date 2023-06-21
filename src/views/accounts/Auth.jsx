@@ -42,7 +42,7 @@ export default function AuthView() {
             dispatch(match(response.account.match))
           }
         }
-        redirectUser(response)
+        window.location.href = '/'
       } else {
         navigate('/')
       }
