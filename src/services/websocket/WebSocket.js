@@ -22,7 +22,7 @@ export const WSS = () => {
     const invite = payload.invite
     const refused = payload.status === 'refused'
 
-    if (refused) {
+    if (refused && invite.to_player.user_id !== user.id) {
       dispatch(
         addToast({
           content: `${invite.to_player.username} recusou seu convite.`,

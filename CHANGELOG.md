@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Fixed
 
+- Ajustado função `showInviteRefusedToast` para mostrar o toast apenas para quem enviou o convite [#367](https://github.com/3C-gg/reload-frontend/issues/367).
 - Ajustado função `addIfNotExists` dentro do slice de `Friend` para atualizar corretamente a lista de amigos online [#322](https://github.com/3C-gg/reload-frontend/issues/322).
 - Ajustado stories dos componentes `ToastList` e `ToastListItem` pois estavam passando um objeto `toasts` ao invés de `app` para o `preloadedState` e gerando um erro no console do navegador.
 - Ajustado stories do componente `MatchHistoryList` que estava dando erro no console do navegador por não não ter um `store` válido mockado para o reducer.
