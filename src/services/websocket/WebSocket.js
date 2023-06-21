@@ -47,6 +47,11 @@ export const WSS = () => {
     )
   }
 
+  const logout = async () => {
+    StorageService.remove('token')
+    window.location.href = '/'
+  }
+
   useWebSocket(
     REACT_APP_WS_URL,
     {
@@ -67,6 +72,10 @@ export const WSS = () => {
       // User
       case 'user/update_lobby_id':
         dispatch(updateLobbyId(data.payload))
+        break
+
+      case 'user/logout':
+        logout()
         break
 
       // Invites
