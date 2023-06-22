@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado estilos da view `Verify` para ficar igual ao design [#375](https://github.com/3C-gg/reload-frontend/issues/375).
+- Alterado estilos `PinInput` no tema para ficar igual ao design.
 - Alterado estilos do componente `Input` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
 - Alterado estilos da view `Signup` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
 - Alterado estilos do botão de login do `FakeSigninForm` para ficar no padrão do design.

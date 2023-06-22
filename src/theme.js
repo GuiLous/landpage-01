@@ -190,34 +190,6 @@ export default extendTheme({
           },
         },
 
-        pin: {
-          bg: 'transparent',
-          backgroundColor: 'transparent',
-          color: 'white',
-          border: '1px solid',
-          borderColor: 'secondary.400',
-          _disabled: {
-            bg: 'transparent',
-            backgroundColor: 'transparent',
-            color: 'white',
-            opacity: 0.4,
-          },
-          _hover: {
-            backgroundColor: 'secondary.400',
-            _disabled: {
-              backgroundColor: 'transparent',
-            },
-          },
-          _loading: {
-            _hover: {
-              backgroundColor: 'transparent',
-            },
-          },
-          _active: {
-            backgroundColor: 'transparent',
-          },
-        },
-
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',
@@ -451,18 +423,27 @@ export default extendTheme({
     },
     PinInput: {
       defaultProps: {
-        focusBorderColor: 'secondary.400',
+        focusBorderColor: 'primary.400',
         errorBorderColor: 'danger.400',
       },
       baseStyle: {
-        color: 'black',
+        color: 'gray.400',
         bg: 'white',
         backgroundColor: 'white',
+        borderRadius: 4,
+        minW: '56px',
+        minH: '56px',
+        fontWeight: 'medium',
         _placeholder: {
           color: 'gray.700',
         },
         _invalid: {
           color: 'danger.400',
+        },
+      },
+      sizes: {
+        md: {
+          fontSize: 26,
         },
       },
     },
