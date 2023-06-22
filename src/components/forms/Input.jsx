@@ -23,9 +23,9 @@ export default function Input(props) {
       <Container>
         <ChakraInput
           style={{
-            borderRadius: 8,
+            borderRadius: 4,
             borderColor: 'transparent',
-            height: 44,
+            height: 42,
             paddingLeft: props.leftIcon ? '46px' : '16px',
             letterSpacing: '1px',
           }}
