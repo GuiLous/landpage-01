@@ -131,7 +131,7 @@ export const WSS = () => {
         break
 
       // Notifications
-      case 'notifications/create':
+      case 'notifications/add':
         dispatch(addNotification(data.payload))
         break
 
