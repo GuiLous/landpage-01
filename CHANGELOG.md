@@ -9,12 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado modal `LogoutModal` na `Sidebar` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
+- Criado componente `LogoutModal` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
+- Adicionado variante `neutral` para o `Button` no tema.
 - Adicionado case de `user/logout` no `WebSocket Service` para deslogar o usuário de todas as sessões [#366](https://github.com/3C-gg/reload-frontend/issues/366).
 - Adicionado `useEffect` na view `LobbyView` para atualizar o slice de `lobby` [#359](https://github.com/3C-gg/reload-frontend/issues/359).
 - Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 
 ### Changed
 
+- Alterado estilo dos `modais` componentes `DeleteAccountCard` e `InactiveAccountCard` para seguir as medidas do design.
+- Alterado componente `Modal` para adicionar uma nova prop `maxWidthModal`.
 - Alterado estilos da view `Verify` para ficar igual ao design [#375](https://github.com/3C-gg/reload-frontend/issues/375).
 - Alterado estilos `PinInput` no tema para ficar igual ao design.
 - Alterado estilos do componente `Input` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
@@ -43,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido função `handleLogout` da `Sidebar` e movido para `LogoutModal`.
 - Removido `useEffect` que atualiza o lobby na `LobbyView` [#380](https://github.com/3C-gg/reload-frontend/issues/380).
 - Toast de conta verificada, pois o usuário agora é redirecionado para a raiz da aplicação [#368](https://github.com/3C-gg/reload-frontend/issues/368).
 
