@@ -1,15 +1,11 @@
 .container {
-	max-width: 430px;
+	max-width: fit-content;
 	position: relative;
 }
 
 .pin {
 	margin-top: 40px;
 	max-width: 100%;
-}
-
-.pinWrapper {
-	max-width: 412px;
 }
 
 .formTitle {
