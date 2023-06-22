@@ -26,7 +26,7 @@ export default function Input({ leftIcon, ...props }) {
             borderRadius: 4,
             borderColor: 'transparent',
             height: 42,
-            paddingLeft: props.leftIcon ? '46px' : '16px',
+            paddingLeft: leftIcon ? '46px' : '16px',
             letterSpacing: '1px',
           }}
           {...props}
