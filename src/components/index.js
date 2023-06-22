@@ -110,6 +110,9 @@ import ConfirmationContent from './support/ConfirmationContent'
 import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
 
+// Logout
+import LogoutModal from './logout/LogoutModal'
+
 export {
   AcceptIcon,
   AccountCard,
@@ -163,6 +166,7 @@ export {
   LobbyPlayerCard,
   LobbySeat,
   LockIcon,
+  LogoutModal,
   MatchFoundModal,
   MatchHistoryList,
   MatchHistoryPagination,
