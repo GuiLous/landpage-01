@@ -44,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido `useEffect` que atualiza o lobby na `LobbyView` [#380](https://github.com/3C-gg/reload-frontend/issues/380).
 - Toast de conta verificada, pois o usuário agora é redirecionado para a raiz da aplicação [#368](https://github.com/3C-gg/reload-frontend/issues/368).
 
 ## [78f7a49 - 19/6/2023]
