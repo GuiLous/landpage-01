@@ -217,6 +217,46 @@ export default extendTheme({
             },
           },
         },
+
+        neutral: {
+          backgroundColor: 'gray.400',
+          color: 'gray.700',
+          textTransform: 'uppercase',
+          fontWeight: 'semiBold',
+          minHeight: '42px',
+          paddingLeft: 16,
+          paddingRight: 16,
+          borderRadius: 4,
+          _loading: {
+            _hover: {
+              bg: 'gray.750',
+              backgroundColor: 'gray.750',
+            },
+          },
+          _hover: {
+            backgroundColor: 'gray.350',
+            color: 'white',
+            _disabled: {
+              backgroundColor: 'gray.750',
+              color: 'gray.550',
+            },
+          },
+          _disabled: {
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
+            opacity: 1,
+            fontWeight: 'semiBold',
+            fontSize: 14,
+            _hover: {
+              backgroundColor: 'gray.750',
+              color: 'gray.550',
+            },
+          },
+          _active: {
+            backgroundColor: 'gray.350',
+            color: 'white',
+          },
+        },
       },
       sizes: {
         lg: {
@@ -806,6 +846,7 @@ export default extendTheme({
     gray: {
       200: '#F5F6F8',
       300: '#ECECEC',
+      350: '#3d3d3d',
       400: '#333333',
       500: '#282828',
       550: '#444444',

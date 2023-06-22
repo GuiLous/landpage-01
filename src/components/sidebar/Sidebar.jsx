@@ -22,7 +22,6 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
-import { AccountsAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
@@ -34,6 +33,7 @@ import {
   FriendList,
   FriendsIcon,
   JoystickIcon,
+  LogoutModal,
   NotificationList,
   PlayIcon,
   PodiumIcon,
@@ -45,7 +45,6 @@ import {
   Timer,
   UserIcon,
 } from '@components'
-import { StorageService } from '@services'
 import { toggleFriendList } from '@slices/AppSlice'
 import { formatSecondsToMinutes } from '@utils'
 
@@ -63,6 +62,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openSupport, setOpenSupport] = useState(false)
+  const [openLogoutModal, setOpenLogoutModal] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
@@ -76,19 +76,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     setOpenSupport(true)
   }
 
+  const handleOpenModalLogout = () => {
+    setOpenLogoutModal(true)
+  }
+
   const open = () => {
     collapsable && setIsCollapsed(false)
   }
 
   const collapse = () => {
     collapsable && setIsCollapsed(true)
-  }
-
-  const handleLogout = async () => {
-    const token = StorageService.get('token')
-    await AccountsAPI.logout(token)
-    StorageService.remove('token')
-    window.location.href = '/'
   }
 
   const renderButtons = () => {
@@ -425,7 +422,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Link>
             </Container>
 
-            <Container className={style.menuItem} onClick={handleLogout}>
+            <Container
+              className={style.menuItem}
+              onClick={handleOpenModalLogout}
+            >
               <Link
                 as="button"
                 alignItems="center"
@@ -496,7 +496,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onClose={handleCloseFriendListDrawer}
       />
 
-      <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />
+      <SupportModal isOpen={openSupport} setIsOpen={setOpenSupport} />
+
+      <LogoutModal isOpen={openLogoutModal} setIsOpen={setOpenLogoutModal} />
     </>
   )
 }

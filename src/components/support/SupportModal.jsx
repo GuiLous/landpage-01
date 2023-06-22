@@ -15,7 +15,7 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
-export default function SupportModal({ isOpen, setOpenSupport }) {
+export default function SupportModal({ isOpen, setIsOpen }) {
   const dispatch = useDispatch()
 
   const [subjectOptions, setSubjectOptions] = useState([
@@ -47,7 +47,7 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
 
   const handleCloseModalSupport = () => {
     reset()
-    setOpenSupport(false)
+    setIsOpen(false)
     setFormSent(false)
   }
 
@@ -123,18 +123,11 @@ export default function SupportModal({ isOpen, setOpenSupport }) {
       title="SUPORTE RELOAD CLUB"
       onClose={handleCloseModalSupport}
       headerMarginBottom={formSent ? 32 : 24}
-      size="xl"
     >
       {formSent ? (
         <ConfirmationContent />
       ) : (
-        <Container
-          justify="center"
-          align="center"
-          column
-          gap={32}
-          style={{ padding: '0 40px' }}
-        >
+        <Container justify="center" align="center" column gap={32}>
           <Text color="gray.700" fontSize={14} textAlign="center">
             Tem alguma dúvida? Envie para nosso suporte e logo retornaremos.
           </Text>
