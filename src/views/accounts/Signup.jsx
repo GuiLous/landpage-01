@@ -102,7 +102,6 @@ export default function SignupView() {
             <Button
               flex={1}
               marginTop={3}
-              fontSize={14}
               onClick={handleButtonClick}
               isDisabled={!value || !isEmailValid(value)}
               isLoading={fetching}

@@ -76,7 +76,6 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
             <Button
               flex={1}
               marginTop={3}
-              fontSize={14}
               onClick={handleButtonClick}
               isDisabled={!value}
               isLoading={fetching}
