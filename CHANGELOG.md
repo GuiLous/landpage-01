@@ -15,6 +15,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado estilos do componente `Input` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
+- Alterado estilos da view `Signup` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
+- Alterado estilos do botão de login do `FakeSigninForm` para ficar no padrão do design.
+- Alterado cores do `Button` e do `Input` no tema para ficar igual ao design.
 - Alterado o `WebSocket` no case de `invite/expire` para passar o payload corretamente [#358](https://github.com/3C-gg/reload-frontend/issues/358).
 - Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Signup` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 - Alterado as imagens de background do layout `SignupLayout`.
