@@ -8,7 +8,7 @@ import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
 import { addNotification } from '@slices/NotificationSlice'
-import { restartQueue, updateLobbyId, updateUser } from '@slices/UserSlice'
+import { restartQueue, updateUser } from '@slices/UserSlice'
 
 import { match, preMatch } from '@slices/MatchSlice'
 
@@ -70,12 +70,12 @@ export const WSS = () => {
       // ==== New Websockets ==== //
 
       // User
-      case 'user/update_lobby_id':
-        dispatch(updateLobbyId(data.payload))
-        break
-
       case 'user/logout':
         logout()
+        break
+
+      case 'user/update':
+        dispatch(updateUser(data.payload))
         break
 
       // Invites
