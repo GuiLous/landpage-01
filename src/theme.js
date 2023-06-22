@@ -8,24 +8,24 @@ export default extendTheme({
         backgroundColor: 'primary.400',
         color: 'white',
         textTransform: 'uppercase',
-        fontWeight: 'normal',
-        minHeight: '44px',
+        fontWeight: 'semiBold',
+        minHeight: '42px',
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 4,
         _loading: {
           _hover: {
-            bg: 'primary.400',
-            backgroundColor: 'primary.400',
+            bg: 'gray.750',
+            backgroundColor: 'gray.750',
           },
         },
         _hover: {
           bg: 'primary.300',
           backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'gray.400',
-            backgroundColor: 'gray.400',
-            color: 'gray.700',
+            bg: 'gray.750',
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
           },
         },
         _active: {
@@ -33,12 +33,14 @@ export default extendTheme({
           backgroundColor: 'primary.600',
         },
         _disabled: {
-          backgroundColor: 'gray.400',
-          color: 'gray.700',
+          backgroundColor: 'gray.750',
+          color: 'gray.550',
           opacity: 1,
+          fontWeight: 'semiBold',
+          fontSize: 14,
           _hover: {
-            backgroundColor: 'gray.400',
-            color: 'gray.700',
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
           },
         },
       },
@@ -89,26 +91,29 @@ export default extendTheme({
           backgroundColor: 'danger.400',
           borderColor: 'danger.400',
           color: 'white',
+          fontSize: 14,
+          fontWeight: 'semiBold',
           _hover: {
-            bg: 'danger.600',
-            backgroundColor: 'danger.600',
+            bg: 'danger.500',
+            backgroundColor: 'danger.500',
             color: 'white',
             _disabled: {
-              bg: 'danger.600',
-              backgroundColor: 'danger.600',
-              color: 'white',
+              bg: 'danger.750',
+              backgroundColor: 'danger.750',
+              color: 'gray.550',
             },
           },
           _active: {
-            bg: 'danger.600',
-            backgroundColor: 'danger.600',
-            borderColor: 'danger.600',
+            bg: 'danger.500',
+            backgroundColor: 'danger.500',
+            borderColor: 'danger.500',
             color: 'white',
           },
           _loading: {
             _hover: {
-              bg: 'danger.400',
-              backgroundColor: 'danger.400',
+              bg: 'danger.750',
+              backgroundColor: 'danger.750',
+              color: 'gray.550',
             },
           },
         },
@@ -297,7 +302,7 @@ export default extendTheme({
     },
     Input: {
       defaultProps: {
-        focusBorderColor: 'secondary.400',
+        focusBorderColor: 'primary.400',
         errorBorderColor: 'danger.400',
       },
       baseStyle: {
@@ -804,6 +809,7 @@ export default extendTheme({
 
     danger: {
       400: '#F63535',
+      500: '#FF4242',
       600: '#8d1919',
     },
 
@@ -821,6 +827,7 @@ export default extendTheme({
       300: '#ECECEC',
       400: '#333333',
       500: '#282828',
+      550: '#444444',
       600: '#434343',
       650: '#B7B7B7',
       700: '#999999',
