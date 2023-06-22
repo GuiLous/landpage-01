@@ -260,7 +260,7 @@ export default extendTheme({
           letterSpacing: '1px',
         },
         md: {
-          fontSize: '16px',
+          fontSize: '14px',
         },
         sm: {
           minHeight: '24px',
