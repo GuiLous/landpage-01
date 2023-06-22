@@ -69,16 +69,10 @@ export default function DeleteAccountCard() {
           isOpen={isOpenModal}
           title="EXCLUIR CONTA"
           onClose={handleClose}
-          size="3xl"
+          maxWidthModal="784px"
         >
-          <Container
-            justify="center"
-            align="center"
-            column
-            gap={40}
-            style={{ padding: '0 80px' }}
-          >
-            <Text color="gray.700" fontSize={14} textAlign="center">
+          <Container justify="center" align="center" column gap={40}>
+            <Text color="white" fontSize={14} textAlign="center" maxW="624px">
               Atenção! Ao confirmar, você perderá todo histórico de partidas,
               nível, itens adquiridos na loja ou por outros meios. A exclusão
               apaga permanentemente todas as informações associadas à sua conta.
