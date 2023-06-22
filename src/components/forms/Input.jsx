@@ -3,10 +3,10 @@ import React from 'react'
 
 import { Container } from '@components'
 
-export default function Input(props) {
+export default function Input({ leftIcon, ...props }) {
   return (
     <Container align="center" style={{ position: 'relative' }}>
-      {props.leftIcon && (
+      {leftIcon && (
         <Container
           fitContent
           style={{
@@ -16,17 +16,17 @@ export default function Input(props) {
             left: '16px',
           }}
         >
-          {props.leftIcon}
+          {leftIcon}
         </Container>
       )}
 
       <Container>
         <ChakraInput
           style={{
-            borderRadius: 8,
+            borderRadius: 4,
             borderColor: 'transparent',
-            height: 44,
-            paddingLeft: props.leftIcon ? '46px' : '16px',
+            height: 42,
+            paddingLeft: leftIcon ? '46px' : '16px',
             letterSpacing: '1px',
           }}
           {...props}

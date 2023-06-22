@@ -110,6 +110,7 @@ export default function HomeView() {
                   <Button
                     type="submit"
                     size={'lg'}
+                    fontWeight="regular"
                     style={{ fontSize: 16, width: '100%' }}
                     leftIcon={<SiSteam style={{ fontSize: 26 }} />}
                   >

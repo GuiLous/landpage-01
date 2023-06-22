@@ -84,14 +84,14 @@ export default function SignupView() {
     <SignupLayout>
       <Container className={style.container} column align="center" fitContent>
         <FormControl isInvalid={fieldsErrors?.email}>
-          <FormLabel>Cadastre seu e-mail</FormLabel>
+          <FormLabel>E-mail</FormLabel>
 
           <Input
             onChange={handleChange}
             onKeyDown={handleKeyEnterDown}
             type="email"
             name="email"
-            placeholder="exemplo@email.com"
+            placeholder="Seu e-mail aqui"
           />
 
           {fieldsErrors?.email && (
@@ -100,16 +100,17 @@ export default function SignupView() {
 
           <Container column align="stretch">
             <Button
-              style={{ flex: 1, marginTop: 16 }}
+              flex={1}
+              marginTop={3}
               onClick={handleButtonClick}
               isDisabled={!value || !isEmailValid(value)}
               isLoading={fetching}
               loadingText="Enviando"
             >
-              Completar cadastro
+              Cadastrar
             </Button>
 
-            <FormHelperText color="white">
+            <FormHelperText color="gray.700">
               Ao se cadastrar, você concorda com os{' '}
               <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
                 Termos de Uso
