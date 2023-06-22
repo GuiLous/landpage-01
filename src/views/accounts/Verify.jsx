@@ -99,11 +99,7 @@ export default function VerifyView() {
               </FormLabel>
 
               <Container justify="center" className={style.pin}>
-                <Container
-                  className={style.pinWrapper}
-                  justify="between"
-                  gap={10}
-                >
+                <Container justify="between" gap={10}>
                   <PinInput
                     placeholder=""
                     onChange={handleChange}
