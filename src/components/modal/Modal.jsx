@@ -17,6 +17,7 @@ export default function Modal({
   children,
   showCloseButton = true,
   headerMarginBottom = 40,
+  maxWidthModal = 'fit-content',
   ...props
 }) {
   return (
@@ -28,7 +29,7 @@ export default function Modal({
       {...props}
     >
       <ModalOverlay />
-      <ModalContent py="40px">
+      <ModalContent p="40px" maxW={maxWidthModal}>
         <ModalHeader p={0} mb={headerMarginBottom + 'px'}>
           <Container justify="center">
             {title && (
