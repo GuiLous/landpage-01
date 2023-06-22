@@ -91,6 +91,7 @@ export default function VerifyView() {
                 fontSize={14}
                 fontWeight="regular"
                 marginBottom={0}
+                marginEnd={0}
               >
                 Insira o código enviado para o email{' '}
                 <Text fontSize={14} color="primary.300" as="span">
