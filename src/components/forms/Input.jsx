@@ -3,10 +3,10 @@ import React from 'react'
 
 import { Container } from '@components'
 
-export default function Input(props) {
+export default function Input({ leftIcon, ...props }) {
   return (
     <Container align="center" style={{ position: 'relative' }}>
-      {props.leftIcon && (
+      {leftIcon && (
         <Container
           fitContent
           style={{
@@ -16,7 +16,7 @@ export default function Input(props) {
             left: '16px',
           }}
         >
-          {props.leftIcon}
+          {leftIcon}
         </Container>
       )}
 
