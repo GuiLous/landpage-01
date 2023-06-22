@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Substituído tratamento de websocket `user/update_lobby_id` por `user/update` [#376](https://github.com/3C-gg/reload-frontend/issues/376).
 - Alterado o `WebSocket` no case de `invite/expire` para passar o payload corretamente [#358](https://github.com/3C-gg/reload-frontend/issues/358).
 - Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Signup` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
 - Alterado as imagens de background do layout `SignupLayout`.
