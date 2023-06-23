@@ -110,7 +110,9 @@ export default function LobbyView() {
   }, [lobby])
 
   useEffect(() => {
-    if (lobby.queue) {
+    let intervalId
+
+    if (lobby.queue && !preMatch) {
       const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
         .minus({ hours: 3 })
         .setZone('America/Sao_Paulo')
@@ -122,13 +124,15 @@ export default function LobbyView() {
         setSecondsDiff(diff)
       }
 
-      const interval = setInterval(calculateDiffInSeconds, 1000)
+      calculateDiffInSeconds()
 
-      return () => {
-        clearInterval(interval)
-      }
+      intervalId = setInterval(calculateDiffInSeconds, 1000)
     }
-  }, [lobby])
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [lobby, preMatch])
 
   useEffect(() => {
     if (preMatch && preMatch.countdown !== null) setOpenMatchFoundModal(true)
