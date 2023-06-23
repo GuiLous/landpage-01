@@ -1,15 +1,7 @@
-import {
-  Button,
-  Icon,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from '@chakra-ui/react'
+import { Button, Icon, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 
-import { Container, Timer, UserIcon } from '@components'
+import { Container, Modal, Timer, UserIcon } from '@components'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
@@ -50,7 +42,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
       <Container fitContent className={style.userIcon} key={i}>
         <Icon
           as={UserIcon}
-          style={{ fontSize: '38px', opacity: i < playersLeft ? 0.5 : 1 }}
+          style={{ fontSize: '28px', opacity: i < playersLeft ? 0.5 : 1 }}
         />
       </Container>
     ))
@@ -58,49 +50,43 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
 
   return (
     <Modal
-      size="3xl"
       isCentered
+      title="PARTIDA ENCONTRADA"
       isOpen={isOpen}
       onClose={handleClose}
       closeOnEsc={false}
       closeOnOverlayClick={false}
+      headerMarginBottom={12}
+      maxWidthModal="650px"
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Container justify="center">Partida Encontrada!</Container>
-          <Container justify="center" className={style.substitle}>
-            Ranqueada · 5x5
+      <Container justify="center" align="center" column gap={40}>
+        <Text color="secondary.400" fontSize={14} textAlign="center">
+          Ranqueada · 5x5
+        </Text>
+
+        <Container justify="center" gap={12}>
+          {renderPlayers}
+        </Container>
+
+        <Container align="center" justify="center" column>
+          <Button
+            isDisabled={isOpen && preMatch.user_ready}
+            onClick={handleAccept}
+          >
+            {isOpen && preMatch.user_ready
+              ? 'Você está pronto!'
+              : 'Aceitar partida'}
+          </Button>
+
+          <Container justify="center" style={{ marginTop: '14px' }}>
+            <Timer
+              reverse
+              formatted={true}
+              initialTime={isOpen && preMatch.countdown}
+            />
           </Container>
-        </ModalHeader>
-
-        <ModalBody>
-          <Container column align="center" style={{ marginTop: '20px' }}>
-            <Container justify="center" gap={12}>
-              {renderPlayers}
-            </Container>
-
-            <Container justify="center" style={{ marginTop: '40px' }}>
-              <Button
-                isDisabled={isOpen && preMatch.user_ready}
-                onClick={handleAccept}
-              >
-                {isOpen && preMatch.user_ready
-                  ? 'Você está pronto!'
-                  : 'Aceitar partida'}
-              </Button>
-            </Container>
-
-            <Container justify="center" style={{ marginTop: '14px' }}>
-              <Timer
-                reverse
-                formatted={false}
-                initialTime={isOpen && preMatch.countdown}
-              />
-            </Container>
-          </Container>
-        </ModalBody>
-      </ModalContent>
+        </Container>
+      </Container>
     </Modal>
   )
 }
