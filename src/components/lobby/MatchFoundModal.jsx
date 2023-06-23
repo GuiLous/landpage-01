@@ -14,7 +14,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
     setIsOpen(false)
   }
 
-  const playersLeft = isOpen
+  const playersLeft = preMatch
     ? preMatch.players_total - preMatch.players_ready_count
     : 0
 
@@ -36,7 +36,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
     }
   }
 
-  const renderPlayers = Array(isOpen && preMatch.players_total)
+  const renderPlayers = Array(preMatch && preMatch.players_total)
     .fill()
     .map((x, i) => (
       <Container fitContent className={style.userIcon} key={i}>
@@ -59,34 +59,36 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
       headerMarginBottom={12}
       maxWidthModal="650px"
     >
-      <Container justify="center" align="center" column gap={40}>
-        <Text color="secondary.400" fontSize={14} textAlign="center">
-          Ranqueada · 5x5
-        </Text>
+      {preMatch && (
+        <Container justify="center" align="center" column gap={40}>
+          <Text color="secondary.400" fontSize={14} textAlign="center">
+            Ranqueada · 5x5
+          </Text>
 
-        <Container justify="center" gap={12}>
-          {renderPlayers}
-        </Container>
+          <Container justify="center" gap={12}>
+            {renderPlayers}
+          </Container>
 
-        <Container align="center" justify="center" column>
-          <Button
-            isDisabled={isOpen && preMatch.user_ready}
-            onClick={handleAccept}
-          >
-            {isOpen && preMatch.user_ready
-              ? 'Você está pronto!'
-              : 'Aceitar partida'}
-          </Button>
+          <Container align="center" justify="center" column>
+            <Button
+              isDisabled={isOpen && preMatch.user_ready}
+              onClick={handleAccept}
+            >
+              {isOpen && preMatch.user_ready
+                ? 'Você está pronto!'
+                : 'Aceitar partida'}
+            </Button>
 
-          <Container justify="center" style={{ marginTop: '14px' }}>
-            <Timer
-              reverse
-              formatted={true}
-              initialTime={isOpen && preMatch.countdown}
-            />
+            <Container justify="center" style={{ marginTop: '14px' }}>
+              <Timer
+                reverse
+                formatted={true}
+                initialTime={isOpen && preMatch.countdown}
+              />
+            </Container>
           </Container>
         </Container>
-      </Container>
+      )}
     </Modal>
   )
 }
