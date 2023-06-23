@@ -31,10 +31,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
 - Formatando o retorno do componente `Timer`.
 - Alterado peso da fonte do `header` do `modal` para `700`.
-- Alterado componente `MatchFoundModal` para receber as props `isOpen` e `setIsOpen` pra controlar a abertura e fazer 
-verificações para que o código nao quebre.
+- Alterado componente `MatchFoundModal` para receber as props `isOpen` e `setIsOpen` pra controlar a abertura e fazer verificações para que o código nao quebre.
 - Alterado importações de `MatchSlice` para `MatchmakingSlice` nos arquivos `Sidebar, WebSocket, Auth, Home, LobbyView e Connect`.
 - Alterado slice de `MatchSlice` para `MatchmakingSlice`.
+- Altera views `Account` e `Profile` para conterem `ProfileHeader` e `ProfileNav` ao invés de ficarem no layout.
 - Altera views `Account` e `Profile` para usarem o novo sistema de layout.
 - Altera componente `HeaderProfile` para `ProfileHeader` e ajusta para funcionar de acordo com o novo sistema de layout.
 - Altera sistema de layout para ser inserido no `Router` e não chamado nas views [#391](https://github.com/3C-gg/reload-frontend/issues/391).
@@ -57,6 +57,7 @@ verificações para que o código nao quebre.
   
 ### Fixed
 
+- Perfil estava sempre mostrando infos do usuário logado. Agora foi ajustado para trazer o perfil do id passado na url [#394](https://github.com/3C-gg/reload-frontend/issues/394).
 - Ajustado nome do case do `WebSocket` de `notifications/create` para `notifications/add` [#384](https://github.com/3C-gg/reload-frontend/issues/384).
 - Ajustado função `showInviteRefusedToast` para mostrar o toast apenas para quem enviou o convite [#367](https://github.com/3C-gg/reload-frontend/issues/367).
 - Ajustado função `addIfNotExists` dentro do slice de `Friend` para atualizar corretamente a lista de amigos online [#322](https://github.com/3C-gg/reload-frontend/issues/322).
