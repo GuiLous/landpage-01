@@ -12,14 +12,19 @@ import { useDispatch } from 'react-redux'
 import { Container, Timer, UserIcon } from '@components'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
+
 import style from './MatchFoundModal.module.css'
 
-export default function MatchFoundModal({ preMatch }) {
+export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
   const dispatch = useDispatch()
 
-  const handleClose = () => {}
+  const handleClose = () => {
+    setIsOpen(false)
+  }
 
-  const playersLeft = preMatch.players_total - preMatch.players_ready_count
+  const playersLeft = isOpen
+    ? preMatch.players_total - preMatch.players_ready_count
+    : 0
 
   const handleAccept = async () => {
     const token = StorageService.get('token')
@@ -39,7 +44,7 @@ export default function MatchFoundModal({ preMatch }) {
     }
   }
 
-  const renderPlayers = Array(preMatch.players_total)
+  const renderPlayers = Array(isOpen && preMatch.players_total)
     .fill()
     .map((x, i) => (
       <Container fitContent className={style.userIcon} key={i}>
@@ -55,7 +60,7 @@ export default function MatchFoundModal({ preMatch }) {
     <Modal
       size="3xl"
       isCentered
-      isOpen
+      isOpen={isOpen}
       onClose={handleClose}
       closeOnEsc={false}
       closeOnOverlayClick={false}
@@ -76,8 +81,13 @@ export default function MatchFoundModal({ preMatch }) {
             </Container>
 
             <Container justify="center" style={{ marginTop: '40px' }}>
-              <Button isDisabled={preMatch.user_ready} onClick={handleAccept}>
-                {preMatch.user_ready ? 'Você está pronto!' : 'Aceitar partida'}
+              <Button
+                isDisabled={isOpen && preMatch.user_ready}
+                onClick={handleAccept}
+              >
+                {isOpen && preMatch.user_ready
+                  ? 'Você está pronto!'
+                  : 'Aceitar partida'}
               </Button>
             </Container>
 
@@ -85,7 +95,7 @@ export default function MatchFoundModal({ preMatch }) {
               <Timer
                 reverse
                 formatted={false}
-                initialTime={preMatch.countdown}
+                initialTime={isOpen && preMatch.countdown}
               />
             </Container>
           </Container>
