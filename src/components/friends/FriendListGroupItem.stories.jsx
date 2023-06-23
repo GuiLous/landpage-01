@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import { FriendListGroupItem } from '@components'
 import InviteReducer, { addInvite, deleteInvite } from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
@@ -38,12 +39,17 @@ const user = {
 
 const invites = []
 
+const lobby = {
+  queue: null,
+}
+
 const store = configureStore({
   reducer: {
     user: UserReducer,
     invites: InviteReducer,
+    lobby: LobbyReducer,
   },
-  preloadedState: { user, invites },
+  preloadedState: { user, invites, lobby },
 })
 
 export const Default = {
