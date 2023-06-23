@@ -127,7 +127,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             to="/jogar"
             variant="queue"
           >
-            <Text w={10}>{formatSecondsToMinutes(secondsDiff)}</Text>
+            <Text minW="52px" top="1px" position="relative">
+              {formatSecondsToMinutes(secondsDiff)}
+            </Text>
           </Button>
         )}
 

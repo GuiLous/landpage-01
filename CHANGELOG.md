@@ -59,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Fixed
 
+- Botão de jogar da sidebar estava desalinhado [#399](https://github.com/3C-gg/reload-frontend/issues/399).
 - Botão de jogar do Lobby agora inicia timer assim que é clicado [#388](https://github.com/3C-gg/reload-frontend/issues/388).
 - Perfil estava sempre mostrando infos do usuário logado. Agora foi ajustado para trazer o perfil do id passado na url [#394](https://github.com/3C-gg/reload-frontend/issues/394).
 - Ajustado nome do case do `WebSocket` de `notifications/create` para `notifications/add` [#384](https://github.com/3C-gg/reload-frontend/issues/384).
