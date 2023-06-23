@@ -37,7 +37,9 @@ export default function LobbyView() {
   )
 
   const handleQueue = async (action) => {
-    if (!isOwner || preMatch || match) return
+    if (preMatch || match) return
+
+    if (action === 'start' && !isOwner) return
 
     const userToken = StorageService.get('token')
 
@@ -204,6 +206,7 @@ export default function LobbyView() {
           queueTime={lobby.queue && secondsDiff}
           restrictionCountdown={lobby.restriction_countdown}
           restricted={lobby.restriction_countdown}
+          disabled={!isOwner && !lobby.queue}
           onClick={
             lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
           }
