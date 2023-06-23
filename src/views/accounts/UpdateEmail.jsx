@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
-import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -73,46 +72,44 @@ export default function SignupView() {
   }
 
   return (
-    <SignupLayout>
-      <Container
-        className={style.container}
-        column
-        align="center"
-        justify="center"
-        fitContent
-      >
-        <FormControl isInvalid={fieldsErrors?.email}>
-          <FormLabel>Altere seu e-mail</FormLabel>
+    <Container
+      className={style.container}
+      column
+      align="center"
+      justify="center"
+      fitContent
+    >
+      <FormControl isInvalid={fieldsErrors?.email}>
+        <FormLabel>Altere seu e-mail</FormLabel>
 
-          <Input
-            onChange={handleChange}
-            onKeyDown={handleKeyEnterDown}
-            type="email"
-            name="email"
-            placeholder="exemplo@email.com"
-          />
+        <Input
+          onChange={handleChange}
+          onKeyDown={handleKeyEnterDown}
+          type="email"
+          name="email"
+          placeholder="exemplo@email.com"
+        />
 
-          {fieldsErrors?.email && (
-            <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
-          )}
-        </FormControl>
+        {fieldsErrors?.email && (
+          <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
+        )}
+      </FormControl>
 
-        <Container fitContent>
-          <Button
-            style={{ flex: 1, marginTop: 16 }}
-            onClick={handleButtonClick}
-            isDisabled={!value || !isEmailValid(value)}
-            isLoading={fetching}
-            loadingText="Enviando"
-          >
-            Alterar e-mail
-          </Button>
-        </Container>
-
-        <Container justify="center" className={style.cancelBtn}>
-          <Link onClick={handleCancel}>Cancelar e voltar</Link>
-        </Container>
+      <Container fitContent>
+        <Button
+          style={{ flex: 1, marginTop: 16 }}
+          onClick={handleButtonClick}
+          isDisabled={!value || !isEmailValid(value)}
+          isLoading={fetching}
+          loadingText="Enviando"
+        >
+          Alterar e-mail
+        </Button>
       </Container>
-    </SignupLayout>
+
+      <Container justify="center" className={style.cancelBtn}>
+        <Link onClick={handleCancel}>Cancelar e voltar</Link>
+      </Container>
+    </Container>
   )
 }
