@@ -10,7 +10,7 @@ import {
   JoystickIcon,
   LobbyLineup,
   LobbyPlayButton,
-  MatchFoundModal
+  MatchFoundModal,
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
@@ -206,7 +206,6 @@ export default function LobbyView() {
           />
         </Container>
       </Container>
-
 
       <MatchFoundModal
         isOpen={openMatchFoundModal}
