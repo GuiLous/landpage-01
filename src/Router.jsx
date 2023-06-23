@@ -1,5 +1,7 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
+import { MainLayout, SignupLayout } from '@layouts'
+
 import {
   AccountView,
   AuthView,
@@ -47,17 +49,21 @@ export default function Router({ user }) {
 
       <Route path="/" element={<HomeView />} />
 
-      {signupRequired && <Route path="/cadastrar" element={<SignupView />} />}
+      {signupRequired && (
+        <Route element={<SignupLayout />}>
+          <Route path="/cadastrar" element={<SignupView />} />
+        </Route>
+      )}
 
       {verificationRequired && (
-        <>
+        <Route element={<SignupLayout />}>
           <Route path="/verificar" element={<VerifyView />} />
           <Route path="/alterar-email" element={<UpdateEmailView />} />
-        </>
+        </Route>
       )}
 
       {verifiedUser && (
-        <>
+        <Route element={<MainLayout />}>
           <Route path="/jogar" element={<LobbyView />} />
           <Route path="/conta" element={<AccountView />} />
           <Route path="/perfil/:userId" element={<ProfileView />} />
@@ -66,7 +72,7 @@ export default function Router({ user }) {
             path="/partidas/:matchId/conectar/"
             element={<ConnectView />}
           />
-        </>
+        </Route>
       )}
 
       <Route path="/auth" element={<AuthView />} />
