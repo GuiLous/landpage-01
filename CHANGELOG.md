@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
 - Altera função `handleQueue` na `LobbyView` para não iniciar fila quando não for dono do lobby [#389](https://github.com/3C-gg/reload-frontend/issues/389).
 - Alterado useEffect da `SideBar` e `LobbyView` que calcula o timer do lobby para parar a contagem quando o slice `preMatch` for diferente de null.
 - Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
