@@ -52,18 +52,15 @@ export default function HomeView() {
     setFetching(false)
     StorageService.set('token', response.token)
 
-    if (!response.is_active) navigate(`/conta-inativa?token=${response.token}`)
-    else {
-      if (response.account) {
-        if (response.account.pre_match) {
-          dispatch(updatePreMatch(response.account.pre_match))
-        } else if (response.account.match) {
-          dispatch(updateMatch(response.account.match))
-        }
+    if (response.account) {
+      if (response.account.pre_match) {
+        dispatch(updatePreMatch(response.account.pre_match))
+      } else if (response.account.match) {
+        dispatch(updateMatch(response.account.match))
       }
-      // refresh and redirect to /jogar or /verificar
-      navigate(0)
     }
+    // refresh and redirect to /jogar or /verificar
+    navigate(0)
   }
 
   return (
