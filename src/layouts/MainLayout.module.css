@@ -1,16 +1,4 @@
 .container {
-	background-color: #111111;
-	color: white;
 	height: 100vh;
-}
-
-.content {
-	height: 100%;
-	padding: 40px;
-}
-
-.sidebar {
-	height: 100%;
-	max-width: 300px;
-	min-width: 300px;
+	padding: 40px 64px;
 }

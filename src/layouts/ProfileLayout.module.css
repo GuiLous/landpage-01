@@ -1,23 +1,16 @@
 .container {
-	background-color: #111111;
-	background-image: url('@assets/images/profile_bg.png');
-	background-repeat: repeat-x;
-	color: white;
-	flex: initial;
-	height: 100%;
-	width: 100%;
+	padding-bottom: 40px;
+}
+
+.header {
+	background: linear-gradient(
+		rgba(104, 71, 255, 1) 0%,
+		rgba(17, 17, 17, 1) 100%
+	);
+	padding: 125px 64px 0;
 }
 
 .content {
-	height: 100%;
-	margin-left: 300px;
-	padding: 140px 40px 40px;
-}
-
-.sidebar {
-	height: 100%;
-	max-width: 300px;
-	min-width: 300px;
-	position: fixed;
-	z-index: 9999;
+	margin-top: 40px;
+	padding: 0 64px;
 }

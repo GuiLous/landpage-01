@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
 - adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
 - Adicionado o método `playerReady` na interface de `Matchmaking`.
+- Nova variante `outline` no componente `Button` no tema.
+- Componente `ProfileNav` que renderiza navegação entre views da área da conta do usuário.
+- Layout `SidebarLayout` para ser usado nas rotas que possuírem sidebar.
 - Adicionado modal `LogoutModal` na `Sidebar` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
 - Criado componente `LogoutModal` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
 - Adicionado variante `neutral` para o `Button` no tema.
@@ -29,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 verificações para que o código nao quebre.
 - Alterado importações de `MatchSlice` para `MatchmakingSlice` nos arquivos `Sidebar, WebSocket, Auth, Home, LobbyView e Connect`.
 - Alterado slice de `MatchSlice` para `MatchmakingSlice`.
+- Altera views `Account` e `Profile` para usarem o novo sistema de layout.
+- Altera componente `HeaderProfile` para `ProfileHeader` e ajusta para funcionar de acordo com o novo sistema de layout.
+- Altera sistema de layout para ser inserido no `Router` e não chamado nas views [#391](https://github.com/3C-gg/reload-frontend/issues/391).
 - Alterado estilo dos `modais` componentes `DeleteAccountCard` e `InactiveAccountCard` para seguir as medidas do design.
 - Alterado componente `Modal` para adicionar uma nova prop `maxWidthModal`.
 - Alterado estilos da view `Verify` para ficar igual ao design [#375](https://github.com/3C-gg/reload-frontend/issues/375).

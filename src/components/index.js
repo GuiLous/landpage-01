@@ -83,7 +83,6 @@ import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
-import HeaderProfile from './profile/HeaderProfile'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryList from './profile/MatchHistoryList'
@@ -91,6 +90,8 @@ import MatchHistoryPagination from './profile/MatchHistoryPagination'
 import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
+import ProfileHeader from './profile/ProfileHeader'
+import ProfileNav from './profile/ProfileNav'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -149,7 +150,6 @@ export {
   FriendListGroupItem,
   FriendsIcon,
   GroupAddIcon,
-  HeaderProfile,
   HeatmapStatsCard,
   InactivateAccountCard,
   Input,
@@ -183,6 +183,8 @@ export {
   PlusIcon,
   PodiumIcon,
   ProfileCard,
+  ProfileHeader,
+  ProfileNav,
   Progress,
   RefuseIcon,
   RequireAuth,
