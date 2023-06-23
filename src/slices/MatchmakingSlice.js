@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export const MatchReducer = createSlice({
-  name: 'match',
+export const MatchmakingReducer = createSlice({
+  name: 'matchmaking',
   initialState: {
     preMatch: null,
     match: null,
@@ -17,6 +17,6 @@ export const MatchReducer = createSlice({
   },
 })
 
-export const { preMatch, match } = MatchReducer.actions
+export const { preMatch, match } = MatchmakingReducer.actions
 
-export default MatchReducer.reducer
+export default MatchmakingReducer.reducer
