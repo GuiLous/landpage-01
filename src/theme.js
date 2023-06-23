@@ -257,6 +257,44 @@ export default extendTheme({
             color: 'white',
           },
         },
+
+        outline: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          borderColor: 'gray.700',
+          color: 'gray.700',
+          fontSize: '14px',
+          fontWeight: 'regular',
+          _hover: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'white',
+            color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
+          },
+          _disabled: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'gray.600',
+            color: 'gray.600',
+            _hover: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+              borderColor: 'gray.600',
+              color: 'gray.600',
+            },
+          },
+          _active: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'white',
+            color: 'white',
+            cursor: 'default',
+          },
+        },
       },
       sizes: {
         lg: {
