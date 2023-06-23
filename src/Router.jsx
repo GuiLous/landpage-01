@@ -1,6 +1,11 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
-import { MainLayout, SignupLayout } from '@layouts'
+import {
+  MainLayout,
+  ProfileLayout,
+  SidebarLayout,
+  SignupLayout,
+} from '@layouts'
 
 import {
   AccountView,
@@ -63,15 +68,19 @@ export default function Router({ user }) {
       )}
 
       {verifiedUser && (
-        <Route element={<MainLayout />}>
-          <Route path="/jogar" element={<LobbyView />} />
-          <Route path="/conta" element={<AccountView />} />
-          <Route path="/perfil/:userId" element={<ProfileView />} />
-          <Route path="/partidas/:matchId" element={<MatchView />} />
-          <Route
-            path="/partidas/:matchId/conectar/"
-            element={<ConnectView />}
-          />
+        <Route element={<SidebarLayout />}>
+          <Route element={<MainLayout />}>
+            <Route path="/jogar" element={<LobbyView />} />
+            <Route path="/partidas/:matchId" element={<MatchView />} />
+            <Route
+              path="/partidas/:matchId/conectar/"
+              element={<ConnectView />}
+            />
+          </Route>
+          <Route element={<ProfileLayout />}>
+            <Route path="/conta" element={<AccountView />} />
+            <Route path="/perfil/:userId" element={<ProfileView />} />
+          </Route>
         </Route>
       )}
 
