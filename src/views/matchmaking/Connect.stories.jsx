@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import MatchReducer from '@slices/MatchSlice'
+import MatchmakingReducer from '@slices/MatchmakingSlice'
 import { ConnectView } from '@views'
 import { Provider } from 'react-redux'
 
@@ -9,7 +9,7 @@ export default {
   component: ConnectView,
 }
 
-const match = {
+const matchmaking = {
   preMatch: null,
   match: {
     server_ip: '999.999.999.999',
@@ -18,9 +18,9 @@ const match = {
 
 const store = configureStore({
   reducer: {
-    match: MatchReducer,
+    matchmaking: MatchmakingReducer,
   },
-  preloadedState: { match },
+  preloadedState: { matchmaking },
 })
 
 export const Default = {

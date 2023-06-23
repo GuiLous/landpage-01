@@ -53,7 +53,8 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const match = useSelector((state) => state.match.match)
+  const match = useSelector((state) => state.matchmaking.match)
+  const preMatch = useSelector((state) => state.matchmaking.preMatch)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
@@ -215,7 +216,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   }, [notifications])
 
   useEffect(() => {
-    if (lobby.queue) {
+    let intervalId
+
+    if (lobby.queue && !preMatch) {
       const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
         .minus({ hours: 3 })
         .setZone('America/Sao_Paulo')
@@ -224,20 +227,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         const now = DateTime.now().setZone('America/Sao_Paulo')
         const diff = Math.floor(now.diff(date, 'seconds').seconds)
 
-        if (diff > 0) {
-          setSecondsDiff(diff)
-        }
+        setSecondsDiff(diff)
       }
 
-      const interval = setInterval(calculateDiffInSeconds, 1000)
+      calculateDiffInSeconds()
 
-      return () => {
-        clearInterval(interval)
-      }
-    } else {
-      setSecondsDiff(null)
+      intervalId = setInterval(calculateDiffInSeconds, 1000)
     }
-  }, [lobby])
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [lobby, preMatch])
 
   return (
     <>

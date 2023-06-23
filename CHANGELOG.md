@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado prop `disabled` no `LobbyPlayButton` na `LobbyView` para não deixar quem não é dono da fila dar start na fila [#389](https://github.com/3C-gg/reload-frontend/issues/389).
+- Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- Adicionado o método `playerReady` na interface de `Matchmaking`.
 - Nova variante `outline` no componente `Button` no tema.
 - Componente `ProfileNav` que renderiza navegação entre views da área da conta do usuário.
 - Layout `SidebarLayout` para ser usado nas rotas que possuírem sidebar.
@@ -21,6 +25,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
+- Altera função `handleQueue` na `LobbyView` para não iniciar fila quando não for dono do lobby [#389](https://github.com/3C-gg/reload-frontend/issues/389).
+- Alterado useEffect da `SideBar` e `LobbyView` que calcula o timer do lobby para parar a contagem quando o slice `preMatch` for diferente de null.
+- Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
+- Formatando o retorno do componente `Timer`.
+- Alterado peso da fonte do `header` do `modal` para `700`.
+- Alterado componente `MatchFoundModal` para receber as props `isOpen` e `setIsOpen` pra controlar a abertura e fazer 
+verificações para que o código nao quebre.
+- Alterado importações de `MatchSlice` para `MatchmakingSlice` nos arquivos `Sidebar, WebSocket, Auth, Home, LobbyView e Connect`.
+- Alterado slice de `MatchSlice` para `MatchmakingSlice`.
 - Altera views `Account` e `Profile` para usarem o novo sistema de layout.
 - Altera componente `HeaderProfile` para `ProfileHeader` e ajusta para funcionar de acordo com o novo sistema de layout.
 - Altera sistema de layout para ser inserido no `Router` e não chamado nas views [#391](https://github.com/3C-gg/reload-frontend/issues/391).

@@ -10,7 +10,7 @@ import { updateLobby } from '@slices/LobbySlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { restartQueue, updateUser } from '@slices/UserSlice'
 
-import { match, preMatch } from '@slices/MatchSlice'
+import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -135,6 +135,10 @@ export const WSS = () => {
         dispatch(addNotification(data.payload))
         break
 
+      case 'matches/found':
+        dispatch(updatePreMatch(data.payload))
+        break
+
       // ==== Old Websockets ==== //
 
       case 'ws_userUpdate':
@@ -142,11 +146,11 @@ export const WSS = () => {
         break
 
       case 'ws_preMatch':
-        dispatch(preMatch(data.payload))
+        dispatch(updatePreMatch(data.payload))
         break
 
       case 'ws_preMatchCancel':
-        dispatch(preMatch(null))
+        dispatch(updatePreMatch(null))
         break
 
       case 'ws_preMatchCancelWarn':
@@ -164,7 +168,7 @@ export const WSS = () => {
         break
 
       case 'ws_match':
-        dispatch(match(data.payload))
+        dispatch(updateMatch(data.payload))
         break
 
       default:
