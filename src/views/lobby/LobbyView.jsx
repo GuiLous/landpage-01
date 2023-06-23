@@ -9,7 +9,8 @@ import {
   Container,
   JoystickIcon,
   LobbyLineup,
-  LobbyPlayButton
+  LobbyPlayButton,
+  MatchFoundModal
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
@@ -28,6 +29,7 @@ export default function LobbyView() {
   const dispatch = useDispatch()
 
   const [secondsDiff, setSecondsDiff] = useState(null)
+  const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
   const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
@@ -200,6 +202,13 @@ export default function LobbyView() {
           />
         </Container>
       </Container>
+
+
+      <MatchFoundModal
+        isOpen={openMatchFoundModal}
+        setIsOpen={setOpenMatchFoundModal}
+        preMatch={preMatch}
+      />
     </MainLayout>
   )
 }
