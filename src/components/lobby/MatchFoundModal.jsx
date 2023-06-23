@@ -59,36 +59,36 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
       headerMarginBottom={12}
       maxWidthModal="650px"
     >
-      {preMatch && (
-        <Container justify="center" align="center" column gap={40}>
-          <Text color="secondary.400" fontSize={14} textAlign="center">
-            Ranqueada · 5x5
-          </Text>
+      <Container justify="center" align="center" column gap={40}>
+        <Text color="secondary.400" fontSize={14} textAlign="center">
+          Ranqueada · 5x5
+        </Text>
 
-          <Container justify="center" gap={12}>
-            {renderPlayers}
-          </Container>
+        <Container justify="center" gap={12}>
+          {renderPlayers}
+        </Container>
 
-          <Container align="center" justify="center" column>
-            <Button
-              isDisabled={isOpen && preMatch.user_ready}
-              onClick={handleAccept}
-            >
-              {isOpen && preMatch.user_ready
-                ? 'Você está pronto!'
-                : 'Aceitar partida'}
-            </Button>
+        <Container align="center" justify="center" column>
+          <Button
+            isDisabled={preMatch && preMatch.user_ready}
+            onClick={handleAccept}
+          >
+            {preMatch && preMatch.user_ready
+              ? 'Você está pronto!'
+              : 'Aceitar partida'}
+          </Button>
 
-            <Container justify="center" style={{ marginTop: '14px' }}>
+          <Container justify="center" style={{ marginTop: '14px' }}>
+            {preMatch && (
               <Timer
                 reverse
                 formatted={true}
-                initialTime={isOpen && preMatch.countdown}
+                initialTime={preMatch.countdown}
               />
-            </Container>
+            )}
           </Container>
         </Container>
-      )}
+      </Container>
     </Modal>
   )
 }
