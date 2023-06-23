@@ -1,0 +1,16 @@
+.container {
+	background-color: #111111;
+	color: white;
+	position: relative;
+}
+
+.sidebar {
+	height: 100%;
+	position: fixed;
+	width: 300px;
+	z-index: 10000;
+}
+
+.content {
+	margin-left: 300px;
+}

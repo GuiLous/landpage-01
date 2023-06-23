@@ -1,5 +1,6 @@
 import MainLayout from './MainLayout'
 import ProfileLayout from './ProfileLayout'
+import SidebarLayout from './SidebarLayout'
 import SignupLayout from './SignupLayout'
 
-export { MainLayout, SignupLayout, ProfileLayout }
+export { MainLayout, ProfileLayout, SidebarLayout, SignupLayout }
