@@ -12,7 +12,6 @@ import { Link as RouterLink, useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
-import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -81,52 +80,50 @@ export default function SignupView() {
   }
 
   return (
-    <SignupLayout>
-      <Container className={style.container} column align="center" fitContent>
-        <FormControl isInvalid={fieldsErrors?.email}>
-          <FormLabel>E-mail</FormLabel>
+    <Container className={style.container} column align="center" fitContent>
+      <FormControl isInvalid={fieldsErrors?.email}>
+        <FormLabel>E-mail</FormLabel>
 
-          <Input
-            onChange={handleChange}
-            onKeyDown={handleKeyEnterDown}
-            type="email"
-            name="email"
-            placeholder="Seu e-mail aqui"
-          />
+        <Input
+          onChange={handleChange}
+          onKeyDown={handleKeyEnterDown}
+          type="email"
+          name="email"
+          placeholder="Seu e-mail aqui"
+        />
 
-          {fieldsErrors?.email && (
-            <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
-          )}
+        {fieldsErrors?.email && (
+          <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
+        )}
 
-          <Container column align="stretch">
-            <Button
-              flex={1}
-              marginTop={3}
-              onClick={handleButtonClick}
-              isDisabled={!value || !isEmailValid(value)}
-              isLoading={fetching}
-              loadingText="Enviando"
+        <Container column align="stretch">
+          <Button
+            flex={1}
+            marginTop={3}
+            onClick={handleButtonClick}
+            isDisabled={!value || !isEmailValid(value)}
+            isLoading={fetching}
+            loadingText="Enviando"
+          >
+            Cadastrar
+          </Button>
+
+          <FormHelperText color="gray.700">
+            Ao se cadastrar, você concorda com os{' '}
+            <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
+              Termos de Uso
+            </Link>{' '}
+            e a{' '}
+            <Link
+              as={RouterLink}
+              to="/política-de-privacidade"
+              variant={'inline'}
             >
-              Cadastrar
-            </Button>
-
-            <FormHelperText color="gray.700">
-              Ao se cadastrar, você concorda com os{' '}
-              <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
-                Termos de Uso
-              </Link>{' '}
-              e a{' '}
-              <Link
-                as={RouterLink}
-                to="/política-de-privacidade"
-                variant={'inline'}
-              >
-                Política de Privacidade
-              </Link>
-            </FormHelperText>
-          </Container>
-        </FormControl>
-      </Container>
-    </SignupLayout>
+              Política de Privacidade
+            </Link>
+          </FormHelperText>
+        </Container>
+      </FormControl>
+    </Container>
   )
 }

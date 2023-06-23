@@ -1,6 +1,13 @@
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 import {
+  MainLayout,
+  ProfileLayout,
+  SidebarLayout,
+  SignupLayout,
+} from '@layouts'
+
+import {
   AccountView,
   AuthView,
   ConnectView,
@@ -47,26 +54,34 @@ export default function Router({ user }) {
 
       <Route path="/" element={<HomeView />} />
 
-      {signupRequired && <Route path="/cadastrar" element={<SignupView />} />}
+      {signupRequired && (
+        <Route element={<SignupLayout />}>
+          <Route path="/cadastrar" element={<SignupView />} />
+        </Route>
+      )}
 
       {verificationRequired && (
-        <>
+        <Route element={<SignupLayout />}>
           <Route path="/verificar" element={<VerifyView />} />
           <Route path="/alterar-email" element={<UpdateEmailView />} />
-        </>
+        </Route>
       )}
 
       {verifiedUser && (
-        <>
-          <Route path="/jogar" element={<LobbyView />} />
-          <Route path="/conta" element={<AccountView />} />
-          <Route path="/perfil/:userId" element={<ProfileView />} />
-          <Route path="/partidas/:matchId" element={<MatchView />} />
-          <Route
-            path="/partidas/:matchId/conectar/"
-            element={<ConnectView />}
-          />
-        </>
+        <Route element={<SidebarLayout />}>
+          <Route element={<MainLayout />}>
+            <Route path="/jogar" element={<LobbyView />} />
+            <Route path="/partidas/:matchId" element={<MatchView />} />
+            <Route
+              path="/partidas/:matchId/conectar/"
+              element={<ConnectView />}
+            />
+          </Route>
+          <Route element={<ProfileLayout />}>
+            <Route path="/conta" element={<AccountView />} />
+            <Route path="/perfil/:userId" element={<ProfileView />} />
+          </Route>
+        </Route>
       )}
 
       <Route path="/auth" element={<AuthView />} />

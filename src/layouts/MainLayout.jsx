@@ -1,20 +1,13 @@
-import { useSelector } from 'react-redux'
+import { Outlet } from 'react-router-dom'
 
-import { Container, Sidebar } from '@components'
+import { Container } from '@components'
 
 import style from './MainLayout.module.css'
 
-export default function MainLayout({ children }) {
-  const user = useSelector((state) => state.user)
-
+export default function MainLayout() {
   return (
     <Container className={style.container}>
-      {user && (
-        <Container className={style.sidebar} fitContent>
-          <Sidebar />
-        </Container>
-      )}
-      <Container className={style.content}>{children}</Container>
+      <Outlet />
     </Container>
   )
 }

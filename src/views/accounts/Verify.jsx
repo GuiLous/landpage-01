@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link as RouterLink } from 'react-router-dom'
 
 import { ArrowRightIcon, Container, LockIcon } from '@components'
-import { SignupLayout } from '@layouts'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import style from './Verify.module.css'
@@ -67,94 +66,87 @@ export default function VerifyView() {
 
   return (
     user && (
-      <SignupLayout>
+      <Container className={style.container} column justify="center" fitContent>
         <Container
-          className={style.container}
-          column
+          className={style.formTitle}
+          align="center"
           justify="center"
-          fitContent
+          column
         >
-          <Container
-            className={style.formTitle}
-            align="center"
-            justify="center"
-            column
-          >
-            <Icon style={{ fontSize: 40, marginBottom: 32 }} as={LockIcon} />
-            Verificação obrigatória
-          </Container>
-
-          <Container justify="center">
-            <FormControl isInvalid={fieldsErrors?.pin}>
-              <FormLabel
-                textAlign="center"
-                fontSize={14}
-                fontWeight="regular"
-                marginBottom={0}
-                marginEnd={0}
-              >
-                Insira o código enviado para o email{' '}
-                <Text fontSize={14} color="primary.300" as="span">
-                  {user.email}
-                </Text>
-              </FormLabel>
-
-              <Container justify="center" className={style.pin}>
-                <Container justify="between" gap={10}>
-                  <PinInput
-                    placeholder=""
-                    onChange={handleChange}
-                    type="alphanumeric"
-                    autoFocus
-                    isInvalid={fieldsErrors?.pin}
-                    manageFocus
-                  >
-                    <PinInputField border="transparent" />
-                    <PinInputField border="transparent" />
-                    <PinInputField border="transparent" />
-                    <PinInputField border="transparent" />
-                    <PinInputField border="transparent" />
-                    <PinInputField
-                      border="transparent"
-                      onKeyDown={handleKeyEnterDown}
-                    />
-                  </PinInput>
-                  <IconButton
-                    isDisabled={!value || value.length !== 6}
-                    isLoading={fetching}
-                    onClick={handleButtonClick}
-                    aria-label="Validar e jogar agora!"
-                    style={{ fontSize: '22px' }}
-                    minW="56px"
-                    minH="56px"
-                    icon={<ArrowRightIcon color="currentColor" />}
-                  />
-                </Container>
-              </Container>
-
-              {fieldsErrors?.pin && (
-                <Container justify="center">
-                  <FormErrorMessage style={{ textAlign: 'center' }}>
-                    {fieldsErrors?.pin}
-                  </FormErrorMessage>
-                </Container>
-              )}
-
-              <FormHelperText
-                textAlign="center"
-                marginTop="40px"
-                color="gray.700"
-              >
-                Não é seu e-mail?{' '}
-                <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
-                  Clique aqui
-                </Link>
-                .
-              </FormHelperText>
-            </FormControl>
-          </Container>
+          <Icon style={{ fontSize: 40, marginBottom: 32 }} as={LockIcon} />
+          Verificação obrigatória
         </Container>
-      </SignupLayout>
+
+        <Container justify="center">
+          <FormControl isInvalid={fieldsErrors?.pin}>
+            <FormLabel
+              textAlign="center"
+              fontSize={14}
+              fontWeight="regular"
+              marginBottom={0}
+              marginEnd={0}
+            >
+              Insira o código enviado para o email{' '}
+              <Text fontSize={14} color="primary.300" as="span">
+                {user.email}
+              </Text>
+            </FormLabel>
+
+            <Container justify="center" className={style.pin}>
+              <Container justify="between" gap={10}>
+                <PinInput
+                  placeholder=""
+                  onChange={handleChange}
+                  type="alphanumeric"
+                  autoFocus
+                  isInvalid={fieldsErrors?.pin}
+                  manageFocus
+                >
+                  <PinInputField border="transparent" />
+                  <PinInputField border="transparent" />
+                  <PinInputField border="transparent" />
+                  <PinInputField border="transparent" />
+                  <PinInputField border="transparent" />
+                  <PinInputField
+                    border="transparent"
+                    onKeyDown={handleKeyEnterDown}
+                  />
+                </PinInput>
+                <IconButton
+                  isDisabled={!value || value.length !== 6}
+                  isLoading={fetching}
+                  onClick={handleButtonClick}
+                  aria-label="Validar e jogar agora!"
+                  style={{ fontSize: '22px' }}
+                  minW="56px"
+                  minH="56px"
+                  icon={<ArrowRightIcon color="currentColor" />}
+                />
+              </Container>
+            </Container>
+
+            {fieldsErrors?.pin && (
+              <Container justify="center">
+                <FormErrorMessage style={{ textAlign: 'center' }}>
+                  {fieldsErrors?.pin}
+                </FormErrorMessage>
+              </Container>
+            )}
+
+            <FormHelperText
+              textAlign="center"
+              marginTop="40px"
+              color="gray.700"
+            >
+              Não é seu e-mail?{' '}
+              <Link as={RouterLink} to="/alterar-email" variant={'inline'}>
+                Clique aqui
+              </Link>
+              .
+            </FormHelperText>
+          </FormControl>
+        </Container>
+      </Container>
     )
   )
 }
