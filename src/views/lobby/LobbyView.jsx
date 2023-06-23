@@ -136,6 +136,7 @@ export default function LobbyView() {
 
   useEffect(() => {
     if (preMatch && preMatch.countdown !== null) setOpenMatchFoundModal(true)
+    else setOpenMatchFoundModal(false)
   }, [preMatch])
 
   return (
