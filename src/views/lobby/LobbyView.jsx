@@ -11,7 +11,6 @@ import {
   LobbyLineup,
   LobbyPlayButton
 } from '@components'
-import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { removeRestartQueue } from '@slices/LobbySlice'
@@ -129,77 +128,75 @@ export default function LobbyView() {
   }, [lobby])
 
   return (
-    <MainLayout>
-      <Container className={style.container} column gap={40} align="center">
-        <Container className={style.header} gap={12} fitContent>
-          <Icon as={JoystickIcon} color="white" fontSize={30} />
-          <Container gap={8}>
-            <Text fontSize={22} fontWeight="light" textTransform="uppercase">
-              Suba de nível e
-            </Text>
-            <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
-              fique entre os melhores
-            </Text>
-          </Container>
+    <Container className={style.container} column gap={40} align="center">
+      <Container className={style.header} gap={12} fitContent>
+        <Icon as={JoystickIcon} color="white" fontSize={30} />
+        <Container gap={8}>
+          <Text fontSize={22} fontWeight="light" textTransform="uppercase">
+            Suba de nível e
+          </Text>
+          <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
+            fique entre os melhores
+          </Text>
         </Container>
+      </Container>
 
-        {/*
+      {/*
           TODO: move the following into its own component when
           we have more then one game mode available
         */}
-        <Container className={style.gameType} fitContent>
-          <Container
-            className={style.gameTypeItem}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Text fontSize={18}>Ranqueada 1x1</Text>
-            <Badge>Em breve</Badge>
-          </Container>
-
-          <Container
-            className={[style.gameTypeItem, style.active].join(' ')}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Container className={style.arrowUpIcon} justify="center">
-              <Icon as={ArrowUpFilledIcon} color="primary.400" />
-            </Container>
-            <Text fontSize={18}>Ranqueada 5x5</Text>
-          </Container>
-
-          <Container
-            className={style.gameTypeItem}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Text fontSize={18}>Personalizada</Text>
-            <Badge>Em breve</Badge>
-          </Container>
+      <Container className={style.gameType} fitContent>
+        <Container
+          className={style.gameTypeItem}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Text fontSize={18}>Ranqueada 1x1</Text>
+          <Badge>Em breve</Badge>
         </Container>
 
-        <Container className={style.lineup}>
-          <LobbyLineup
-            userPlayer={userPlayer}
-            isOwner={lobby.owner_id === user.id}
-            otherPlayers={otherPlayers}
-            lobbyId={lobby.id}
-          />
+        <Container
+          className={[style.gameTypeItem, style.active].join(' ')}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Container className={style.arrowUpIcon} justify="center">
+            <Icon as={ArrowUpFilledIcon} color="primary.400" />
+          </Container>
+          <Text fontSize={18}>Ranqueada 5x5</Text>
         </Container>
-        <Container className={style.footer} fitContent>
-          <LobbyPlayButton
-            queueTime={lobby.queue && secondsDiff}
-            restrictionCountdown={lobby.restriction_countdown}
-            restricted={lobby.restriction_countdown}
-            onClick={
-              lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
-            }
-          />
+
+        <Container
+          className={style.gameTypeItem}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Text fontSize={18}>Personalizada</Text>
+          <Badge>Em breve</Badge>
         </Container>
       </Container>
-    </MainLayout>
+
+      <Container className={style.lineup}>
+        <LobbyLineup
+          userPlayer={userPlayer}
+          isOwner={lobby.owner_id === user.id}
+          otherPlayers={otherPlayers}
+          lobbyId={lobby.id}
+        />
+      </Container>
+      <Container className={style.footer} fitContent>
+        <LobbyPlayButton
+          queueTime={lobby.queue && secondsDiff}
+          restrictionCountdown={lobby.restriction_countdown}
+          restricted={lobby.restriction_countdown}
+          onClick={
+            lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
+          }
+        />
+      </Container>
+    </Container>
   )
 }

@@ -1,5 +1,6 @@
 import { Link, Text } from '@chakra-ui/react'
 import { IoIosArrowRoundBack } from 'react-icons/io'
+import { Outlet } from 'react-router-dom'
 
 import liquidObject from '@assets/images/liquid_object.png'
 import logo from '@assets/images/logo_type_white.svg'
@@ -9,7 +10,7 @@ import { StorageService } from '@services'
 
 import style from './SignupLayout.module.css'
 
-export default function SignupLayout({ children }) {
+export default function SignupLayout() {
   const handleCancel = () => {
     StorageService.remove('token')
     window.location.href = '/'
@@ -46,7 +47,7 @@ export default function SignupLayout({ children }) {
           <img src={logo} alt="Reload logo" />
         </Container>
 
-        {children}
+        <Outlet />
       </Container>
 
       <Footer />
