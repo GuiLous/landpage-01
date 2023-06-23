@@ -153,9 +153,9 @@ export default function LobbyView() {
       </Container>
 
       {/*
-          TODO: move the following into its own component when
-          we have more then one game mode available
-        */}
+        TODO: move the following into its own component when
+        we have more then one game mode available
+      */}
       <Container className={style.gameType} fitContent>
         <Container
           className={style.gameTypeItem}
