@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `LobbyView` e componente `LobbyLineup` para passar e receber a prop `queue` para remover o botão de `X` do `PlayerCard` 
+quando está em fila [#404](https://github.com/3C-gg/reload-frontend/issues/404).
 - Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
 - Altera cores do componente `ToastListItem` para ficar igual ao design [#387](https://github.com/3C-gg/reload-frontend/issues/387).
 - Altera função `handleQueue` na `LobbyView` para não iniciar fila quando não for dono do lobby [#389](https://github.com/3C-gg/reload-frontend/issues/389).
