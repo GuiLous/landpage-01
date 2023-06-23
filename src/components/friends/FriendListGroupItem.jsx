@@ -19,6 +19,8 @@ export default function FriendListGroupItem({
   lobby_id,
 }) {
   const user = useSelector((state) => state.user)
+  const lobby = useSelector((state) => state.lobby)
+
   const invites = useSelector((state) => state.invites)
 
   const dispatch = useDispatch()
@@ -30,7 +32,8 @@ export default function FriendListGroupItem({
     invites.filter((invite) => invite.to_player.user_id === user_id).length > 0
   const alreadyOnTeam = user.lobby_id === lobby_id
 
-  const isAvailable = !alreadyOnTeam && availableStatuses.includes(status)
+  const isAvailable =
+    !alreadyOnTeam && availableStatuses.includes(status) && !lobby.queue
 
   const handleInvite = async () => {
     if (!isAvailable || alreadyInvited || alreadyOnTeam) return
