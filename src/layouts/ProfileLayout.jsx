@@ -15,9 +15,14 @@ export default function ProfileLayout() {
 
   return (
     <Container className={style.container} column>
-      <Container className={style.header} column gap={40}>
-        <ProfileHeader account={user.account} />
-        {!hideNav && <ProfileNav userId={user.id} />}
+      <Container className={style.headerWrapper} column gap={40}>
+        <Container className={style.header}>
+          <ProfileHeader account={user.account} />
+        </Container>
+
+        <Container className={style.nav}>
+          {!hideNav && <ProfileNav userId={user.id} />}
+        </Container>
       </Container>
 
       <Container className={style.content} column>
