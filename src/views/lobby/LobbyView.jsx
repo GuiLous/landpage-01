@@ -130,6 +130,10 @@ export default function LobbyView() {
     }
   }, [lobby])
 
+  useEffect(() => {
+    if (preMatch && preMatch.countdown !== null) setOpenMatchFoundModal(true)
+  }, [preMatch])
+
   return (
     <MainLayout>
       <Container className={style.container} column gap={40} align="center">
