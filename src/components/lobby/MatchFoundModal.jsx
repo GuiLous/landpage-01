@@ -1,8 +1,9 @@
 import { Button, Icon, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 
+import { MatchmakingAPI } from '@api'
 import { Container, Modal, Timer, UserIcon } from '@components'
-import { HttpService, StorageService } from '@services'
+import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
 import style from './MatchFoundModal.module.css'
@@ -19,13 +20,11 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
     : 0
 
   const handleAccept = async () => {
-    const token = StorageService.get('token')
-    let response
+    const userToken = StorageService.get('token')
+    let response = null
 
-    response = await HttpService.patch(
-      `mm/match/${preMatch.id}/player-ready/`,
-      token
-    )
+    response = await MatchmakingAPI.playerReady(userToken, preMatch.id)
+
     if (response.errorMsg) {
       dispatch(
         addToast({
