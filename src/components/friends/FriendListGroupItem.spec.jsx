@@ -7,6 +7,7 @@ import { Provider } from 'react-redux'
 
 import { FriendListGroupItem } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 const server = setupServer(
@@ -34,12 +35,17 @@ describe('FriendListGroupItem Component', () => {
 
   const invites = []
 
+  const lobby = {
+    queue: null,
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,
       invites: InviteReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, invites },
+    preloadedState: { user, invites, lobby },
   })
 
   it('should render an online friend corretcly', () => {
