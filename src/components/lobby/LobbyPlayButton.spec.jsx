@@ -18,7 +18,7 @@ describe('LobbyPlayButton Component', () => {
       />
     )
     expect(screen.getByText('Grupo com restrição')).toBeInTheDocument()
-    expect(screen.getByText('1:00')).toBeInTheDocument()
+    expect(screen.getByText('01:00')).toBeInTheDocument()
     expect(screen.getByTestId('container')).toHaveClass('restricted')
   })
 

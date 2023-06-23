@@ -7,16 +7,16 @@ export const MatchmakingReducer = createSlice({
     match: null,
   },
   reducers: {
-    preMatch: (state, action) => {
+    updatePreMatch: (state, action) => {
       return { ...state, preMatch: action.payload }
     },
 
-    match: (state, action) => {
+    updateMatch: (state, action) => {
       return { ...state, match: action.payload }
     },
   },
 })
 
-export const { preMatch, match } = MatchmakingReducer.actions
+export const { updatePreMatch, updateMatch } = MatchmakingReducer.actions
 
 export default MatchmakingReducer.reducer

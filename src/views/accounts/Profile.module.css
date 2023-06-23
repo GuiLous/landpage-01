@@ -9,8 +9,3 @@
 .content {
 	padding: 0 64px;
 }
-
-.link:hover svg {
-	color: white;
-	fill: white;
-}

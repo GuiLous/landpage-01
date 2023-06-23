@@ -14,7 +14,7 @@ import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { match, preMatch } from '@slices/MatchmakingSlice'
+import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -56,9 +56,9 @@ export default function HomeView() {
     else {
       if (response.account) {
         if (response.account.pre_match) {
-          dispatch(preMatch(response.account.pre_match))
+          dispatch(updatePreMatch(response.account.pre_match))
         } else if (response.account.match) {
-          dispatch(match(response.account.match))
+          dispatch(updateMatch(response.account.match))
         }
       }
       // refresh and redirect to /jogar or /verificar

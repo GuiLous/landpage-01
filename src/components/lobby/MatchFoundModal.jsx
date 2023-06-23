@@ -1,34 +1,30 @@
-import {
-  Button,
-  Icon,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalHeader,
-  ModalOverlay,
-} from '@chakra-ui/react'
+import { Button, Icon, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 
-import { Container, Timer, UserIcon } from '@components'
-import { HttpService, StorageService } from '@services'
+import { MatchmakingAPI } from '@api'
+import { Container, Modal, Timer, UserIcon } from '@components'
+import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
+
 import style from './MatchFoundModal.module.css'
 
-export default function MatchFoundModal({ preMatch }) {
+export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
   const dispatch = useDispatch()
 
-  const handleClose = () => {}
+  const handleClose = () => {
+    setIsOpen(false)
+  }
 
-  const playersLeft = preMatch.players_total - preMatch.players_ready_count
+  const playersLeft = preMatch
+    ? preMatch.players_total - preMatch.players_ready_count
+    : 0
 
   const handleAccept = async () => {
-    const token = StorageService.get('token')
-    let response
+    const userToken = StorageService.get('token')
+    let response = null
 
-    response = await HttpService.patch(
-      `mm/match/${preMatch.id}/player-ready/`,
-      token
-    )
+    response = await MatchmakingAPI.playerReady(userToken, preMatch.id)
+
     if (response.errorMsg) {
       dispatch(
         addToast({
@@ -39,13 +35,14 @@ export default function MatchFoundModal({ preMatch }) {
     }
   }
 
-  const renderPlayers = Array(preMatch.players_total)
+  const renderPlayers = Array(preMatch && preMatch.players_total)
     .fill()
     .map((x, i) => (
       <Container fitContent className={style.userIcon} key={i}>
         <Icon
+          data-testid="user-icon"
           as={UserIcon}
-          style={{ fontSize: '38px', opacity: i < playersLeft ? 0.5 : 1 }}
+          style={{ fontSize: '28px', opacity: i < playersLeft ? 0.5 : 1 }}
         />
       </Container>
     ))
@@ -53,44 +50,49 @@ export default function MatchFoundModal({ preMatch }) {
 
   return (
     <Modal
-      size="3xl"
       isCentered
-      isOpen
+      title="PARTIDA ENCONTRADA"
+      isOpen={isOpen}
       onClose={handleClose}
       closeOnEsc={false}
       closeOnOverlayClick={false}
+      headerMarginBottom={12}
+      maxWidthModal="650px"
     >
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>
-          <Container justify="center">Partida Encontrada!</Container>
-          <Container justify="center" className={style.substitle}>
-            Ranqueada · 5x5
-          </Container>
-        </ModalHeader>
+      <Container justify="center" align="center" column gap={40}>
+        <Text color="secondary.400" fontSize={14} textAlign="center">
+          Ranqueada · 5x5
+        </Text>
 
-        <ModalBody>
-          <Container column align="center" style={{ marginTop: '20px' }}>
-            <Container justify="center" gap={12}>
-              {renderPlayers}
-            </Container>
+        <Container justify="center" gap={12}>
+          {renderPlayers}
+        </Container>
 
-            <Container justify="center" style={{ marginTop: '40px' }}>
-              <Button isDisabled={preMatch.user_ready} onClick={handleAccept}>
-                {preMatch.user_ready ? 'Você está pronto!' : 'Aceitar partida'}
-              </Button>
-            </Container>
+        <Container align="center" justify="center" column>
+          <Button
+            isDisabled={preMatch && preMatch.user_ready}
+            onClick={handleAccept}
+          >
+            {preMatch && preMatch.user_ready
+              ? 'Você está pronto!'
+              : 'Aceitar partida'}
+          </Button>
 
-            <Container justify="center" style={{ marginTop: '14px' }}>
+          <Container
+            justify="center"
+            style={{ marginTop: '14px' }}
+            testID="countdown-timer"
+          >
+            {preMatch && (
               <Timer
                 reverse
-                formatted={false}
+                formatted={true}
                 initialTime={preMatch.countdown}
               />
-            </Container>
+            )}
           </Container>
-        </ModalBody>
-      </ModalContent>
+        </Container>
+      </Container>
     </Modal>
   )
 }

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { formatSecondsToMinutes } from '@utils'
+
 export default function Timer({
   initialTime,
   stop,
@@ -34,8 +36,8 @@ export default function Timer({
     if (!formatted) return elapsed
 
     let timer = elapsed
-    if (timer > 3600) return new Date(timer * 1000).toISOString().substr(11, 8)
-    else return (timer - (timer %= 60)) / 60 + (9 < timer ? ':' : ':0') + timer
+
+    return formatSecondsToMinutes(timer)
   }
 
   return render()
