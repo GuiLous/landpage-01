@@ -40,6 +40,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
     .map((x, i) => (
       <Container fitContent className={style.userIcon} key={i}>
         <Icon
+          data-testid="user-icon"
           as={UserIcon}
           style={{ fontSize: '28px', opacity: i < playersLeft ? 0.5 : 1 }}
         />
@@ -77,7 +78,11 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
               : 'Aceitar partida'}
           </Button>
 
-          <Container justify="center" style={{ marginTop: '14px' }}>
+          <Container
+            justify="center"
+            style={{ marginTop: '14px' }}
+            testID="countdown-timer"
+          >
             {preMatch && (
               <Timer
                 reverse
