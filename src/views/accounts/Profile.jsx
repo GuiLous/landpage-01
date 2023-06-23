@@ -10,7 +10,6 @@ import {
   LoadingBackdrop,
   MatchHistoryList,
 } from '@components'
-import { ProfileLayout } from '@layouts'
 import { StorageService } from '@services'
 
 export default function ProfileView() {
@@ -20,8 +19,7 @@ export default function ProfileView() {
   const { userId } = params
 
   const [fetching, setFetching] = useState(true)
-  const [userStats, setUserStats] = useState(null)
-  const [headerStats, setHeaderStats] = useState(null)
+  const [profile, setProfile] = useState(null)
 
   useEffect(() => {
     const fetch = async () => {
@@ -32,7 +30,7 @@ export default function ProfileView() {
         navigate('/404')
       }
 
-      setUserStats(response)
+      setProfile(response)
       setFetching(false)
     }
 
@@ -40,48 +38,30 @@ export default function ProfileView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  useEffect(() => {
-    if (userStats !== null) {
-      const headerStats = {
-        avatar: userStats.avatar,
-        username: userStats.username,
-        level: userStats.level,
-        level_points: userStats.level_points,
-        matches_won: userStats.matches_won,
-        matches_lost: userStats.matches_played - userStats.matches_won,
-        stats: userStats.stats,
-      }
-
-      setHeaderStats(headerStats)
-    }
-  }, [userStats])
-
   return fetching ? (
     <LoadingBackdrop>
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <ProfileLayout headerStats={headerStats} user_id={userId}>
-      <Container gap={18}>
-        <Container column gap={18} style={{ maxWidth: '350px' }}>
-          <LevelStatsCard
-            level={userStats.level}
-            highest_level={userStats.highest_level}
-            match_won={userStats.matches_won}
-            highest_win_streak={userStats.highest_win_streak}
-            latest_matches_results={userStats.latest_matches_results}
-            most_kills_in_a_match={userStats.most_kills_in_a_match}
-            most_damage_in_a_match={userStats.most_damage_in_a_match}
-            stats={userStats.stats}
-          />
-          <HeatmapStatsCard
-            head_shots={userStats.stats?.head_shots || 0}
-            chest_shots={userStats.stats?.chest_shots || 0}
-            other_shots={userStats.stats?.other_shots || 0}
-          />
-        </Container>
-        <MatchHistoryList user_id={userId} />
+    <Container gap={18}>
+      <Container column gap={18} style={{ maxWidth: '350px' }}>
+        <LevelStatsCard
+          level={profile.level}
+          highest_level={profile.highest_level}
+          match_won={profile.matches_won}
+          highest_win_streak={profile.highest_win_streak}
+          latest_matches_results={profile.latest_matches_results}
+          most_kills_in_a_match={profile.most_kills_in_a_match}
+          most_damage_in_a_match={profile.most_damage_in_a_match}
+          stats={profile.stats}
+        />
+        <HeatmapStatsCard
+          head_shots={profile.stats.head_shots || 0}
+          chest_shots={profile.stats.chest_shots || 0}
+          other_shots={profile.stats.other_shots || 0}
+        />
       </Container>
-    </ProfileLayout>
+      <MatchHistoryList user_id={userId} />
+    </Container>
   )
 }
