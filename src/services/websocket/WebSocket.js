@@ -34,10 +34,11 @@ export const WSS = () => {
   const showInviteExpiredToast = (payload) => {
     const invite = payload
     const was_sent = invite.from_player.user_id === user.id
-    const content = `O convite ${was_sent
+    const content = `O convite ${
+      was_sent
         ? 'para ' + invite.to_player.username
         : 'de ' + invite.from_player.username
-      } expirou.`
+    } expirou.`
 
     dispatch(
       addToast({
