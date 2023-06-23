@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- Adicionado o método `playerReady` na interface de `Matchmaking`.
 - Adicionado modal `LogoutModal` na `Sidebar` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
 - Criado componente `LogoutModal` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
 - Adicionado variante `neutral` para o `Button` no tema.
@@ -18,6 +21,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado useEffect da `SideBar` e `LobbyView` que calcula o timer do lobby para parar a contagem quando o slice `preMatch` for diferente de null.
+- Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
+- Formatando o retorno do componente `Timer`.
+- Alterado peso da fonte do `header` do `modal` para `700`.
+- Alterado componente `MatchFoundModal` para receber as props `isOpen` e `setIsOpen` pra controlar a abertura e fazer 
+verificações para que o código nao quebre.
+- Alterado importações de `MatchSlice` para `MatchmakingSlice` nos arquivos `Sidebar, WebSocket, Auth, Home, LobbyView e Connect`.
+- Alterado slice de `MatchSlice` para `MatchmakingSlice`.
 - Alterado estilo dos `modais` componentes `DeleteAccountCard` e `InactiveAccountCard` para seguir as medidas do design.
 - Alterado componente `Modal` para adicionar uma nova prop `maxWidthModal`.
 - Alterado estilos da view `Verify` para ficar igual ao design [#375](https://github.com/3C-gg/reload-frontend/issues/375).
