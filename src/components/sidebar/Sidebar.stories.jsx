@@ -7,7 +7,7 @@ import AppReducer from '@slices/AppSlice'
 import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
-import MatchReducer from '@slices/MatchSlice'
+import MatchmakingReducer from '@slices/MatchmakingSlice'
 import NotificationReducer from '@slices/NotificationSlice'
 import UserReducer from '@slices/UserSlice'
 
@@ -218,7 +218,7 @@ export const Default = {
       })
     )
 
-    const match = {
+    const matchmaking = {
       preMatch: null,
       match: props.isInMatch,
     }
@@ -241,7 +241,7 @@ export const Default = {
         user: UserReducer,
         notifications: NotificationReducer,
         invites: InviteReducer,
-        match: MatchReducer,
+        matchmaking: MatchmakingReducer,
         app: AppReducer,
         friends: FriendReducer,
         lobby: LobbyReducer,
@@ -252,7 +252,7 @@ export const Default = {
         notifications,
         invites,
         app,
-        match,
+        matchmaking,
         lobby,
       },
     })
