@@ -506,7 +506,7 @@ export default extendTheme({
         header: {
           textTransform: 'uppercase',
           fontSize: '24px',
-          fontWeight: '800',
+          fontWeight: '700',
         },
       },
     },
