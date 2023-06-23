@@ -81,7 +81,7 @@ export default function LobbyView() {
       }
     }
 
-    if (preMatch && preMatch.countdown === null) lockIn()
+    if (preMatch && preMatch.state === 'pre_start') lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch])
 
@@ -135,7 +135,7 @@ export default function LobbyView() {
   }, [lobby, preMatch])
 
   useEffect(() => {
-    if (preMatch && preMatch.countdown !== null) setOpenMatchFoundModal(true)
+    if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
     else setOpenMatchFoundModal(false)
   }, [preMatch])
 
