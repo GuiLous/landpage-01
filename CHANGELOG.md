@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera função `onFakeSigninFormSubmit` na view `Home` para redirecionar o usuário para `/conta-inative` corretamente [#407](https://github.com/3C-gg/reload-frontend/issues/407).
+- Altera função `handleLogout` na view `Inactive` para deslogar o usuário corretamente.
 - Altera `LobbyView` e componente `LobbyLineup` para passar e receber a prop `queue` para remover o botão de `X` do `PlayerCard` 
 quando está em fila [#404](https://github.com/3C-gg/reload-frontend/issues/404).
 - Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
