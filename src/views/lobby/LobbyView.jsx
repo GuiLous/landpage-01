@@ -198,6 +198,7 @@ export default function LobbyView() {
           isOwner={lobby.owner_id === user.id}
           otherPlayers={otherPlayers}
           lobbyId={lobby.id}
+          queue={lobby.queue}
         />
       </Container>
 
