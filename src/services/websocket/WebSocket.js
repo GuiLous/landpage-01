@@ -10,7 +10,7 @@ import { updateLobby } from '@slices/LobbySlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { restartQueue, updateUser } from '@slices/UserSlice'
 
-import { match, preMatch } from '@slices/MatchSlice'
+import { match, preMatch } from '@slices/MatchmakingSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()

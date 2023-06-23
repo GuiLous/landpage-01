@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService } from '@services'
-import { match, preMatch } from '@slices/MatchSlice'
+import { match, preMatch } from '@slices/MatchmakingSlice'
 import { updateUser } from '@slices/UserSlice'
 
 export default function AuthView() {

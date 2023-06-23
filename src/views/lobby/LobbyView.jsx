@@ -9,7 +9,7 @@ import {
   Container,
   JoystickIcon,
   LobbyLineup,
-  LobbyPlayButton,
+  LobbyPlayButton
 } from '@components'
 import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
@@ -21,8 +21,9 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const preMatch = useSelector((state) => state.match.preMatch)
-  const match = useSelector((state) => state.match.match)
+  const preMatch = useSelector((state) => state.matchmaking.preMatch)
+
+  const match = useSelector((state) => state.matchmaking.match)
 
   const dispatch = useDispatch()
 
