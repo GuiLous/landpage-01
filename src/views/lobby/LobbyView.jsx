@@ -10,8 +10,8 @@ import {
   JoystickIcon,
   LobbyLineup,
   LobbyPlayButton,
+  MatchFoundModal,
 } from '@components'
-import { MainLayout } from '@layouts'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { removeRestartQueue } from '@slices/LobbySlice'
@@ -21,12 +21,14 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const preMatch = useSelector((state) => state.match.preMatch)
-  const match = useSelector((state) => state.match.match)
+  const preMatch = useSelector((state) => state.matchmaking.preMatch)
+
+  const match = useSelector((state) => state.matchmaking.match)
 
   const dispatch = useDispatch()
 
   const [secondsDiff, setSecondsDiff] = useState(null)
+  const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
   const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
@@ -35,7 +37,9 @@ export default function LobbyView() {
   )
 
   const handleQueue = async (action) => {
-    if (!isOwner || preMatch || match) return
+    if (preMatch || match) return
+
+    if (action === 'start' && !isOwner) return
 
     const userToken = StorageService.get('token')
 
@@ -78,7 +82,7 @@ export default function LobbyView() {
       }
     }
 
-    if (preMatch && preMatch.countdown === null) lockIn()
+    if (preMatch && preMatch.state === 'pre_start') lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch])
 
@@ -107,7 +111,9 @@ export default function LobbyView() {
   }, [lobby])
 
   useEffect(() => {
-    if (lobby.queue) {
+    let intervalId
+
+    if (lobby.queue && !preMatch) {
       const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
         .minus({ hours: 3 })
         .setZone('America/Sao_Paulo')
@@ -119,86 +125,100 @@ export default function LobbyView() {
         setSecondsDiff(diff)
       }
 
-      const interval = setInterval(calculateDiffInSeconds, 1000)
+      calculateDiffInSeconds()
 
-      return () => {
-        clearInterval(interval)
-      }
+      intervalId = setInterval(calculateDiffInSeconds, 1000)
     }
-  }, [lobby])
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [lobby, preMatch])
+
+  useEffect(() => {
+    if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
+    else setOpenMatchFoundModal(false)
+  }, [preMatch])
 
   return (
-    <MainLayout>
-      <Container className={style.container} column gap={40} align="center">
-        <Container className={style.header} gap={12} fitContent>
-          <Icon as={JoystickIcon} color="white" fontSize={30} />
-          <Container gap={8}>
-            <Text fontSize={22} fontWeight="light" textTransform="uppercase">
-              Suba de nível e
-            </Text>
-            <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
-              fique entre os melhores
-            </Text>
-          </Container>
-        </Container>
-
-        {/*
-          TODO: move the following into its own component when
-          we have more then one game mode available
-        */}
-        <Container className={style.gameType} fitContent>
-          <Container
-            className={style.gameTypeItem}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Text fontSize={18}>Ranqueada 1x1</Text>
-            <Badge>Em breve</Badge>
-          </Container>
-
-          <Container
-            className={[style.gameTypeItem, style.active].join(' ')}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Container className={style.arrowUpIcon} justify="center">
-              <Icon as={ArrowUpFilledIcon} color="primary.400" />
-            </Container>
-            <Text fontSize={18}>Ranqueada 5x5</Text>
-          </Container>
-
-          <Container
-            className={style.gameTypeItem}
-            justify="center"
-            gap={12}
-            align="center"
-          >
-            <Text fontSize={18}>Personalizada</Text>
-            <Badge>Em breve</Badge>
-          </Container>
-        </Container>
-
-        <Container className={style.lineup}>
-          <LobbyLineup
-            userPlayer={userPlayer}
-            isOwner={lobby.owner_id === user.id}
-            otherPlayers={otherPlayers}
-            lobbyId={lobby.id}
-          />
-        </Container>
-        <Container className={style.footer} fitContent>
-          <LobbyPlayButton
-            queueTime={lobby.queue && secondsDiff}
-            restrictionCountdown={lobby.restriction_countdown}
-            restricted={lobby.restriction_countdown}
-            onClick={
-              lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
-            }
-          />
+    <Container className={style.container} column gap={40} align="center">
+      <Container className={style.header} gap={12} fitContent>
+        <Icon as={JoystickIcon} color="white" fontSize={30} />
+        <Container gap={8}>
+          <Text fontSize={22} fontWeight="light" textTransform="uppercase">
+            Suba de nível e
+          </Text>
+          <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
+            fique entre os melhores
+          </Text>
         </Container>
       </Container>
-    </MainLayout>
+
+      {/*
+        TODO: move the following into its own component when
+        we have more then one game mode available
+      */}
+      <Container className={style.gameType} fitContent>
+        <Container
+          className={style.gameTypeItem}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Text fontSize={18}>Ranqueada 1x1</Text>
+          <Badge>Em breve</Badge>
+        </Container>
+
+        <Container
+          className={[style.gameTypeItem, style.active].join(' ')}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Container className={style.arrowUpIcon} justify="center">
+            <Icon as={ArrowUpFilledIcon} color="primary.400" />
+          </Container>
+          <Text fontSize={18}>Ranqueada 5x5</Text>
+        </Container>
+
+        <Container
+          className={style.gameTypeItem}
+          justify="center"
+          gap={12}
+          align="center"
+        >
+          <Text fontSize={18}>Personalizada</Text>
+          <Badge>Em breve</Badge>
+        </Container>
+      </Container>
+
+      <Container className={style.lineup}>
+        <LobbyLineup
+          userPlayer={userPlayer}
+          isOwner={lobby.owner_id === user.id}
+          otherPlayers={otherPlayers}
+          lobbyId={lobby.id}
+          queue={lobby.queue}
+        />
+      </Container>
+
+      <Container className={style.footer} fitContent>
+        <LobbyPlayButton
+          queueTime={lobby.queue && secondsDiff}
+          restrictionCountdown={lobby.restriction_countdown}
+          restricted={lobby.restriction_countdown}
+          disabled={!isOwner && !lobby.queue}
+          onClick={
+            lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
+          }
+        />
+      </Container>
+
+      <MatchFoundModal
+        isOpen={openMatchFoundModal}
+        setIsOpen={setOpenMatchFoundModal}
+        preMatch={preMatch}
+      />
+    </Container>
   )
 }

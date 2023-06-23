@@ -8,24 +8,24 @@ export default extendTheme({
         backgroundColor: 'primary.400',
         color: 'white',
         textTransform: 'uppercase',
-        fontWeight: 'normal',
-        minHeight: '44px',
+        fontWeight: 'semiBold',
+        minHeight: '42px',
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 4,
         _loading: {
           _hover: {
-            bg: 'primary.400',
-            backgroundColor: 'primary.400',
+            bg: 'gray.750',
+            backgroundColor: 'gray.750',
           },
         },
         _hover: {
           bg: 'primary.300',
           backgroundColor: 'primary.300',
           _disabled: {
-            bg: 'gray.400',
-            backgroundColor: 'gray.400',
-            color: 'gray.700',
+            bg: 'gray.750',
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
           },
         },
         _active: {
@@ -33,12 +33,14 @@ export default extendTheme({
           backgroundColor: 'primary.600',
         },
         _disabled: {
-          backgroundColor: 'gray.400',
-          color: 'gray.700',
+          backgroundColor: 'gray.750',
+          color: 'gray.550',
           opacity: 1,
+          fontWeight: 'semiBold',
+          fontSize: 14,
           _hover: {
-            backgroundColor: 'gray.400',
-            color: 'gray.700',
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
           },
         },
       },
@@ -89,26 +91,29 @@ export default extendTheme({
           backgroundColor: 'danger.400',
           borderColor: 'danger.400',
           color: 'white',
+          fontSize: 14,
+          fontWeight: 'semiBold',
           _hover: {
-            bg: 'danger.600',
-            backgroundColor: 'danger.600',
+            bg: 'danger.500',
+            backgroundColor: 'danger.500',
             color: 'white',
             _disabled: {
-              bg: 'danger.600',
-              backgroundColor: 'danger.600',
-              color: 'white',
+              bg: 'danger.750',
+              backgroundColor: 'danger.750',
+              color: 'gray.550',
             },
           },
           _active: {
-            bg: 'danger.600',
-            backgroundColor: 'danger.600',
-            borderColor: 'danger.600',
+            bg: 'danger.500',
+            backgroundColor: 'danger.500',
+            borderColor: 'danger.500',
             color: 'white',
           },
           _loading: {
             _hover: {
-              bg: 'danger.400',
-              backgroundColor: 'danger.400',
+              bg: 'danger.750',
+              backgroundColor: 'danger.750',
+              color: 'gray.550',
             },
           },
         },
@@ -185,34 +190,6 @@ export default extendTheme({
           },
         },
 
-        pin: {
-          bg: 'transparent',
-          backgroundColor: 'transparent',
-          color: 'white',
-          border: '1px solid',
-          borderColor: 'secondary.400',
-          _disabled: {
-            bg: 'transparent',
-            backgroundColor: 'transparent',
-            color: 'white',
-            opacity: 0.4,
-          },
-          _hover: {
-            backgroundColor: 'secondary.400',
-            _disabled: {
-              backgroundColor: 'transparent',
-            },
-          },
-          _loading: {
-            _hover: {
-              backgroundColor: 'transparent',
-            },
-          },
-          _active: {
-            backgroundColor: 'transparent',
-          },
-        },
-
         unstyled: {
           bg: 'transparent',
           backgroundColor: 'transparent',
@@ -240,6 +217,84 @@ export default extendTheme({
             },
           },
         },
+
+        neutral: {
+          backgroundColor: 'gray.400',
+          color: 'gray.700',
+          textTransform: 'uppercase',
+          fontWeight: 'semiBold',
+          minHeight: '42px',
+          paddingLeft: 16,
+          paddingRight: 16,
+          borderRadius: 4,
+          _loading: {
+            _hover: {
+              bg: 'gray.750',
+              backgroundColor: 'gray.750',
+            },
+          },
+          _hover: {
+            backgroundColor: 'gray.350',
+            color: 'white',
+            _disabled: {
+              backgroundColor: 'gray.750',
+              color: 'gray.550',
+            },
+          },
+          _disabled: {
+            backgroundColor: 'gray.750',
+            color: 'gray.550',
+            opacity: 1,
+            fontWeight: 'semiBold',
+            fontSize: 14,
+            _hover: {
+              backgroundColor: 'gray.750',
+              color: 'gray.550',
+            },
+          },
+          _active: {
+            backgroundColor: 'gray.350',
+            color: 'white',
+          },
+        },
+
+        outline: {
+          bg: 'transparent',
+          backgroundColor: 'transparent',
+          borderColor: 'gray.700',
+          color: 'gray.700',
+          fontSize: '14px',
+          fontWeight: 'regular',
+          _hover: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'white',
+            color: 'white',
+            _disabled: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+            },
+          },
+          _disabled: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'gray.600',
+            color: 'gray.600',
+            _hover: {
+              bg: 'transparent',
+              backgroundColor: 'transparent',
+              borderColor: 'gray.600',
+              color: 'gray.600',
+            },
+          },
+          _active: {
+            bg: 'transparent',
+            backgroundColor: 'transparent',
+            borderColor: 'white',
+            color: 'white',
+            cursor: 'default',
+          },
+        },
       },
       sizes: {
         lg: {
@@ -255,7 +310,7 @@ export default extendTheme({
           letterSpacing: '1px',
         },
         md: {
-          fontSize: '16px',
+          fontSize: '14px',
         },
         sm: {
           minHeight: '24px',
@@ -297,7 +352,7 @@ export default extendTheme({
     },
     Input: {
       defaultProps: {
-        focusBorderColor: 'secondary.400',
+        focusBorderColor: 'primary.400',
         errorBorderColor: 'danger.400',
       },
       baseStyle: {
@@ -446,18 +501,27 @@ export default extendTheme({
     },
     PinInput: {
       defaultProps: {
-        focusBorderColor: 'secondary.400',
+        focusBorderColor: 'primary.400',
         errorBorderColor: 'danger.400',
       },
       baseStyle: {
-        color: 'black',
+        color: 'gray.400',
         bg: 'white',
         backgroundColor: 'white',
+        borderRadius: 4,
+        minW: '56px',
+        minH: '56px',
+        fontWeight: 'medium',
         _placeholder: {
           color: 'gray.700',
         },
         _invalid: {
           color: 'danger.400',
+        },
+      },
+      sizes: {
+        md: {
+          fontSize: 26,
         },
       },
     },
@@ -480,7 +544,7 @@ export default extendTheme({
         header: {
           textTransform: 'uppercase',
           fontSize: '24px',
-          fontWeight: '800',
+          fontWeight: '700',
         },
       },
     },
@@ -804,6 +868,7 @@ export default extendTheme({
 
     danger: {
       400: '#F63535',
+      500: '#FF4242',
       600: '#8d1919',
     },
 
@@ -819,9 +884,12 @@ export default extendTheme({
     gray: {
       200: '#F5F6F8',
       300: '#ECECEC',
+      350: '#3d3d3d',
       400: '#333333',
       500: '#282828',
+      550: '#444444',
       600: '#434343',
+      625: '#c8c5c5',
       650: '#B7B7B7',
       700: '#999999',
       750: '#282828',

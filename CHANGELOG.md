@@ -9,6 +9,84 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona nova cor de `gray.625` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
+- Adicionado prop `disabled` no `LobbyPlayButton` na `LobbyView` para não deixar quem não é dono da fila dar start na fila [#389](https://github.com/3C-gg/reload-frontend/issues/389).
+- Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
+- Adicionado o método `playerReady` na interface de `Matchmaking`.
+- Nova variante `outline` no componente `Button` no tema.
+- Componente `ProfileNav` que renderiza navegação entre views da área da conta do usuário.
+- Layout `SidebarLayout` para ser usado nas rotas que possuírem sidebar.
+- Adicionado modal `LogoutModal` na `Sidebar` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
+- Criado componente `LogoutModal` [#382](https://github.com/3C-gg/reload-frontend/issues/382).
+- Adicionado variante `neutral` para o `Button` no tema.
+- Adicionado case de `user/logout` no `WebSocket Service` para deslogar o usuário de todas as sessões [#366](https://github.com/3C-gg/reload-frontend/issues/366).
+- Adicionado `useEffect` na view `LobbyView` para atualizar o slice de `lobby` [#359](https://github.com/3C-gg/reload-frontend/issues/359).
+- Adicionado botão de cancelar e sair no layout `SignupLayout` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
+
+### Changed
+
+- Altera função `onFakeSigninFormSubmit` na view `Home` para redirecionar o usuário para `/conta-inative` corretamente [#407](https://github.com/3C-gg/reload-frontend/issues/407).
+- Altera função `handleLogout` na view `Inactive` para deslogar o usuário corretamente.
+- Altera `LobbyView` e componente `LobbyLineup` para passar e receber a prop `queue` para remover o botão de `X` do `PlayerCard` 
+quando está em fila [#404](https://github.com/3C-gg/reload-frontend/issues/404).
+- Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
+- Altera cores do componente `ToastListItem` para ficar igual ao design [#387](https://github.com/3C-gg/reload-frontend/issues/387).
+- Altera função `handleQueue` na `LobbyView` para não iniciar fila quando não for dono do lobby [#389](https://github.com/3C-gg/reload-frontend/issues/389).
+- Alterado useEffect da `SideBar` e `LobbyView` que calcula o timer do lobby para parar a contagem quando o slice `preMatch` for diferente de null.
+- Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
+- Formatando o retorno do componente `Timer`.
+- Alterado peso da fonte do `header` do `modal` para `700`.
+- Alterado componente `MatchFoundModal` para receber as props `isOpen` e `setIsOpen` pra controlar a abertura e fazer verificações para que o código nao quebre.
+- Alterado importações de `MatchSlice` para `MatchmakingSlice` nos arquivos `Sidebar, WebSocket, Auth, Home, LobbyView e Connect`.
+- Alterado slice de `MatchSlice` para `MatchmakingSlice`.
+- Altera views `Account` e `Profile` para conterem `ProfileHeader` e `ProfileNav` ao invés de ficarem no layout.
+- Altera views `Account` e `Profile` para usarem o novo sistema de layout.
+- Altera componente `HeaderProfile` para `ProfileHeader` e ajusta para funcionar de acordo com o novo sistema de layout.
+- Altera sistema de layout para ser inserido no `Router` e não chamado nas views [#391](https://github.com/3C-gg/reload-frontend/issues/391).
+- Alterado estilo dos `modais` componentes `DeleteAccountCard` e `InactiveAccountCard` para seguir as medidas do design.
+- Alterado componente `Modal` para adicionar uma nova prop `maxWidthModal`.
+- Alterado estilos da view `Verify` para ficar igual ao design [#375](https://github.com/3C-gg/reload-frontend/issues/375).
+- Alterado estilos `PinInput` no tema para ficar igual ao design.
+- Alterado estilos do componente `Input` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
+- Alterado estilos da view `Signup` para ficar igual ao design [#374](https://github.com/3C-gg/reload-frontend/issues/374).
+- Alterado estilos do botão de login do `FakeSigninForm` para ficar no padrão do design.
+- Alterado cores do `Button` e do `Input` no tema para ficar igual ao design.
+- Substituído tratamento de websocket `user/update_lobby_id` por `user/update` [#376](https://github.com/3C-gg/reload-frontend/issues/376).
+- Alterado o `WebSocket` no case de `invite/expire` para passar o payload corretamente [#358](https://github.com/3C-gg/reload-frontend/issues/358).
+- Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Signup` [#339](https://github.com/3C-gg/reload-frontend/issues/339).
+- Alterado as imagens de background do layout `SignupLayout`.
+- Alterado cor do texto do componente `FormHelperText` de `gray.200` para `white` na view `Verify`.
+- Alterado função `handleLogout` na `SideBar` para apenas remover o token e redirecionar para `/` com `window.location` [#349](https://github.com/3C-gg/reload-frontend/issues/349).
+- Alterado view `Home` para não inicializar o slice de `user` e fazer apenas um refresh quando é feito um `fakeLogin`, assim o arquivo `App` vai inicializar todas as `apis críticas` corretamente e redirecionar o usuário para a página certa [#345](https://github.com/3C-gg/reload-frontend/issues/345). 
+- Separado a verificação se as `apis` estão prontas do `useEffect` e criado uma função `verifyIfApiIsReady`.
+  
+### Fixed
+
+- Verifica `lobby.queue` para não deixar quem está em lobby convidar amigos [#403](https://github.com/3C-gg/reload-frontend/issues/403). 
+- Botão de jogar da sidebar estava desalinhado [#399](https://github.com/3C-gg/reload-frontend/issues/399).
+- Botão de jogar do Lobby agora inicia timer assim que é clicado [#388](https://github.com/3C-gg/reload-frontend/issues/388).
+- Perfil estava sempre mostrando infos do usuário logado. Agora foi ajustado para trazer o perfil do id passado na url [#394](https://github.com/3C-gg/reload-frontend/issues/394).
+- Ajustado nome do case do `WebSocket` de `notifications/create` para `notifications/add` [#384](https://github.com/3C-gg/reload-frontend/issues/384).
+- Ajustado função `showInviteRefusedToast` para mostrar o toast apenas para quem enviou o convite [#367](https://github.com/3C-gg/reload-frontend/issues/367).
+- Ajustado função `addIfNotExists` dentro do slice de `Friend` para atualizar corretamente a lista de amigos online [#322](https://github.com/3C-gg/reload-frontend/issues/322).
+- Ajustado stories dos componentes `ToastList` e `ToastListItem` pois estavam passando um objeto `toasts` ao invés de `app` para o `preloadedState` e gerando um erro no console do navegador.
+- Ajustado stories do componente `MatchHistoryList` que estava dando erro no console do navegador por não não ter um `store` válido mockado para o reducer.
+- Corrige redirecionamento de usuário depois de login bem sucedido via Steam [#369](https://github.com/3C-gg/reload-frontend/issues/369).
+- Ajusta action `updateFriend` do `FriendSlice` para atualizar corretamente lista de amigos online e offline [#354](https://github.com/3C-gg/reload-frontend/issues/354).
+- Remove erros de console do Storybook para o componente `LobbyPlayerCard` [#331](https://github.com/3C-gg/reload-frontend/issues/331).
+- Adiciona retorno de função para prop `onPageChange` do componente `MatchHistoryPagination`, mas não resolve erro no console do Storybook para esse componente.
+
+### Removed
+
+- Removido função `handleLogout` da `Sidebar` e movido para `LogoutModal`.
+- Removido `useEffect` que atualiza o lobby na `LobbyView` [#380](https://github.com/3C-gg/reload-frontend/issues/380).
+- Toast de conta verificada, pois o usuário agora é redirecionado para a raiz da aplicação [#368](https://github.com/3C-gg/reload-frontend/issues/368).
+
+## [78f7a49 - 19/6/2023]
+
+### Added
+
 - Criado função `formatSecondsToMinutes` em `utils`.
 - Adicionado `useEffect` na view `lobbyView` e no componente `SideBar` para fazer a contagem do timer da fila com base na diferença da data da `queue` para a data atual [#315](https://github.com/3C-gg/reload-frontend/issues/315). 
 - Adicionado `useEffect` no `App` para setar valor inicial no slice de `lobby` [#316](https://github.com/3C-gg/reload-frontend/issues/316).

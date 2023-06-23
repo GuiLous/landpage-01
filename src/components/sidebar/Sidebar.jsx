@@ -20,9 +20,8 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as ReactRouterLink, useNavigate } from 'react-router-dom'
+import { Link as ReactRouterLink } from 'react-router-dom'
 
-import { AccountsAPI } from '@api'
 import logoFull from '@assets/images/logo.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
@@ -34,6 +33,7 @@ import {
   FriendList,
   FriendsIcon,
   JoystickIcon,
+  LogoutModal,
   NotificationList,
   PlayIcon,
   PodiumIcon,
@@ -45,9 +45,7 @@ import {
   Timer,
   UserIcon,
 } from '@components'
-import { StorageService } from '@services'
 import { toggleFriendList } from '@slices/AppSlice'
-import { updateUser } from '@slices/UserSlice'
 import { formatSecondsToMinutes } from '@utils'
 
 import style from './Sidebar.module.css'
@@ -55,16 +53,17 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const match = useSelector((state) => state.match.match)
+  const match = useSelector((state) => state.matchmaking.match)
+  const preMatch = useSelector((state) => state.matchmaking.preMatch)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [isCollapsed, setIsCollapsed] = useState(collapsable && collapsed)
   const [openSupport, setOpenSupport] = useState(false)
+  const [openLogoutModal, setOpenLogoutModal] = useState(false)
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
@@ -78,20 +77,16 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     setOpenSupport(true)
   }
 
+  const handleOpenModalLogout = () => {
+    setOpenLogoutModal(true)
+  }
+
   const open = () => {
     collapsable && setIsCollapsed(false)
   }
 
   const collapse = () => {
     collapsable && setIsCollapsed(true)
-  }
-
-  const handleLogout = async () => {
-    const token = StorageService.get('token')
-    await AccountsAPI.logout(token)
-    dispatch(updateUser(null))
-    StorageService.remove('token')
-    navigate('/')
   }
 
   const renderButtons = () => {
@@ -132,7 +127,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             to="/jogar"
             variant="queue"
           >
-            <Text w={10}>{formatSecondsToMinutes(secondsDiff)}</Text>
+            <Text minW="52px" top="1px" position="relative">
+              {formatSecondsToMinutes(secondsDiff)}
+            </Text>
           </Button>
         )}
 
@@ -221,7 +218,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   }, [notifications])
 
   useEffect(() => {
-    if (lobby.queue) {
+    let intervalId
+
+    if (lobby.queue && !preMatch) {
       const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
         .minus({ hours: 3 })
         .setZone('America/Sao_Paulo')
@@ -230,20 +229,18 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         const now = DateTime.now().setZone('America/Sao_Paulo')
         const diff = Math.floor(now.diff(date, 'seconds').seconds)
 
-        if (diff > 0) {
-          setSecondsDiff(diff)
-        }
+        setSecondsDiff(diff)
       }
 
-      const interval = setInterval(calculateDiffInSeconds, 1000)
+      calculateDiffInSeconds()
 
-      return () => {
-        clearInterval(interval)
-      }
-    } else {
-      setSecondsDiff(null)
+      intervalId = setInterval(calculateDiffInSeconds, 1000)
     }
-  }, [lobby])
+
+    return () => {
+      clearInterval(intervalId)
+    }
+  }, [lobby, preMatch])
 
   return (
     <>
@@ -428,7 +425,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Link>
             </Container>
 
-            <Container className={style.menuItem} onClick={handleLogout}>
+            <Container
+              className={style.menuItem}
+              onClick={handleOpenModalLogout}
+            >
               <Link
                 as="button"
                 alignItems="center"
@@ -499,7 +499,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onClose={handleCloseFriendListDrawer}
       />
 
-      <SupportModal isOpen={openSupport} setOpenSupport={setOpenSupport} />
+      <SupportModal isOpen={openSupport} setIsOpen={setOpenSupport} />
+
+      <LogoutModal isOpen={openLogoutModal} setIsOpen={setOpenLogoutModal} />
     </>
   )
 }

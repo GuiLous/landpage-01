@@ -105,7 +105,7 @@ export default function ToastListItem({
               </Text>
             </Container>
             <Container className={style.content}>
-              <Text fontSize={12} color="gray.700">
+              <Text fontSize={12} color="gray.625">
                 {content}
               </Text>
             </Container>

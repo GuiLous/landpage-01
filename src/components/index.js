@@ -83,7 +83,6 @@ import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
-import HeaderProfile from './profile/HeaderProfile'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
 import MatchHistoryList from './profile/MatchHistoryList'
@@ -91,6 +90,8 @@ import MatchHistoryPagination from './profile/MatchHistoryPagination'
 import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
+import ProfileHeader from './profile/ProfileHeader'
+import ProfileNav from './profile/ProfileNav'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -109,6 +110,9 @@ import Modal from './modal/Modal'
 import ConfirmationContent from './support/ConfirmationContent'
 import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
+
+// Logout
+import LogoutModal from './logout/LogoutModal'
 
 export {
   AcceptIcon,
@@ -146,7 +150,6 @@ export {
   FriendListGroupItem,
   FriendsIcon,
   GroupAddIcon,
-  HeaderProfile,
   HeatmapStatsCard,
   InactivateAccountCard,
   Input,
@@ -163,6 +166,7 @@ export {
   LobbyPlayerCard,
   LobbySeat,
   LockIcon,
+  LogoutModal,
   MatchFoundModal,
   MatchHistoryList,
   MatchHistoryPagination,
@@ -179,6 +183,8 @@ export {
   PlusIcon,
   PodiumIcon,
   ProfileCard,
+  ProfileHeader,
+  ProfileNav,
   Progress,
   RefuseIcon,
   RequireAuth,

@@ -1,9 +1,9 @@
 .container {
 	background-color: black;
-	background-image: url('@assets/images/signup_bg.png');
-	background-position: left bottom;
+	background-image: url('@assets/images/signup_bg_bottom_left.png'),
+		url('@assets/images/signup_bg_top_right.png');
+	background-position: left bottom, right 40px top 40px;
 	background-repeat: no-repeat;
-	background-size: contain;
 	color: white;
 	height: 100vh;
 	position: relative;
@@ -22,4 +22,11 @@
 
 .brand img {
 	width: 100%;
+}
+
+.cancelBtn {
+	left: 32px;
+	position: absolute;
+	top: 32px;
+	width: fit-content;
 }

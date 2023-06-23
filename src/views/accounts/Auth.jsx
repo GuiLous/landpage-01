@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService } from '@services'
-import { match, preMatch } from '@slices/MatchSlice'
+import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 import { updateUser } from '@slices/UserSlice'
 
 export default function AuthView() {
@@ -37,12 +37,12 @@ export default function AuthView() {
         dispatch(updateUser(response))
         if (response.account) {
           if (response.account.pre_match) {
-            dispatch(preMatch(response.account.pre_match))
+            dispatch(updatePreMatch(response.account.pre_match))
           } else if (response.account.match) {
-            dispatch(match(response.account.match))
+            dispatch(updateMatch(response.account.match))
           }
         }
-        redirectUser(response)
+        window.location.href = '/'
       } else {
         navigate('/')
       }

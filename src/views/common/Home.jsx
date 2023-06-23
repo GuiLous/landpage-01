@@ -14,8 +14,7 @@ import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { match, preMatch } from '@slices/MatchSlice'
-import { updateUser } from '@slices/UserSlice'
+import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -53,19 +52,15 @@ export default function HomeView() {
     setFetching(false)
     StorageService.set('token', response.token)
 
-    if (!response.is_active) navigate(`/conta-inativa?token=${response.token}`)
-    else {
-      dispatch(updateUser(response))
-      if (response.account) {
-        if (response.account.pre_match) {
-          dispatch(preMatch(response.account.pre_match))
-        } else if (response.account.match) {
-          dispatch(match(response.account.match))
-        }
+    if (response.account) {
+      if (response.account.pre_match) {
+        dispatch(updatePreMatch(response.account.pre_match))
+      } else if (response.account.match) {
+        dispatch(updateMatch(response.account.match))
       }
-      if (response.account.is_verified) navigate('/jogar')
-      else navigate('/verificar')
     }
+    // refresh and redirect to /jogar or /verificar
+    navigate(0)
   }
 
   return (
@@ -112,6 +107,7 @@ export default function HomeView() {
                   <Button
                     type="submit"
                     size={'lg'}
+                    fontWeight="regular"
                     style={{ fontSize: 16, width: '100%' }}
                     leftIcon={<SiSteam style={{ fontSize: 26 }} />}
                   >

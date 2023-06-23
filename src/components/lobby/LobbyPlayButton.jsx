@@ -14,13 +14,15 @@ export default function LobbyPlayButton({
   onClick,
   title = 'Jogar',
 }) {
+  const isQueued = queueTime !== null && queueTime !== undefined
+
   return (
     <Container
       className={[
         style.container,
         disabled && style.disabled,
         restrictionCountdown && style.restricted,
-        queueTime && style.queued,
+        isQueued && style.queued,
       ].join(' ')}
       onClick={onClick}
       column
@@ -52,7 +54,7 @@ export default function LobbyPlayButton({
         </Container>
       )}
 
-      {!restricted && queueTime && (
+      {!restricted && isQueued && (
         <Container column>
           <Container
             align="center"
@@ -76,7 +78,7 @@ export default function LobbyPlayButton({
         </Container>
       )}
 
-      {!restricted && !queueTime && (
+      {!restricted && !isQueued && (
         <Container
           className={style.defaultText}
           align="center"

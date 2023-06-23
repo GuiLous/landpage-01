@@ -8,9 +8,9 @@ import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
 import { addNotification } from '@slices/NotificationSlice'
-import { restartQueue, updateLobbyId, updateUser } from '@slices/UserSlice'
+import { restartQueue, updateUser } from '@slices/UserSlice'
 
-import { match, preMatch } from '@slices/MatchSlice'
+import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -22,7 +22,7 @@ export const WSS = () => {
     const invite = payload.invite
     const refused = payload.status === 'refused'
 
-    if (refused) {
+    if (refused && invite.to_player.user_id !== user.id) {
       dispatch(
         addToast({
           content: `${invite.to_player.username} recusou seu convite.`,
@@ -32,7 +32,7 @@ export const WSS = () => {
   }
 
   const showInviteExpiredToast = (payload) => {
-    const invite = payload.invite
+    const invite = payload
     const was_sent = invite.from_player.user_id === user.id
     const content = `O convite ${
       was_sent
@@ -45,6 +45,11 @@ export const WSS = () => {
         content: content,
       })
     )
+  }
+
+  const logout = async () => {
+    StorageService.remove('token')
+    window.location.href = '/'
   }
 
   useWebSocket(
@@ -65,8 +70,12 @@ export const WSS = () => {
       // ==== New Websockets ==== //
 
       // User
-      case 'user/update_lobby_id':
-        dispatch(updateLobbyId(data.payload))
+      case 'user/logout':
+        logout()
+        break
+
+      case 'user/update':
+        dispatch(updateUser(data.payload))
         break
 
       // Invites
@@ -85,7 +94,7 @@ export const WSS = () => {
         break
 
       case 'invites/expire':
-        dispatch(deleteInvite(data.payload.invite))
+        dispatch(deleteInvite(data.payload))
         showInviteExpiredToast(data.payload)
         break
 
@@ -122,8 +131,12 @@ export const WSS = () => {
         break
 
       // Notifications
-      case 'notifications/create':
+      case 'notifications/add':
         dispatch(addNotification(data.payload))
+        break
+
+      case 'matches/found':
+        dispatch(updatePreMatch(data.payload))
         break
 
       // ==== Old Websockets ==== //
@@ -133,11 +146,11 @@ export const WSS = () => {
         break
 
       case 'ws_preMatch':
-        dispatch(preMatch(data.payload))
+        dispatch(updatePreMatch(data.payload))
         break
 
       case 'ws_preMatchCancel':
-        dispatch(preMatch(null))
+        dispatch(updatePreMatch(null))
         break
 
       case 'ws_preMatchCancelWarn':
@@ -155,7 +168,7 @@ export const WSS = () => {
         break
 
       case 'ws_match':
-        dispatch(match(data.payload))
+        dispatch(updateMatch(data.payload))
         break
 
       default:

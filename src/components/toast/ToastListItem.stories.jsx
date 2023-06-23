@@ -20,7 +20,7 @@ export default {
   },
 }
 
-const preloadedState = {
+const app = {
   toasts: [
     {
       id: 1,
@@ -30,12 +30,13 @@ const preloadedState = {
       variant: 'info',
     },
   ],
+  friendListOpen: false,
 }
 
 const store = configureStore({
   reducer: { app: AppReducer },
   devTools: true,
-  preloadedState: { preloadedState },
+  preloadedState: { app },
 })
 
 export const Default = {

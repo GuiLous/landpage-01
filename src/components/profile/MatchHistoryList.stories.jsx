@@ -1,8 +1,8 @@
 /* eslint-disable no-sequences */
 import { MatchHistoryList } from '@components'
-import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import configureStore from 'redux-mock-store'
 
 export default {
   title: 'Profile/MatchHistoryList',
@@ -644,15 +644,13 @@ export default {
   },
 }
 
-const store = configureStore({
-  reducer: {},
-})
+const mockStore = configureStore()({})
 
 export const Default = {
   render: (props) => {
     return (
       <BrowserRouter>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <MatchHistoryList {...props} />
         </Provider>
       </BrowserRouter>

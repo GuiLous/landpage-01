@@ -2,26 +2,34 @@ import { Icon, Link } from '@chakra-ui/react'
 import React from 'react'
 import { SiDiscord, SiFacebook, SiInstagram, SiTwitter } from 'react-icons/si'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
+import { AccountsAPI } from '@api'
 import { Container, Footer } from '@components'
-import { HttpService, StorageService } from '@services'
-import { updateUser } from '@slices/UserSlice'
+import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 
 import inactiveBg from '@assets/images/inactive_bg.png'
 import style from './Inactive.module.css'
 
 export default function InactiveView(props) {
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const handleLogout = async () => {
     const token = StorageService.get('token')
-    await HttpService.patch('accounts/logout/', token)
+    const response = await AccountsAPI.logout(token)
 
-    dispatch(updateUser(null))
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      return
+    }
+
     StorageService.remove('token')
-    navigate('/')
+    window.location.href = '/'
   }
 
   return (
