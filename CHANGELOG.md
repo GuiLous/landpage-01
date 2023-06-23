@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona nova cor de `gray.625` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
 - Adicionado prop `disabled` no `LobbyPlayButton` na `LobbyView` para não deixar quem não é dono da fila dar start na fila [#389](https://github.com/3C-gg/reload-frontend/issues/389).
 - Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
 - adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
@@ -26,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Muda nome dos reducers `preMatch` e `match` para `updatePreMatch` e e `updateMatch`.
+- Altera cores do componente `ToastListItem` para ficar igual ao design [#387](https://github.com/3C-gg/reload-frontend/issues/387).
 - Altera função `handleQueue` na `LobbyView` para não iniciar fila quando não for dono do lobby [#389](https://github.com/3C-gg/reload-frontend/issues/389).
 - Alterado useEffect da `SideBar` e `LobbyView` que calcula o timer do lobby para parar a contagem quando o slice `preMatch` for diferente de null.
 - Alterado estilos do componente `MatchFoundModal` para ficar igual ao design.
