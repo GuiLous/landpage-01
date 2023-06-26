@@ -104,4 +104,28 @@ describe('FriendListGroup Component', () => {
     expect(screen.getByTestId('container')).not.toHaveClass('open')
     expect(screen.getByTestId('header')).toHaveClass('disabled')
   })
+
+  it('should not render header if showHeader is false', () => {
+    let args = {
+      title: 'Offline',
+      items: [
+        {
+          user_id: 11,
+          status: 'offline',
+          username: 'Username',
+          avatar:
+            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+          lobby_id: 2,
+        },
+      ],
+      showHeader: false,
+    }
+
+    render(
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    )
+    expect(screen.getByTestId('header')).toHaveClass('hideHeader')
+  })
 })
