@@ -142,7 +142,7 @@ export default function FriendList({ isOpen, onClose }) {
                   <InviteListGroup
                     title="Convites"
                     items={filteredInvites}
-                    open
+                    open={filter === ''}
                     unread={receivedInvites.length > 0}
                   />
                 </Container>
