@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adiciona nova prop `grouped` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando. 
+- Adiciona nova prop `showHeader` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando. 
 
 ### Fixed
 
