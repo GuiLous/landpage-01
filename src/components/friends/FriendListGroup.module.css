@@ -33,6 +33,6 @@
 	transform: rotate(180deg);
 }
 
-.hideGroup {
+.showHeader {
 	display: none;
 }

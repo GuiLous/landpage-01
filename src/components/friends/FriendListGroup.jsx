@@ -39,7 +39,7 @@ export default function FriendListGroup({
         className={[
           style.header,
           items.length <= 0 && style.disabled,
-          !showHeader && style.hideGroup,
+          !showHeader && style.showHeader,
         ].join(' ')}
         align="center"
         fitContent
