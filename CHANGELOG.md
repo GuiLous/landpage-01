@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [f868438 - 23-6-2023]
+
 ### Added
 
 - Adiciona nova cor de `gray.625` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
