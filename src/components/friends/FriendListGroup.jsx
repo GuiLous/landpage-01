@@ -10,12 +10,8 @@ export default function FriendListGroup({
   items,
   collapse = true,
   open = false,
+  showHeader = true,
 }) {
-  useEffect(() => {
-    if (collapse) setIsOpen(open)
-    else setIsOpen(true)
-  }, [open, collapse])
-
   const [isOpen, setIsOpen] = useState()
 
   const handleCollapse = () => {
@@ -28,6 +24,17 @@ export default function FriendListGroup({
     else return `(${items.length})`
   }
 
+  useEffect(() => {
+    if (collapse) setIsOpen(open)
+    else setIsOpen(true)
+  }, [open, collapse])
+
+  useEffect(() => {
+    if (!showHeader) {
+      setIsOpen(true)
+    }
+  }, [showHeader])
+
   return (
     <Container
       className={[style.container, isOpen && style.open].join(' ')}
@@ -35,9 +42,11 @@ export default function FriendListGroup({
       testID="container"
     >
       <Container
-        className={[style.header, items.length <= 0 && style.disabled].join(
-          ' '
-        )}
+        className={[
+          style.header,
+          items.length <= 0 && style.disabled,
+          !showHeader && style.hideHeader,
+        ].join(' ')}
         align="center"
         fitContent
         testID="header"

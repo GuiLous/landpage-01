@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import { Container, FriendListGroup } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
@@ -13,12 +14,14 @@ export default {
     collapse: { control: 'boolean' },
     open: { control: 'boolean' },
     friendsCount: { control: 'number' },
+    showHeader: { control: 'boolean' },
   },
   args: {
     title: 'Disponível',
     collapse: true,
     open: true,
     friendsCount: 2,
+    showHeader: true,
   },
   parameters: {
     mockData: [
@@ -42,6 +45,10 @@ const user = {
   lobby_id: 1,
 }
 
+const lobby = {
+  queue: null,
+}
+
 const invites = [
   {
     to_player: { user_id: 2 },
@@ -55,8 +62,9 @@ const store = configureStore({
   reducer: {
     user: UserReducer,
     invites: InviteReducer,
+    lobby: LobbyReducer,
   },
-  preloadedState: { user, invites },
+  preloadedState: { user, invites, lobby },
 })
 
 export const Default = {
