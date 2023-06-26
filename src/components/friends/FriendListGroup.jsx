@@ -10,6 +10,7 @@ export default function FriendListGroup({
   items,
   collapse = true,
   open = false,
+  grouped = true,
 }) {
   useEffect(() => {
     if (collapse) setIsOpen(open)
@@ -35,9 +36,11 @@ export default function FriendListGroup({
       testID="container"
     >
       <Container
-        className={[style.header, items.length <= 0 && style.disabled].join(
-          ' '
-        )}
+        className={[
+          style.header,
+          items.length <= 0 && style.disabled,
+          !grouped && style.hideGroup,
+        ].join(' ')}
         align="center"
         fitContent
         testID="header"
