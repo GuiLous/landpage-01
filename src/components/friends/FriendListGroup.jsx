@@ -73,7 +73,11 @@ export default function FriendListGroup({
       {items.length > 0 && isOpen && (
         <Container className={style.list} column>
           {items.map((item) => (
-            <FriendListGroupItem {...item} key={item.user_id} />
+            <FriendListGroupItem
+              key={item.user_id}
+              {...item}
+              avatar={item.avatar.medium}
+            />
           ))}
         </Container>
       )}
