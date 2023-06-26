@@ -12,11 +12,6 @@ export default function FriendListGroup({
   open = false,
   showHeader = true,
 }) {
-  useEffect(() => {
-    if (collapse) setIsOpen(open)
-    else setIsOpen(true)
-  }, [open, collapse])
-
   const [isOpen, setIsOpen] = useState()
 
   const handleCollapse = () => {
@@ -28,6 +23,11 @@ export default function FriendListGroup({
     if (items.length < 10 && items.length > 0) return `(0${items.length})`
     else return `(${items.length})`
   }
+
+  useEffect(() => {
+    if (collapse) setIsOpen(open)
+    else setIsOpen(true)
+  }, [open, collapse])
 
   return (
     <Container
