@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera a url do método `inactivate` da interface de `Accounts` para `accounts/inactivate/` [#414](https://github.com/3C-gg/reload-frontend/issues/414).
 - Altera componente `FriendList` fechar o componente `InviteListGroup` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 - Altera componente `FriendListGroup` para adicionar `useEffect` que altera o state `isOpen` para `true` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 
