@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Adiciona nova prop `grouped` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando. 
+
 ### Fixed
 
 - Ajustado overflow no container do `SupportModal` para não aparecer rolagem [#416](https://github.com/3C-gg/reload-frontend/issues/416).
