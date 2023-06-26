@@ -29,6 +29,12 @@ export default function FriendListGroup({
     else setIsOpen(true)
   }, [open, collapse])
 
+  useEffect(() => {
+    if (!showHeader) {
+      setIsOpen(true)
+    }
+  }, [showHeader])
+
   return (
     <Container
       className={[style.container, isOpen && style.open].join(' ')}

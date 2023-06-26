@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Adiciona nova prop `showHeader` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando. 
 
+### Changed 
+
+- Altera componente `FriendListGroup` para adicionar `useEffect` que altera o state `isOpen` para `true` quando estiver filtrando.
+
 ### Fixed
 
 - Ajustado overflow no container do `SupportModal` para não aparecer rolagem [#416](https://github.com/3C-gg/reload-frontend/issues/416).
