@@ -135,8 +135,19 @@ export const WSS = () => {
         dispatch(addNotification(data.payload))
         break
 
+      // Matches
       case 'matches/found':
         dispatch(updatePreMatch(data.payload))
+        break
+
+      // Toasts
+      case `toasts/create`:
+        dispatch(
+          addToast({
+            content: data.payload.content,
+            variant: data.payload.variant,
+          })
+        )
         break
 
       // ==== Old Websockets ==== //
