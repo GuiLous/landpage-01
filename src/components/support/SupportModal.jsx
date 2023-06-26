@@ -142,7 +142,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               gap: '12px',
             }}
           >
-            <Container column gap={14}>
+            <Container column gap={14} style={{ overflow: 'hidden' }}>
               <VStack alignItems="initial" w="100%">
                 <Select
                   control={control}
