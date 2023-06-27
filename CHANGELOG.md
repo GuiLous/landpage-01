@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona novo `case` no `WebSocket` de `toasts/create` [#419](https://github.com/3C-gg/reload-frontend/issues/419).
 - Adiciona nova prop `showHeader` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418). 
 
 ### Changed 
