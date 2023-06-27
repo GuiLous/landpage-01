@@ -140,6 +140,11 @@ export const WSS = () => {
         dispatch(updatePreMatch(data.payload))
         break
 
+      // Matches
+      case 'matches/create':
+        dispatch(updateMatch(data.payload))
+        break
+
       // ==== Old Websockets ==== //
 
       case 'ws_userUpdate':
