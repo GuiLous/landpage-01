@@ -6,6 +6,7 @@ import InviteReducer from './slices/InviteSlice'
 import LobbyReducer from './slices/LobbySlice'
 import MatchmakingReducer from './slices/MatchmakingSlice'
 import NotificationReducer from './slices/NotificationSlice'
+import PreMatchReducer from './slices/PreMatchSlice'
 import UserReducer from './slices/UserSlice'
 
 export default configureStore({
@@ -17,6 +18,7 @@ export default configureStore({
     friends: FriendReducer,
     app: AppReducer,
     lobby: LobbyReducer,
+    preMatch: PreMatchReducer,
   },
   devTools: true,
 })
