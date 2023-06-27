@@ -24,7 +24,7 @@ export const LobbyReducer = createSlice({
   },
 })
 
-export const { initLobby, restartQueue, removeRestartQueue, updateLobby } =
+export const { restartQueue, removeRestartQueue, updateLobby } =
   LobbyReducer.actions
 
 export default LobbyReducer.reducer
