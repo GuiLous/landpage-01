@@ -13,6 +13,7 @@ import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import MatchmakingReducer from '@slices/MatchmakingSlice'
 import NotificationReducer from '@slices/NotificationSlice'
+import PreMatchReducer from '@slices/PreMatchSlice'
 import UserReducer from '@slices/UserSlice'
 
 const server = setupServer(
@@ -107,9 +108,10 @@ describe('Sidebar Component', () => {
   const invites = []
 
   const matchmaking = {
-    preMatch: null,
     match: null,
   }
+
+  const preMatch = null
 
   const app = {
     toasts: [],
@@ -138,6 +140,7 @@ describe('Sidebar Component', () => {
       app: AppReducer,
       friends: FriendReducer,
       lobby: LobbyReducer,
+      preMatch: PreMatchReducer,
     },
     preloadedState: {
       user,
@@ -147,6 +150,7 @@ describe('Sidebar Component', () => {
       app,
       matchmaking,
       lobby,
+      preMatch,
     },
   })
 
