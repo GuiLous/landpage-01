@@ -7,10 +7,10 @@ import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
+import { updatePreMatch } from '@slices/PreMatchSlice'
 import { restartQueue, updateUser } from '@slices/UserSlice'
-
-import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -135,9 +135,14 @@ export const WSS = () => {
         dispatch(addNotification(data.payload))
         break
 
-      // Matches
-      case 'matches/found':
+      // PreMatches
+      case 'pre_matches/create':
         dispatch(updatePreMatch(data.payload))
+        break
+
+      // Matches
+      case 'matches/create':
+        dispatch(updateMatch(data.payload))
         break
 
       // Toasts

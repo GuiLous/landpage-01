@@ -21,9 +21,9 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const preMatch = useSelector((state) => state.matchmaking.preMatch)
+  const preMatch = useSelector((state) => state.preMatch)
 
-  const match = useSelector((state) => state.matchmaking.match)
+  const match = useSelector((state) => state.match)
 
   const dispatch = useDispatch()
 
