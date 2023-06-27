@@ -54,7 +54,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const match = useSelector((state) => state.matchmaking.match)
-  const preMatch = useSelector((state) => state.matchmaking.preMatch)
+  const preMatch = useSelector((state) => state.preMatch)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
