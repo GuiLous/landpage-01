@@ -7,10 +7,10 @@ import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMatch } from '@slices/MatchmakingSlice'
 import { addNotification } from '@slices/NotificationSlice'
+import { updatePreMatch } from '@slices/PreMatchSlice'
 import { restartQueue, updateUser } from '@slices/UserSlice'
-
-import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -34,11 +34,10 @@ export const WSS = () => {
   const showInviteExpiredToast = (payload) => {
     const invite = payload
     const was_sent = invite.from_player.user_id === user.id
-    const content = `O convite ${
-      was_sent
+    const content = `O convite ${was_sent
         ? 'para ' + invite.to_player.username
         : 'de ' + invite.from_player.username
-    } expirou.`
+      } expirou.`
 
     dispatch(
       addToast({
