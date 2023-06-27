@@ -23,7 +23,7 @@ export default function LobbyView() {
   const lobby = useSelector((state) => state.lobby)
   const preMatch = useSelector((state) => state.preMatch)
 
-  const match = useSelector((state) => state.matchmaking.match)
+  const match = useSelector((state) => state.match)
 
   const dispatch = useDispatch()
 

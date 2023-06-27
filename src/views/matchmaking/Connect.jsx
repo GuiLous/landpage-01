@@ -15,7 +15,7 @@ const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
 
 export default function Connect(props) {
-  const match = useSelector((state) => state.matchmaking.match)
+  const match = useSelector((state) => state.match)
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
