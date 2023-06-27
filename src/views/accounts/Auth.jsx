@@ -4,7 +4,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 
 import { Loading, LoadingBackdrop } from '@components'
 import { AuthService, StorageService } from '@services'
-import { updateMatch } from '@slices/MatchmakingSlice'
+import { updateMatch } from '@slices/MatchSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
 

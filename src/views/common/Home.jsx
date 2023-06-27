@@ -14,7 +14,7 @@ import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { updateMatch } from '@slices/MatchmakingSlice'
+import { updateMatch } from '@slices/MatchSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import style from './Home.module.css'
 
