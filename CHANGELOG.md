@@ -9,10 +9,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona case `matches/create` no `WebSocket`.
+- Cria `PreMatchSlice`.
 - Adiciona nova prop `showHeader` no componente `FriendListGroup` para esconder o agrupamento quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418). 
 
 ### Changed 
 
+- Altera importação de `updateMatch` agora vindo de `MatchSlice`.
+- Altera `SideBar`, `LobbyView` e `Connect` para usar o slice de `preMatch`.
+- Altera o reducer `matchmaking` para `match` e importa `MatchSlice` no `store`.
+- Altera `MatchmakingSlice` para `MatchSlice`.
+- Altera importação do reducer `updatePreMatch` para importar do `PreMatchSlice`.
+- Altera `SideBar` e `LobbyView` para usar o slice de `preMatch`.
+- Altera case `match/found` para `pre_matches/create` [#423](https://github.com/3C-gg/reload-frontend/issues/423).
+- Altera importação de `updatePreMatch` agora vindo de `PreMatchSlice`.
+- Adiciona `PreMatchReducer` no arquivo `store`.
 - Altera componente `FriendList` fechar o componente `InviteListGroup` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 - Altera componente `FriendListGroup` para adicionar `useEffect` que altera o state `isOpen` para `true` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 
