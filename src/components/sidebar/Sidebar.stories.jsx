@@ -9,6 +9,7 @@ import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import MatchmakingReducer from '@slices/MatchmakingSlice'
 import NotificationReducer from '@slices/NotificationSlice'
+import PreMatchReducer from '@slices/PreMatchSlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
@@ -219,9 +220,11 @@ export const Default = {
     )
 
     const matchmaking = {
-      preMatch: null,
       match: props.isInMatch,
     }
+
+    const preMatch = null
+
     const app = {
       toasts: [],
       friendListOpen: false,
@@ -245,6 +248,7 @@ export const Default = {
         app: AppReducer,
         friends: FriendReducer,
         lobby: LobbyReducer,
+        preMatch: PreMatchReducer,
       },
       preloadedState: {
         user,
@@ -254,6 +258,7 @@ export const Default = {
         app,
         matchmaking,
         lobby,
+        preMatch,
       },
     })
 
