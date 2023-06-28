@@ -137,6 +137,8 @@ export const WSS = () => {
 
       // PreMatches
       case 'pre_matches/create':
+      case 'pre_matches/update':
+      case 'pre_matches/delete':
         dispatch(updatePreMatch(data.payload))
         break
 
