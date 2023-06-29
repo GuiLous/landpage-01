@@ -142,7 +142,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             height={55}
             w="full"
             as={ReactRouterLink}
-            to="/"
+            to={`partidas/${match.id}/`}
             variant="queue"
           >
             EM PARTIDA
