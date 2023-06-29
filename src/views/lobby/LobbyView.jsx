@@ -36,7 +36,6 @@ export default function LobbyView() {
   )
 
   const handleQueue = async (action) => {
-    console.log(preMatch, match)
     if (preMatch || match) return
 
     if (action === 'start' && !isOwner) return
