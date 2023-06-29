@@ -15,7 +15,7 @@ export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
 
   const renderLatestMatchesResults = () => {
     const noMatches = player.latest_matches_results.every(
-      (val, i, arr) => val === 'N/A'
+      (val) => val === 'N/A'
     )
     if (noMatches) return 'N/A'
     else return latestMatchesResults
