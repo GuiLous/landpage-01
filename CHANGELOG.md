@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
 - Cria `PreMatchSlice`.
@@ -17,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Atualiza visual e valores do componente `LevelProgressBar`.
 - Atualiza copy da `Home` com texto oficial [#439](https://github.com/3C-gg/reload-frontend/issues/439).
 - Substitui API de Matchmaking por API de PreMatches [#434](https://github.com/3C-gg/reload-frontend/issues/434).
 - Altera importação de `updateMatch` agora vindo de `MatchSlice`.
@@ -34,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige view `MatchView`, removendo estrutura de layout antigo [#442](https://github.com/3C-gg/reload-frontend/issues/442).
 - Corrige erro de reducer nos stories do `ProfileHeader` [#436](https://github.com/3C-gg/reload-frontend/issues/436).
 - Corrige `initialState` do slice `MatchSlice` [#430](https://github.com/3C-gg/reload-frontend/issues/430).
 - Ajusta a passagem de parâmetro de `avatar` para o componente `FriendListGroupItem` no componente `FriendListGroup` [#415](https://github.com/3C-gg/reload-frontend/issues/415).

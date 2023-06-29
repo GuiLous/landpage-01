@@ -206,7 +206,7 @@ export default function LobbyView() {
           queueTime={lobby.queue && secondsDiff}
           restrictionCountdown={lobby.restriction_countdown}
           restricted={lobby.restriction_countdown}
-          disabled={!isOwner && !lobby.queue}
+          disabled={(!isOwner && !lobby.queue) || preMatch || match}
           onClick={
             lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
           }
