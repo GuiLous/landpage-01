@@ -11,10 +11,12 @@ import SignupView from './accounts/Signup'
 import UpdateEmailView from './accounts/UpdateEmail'
 import VerifyView from './accounts/Verify'
 
-// matchmaking
+// lobby
 import LobbyView from './lobby/LobbyView'
-import ConnectView from './matchmaking/Connect'
-import MatchView from './matchmaking/Match'
+
+// match
+import ConnectView from './match/Connect'
+import MatchView from './match/Match'
 
 export {
   AccountView,
