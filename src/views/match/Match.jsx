@@ -66,7 +66,7 @@ export default function MatchView(props) {
         setLoadedMatch(match)
         setFetching(false)
       } else fetch()
-    }
+    } else fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchId])
 

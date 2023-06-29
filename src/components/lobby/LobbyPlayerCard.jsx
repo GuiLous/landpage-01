@@ -9,9 +9,17 @@ import style from './LobbyPlayerCard.module.css'
 
 export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
   const latestMatchesResults = useLatestMatchesResults(
-    player.latest_matches_results,
+    player.latest_matches_results.filter((val) => val !== 'N/A'),
     false
   )
+
+  const renderLatestMatchesResults = () => {
+    const noMatches = player.latest_matches_results.every(
+      (val, i, arr) => val === 'N/A'
+    )
+    if (noMatches) return 'N/A'
+    else return latestMatchesResults
+  }
 
   return (
     <Container className={style.container} column justify="between">
@@ -42,7 +50,7 @@ export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
         </Container>
 
         <Container justify="center" className={style.latestResults}>
-          {latestMatchesResults}
+          {renderLatestMatchesResults()}
         </Container>
 
         <Divider borderColor="whiteAlpha.400" maxW="70%" />
