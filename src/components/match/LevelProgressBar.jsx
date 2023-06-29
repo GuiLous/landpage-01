@@ -8,7 +8,7 @@ import { Container, LevelBadge, Progress } from '@components'
 import style from './LevelProgressBar.module.css'
 
 export default function LevelProgressBar({
-  earned_points,
+  points_earned,
   level_points_before,
   level_points_after,
   level_before,
@@ -47,14 +47,14 @@ export default function LevelProgressBar({
         <Container>
           <Progress
             initial={level_points_before}
-            value={earned_points}
+            value={points_earned}
             horizontalPadding={18}
           />
         </Container>
 
         <Container
           justify="between"
-          style={{ paddingLeft: 45, paddingRight: 45 }}
+          style={{ paddingLeft: 30, paddingRight: 30 }}
         >
           <Container>
             <Text textTransform={'uppercase'} fontSize={12}>
