@@ -10,7 +10,7 @@ import { updateLobby } from '@slices/LobbySlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
-import { restartQueue, updateUser } from '@slices/UserSlice'
+import { updateUser } from '@slices/UserSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
@@ -137,6 +137,8 @@ export const WSS = () => {
 
       // PreMatches
       case 'pre_matches/create':
+      case 'pre_matches/update':
+      case 'pre_matches/delete':
         dispatch(updatePreMatch(data.payload))
         break
 
@@ -153,38 +155,6 @@ export const WSS = () => {
             variant: data.payload.variant,
           })
         )
-        break
-
-      // ==== Old Websockets ==== //
-
-      case 'ws_userUpdate':
-        dispatch(updateUser(data.payload))
-        break
-
-      case 'ws_preMatch':
-        dispatch(updatePreMatch(data.payload))
-        break
-
-      case 'ws_preMatchCancel':
-        dispatch(updatePreMatch(null))
-        break
-
-      case 'ws_preMatchCancelWarn':
-        dispatch(
-          addToast({
-            content:
-              'Seu grupo não aceitou a pré verificação. A partida foi cancelada e seu grupo foi removido da fila.',
-            variant: 'warning',
-          })
-        )
-        break
-
-      case 'ws_restartQueue':
-        dispatch(restartQueue())
-        break
-
-      case 'ws_match':
-        dispatch(updateMatch(data.payload))
         break
 
       default:
