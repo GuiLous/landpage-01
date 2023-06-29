@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LobbiesAPI, MatchmakingAPI } from '@api'
+import { LobbiesAPI, PreMatchesAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -70,7 +70,7 @@ export default function LobbyView() {
       const userToken = StorageService.get('token')
       let response = null
 
-      response = await MatchmakingAPI.playerLockIn(userToken, preMatch.id)
+      response = await PreMatchesAPI.playerLockIn(userToken, preMatch.id)
 
       if (response.errorMsg) {
         dispatch(

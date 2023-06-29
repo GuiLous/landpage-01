@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Substitui API de Matchmaking por API de PreMatches [#434](https://github.com/3C-gg/reload-frontend/issues/434).
 - Altera importação de `updateMatch` agora vindo de `MatchSlice`.
 - Altera `SideBar`, `LobbyView` e `Connect` para usar o slice de `preMatch`.
 - Altera o reducer `matchmaking` para `match` e importa `MatchSlice` no `store`.
