@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
 - Cria `PreMatchSlice`.
 - Adiciona novo `case` no `WebSocket` de `toasts/create` [#419](https://github.com/3C-gg/reload-frontend/issues/419).

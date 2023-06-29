@@ -1,14 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { FriendsAPI, LobbiesAPI, NotificationsAPI } from '@api'
+import {
+  FriendsAPI,
+  LobbiesAPI,
+  MatchesAPI,
+  NotificationsAPI,
+  PreMatchesAPI,
+} from '@api'
 import { Container, Loading, LoadingBackdrop, ToastList } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { initFriends } from '@slices/FriendSlice'
 import { initInvites } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMatch } from '@slices/MatchSlice'
 import { initNotifications } from '@slices/NotificationSlice'
+import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
 import Router from './Router'
 
@@ -23,6 +31,8 @@ export default function App() {
     friends: false,
     invites: false,
     notifications: false,
+    match: false,
+    preMatch: false,
   })
 
   const userToken = StorageService.get('token')
@@ -135,6 +145,46 @@ export default function App() {
     if (apisReady.invites) initializeNotifications()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apisReady.invites])
+
+  // ======================== //
+  // Initialize match       //
+  // ======================== //
+  useEffect(() => {
+    const initializeMatch = async () => {
+      const response = await MatchesAPI.detail(userToken, user.match_id)
+
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(updateMatch(response))
+
+      setApisReady({ ...apisReady, match: true })
+    }
+
+    if (apisReady.notifications) {
+      if (user.match_id) initializeMatch()
+      else setApisReady({ ...apisReady, match: true })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.notifications])
+
+  // ======================== //
+  // Initialize preMatch       //
+  // ======================== //
+  useEffect(() => {
+    const initializePreMatch = async () => {
+      const response = await PreMatchesAPI.detail(userToken)
+
+      if (response.errorMsg) showErrorToast(response.errorMsg)
+      else dispatch(updatePreMatch(response))
+
+      setApisReady({ ...apisReady, preMatch: true })
+    }
+
+    if (apisReady.match) {
+      if (user.pre_match_id) initializePreMatch()
+      else setApisReady({ ...apisReady, preMatch: true })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [apisReady.match])
 
   return fetching ? (
     <LoadingBackdrop>
