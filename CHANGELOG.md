@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
 - Cria `PreMatchSlice`.
 - Adiciona novo `case` no `WebSocket` de `toasts/create` [#419](https://github.com/3C-gg/reload-frontend/issues/419).
@@ -33,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige erro de reducer nos stories do `ProfileHeader` [#436](https://github.com/3C-gg/reload-frontend/issues/436).
 - Corrige `initialState` do slice `MatchSlice` [#430](https://github.com/3C-gg/reload-frontend/issues/430).
 - Ajusta a passagem de parâmetro de `avatar` para o componente `FriendListGroupItem` no componente `FriendListGroup` [#415](https://github.com/3C-gg/reload-frontend/issues/415).
 - Ajustado overflow no container do `SupportModal` para não aparecer rolagem [#416](https://github.com/3C-gg/reload-frontend/issues/416).
