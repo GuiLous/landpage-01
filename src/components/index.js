@@ -45,6 +45,7 @@ import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import ExitIcon from './icons/ExitIcon'
+import FlagIcon from './icons/FlagIcon'
 import FriendsIcon from './icons/FriendsIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import JoystickIcon from './icons/JoystickIcon'
@@ -144,6 +145,7 @@ export {
   FavoriteWeaponCard,
   FileCard,
   FileInput,
+  FlagIcon,
   Footer,
   FriendList,
   FriendListGroup,
