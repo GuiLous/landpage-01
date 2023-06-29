@@ -180,11 +180,12 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                       {player.username}
                     </Text>
 
-                    <Text fontSize={'11px'} fontWeight={'normal'}>
-                      LEVEL{' '}
-                      <Text as={'span'} fontWeight={'bold'}>
-                        {player.level}
-                      </Text>
+                    <Text
+                      fontSize={'11px'}
+                      fontWeight={'medium'}
+                      color="gray.700"
+                    >
+                      LEVEL {player.level}
                     </Text>
                   </Container>
                 </Container>
