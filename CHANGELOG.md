@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Histórico de últimas 5 partidas no card de player do Lobby agora só mostra os resultados com valor, ou "N/A" uma única vez para representar que o usuário ainda não jogou partidas []().
 - Botão da sidebar leva para página de detalhe de partida quando usuário está em partida [#446](https://github.com/3C-gg/reload-frontend/issues/446).
 - Atualiza visual e valores do componente `LevelProgressBar`.
 - Atualiza copy da `Home` com texto oficial [#439](https://github.com/3C-gg/reload-frontend/issues/439).
@@ -37,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige página de detalhe de partida não estar carregando caso usuário não esteja em partida.
 - Corrige view `MatchView`, removendo estrutura de layout antigo [#442](https://github.com/3C-gg/reload-frontend/issues/442).
 - Corrige erro de reducer nos stories do `ProfileHeader` [#436](https://github.com/3C-gg/reload-frontend/issues/436).
 - Corrige `initialState` do slice `MatchSlice` [#430](https://github.com/3C-gg/reload-frontend/issues/430).
