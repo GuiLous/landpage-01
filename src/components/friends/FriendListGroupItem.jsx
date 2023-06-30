@@ -20,6 +20,7 @@ export default function FriendListGroupItem({
 }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
+
   const invites = useSelector((state) => state.invites)
 
   const dispatch = useDispatch()
@@ -27,8 +28,12 @@ export default function FriendListGroupItem({
 
   const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
+  const alreadyInvitedByFriend = lobby.invited_players_ids.some(
+    (id) => id === user_id
+  )
   const alreadyInvited =
-    invites.filter((invite) => invite.to_player.user_id === user_id).length > 0
+    invites.filter((invite) => invite.to_player.user_id === user_id).length >
+      0 || alreadyInvitedByFriend
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable =
