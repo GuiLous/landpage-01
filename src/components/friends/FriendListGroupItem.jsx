@@ -87,7 +87,7 @@ export default function FriendListGroupItem({
           {username}
         </Text>
         <Text fontSize={12} fontWeight="medium" color="gray.700">
-          {humanStatus}
+          {alreadyOnTeam ? 'No seu grupo' : humanStatus}
         </Text>
       </Container>
 

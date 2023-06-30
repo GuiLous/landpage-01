@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Pasta de views `match` para conter views relacionadas a partidas.
-- Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [438](https://github.com/3C-gg/reload-frontend/issues/438).
+- Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
 - Cria `PreMatchSlice`.
 - Adiciona novo `case` no `WebSocket` de `toasts/create` [#419](https://github.com/3C-gg/reload-frontend/issues/419).
@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera o status do player de `Em grupo` para `No seu grupo` quando estiver no mesmo grupo [#452](https://github.com/3C-gg/reload-frontend/issues/452).
+- Altera `títle` do `FriendListGroup` de `Em Grupo` para `No seu grupo` [#452](https://github.com/3C-gg/reload-frontend/issues/452).
 - Altera `FriendListGroupItem` para verificar se um amigo já foi convidado para o lobby por outro amigo [#427](https://github.com/3C-gg/reload-frontend/issues/427).
 - Histórico de últimas 5 partidas no card de player do Lobby agora só mostra os resultados com valor, ou "N/A" uma única vez para representar que o usuário ainda não jogou partidas []().
 - Botão da sidebar leva para página de detalhe de partida quando usuário está em partida [#446](https://github.com/3C-gg/reload-frontend/issues/446).
