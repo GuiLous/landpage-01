@@ -41,6 +41,7 @@ const invites = []
 
 const lobby = {
   queue: null,
+  invited_players_ids: [],
 }
 
 const store = configureStore({
