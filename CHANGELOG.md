@@ -18,8 +18,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Altera a lógica de `alreadyInvited` no componente `FriendListGroupItem` para verificar se os amigos já estão em grupo 
-e não poder convidar eles [#427](https://github.com/3C-gg/reload-frontend/issues/427).
 - Histórico de últimas 5 partidas no card de player do Lobby agora só mostra os resultados com valor, ou "N/A" uma única vez para representar que o usuário ainda não jogou partidas []().
 - Botão da sidebar leva para página de detalhe de partida quando usuário está em partida [#446](https://github.com/3C-gg/reload-frontend/issues/446).
 - Atualiza visual e valores do componente `LevelProgressBar`.

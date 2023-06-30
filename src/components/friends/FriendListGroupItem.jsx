@@ -28,8 +28,7 @@ export default function FriendListGroupItem({
   const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
   const alreadyInvited =
-    invites.filter((invite) => invite.to_player.user_id === user_id).length >
-      0 || status === 'teaming'
+    invites.filter((invite) => invite.to_player.user_id === user_id).length > 0
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable =
