@@ -1,7 +1,11 @@
 import { Button, Image, Text } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 
+import { AccountsAPI } from '@api'
 import { Container, Footer } from '@components'
+import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 
 import alert from '@assets/images/alert.png'
 import logo from '@assets/images/logo_type_white.svg'
@@ -9,6 +13,30 @@ import logo from '@assets/images/logo_type_white.svg'
 import style from './Maintenance.module.css'
 
 export default function MaintenanceView() {
+  const dispatch = useDispatch()
+
+  const [isFetching, setIsFetching] = useState(false)
+
+  const handleLogout = async () => {
+    setIsFetching(true)
+    const token = StorageService.get('token')
+    const response = await AccountsAPI.logout(token)
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+      setIsFetching(false)
+      return
+    }
+
+    StorageService.remove('token')
+    window.location.href = '/'
+  }
+
   return (
     <Container className={style.container}>
       <Container
@@ -30,7 +58,13 @@ export default function MaintenanceView() {
             Volte mais tarde quando o serviço for restaurado.
           </Text>
 
-          <Button borderRadius="4px" px={45} as={RouterLink} to="/">
+          <Button
+            borderRadius="4px"
+            px={45}
+            isLoading={isFetching}
+            disabled={isFetching}
+            onClick={handleLogout}
+          >
             <Text
               textTransform="uppercase"
               fontSize={14}
@@ -42,7 +76,6 @@ export default function MaintenanceView() {
           </Button>
         </Container>
       </Container>
-
       <Footer />
     </Container>
   )
