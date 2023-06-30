@@ -72,11 +72,11 @@ export default function Router({ user }) {
           <Route element={<MainLayout />}>
             <Route path="/jogar" element={<LobbyView />} />
             <Route path="/partidas/:matchId" element={<MatchView />} />
-            <Route
-              path="/partidas/:matchId/conectar/"
-              element={<ConnectView />}
-            />
           </Route>
+          <Route
+            path="/partidas/:matchId/conectar/"
+            element={<ConnectView />}
+          />
           <Route element={<ProfileLayout />}>
             <Route path="/conta" element={<AccountView />} />
             <Route path="/perfil/:userId" element={<ProfileView />} />
