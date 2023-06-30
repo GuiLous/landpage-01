@@ -113,12 +113,10 @@ export default function LobbyView() {
     let intervalId
 
     if (lobby.queue && !preMatch) {
-      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
-        .minus({ hours: 3 })
-        .setZone('America/Sao_Paulo')
+      const date = DateTime.fromISO(lobby.queue)
 
       const calculateDiffInSeconds = () => {
-        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const now = DateTime.utc()
         const diff = Math.floor(now.diff(date, 'seconds').seconds)
 
         setSecondsDiff(diff)
