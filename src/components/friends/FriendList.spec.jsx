@@ -74,6 +74,7 @@ describe('FriendList Component', () => {
     queue: null,
     id: 1,
     players: [{ user_id: 1 }],
+    invited_players_ids: [],
   }
 
   const store = configureStore({

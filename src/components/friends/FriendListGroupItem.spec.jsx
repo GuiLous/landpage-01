@@ -37,6 +37,7 @@ describe('FriendListGroupItem Component', () => {
 
   const lobby = {
     queue: null,
+    invited_players_ids: [],
   }
 
   const store = configureStore({

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import { FriendListGroup } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('FriendListGroup Component', () => {
@@ -14,12 +15,18 @@ describe('FriendListGroup Component', () => {
 
   const invites = []
 
+  const lobby = {
+    queue: null,
+    invited_players_ids: [],
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,
       invites: InviteReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, invites },
+    preloadedState: { user, invites, lobby },
   })
 
   it('should render title and count correctly', () => {
