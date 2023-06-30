@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
@@ -16,6 +17,7 @@ export const WSS = () => {
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
   const token = StorageService.get('token')
 
   const showInviteRefusedToast = (payload) => {
@@ -145,6 +147,7 @@ export const WSS = () => {
       // Matches
       case 'matches/create':
         dispatch(updateMatch(data.payload))
+        navigate(`/partidas/${data.payload.id}/conectar/`)
         break
 
       // Toasts
