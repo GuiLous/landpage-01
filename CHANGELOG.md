@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Alterado lógica de calcular a diferença em segundos `secondsDiff` no useEffect do componente `Sidebar` e da view `LobbyView` [#412](https://github.com/3C-gg/reload-frontend/issues/412).
 - Ao receber websocket de criação de partida, aplicação redireciona usuário para tela de conectar [#450](https://github.com/3C-gg/reload-frontend/issues/450).
 - Altera o status do player de `Em grupo` para `No seu grupo` quando estiver no mesmo grupo [#452](https://github.com/3C-gg/reload-frontend/issues/452).
 - Altera `títle` do `FriendListGroup` de `Em Grupo` para `No seu grupo` [#452](https://github.com/3C-gg/reload-frontend/issues/452).
