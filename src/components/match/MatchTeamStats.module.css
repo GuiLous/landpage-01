@@ -25,6 +25,13 @@
 	text-align: center;
 }
 
+.tableContainer .winner,
+.tableContainer .loser {
+	max-width: 300px;
+	overflow: hidden;
+	width: 300px;
+}
+
 .tableContainer .winner {
 	color: var(--chakra-colors-success);
 	font-size: 16px;

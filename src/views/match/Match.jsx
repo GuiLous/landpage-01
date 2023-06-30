@@ -84,12 +84,10 @@ export default function MatchView(props) {
             <Icon as={FlagIcon} />
           )}
 
-          <Text>
-            Partida{' '}
-            <span style={{ fontWeight: 'bolder' }}>
-              {statusMap[loadedMatch.status]}
-            </span>
-          </Text>
+          <Container gap={5}>
+            <Text>Partida</Text>
+            <Text fontWeight="bold">{statusMap[loadedMatch.status]}</Text>
+          </Container>
         </Container>
 
         <Container
@@ -98,7 +96,9 @@ export default function MatchView(props) {
           gap={24}
           align="center"
         >
-          <Text className={style.teamName}>{loadedMatch.teams[0].name}</Text>
+          <Text className={style.teamName}>
+            Time {loadedMatch.teams[0].name}
+          </Text>
           <Container fitContent gap={14} align="center">
             <Text
               className={[
@@ -122,7 +122,9 @@ export default function MatchView(props) {
               {loadedMatch.teams[1].score}
             </Text>
           </Container>
-          <Text className={style.teamName}>{loadedMatch.teams[1].name}</Text>
+          <Text className={style.teamName}>
+            Time {loadedMatch.teams[1].name}
+          </Text>
         </Container>
       </Container>
 

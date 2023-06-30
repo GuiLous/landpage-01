@@ -73,7 +73,7 @@ export default function MatchTeamStats({ team, isWinning = false }) {
         <Thead>
           <Tr>
             <Th className={isWinning ? style.winner : style.loser}>
-              {team.name}
+              Time {team.name}
             </Th>
             <Tooltip label="Abates" aria-label="Abates tooltip">
               <Th>K</Th>
@@ -176,16 +176,8 @@ export default function MatchTeamStats({ team, isWinning = false }) {
                   </Container>
 
                   <Container className={style.username} column fitContent>
-                    <Text fontWeight="semiBold" fontSize={'14px'}>
+                    <Text fontWeight="medium" fontSize={'16px'}>
                       {player.username}
-                    </Text>
-
-                    <Text
-                      fontSize={'11px'}
-                      fontWeight={'medium'}
-                      color="gray.700"
-                    >
-                      LEVEL {player.level}
                     </Text>
                   </Container>
                 </Container>

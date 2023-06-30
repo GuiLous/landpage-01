@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Ajusta visual e layout da página de detalhe de partida [#455](https://github.com/3C-gg/reload-frontend/issues/455).
 - Alterado lógica de calcular a diferença em segundos `secondsDiff` no useEffect do componente `Sidebar` e da view `LobbyView` [#412](https://github.com/3C-gg/reload-frontend/issues/412).
 - Ajusta layout e elementos visuais da página de conexão de partida [#456](https://github.com/3C-gg/reload-frontend/issues/456).
 - Ao receber websocket de criação de partida, aplicação redireciona usuário para tela de conectar [#450](https://github.com/3C-gg/reload-frontend/issues/450).
