@@ -1,7 +1,6 @@
 import { Button, Image, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 import { AccountsAPI, AppAPI } from '@api'
 import { Container, Footer } from '@components'
@@ -20,7 +19,6 @@ export default function MaintenanceView() {
   const maintenance = useSelector((state) => state.maintenance)
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [isFetching, setIsFetching] = useState(false)
 
@@ -64,7 +62,7 @@ export default function MaintenanceView() {
 
       if (!response.maintenance) {
         dispatch(updateMaintenance(false))
-        navigate('/jogar')
+        window.location.href = '/jogar'
       }
     }
 
