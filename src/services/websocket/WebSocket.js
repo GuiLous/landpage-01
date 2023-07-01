@@ -8,6 +8,7 @@ import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMaintenance } from '@slices/MaintenanceSlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
@@ -158,6 +159,17 @@ export const WSS = () => {
             variant: data.payload.variant,
           })
         )
+        break
+
+      // Maintenance
+      case 'maintenance/start':
+        dispatch(updateMaintenance(true))
+        navigate('/manutencao')
+        break
+
+      case 'maintenance/end':
+        dispatch(updateMaintenance(false))
+        navigate('/')
         break
 
       default:
