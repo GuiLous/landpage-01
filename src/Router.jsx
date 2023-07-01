@@ -20,7 +20,7 @@ import {
   ProfileView,
   SignupView,
   UpdateEmailView,
-  VerifyView
+  VerifyView,
 } from '@views'
 
 export default function Router({ user, maintenance }) {
