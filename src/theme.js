@@ -873,6 +873,8 @@ export default extendTheme({
       600: '#8d1919',
     },
 
+    win: '#26BD39',
+
     success: '#6BE400',
     warning: '#FFD426',
 
