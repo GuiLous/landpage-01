@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460). 
+- View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460).
 - Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera links na `Sidebar` para remover "trailing slash".
+- Ajusta views de perfil e conta para refletir mudanças no `ProfileHeader`.
+- Atualiza estilos do componente `ProfileHeader` para seguir novas especificações de design [#435](https://github.com/3C-gg/reload-frontend/issues/435).
+- Ajusta borda do thema do `Avatar` para quando for `xl` ter uma borda mais grossa.
 - Ajusta visual e layout da página de detalhe de partida [#455](https://github.com/3C-gg/reload-frontend/issues/455).
 - Alterado lógica de calcular a diferença em segundos `secondsDiff` no useEffect do componente `Sidebar` e da view `LobbyView` [#412](https://github.com/3C-gg/reload-frontend/issues/412).
 - Ajusta layout e elementos visuais da página de conexão de partida [#456](https://github.com/3C-gg/reload-frontend/issues/456).
@@ -55,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `ProfileNav` que não está mais sendo utilizado devido as atualizações de design no `ProfileHeader`.
 - Removido `reducers` que não estavam sendo utilizados de `UserSLice` e `LobbySlice`.
 
 ## [f868438 - 23-6-2023]
