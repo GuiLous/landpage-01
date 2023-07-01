@@ -1,28 +1,41 @@
 import { Avatar, Progress, Text } from '@chakra-ui/react'
+import { NavLink as RouterLink } from 'react-router-dom'
 
 import { Container } from '@components'
 
-export default function ProfileHeader({ profile }) {
+import style from './ProfileHeader.module.css'
+
+export default function ProfileHeader({ profile, hideNav }) {
   return (
-    <Container align="center" gap={100} justify="between">
-      <Container gap={16} align="center">
+    <Container
+      align="end"
+      gap={100}
+      justify="between"
+      className={style.container}
+    >
+      <Container gap={16} align="center" className={style.info}>
         <Container fitContent>
-          <Avatar src={profile.avatar.medium} size="xl" />
+          <Avatar src={profile.avatar.large} size="xl" variant="white" />
         </Container>
 
-        <Container column gap={14}>
-          <Text fontSize={20} fontWeight="bold" color="white">
-            {profile.username}
-          </Text>
+        <Container column gap={18}>
+          <Container column>
+            <Text fontSize={20} fontWeight="bold" color="white">
+              {profile.username}
+            </Text>
+            <Text fontSize={14} color="white">
+              Membro desde {profile.date_joined}
+            </Text>
+          </Container>
 
           <Container column gap={6}>
             <Progress h="9px" w="100%" value={profile.level_points} />
 
             <Container justify="between">
-              <Text fontSize={12} color="gray.700" textTransform="uppercase">
+              <Text fontSize={12} color="white" textTransform="uppercase">
                 Pontos de nível
               </Text>
-              <Text fontSize={12} color="gray.700">
+              <Text fontSize={12} color="white">
                 {profile.level_points}/100
               </Text>
             </Container>
@@ -30,34 +43,31 @@ export default function ProfileHeader({ profile }) {
         </Container>
       </Container>
 
-      <Container gap={40} fitContent>
-        <Container column align="center" justify="center" fitContent>
-          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
-            Abates
-          </Text>
-          <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.kills || 0}
-          </Text>
-        </Container>
+      {!hideNav && (
+        <Container gap={32} fitContent>
+          <Container>
+            <RouterLink
+              to={`/perfil/${profile.user_id}`}
+              className={({ isActive }) =>
+                [style.link, isActive && style.active].join(' ')
+              }
+            >
+              Perfil
+            </RouterLink>
+          </Container>
 
-        <Container column align="center" justify="center" fitContent>
-          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
-            Assistências
-          </Text>
-          <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.assists || 0}
-          </Text>
+          <Container>
+            <RouterLink
+              to={`/conta`}
+              className={({ isActive }) =>
+                [style.link, isActive && style.active].join(' ')
+              }
+            >
+              Conta
+            </RouterLink>
+          </Container>
         </Container>
-
-        <Container column align="center" justify="center" fitContent>
-          <Text fontSize={'14px'} fontWeight="medium" color="gray.700">
-            Headshots
-          </Text>
-          <Text fontSize={'20px'} fontWeight={'bold'}>
-            {profile.stats.head_shots || 0}
-          </Text>
-        </Container>
-      </Container>
+      )}
     </Container>
   )
 }
