@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Ajusta data de cadastro do usuário no `ProfileHeader` [#464](https://github.com/3C-gg/reload-frontend/issues/464).
 - Altera links na `Sidebar` para remover "trailing slash".
 - Ajusta views de perfil e conta para refletir mudanças no `ProfileHeader`.
 - Atualiza estilos do componente `ProfileHeader` para seguir novas especificações de design [#435](https://github.com/3C-gg/reload-frontend/issues/435).

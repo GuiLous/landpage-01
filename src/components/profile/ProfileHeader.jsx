@@ -1,4 +1,5 @@
 import { Avatar, Progress, Text } from '@chakra-ui/react'
+import { DateTime } from 'luxon'
 import { NavLink as RouterLink } from 'react-router-dom'
 
 import { Container } from '@components'
@@ -23,9 +24,18 @@ export default function ProfileHeader({ profile, hideNav }) {
             <Text fontSize={20} fontWeight="bold" color="white">
               {profile.username}
             </Text>
-            <Text fontSize={14} color="white">
-              Membro desde {profile.date_joined}
-            </Text>
+
+            <Container gap={5}>
+              <Text fontSize={14} color="white">
+                Membro desde
+              </Text>
+              <Text fontSize={14} color="white" fontWeight="bold">
+                {DateTime.fromISO(profile.date_joined).toLocaleString({
+                  month: 'long',
+                  year: 'numeric',
+                })}
+              </Text>
+            </Container>
           </Container>
 
           <Container column gap={6}>
