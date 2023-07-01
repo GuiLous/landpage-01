@@ -1,5 +1,6 @@
 // common
 import HomeView from './common/Home'
+import MaintenanceView from './common/Maintenance'
 import NotFoundView from './common/NotFound'
 
 // accounts
@@ -25,6 +26,7 @@ export {
   HomeView,
   InactiveView,
   LobbyView,
+  MaintenanceView,
   MatchView,
   NotFoundView,
   ProfileView,

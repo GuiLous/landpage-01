@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460). 
 - Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
