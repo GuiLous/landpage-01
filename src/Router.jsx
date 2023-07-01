@@ -20,7 +20,7 @@ import {
   ProfileView,
   SignupView,
   UpdateEmailView,
-  VerifyView,
+  VerifyView
 } from '@views'
 
 export default function Router({ user, maintenance }) {
@@ -30,10 +30,9 @@ export default function Router({ user, maintenance }) {
   const verificationRequired = user && user.account && !user.account.is_verified
   const activeUser = user && user.is_active
   const verifiedUser = activeUser && user.account && user.account.is_verified
-  const underMaintenance = maintenance
 
   if (user) {
-    if (location.pathname !== '/manutencao' && underMaintenance)
+    if (location.pathname !== '/manutencao' && maintenance)
       return <Navigate to="/manutencao" replace />
 
     if (location.pathname !== '/conta-inativa' && !activeUser)
@@ -53,7 +52,7 @@ export default function Router({ user, maintenance }) {
 
   return (
     <Routes>
-      {underMaintenance && (
+      {maintenance && (
         <Route path="/manutencao" element={<MaintenanceView />} />
       )}
 
