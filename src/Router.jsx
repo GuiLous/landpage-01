@@ -32,8 +32,19 @@ export default function Router({ user, maintenance }) {
   const verifiedUser = activeUser && user.account && user.account.is_verified
 
   if (user) {
-    if (location.pathname !== '/manutencao' && maintenance)
+    if (location.pathname === '/manutencao' && !maintenance)
+      return <Navigate to="/jogar" replace />
+
+    if (
+      location.pathname !== '/manutencao' &&
+      location.pathname !== '/conta-inativa' &&
+      location.pathname !== '/cadastrar' &&
+      location.pathname !== '/verificar' &&
+      location.pathname !== '/alterar-email' &&
+      maintenance
+    ) {
       return <Navigate to="/manutencao" replace />
+    }
 
     if (location.pathname !== '/conta-inativa' && !activeUser)
       return <Navigate to="/conta-inativa" replace />
