@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const MaintenanceReducer = createSlice({
   name: 'maintenance',
-  initialState: true,
+  initialState: false,
   reducers: {
     updateMaintenance: (state, action) => {
       state = action.payload
