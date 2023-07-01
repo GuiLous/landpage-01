@@ -14,6 +14,7 @@ import {
   HomeView,
   InactiveView,
   LobbyView,
+  MaintenanceView,
   MatchView,
   NotFoundView,
   ProfileView,
@@ -22,15 +23,19 @@ import {
   VerifyView,
 } from '@views'
 
-export default function Router({ user }) {
+export default function Router({ user, maintenance }) {
   const location = useLocation()
 
   const signupRequired = user && !user.account
   const verificationRequired = user && user.account && !user.account.is_verified
   const activeUser = user && user.is_active
   const verifiedUser = activeUser && user.account && user.account.is_verified
+  const underMaintenance = maintenance
 
   if (user) {
+    if (location.pathname !== '/manutencao' && underMaintenance)
+      return <Navigate to="/manutencao" replace />
+
     if (location.pathname !== '/conta-inativa' && !activeUser)
       return <Navigate to="/conta-inativa" replace />
 
@@ -48,6 +53,10 @@ export default function Router({ user }) {
 
   return (
     <Routes>
+      {underMaintenance && (
+        <Route path="/manutencao" element={<MaintenanceView />} />
+      )}
+
       {user && !activeUser && (
         <Route path="/conta-inativa" element={<InactiveView />} />
       )}
