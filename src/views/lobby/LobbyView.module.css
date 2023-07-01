@@ -5,10 +5,9 @@
 }
 
 .gameTypeItem {
-	border-bottom: 1px solid var(--chakra-colors-gray-700);
-	color: var(--chakra-colors-gray-700);
-	font-weight: var(--chakra-fontWeights-light);
-	padding-bottom: 32px;
+	border-bottom: 1px solid var(--chakra-colors-gray-550);
+	color: var(--chakra-colors-gray-550);
+	padding-bottom: 18px;
 	position: relative;
 	text-transform: uppercase;
 }

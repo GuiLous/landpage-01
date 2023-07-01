@@ -162,7 +162,7 @@ export default function LobbyView() {
           gap={12}
           align="center"
         >
-          <Text fontSize={18}>Ranqueada 1x1</Text>
+          <Text fontSize={18}>TDM 5x5</Text>
           <Badge>Em breve</Badge>
         </Container>
 

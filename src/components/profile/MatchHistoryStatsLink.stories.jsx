@@ -58,7 +58,9 @@ export default {
       rounds: 15,
       start_date: '2023-05-05T10:00:00',
       end_date: '2023-05-05T10:30:00',
-      map_name: 'Inferno',
+      map: {
+        name: 'Auditório',
+      },
     },
   },
 }
