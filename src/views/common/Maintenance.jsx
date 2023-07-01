@@ -62,7 +62,6 @@ export default function MaintenanceView() {
 
       if (!response.maintenance) {
         dispatch(updateMaintenance(false))
-        window.location.href = '/jogar'
       }
     }
 
