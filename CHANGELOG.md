@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- altera visual e textos do menu de jogar do Lobby para refletir tipos de jogos que teremos em breve e novas specs de design [#433](https://github.com/3C-gg/reload-frontend/issues/433).
 - Ajusta data de cadastro do usuário no `ProfileHeader` [#464](https://github.com/3C-gg/reload-frontend/issues/464).
 - Altera links na `Sidebar` para remover "trailing slash".
 - Ajusta views de perfil e conta para refletir mudanças no `ProfileHeader`.
