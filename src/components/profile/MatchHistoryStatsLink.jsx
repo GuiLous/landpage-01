@@ -109,6 +109,8 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
         ' '
       )}
     >
+      <Container className={style.border} fitContent></Container>
+
       <Container column gap={8}>
         <Text
           as="span"
@@ -118,7 +120,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
           letterSpacing="0.5pt"
           color="white"
         >
-          {match.map_name || 'Map Name'}
+          {match.map.name || 'Nome do mapa'}
         </Text>
         <Text lineHeight={1} color="gray.700" fontSize={14} fontWeight="medium">
           {DateTime.fromISO(match.end_date).toRelative()}
