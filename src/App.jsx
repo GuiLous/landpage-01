@@ -22,6 +22,8 @@ import Router from './Router'
 
 export default function App() {
   const user = useSelector((state) => state.user)
+  const maintenance = useSelector((state) => state.maintenance)
+
   const dispatch = useDispatch()
 
   const [fetching, setFetching] = useState(true)
@@ -194,7 +196,7 @@ export default function App() {
     <Container style={{ position: 'relative' }}>
       {user && user.account && user.account.is_verified && <WSS />}
 
-      <Router user={user} />
+      <Router user={user} maintenance={maintenance} />
 
       <Container
         style={{
