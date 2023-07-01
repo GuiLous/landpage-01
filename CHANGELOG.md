@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona useEffect no `App` para verificar se está em manutenção após login.
+- Adiciona rota `manutencao` para a view `Maintenance`.
+- Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
+- Cria interface `AppAPI`.
+- Cria slice de `Maintenance`.
 - View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460). 
 - Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
@@ -19,6 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Verifica `maintenance` no `Router` para redirecionar corretamente.
+- Altera `MaintenanceView` para verificar quando a manutenção acaba e mudar o status do slice de `maintenance` para `false` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
+- Altera `App` para pegar o reducer de `maintenance` e passar para `Router`.
 - Ajusta visual e layout da página de detalhe de partida [#455](https://github.com/3C-gg/reload-frontend/issues/455).
 - Alterado lógica de calcular a diferença em segundos `secondsDiff` no useEffect do componente `Sidebar` e da view `LobbyView` [#412](https://github.com/3C-gg/reload-frontend/issues/412).
 - Ajusta layout e elementos visuais da página de conexão de partida [#456](https://github.com/3C-gg/reload-frontend/issues/456).
