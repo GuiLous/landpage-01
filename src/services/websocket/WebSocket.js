@@ -85,7 +85,11 @@ export const WSS = () => {
       case 'invites/create':
         dispatch(
           addToast({
-            content: `${data.payload.from_player.username} te convidou para um grupo.`,
+            variant: 'invite',
+            title: data.payload.from_player.username,
+            content: 'Convidou você para um grupo.',
+            avatar: data.payload.from_player.avatar.small,
+            invite_id: data.payload.id,
           })
         )
         dispatch(addInvite(data.payload))
