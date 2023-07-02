@@ -53,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige componente `Progress`, que, ao possuir valor mínimo ou máximo (0 ou 100), não estava animando corretamente a label com o valor [#469](https://github.com/3C-gg/reload-frontend/issues/469).
 - Corrige página de detalhe de partida não estar carregando caso usuário não esteja em partida.
 - Corrige view `MatchView`, removendo estrutura de layout antigo [#442](https://github.com/3C-gg/reload-frontend/issues/442).
 - Corrige erro de reducer nos stories do `ProfileHeader` [#436](https://github.com/3C-gg/reload-frontend/issues/436).
