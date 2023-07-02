@@ -65,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige um problema na página de manutenção que fazia com que, ao retornar de uma manutenção finalizada, não atualizava conexão websocket. Adicionamos um sistema de verificação via LocalStorage, com redirecionamento na URL para '/'. Assim, o client consegue estabelecer uma nova conexão websocket com o servidor [#473](https://github.com/3C-gg/reload-frontend/issues/473).
 - Corrige componente `Progress`, que, ao possuir valor mínimo ou máximo (0 ou 100), não estava animando corretamente a label com o valor [#469](https://github.com/3C-gg/reload-frontend/issues/469).
 - Corrige página de detalhe de partida não estar carregando caso usuário não esteja em partida.
 - Corrige view `MatchView`, removendo estrutura de layout antigo [#442](https://github.com/3C-gg/reload-frontend/issues/442).

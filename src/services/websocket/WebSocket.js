@@ -167,6 +167,7 @@ export const WSS = () => {
 
       // Maintenance
       case 'maintenance/start':
+        StorageService.set('maintenance', true)
         dispatch(updateMaintenance(true))
         navigate('/manutencao')
         break
