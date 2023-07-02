@@ -681,7 +681,6 @@ export default extendTheme({
       variants: {
         online: {
           container: {
-            borderWidth: '2px ',
             borderColor: 'online',
             borderStyle: 'solid',
           },
@@ -696,7 +695,6 @@ export default extendTheme({
         },
         offline: {
           container: {
-            borderWidth: '3px ',
             borderColor: 'offline',
             borderStyle: 'solid',
           },
@@ -711,7 +709,6 @@ export default extendTheme({
         },
         teaming: {
           container: {
-            borderWidth: '3px ',
             borderColor: 'teaming',
             borderStyle: 'solid',
           },
@@ -726,7 +723,6 @@ export default extendTheme({
         },
         in_game: {
           container: {
-            borderWidth: '3px ',
             borderColor: 'in_game',
             borderStyle: 'solid',
           },
@@ -741,7 +737,6 @@ export default extendTheme({
         },
         queued: {
           container: {
-            borderWidth: '3px ',
             borderColor: 'queued',
             borderStyle: 'solid',
           },
@@ -765,30 +760,35 @@ export default extendTheme({
           container: {
             width: '16px',
             height: '16px',
+            borderWidth: '0',
           },
         },
         xs: {
           container: {
             width: '24px',
             height: '24px',
+            borderWidth: '0',
           },
         },
         sm: {
           container: {
             width: '32px',
             height: '32px',
+            borderWidth: '2px',
           },
         },
         md: {
           container: {
             width: '44px',
             height: '44px',
+            borderWidth: '2px',
           },
         },
         lg: {
           container: {
             width: '64px',
             height: '64px',
+            borderWidth: '3px',
           },
         },
         xl: {
@@ -802,6 +802,7 @@ export default extendTheme({
           container: {
             width: '128px',
             height: '128px',
+            borderWidth: '6px',
           },
         },
       },
