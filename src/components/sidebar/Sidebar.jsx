@@ -255,7 +255,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         gap={60}
       >
         <Container className={style.header} column>
-          <Link as={ReactRouterLink} to="/">
+          <Link as={ReactRouterLink} to="/jogar">
             <Image
               src={logoSymbol}
               style={{ height: isCollapsed ? 'auto' : 0 }}

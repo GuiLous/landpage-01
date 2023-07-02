@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `Sidebar` para redirecionar para `/jogar` ao invés de `/` ao clicar no logo. 
 - Verifica `maintenance` no `Router` para redirecionar corretamente.
 - Altera `MaintenanceView` para verificar quando a manutenção acaba e mudar o status do slice de `maintenance` para `false` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
 - Altera `App` para pegar o reducer de `maintenance` e passar para `Router`.
