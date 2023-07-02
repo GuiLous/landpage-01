@@ -11,7 +11,6 @@ import {
   LoadingBackdrop,
   MatchHistoryList,
   ProfileHeader,
-  ProfileNav,
 } from '@components'
 import { StorageService } from '@services'
 
@@ -56,8 +55,7 @@ export default function ProfileView() {
   ) : (
     <Container column gap={40}>
       <Container className={style.header} column gap={40}>
-        <ProfileHeader profile={profile} />
-        {!hideNav && <ProfileNav userId={user.id} />}
+        <ProfileHeader profile={profile} hideNav={hideNav} />
       </Container>
 
       <Container gap={18} className={style.content}>

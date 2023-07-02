@@ -51,7 +51,9 @@ const match = {
   rounds: 15,
   start_date: '2023-05-05T10:00:00',
   end_date: '2023-05-05T10:30:00',
-  map_name: 'Inferno',
+  map: {
+    name: 'Auditório',
+  },
 }
 
 describe('MatchHistoryStatsLink Component', () => {
@@ -62,7 +64,7 @@ describe('MatchHistoryStatsLink Component', () => {
       </BrowserRouter>
     )
 
-    expect(screen.getByText('Inferno')).toBeInTheDocument()
+    expect(screen.getByText('Auditório')).toBeInTheDocument()
   })
 
   it('should render kdr correctly', () => {

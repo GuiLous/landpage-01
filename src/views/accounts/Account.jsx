@@ -13,7 +13,6 @@ import {
   LoadingBackdrop,
   MessageIcon,
   ProfileHeader,
-  ProfileNav,
   TrashIcon,
 } from '@components'
 import { StorageService } from '@services'
@@ -99,7 +98,6 @@ export default function AccountView() {
     <Container column gap={40} className={style.container}>
       <Container className={style.header} column gap={40}>
         <ProfileHeader profile={profile} />
-        <ProfileNav userId={user.id} />
       </Container>
 
       <Container className={style.content}>

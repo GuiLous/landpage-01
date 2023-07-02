@@ -1,9 +1,6 @@
 .header {
-	background: linear-gradient(
-		rgba(104, 71, 255, 1) 0%,
-		rgba(17, 17, 17, 1) 60%
-	);
-	padding: 125px 64px 0;
+	background-color: var(--chakra-colors-primary-500);
+	padding: 125px 64px 32px;
 }
 
 .content {
