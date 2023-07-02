@@ -142,7 +142,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             height={55}
             w="full"
             as={ReactRouterLink}
-            to={`partidas/${match.id}/`}
+            to={`partidas/${match.id}`}
             variant="queue"
           >
             EM PARTIDA
@@ -364,7 +364,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem}>
-              <Link as={ReactRouterLink} to={`/perfil/${user.id}/`}>
+              <Link as={ReactRouterLink} to={`/perfil/${user.id}`}>
                 <Icon as={UserIcon} fill="gray.700" />
                 {!isCollapsed && <Text>Perfil</Text>}
               </Link>

@@ -630,6 +630,9 @@ export default {
               ],
               rounds: 18,
               winner_id: 1,
+              map: {
+                name: 'Auditório',
+              },
             },
           ],
           count: 1,

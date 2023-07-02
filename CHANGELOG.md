@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
 - Cria interface `AppAPI`.
 - Cria slice de `Maintenance`.
-- View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460). 
+- View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460).
 - Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
 - Adiciona case `matches/create` no `WebSocket`.
@@ -28,6 +28,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Verifica `maintenance` no `Router` para redirecionar corretamente.
 - Altera `MaintenanceView` para verificar quando a manutenção acaba e mudar o status do slice de `maintenance` para `false` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
 - Altera `App` para pegar o reducer de `maintenance` e passar para `Router`.
+- Atualiza visual dos itens da lista de partidas do perfil (`MatchHistoryStatsLink`) para acompanhar novas specs de design [#453](https://github.com/3C-gg/reload-frontend/issues/453).
+- Altera visual e textos do menu de jogar do Lobby para refletir tipos de jogos que teremos em breve e novas specs de design [#433](https://github.com/3C-gg/reload-frontend/issues/433).
+- Ajusta data de cadastro do usuário no `ProfileHeader` [#464](https://github.com/3C-gg/reload-frontend/issues/464).
+- Altera links na `Sidebar` para remover "trailing slash".
+- Ajusta views de perfil e conta para refletir mudanças no `ProfileHeader`.
+- Atualiza estilos do componente `ProfileHeader` para seguir novas especificações de design [#435](https://github.com/3C-gg/reload-frontend/issues/435).
+- Ajusta borda do thema do `Avatar` para quando for `xl` ter uma borda mais grossa.
 - Ajusta visual e layout da página de detalhe de partida [#455](https://github.com/3C-gg/reload-frontend/issues/455).
 - Alterado lógica de calcular a diferença em segundos `secondsDiff` no useEffect do componente `Sidebar` e da view `LobbyView` [#412](https://github.com/3C-gg/reload-frontend/issues/412).
 - Ajusta layout e elementos visuais da página de conexão de partida [#456](https://github.com/3C-gg/reload-frontend/issues/456).
@@ -55,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige componente `Progress`, que, ao possuir valor mínimo ou máximo (0 ou 100), não estava animando corretamente a label com o valor [#469](https://github.com/3C-gg/reload-frontend/issues/469).
 - Corrige página de detalhe de partida não estar carregando caso usuário não esteja em partida.
 - Corrige view `MatchView`, removendo estrutura de layout antigo [#442](https://github.com/3C-gg/reload-frontend/issues/442).
 - Corrige erro de reducer nos stories do `ProfileHeader` [#436](https://github.com/3C-gg/reload-frontend/issues/436).
@@ -64,6 +72,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Componente `ProfileNav` que não está mais sendo utilizado devido as atualizações de design no `ProfileHeader`.
 - Removido `reducers` que não estavam sendo utilizados de `UserSLice` e `LobbySlice`.
 
 ## [f868438 - 23-6-2023]
