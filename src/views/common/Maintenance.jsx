@@ -62,6 +62,14 @@ export default function MaintenanceView() {
 
       if (!response.maintenance) {
         dispatch(updateMaintenance(false))
+        dispatch(
+          addToast({
+            title: 'A manutenção foi finalizada',
+            content:
+              'Filas e convites de lobby estão habilitados novamente. GLHF!',
+            variant: 'warning',
+          })
+        )
       }
     }
 
