@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+  AppAPI,
   FriendsAPI,
   LobbiesAPI,
   MatchesAPI,
@@ -14,14 +15,18 @@ import { addToast } from '@slices/AppSlice'
 import { initFriends } from '@slices/FriendSlice'
 import { initInvites } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMaintenance } from '@slices/MaintenanceSlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { initNotifications } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
+
 import Router from './Router'
 
 export default function App() {
   const user = useSelector((state) => state.user)
+  const maintenance = useSelector((state) => state.maintenance)
+
   const dispatch = useDispatch()
 
   const [fetching, setFetching] = useState(true)
@@ -48,6 +53,30 @@ export default function App() {
   const verifyIfApiIsReady = () => {
     return Object.values(apisReady).every((item) => item === true)
   }
+
+  // check maintenance
+  useEffect(() => {
+    const checkMaintenance = async () => {
+      let response
+      response = await AppAPI.healthCheck(userToken)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+
+        return
+      }
+
+      dispatch(updateMaintenance(response.maintenance))
+    }
+
+    user && checkMaintenance()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user])
 
   useEffect(() => {
     if (verifyIfApiIsReady()) setFetching(false)
@@ -194,7 +223,7 @@ export default function App() {
     <Container style={{ position: 'relative' }}>
       {user && user.account && user.account.is_verified && <WSS />}
 
-      <Router user={user} />
+      <Router user={user} maintenance={maintenance} />
 
       <Container
         style={{

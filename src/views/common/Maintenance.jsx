@@ -1,18 +1,23 @@
 import { Button, Image, Text } from '@chakra-ui/react'
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { AccountsAPI } from '@api'
+import { AccountsAPI, AppAPI } from '@api'
 import { Container, Footer } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
+import { updateMaintenance } from '@slices/MaintenanceSlice'
 
 import alert from '@assets/images/alert.png'
 import logo from '@assets/images/logo_type_white.svg'
 
 import style from './Maintenance.module.css'
 
+const TIME_TO_CHECK_AGAIN = 1000 * 60 * 1 // 1 minute
+
 export default function MaintenanceView() {
+  const maintenance = useSelector((state) => state.maintenance)
+
   const dispatch = useDispatch()
 
   const [isFetching, setIsFetching] = useState(false)
@@ -36,6 +41,49 @@ export default function MaintenanceView() {
     StorageService.remove('token')
     window.location.href = '/'
   }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const userToken = StorageService.get('token')
+      let response
+
+      response = await AppAPI.healthCheck(userToken)
+
+      if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+
+        return
+      }
+
+      if (!response.maintenance) {
+        dispatch(updateMaintenance(false))
+        dispatch(
+          addToast({
+            title: 'A manutenção foi finalizada',
+            content:
+              'Filas e convites de lobby estão habilitados novamente. GLHF!',
+            variant: 'warning',
+          })
+        )
+      }
+    }
+
+    if (maintenance) {
+      fetchData()
+
+      const interval = setInterval(fetchData, TIME_TO_CHECK_AGAIN)
+
+      return () => {
+        clearInterval(interval)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [maintenance])
 
   return (
     <Container className={style.container}>

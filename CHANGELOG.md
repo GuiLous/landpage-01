@@ -9,6 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona useEffect no `App` para verificar se está em manutenção após login.
+- Adiciona rota `manutencao` para a view `Maintenance`.
+- Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
+- Cria interface `AppAPI`.
+- Cria slice de `Maintenance`.
 - View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460).
 - Pasta de views `match` para conter views relacionadas a partidas.
 - Chamadas as APIs de `pre-matches` e `matches` na inicialização da aplicação [#438](https://github.com/3C-gg/reload-frontend/issues/438).
@@ -19,6 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `Sidebar` para redirecionar para `/jogar` ao invés de `/` ao clicar no logo. 
+- Verifica `maintenance` no `Router` para redirecionar corretamente.
+- Altera `MaintenanceView` para verificar quando a manutenção acaba e mudar o status do slice de `maintenance` para `false` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
+- Altera `App` para pegar o reducer de `maintenance` e passar para `Router`.
 - Atualiza visual dos itens da lista de partidas do perfil (`MatchHistoryStatsLink`) para acompanhar novas specs de design [#453](https://github.com/3C-gg/reload-frontend/issues/453).
 - Altera visual e textos do menu de jogar do Lobby para refletir tipos de jogos que teremos em breve e novas specs de design [#433](https://github.com/3C-gg/reload-frontend/issues/433).
 - Ajusta data de cadastro do usuário no `ProfileHeader` [#464](https://github.com/3C-gg/reload-frontend/issues/464).

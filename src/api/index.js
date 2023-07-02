@@ -1,4 +1,5 @@
 import AccountsAPI from './Accounts'
+import AppAPI from './App'
 import FriendsAPI from './Friends'
 import LobbiesAPI from './Lobbies'
 import MatchesAPI from './Matches'
@@ -9,6 +10,7 @@ import SupportAPI from './Support'
 
 export {
   AccountsAPI,
+  AppAPI,
   FriendsAPI,
   LobbiesAPI,
   MatchesAPI,
