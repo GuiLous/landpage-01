@@ -172,6 +172,7 @@ const lobby = {
       user_id: 1,
     },
   ],
+  invited_players_ids: [],
 }
 
 const store = configureStore({

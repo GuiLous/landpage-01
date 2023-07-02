@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LobbiesAPI, MatchmakingAPI } from '@api'
+import { LobbiesAPI, PreMatchesAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -21,9 +21,8 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const preMatch = useSelector((state) => state.matchmaking.preMatch)
-
-  const match = useSelector((state) => state.matchmaking.match)
+  const preMatch = useSelector((state) => state.preMatch)
+  const match = useSelector((state) => state.match)
 
   const dispatch = useDispatch()
 
@@ -70,7 +69,7 @@ export default function LobbyView() {
       const userToken = StorageService.get('token')
       let response = null
 
-      response = await MatchmakingAPI.playerLockIn(userToken, preMatch.id)
+      response = await PreMatchesAPI.playerLockIn(userToken, preMatch.id)
 
       if (response.errorMsg) {
         dispatch(
@@ -114,12 +113,10 @@ export default function LobbyView() {
     let intervalId
 
     if (lobby.queue && !preMatch) {
-      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
-        .minus({ hours: 3 })
-        .setZone('America/Sao_Paulo')
+      const date = DateTime.fromISO(lobby.queue)
 
       const calculateDiffInSeconds = () => {
-        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const now = DateTime.utc()
         const diff = Math.floor(now.diff(date, 'seconds').seconds)
 
         setSecondsDiff(diff)
@@ -165,7 +162,7 @@ export default function LobbyView() {
           gap={12}
           align="center"
         >
-          <Text fontSize={18}>Ranqueada 1x1</Text>
+          <Text fontSize={18}>TDM 5x5</Text>
           <Badge>Em breve</Badge>
         </Container>
 
@@ -207,7 +204,7 @@ export default function LobbyView() {
           queueTime={lobby.queue && secondsDiff}
           restrictionCountdown={lobby.restriction_countdown}
           restricted={lobby.restriction_countdown}
-          disabled={!isOwner && !lobby.queue}
+          disabled={(!isOwner && !lobby.queue) || preMatch || match}
           onClick={
             lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
           }

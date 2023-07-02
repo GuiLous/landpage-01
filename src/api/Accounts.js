@@ -14,7 +14,7 @@ export const AccountsAPI = {
 
   async inactivate(token) {
     const payload = { is_active: false }
-    return await BaseAPI.update('accounts/', token, payload)
+    return await BaseAPI.update('accounts/inactivate/', token, payload)
   },
 
   async delete(token) {

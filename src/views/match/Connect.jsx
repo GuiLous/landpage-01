@@ -1,4 +1,4 @@
-import { Box, Image, Text, Tooltip } from '@chakra-ui/react'
+import { Box, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -15,7 +15,7 @@ const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
 
 export default function Connect(props) {
-  const match = useSelector((state) => state.matchmaking.match)
+  const match = useSelector((state) => state.match)
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
@@ -56,12 +56,12 @@ export default function Connect(props) {
             <img src={logo} alt="ReloadClub" />
           </Container>
 
-          <Container column align="end">
+          <Container column align="end" gap={18}>
             <Text className={style.title}>É hora do jogo!</Text>
             <Text className={style.helper}>
               Para se conectar, abra o FiveM e insira o IP abaixo na lista{' '}
               <br /> de servidores.{' '}
-              <Text color="secondary.400" as="span">
+              <Text color="secondary.400" as="span" fontWeight="medium">
                 Você tem até 3 minutos para se conectar.
               </Text>
             </Text>
@@ -71,8 +71,14 @@ export default function Connect(props) {
                 className={style.connectionBox}
                 align="center"
                 gap={32}
+                onClick={handleClipboard}
               >
-                <Text className={style.ip}>IP: {match.server_ip}</Text>
+                <Text
+                  className={style.ip}
+                  color={copied ? 'primary.400' : 'white'}
+                >
+                  IP: {match.server_ip}
+                </Text>
 
                 <Tooltip
                   label="Copiado!"
@@ -83,7 +89,10 @@ export default function Connect(props) {
                   color="white"
                 >
                   <Box className={style.iconClip}>
-                    <ClipboardIcon fill="#6847FF" onClick={handleClipboard} />
+                    <Icon
+                      as={ClipboardIcon}
+                      color={copied ? 'primary.400' : 'white'}
+                    />
                   </Box>
                 </Tooltip>
               </Container>

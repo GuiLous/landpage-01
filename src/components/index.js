@@ -45,6 +45,7 @@ import CloseCircleIcon from './icons/CloseCircleIcon'
 import CloseIcon from './icons/CloseIcon'
 import DoubleCheckIcon from './icons/DoubleCheckIcon'
 import ExitIcon from './icons/ExitIcon'
+import FlagIcon from './icons/FlagIcon'
 import FriendsIcon from './icons/FriendsIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
 import JoystickIcon from './icons/JoystickIcon'
@@ -91,7 +92,6 @@ import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
 import ProfileHeader from './profile/ProfileHeader'
-import ProfileNav from './profile/ProfileNav'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -144,6 +144,7 @@ export {
   FavoriteWeaponCard,
   FileCard,
   FileInput,
+  FlagIcon,
   Footer,
   FriendList,
   FriendListGroup,
@@ -184,7 +185,6 @@ export {
   PodiumIcon,
   ProfileCard,
   ProfileHeader,
-  ProfileNav,
   Progress,
   RefuseIcon,
   RequireAuth,

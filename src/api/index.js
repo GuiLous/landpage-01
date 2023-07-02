@@ -1,19 +1,21 @@
 import AccountsAPI from './Accounts'
+import AppAPI from './App'
 import FriendsAPI from './Friends'
 import LobbiesAPI from './Lobbies'
 import MatchesAPI from './Matches'
-import MatchmakingAPI from './Matchmaking'
 import NotificationsAPI from './Notifications'
+import PreMatchesAPI from './PreMatches'
 import ProfilesAPI from './Profiles'
 import SupportAPI from './Support'
 
 export {
   AccountsAPI,
+  AppAPI,
   FriendsAPI,
   LobbiesAPI,
   MatchesAPI,
-  MatchmakingAPI,
   NotificationsAPI,
+  PreMatchesAPI,
   ProfilesAPI,
   SupportAPI,
 }

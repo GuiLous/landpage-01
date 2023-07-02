@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import { FriendListGroup } from '@components'
 import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 describe('FriendListGroup Component', () => {
@@ -14,12 +15,18 @@ describe('FriendListGroup Component', () => {
 
   const invites = []
 
+  const lobby = {
+    queue: null,
+    invited_players_ids: [],
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,
       invites: InviteReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, invites },
+    preloadedState: { user, invites, lobby },
   })
 
   it('should render title and count correctly', () => {
@@ -103,5 +110,29 @@ describe('FriendListGroup Component', () => {
     render(<FriendListGroup {...args} />)
     expect(screen.getByTestId('container')).not.toHaveClass('open')
     expect(screen.getByTestId('header')).toHaveClass('disabled')
+  })
+
+  it('should not render header if showHeader is false', () => {
+    let args = {
+      title: 'Offline',
+      items: [
+        {
+          user_id: 11,
+          status: 'offline',
+          username: 'Username',
+          avatar:
+            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+          lobby_id: 2,
+        },
+      ],
+      showHeader: false,
+    }
+
+    render(
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    )
+    expect(screen.getByTestId('header')).toHaveClass('hideHeader')
   })
 })

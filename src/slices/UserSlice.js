@@ -41,18 +41,7 @@ export const UserReducer = createSlice({
   },
 })
 
-export const {
-  updateUser,
-  updateFriend,
-  addFriend,
-  updateLobby,
-  addInviteReceived,
-  removeInvite,
-  updateInviteReceived,
-  addInviteSent,
-  restartQueue,
-  removeRestartQueue,
-  updateLobbyId,
-} = UserReducer.actions
+export const { updateUser, restartQueue, removeRestartQueue, updateLobbyId } =
+  UserReducer.actions
 
 export default UserReducer.reducer

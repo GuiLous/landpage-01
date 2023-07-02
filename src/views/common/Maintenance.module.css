@@ -1,0 +1,10 @@
+.container {
+	background-image: url('@assets/images/bg_maintenance.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	flex-direction: column;
+	height: 100vh;
+	position: relative;
+	width: 100vw;
+}

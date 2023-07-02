@@ -84,7 +84,7 @@ describe('MatchTeamStats Component', () => {
         </Provider>
       </BrowserRouter>
     )
-    expect(screen.getByText('OsKaravelhos')).toBeInTheDocument()
+    expect(screen.getByText('Time OsKaravelhos')).toBeInTheDocument()
     expect(screen.getByText('GuiLous')).toBeInTheDocument()
   })
 

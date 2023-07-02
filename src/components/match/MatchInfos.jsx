@@ -31,7 +31,7 @@ export default function MatchInfos({ match }) {
         <Container justify="center">
           {typeMap[match.game_type]} {modeMap[match.game_mode]}
         </Container>
-        <Container justify="center">MD1</Container>
+        <Container justify="center">{match.map?.name}</Container>
       </Container>
 
       <Container justify="center">

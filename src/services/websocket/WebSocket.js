@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
@@ -7,15 +8,17 @@ import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
+import { updateMaintenance } from '@slices/MaintenanceSlice'
+import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
-import { restartQueue, updateUser } from '@slices/UserSlice'
-
-import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
+import { updatePreMatch } from '@slices/PreMatchSlice'
+import { updateUser } from '@slices/UserSlice'
 
 export const WSS = () => {
   const dispatch = useDispatch()
 
   const user = useSelector((state) => state.user)
+  const navigate = useNavigate()
   const token = StorageService.get('token')
 
   const showInviteRefusedToast = (payload) => {
@@ -82,7 +85,11 @@ export const WSS = () => {
       case 'invites/create':
         dispatch(
           addToast({
-            content: `${data.payload.from_player.username} te convidou para um grupo.`,
+            variant: 'invite',
+            title: data.payload.from_player.username,
+            content: 'Convidou você para um grupo.',
+            avatar: data.payload.from_player.avatar.small,
+            invite_id: data.payload.id,
           })
         )
         dispatch(addInvite(data.payload))
@@ -135,40 +142,38 @@ export const WSS = () => {
         dispatch(addNotification(data.payload))
         break
 
-      case 'matches/found':
+      // PreMatches
+      case 'pre_matches/create':
+      case 'pre_matches/update':
+      case 'pre_matches/delete':
         dispatch(updatePreMatch(data.payload))
         break
 
-      // ==== Old Websockets ==== //
-
-      case 'ws_userUpdate':
-        dispatch(updateUser(data.payload))
+      // Matches
+      case 'matches/create':
+        dispatch(updateMatch(data.payload))
+        navigate(`/partidas/${data.payload.id}/conectar/`)
         break
 
-      case 'ws_preMatch':
-        dispatch(updatePreMatch(data.payload))
-        break
-
-      case 'ws_preMatchCancel':
-        dispatch(updatePreMatch(null))
-        break
-
-      case 'ws_preMatchCancelWarn':
+      // Toasts
+      case `toasts/create`:
         dispatch(
           addToast({
-            content:
-              'Seu grupo não aceitou a pré verificação. A partida foi cancelada e seu grupo foi removido da fila.',
-            variant: 'warning',
+            content: data.payload.content,
+            variant: data.payload.variant,
           })
         )
         break
 
-      case 'ws_restartQueue':
-        dispatch(restartQueue())
+      // Maintenance
+      case 'maintenance/start':
+        dispatch(updateMaintenance(true))
+        navigate('/manutencao')
         break
 
-      case 'ws_match':
-        dispatch(updateMatch(data.payload))
+      case 'maintenance/end':
+        dispatch(updateMaintenance(false))
+        navigate('/')
         break
 
       default:

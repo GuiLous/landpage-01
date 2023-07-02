@@ -142,7 +142,7 @@ export default function FriendList({ isOpen, onClose }) {
                   <InviteListGroup
                     title="Convites"
                     items={filteredInvites}
-                    open
+                    open={filter === ''}
                     unread={receivedInvites.length > 0}
                   />
                 </Container>
@@ -151,9 +151,10 @@ export default function FriendList({ isOpen, onClose }) {
               {teamingFriends.length > 0 && (
                 <Container className={style.group}>
                   <FriendListGroup
-                    title="Em grupo"
+                    title="No seu grupo"
                     items={filteredTeamingFriends}
                     open
+                    showHeader={filter === ''}
                   />
                 </Container>
               )}
@@ -162,6 +163,7 @@ export default function FriendList({ isOpen, onClose }) {
                 <FriendListGroup
                   title="Online"
                   items={filteredOnlineFriends}
+                  showHeader={filter === ''}
                   open
                 />
               </Container>
@@ -170,6 +172,7 @@ export default function FriendList({ isOpen, onClose }) {
                 <FriendListGroup
                   title="Offline"
                   items={filteredOfflineFriends}
+                  showHeader={filter === ''}
                 />
               </Container>
             </Scrollbars>

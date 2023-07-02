@@ -1,0 +1,24 @@
+.container {
+	background-color: var(--chakra-colors-primary-500);
+}
+
+.info {
+	max-width: 600px;
+}
+
+.link {
+	color: var(--chakra-colors-gray-700);
+	font-size: 14px;
+	font-weight: var(--chakra-fontWeights-medium);
+	text-transform: uppercase;
+}
+
+.link:hover {
+	color: white;
+}
+
+.link.active {
+	color: white;
+	cursor: default;
+	pointer-events: none;
+}

@@ -56,6 +56,16 @@
 	min-width: 32px;
 }
 
+.avatarWrapper {
+	border: none;
+	border-radius: 50%;
+	font-size: 20px;
+	max-height: 32px;
+	max-width: 32px;
+	min-height: 32px;
+	min-width: 32px;
+}
+
 .closeBtn {
 	cursor: pointer;
 	font-size: 10px;

@@ -14,7 +14,7 @@
 }
 
 .teamScore.winner {
-	color: var(--chakra-colors-success);
+	color: var(--chakra-colors-secondary-400);
 }
 
 .teamScore.loser {
@@ -22,6 +22,7 @@
 }
 
 .teamName {
+	font-size: 22px;
 	font-weight: var(--chakra-fontWeights-medium);
 	max-width: 350px;
 	overflow: hidden;

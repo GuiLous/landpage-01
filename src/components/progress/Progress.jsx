@@ -39,10 +39,16 @@ export default function Progress({
 
   const isPositive = value > 0
   const labelPrefix = isPositive && '+'
+  const animationWidthFrom = 0
 
   const valueBarAnimation = useSpring({
-    from: { width: '0%' },
-    to: { width: `${Math.abs(progress)}%` },
+    from: { width: `${animationWidthFrom}%` },
+    to: {
+      width:
+        animationWidthFrom === progress
+          ? `${Math.abs(progress + 1)}%`
+          : `${Math.abs(progress)}%`,
+    },
     config: { duration: 600 },
     onRest: () => {
       if (overflowed) setHideNonOverflowedLabel(true)
@@ -50,7 +56,7 @@ export default function Progress({
   })
 
   const valueBarOverflowedAnimation = useSpring({
-    from: { width: '0%' },
+    from: { width: `${animationWidthFrom}%` },
     to: {
       width: `(${
         isPositive

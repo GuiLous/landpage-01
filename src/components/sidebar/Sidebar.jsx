@@ -53,8 +53,8 @@ import style from './Sidebar.module.css'
 export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const match = useSelector((state) => state.matchmaking.match)
-  const preMatch = useSelector((state) => state.matchmaking.preMatch)
+  const match = useSelector((state) => state.match)
+  const preMatch = useSelector((state) => state.preMatch)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
@@ -142,7 +142,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             height={55}
             w="full"
             as={ReactRouterLink}
-            to="/"
+            to={`partidas/${match.id}`}
             variant="queue"
           >
             EM PARTIDA
@@ -221,12 +221,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
     let intervalId
 
     if (lobby.queue && !preMatch) {
-      const date = DateTime.fromISO(lobby.queue.replace(' ', 'T'))
-        .minus({ hours: 3 })
-        .setZone('America/Sao_Paulo')
+      const date = DateTime.fromISO(lobby.queue)
 
       const calculateDiffInSeconds = () => {
-        const now = DateTime.now().setZone('America/Sao_Paulo')
+        const now = DateTime.utc()
         const diff = Math.floor(now.diff(date, 'seconds').seconds)
 
         setSecondsDiff(diff)
@@ -257,7 +255,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         gap={60}
       >
         <Container className={style.header} column>
-          <Link as={ReactRouterLink} to="/">
+          <Link as={ReactRouterLink} to="/jogar">
             <Image
               src={logoSymbol}
               style={{ height: isCollapsed ? 'auto' : 0 }}
@@ -366,7 +364,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
 
             <Container className={style.menuItem}>
-              <Link as={ReactRouterLink} to={`/perfil/${user.id}/`}>
+              <Link as={ReactRouterLink} to={`/perfil/${user.id}`}>
                 <Icon as={UserIcon} fill="gray.700" />
                 {!isCollapsed && <Text>Perfil</Text>}
               </Link>

@@ -1,4 +1,4 @@
-import { Button, Divider, Hide, Show } from '@chakra-ui/react'
+import { Button, Divider, Hide, Show, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
@@ -14,7 +14,8 @@ import { Container, FakeSigninForm, Footer } from '@components'
 import { REACT_APP_API_URL, REACT_APP_ENV } from '@config'
 import { HttpService, StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { updateMatch, updatePreMatch } from '@slices/MatchmakingSlice'
+import { updateMatch } from '@slices/MatchSlice'
+import { updatePreMatch } from '@slices/PreMatchSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
@@ -90,12 +91,11 @@ export default function HomeView() {
                 <img src={logo} alt="Reload" />
               </Container>
 
-              <Container className={style.description}>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Maecenas ut tellus ex. Sed in orci risus. Morbi qui lacus eget
-                  tellus tristique congue.
-                </p>
+              <Container className={style.description} column>
+                <Text>
+                  Jogue partidas 5x5 ranqueadas no GTA. Plante, desarme, suba de
+                  nível e prove seu valor. Reload.
+                </Text>
               </Container>
 
               <Container className={style.actions}>
@@ -170,12 +170,11 @@ export default function HomeView() {
               <img src={logo} alt="Reload" />
             </Container>
 
-            <Container>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Maecenas ut tellus ex. Sed in orci risus. Morbi qui lacus eget
-                tellus tristique congue.
-              </p>
+            <Container column>
+              <Text>
+                Jogue GTA em partidas ranqueadas 5x5. Plante, desarme, suba de
+                nível e prove seu valor. Reload.
+              </Text>
             </Container>
 
             <Container>

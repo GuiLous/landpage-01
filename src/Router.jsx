@@ -14,6 +14,7 @@ import {
   HomeView,
   InactiveView,
   LobbyView,
+  MaintenanceView,
   MatchView,
   NotFoundView,
   ProfileView,
@@ -22,7 +23,7 @@ import {
   VerifyView,
 } from '@views'
 
-export default function Router({ user }) {
+export default function Router({ user, maintenance }) {
   const location = useLocation()
 
   const signupRequired = user && !user.account
@@ -31,6 +32,20 @@ export default function Router({ user }) {
   const verifiedUser = activeUser && user.account && user.account.is_verified
 
   if (user) {
+    if (location.pathname === '/manutencao' && !maintenance)
+      return <Navigate to="/jogar" replace />
+
+    if (
+      location.pathname !== '/manutencao' &&
+      location.pathname !== '/conta-inativa' &&
+      location.pathname !== '/cadastrar' &&
+      location.pathname !== '/verificar' &&
+      location.pathname !== '/alterar-email' &&
+      maintenance
+    ) {
+      return <Navigate to="/manutencao" replace />
+    }
+
     if (location.pathname !== '/conta-inativa' && !activeUser)
       return <Navigate to="/conta-inativa" replace />
 
@@ -48,6 +63,10 @@ export default function Router({ user }) {
 
   return (
     <Routes>
+      {maintenance && (
+        <Route path="/manutencao" element={<MaintenanceView />} />
+      )}
+
       {user && !activeUser && (
         <Route path="/conta-inativa" element={<InactiveView />} />
       )}
@@ -72,11 +91,11 @@ export default function Router({ user }) {
           <Route element={<MainLayout />}>
             <Route path="/jogar" element={<LobbyView />} />
             <Route path="/partidas/:matchId" element={<MatchView />} />
-            <Route
-              path="/partidas/:matchId/conectar/"
-              element={<ConnectView />}
-            />
           </Route>
+          <Route
+            path="/partidas/:matchId/conectar/"
+            element={<ConnectView />}
+          />
           <Route element={<ProfileLayout />}>
             <Route path="/conta" element={<AccountView />} />
             <Route path="/perfil/:userId" element={<ProfileView />} />
