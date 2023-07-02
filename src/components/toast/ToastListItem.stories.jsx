@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 
 import { ToastListItem } from '@components'
 import AppReducer from '@slices/AppSlice'
+import InviteReducer from '@slices/InviteSlice'
 
 export default {
   title: 'Common/Toast/ToastListItem',
@@ -12,6 +13,11 @@ export default {
     content: { control: 'text' },
     duration: { control: 'number' },
     avatar: { control: 'text' },
+    invite_id: { control: 'number' },
+    variant: {
+      control: 'select',
+      options: ['info', 'success', 'warning', 'error', 'invite', ''],
+    },
   },
   args: {
     id: 1,
@@ -20,6 +26,8 @@ export default {
     duration: 6,
     avatar:
       'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+    invite_id: null,
+    variant: 'info',
   },
 }
 
@@ -38,10 +46,12 @@ const app = {
   friendListOpen: false,
 }
 
+const invites = []
+
 const store = configureStore({
-  reducer: { app: AppReducer },
+  reducer: { app: AppReducer, invites: InviteReducer },
   devTools: true,
-  preloadedState: { app },
+  preloadedState: { app, invites },
 })
 
 export const Default = {

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 
 import { ToastListItem } from '@components'
 import AppReducer from '@slices/AppSlice'
+import InviteReducer from '@slices/InviteSlice'
 
 describe('ToastListItem Component', () => {
   let app = {
@@ -11,10 +12,12 @@ describe('ToastListItem Component', () => {
     friendListOpen: false,
   }
 
+  const invites = []
+
   const store = configureStore({
-    reducer: { app: AppReducer },
+    reducer: { app: AppReducer, invites: InviteReducer },
     devTools: true,
-    preloadedState: { app },
+    preloadedState: { app, invites },
   })
 
   it('should renders correctly', () => {

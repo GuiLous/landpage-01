@@ -1,6 +1,6 @@
 import { Avatar, Button, Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { LobbiesAPI } from '@api'
 import {
@@ -26,8 +26,10 @@ export default function ToastListItem({
   invite_id = null,
 }) {
   const dispatch = useDispatch()
+  const invites = useSelector((state) => state.invites)
   const [timer, setTimer] = useState(duration - 1)
   const [defaultTitle, setDefaultTitle] = useState(title)
+  const invite = invites.find((item) => item.id === invite_id)
 
   const handleClose = () => {
     setTimer(-1)
@@ -35,7 +37,6 @@ export default function ToastListItem({
 
   const handleAccept = async () => {
     const userToken = StorageService.get('token')
-
     const response = await LobbiesAPI.acceptInvite(userToken, invite_id)
 
     if (response.errorMsg) {
@@ -111,6 +112,10 @@ export default function ToastListItem({
     }
   }, [variant, title])
 
+  useEffect(() => {
+    if (invite_id && !invite) handleClose()
+  }, [invite, invite_id])
+
   return (
     <Container
       className={[style.container, style[variant]].join(' ')}
@@ -120,7 +125,7 @@ export default function ToastListItem({
       <Container className={style.containerWrapper} gap={16}>
         <Container align="center" gap={16}>
           <Container
-            className={style.iconWrapper}
+            className={invite_id ? style.avatarWrapper : style.iconWrapper}
             align="center"
             justify="center"
           >
