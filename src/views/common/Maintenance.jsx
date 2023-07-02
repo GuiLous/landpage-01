@@ -6,7 +6,6 @@ import { AccountsAPI, AppAPI } from '@api'
 import { Container, Footer } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { updateMaintenance } from '@slices/MaintenanceSlice'
 
 import alert from '@assets/images/alert.png'
 import logo from '@assets/images/logo_type_white.svg'
@@ -61,15 +60,8 @@ export default function MaintenanceView() {
       }
 
       if (!response.maintenance) {
-        dispatch(updateMaintenance(false))
-        dispatch(
-          addToast({
-            title: 'A manutenção foi finalizada',
-            content:
-              'Filas e convites de lobby estão habilitados novamente. GLHF!',
-            variant: 'warning',
-          })
-        )
+        StorageService.set('maintenance', 'ended')
+        window.location.href = '/'
       }
     }
 

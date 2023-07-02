@@ -80,6 +80,19 @@ export default function App() {
 
   useEffect(() => {
     if (verifyIfApiIsReady()) setFetching(false)
+
+    const maintenance = StorageService.get('maintenance')
+    if (maintenance && maintenance === 'ended') {
+      StorageService.remove('maintenance')
+      dispatch(
+        addToast({
+          title: 'A manutenção foi finalizada',
+          content:
+            'Filas e convites de lobby estão habilitados novamente. GLHF!',
+          variant: 'warning',
+        })
+      )
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [apisReady])
 
