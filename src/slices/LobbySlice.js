@@ -21,10 +21,18 @@ export const LobbyReducer = createSlice({
     updateLobby: (state, action) => {
       return action.payload
     },
+
+    updateQueueTime: (state, action) => {
+      return { ...state, queue_time: action.payload }
+    },
   },
 })
 
-export const { restartQueue, removeRestartQueue, updateLobby } =
-  LobbyReducer.actions
+export const {
+  restartQueue,
+  removeRestartQueue,
+  updateLobby,
+  updateQueueTime,
+} = LobbyReducer.actions
 
 export default LobbyReducer.reducer
