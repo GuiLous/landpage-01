@@ -47,7 +47,6 @@ export default function LobbyView() {
       response = await LobbiesAPI.startQueue(userToken, lobby.id)
     } else {
       response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
-      // setSecondsDiff(null)
     }
 
     if (response.errorMsg) {
