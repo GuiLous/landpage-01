@@ -7,7 +7,7 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
-import { updateLobby } from '@slices/LobbySlice'
+import { updateLobby, updateQueueTime } from '@slices/LobbySlice'
 import { updateMaintenance } from '@slices/MaintenanceSlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
@@ -135,6 +135,10 @@ export const WSS = () => {
 
       case 'lobbies/update':
         dispatch(updateLobby(data.payload))
+        break
+
+      case 'lobbies/queue_tick':
+        dispatch(updateQueueTime(data.payload))
         break
 
       // Notifications
