@@ -9,6 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona case `lobbies/queue_tick` no `WebSocket` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
+- Adiciona reducer `updateQueueTime` no `lobbySlice`.
+
+### Changed
+
+- Remove `secondsDiff` e usa `lobby.queue_time` no botão de `jogar` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
+- Altera `min-width` do `LobbySeat` de `280px` para `200px` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
+- Altera padding lateral do `MainLayout` de `64px` para `5%` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
+
+### Removed
+
+- Remove useEffect que faz cálculo da diferença de segundos do componente `Sidebar` e da view `LobbyView`.
+
+## [d165f6c - 03/07/2023]
+
+### Added
+
 - Adiciona useEffect no `App` para verificar se está em manutenção após login.
 - Adiciona rota `manutencao` para a view `Maintenance`.
 - Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).

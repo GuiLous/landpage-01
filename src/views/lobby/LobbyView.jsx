@@ -1,5 +1,4 @@
 import { Badge, Icon, Text } from '@chakra-ui/react'
-import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -21,12 +20,12 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
+
   const preMatch = useSelector((state) => state.preMatch)
   const match = useSelector((state) => state.match)
 
   const dispatch = useDispatch()
 
-  const [secondsDiff, setSecondsDiff] = useState(null)
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
   const isOwner = lobby.owner_id === user.id
@@ -48,7 +47,6 @@ export default function LobbyView() {
       response = await LobbiesAPI.startQueue(userToken, lobby.id)
     } else {
       response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
-      setSecondsDiff(null)
     }
 
     if (response.errorMsg) {
@@ -108,29 +106,6 @@ export default function LobbyView() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lobby])
-
-  useEffect(() => {
-    let intervalId
-
-    if (lobby.queue && !preMatch) {
-      const date = DateTime.fromISO(lobby.queue)
-
-      const calculateDiffInSeconds = () => {
-        const now = DateTime.utc()
-        const diff = Math.floor(now.diff(date, 'seconds').seconds)
-
-        setSecondsDiff(diff)
-      }
-
-      calculateDiffInSeconds()
-
-      intervalId = setInterval(calculateDiffInSeconds, 1000)
-    }
-
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [lobby, preMatch])
 
   useEffect(() => {
     if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
@@ -201,7 +176,7 @@ export default function LobbyView() {
 
       <Container className={style.footer} fitContent>
         <LobbyPlayButton
-          queueTime={lobby.queue && secondsDiff}
+          queueTime={lobby.queue && lobby.queue_time}
           restrictionCountdown={lobby.restriction_countdown}
           restricted={lobby.restriction_countdown}
           disabled={(!isOwner && !lobby.queue) || preMatch || match}
