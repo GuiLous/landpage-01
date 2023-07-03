@@ -7,10 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added 
+### Added
 
 - Adiciona case `lobbies/queue_tick` no `WebSocket` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
-- Adiciona reducer `updateQueueTime` no `lobbySlice`. 
+- Adiciona reducer `updateQueueTime` no `lobbySlice`.
 
 ### Changed
 
@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Remove useEffect que faz cálculo da diferença de segundos do componente `Sidebar` e da view `LobbyView`.
+
+## [d165f6c - 03/07/2023]
 
 ### Added
 
