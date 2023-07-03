@@ -9,7 +9,6 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react'
-import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa'
 import {
@@ -54,7 +53,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const match = useSelector((state) => state.match)
-  const preMatch = useSelector((state) => state.preMatch)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
@@ -67,7 +65,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [friendListOpen, setFriendListOpen] = useState(false)
   const [unreadNotificationsCount, setUnreadNotificationsCount] = useState(0)
-  const [secondsDiff, setSecondsDiff] = useState(null)
 
   const receivedInvites = invites.filter(
     (invite) => invite.to_player.user_id === user.id
@@ -128,7 +125,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             variant="queue"
           >
             <Text minW="52px" top="1px" position="relative">
-              {formatSecondsToMinutes(secondsDiff)}
+              {formatSecondsToMinutes(lobby.queue_time)}
             </Text>
           </Button>
         )}
@@ -216,29 +213,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
       setUnreadNotificationsCount(notificationsNotRead)
     }
   }, [notifications])
-
-  useEffect(() => {
-    let intervalId
-
-    if (lobby.queue && !preMatch) {
-      const date = DateTime.fromISO(lobby.queue)
-
-      const calculateDiffInSeconds = () => {
-        const now = DateTime.utc()
-        const diff = Math.floor(now.diff(date, 'seconds').seconds)
-
-        setSecondsDiff(diff)
-      }
-
-      calculateDiffInSeconds()
-
-      intervalId = setInterval(calculateDiffInSeconds, 1000)
-    }
-
-    return () => {
-      clearInterval(intervalId)
-    }
-  }, [lobby, preMatch])
 
   return (
     <>
