@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionado arquivo `.stylelintignore` para não verificar a pasta `build` [#411](https://github.com/3C-gg/reload-frontend/issues/411).
 - Adiciona case `lobbies/queue_tick` no `WebSocket` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Adiciona reducer `updateQueueTime` no `lobbySlice`.
 
