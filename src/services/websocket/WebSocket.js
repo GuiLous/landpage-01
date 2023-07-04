@@ -178,7 +178,7 @@ export const WSS = () => {
 
       case 'maintenance/end':
         dispatch(updateMaintenance(false))
-        navigate('/')
+        navigate(0)
         break
 
       default:
