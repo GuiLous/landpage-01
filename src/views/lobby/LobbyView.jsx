@@ -8,7 +8,6 @@ import {
   Container,
   JoystickIcon,
   LobbyLineup,
-  LobbyPlayButton,
   MatchFoundModal,
 } from '@components'
 import { StorageService } from '@services'
@@ -20,7 +19,6 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-
   const preMatch = useSelector((state) => state.preMatch)
   const match = useSelector((state) => state.match)
 
@@ -167,22 +165,10 @@ export default function LobbyView() {
       <Container className={style.lineup}>
         <LobbyLineup
           userPlayer={userPlayer}
-          isOwner={lobby.owner_id === user.id}
           otherPlayers={otherPlayers}
-          lobbyId={lobby.id}
-          queue={lobby.queue}
-        />
-      </Container>
-
-      <Container className={style.footer} fitContent>
-        <LobbyPlayButton
-          queueTime={lobby.queue && lobby.queue_time}
-          restrictionCountdown={lobby.restriction_countdown}
-          restricted={lobby.restriction_countdown}
-          disabled={(!isOwner && !lobby.queue) || preMatch || match}
-          onClick={
-            lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
-          }
+          lobby={lobby}
+          preMatch={preMatch}
+          match={match}
         />
       </Container>
 
