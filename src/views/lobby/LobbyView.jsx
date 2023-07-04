@@ -26,39 +26,10 @@ export default function LobbyView() {
 
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
-  const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
   const otherPlayers = lobby.players?.filter(
     (player) => player.user_id !== user.id
   )
-
-  const handleQueue = async (action) => {
-    if (preMatch || match) return
-
-    if (action === 'start' && !isOwner) return
-
-    const userToken = StorageService.get('token')
-
-    let response = null
-
-    if (action === 'start') {
-      response = await LobbiesAPI.startQueue(userToken, lobby.id)
-    } else {
-      response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
-    }
-
-    if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
-    }
-  }
-
-  const handleCancelQueue = () => handleQueue('cancel')
-  const handleStartQueue = () => handleQueue('start')
 
   useEffect(() => {
     const lockIn = async () => {
