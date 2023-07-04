@@ -2,3 +2,9 @@
 	background-color: var(--chakra-colors-black-900);
 	height: 100%;
 }
+
+.hiddenBox {
+	height: 73px;
+	max-height: 73px;
+	width: 100%;
+}
