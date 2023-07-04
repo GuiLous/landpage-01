@@ -86,10 +86,10 @@ export default function LobbyView() {
       <Container className={style.header} gap={12} fitContent>
         <Icon as={JoystickIcon} color="white" fontSize={30} />
         <Container gap={8}>
-          <Text fontSize={22} fontWeight="light" textTransform="uppercase">
+          <Text fontSize={20} fontWeight="light" textTransform="uppercase">
             Suba de nível e
           </Text>
-          <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
+          <Text fontSize={20} fontWeight="semibold" textTransform="uppercase">
             fique entre os melhores
           </Text>
         </Container>
