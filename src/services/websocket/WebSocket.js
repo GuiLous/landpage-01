@@ -144,6 +144,14 @@ export const WSS = () => {
       // Notifications
       case 'notifications/add':
         dispatch(addNotification(data.payload))
+        dispatch(
+          addToast({
+            variant: 'notification',
+            title: 'Notificação',
+            content: data.payload.content,
+            avatar: data.payload.avatar,
+          })
+        )
         break
 
       // PreMatches
