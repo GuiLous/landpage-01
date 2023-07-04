@@ -15,12 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `LobbyLineUp` para adicionar o componente `LobbyPlayButton` centralizado e as funções necessárias [#486](https://github.com/3C-gg/reload-frontend/issues/486).
 - Remove `secondsDiff` e usa `lobby.queue_time` no botão de `jogar` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Altera `min-width` do `LobbySeat` de `280px` para `200px` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
 - Altera padding lateral do `MainLayout` de `64px` para `5%` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
 
 ### Removed
 
+- Remove componente `LobbyPlayButton` e funções `handleQueue`, `handleCancelQueue` e `handleStartQueue` da view `LobbyView`.
 - Remove useEffect que faz cálculo da diferença de segundos do componente `Sidebar` e da view `LobbyView`.
 
 ## [d165f6c - 03/07/2023]
