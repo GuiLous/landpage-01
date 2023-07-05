@@ -231,8 +231,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         <Container
           column
           fitContent
-          gap={48}
-          style={{ padding: '40px 24px 0' }}
+          gap={80}
+          style={{ padding: '42px 40px 0' }}
         >
           <Link as={ReactRouterLink} to="/jogar">
             <Image
@@ -282,7 +282,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
           </Container>
 
-          <Container column gap={48}>
+          <Container column gap={38}>
             <Container className={style.topMenu} column>
               <Container className={style.menuItem}>
                 <Link as="button" onClick={handleToggleFriendListDrawer}>
