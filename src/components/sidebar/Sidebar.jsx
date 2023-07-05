@@ -31,7 +31,6 @@ import {
   ExitIcon,
   FriendList,
   FriendsIcon,
-  HomeIcon,
   JoystickIcon,
   LogoutModal,
   NotificationList,
@@ -109,7 +108,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             as={ReactRouterLink}
             to="/jogar"
           >
-            JOGAR
+            COMEÇAR
           </Button>
         )}
 
@@ -285,13 +284,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
           <Container column gap={48}>
             <Container className={style.topMenu} column>
-              <Container className={style.menuItem}>
-                <Link as={ReactRouterLink} to="/jogar">
-                  <Icon as={HomeIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Lobby</Text>}
-                </Link>
-              </Container>
-
               <Container
                 className={style.menuItem}
                 onClick={handleToggleFriendListDrawer}
