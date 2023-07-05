@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `title` e `description` no `index.html` [#491](https://github.com/3C-gg/reload-frontend/issues/491).
 - Remove `secondsDiff` e usa `lobby.queue_time` no botão de `jogar` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Altera `min-width` do `LobbySeat` de `280px` para `200px` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
 - Altera padding lateral do `MainLayout` de `64px` para `5%` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
