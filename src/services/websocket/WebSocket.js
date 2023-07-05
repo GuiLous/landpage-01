@@ -147,7 +147,7 @@ export const WSS = () => {
         dispatch(
           addToast({
             variant: 'notification',
-            title: 'Notificação',
+            title: 'Nova notificação',
             content: data.payload.content,
             avatar: data.payload.avatar,
           })
