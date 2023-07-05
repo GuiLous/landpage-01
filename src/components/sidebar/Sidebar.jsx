@@ -284,11 +284,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
           <Container column gap={48}>
             <Container className={style.topMenu} column>
-              <Container
-                className={style.menuItem}
-                onClick={handleToggleFriendListDrawer}
-              >
-                <Link as="button">
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleToggleFriendListDrawer}>
                   <Container
                     className={style.menuLinkWrapper}
                     gap={14}
@@ -312,16 +309,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Container>
 
               <Container className={style.menuItem}>
-                <Link
-                  as="button"
-                  alignItems="center"
-                  display="flex"
-                  flex="1"
-                  gap="14px"
-                  py="10px"
-                  px="16px"
-                  onClick={handleToggleNotificationsDrawer}
-                >
+                <Link as="button" onClick={handleToggleNotificationsDrawer}>
                   <Container className={style.menuLinkWrapper} gap={14}>
                     <Icon as={BellFilledIcon} fill="gray.700" />
                     {!isCollapsed && <Text fontSize={14}>Notificações</Text>}
@@ -400,34 +388,14 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               </Container>
 
               <Container className={style.menuItem}>
-                <Link
-                  as="button"
-                  alignItems="center"
-                  display="flex"
-                  flex="1"
-                  gap="14px"
-                  py="10px"
-                  px="16px"
-                  onClick={handleOpenModalSupport}
-                >
+                <Link as="button" onClick={handleOpenModalSupport}>
                   <Icon as={SupportIcon} fill="gray.700" />
                   {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
                 </Link>
               </Container>
 
-              <Container
-                className={style.menuItem}
-                onClick={handleOpenModalLogout}
-              >
-                <Link
-                  as="button"
-                  alignItems="center"
-                  display="flex"
-                  flex="1"
-                  gap="14px"
-                  py="10px"
-                  px="16px"
-                >
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleOpenModalLogout}>
                   <Icon as={ExitIcon} fill="gray.700" />
                   {!isCollapsed && <Text fontSize={14}>Sair</Text>}
                 </Link>
