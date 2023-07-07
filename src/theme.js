@@ -777,6 +777,13 @@ export default extendTheme({
             borderWidth: '2px',
           },
         },
+        smd: {
+          container: {
+            width: '38px',
+            height: '38px',
+            borderWidth: '2px',
+          },
+        },
         md: {
           container: {
             width: '44px',
