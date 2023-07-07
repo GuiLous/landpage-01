@@ -6,10 +6,6 @@
 	z-index: 10000;
 }
 
-.header {
-	padding: 42px 40px 0;
-}
-
 .userInfo {
 	padding-left: 40px;
 	padding-right: 40px;
@@ -142,9 +138,6 @@
 }
 
 @media (max-width: 1600px) {
-	.header {
-		padding: 26px 24px 0;
-	}
 	.userInfo {
 		padding-left: 26px;
 		padding-right: 26px;
@@ -161,5 +154,8 @@
 	}
 	.footer {
 		padding: 0 26px 24px;
+	}
+	.btnWrapper {
+		padding: 0 26px;
 	}
 }
