@@ -9,12 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona novos ícones.
+- Adiciona variant `notification` no componente `ToastListItem` [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Adicionado arquivo `.stylelintignore` para não verificar a pasta `build` [#411](https://github.com/3C-gg/reload-frontend/issues/411).
 - Adiciona case `lobbies/queue_tick` no `WebSocket` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Adiciona reducer `updateQueueTime` no `lobbySlice`.
 
 ### Changed
 
+- Altera `SidebarLayout` para se ajustar à telas menores de `1600px`.
+- Altera `MainLayout` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyView` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyPlayerCard` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyPlayButton` para se ajustar à telas menores de `1600px`.
+- Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px`.
+- Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
+- Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`. 
 - Altera Websocket `maintenance/end` para recarregar o navegador [#483](https://github.com/3C-gg/reload-frontend/issues/483).
 - Altera `LobbyLineUp` para adicionar o componente `LobbyPlayButton` centralizado e as funções necessárias [#486](https://github.com/3C-gg/reload-frontend/issues/486).

@@ -12,6 +12,11 @@
 	min-width: 25px;
 }
 
+.container.smd {
+	max-width: 55px;
+	min-width: 55px;
+}
+
 .container.md {
 	max-width: 75px;
 	min-width: 75px;
@@ -46,6 +51,12 @@
 .sm .txt {
 	font-size: 11px;
 	margin-left: -1px;
+	margin-top: -8px;
+}
+
+.smd .txt {
+	font-size: 15px;
+	margin-left: 0px;
 	margin-top: -8px;
 }
 

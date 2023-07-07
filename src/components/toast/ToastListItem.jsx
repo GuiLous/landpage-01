@@ -63,6 +63,7 @@ export default function ToastListItem({
         return <Icon as={CloseCircleIcon} color="danger.400" />
 
       case 'invite':
+      case 'notification':
         return <Avatar variant="teaming" src={avatar} size="sm" />
 
       default:

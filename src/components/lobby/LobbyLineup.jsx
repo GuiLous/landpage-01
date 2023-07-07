@@ -11,6 +11,7 @@ import {
 import { StorageService } from '@services'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
 
+import { useMediaQuery } from '@chakra-ui/react'
 import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({
@@ -21,6 +22,8 @@ export default function LobbyLineup({
   match,
   preMatch,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const [lineup, setLineup] = useState([])
   const dispatch = useDispatch()
 
@@ -117,14 +120,18 @@ export default function LobbyLineup({
 
   return (
     userPlayer && (
-      <Container className={style.container} gap={18} align="center">
+      <Container
+        className={style.container}
+        gap={isLessThan2xl ? 14 : 18}
+        align="center"
+      >
         {lineup.map((player, index) => (
           <Container
             key={player ? player.user_id : `seat-${index}`}
-            style={{ height: index === 2 ? '100%' : '95%' }}
             align="center"
             column
-            gap={40}
+            gap={isLessThan2xl ? 28 : 40}
+            style={{ height: index === 2 ? '100%' : '95%' }}
           >
             {player ? (
               renderPlayerCard(player, index)

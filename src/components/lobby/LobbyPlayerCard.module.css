@@ -4,7 +4,7 @@
 	border-radius: 8px;
 	color: white;
 	height: 100%;
-	min-width: 280px;
+	min-width: 200px;
 	padding: 54px 20px;
 	position: relative;
 }
@@ -31,4 +31,17 @@
 
 .footerButton {
 	cursor: pointer;
+}
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 38px 10px;
+	}
+	.latestResults {
+		font-size: 14px;
+	}
+	.closeButton {
+		right: 12px;
+		top: 12px;
+	}
 }
