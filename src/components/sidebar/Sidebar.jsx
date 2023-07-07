@@ -231,11 +231,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         testID="container"
         gap={isLessThan2xl ? 30 : 48}
       >
-        <Container
-          column
-          fitContent
-          gap={isLessThan2xl ? 28 : 48}
-        >
+        <Container column fitContent gap={isLessThan2xl ? 28 : 48}>
           <Container className={style.logoWrapper}>
             <Link as={ReactRouterLink} to="/jogar">
               <Image
@@ -272,7 +268,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
         </Container>
 
-        <Container className={style.body} column gap={isLessThan2xl ? 10 : 14}>
+        <Container className={style.body} column gap={14}>
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
               <Avatar src={user.account.avatar.medium} variant={user.status} />
