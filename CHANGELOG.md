@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
+ 
+- Adiciona novo tamanho de avatar `smd`.
 - Adiciona novos ícones.
 - Adiciona variant `notification` no componente `ToastListItem` [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Adicionado arquivo `.stylelintignore` para não verificar a pasta `build` [#411](https://github.com/3C-gg/reload-frontend/issues/411).
@@ -17,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera o componente `avatar` em `FriendListGroupItem` para se ajustar à telas menores de `1600px`.
+- Altera `width` da `FriendList` para se ajustar à telas menores de `1600px`.
 - Altera `NotificationListItem` para se ajustar à telas menores de `1600px`.
 - Altera `NotificationsList` para se ajustar à telas menores de `1600px`.
 - Altera `SidebarLayout` para se ajustar à telas menores de `1600px`.
