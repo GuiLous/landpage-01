@@ -1,4 +1,4 @@
-import { Button, Text, Textarea, VStack } from '@chakra-ui/react'
+import { Button, Text, Textarea, VStack, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -16,6 +16,8 @@ import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
 export default function SupportModal({ isOpen, setIsOpen }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const dispatch = useDispatch()
 
   const [subjectOptions, setSubjectOptions] = useState([
@@ -127,8 +129,17 @@ export default function SupportModal({ isOpen, setIsOpen }) {
       {formSent ? (
         <ConfirmationContent />
       ) : (
-        <Container justify="center" align="center" column gap={32}>
-          <Text color="gray.700" fontSize={14} textAlign="center">
+        <Container
+          justify="center"
+          align="center"
+          column
+          gap={isLessThan2xl ? 22 : 32}
+        >
+          <Text
+            color="gray.700"
+            fontSize={{ base: 14, md: 12, '2xl': 14 }}
+            textAlign="center"
+          >
             Tem alguma dúvida? Envie para nosso suporte e logo retornaremos.
           </Text>
 
