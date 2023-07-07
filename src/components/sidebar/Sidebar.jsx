@@ -21,7 +21,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
-import logoFull from '@assets/images/logo.svg'
+import logoFull from '@assets/images/logo_symbol_full.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
   BackpackIcon,
@@ -234,23 +234,29 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         <Container
           column
           fitContent
-          gap={isLessThan2xl ? 50 : 80}
+          gap={isLessThan2xl ? 50 : 48}
           className={style.header}
         >
-          <Link as={ReactRouterLink} to="/jogar">
-            <Image
-              src={logoSymbol}
-              style={{ height: isCollapsed ? 'auto' : 0 }}
-              data-testid="logo-symbol"
-            />
-            <Image
-              src={logoFull}
-              style={{ height: !isCollapsed ? 'auto' : 0 }}
-              data-testid="logo-full"
-            />
-          </Link>
-
-          <Container align="center" justify="center" fitContent>
+          <Container className={style.logoWrapper}>
+            <Link as={ReactRouterLink} to="/jogar">
+              <Image
+                src={logoSymbol}
+                style={{ height: isCollapsed ? 'auto' : 0 }}
+                data-testid="logo-symbol"
+              />
+              <Image
+                src={logoFull}
+                style={{ height: !isCollapsed ? 'auto' : 0 }}
+                data-testid="logo-full"
+              />
+            </Link>
+          </Container>
+          <Container
+            align="center"
+            justify="center"
+            fitContent
+            className={style.btnWrapper}
+          >
             {isCollapsed ? (
               <IconButton
                 as={Button}
@@ -267,7 +273,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
         </Container>
 
-        <Container className={style.body} column gap={isLessThan2xl ? 20 : 24}>
+        <Container className={style.body} column gap={isLessThan2xl ? 10 : 14}>
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
               <Avatar src={user.account.avatar.medium} variant={user.status} />

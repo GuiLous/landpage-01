@@ -132,6 +132,15 @@
 	padding: 0 40px 40px;
 }
 
+.logoWrapper {
+	background-color: rgba(51, 51, 51, 0.5);
+	padding: 32px 40px;
+}
+
+.btnWrapper {
+	padding: 0 40px;
+}
+
 @media (max-width: 1600px) {
 	.header {
 		padding: 26px 24px 0;
