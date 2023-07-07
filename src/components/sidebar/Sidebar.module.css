@@ -6,6 +6,10 @@
 	z-index: 10000;
 }
 
+.header {
+	padding: 42px 40px 0;
+}
+
 .userInfo {
 	padding-left: 40px;
 	padding-right: 40px;
@@ -122,4 +126,31 @@
 	position: absolute;
 	right: 10px;
 	width: auto;
+}
+
+.footer {
+	padding: 0 40px 40px;
+}
+
+@media (max-width: 1600px) {
+	.header {
+		padding: 26px 24px 0;
+	}
+	.userInfo {
+		padding-left: 26px;
+		padding-right: 26px;
+	}
+	.menuItem {
+		font-size: 16px;
+		min-height: 32px;
+	}
+	.menuItem a,
+	.menuItem button {
+		gap: 12px;
+		margin-right: 26px;
+		padding: 8px 10px 8px 26px;
+	}
+	.footer {
+		padding: 0 26px 24px;
+	}
 }

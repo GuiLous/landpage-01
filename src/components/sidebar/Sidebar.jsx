@@ -7,6 +7,7 @@ import {
   Image,
   Link,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa'
@@ -50,6 +51,8 @@ import { formatSecondsToMinutes } from '@utils'
 import style from './Sidebar.module.css'
 
 export default function Sidebar({ collapsed = true, collapsable = false }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const match = useSelector((state) => state.match)
@@ -101,9 +104,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           <Button
             leftIcon={<FaPlay />}
             className={style.playBtn}
-            fontSize={18}
+            fontSize={{ base: 18, md: 16, '2xl': 18 }}
             fontWeight="bold"
-            height={55}
+            height={{ base: 55, md: 50, '2xl': 55 }}
             w="full"
             as={ReactRouterLink}
             to="/jogar"
@@ -116,9 +119,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           <Button
             leftIcon={<ClockIcon />}
             className={style.queueBtn}
-            fontSize={18}
+            fontSize={{ base: 18, md: 16, '2xl': 18 }}
             fontWeight="bold"
-            height={55}
+            height={{ base: 55, md: 50, '2xl': 55 }}
             w="full"
             as={ReactRouterLink}
             to="/jogar"
@@ -134,9 +137,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           <Button
             leftIcon={<JoystickIcon />}
             className={style.queueBtn}
-            fontSize={18}
+            fontSize={{ base: 18, md: 16, '2xl': 18 }}
             fontWeight="bold"
-            height={55}
+            height={{ base: 55, md: 50, '2xl': 55 }}
             w="full"
             as={ReactRouterLink}
             to={`partidas/${match.id}`}
@@ -149,9 +152,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         {showRestrictedButton && (
           <Button
             className={style.dangerBtn}
-            fontSize={18}
+            fontSize={{ base: 18, md: 16, '2xl': 18 }}
             fontWeight="bold"
-            height={55}
+            height={{ base: 55, md: 50, '2xl': 55 }}
             w="full"
             as={ReactRouterLink}
             to="/jogar"
@@ -226,13 +229,13 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onMouseEnter={open}
         onMouseLeave={collapse}
         testID="container"
-        gap={48}
+        gap={isLessThan2xl ? 30 : 48}
       >
         <Container
           column
           fitContent
-          gap={80}
-          style={{ padding: '42px 40px 0' }}
+          gap={isLessThan2xl ? 50 : 80}
+          className={style.header}
         >
           <Link as={ReactRouterLink} to="/jogar">
             <Image
@@ -264,17 +267,25 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
           </Container>
         </Container>
 
-        <Container className={style.body} column gap={24}>
+        <Container className={style.body} column gap={isLessThan2xl ? 20 : 24}>
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
               <Avatar src={user.account.avatar.medium} variant={user.status} />
               {!isCollapsed && (
                 <Container column>
-                  <Text color="white" fontWeight={'medium'}>
+                  <Text
+                    color="white"
+                    fontWeight={'medium'}
+                    fontSize={{ base: 16, md: 14, '2xl': 16 }}
+                  >
                     {user.account.username}
                   </Text>
 
-                  <Text color="gray.700" fontWeight={'medium'} fontSize={12}>
+                  <Text
+                    color="gray.700"
+                    fontWeight={'medium'}
+                    fontSize={{ base: 12, md: 10, '2xl': 12 }}
+                  >
                     LEVEL {user.account.level}
                   </Text>
                 </Container>
@@ -282,7 +293,11 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
           </Container>
 
-          <Container column gap={38}>
+          <Container
+            column
+            gap={isLessThan2xl ? 26 : 38}
+            className={style.menu}
+          >
             <Container className={style.topMenu} column>
               <Container className={style.menuItem}>
                 <Link as="button" onClick={handleToggleFriendListDrawer}>
@@ -344,7 +359,12 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                   </Container>
                   {!isCollapsed && (
                     <Container justify="end">
-                      <Badge>Em breve</Badge>
+                      <Badge
+                        fontSize={{ base: 10, md: 8, '2xl': 10 }}
+                        paddingBottom={{ base: '4px', md: '3px', '2xl': '4px' }}
+                      >
+                        Em breve
+                      </Badge>
                     </Container>
                   )}
                 </Link>
@@ -358,7 +378,12 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                   </Container>
                   {!isCollapsed && (
                     <Container justify="end">
-                      <Badge>Em breve</Badge>
+                      <Badge
+                        fontSize={{ base: 10, md: 8, '2xl': 10 }}
+                        paddingBottom={{ base: '4px', md: '3px', '2xl': '4px' }}
+                      >
+                        Em breve
+                      </Badge>
                     </Container>
                   )}
                 </Link>
@@ -372,7 +397,12 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                   </Container>
                   {!isCollapsed && (
                     <Container justify="end">
-                      <Badge>Em breve</Badge>
+                      <Badge
+                        fontSize={{ base: 10, md: 8, '2xl': 10 }}
+                        paddingBottom={{ base: '4px', md: '3px', '2xl': '4px' }}
+                      >
+                        Em breve
+                      </Badge>
                     </Container>
                   )}
                 </Link>
@@ -414,31 +444,45 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               <Icon as={ShareIcon} color="gray.700" fontSize={18} />
             </Container>
           ) : (
-            <Container gap={24} style={{ padding: '0 40px 40px' }}>
-              <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
-                <SiInstagram fontSize={18} />
+            <Container gap={24}>
+              <Link
+                href="https://www.instagram.com/reloadclubgg/"
+                isExternal
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
+              >
+                <SiInstagram />
               </Link>
 
-              <Link href="https://twitter.com/reloadclubgg" isExternal>
-                <SiTwitter fontSize={18} />
+              <Link
+                href="https://twitter.com/reloadclubgg"
+                isExternal
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
+              >
+                <SiTwitter />
               </Link>
 
-              <Link href="https://discord.gg/mMMKshktfT" isExternal>
-                <SiDiscord fontSize={18} />
+              <Link
+                href="https://discord.gg/mMMKshktfT"
+                isExternal
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
+              >
+                <SiDiscord />
               </Link>
 
               <Link
                 href="https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A"
                 isExternal
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
               >
-                <SiYoutube fontSize={18} />
+                <SiYoutube />
               </Link>
 
               <Link
                 href="https://www.facebook.com/profile.php?id=100089787770305"
                 isExternal
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
               >
-                <SiFacebook fontSize={18} />
+                <SiFacebook />
               </Link>
             </Container>
           )}
