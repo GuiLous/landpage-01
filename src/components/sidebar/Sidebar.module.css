@@ -124,6 +124,10 @@
 	width: auto;
 }
 
+.footer {
+	padding: 0 40px 40px;
+}
+
 .logoWrapper {
 	background-color: rgba(51, 51, 51, 0.5);
 	padding: 32px 40px;
@@ -131,4 +135,30 @@
 
 .btnWrapper {
 	padding: 0 40px;
+}
+
+@media (max-width: 1600px) {
+	.userInfo {
+		padding-left: 26px;
+		padding-right: 26px;
+	}
+	.menuItem {
+		font-size: 16px;
+		min-height: 32px;
+	}
+	.menuItem a,
+	.menuItem button {
+		gap: 12px;
+		margin-right: 26px;
+		padding: 8px 10px 8px 26px;
+	}
+	.footer {
+		padding: 0 26px 24px;
+	}
+	.logoWrapper {
+		padding: 24px 26px;
+	}
+	.btnWrapper {
+		padding: 0 26px;
+	}
 }

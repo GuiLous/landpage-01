@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `SidebarLayout` para se ajustar à telas menores de `1600px`.
+- Altera `MainLayout` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyView` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyPlayerCard` para se ajustar à telas menores de `1600px`.
+- Altera `LobbyPlayButton` para se ajustar à telas menores de `1600px`.
+- Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px`.
 - Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
 - Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Altera Websocket `maintenance/end` para recarregar o navegador [#483](https://github.com/3C-gg/reload-frontend/issues/483).
