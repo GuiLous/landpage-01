@@ -8,7 +8,6 @@ import {
   Container,
   JoystickIcon,
   LobbyLineup,
-  LobbyPlayButton,
   MatchFoundModal,
 } from '@components'
 import { StorageService } from '@services'
@@ -20,7 +19,6 @@ import style from './LobbyView.module.css'
 export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-
   const preMatch = useSelector((state) => state.preMatch)
   const match = useSelector((state) => state.match)
 
@@ -28,39 +26,10 @@ export default function LobbyView() {
 
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
-  const isOwner = lobby.owner_id === user.id
   const userPlayer = lobby.players?.find((player) => player.user_id === user.id)
   const otherPlayers = lobby.players?.filter(
     (player) => player.user_id !== user.id
   )
-
-  const handleQueue = async (action) => {
-    if (preMatch || match) return
-
-    if (action === 'start' && !isOwner) return
-
-    const userToken = StorageService.get('token')
-
-    let response = null
-
-    if (action === 'start') {
-      response = await LobbiesAPI.startQueue(userToken, lobby.id)
-    } else {
-      response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
-    }
-
-    if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
-    }
-  }
-
-  const handleCancelQueue = () => handleQueue('cancel')
-  const handleStartQueue = () => handleQueue('start')
 
   useEffect(() => {
     const lockIn = async () => {
@@ -117,10 +86,10 @@ export default function LobbyView() {
       <Container className={style.header} gap={12} fitContent>
         <Icon as={JoystickIcon} color="white" fontSize={30} />
         <Container gap={8}>
-          <Text fontSize={22} fontWeight="light" textTransform="uppercase">
+          <Text fontSize={20} fontWeight="light" textTransform="uppercase">
             Suba de nível e
           </Text>
-          <Text fontSize={22} fontWeight="semibold" textTransform="uppercase">
+          <Text fontSize={20} fontWeight="semibold" textTransform="uppercase">
             fique entre os melhores
           </Text>
         </Container>
@@ -167,22 +136,10 @@ export default function LobbyView() {
       <Container className={style.lineup}>
         <LobbyLineup
           userPlayer={userPlayer}
-          isOwner={lobby.owner_id === user.id}
           otherPlayers={otherPlayers}
-          lobbyId={lobby.id}
-          queue={lobby.queue}
-        />
-      </Container>
-
-      <Container className={style.footer} fitContent>
-        <LobbyPlayButton
-          queueTime={lobby.queue && lobby.queue_time}
-          restrictionCountdown={lobby.restriction_countdown}
-          restricted={lobby.restriction_countdown}
-          disabled={(!isOwner && !lobby.queue) || preMatch || match}
-          onClick={
-            lobby.queue_time !== null ? handleCancelQueue : handleStartQueue
-          }
+          lobby={lobby}
+          preMatch={preMatch}
+          match={match}
         />
       </Container>
 

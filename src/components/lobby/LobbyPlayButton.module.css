@@ -4,6 +4,7 @@
 	color: white;
 	cursor: pointer;
 	height: 73px;
+	max-height: 73px;
 	overflow: hidden;
 	padding-bottom: 18px;
 	padding-top: 18px;

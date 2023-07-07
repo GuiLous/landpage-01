@@ -20,7 +20,6 @@ describe('LobbyLineup Component', () => {
 
   let props = {
     otherPlayers: [],
-    isOwner: false,
     userPlayer: {
       username: 'Username',
       user_id: 1,
@@ -33,6 +32,13 @@ describe('LobbyLineup Component', () => {
       level: 1,
       steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
     },
+    lobby: {
+      id: 1,
+      owner_id: 1,
+      queue: null,
+    },
+    match: null,
+    preMatch: null,
   }
 
   it('should render correctly', () => {
