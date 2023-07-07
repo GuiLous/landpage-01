@@ -133,7 +133,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
           justify="center"
           align="center"
           column
-          gap={isLessThan2xl ? 22 : 32}
+          gap={isLessThan2xl ? 20 : 32}
         >
           <Text
             color="gray.700"
@@ -150,10 +150,14 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
-              gap: '12px',
+              gap: isLessThan2xl ? '10px' : '12px',
             }}
           >
-            <Container column gap={14} style={{ overflow: 'hidden' }}>
+            <Container
+              column
+              gap={isLessThan2xl ? 12 : 14}
+              style={{ overflow: 'hidden' }}
+            >
               <VStack alignItems="initial" w="100%">
                 <Select
                   control={control}
@@ -179,6 +183,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
                   isInvalid={fieldsErrors?.description}
                   placeholder="Descrição"
                   variant="primary"
+                  minH={{ base: '98px', md: '68px', '2xl': '98px' }}
                   {...register('description')}
                 />
 
@@ -219,8 +224,8 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               <Container
                 align="center"
                 justify="between"
-                gap={12}
-                style={{ flexWrap: 'wrap' }}
+                gap={isLessThan2xl ? 10 : 12}
+                style={{ flexWrap: 'wrap', maxWidth: '410px' }}
               >
                 {files.map((file, index) => (
                   <FileCard
