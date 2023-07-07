@@ -155,6 +155,9 @@
 	.footer {
 		padding: 0 26px 24px;
 	}
+	.logoWrapper {
+		padding: 24px 26px;
+	}
 	.btnWrapper {
 		padding: 0 26px;
 	}
