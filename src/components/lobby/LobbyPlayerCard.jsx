@@ -97,7 +97,7 @@ export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
       </Container>
 
       <Container justify="center" fitContent>
-        <LevelBadge level={player.level} size={isLessThan2xl && 'sm'} />
+        <LevelBadge level={player.level} size={isLessThan2xl ? 'smd' : 'md'} />
       </Container>
 
       <Container justify="center" fitContent gap={isLessThan2xl ? 22 : 32}>
