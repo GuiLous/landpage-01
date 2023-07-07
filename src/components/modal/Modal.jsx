@@ -29,13 +29,13 @@ export default function Modal({
       {...props}
     >
       <ModalOverlay />
-      <ModalContent p="40px" maxW={maxWidthModal}>
+      <ModalContent p={{ base: 10, md: 8, '2xl': 10 }} maxW={maxWidthModal}>
         <ModalHeader p={0} mb={headerMarginBottom + 'px'}>
           <Container justify="center">
             {title && (
               <Text
                 color="white"
-                fontSize={20}
+                fontSize={{ base: 20, md: 18, '2xl': 20 }}
                 textTransform="uppercase"
                 lineHeight={1}
                 data-testid="title"
