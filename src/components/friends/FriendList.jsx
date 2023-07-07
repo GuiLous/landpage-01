@@ -82,8 +82,8 @@ export default function FriendList({ isOpen, onClose }) {
       <DrawerOverlay style={{ background: 'transparent' }} />
 
       <DrawerContent
-        w={isLessThan2xl && '300px'}
-        maxW={isLessThan2xl && '300px'}
+        w={isLessThan2xl ? '300px' : '320px'}
+        maxW={isLessThan2xl ? '300px' : '320px'}
       >
         <Container
           className={style.container}
