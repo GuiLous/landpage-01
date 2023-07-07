@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `NotificationsList` para se ajustar à telas menores de `1600px`.
 - Altera `SidebarLayout` para se ajustar à telas menores de `1600px`.
 - Altera `MainLayout` para se ajustar à telas menores de `1600px`.
 - Altera `LobbyView` para se ajustar à telas menores de `1600px`.
