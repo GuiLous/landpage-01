@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px`.
 - Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
 - Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
+- Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`. 
 - Altera Websocket `maintenance/end` para recarregar o navegador [#483](https://github.com/3C-gg/reload-frontend/issues/483).
 - Altera `LobbyLineUp` para adicionar o componente `LobbyPlayButton` centralizado e as funções necessárias [#486](https://github.com/3C-gg/reload-frontend/issues/486).
 - Remove `secondsDiff` e usa `lobby.queue_time` no botão de `jogar` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
@@ -33,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Remove `MaintenanceSlice`.
 - Remove componente `LobbyPlayButton` e funções `handleQueue`, `handleCancelQueue` e `handleStartQueue` da view `LobbyView`.
 - Remove useEffect que faz cálculo da diferença de segundos do componente `Sidebar` e da view `LobbyView`.
 
