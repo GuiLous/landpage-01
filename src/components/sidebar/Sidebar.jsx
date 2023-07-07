@@ -2,7 +2,6 @@ import {
   Avatar,
   Badge,
   Button,
-  Divider,
   Icon,
   IconButton,
   Image,
@@ -21,9 +20,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
-import logoFull from '@assets/images/logo.svg'
+import logoFull from '@assets/images/logo_symbol_full.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
+  BackpackIcon,
   BellFilledIcon,
   BlockIcon,
   ClockIcon,
@@ -108,7 +108,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             as={ReactRouterLink}
             to="/jogar"
           >
-            JOGAR
+            COMEÇAR
           </Button>
         )}
 
@@ -226,25 +226,30 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onMouseEnter={open}
         onMouseLeave={collapse}
         testID="container"
-        gap={60}
+        gap={48}
       >
-        <Container className={style.header} column>
-          <Link as={ReactRouterLink} to="/jogar">
-            <Image
-              src={logoSymbol}
-              style={{ height: isCollapsed ? 'auto' : 0 }}
-              data-testid="logo-symbol"
-            />
-            <Image
-              src={logoFull}
-              style={{ height: !isCollapsed ? 'auto' : 0 }}
-              data-testid="logo-full"
-            />
-          </Link>
-        </Container>
+        <Container column fitContent gap={48}>
+          <Container className={style.logoWrapper}>
+            <Link as={ReactRouterLink} to="/jogar">
+              <Image
+                src={logoSymbol}
+                style={{ height: isCollapsed ? 'auto' : 0 }}
+                data-testid="logo-symbol"
+              />
+              <Image
+                src={logoFull}
+                style={{ height: !isCollapsed ? 'auto' : 0 }}
+                data-testid="logo-full"
+              />
+            </Link>
+          </Container>
 
-        <Container className={style.body} column gap={32}>
-          <Container align="center" justify="center">
+          <Container
+            align="center"
+            justify="center"
+            fitContent
+            className={style.btnWrapper}
+          >
             {isCollapsed ? (
               <IconButton
                 as={Button}
@@ -259,9 +264,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               renderButtons()
             )}
           </Container>
+        </Container>
 
-          <Divider />
-
+        <Container className={style.body} column gap={14}>
           <Container className={style.userInfo} align="center">
             <Container gap={14} align="center" justify="center">
               <Avatar src={user.account.avatar.medium} variant={user.status} />
@@ -279,140 +284,124 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
             </Container>
           </Container>
 
-          <Container className={style.menu} column>
-            <Container
-              className={style.menuItem}
-              onClick={handleToggleFriendListDrawer}
-            >
-              <Link as="button">
-                <Container
-                  className={style.menuLinkWrapper}
-                  gap={14}
-                  align="center"
-                >
-                  <Icon as={FriendsIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Amigos</Text>}
-                </Container>
-                <Container
-                  justify={!isCollapsed ? 'end' : 'start'}
-                  className={style.unreadBadge}
-                >
-                  <Badge
-                    variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: receivedInvites.length > 0 ? 1 : 0 }}
+          <Container column gap={38}>
+            <Container className={style.topMenu} column>
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleToggleFriendListDrawer}>
+                  <Container
+                    className={style.menuLinkWrapper}
+                    gap={14}
+                    align="center"
                   >
-                    {!isCollapsed && receivedInvites.length}
-                  </Badge>
-                </Container>
-              </Link>
-            </Container>
-
-            <Container className={style.menuItem}>
-              <Link
-                as="button"
-                alignItems="center"
-                display="flex"
-                flex="1"
-                gap="14px"
-                py="10px"
-                px="16px"
-                onClick={handleToggleNotificationsDrawer}
-              >
-                <Container className={style.menuLinkWrapper} gap={14}>
-                  <Icon as={BellFilledIcon} fill="gray.700" />
-                  {!isCollapsed && <Text fontSize={14}>Notificações</Text>}
-                </Container>
-
-                <Container
-                  justify={!isCollapsed ? 'end' : 'start'}
-                  className={style.unreadBadge}
-                >
-                  <Badge
-                    variant={isCollapsed ? 'unread' : 'counter'}
-                    style={{ opacity: unreadNotificationsCount > 0 ? 1 : 0 }}
+                    <Icon as={FriendsIcon} fill="gray.700" />
+                    {!isCollapsed && <Text>Amigos</Text>}
+                  </Container>
+                  <Container
+                    justify={!isCollapsed ? 'end' : 'start'}
+                    className={style.unreadBadge}
                   >
-                    {!isCollapsed && unreadNotificationsCount}
-                  </Badge>
-                </Container>
-              </Link>
-            </Container>
-
-            <Container className={style.menuItem}>
-              <Link as={ReactRouterLink} to={`/perfil/${user.id}`}>
-                <Icon as={UserIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Perfil</Text>}
-              </Link>
-            </Container>
-
-            <Container className={[style.menuItem, style.soon].join(' ')}>
-              <Link href="#">
-                <Container className={style.menuLinkWrapper} gap={14}>
-                  <Icon as={PodiumIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Ranking</Text>}
-                </Container>
-                {!isCollapsed && (
-                  <Container justify="end">
-                    <Badge>Em breve</Badge>
+                    <Badge
+                      variant={isCollapsed ? 'unread' : 'counter'}
+                      style={{ opacity: receivedInvites.length > 0 ? 1 : 0 }}
+                    >
+                      {!isCollapsed && receivedInvites.length}
+                    </Badge>
                   </Container>
-                )}
-              </Link>
-            </Container>
+                </Link>
+              </Container>
 
-            <Container className={[style.menuItem, style.soon].join(' ')}>
-              <Link href="#">
-                <Container className={style.menuLinkWrapper} gap={14}>
-                  <Icon as={ShopIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Loja</Text>}
-                </Container>
-                {!isCollapsed && (
-                  <Container justify="end">
-                    <Badge>Em breve</Badge>
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleToggleNotificationsDrawer}>
+                  <Container className={style.menuLinkWrapper} gap={14}>
+                    <Icon as={BellFilledIcon} fill="gray.700" />
+                    {!isCollapsed && <Text fontSize={14}>Notificações</Text>}
                   </Container>
-                )}
-              </Link>
+
+                  <Container
+                    justify={!isCollapsed ? 'end' : 'start'}
+                    className={style.unreadBadge}
+                  >
+                    <Badge
+                      variant={isCollapsed ? 'unread' : 'counter'}
+                      style={{ opacity: unreadNotificationsCount > 0 ? 1 : 0 }}
+                    >
+                      {!isCollapsed && unreadNotificationsCount}
+                    </Badge>
+                  </Container>
+                </Link>
+              </Container>
+
+              <Container className={style.menuItem}>
+                <Link as={ReactRouterLink} to={`/perfil/${user.id}`}>
+                  <Icon as={UserIcon} fill="gray.700" />
+                  {!isCollapsed && <Text>Perfil</Text>}
+                </Link>
+              </Container>
+
+              <Container className={[style.menuItem, style.soon].join(' ')}>
+                <Link href="#">
+                  <Container className={style.menuLinkWrapper} gap={14}>
+                    <Icon as={PodiumIcon} fill="gray.700" />
+                    {!isCollapsed && <Text>Ranking</Text>}
+                  </Container>
+                  {!isCollapsed && (
+                    <Container justify="end">
+                      <Badge>Em breve</Badge>
+                    </Container>
+                  )}
+                </Link>
+              </Container>
+
+              <Container className={[style.menuItem, style.soon].join(' ')}>
+                <Link href="#">
+                  <Container className={style.menuLinkWrapper} gap={14}>
+                    <Icon as={ShopIcon} fill="gray.700" />
+                    {!isCollapsed && <Text>Loja</Text>}
+                  </Container>
+                  {!isCollapsed && (
+                    <Container justify="end">
+                      <Badge>Em breve</Badge>
+                    </Container>
+                  )}
+                </Link>
+              </Container>
+
+              <Container className={[style.menuItem, style.soon].join(' ')}>
+                <Link href="#">
+                  <Container className={style.menuLinkWrapper} gap={14}>
+                    <Icon as={BackpackIcon} fill="gray.700" />
+                    {!isCollapsed && <Text>Inventário</Text>}
+                  </Container>
+                  {!isCollapsed && (
+                    <Container justify="end">
+                      <Badge>Em breve</Badge>
+                    </Container>
+                  )}
+                </Link>
+              </Container>
             </Container>
 
-            <Divider my="32px" />
+            <Container column className={style.bottomMenu}>
+              <Container className={style.menuItem}>
+                <Link as={ReactRouterLink} to="/conta">
+                  <Icon as={SettingsIcon} fill="gray.700" />
+                  {!isCollapsed && <Text>Conta</Text>}
+                </Link>
+              </Container>
 
-            <Container className={style.menuItem}>
-              <Link as={ReactRouterLink} to="/conta">
-                <Icon as={SettingsIcon} fill="gray.700" />
-                {!isCollapsed && <Text>Conta</Text>}
-              </Link>
-            </Container>
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleOpenModalSupport}>
+                  <Icon as={SupportIcon} fill="gray.700" />
+                  {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
+                </Link>
+              </Container>
 
-            <Container className={style.menuItem}>
-              <Link
-                as="button"
-                alignItems="center"
-                display="flex"
-                flex="1"
-                gap="14px"
-                py="10px"
-                px="16px"
-                onClick={handleOpenModalSupport}
-              >
-                <Icon as={SupportIcon} fill="gray.700" />
-                {!isCollapsed && <Text fontSize={14}>Suporte</Text>}
-              </Link>
-            </Container>
-
-            <Container
-              className={style.menuItem}
-              onClick={handleOpenModalLogout}
-            >
-              <Link
-                as="button"
-                alignItems="center"
-                display="flex"
-                flex="1"
-                gap="14px"
-                py="10px"
-                px="16px"
-              >
-                <Icon as={ExitIcon} fill="gray.700" />
-                {!isCollapsed && <Text fontSize={14}>Sair</Text>}
-              </Link>
+              <Container className={style.menuItem}>
+                <Link as="button" onClick={handleOpenModalLogout}>
+                  <Icon as={ExitIcon} fill="gray.700" />
+                  {!isCollapsed && <Text fontSize={14}>Sair</Text>}
+                </Link>
+              </Container>
             </Container>
           </Container>
         </Container>
@@ -427,10 +416,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               <Icon as={ShareIcon} color="gray.700" fontSize={18} />
             </Container>
           ) : (
-            <Container
-              gap={24}
-              style={{ paddingLeft: '16px', paddingRight: '16px' }}
-            >
+            <Container gap={24} style={{ padding: '0 40px 40px' }}>
               <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
                 <SiInstagram fontSize={18} />
               </Link>

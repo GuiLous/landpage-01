@@ -33,6 +33,7 @@ import ArrowRightIcon from './icons/ArrowRightIcon'
 import ArrowRightSimpleIcon from './icons/ArrowRightSimpleIcon'
 import ArrowUpFilledIcon from './icons/ArrowUpFilledIcon'
 import ArrowUpIcon from './icons/ArrowUpIcon'
+import BackpackIcon from './icons/BackpackIcon'
 import BellCircleIcon from './icons/BellCircleIcon'
 import BellFilledIcon from './icons/BellFilledIcon'
 import BellIcon from './icons/BellIcon'
@@ -48,6 +49,7 @@ import ExitIcon from './icons/ExitIcon'
 import FlagIcon from './icons/FlagIcon'
 import FriendsIcon from './icons/FriendsIcon'
 import GroupAddIcon from './icons/GroupAddIcon'
+import HomeIcon from './icons/HomeIcon'
 import JoystickIcon from './icons/JoystickIcon'
 import LockIcon from './icons/LockIcon'
 import MessageIcon from './icons/MessageIcon'
@@ -124,6 +126,7 @@ export {
   ArrowUpFilledIcon,
   ArrowUpIcon,
   Avatar,
+  BackpackIcon,
   BellCircleIcon,
   BellFilledIcon,
   BellIcon,
@@ -152,6 +155,7 @@ export {
   FriendsIcon,
   GroupAddIcon,
   HeatmapStatsCard,
+  HomeIcon,
   InactivateAccountCard,
   Input,
   InviteListGroup,
