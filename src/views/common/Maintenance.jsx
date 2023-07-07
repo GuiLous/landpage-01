@@ -15,7 +15,7 @@ import style from './Maintenance.module.css'
 const TIME_TO_CHECK_AGAIN = 1000 * 60 * 1 // 1 minute
 
 export default function MaintenanceView() {
-  const maintenance = useSelector((state) => state.maintenance)
+  const maintenance = useSelector((state) => state.app.maintenance)
 
   const dispatch = useDispatch()
 

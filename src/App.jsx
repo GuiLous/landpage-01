@@ -11,11 +11,10 @@ import {
 } from '@api'
 import { Container, Loading, LoadingBackdrop, ToastList } from '@components'
 import { AuthService, StorageService, WSS } from '@services'
-import { addToast } from '@slices/AppSlice'
+import { addToast, updateMaintenance } from '@slices/AppSlice'
 import { initFriends } from '@slices/FriendSlice'
 import { initInvites } from '@slices/InviteSlice'
 import { updateLobby } from '@slices/LobbySlice'
-import { updateMaintenance } from '@slices/MaintenanceSlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { initNotifications } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
@@ -25,7 +24,7 @@ import Router from './Router'
 
 export default function App() {
   const user = useSelector((state) => state.user)
-  const maintenance = useSelector((state) => state.maintenance)
+  const maintenance = useSelector((state) => state.app.maintenance)
 
   const dispatch = useDispatch()
 

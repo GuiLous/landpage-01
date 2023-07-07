@@ -4,11 +4,10 @@ import useWebSocket from 'react-use-websocket'
 
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
-import { addToast } from '@slices/AppSlice'
+import { addToast, updateMaintenance } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby, updateQueueTime } from '@slices/LobbySlice'
-import { updateMaintenance } from '@slices/MaintenanceSlice'
 import { updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
@@ -177,8 +176,7 @@ export const WSS = () => {
         break
 
       case 'maintenance/end':
-        dispatch(updateMaintenance(false))
-        navigate('/')
+        navigate(0)
         break
 
       default:
