@@ -234,8 +234,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         <Container
           column
           fitContent
-          gap={isLessThan2xl ? 50 : 48}
-          className={style.header}
+          gap={isLessThan2xl ? 28 : 48}
         >
           <Container className={style.logoWrapper}>
             <Link as={ReactRouterLink} to="/jogar">
