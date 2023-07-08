@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
+ 
+- Adiciona novo tamanho de avatar `smd`.
 - Adiciona novos ícones.
 - Adiciona variant `notification` no componente `ToastListItem` [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Adicionado arquivo `.stylelintignore` para não verificar a pasta `build` [#411](https://github.com/3C-gg/reload-frontend/issues/411).
@@ -17,14 +18,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Altera `NotificationListItem` para se ajustar à telas menores de `1600px`.
-- Altera `NotificationsList` para se ajustar à telas menores de `1600px`.
-- Altera `SidebarLayout` para se ajustar à telas menores de `1600px`.
-- Altera `MainLayout` para se ajustar à telas menores de `1600px`.
-- Altera `LobbyView` para se ajustar à telas menores de `1600px`.
-- Altera `LobbyPlayerCard` para se ajustar à telas menores de `1600px`.
-- Altera `LobbyPlayButton` para se ajustar à telas menores de `1600px`.
-- Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px`.
+- Altera `FileCard` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `Modal` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `FileInput` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `ConfirmationContent` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `SupportModal` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera o componente `avatar` em `InviteListGroupItem` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera o componente `avatar` em `FriendListGroupItem` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera `width` da `FriendList` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera `NotificationListItem` para se ajustar à telas menores de `1600px` [#495](https://github.com/3C-gg/reload-frontend/issues/495).
+- Altera `NotificationsList` para se ajustar à telas menores de `1600px` [#495](https://github.com/3C-gg/reload-frontend/issues/495).
+- Altera `SidebarLayout` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `MainLayout` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyView` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyPlayerCard` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyPlayButton` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
 - Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
 - Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
 - Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`. 

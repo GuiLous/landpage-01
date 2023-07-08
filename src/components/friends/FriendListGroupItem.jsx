@@ -79,7 +79,11 @@ export default function FriendListGroupItem({
       fitContent
     >
       <Container fitContent>
-        <Avatar variant={status} src={avatar} />
+        <Avatar
+          variant={status}
+          src={avatar}
+          size={{ base: 'md', md: 'smd', '2xl': 'md' }}
+        />
       </Container>
 
       <Container column>
