@@ -8,3 +8,9 @@
 .container.unread {
 	background-color: var(--chakra-colors-gray-750);
 }
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 14px 24px 14px 16px;
+	}
+}
