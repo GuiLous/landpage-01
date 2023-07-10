@@ -7,7 +7,6 @@ import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
-import Sidebar from './sidebar/Sidebar'
 import Timer from './timer/Timer'
 import ToastList from './toast/ToastList'
 import ToastListItem from './toast/ToastListItem'
@@ -113,6 +112,10 @@ import ConfirmationContent from './support/ConfirmationContent'
 import FileCard from './support/FileCard'
 import SupportModal from './support/SupportModal'
 
+// Sidebar
+import Sidebar from './sidebar/Sidebar'
+import SidebarLobbyButton from './sidebar/SidebarLobbyButton'
+
 // Logout
 import LogoutModal from './logout/LogoutModal'
 
@@ -199,6 +202,7 @@ export {
   ShareIcon,
   ShopIcon,
   Sidebar,
+  SidebarLobbyButton,
   StarIcon,
   StoreIcon,
   SupportIcon,
