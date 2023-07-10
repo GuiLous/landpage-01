@@ -45,7 +45,7 @@ export default function SidebarMenuItem({
               variant="counter"
               style={{ opacity: receivedInvites > 0 ? 1 : 0 }}
             >
-              {!receivedInvites}
+              {receivedInvites}
             </Badge>
           )}
 
