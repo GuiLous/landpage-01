@@ -1,4 +1,3 @@
-import { BrowserRouter } from 'react-router-dom'
 
 import { SidebarFooter } from '@components'
 
@@ -10,9 +9,7 @@ export default {
 export const Default = {
   render: (props) => {
     return (
-      <BrowserRouter>
-        <SidebarFooter {...props} />
-      </BrowserRouter>
+      <SidebarFooter {...props} />
     )
   },
 }
