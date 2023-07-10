@@ -2,7 +2,6 @@ import {
   Avatar,
   Badge,
   Icon,
-  Image,
   Link,
   Text,
   useMediaQuery,
@@ -16,10 +15,7 @@ import {
   SiYoutube,
 } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as ReactRouterLink } from 'react-router-dom'
 
-import logoFull from '@assets/images/logo_symbol_full.svg'
-import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
   BellFilledIcon,
   Container,
@@ -32,6 +28,7 @@ import {
   ShareIcon,
   ShopIcon,
   SidebarLobbyButton,
+  SidebarLogo,
   SupportIcon,
   SupportModal,
 } from '@components'
@@ -131,22 +128,7 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         testID="container"
         gap={isLessThan2xl ? 58 : 78}
       >
-        <Container column fitContent>
-          <Container className={style.logoWrapper}>
-            <Link as={ReactRouterLink} to="/jogar">
-              <Image
-                src={logoSymbol}
-                style={{ height: isCollapsed ? 'auto' : 0 }}
-                data-testid="logo-symbol"
-              />
-              <Image
-                src={logoFull}
-                style={{ height: !isCollapsed ? 'auto' : 0 }}
-                data-testid="logo-full"
-              />
-            </Link>
-          </Container>
-        </Container>
+        <SidebarLogo isCollapsed={isCollapsed} />
 
         <Container className={style.body} column gap={isLessThan2xl ? 35 : 50}>
           <Container className={style.userInfo} gap={24} align="center" column>
