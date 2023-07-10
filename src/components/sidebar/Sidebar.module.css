@@ -15,7 +15,6 @@
 	padding: 0 28px;
 }
 
-
 .container.collapsed {
 	max-width: 100px;
 	padding: 40px 18px;
@@ -57,7 +56,6 @@
 	right: 10px;
 	width: auto;
 }
-
 
 @media (max-width: 1600px) {
 	.userInfo {

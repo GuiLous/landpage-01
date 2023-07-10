@@ -152,7 +152,6 @@ describe('Sidebar Component', () => {
   })
 
   it('should renders correctly', async () => {
-
     render(
       <BrowserRouter>
         <Provider store={store}>

@@ -1,4 +1,3 @@
-
 import { SidebarFooter } from '@components'
 
 export default {
@@ -8,8 +7,6 @@ export default {
 
 export const Default = {
   render: (props) => {
-    return (
-      <SidebarFooter {...props} />
-    )
+    return <SidebarFooter {...props} />
   },
 }
