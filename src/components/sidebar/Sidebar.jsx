@@ -1,16 +1,13 @@
 import {
   Avatar,
   Badge,
-  Button,
   Icon,
-  IconButton,
   Image,
   Link,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { FaPlay } from 'react-icons/fa'
 import {
   SiDiscord,
   SiFacebook,
@@ -24,29 +21,21 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import logoFull from '@assets/images/logo_symbol_full.svg'
 import logoSymbol from '@assets/images/logo_symbol_white.svg'
 import {
-  BackpackIcon,
   BellFilledIcon,
-  BlockIcon,
-  ClockIcon,
   Container,
   ExitIcon,
   FriendList,
   FriendsIcon,
-  JoystickIcon,
   LogoutModal,
   NotificationList,
-  PlayIcon,
   PodiumIcon,
-  SettingsIcon,
   ShareIcon,
   ShopIcon,
+  SidebarLobbyButton,
   SupportIcon,
   SupportModal,
-  Timer,
-  UserIcon,
 } from '@components'
 import { toggleFriendList } from '@slices/AppSlice'
-import { formatSecondsToMinutes } from '@utils'
 
 import style from './Sidebar.module.css'
 
@@ -87,95 +76,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
 
   const collapse = () => {
     collapsable && setIsCollapsed(true)
-  }
-
-  const renderButtons = () => {
-    const showPlayButton =
-      !lobby.queue && !match && !lobby.restriction_countdown
-
-    const showQueueButton =
-      lobby.queue && !match && !lobby.restriction_countdown
-
-    const showRestrictedButton = lobby.restriction_countdown && !match
-
-    return (
-      <>
-        {showPlayButton && (
-          <Button
-            leftIcon={<FaPlay />}
-            className={style.playBtn}
-            fontSize={{ base: 18, md: 16, '2xl': 18 }}
-            fontWeight="bold"
-            height={{ base: 55, md: 50, '2xl': 55 }}
-            w="full"
-            as={ReactRouterLink}
-            to="/jogar"
-          >
-            COMEÇAR
-          </Button>
-        )}
-
-        {showQueueButton && (
-          <Button
-            leftIcon={<ClockIcon />}
-            className={style.queueBtn}
-            fontSize={{ base: 18, md: 16, '2xl': 18 }}
-            fontWeight="bold"
-            height={{ base: 55, md: 50, '2xl': 55 }}
-            w="full"
-            as={ReactRouterLink}
-            to="/jogar"
-            variant="queue"
-          >
-            <Text minW="52px" top="1px" position="relative">
-              {formatSecondsToMinutes(lobby.queue_time)}
-            </Text>
-          </Button>
-        )}
-
-        {match && (
-          <Button
-            leftIcon={<JoystickIcon />}
-            className={style.queueBtn}
-            fontSize={{ base: 18, md: 16, '2xl': 18 }}
-            fontWeight="bold"
-            height={{ base: 55, md: 50, '2xl': 55 }}
-            w="full"
-            as={ReactRouterLink}
-            to={`partidas/${match.id}`}
-            variant="queue"
-          >
-            EM PARTIDA
-          </Button>
-        )}
-
-        {showRestrictedButton && (
-          <Button
-            className={style.dangerBtn}
-            fontSize={{ base: 18, md: 16, '2xl': 18 }}
-            fontWeight="bold"
-            height={{ base: 55, md: 50, '2xl': 55 }}
-            w="full"
-            as={ReactRouterLink}
-            to="/jogar"
-            variant="restricted"
-          >
-            <Container column align="center" gap={4}>
-              <Text fontSize={12} color="white" fontWeight="semiBold">
-                GRUPO COM RESTRIÇÃO
-              </Text>
-
-              <Container justify="center" align="center" gap={4}>
-                <Icon as={BlockIcon} fill="white" w="16px" h="16px" />
-                <Text fontSize={18} fontWeight="bold" w={10} lineHeight={1}>
-                  <Timer initialTime={lobby.restriction_countdown} reverse />
-                </Text>
-              </Container>
-            </Container>
-          </Button>
-        )}
-      </>
-    )
   }
 
   const handleToggleNotificationsDrawer = () => {
@@ -229,9 +129,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
         onMouseEnter={open}
         onMouseLeave={collapse}
         testID="container"
-        gap={isLessThan2xl ? 30 : 48}
+        gap={isLessThan2xl ? 58 : 78}
       >
-        <Container column fitContent gap={isLessThan2xl ? 28 : 48}>
+        <Container column fitContent>
           <Container className={style.logoWrapper}>
             <Link as={ReactRouterLink} to="/jogar">
               <Image
@@ -246,30 +146,10 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
               />
             </Link>
           </Container>
-          <Container
-            align="center"
-            justify="center"
-            fitContent
-            className={style.btnWrapper}
-          >
-            {isCollapsed ? (
-              <IconButton
-                as={Button}
-                icon={<PlayIcon />}
-                aria-label="Jogar"
-                fontSize={18}
-                fontWeight="bold"
-                height={55}
-                className={style.playBtn}
-              />
-            ) : (
-              renderButtons()
-            )}
-          </Container>
         </Container>
 
-        <Container className={style.body} column gap={14}>
-          <Container className={style.userInfo} align="center">
+        <Container className={style.body} column gap={isLessThan2xl ? 35 : 50}>
+          <Container className={style.userInfo} gap={24} align="center" column>
             <Container gap={14} align="center" justify="center">
               <Avatar src={user.account.avatar.medium} variant={user.status} />
               {!isCollapsed && (
@@ -292,6 +172,8 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 </Container>
               )}
             </Container>
+
+            <SidebarLobbyButton lobby={lobby} match={match} />
           </Container>
 
           <Container
@@ -345,13 +227,6 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                 </Link>
               </Container>
 
-              <Container className={style.menuItem}>
-                <Link as={ReactRouterLink} to={`/perfil/${user.id}`}>
-                  <Icon as={UserIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Perfil</Text>}
-                </Link>
-              </Container>
-
               <Container className={[style.menuItem, style.soon].join(' ')}>
                 <Link href="#">
                   <Container className={style.menuLinkWrapper} gap={14}>
@@ -389,35 +264,9 @@ export default function Sidebar({ collapsed = true, collapsable = false }) {
                   )}
                 </Link>
               </Container>
-
-              <Container className={[style.menuItem, style.soon].join(' ')}>
-                <Link href="#">
-                  <Container className={style.menuLinkWrapper} gap={14}>
-                    <Icon as={BackpackIcon} fill="gray.700" />
-                    {!isCollapsed && <Text>Inventário</Text>}
-                  </Container>
-                  {!isCollapsed && (
-                    <Container justify="end">
-                      <Badge
-                        fontSize={{ base: 10, md: 8, '2xl': 10 }}
-                        paddingBottom={{ base: '4px', md: '3px', '2xl': '4px' }}
-                      >
-                        Em breve
-                      </Badge>
-                    </Container>
-                  )}
-                </Link>
-              </Container>
             </Container>
 
             <Container column className={style.bottomMenu}>
-              <Container className={style.menuItem}>
-                <Link as={ReactRouterLink} to="/conta">
-                  <Icon as={SettingsIcon} fill="gray.700" />
-                  {!isCollapsed && <Text>Conta</Text>}
-                </Link>
-              </Container>
-
               <Container className={style.menuItem}>
                 <Link as="button" onClick={handleOpenModalSupport}>
                   <Icon as={SupportIcon} fill="gray.700" />
