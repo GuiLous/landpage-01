@@ -5,7 +5,7 @@ import { Container } from '@components'
 
 export default function SidebarAvatarLink({ user }) {
   return (
-    <Tooltip label="Meu perfil" aria-label="profile" placement="top-start" >
+    <Tooltip label="Meu perfil" aria-label="profile" placement="top-start">
       <Link
         as={RouterLink}
         to={`/perfil/${user.id}`}
