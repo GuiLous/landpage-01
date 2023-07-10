@@ -10,7 +10,7 @@ import {
   SupportIcon,
 } from '@components'
 
-import style from './Sidebar.module.css'
+import style from './SidebarMenuItem.module.css'
 
 const icons = {
   amigos: FriendsIcon,
