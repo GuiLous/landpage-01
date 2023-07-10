@@ -20,7 +20,7 @@ export default function SidebarFooter() {
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
-          <SiInstagram />
+          <SiInstagram data-testid="instagram-icon" />
         </Link>
 
         <Link
@@ -28,7 +28,7 @@ export default function SidebarFooter() {
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
-          <SiTwitter />
+          <SiTwitter data-testid="twitter-icon" />
         </Link>
 
         <Link
@@ -36,7 +36,7 @@ export default function SidebarFooter() {
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
-          <SiDiscord />
+          <SiDiscord data-testid="discord-icon" />
         </Link>
 
         <Link
@@ -44,7 +44,7 @@ export default function SidebarFooter() {
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
-          <SiYoutube />
+          <SiYoutube data-testid="youtube-icon" />
         </Link>
 
         <Link
@@ -52,7 +52,7 @@ export default function SidebarFooter() {
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
-          <SiFacebook />
+          <SiFacebook data-testid="facebook-icon" />
         </Link>
       </Container>
     </Container>
