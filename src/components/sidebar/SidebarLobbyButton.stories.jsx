@@ -24,8 +24,6 @@ export const Default = {
         : null,
       queue_time: 300,
       restriction_countdown: props.isRestricted ? 300 : null,
-      id: 1,
-      players: [],
     }
 
     const match = props.isInMatch
