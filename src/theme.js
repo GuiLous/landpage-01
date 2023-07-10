@@ -852,6 +852,7 @@ export default extendTheme({
       baseStyle: {
         bg: '#1E1E1E',
         color: 'white',
+        zIndex: 99999,
       },
     },
     Divider: {
