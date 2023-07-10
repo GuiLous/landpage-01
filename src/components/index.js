@@ -115,6 +115,7 @@ import SupportModal from './support/SupportModal'
 // Sidebar
 import Sidebar from './sidebar/Sidebar'
 import SidebarLobbyButton from './sidebar/SidebarLobbyButton'
+import SidebarLogo from './sidebar/SidebarLogo'
 
 // Logout
 import LogoutModal from './logout/LogoutModal'
@@ -203,6 +204,7 @@ export {
   ShopIcon,
   Sidebar,
   SidebarLobbyButton,
+  SidebarLogo,
   StarIcon,
   StoreIcon,
   SupportIcon,
