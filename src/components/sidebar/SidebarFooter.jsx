@@ -1,3 +1,4 @@
+import { Link } from '@chakra-ui/react'
 import {
   SiDiscord,
   SiFacebook,
@@ -7,8 +8,6 @@ import {
 } from 'react-icons/si'
 
 import { Container } from '@components'
-
-import { Link } from '@chakra-ui/react'
 
 import style from './SidebarFooter.module.css'
 
