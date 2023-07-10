@@ -151,7 +151,7 @@ describe('Sidebar Component', () => {
     },
   })
 
-  it.only('should renders correctly', async () => {
+  it('should renders correctly', async () => {
 
     render(
       <BrowserRouter>
