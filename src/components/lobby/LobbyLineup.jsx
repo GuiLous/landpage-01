@@ -2,46 +2,69 @@ import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { LobbiesAPI } from '@api'
-import { Container, LobbyPlayerCard, LobbySeat } from '@components'
+import {
+  Container,
+  LobbyPlayButton,
+  LobbyPlayerCard,
+  LobbySeat,
+} from '@components'
 import { StorageService } from '@services'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
 
+import { useMediaQuery } from '@chakra-ui/react'
 import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({
   userPlayer,
-  isOwner,
-  lobbyId,
   otherPlayers = [],
   maxPlayers = 5,
-  queue,
+  lobby,
+  match,
+  preMatch,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const [lineup, setLineup] = useState([])
-
-  useEffect(() => {
-    if (!userPlayer) return
-
-    const lineupList = Array.from(Array(maxPlayers).keys()).map(() => null)
-    const fillOrder = [1, 3, 0, 4]
-    lineupList[2] = userPlayer
-
-    for (let index = 0; index < otherPlayers.length; index++) {
-      const player = otherPlayers[index]
-      lineupList[fillOrder[index]] = player
-    }
-
-    setLineup(lineupList)
-  }, [maxPlayers, otherPlayers, userPlayer])
-
   const dispatch = useDispatch()
+
   const userToken = StorageService.get('token')
 
+  const isOwner = lobby.owner_id === userPlayer.user_id
+
+  const handleQueue = async (action) => {
+    if (preMatch || match) return
+
+    if (action === 'start' && !isOwner) return
+
+    const userToken = StorageService.get('token')
+
+    let response = null
+
+    if (action === 'start') {
+      response = await LobbiesAPI.startQueue(userToken, lobby.id)
+    } else {
+      response = await LobbiesAPI.cancelQueue(userToken, lobby.id)
+    }
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+    }
+  }
+
+  const handleCancelQueue = () => handleQueue('cancel')
+  const handleStartQueue = () => handleQueue('start')
+
   const handleRemove = async (player) => {
-    if (queue) return
+    if (lobby.queue) return
 
     const response = await LobbiesAPI.removePlayer(
       userToken,
-      lobbyId,
+      lobby.id,
       player.user_id
     )
 
@@ -70,7 +93,7 @@ export default function LobbyLineup({
     return (
       <LobbyPlayerCard
         player={player}
-        onClose={!queue && closeButton}
+        onClose={!lobby.queue && closeButton}
         closeLabel={closeLabel}
       />
     )
@@ -80,20 +103,58 @@ export default function LobbyLineup({
     dispatch(toggleFriendList(true))
   }
 
+  useEffect(() => {
+    if (!userPlayer) return
+
+    const lineupList = Array.from(Array(maxPlayers).keys()).map(() => null)
+    const fillOrder = [1, 3, 0, 4]
+    lineupList[2] = userPlayer
+
+    for (let index = 0; index < otherPlayers.length; index++) {
+      const player = otherPlayers[index]
+      lineupList[fillOrder[index]] = player
+    }
+
+    setLineup(lineupList)
+  }, [maxPlayers, otherPlayers, userPlayer])
+
   return (
     userPlayer && (
-      <Container className={style.container} gap={18} align="center">
+      <Container
+        className={style.container}
+        gap={isLessThan2xl ? 14 : 18}
+        align="center"
+      >
         {lineup.map((player, index) => (
           <Container
             key={player ? player.user_id : `seat-${index}`}
+            align="center"
+            column
+            gap={isLessThan2xl ? 28 : 40}
             style={{ height: index === 2 ? '100%' : '95%' }}
           >
             {player ? (
-              renderPlayerCard(player)
+              renderPlayerCard(player, index)
             ) : (
               <Container onClick={handleSeatClick} style={{ height: '100%' }}>
                 <LobbySeat />
               </Container>
+            )}
+
+            {index === 2 ? (
+              <LobbyPlayButton
+                queueTime={lobby.queue && lobby.queue_time}
+                restrictionCountdown={lobby.restriction_countdown}
+                restricted={lobby.restriction_countdown}
+                disabled={(!isOwner && !lobby.queue) || preMatch || match}
+                onClick={
+                  lobby.queue_time !== null
+                    ? handleCancelQueue
+                    : handleStartQueue
+                }
+              />
+            ) : (
+              <Container className={style.hiddenBox} />
             )}
           </Container>
         ))}

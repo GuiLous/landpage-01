@@ -10,14 +10,11 @@ export default {
   component: LobbyLineup,
   argTypes: {
     otherPlayersCount: { control: { type: 'range', min: 0, max: 4 } },
-    isOwner: { control: 'boolean' },
     userPlayer: { control: 'object' },
     maxPlayers: { table: { disable: true } },
-    lobbyId: { table: { disable: true } },
   },
   args: {
     otherPlayersCount: 0,
-    isOwner: false,
     userPlayer: {
       username: 'Username',
       user_id: 1,
@@ -30,7 +27,13 @@ export default {
       level: 1,
       steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
     },
-    lobbyId: 1,
+    lobby: {
+      id: 1,
+      owner_id: 1,
+      queue: null,
+    },
+    match: null,
+    preMatch: null,
   },
   parameters: {
     mockData: [

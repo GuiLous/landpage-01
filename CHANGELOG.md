@@ -8,18 +8,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-
+ 
+- Adiciona novo tamanho de avatar `smd`.
+- Adiciona novos ícones.
+- Adiciona variant `notification` no componente `ToastListItem` [#484](https://github.com/3C-gg/reload-frontend/issues/484).
+- Adicionado arquivo `.stylelintignore` para não verificar a pasta `build` [#411](https://github.com/3C-gg/reload-frontend/issues/411).
 - Adiciona case `lobbies/queue_tick` no `WebSocket` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Adiciona reducer `updateQueueTime` no `lobbySlice`.
 
 ### Changed
 
+- Altera `FileCard` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `Modal` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `FileInput` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `ConfirmationContent` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera `SupportModal` para se ajustar à telas menores de `1600px` [#499](https://github.com/3C-gg/reload-frontend/issues/499).
+- Altera o componente `avatar` em `InviteListGroupItem` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera o componente `avatar` em `FriendListGroupItem` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera `width` da `FriendList` para se ajustar à telas menores de `1600px` [#497](https://github.com/3C-gg/reload-frontend/issues/497).
+- Altera `NotificationListItem` para se ajustar à telas menores de `1600px` [#495](https://github.com/3C-gg/reload-frontend/issues/495).
+- Altera `NotificationsList` para se ajustar à telas menores de `1600px` [#495](https://github.com/3C-gg/reload-frontend/issues/495).
+- Altera `SidebarLayout` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `MainLayout` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyView` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyPlayerCard` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `LobbyPlayButton` para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
+- Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
+- Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
+- Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`. 
+- Altera Websocket `maintenance/end` para recarregar o navegador [#483](https://github.com/3C-gg/reload-frontend/issues/483).
+- Altera `LobbyLineUp` para adicionar o componente `LobbyPlayButton` centralizado e as funções necessárias [#486](https://github.com/3C-gg/reload-frontend/issues/486).
+- Altera `title` e `description` no `index.html` [#491](https://github.com/3C-gg/reload-frontend/issues/491).
 - Remove `secondsDiff` e usa `lobby.queue_time` no botão de `jogar` [#477](https://github.com/3C-gg/reload-frontend/issues/477).
 - Altera `min-width` do `LobbySeat` de `280px` para `200px` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
 - Altera padding lateral do `MainLayout` de `64px` para `5%` [#475](https://github.com/3C-gg/reload-frontend/issues/475).
 
 ### Removed
 
+- Remove `MaintenanceSlice`.
+- Remove componente `LobbyPlayButton` e funções `handleQueue`, `handleCancelQueue` e `handleStartQueue` da view `LobbyView`.
 - Remove useEffect que faz cálculo da diferença de segundos do componente `Sidebar` e da view `LobbyView`.
 
 ## [d165f6c - 03/07/2023]

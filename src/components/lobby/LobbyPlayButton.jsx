@@ -36,7 +36,11 @@ export default function LobbyPlayButton({
           align="center"
           justify="center"
         >
-          <Text fontSize={14} fontWeight={'semibold'} textTransform="uppercase">
+          <Text
+            fontSize={{ base: 14, md: 12, '2xl': 14 }}
+            fontWeight={'semibold'}
+            textTransform="uppercase"
+          >
             Grupo com restrição
           </Text>
         </Container>
@@ -49,7 +53,11 @@ export default function LobbyPlayButton({
           justify="center"
           gap={4}
         >
-          <Icon as={BlockIcon} color="white" fontSize={15} />
+          <Icon
+            as={BlockIcon}
+            color="white"
+            fontSize={{ base: 15, md: 13, '2xl': 15 }}
+          />
           <Timer initialTime={restrictionCountdown} reverse />
         </Container>
       )}
@@ -71,7 +79,11 @@ export default function LobbyPlayButton({
             gap={10}
           >
             <Icon as={CloseIcon} fontSize={16} />
-            <Text fontSize={22} fontWeight="bold" textTransform="uppercase">
+            <Text
+              fontSize={{ base: 22, md: 18, '2xl': 22 }}
+              fontWeight="bold"
+              textTransform="uppercase"
+            >
               Cancelar
             </Text>
           </Container>
@@ -84,7 +96,11 @@ export default function LobbyPlayButton({
           align="center"
           justify="center"
         >
-          <Text fontSize={28} fontWeight="bold" textTransform="uppercase">
+          <Text
+            fontSize={{ base: 28, md: 24, '2xl': 28 }}
+            fontWeight="bold"
+            textTransform="uppercase"
+          >
             {title}
           </Text>
         </Container>

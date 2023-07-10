@@ -572,7 +572,7 @@ export default extendTheme({
       variants: {
         friendList: {
           dialog: {
-            marginLeft: '300px',
+            marginLeft: { base: '300px', md: '250px', '2xl': '300px' },
           },
         },
       },
@@ -777,6 +777,13 @@ export default extendTheme({
             borderWidth: '2px',
           },
         },
+        smd: {
+          container: {
+            width: '38px',
+            height: '38px',
+            borderWidth: '2px',
+          },
+        },
         md: {
           container: {
             width: '44px',
@@ -921,5 +928,12 @@ export default extendTheme({
     bold: 700,
     extraBold: 800,
     black: 900,
+  },
+  breakpoints: {
+    sm: '320px',
+    md: '768px',
+    lg: '960px',
+    xl: '1200px',
+    '2xl': '1600px',
   },
 })

@@ -75,8 +75,8 @@ export default function NotificationList({ isOpen, onClose }) {
 
       <DrawerContent
         py={6}
-        w="350px"
-        maxW="350px"
+        w={{ base: '350px', md: '300px', '2xl': '350px' }}
+        maxW={{ base: '350px', md: '300px', '2xl': '350px' }}
         bgColor="gray.900"
         transition="all 0s"
       >

@@ -14,3 +14,12 @@
 .content {
 	margin-left: 300px;
 }
+
+@media (max-width: 1600px) {
+	.sidebar {
+		width: 250px;
+	}
+	.content {
+		margin-left: 250px;
+	}
+}

@@ -1,4 +1,4 @@
-import { Button, Text, Textarea, VStack } from '@chakra-ui/react'
+import { Button, Text, Textarea, VStack, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -16,6 +16,8 @@ import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
 export default function SupportModal({ isOpen, setIsOpen }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const dispatch = useDispatch()
 
   const [subjectOptions, setSubjectOptions] = useState([
@@ -127,8 +129,17 @@ export default function SupportModal({ isOpen, setIsOpen }) {
       {formSent ? (
         <ConfirmationContent />
       ) : (
-        <Container justify="center" align="center" column gap={32}>
-          <Text color="gray.700" fontSize={14} textAlign="center">
+        <Container
+          justify="center"
+          align="center"
+          column
+          gap={isLessThan2xl ? 20 : 32}
+        >
+          <Text
+            color="gray.700"
+            fontSize={{ base: 14, md: 12, '2xl': 14 }}
+            textAlign="center"
+          >
             Tem alguma dúvida? Envie para nosso suporte e logo retornaremos.
           </Text>
 
@@ -139,10 +150,14 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
-              gap: '12px',
+              gap: isLessThan2xl ? '10px' : '12px',
             }}
           >
-            <Container column gap={14} style={{ overflow: 'hidden' }}>
+            <Container
+              column
+              gap={isLessThan2xl ? 12 : 14}
+              style={{ overflow: 'hidden' }}
+            >
               <VStack alignItems="initial" w="100%">
                 <Select
                   control={control}
@@ -168,6 +183,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
                   isInvalid={fieldsErrors?.description}
                   placeholder="Descrição"
                   variant="primary"
+                  minH={{ base: '98px', md: '68px', '2xl': '98px' }}
                   {...register('description')}
                 />
 
@@ -208,8 +224,8 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               <Container
                 align="center"
                 justify="between"
-                gap={12}
-                style={{ flexWrap: 'wrap' }}
+                gap={isLessThan2xl ? 10 : 12}
+                style={{ flexWrap: 'wrap', maxWidth: '410px' }}
               >
                 {files.map((file, index) => (
                   <FileCard

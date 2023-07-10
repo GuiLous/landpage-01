@@ -1,4 +1,4 @@
-import { Box, Image, Input, Text } from '@chakra-ui/react'
+import { Box, Image, Input, Text, useMediaQuery } from '@chakra-ui/react'
 import { useState } from 'react'
 
 import uploadImg from '@assets/images/upload.png'
@@ -13,6 +13,8 @@ export default function FileInput({
   setValue,
   setFieldsErrors,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const [isDragging, setIsDragging] = useState(false)
 
   const maxFiles = 4
@@ -100,14 +102,25 @@ export default function FileInput({
         multiple={!isSingleFile}
       />
 
-      <Container className={style.content} column gap={16}>
+      <Container className={style.content} column gap={isLessThan2xl ? 12 : 16}>
         <Container fitContent align="center" justify="center">
-          <Image src={uploadImg} alt="upload image" w="36px" h="24px" />
+          <Image
+            src={uploadImg}
+            alt="upload image"
+            w={{ base: '36px', md: '32px', '2xl': '36px' }}
+            h={{ base: '24px', md: '20px', '2xl': '24px' }}
+          />
         </Container>
 
-        <Container fitContent gap={14} column align="center" justify="center">
+        <Container
+          fitContent
+          gap={isLessThan2xl ? 10 : 14}
+          column
+          align="center"
+          justify="center"
+        >
           <Text
-            fontSize={12}
+            fontSize={{ base: 12, md: 10, '2xl': 12 }}
             fontWeight="regular"
             lineHeight={1}
             color="gray.700"
@@ -119,9 +132,14 @@ export default function FileInput({
             </Text>
           </Text>
 
-          <Container column gap={8} align="center" justify="center">
+          <Container
+            column
+            gap={isLessThan2xl ? 6 : 8}
+            align="center"
+            justify="center"
+          >
             <Text
-              fontSize={10}
+              fontSize={{ base: 10, md: 8, '2xl': 10 }}
               lineHeight={1}
               fontWeight="regular"
               color="gray.700"
@@ -134,7 +152,7 @@ export default function FileInput({
             </Text>
 
             <Text
-              fontSize={10}
+              fontSize={{ base: 10, md: 8, '2xl': 10 }}
               lineHeight={1}
               fontWeight="regular"
               color="gray.700"

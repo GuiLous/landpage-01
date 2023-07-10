@@ -49,7 +49,11 @@ export default function InviteListGroupItem({
     <Container className={style.container} align="stretch">
       <Container className={style.userInfo} align="center" gap={8}>
         <Container fitContent>
-          <Avatar variant={status} src={avatar} />
+          <Avatar
+            variant={status}
+            src={avatar}
+            size={{ base: 'md', md: 'smd', '2xl': 'md' }}
+          />
         </Container>
 
         <Container column>

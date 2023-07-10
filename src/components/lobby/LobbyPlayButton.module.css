@@ -4,11 +4,11 @@
 	color: white;
 	cursor: pointer;
 	height: 73px;
+	max-height: 73px;
 	overflow: hidden;
 	padding-bottom: 18px;
 	padding-top: 18px;
 	transition: background-color 100ms linear;
-	width: 274px;
 }
 
 .container:hover {
@@ -68,4 +68,21 @@
 .restrictedTime {
 	font-size: 18px;
 	font-weight: var(--chakra-fontWeights-bold);
+}
+
+@media (max-width: 1600px) {
+	.container {
+		height: 58px;
+		max-height: 58px;
+	}
+	.restrictedTime {
+		font-size: 16;
+	}
+	.queueTime {
+		font-size: 24px;
+		margin-top: 30px;
+	}
+	.container.queued:hover .queueTime {
+		margin-top: -36px;
+	}
 }

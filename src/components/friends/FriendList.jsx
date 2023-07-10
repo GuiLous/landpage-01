@@ -8,6 +8,7 @@ import {
   InputGroup,
   InputLeftElement,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -23,6 +24,8 @@ import {
 import style from './FriendList.module.css'
 
 export default function FriendList({ isOpen, onClose }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const friends = useSelector((state) => state.friends)
@@ -78,7 +81,10 @@ export default function FriendList({ isOpen, onClose }) {
     >
       <DrawerOverlay style={{ background: 'transparent' }} />
 
-      <DrawerContent>
+      <DrawerContent
+        w={isLessThan2xl ? '300px' : '320px'}
+        maxW={isLessThan2xl ? '300px' : '320px'}
+      >
         <Container
           className={style.container}
           column
