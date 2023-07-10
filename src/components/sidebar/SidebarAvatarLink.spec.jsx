@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { SidebarAvatarLink } from '@components'
 
-describe('Sidebar Component', () => {
+describe('SidebarAvatarLink Component', () => {
   const user = {
     id: 1,
     account: {
