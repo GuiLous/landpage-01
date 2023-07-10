@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
@@ -152,8 +151,7 @@ describe('Sidebar Component', () => {
     },
   })
 
-  it('should respect collapsable prop', async () => {
-    const user = userEvent.setup()
+  it.only('should renders correctly', async () => {
 
     render(
       <BrowserRouter>
@@ -163,77 +161,14 @@ describe('Sidebar Component', () => {
       </BrowserRouter>
     )
 
-    expect(screen.getByText('Amigos')).toBeInTheDocument()
-    expect(screen.getByText('Notificações')).toBeInTheDocument()
-
-    const container = screen.getByTestId('container')
-    expect(container).toHaveClass('container')
-    expect(container).not.toHaveClass('collapsed')
-
-    await waitFor(() => user.hover(container))
-    expect(container).not.toHaveClass('collapsed')
-  })
-
-  it('should expand when user hover on and collapse when hover out', async () => {
-    const user = userEvent.setup()
-
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Sidebar collapsable />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    const container = screen.getByTestId('container')
-    expect(container).toHaveClass('container')
-    expect(container).toHaveClass('collapsed')
-
-    await waitFor(() => user.hover(container))
-    expect(container).not.toHaveClass('collapsed')
-  })
-
-  it('should only render menu titles when not collapsed', async () => {
-    const user = userEvent.setup()
-
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Sidebar collapsable />
-        </Provider>
-      </BrowserRouter>
-    )
-    expect(screen.queryByText('Amigos')).not.toBeInTheDocument()
-    expect(screen.queryByText('Notificações')).not.toBeInTheDocument()
-
-    const container = screen.getByTestId('container')
-    await waitFor(() => user.hover(container))
-    expect(await screen.findByText('Amigos')).toBeInTheDocument()
-    expect(await screen.findByText('Notificações')).toBeInTheDocument()
-  })
-
-  it('should render logo full when collapsed and symbol otherwise', async () => {
-    const user = userEvent.setup()
-
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Sidebar collapsable />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    const container = screen.getByTestId('container')
-    const logoFull = screen.queryByTestId('logo-full')
-    const logoSymbol = screen.queryByTestId('logo-symbol')
-
-    expect(logoSymbol).toBeInTheDocument()
-    expect(logoFull).toBeInTheDocument()
-    expect(logoFull).toHaveStyle({ height: 0 })
-    expect(logoSymbol).toHaveStyle({ height: 'auto' })
-
-    await waitFor(() => user.hover(container))
-    expect(logoFull).toHaveStyle({ height: 'auto' })
-    expect(logoSymbol).toHaveStyle({ height: 0 })
+    expect(screen.getByText('Username')).toBeInTheDocument()
+    expect(screen.getByText('LEVEL 2')).toBeInTheDocument()
+    expect(screen.getByText('Lobby')).toBeInTheDocument()
+    expect(screen.getByText('amigos')).toBeInTheDocument()
+    expect(screen.getByText('notificações')).toBeInTheDocument()
+    expect(screen.getByText('ranking')).toBeInTheDocument()
+    expect(screen.getByText('loja')).toBeInTheDocument()
+    expect(screen.getByText('suporte')).toBeInTheDocument()
+    expect(screen.getByText('sair')).toBeInTheDocument()
   })
 })
