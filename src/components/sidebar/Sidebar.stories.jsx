@@ -18,8 +18,6 @@ export default {
   argTypes: {
     unreadInvites: { control: { type: 'range', min: 0 } },
     unreadNotifications: { control: { type: 'range', min: 0 } },
-    collapsed: { control: 'boolean' },
-    collapsable: { control: 'boolean' },
     userLevel: { control: { type: 'range', min: 0, max: 50 } },
     isInQueue: { control: 'boolean' },
     isInMatch: { control: 'boolean' },
@@ -28,8 +26,6 @@ export default {
   args: {
     unreadInvites: 0,
     unreadNotifications: 0,
-    collapsed: true,
-    collapsable: false,
     userLevel: 0,
     isInQueue: false,
     isInMatch: false,

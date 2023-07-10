@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
+
+- Cria componente `SidebarMenuItem`.
+- Cria componente `SidebarFooter`
+- Cria componente `SideBarAvatarLink`.
+- Cria componente `SidebarLogo`.
+- Cria componente `SidebarLobbyButton`.
+
+### Changed
+
+- Altera `Sidebar` para deixar mais fragmentada em componentes.
+- Renderiza componente `SidebarLogo` e remove código do componente `Sidebar`.
+- Renderiza componente `SidebarLobbyButton` e remove código do componente `Sidebar`.
+- Altera `Sidebar` para respeitar novo layout [#501](https://github.com/3C-gg/reload-frontend/issues/501).
+
+### Added
  
 - Adiciona novo tamanho de avatar `smd`.
 - Adiciona novos ícones.

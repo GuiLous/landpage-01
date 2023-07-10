@@ -7,79 +7,12 @@
 }
 
 .userInfo {
-	padding-left: 40px;
-	padding-right: 40px;
+	padding-left: 28px;
+	padding-right: 28px;
 }
 
-.playBtn {
-	box-shadow: 0px 0px 20px 5px rgba(104, 71, 255, 0.4);
-}
-
-.queueBtn {
-	box-shadow: 0px 0px 20px 5px rgba(52, 33, 140, 0.4);
-}
-
-.dangerBtn {
-	box-shadow: 0px 0px 20px 5px rgba(246, 53, 53, 0.4);
-}
-
-.menuItem {
-	border-radius: 4px;
-	font-size: 18px;
-	min-height: 42px;
-	position: relative;
-}
-
-.menuItem.active {
-	background-color: var(--chakra-colors-gray-400);
-}
-
-.menuItem a,
-.menuItem button {
-	align-items: center;
-	border-bottom-right-radius: 20px;
-	border-top-right-radius: 20px;
-	display: flex;
-	flex: 1;
-	gap: 14px;
-	height: 100%;
-	margin-right: 30px;
-	padding: 10px 12px 10px 40px;
-	position: relative;
-}
-
-.menuItem.soon a,
-.menuItem.soon a:hover,
-.menuItem.soon button,
-.menuItem.soon button:hover {
-	cursor: default;
-	opacity: 0.7;
-	pointer-events: none;
-}
-
-.menuItem:not(.soon) a:hover,
-.menuItem:not(.soon) button:hover {
-	background-color: rgba(152, 130, 255, 0.15);
-	border-bottom-right-radius: 20px;
-	border-top-right-radius: 20px;
-}
-
-.menuItem:not(.soon) a:hover::before,
-.menuItem:not(.soon) button:hover::before {
-	background-color: red;
-	background-color: var(--chakra-colors-primary-400);
-	border-bottom-right-radius: 4px;
-	border-top-right-radius: 4px;
-	content: '';
-	height: 100%;
-	left: 0;
-	position: absolute;
-	width: 5px;
-}
-
-.menuItem a p,
-.menuItem button p {
-	font-size: 14px;
+.menu {
+	padding: 0 28px;
 }
 
 .container.collapsed {
@@ -124,41 +57,12 @@
 	width: auto;
 }
 
-.footer {
-	padding: 0 40px 40px;
-}
-
-.logoWrapper {
-	background-color: rgba(51, 51, 51, 0.5);
-	padding: 32px 40px;
-}
-
-.btnWrapper {
-	padding: 0 40px;
-}
-
 @media (max-width: 1600px) {
 	.userInfo {
-		padding-left: 26px;
-		padding-right: 26px;
+		padding-left: 24px;
+		padding-right: 24px;
 	}
-	.menuItem {
-		font-size: 16px;
-		min-height: 32px;
-	}
-	.menuItem a,
-	.menuItem button {
-		gap: 12px;
-		margin-right: 26px;
-		padding: 8px 10px 8px 26px;
-	}
-	.footer {
-		padding: 0 26px 24px;
-	}
-	.logoWrapper {
-		padding: 24px 26px;
-	}
-	.btnWrapper {
-		padding: 0 26px;
+	.menu {
+		padding: 0 24px;
 	}
 }
