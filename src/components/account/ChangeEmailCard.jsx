@@ -45,7 +45,17 @@ export default function ChangeEmailCard() {
   }
 
   const handleChange = (event) => {
-    setEmail(event.target.value)
+    const value = event.target.value
+
+    if (
+      fieldsErrors !== null &&
+      fieldsErrors.email &&
+      value !== fieldsErrors.email
+    ) {
+      setFieldsErrors(null)
+    }
+
+    setEmail(value)
   }
 
   const handleClickButtonSave = (event) => {
