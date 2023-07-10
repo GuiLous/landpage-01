@@ -114,8 +114,11 @@ import SupportModal from './support/SupportModal'
 
 // Sidebar
 import Sidebar from './sidebar/Sidebar'
+import SidebarAvatarLink from './sidebar/SidebarAvatarLink'
+import SidebarFooter from './sidebar/SidebarFooter'
 import SidebarLobbyButton from './sidebar/SidebarLobbyButton'
 import SidebarLogo from './sidebar/SidebarLogo'
+import SidebarMenuItem from './sidebar/SidebarMenuItem'
 
 // Logout
 import LogoutModal from './logout/LogoutModal'
@@ -203,8 +206,11 @@ export {
   ShareIcon,
   ShopIcon,
   Sidebar,
+  SidebarAvatarLink,
+  SidebarFooter,
   SidebarLobbyButton,
   SidebarLogo,
+  SidebarMenuItem,
   StarIcon,
   StoreIcon,
   SupportIcon,
