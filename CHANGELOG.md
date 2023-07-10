@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Renderiza componente `SidebarLobbyButton` e remove código do componente `Sidebar`.
 - Altera `Sidebar` para respeitar novo layout [#501](https://github.com/3C-gg/reload-frontend/issues/501).
 
+### Fixed
+
+- Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503). 
+
 ### Added
  
 - Adiciona novo tamanho de avatar `smd`.
