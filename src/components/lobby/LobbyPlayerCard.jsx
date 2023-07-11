@@ -71,6 +71,7 @@ export default function LobbyPlayerCard({
               as={FaCrown}
               fontSize={{ base: 16, md: 14, '2xl': 16 }}
               mb="2px"
+              data-testid="crown-icon"
             />
           )}
 
