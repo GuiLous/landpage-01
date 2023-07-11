@@ -17,10 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera estilos dos componentes `FriendListGroup`, `FriendListGroupItem` e `InviteListGroupItem` para ficar igual ao design [#502](https://github.com/3C-gg/reload-frontend/issues/502).
 - Altera `Sidebar` para deixar mais fragmentada em componentes.
 - Renderiza componente `SidebarLogo` e remove código do componente `Sidebar`.
 - Renderiza componente `SidebarLobbyButton` e remove código do componente `Sidebar`.
 - Altera `Sidebar` para respeitar novo layout [#501](https://github.com/3C-gg/reload-frontend/issues/501).
+
+### Fixed
+
+- Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
+- Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503). 
 
 ### Added
  

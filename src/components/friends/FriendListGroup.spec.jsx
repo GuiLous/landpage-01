@@ -86,18 +86,35 @@ describe('FriendListGroup Component', () => {
       items: [],
     }
 
-    render(<FriendListGroup {...args} />)
+    render(
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    )
     expect(screen.getByTestId('container')).not.toHaveClass('open')
   })
 
   it('should render open', () => {
     let args = {
       title: 'Disponível',
-      items: [],
+      items: [
+        {
+          user_id: 11,
+          status: 'offline',
+          username: 'Username',
+          avatar:
+            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+          lobby_id: 2,
+        },
+      ],
       open: true,
     }
 
-    render(<FriendListGroup {...args} />)
+    render(
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    )
     expect(screen.getByTestId('container')).toHaveClass('open')
   })
 
@@ -107,7 +124,11 @@ describe('FriendListGroup Component', () => {
       items: [],
     }
 
-    render(<FriendListGroup {...args} />)
+    render(
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    )
     expect(screen.getByTestId('container')).not.toHaveClass('open')
     expect(screen.getByTestId('header')).toHaveClass('disabled')
   })

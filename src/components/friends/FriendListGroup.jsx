@@ -7,7 +7,7 @@ import style from './FriendListGroup.module.css'
 
 export default function FriendListGroup({
   title,
-  items,
+  items = [],
   collapse = true,
   open = false,
   showHeader = true,
@@ -35,6 +35,12 @@ export default function FriendListGroup({
     }
   }, [showHeader])
 
+  useEffect(() => {
+    if (items.length === 0) {
+      setIsOpen(false)
+    }
+  }, [items])
+
   return (
     <Container
       className={[style.container, isOpen && style.open].join(' ')}
@@ -53,7 +59,7 @@ export default function FriendListGroup({
         onClick={handleCollapse}
       >
         <Container>
-          <Text fontSize={14}>
+          <Text fontSize={14} color={isOpen ? 'white' : 'gray.700'}>
             {title} {renderItemsLength()}
           </Text>
         </Container>
@@ -63,6 +69,7 @@ export default function FriendListGroup({
             <Icon
               as={ArrowDownIcon}
               fill="white"
+              opacity={isOpen && 1}
               fontSize={12}
               className={style.arrowIcon}
             />
