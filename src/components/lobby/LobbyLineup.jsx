@@ -12,6 +12,7 @@ import { StorageService } from '@services'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
 
 import { useMediaQuery } from '@chakra-ui/react'
+
 import style from './LobbyLineup.module.css'
 
 export default function LobbyLineup({
@@ -95,6 +96,7 @@ export default function LobbyLineup({
         player={player}
         onClose={!lobby.queue && closeButton}
         closeLabel={closeLabel}
+        isLobbyOwner={player.user_id === lobby.id}
       />
     )
   }
@@ -134,7 +136,7 @@ export default function LobbyLineup({
             style={{ height: index === 2 ? '100%' : '95%' }}
           >
             {player ? (
-              renderPlayerCard(player, index)
+              renderPlayerCard(player)
             ) : (
               <Container onClick={handleSeatClick} style={{ height: '100%' }}>
                 <LobbySeat />

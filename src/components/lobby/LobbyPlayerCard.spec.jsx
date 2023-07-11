@@ -19,6 +19,7 @@ describe('LobbyPlayerCard Component', () => {
     },
     onClose: () => false,
     closeLabel: 'Sair',
+    isLobbyOwner: false,
   }
 
   it('should render correctly', () => {
@@ -50,5 +51,28 @@ describe('LobbyPlayerCard Component', () => {
       </BrowserRouter>
     )
     expect(screen.queryByText('Sair')).not.toBeInTheDocument()
+  })
+
+  it('should not render crown icon when isLobbyOwner false', () => {
+    render(
+      <BrowserRouter>
+        <LobbyPlayerCard {...props} />
+      </BrowserRouter>
+    )
+    const crownIcon = screen.queryByTestId('crown-icon')
+
+    expect(crownIcon).not.toBeInTheDocument()
+  })
+
+  it('should render crown icon when isLobbyOwner true', () => {
+    props.isLobbyOwner = true
+    render(
+      <BrowserRouter>
+        <LobbyPlayerCard {...props} />
+      </BrowserRouter>
+    )
+    const crownIcon = screen.getByTestId('crown-icon')
+
+    expect(crownIcon).toBeInTheDocument()
   })
 })
