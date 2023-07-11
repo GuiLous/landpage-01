@@ -7,7 +7,7 @@ import style from './FriendListGroup.module.css'
 
 export default function FriendListGroup({
   title,
-  items,
+  items = [],
   collapse = true,
   open = false,
   showHeader = true,
@@ -34,6 +34,12 @@ export default function FriendListGroup({
       setIsOpen(true)
     }
   }, [showHeader])
+
+  useEffect(() => {
+    if (items.length === 0) {
+      setIsOpen(false)
+    }
+  }, [items])
 
   return (
     <Container
