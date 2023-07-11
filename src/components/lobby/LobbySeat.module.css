@@ -22,7 +22,7 @@
 	border-radius: 8px;
 	height: 100%;
 	position: relative;
-	z-index: 1;
+	z-index: var(--chakra-zIndices-one);
 }
 
 .mini .wrapper {
@@ -35,7 +35,7 @@
 	font-size: 20px;
 	position: relative;
 	transition: transform 120ms ease-in;
-	z-index: 1;
+	z-index: var(--chakra-zIndices-one);
 }
 
 .container:hover .icon {
@@ -63,7 +63,7 @@
 	right: 0;
 	top: 0;
 	transition: all 150ms linear;
-	z-index: 0;
+	z-index: var(--chakra-zIndices-base);
 }
 
 .container:hover .border {
