@@ -6,6 +6,7 @@ import {
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
+import { FaCrown } from 'react-icons/fa'
 import { SiSteam } from 'react-icons/si'
 import { Link as ReactRouterLink } from 'react-router-dom'
 
@@ -14,7 +15,12 @@ import { useLatestMatchesResults } from '@hooks'
 
 import style from './LobbyPlayerCard.module.css'
 
-export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
+export default function LobbyPlayerCard({
+  player,
+  onClose,
+  closeLabel,
+  isLobbyOwner,
+}) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const latestMatchesResults = useLatestMatchesResults(
@@ -59,13 +65,23 @@ export default function LobbyPlayerCard({ player, onClose, closeLabel }) {
           size={{ base: 'xxl', md: 'xl', '2xl': 'xxl' }}
           variant="white"
         />
-        <Text
-          fontSize={{ base: 18, md: 16, '2xl': 18 }}
-          fontWeight="semibold"
-          textTransform="uppercase"
-        >
-          {player.username}
-        </Text>
+        <Container align="center" gap={6} justify="center">
+          {isLobbyOwner && (
+            <Icon
+              as={FaCrown}
+              fontSize={{ base: 16, md: 14, '2xl': 16 }}
+              mb="2px"
+            />
+          )}
+
+          <Text
+            fontSize={{ base: 18, md: 14, '2xl': 18 }}
+            fontWeight="semibold"
+            textTransform="uppercase"
+          >
+            {player.username}
+          </Text>
+        </Container>
       </Container>
 
       <Container column align="center" fitContent gap={8}>
