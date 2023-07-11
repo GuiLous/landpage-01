@@ -24,22 +24,22 @@
 
 .backgroundBar {
 	background-color: var(--chakra-colors-primary-400);
-	z-index: 0;
+	z-index: var(--chakra-zIndices-base);
 }
 
 .initialBar {
 	background-color: var(--chakra-colors-secondary-400);
-	z-index: 1;
+	z-index: var(--chakra-zIndices-one);
 }
 
 .valueBar {
 	background-color: var(--chakra-colors-success);
-	z-index: 2;
+	z-index: var(--chakra-zIndices-two);
 }
 
 .valueOverflowedBar {
 	background-color: var(--chakra-colors-success);
-	z-index: 3;
+	z-index: var(--chakra-zIndices-three);
 }
 
 .danger {
