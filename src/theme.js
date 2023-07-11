@@ -1,4 +1,4 @@
-import { extendTheme, theme } from '@chakra-ui/react'
+import { extendTheme } from '@chakra-ui/react'
 
 export default extendTheme({
   components: {
@@ -852,7 +852,7 @@ export default extendTheme({
       baseStyle: {
         bg: '#1E1E1E',
         color: 'white',
-        zIndex: theme.zIndices.tooltip,
+        zIndex: 'tooltip',
       },
     },
     Divider: {
@@ -941,5 +941,6 @@ export default extendTheme({
     one: 1,
     two: 2,
     three: 3,
+    fixed: 1500
   },
 })
