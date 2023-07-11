@@ -941,6 +941,6 @@ export default extendTheme({
     one: 1,
     two: 2,
     three: 3,
-    fixed: 1500
+    fixed: 1500,
   },
 })
