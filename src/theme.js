@@ -852,7 +852,7 @@ export default extendTheme({
       baseStyle: {
         bg: '#1E1E1E',
         color: 'white',
-        zIndex: 99999,
+        zIndex: 'tooltip',
       },
     },
     Divider: {
@@ -936,5 +936,11 @@ export default extendTheme({
     lg: '960px',
     xl: '1200px',
     '2xl': '1600px',
+  },
+  zIndices: {
+    one: 1,
+    two: 2,
+    three: 3,
+    fixed: 1500,
   },
 })

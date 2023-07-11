@@ -1,3 +1,4 @@
+import { theme } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -243,7 +244,7 @@ export default function App() {
           bottom: 40,
           right: 40,
           maxWidth: 370,
-          zIndex: 999999,
+          zIndex: theme.zIndices.toast,
         }}
       >
         <ToastList />

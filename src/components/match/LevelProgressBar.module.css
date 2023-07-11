@@ -6,5 +6,5 @@
 
 .level {
 	position: relative;
-	z-index: 5;
+	z-index: var(--chakra-zIndices-docked);
 }

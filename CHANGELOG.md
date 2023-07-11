@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Cria componente `SidebarMenuItem`.
 - Cria componente `SidebarFooter`
 - Cria componente `SideBarAvatarLink`.
@@ -17,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera componente `LobbyLineup` para passar a prop `isLobbyOwner` para o componente `LobbyPlayerCard`.
+- Altera componente `LobbyPlayerCard` para receber nova prop `isLobbyOwner` para mostrar ícone de `coroa` apenas para quem é dono do lobby [#482](https://github.com/3C-gg/reload-frontend/issues/482).
+- Altera os componentes `App, Input, LobbySeat, LevelProgressBar, Progress, Sidebar, ToastList, SidebarLayout, SignupLayout, Home` para seguir o padrão de `z-index` do tema [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Altera estilos dos componentes `FriendListGroup`, `FriendListGroupItem` e `InviteListGroupItem` para ficar igual ao design [#502](https://github.com/3C-gg/reload-frontend/issues/502).
 - Altera `Sidebar` para deixar mais fragmentada em componentes.
 - Renderiza componente `SidebarLogo` e remove código do componente `Sidebar`.
