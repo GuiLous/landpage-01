@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera as cores em toda a aplicação para seguir o novo padrão de cores do tema.
+- Refatora as cores no `tema` do `chakra` para ficar mais padronizado [#398](https://github.com/3C-gg/reload-frontend/issues/398).
 - Altera opacidade do componente `FriendListGroupItem` quando o `status` for `offline` para `0.5` [#511](https://github.com/3C-gg/reload-frontend/issues/511);
 - Altera componente `LobbyLineup` para passar a prop `isLobbyOwner` para o componente `LobbyPlayerCard`.
 - Altera componente `LobbyPlayerCard` para receber nova prop `isLobbyOwner` para mostrar ícone de `coroa` apenas para quem é dono do lobby [#482](https://github.com/3C-gg/reload-frontend/issues/482).
@@ -156,7 +158,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adiciona nova cor de `gray.625` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
+- Adiciona nova cor de `gray.100` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
 - Adicionado prop `disabled` no `LobbyPlayButton` na `LobbyView` para não deixar quem não é dono da fila dar start na fila [#389](https://github.com/3C-gg/reload-frontend/issues/389).
 - Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
 - adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
@@ -385,14 +387,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
 - Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
-- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado cor `gray.200` no tema do chakra ui.
 - Adicionado estilos para o `Drawer` no tema do chakra ui.
 - Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
 - Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
 - Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
 - Alterado path da `AccountView` para `/conta/:userId`.
 - Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
-- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado background do `Modal` para `gray.1000` no tema do chakra.
 - Alterado gray 800 para `#1B1B1B`.
 - Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 
@@ -425,7 +427,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona `hooks` pra que a gente possa criar nossos próprios hooks e já adiciona um hook `useOutsideClick` que replica a lógica do hook do Chakra, mas adicionando uma exceção para determinadas classes.
 - Propriedade `fontWeights` no tema do Chakra pra que a gente possa utilizar sempre o mesmo padrão do Figma.
 - Variante `disabled` e estilo base (`baseStyle`) para o componente `Badge`.
-- Mais um tom de cinza: `#1E1E1E` ou `gray.800`.
+- Mais um tom de cinza: `#1E1E1E` ou `gray.1000`.
 - Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
 - Borda com cor primária no componente `Avatar`.
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
@@ -441,14 +443,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
 - Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
-- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado cor `gray.200` no tema do chakra ui.
 - Adicionado estilos para o `Drawer` no tema do chakra ui.
 - Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
 - Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
 - Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
 - Alterado path da `AccountView` para `/conta/:userId`.
 - Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
-- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado background do `Modal` para `gray.1000` no tema do chakra.
 - Alterado gray 800 para `#1B1B1B`.
 - Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 - Alterado `HttpService` para adicionar uma `/` no final da url apenas quando não tiver uma interrogação `?` [#243] (https://github.com/3C-gg/reload-frontend/issues/243).
