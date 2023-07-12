@@ -91,7 +91,7 @@ export default function FriendListGroupItem({
         <Text fontSize={14} fontWeight="medium">
           {username}
         </Text>
-        <Text fontSize={12} fontWeight="medium" color="gray.700">
+        <Text fontSize={12} fontWeight="medium" color="gray.300">
           {alreadyOnTeam ? 'No seu grupo' : humanStatus}
         </Text>
       </Container>
@@ -105,7 +105,7 @@ export default function FriendListGroupItem({
           {alreadyInvited ? (
             <Icon
               as={BsPersonFillCheck}
-              fill="gray.700"
+              fill="gray.300"
               fontSize={22}
               data-testid="icon-invited"
             />

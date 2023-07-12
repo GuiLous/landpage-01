@@ -87,7 +87,7 @@ export default function VerifyView() {
               marginEnd={0}
             >
               Insira o código enviado para o email{' '}
-              <Text fontSize={14} color="primary.300" as="span">
+              <Text fontSize={14} color="purple.300" as="span">
                 {user.email}
               </Text>
             </FormLabel>
@@ -136,7 +136,7 @@ export default function VerifyView() {
             <FormHelperText
               textAlign="center"
               marginTop="40px"
-              color="gray.700"
+              color="gray.300"
             >
               Não é seu e-mail?{' '}
               <Link as={RouterLink} to="/alterar-email" variant={'inline'}>

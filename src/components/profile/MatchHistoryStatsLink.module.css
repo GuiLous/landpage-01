@@ -33,9 +33,9 @@
 }
 
 .won .border {
-	background-color: var(--chakra-colors-win);
+	background-color: var(--chakra-colors-green-500);
 }
 
 .defeated .border {
-	background-color: var(--chakra-colors-danger-400);
+	background-color: var(--chakra-colors-red-500);
 }

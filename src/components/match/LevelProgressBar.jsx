@@ -66,7 +66,7 @@ export default function LevelProgressBar({
             <Text
               fontSize={12}
               fontWeight="medium"
-              color="secondary.400"
+              color="cyan.400"
               as={'span'}
             >
               <CountUp start={level_points_before} end={level_points_after} />

@@ -35,7 +35,7 @@ export default function SidebarMenuItem({
     <Container className={[style.menuItem, isSoon && style.soon].join(' ')}>
       <Link as="button" onClick={() => onClickFunction(item)}>
         <Container className={style.menuLinkWrapper} gap={14} align="center">
-          <Icon as={icons[`${item}`]} fill="gray.700" />
+          <Icon as={icons[`${item}`]} fill="gray.300" />
           <Text textTransform="capitalize">{item}</Text>
         </Container>
 

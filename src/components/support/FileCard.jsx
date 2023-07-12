@@ -61,12 +61,12 @@ export default function FileCard({ file, onRemoveFiles }) {
           </Text>
           <Text
             lineHeight={1}
-            color="gray.700"
+            color="gray.300"
             fontSize={{ base: 10, md: 8, '2xl': 10 }}
             as="span"
           >
             {fileSizeInKB > 1024 ? `${fileSizeInMB} MB` : `${fileSizeInKB} KB`}{' '}
-            <Text color="success" as="span">
+            <Text color="green.400" as="span">
               - Pronto
             </Text>
           </Text>

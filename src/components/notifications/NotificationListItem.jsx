@@ -29,7 +29,7 @@ export default function NotificationListItem({
           <Container>
             <Text
               fontSize={{ base: 12, md: 10, '2xl': 12 }}
-              color="gray.650"
+              color="gray.200"
               lineHeight={1}
             >
               {DateTime.fromISO(create_date).toRelative()}

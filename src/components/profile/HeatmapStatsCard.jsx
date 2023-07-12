@@ -47,7 +47,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 CABEÇA
@@ -76,7 +76,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 ACERTOS
@@ -90,7 +90,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 PEITO
@@ -119,7 +119,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 ACERTOS
@@ -133,7 +133,7 @@ export default function HeatmapStatsCard({
                 lineHeight={1}
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 OUTROS
@@ -162,7 +162,7 @@ export default function HeatmapStatsCard({
               <Text
                 fontSize={12}
                 fontWeight="medium"
-                color="gray.700"
+                color="gray.300"
                 as="span"
               >
                 ACERTOS

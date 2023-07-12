@@ -75,7 +75,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
         <Tooltip label={stats.label} aria-label={`${stats.field} tooltip`}>
           <Text
             as="span"
-            color="gray.700"
+            color="gray.300"
             fontWeight="medium"
             fontSize={12}
             align="flex-start"
@@ -122,7 +122,7 @@ export default function MatchHistoryStatsLink({ user_id, match }) {
         >
           {match.map.name || 'Nome do mapa'}
         </Text>
-        <Text lineHeight={1} color="gray.700" fontSize={14} fontWeight="medium">
+        <Text lineHeight={1} color="gray.300" fontSize={14} fontWeight="medium">
           {DateTime.fromISO(match.end_date).toRelative()}
         </Text>
       </Container>

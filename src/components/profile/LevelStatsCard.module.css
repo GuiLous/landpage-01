@@ -6,11 +6,11 @@
 }
 
 .title span {
-	color: var(--chakra-colors-secondary-400);
+	color: var(--chakra-colors-cyan-400);
 }
 
 .subtitle {
-	color: var(--chakra-colors-gray-700);
+	color: var(--chakra-colors-gray-300);
 	font-size: 12px;
 	font-weight: var(--chakra-fontWeights-medium);
 }
@@ -29,7 +29,7 @@
 }
 
 .statsListItemTitle {
-	color: var(--chakra-colors-gray-700);
+	color: var(--chakra-colors-gray-300);
 	font-size: 12px;
 	font-weight: var(--chakra-fontWeights-medium);
 	text-transform: uppercase;

@@ -53,7 +53,7 @@
 .border {
 	background: linear-gradient(
 		to bottom,
-		var(--chakra-colors-primary-400) 0,
+		var(--chakra-colors-purple-400) 0,
 		#2f2f2f 80%
 	);
 	border-radius: 8px;

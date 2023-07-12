@@ -152,12 +152,12 @@ export default function ChangeEmailCard() {
                 email === user.email || email === ''
                   ? {
                       border: '1px solid',
-                      borderColor: 'primary.400',
+                      borderColor: 'purple.400',
                     }
                   : {
                       border: '1px solid',
                       borderColor:
-                        hasErrors() && email !== '' ? 'danger.400' : 'success',
+                        hasErrors() && email !== '' ? 'red.500' : 'green.400',
                     }
               }
               disabled={!isEditing}
@@ -182,7 +182,7 @@ export default function ChangeEmailCard() {
                   <Box display="flex">
                     <Icon
                       as={PencilIcon}
-                      fill="gray.700"
+                      fill="gray.300"
                       _hover={{ fill: 'white' }}
                       transition="all 0.2s ease"
                     />
@@ -193,23 +193,19 @@ export default function ChangeEmailCard() {
               {user.email !== email &&
                 !isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="success" fontSize={22} />
+                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
                 ) : (
-                  <Icon
-                    as={WarningCircleIcon}
-                    color="danger.400"
-                    fontSize={22}
-                  />
+                  <Icon as={WarningCircleIcon} color="red.500" fontSize={22} />
                 ))}
 
               {isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="success" fontSize={22} />
+                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
                 ) : (
                   email !== '' && (
                     <Icon
                       as={WarningCircleIcon}
-                      color="danger.400"
+                      color="red.500"
                       fontSize={22}
                     />
                   )
@@ -220,7 +216,7 @@ export default function ChangeEmailCard() {
           {fieldsErrors?.email && (
             <Text
               fontSize={12}
-              color="danger.400"
+              color="red.500"
               pl="5px"
               mt="12px"
               fontWeight="medium"

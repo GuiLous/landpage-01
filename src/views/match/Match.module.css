@@ -14,11 +14,11 @@
 }
 
 .teamScore.winner {
-	color: var(--chakra-colors-secondary-400);
+	color: var(--chakra-colors-cyan-400);
 }
 
 .teamScore.loser {
-	color: var(--chakra-colors-danger-400);
+	color: var(--chakra-colors-red-500);
 }
 
 .teamName {
