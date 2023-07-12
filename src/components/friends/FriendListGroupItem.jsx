@@ -72,6 +72,7 @@ export default function FriendListGroupItem({
       className={[
         style.container,
         (!isAvailable || alreadyInvited) && style.disabled,
+        status === 'offline' && style.offline,
       ].join(' ')}
       gap={8}
       align="center"
