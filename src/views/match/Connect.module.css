@@ -53,7 +53,7 @@
 }
 
 .connectionBox {
-	border: 1px solid var(--chakra-colors-primary-400);
+	border: 1px solid var(--chakra-colors-purple-400);
 	border-radius: 8px;
 	cursor: pointer;
 	margin-top: 24px;

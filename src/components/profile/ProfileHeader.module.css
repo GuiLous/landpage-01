@@ -1,5 +1,5 @@
 .container {
-	background-color: var(--chakra-colors-primary-500);
+	background-color: var(--chakra-colors-purple-500);
 }
 
 .info {
@@ -7,7 +7,7 @@
 }
 
 .link {
-	color: var(--chakra-colors-gray-700);
+	color: var(--chakra-colors-gray-300);
 	font-size: 14px;
 	font-weight: var(--chakra-fontWeights-medium);
 	text-transform: uppercase;

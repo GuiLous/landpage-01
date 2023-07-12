@@ -126,11 +126,11 @@ export default function FriendList({ isOpen, onClose }) {
             <Container className={style.filter} align="center">
               <InputGroup>
                 <InputLeftElement height="100%">
-                  <Icon as={SearchIcon} fontSize={14} color="gray.700" />
+                  <Icon as={SearchIcon} fontSize={14} color="gray.300" />
                 </InputLeftElement>
                 <Input
                   variant="lighter"
-                  color="gray.300"
+                  color="white"
                   fontWeight="light"
                   placeholder="Pesquisar..."
                   fontSize={14}

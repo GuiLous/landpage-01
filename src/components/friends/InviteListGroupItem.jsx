@@ -60,7 +60,7 @@ export default function InviteListGroupItem({
           <Text fontSize={14} fontWeight="medium" color="white">
             {username}
           </Text>
-          <Text fontSize={12} fontWeight="medium" color="gray.700">
+          <Text fontSize={12} fontWeight="medium" color="gray.300">
             {humanStatus}
           </Text>
         </Container>
@@ -73,7 +73,7 @@ export default function InviteListGroupItem({
           align="center"
           onClick={handleRefuse}
         >
-          <Icon as={RefuseIcon} color="danger.400" fontSize={20} />
+          <Icon as={RefuseIcon} color="red.500" fontSize={20} />
         </Container>
 
         <Container
@@ -82,7 +82,7 @@ export default function InviteListGroupItem({
           align="center"
           onClick={handleAccept}
         >
-          <Icon as={AcceptIcon} color="success" fontSize={20} />
+          <Icon as={AcceptIcon} color="green.400" fontSize={20} />
         </Container>
       </Container>
     </Container>

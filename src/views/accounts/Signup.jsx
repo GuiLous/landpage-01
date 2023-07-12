@@ -108,7 +108,7 @@ export default function SignupView() {
             Cadastrar
           </Button>
 
-          <FormHelperText color="gray.700">
+          <FormHelperText color="gray.300">
             Ao se cadastrar, você concorda com os{' '}
             <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
               Termos de Uso

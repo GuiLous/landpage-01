@@ -138,7 +138,7 @@ export default function LobbyView() {
           align="center"
         >
           <Container className={style.arrowUpIcon} justify="center">
-            <Icon as={ArrowUpFilledIcon} color="primary.400" />
+            <Icon as={ArrowUpFilledIcon} color="purple.400" />
           </Container>
           <Text fontSize={{ base: 18, md: 16, '2xl': 18 }}>Ranqueada 5x5</Text>
         </Container>

@@ -26,7 +26,7 @@ export default function SidebarAvatarLink({ user }) {
           </Text>
 
           <Text
-            color="gray.700"
+            color="gray.300"
             fontWeight={'medium'}
             fontSize={{ base: 12, md: 10, '2xl': 12 }}
           >

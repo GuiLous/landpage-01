@@ -60,7 +60,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
       maxWidthModal="650px"
     >
       <Container justify="center" align="center" column gap={40}>
-        <Text color="secondary.400" fontSize={14} textAlign="center">
+        <Text color="cyan.400" fontSize={14} textAlign="center">
           Ranqueada · 5x5
         </Text>
 

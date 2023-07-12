@@ -54,20 +54,20 @@ export default function ToastListItem({
   const renderIcon = () => {
     switch (variant) {
       case 'success':
-        return <Icon as={CheckCircleIcon} color="success" />
+        return <Icon as={CheckCircleIcon} color="green.400" />
 
       case 'warning':
-        return <Icon as={WarningCircleIcon} color="warning" />
+        return <Icon as={WarningCircleIcon} color="yellow.400" />
 
       case 'error':
-        return <Icon as={CloseCircleIcon} color="danger.400" />
+        return <Icon as={CloseCircleIcon} color="red.500" />
 
       case 'invite':
       case 'notification':
         return <Avatar variant="teaming" src={avatar} size="sm" />
 
       default:
-        return <Icon as={BellCircleIcon} color="primary.400" />
+        return <Icon as={BellCircleIcon} color="purple.400" />
     }
   }
 
@@ -139,13 +139,13 @@ export default function ToastListItem({
                 <Text
                   fontSize={14}
                   fontWeight="medium"
-                  color={variant === 'invite' ? 'primary.300' : 'white'}
+                  color={variant === 'invite' ? 'purple.300' : 'white'}
                 >
                   {title || defaultTitle}
                 </Text>
               </Container>
               <Container className={style.content}>
-                <Text fontSize={12} color="gray.625">
+                <Text fontSize={12} color="gray.100">
                   {content}
                 </Text>
               </Container>

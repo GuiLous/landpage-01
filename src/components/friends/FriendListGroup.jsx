@@ -59,7 +59,7 @@ export default function FriendListGroup({
         onClick={handleCollapse}
       >
         <Container>
-          <Text fontSize={14} color={isOpen ? 'white' : 'gray.700'}>
+          <Text fontSize={14} color={isOpen ? 'white' : 'gray.300'}>
             {title} {renderItemsLength()}
           </Text>
         </Container>

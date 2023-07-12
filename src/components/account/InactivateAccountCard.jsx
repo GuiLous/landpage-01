@@ -77,7 +77,7 @@ export default function InactivateAccountCard() {
               benefícios adquiridos <br /> e seu perfil não aparecerá nos
               resultados e buscas. Pare reativar a conta, será <br /> necessário
               entrar em contato com suporte pelo e-mail <br />{' '}
-              <Text color="secondary.400" as="span">
+              <Text color="cyan.400" as="span">
                 suporte@reloadclub.gg
               </Text>
             </Text>

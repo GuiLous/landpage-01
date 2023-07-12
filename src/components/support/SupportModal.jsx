@@ -136,7 +136,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
           gap={isLessThan2xl ? 20 : 32}
         >
           <Text
-            color="gray.700"
+            color="gray.300"
             fontSize={{ base: 14, md: 12, '2xl': 14 }}
             textAlign="center"
           >
@@ -168,7 +168,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
                 {fieldsErrors?.subject && (
                   <Text
                     fontSize={12}
-                    color="danger.400"
+                    color="red.500"
                     pl="5px"
                     mt="12px"
                     fontWeight="medium"
@@ -190,7 +190,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
                 {fieldsErrors?.description && (
                   <Text
                     fontSize={12}
-                    color="danger.400"
+                    color="red.500"
                     pl="5px"
                     mt="12px"
                     fontWeight="medium"
@@ -211,7 +211,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
                 {fieldsErrors?.files && (
                   <Text
                     fontSize={12}
-                    color="danger.400"
+                    color="red.500"
                     pl="5px"
                     mt="12px"
                     fontWeight="medium"

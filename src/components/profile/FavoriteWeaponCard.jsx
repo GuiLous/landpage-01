@@ -18,7 +18,7 @@ export default function FavoriteWeaponCard({ weapon }) {
             </Text>
           </Container>
           <Container className={style.meta} justify="center">
-            <Text fontSize={12} color="gray.700">
+            <Text fontSize={12} color="gray.300">
               {weapon.type}
             </Text>
           </Container>
@@ -26,7 +26,7 @@ export default function FavoriteWeaponCard({ weapon }) {
 
         <Container className={style.stats}>
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Abates
             </Text>
             <Text fontWeight="semibold" fontSize={16} color="white">
@@ -35,7 +35,7 @@ export default function FavoriteWeaponCard({ weapon }) {
           </Container>
 
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Assistências
             </Text>
             <Text fontWeight="semibold" fontSize={16} color="white">
@@ -44,7 +44,7 @@ export default function FavoriteWeaponCard({ weapon }) {
           </Container>
 
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Headshots
             </Text>
             <Text fontWeight="semibold" fontSize={16} color="white">
@@ -53,7 +53,7 @@ export default function FavoriteWeaponCard({ weapon }) {
           </Container>
 
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Precisão
             </Text>
             <Text>
@@ -62,7 +62,7 @@ export default function FavoriteWeaponCard({ weapon }) {
           </Container>
 
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Partidas
             </Text>
             <Text fontWeight="semibold" fontSize={16} color="white">
@@ -71,7 +71,7 @@ export default function FavoriteWeaponCard({ weapon }) {
           </Container>
 
           <Container column className={style.weaponStat}>
-            <Text fontWeight="medium" fontSize={12} color="gray.700">
+            <Text fontWeight="medium" fontSize={12} color="gray.300">
               Vitórias
             </Text>
             <Text fontWeight="semibold" fontSize={16} color="white">
