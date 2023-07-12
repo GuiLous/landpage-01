@@ -1,3 +1,4 @@
+import { theme } from '@chakra-ui/react'
 import { easings, useTransition } from '@react-spring/web'
 import { useSelector } from 'react-redux'
 
@@ -13,7 +14,7 @@ export default function ToastList() {
   })
 
   return (
-    <Container reverseColumn gap={20} style={{ zIndex: 20000 }}>
+    <Container reverseColumn gap={20} style={{ zIndex: theme.zIndices.toast }}>
       {transitions((style, item) => (
         <Container
           style={{ ...style, position: 'relative' }}

@@ -8,7 +8,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
- 
+
+- Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
+- Cria componente `SidebarMenuItem`.
+- Cria componente `SidebarFooter`
+- Cria componente `SideBarAvatarLink`.
+- Cria componente `SidebarLogo`.
+- Cria componente `SidebarLobbyButton`.
+
+### Changed
+
+- Altera componente `LobbyLineup` para passar a prop `isLobbyOwner` para o componente `LobbyPlayerCard`.
+- Altera componente `LobbyPlayerCard` para receber nova prop `isLobbyOwner` para mostrar ícone de `coroa` apenas para quem é dono do lobby [#482](https://github.com/3C-gg/reload-frontend/issues/482).
+- Altera os componentes `App, Input, LobbySeat, LevelProgressBar, Progress, Sidebar, ToastList, SidebarLayout, SignupLayout, Home` para seguir o padrão de `z-index` do tema [#291](https://github.com/3C-gg/reload-frontend/issues/291).
+- Altera estilos dos componentes `FriendListGroup`, `FriendListGroupItem` e `InviteListGroupItem` para ficar igual ao design [#502](https://github.com/3C-gg/reload-frontend/issues/502).
+- Altera `Sidebar` para deixar mais fragmentada em componentes.
+- Renderiza componente `SidebarLogo` e remove código do componente `Sidebar`.
+- Renderiza componente `SidebarLobbyButton` e remove código do componente `Sidebar`.
+- Altera `Sidebar` para respeitar novo layout [#501](https://github.com/3C-gg/reload-frontend/issues/501).
+
+### Fixed
+
+- Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
+- Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503).
+
+## [e248506 - 9/7/2023]
+
+### Added
+
 - Adiciona novo tamanho de avatar `smd`.
 - Adiciona novos ícones.
 - Adiciona variant `notification` no componente `ToastListItem` [#484](https://github.com/3C-gg/reload-frontend/issues/484).
@@ -36,7 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera `marginLeft` do `Drawer` no tema para se ajustar à telas menores de `1600px` [#492](https://github.com/3C-gg/reload-frontend/issues/492).
 - Altera `Sibebar` para ficar igual ao novo design do figma [#432](https://github.com/3C-gg/reload-frontend/issues/432).
 - Altera case `notifications/add` no `WebSocket` para disparar um toast para toda notificação [#484](https://github.com/3C-gg/reload-frontend/issues/484).
-- Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`. 
+- Adiciona `updateMaintenance` no `AppSlice` e muda o `name` de `friends` para `app`.
 - Altera Websocket `maintenance/end` para recarregar o navegador [#483](https://github.com/3C-gg/reload-frontend/issues/483).
 - Altera `LobbyLineUp` para adicionar o componente `LobbyPlayButton` centralizado e as funções necessárias [#486](https://github.com/3C-gg/reload-frontend/issues/486).
 - Altera `title` e `description` no `index.html` [#491](https://github.com/3C-gg/reload-frontend/issues/491).

@@ -7,7 +7,7 @@
 }
 
 .container:hover {
-	background-color: var(--chakra-colors-gray-400);
+	background-color: rgba(152, 130, 255, 0.15);
 }
 
 .container.disabled {

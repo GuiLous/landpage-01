@@ -1,0 +1,6 @@
+.leftIcon {
+	left: 16px;
+	position: absolute;
+	width: auto;
+	z-index: var(--chakra-zIndices-one);
+}

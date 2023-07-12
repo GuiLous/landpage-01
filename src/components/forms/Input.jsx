@@ -1,21 +1,14 @@
 import { Input as ChakraInput } from '@chakra-ui/react'
-import React from 'react'
 
 import { Container } from '@components'
+
+import style from './Input.module.css'
 
 export default function Input({ leftIcon, ...props }) {
   return (
     <Container align="center" style={{ position: 'relative' }}>
       {leftIcon && (
-        <Container
-          fitContent
-          style={{
-            position: 'absolute',
-            zIndex: '1',
-            width: 'auto',
-            left: '16px',
-          }}
-        >
+        <Container fitContent className={style.leftIcon}>
           {leftIcon}
         </Container>
       )}
