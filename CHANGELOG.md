@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera opacidade do componente `FriendListGroupItem` quando o `status` for `offline` para `0.5` [#511](https://github.com/3C-gg/reload-frontend/issues/511);
 - Altera componente `LobbyLineup` para passar a prop `isLobbyOwner` para o componente `LobbyPlayerCard`.
 - Altera componente `LobbyPlayerCard` para receber nova prop `isLobbyOwner` para mostrar ícone de `coroa` apenas para quem é dono do lobby [#482](https://github.com/3C-gg/reload-frontend/issues/482).
 - Altera os componentes `App, Input, LobbySeat, LevelProgressBar, Progress, Sidebar, ToastList, SidebarLayout, SignupLayout, Home` para seguir o padrão de `z-index` do tema [#291](https://github.com/3C-gg/reload-frontend/issues/291).

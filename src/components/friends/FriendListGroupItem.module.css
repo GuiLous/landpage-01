@@ -30,3 +30,7 @@
 .container.disabled .groupAddBtn {
 	opacity: 1;
 }
+
+.offline {
+	opacity: 0.5;
+}
