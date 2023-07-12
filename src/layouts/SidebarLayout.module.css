@@ -8,7 +8,7 @@
 	height: 100%;
 	position: fixed;
 	width: 300px;
-	z-index: var(--chakra-zIndices-fixed);
+	z-index: var(--chakra-zIndices-sticky);
 }
 
 .content {
