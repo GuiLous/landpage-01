@@ -52,7 +52,7 @@ export default function LobbyView() {
 
     if (preMatch && preMatch.state === 'pre_start') lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preMatch])
+  }, [preMatch?.state])
 
   useEffect(() => {
     const restartQueue = async () => {
@@ -81,7 +81,8 @@ export default function LobbyView() {
   useEffect(() => {
     if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
     else setOpenMatchFoundModal(false)
-  }, [preMatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preMatch?.state])
 
   return (
     <Container
