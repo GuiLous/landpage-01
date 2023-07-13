@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Redireciona para `/jogar` quando recebe `WebSocket` de `pre_matches/create`.
+- Remove função `handleClose` e `botão de fechar` do componente `MatchFoundModal`.
 - Altera as cores em toda a aplicação para seguir o novo padrão de cores do tema.
 - Refatora as cores no `tema` do `chakra` para ficar mais padronizado [#398](https://github.com/3C-gg/reload-frontend/issues/398).
 - Altera opacidade do componente `FriendListGroupItem` quando o `status` for `offline` para `0.5` [#511](https://github.com/3C-gg/reload-frontend/issues/511);
