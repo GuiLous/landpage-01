@@ -18,7 +18,7 @@ import style from './ToastListItem.module.css'
 
 export default function ToastListItem({
   id,
-  content,
+  content = '',
   variant,
   duration = 6,
   title = null,
@@ -27,8 +27,12 @@ export default function ToastListItem({
 }) {
   const dispatch = useDispatch()
   const invites = useSelector((state) => state.invites)
-  const [timer, setTimer] = useState(duration - 1)
+
+  const dynamicDuration = content.length <= 67 ? duration : 10
+
+  const [timer, setTimer] = useState(dynamicDuration - 1)
   const [defaultTitle, setDefaultTitle] = useState(title)
+
   const invite = invites.find((item) => item.id === invite_id)
 
   const handleClose = () => {
@@ -171,7 +175,7 @@ export default function ToastListItem({
 
       <Container
         className={style.countdownBar}
-        style={{ animationDuration: `${duration}s` }}
+        style={{ animationDuration: `${dynamicDuration}s` }}
       ></Container>
     </Container>
   )
