@@ -1,6 +1,7 @@
 import { Box, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import gta_avatar from '@assets/images/gta_avatar.png'
 import loadingGif from '@assets/images/loading.gif'
@@ -14,8 +15,10 @@ import style from './Connect.module.css'
 const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
 
-export default function Connect(props) {
+export default function Connect() {
   const match = useSelector((state) => state.match)
+
+  const navigate = useNavigate()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
@@ -41,6 +44,10 @@ export default function Connect(props) {
       return () => clearInterval(interval)
     }
   })
+
+  useEffect(() => {
+    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
+  }, [timeLeft, match.id, navigate])
 
   return (
     <Container className={style.container} align="end">

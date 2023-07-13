@@ -1,6 +1,7 @@
 import { theme } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import {
   AppAPI,
@@ -21,15 +22,16 @@ import { initNotifications } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
 
-import { useNavigate } from 'react-router-dom'
 import Router from './Router'
 
 export default function App() {
   const user = useSelector((state) => state.user)
+  const match = useSelector((state) => state.match)
   const maintenance = useSelector((state) => state.app.maintenance)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation()
 
   const [fetching, setFetching] = useState(true)
   const [apisReady, setApisReady] = useState({
@@ -55,6 +57,16 @@ export default function App() {
   const verifyIfApiIsReady = () => {
     return Object.values(apisReady).every((item) => item === true)
   }
+
+  // Remove matchConnectTimer from storage
+  useEffect(() => {
+    if (match) {
+      const connectViewPath = `/partidas/${match.id}/conectar/`
+      if (match && location.pathname !== connectViewPath) {
+        StorageService.remove('matchConnectTimer')
+      }
+    }
+  }, [match, location.pathname])
 
   // check maintenance
   useEffect(() => {

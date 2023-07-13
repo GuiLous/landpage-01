@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Redireciona usuário para tela de `detalhes da partida` quando o timer da página de `conectar` chegar a `0` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
+- Adiciona useEffect no `App` para remover do local storage a chave `matchConnectTimer` e seu valor caso o usuário saia da pagina de `conectar` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
 - Redireciona para `/jogar` quando usuário está em `preMatch` e tenta acessar outra página [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Redireciona para `/jogar` quando recebe `WebSocket` de `pre_matches/create` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Remove função `handleClose` e `botão de fechar` do componente `MatchFoundModal` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
