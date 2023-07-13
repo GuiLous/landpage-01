@@ -35,11 +35,17 @@ export default function MatchInfos({ match }) {
       </Container>
 
       <Container justify="center">
-        <Timer initialTime={elapsedTime} stop={endDate} />
+        {match.start_date ? (
+          <Timer initialTime={elapsedTime} stop={endDate} />
+        ) : (
+          '-'
+        )}
       </Container>
 
       <Container>
-        <Container justify="center">{startDate.toFormat('D T')}</Container>
+        <Container justify="center">
+          {match.start_date ? startDate.toFormat('D T') : '-'}
+        </Container>
         <Container justify="center">
           {endDate ? endDate.toFormat('D T') : '-'}
         </Container>
