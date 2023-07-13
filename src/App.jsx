@@ -21,6 +21,7 @@ import { initNotifications } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
 
+import { useNavigate } from 'react-router-dom'
 import Router from './Router'
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
   const maintenance = useSelector((state) => state.app.maintenance)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const [fetching, setFetching] = useState(true)
   const [apisReady, setApisReady] = useState({
@@ -219,6 +221,7 @@ export default function App() {
       else dispatch(updatePreMatch(response))
 
       setApisReady({ ...apisReady, preMatch: true })
+      navigate('/jogar')
     }
 
     if (apisReady.match) {

@@ -555,6 +555,13 @@ export default extendTheme({
           bg: 'gray.900',
           color: 'white',
           position: 'relative',
+          zIndex: 'drawer',
+        },
+        dialogContainer: {
+          zIndex: 'drawer',
+        },
+        overlay: {
+          zIndex: 'drawer',
         },
         closeButton: {
           color: '#fff',
@@ -924,6 +931,6 @@ export default extendTheme({
     one: 1,
     two: 2,
     three: 3,
-    fixed: 1500,
+    drawer: 1000,
   },
 })
