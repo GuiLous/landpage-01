@@ -18,8 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Redireciona para `/jogar` quando recebe `WebSocket` de `pre_matches/create`.
-- Remove função `handleClose` e `botão de fechar` do componente `MatchFoundModal`.
+- Redireciona para `/jogar` quando usuário está em `preMatch` e tenta acessar outra página [#513](https://github.com/3C-gg/reload-frontend/issues/513).
+- Redireciona para `/jogar` quando recebe `WebSocket` de `pre_matches/create` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
+- Remove função `handleClose` e `botão de fechar` do componente `MatchFoundModal` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Altera as cores em toda a aplicação para seguir o novo padrão de cores do tema.
 - Refatora as cores no `tema` do `chakra` para ficar mais padronizado [#398](https://github.com/3C-gg/reload-frontend/issues/398).
 - Altera opacidade do componente `FriendListGroupItem` quando o `status` for `offline` para `0.5` [#511](https://github.com/3C-gg/reload-frontend/issues/511);
@@ -34,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ajusta `LobbyView` para chamar o useEffect apenas quando muda o valor do `preMatch.state` para evitar chamar a rota de `lockIn` mais de uma vez [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
 - Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503).
 
