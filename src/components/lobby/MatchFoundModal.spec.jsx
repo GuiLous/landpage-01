@@ -16,7 +16,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => { }}
+          setIsOpen={() => {}}
           preMatch={preMatch}
         />
       </Provider>
@@ -37,7 +37,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => { }}
+          setIsOpen={() => {}}
           preMatch={preMatch}
         />
       </Provider>
@@ -62,7 +62,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => { }}
+          setIsOpen={() => {}}
           preMatch={preMatch}
         />
       </Provider>
@@ -78,7 +78,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => { }}
+          setIsOpen={() => {}}
           preMatch={preMatch}
         />
       </Provider>
@@ -94,7 +94,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => { }}
+          setIsOpen={() => {}}
           preMatch={undefined}
         />
       </Provider>
