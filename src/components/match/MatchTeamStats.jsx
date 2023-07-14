@@ -60,16 +60,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
     ).toFixed(2)
   }
 
-  const calculateOneVsX = (player) => {
-    return (
-      player.stats.clutch_v1 +
-      player.stats.clutch_v2 +
-      player.stats.clutch_v3 +
-      player.stats.clutch_v4 +
-      player.stats.clutch_v5
-    )
-  }
-
   const handleRedirectToProfile = (id) => {
     navigate(`/perfil/${id}`)
   }
@@ -133,36 +123,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             >
               <Th>D/A</Th>
             </Tooltip>
-            <Tooltip
-              label="Total de 2 abates"
-              aria-label="Total de 2 abates tooltip"
-            >
-              <Th>2k</Th>
-            </Tooltip>
-            <Tooltip
-              label="Total de 3 abates"
-              aria-label="Total de 3 abates tooltip"
-            >
-              <Th>3k</Th>
-            </Tooltip>
-            <Tooltip
-              label="Total de 4 abates"
-              aria-label="Total de 4 abates tooltip"
-            >
-              <Th>4k</Th>
-            </Tooltip>
-            <Tooltip
-              label="Total de 5 abates"
-              aria-label="Total de 5 abates tooltip"
-            >
-              <Th>5k</Th>
-            </Tooltip>
-            <Tooltip
-              label="Total de clutches"
-              aria-label="Total de clutches tooltip"
-            >
-              <Th textTransform="initial">1vsX</Th>
-            </Tooltip>
           </Tr>
         </Thead>
         <Tbody>
@@ -204,11 +164,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               <Td>{player.stats.firstkills}</Td>
               <Td data-testid="kdr">{calculateKdr(player)}</Td>
               <Td data-testid="dh">{calculateDh(player)}</Td>
-              <Td>{player.stats.double_kills}</Td>
-              <Td>{player.stats.triple_kills}</Td>
-              <Td>{player.stats.quadra_kills}</Td>
-              <Td>{player.stats.aces}</Td>
-              <Td data-testid="1vsX">{calculateOneVsX(player)}</Td>
             </Tr>
           ))}
         </Tbody>
