@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `SupportModal` para adicionar link `central de suporte` [#529](https://github.com/3C-gg/reload-frontend/issues/529).
 - Adiciona `hover` e `cursor pointer` no componente `MatchTeamStats`.
 - Faz um `redirect` para a página de `perfil` ao clicar em um usuário na tabela de detalhes da partida no componente `MatchTeamStats` [#528](https://github.com/3C-gg/reload-frontend/issues/528).
 - Adiciona `Tooltip` no componente `MatchInfos` [#525](https://github.com/3C-gg/reload-frontend/issues/525).
