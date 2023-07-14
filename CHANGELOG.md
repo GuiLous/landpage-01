@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Ajusta nome dos testes de `renders` para `render`.
 - altera componente `MatchTeamStats` para mudar a cor do nome dos times para `branco` quando estiverem com placar igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
 - Altera view `Match` para mudar a cor da label do placar para `branco` quando forem igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
 - Altera a label `MAX WIN STREAK` no componente `MatchTeamStats`.
