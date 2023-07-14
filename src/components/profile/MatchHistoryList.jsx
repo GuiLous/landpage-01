@@ -51,7 +51,7 @@ export default function MatchHistoryList({ user_id }) {
     } else {
       return `${
         formattedDate.toFormat("dd 'de' ") +
-        capitalizeFirstLetter(formattedDate.monthLong)
+        capitalizeFirstLetter(formattedDate.toFormat('MMMM', { locale: 'pt' }))
       }`
     }
   }
