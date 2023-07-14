@@ -7,7 +7,7 @@ import MatchFoundModal from './MatchFoundModal'
 describe('MatchFoundModal', () => {
   const mockStore = configureStore()({})
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     const preMatch = {
       countdown: 10,
     }
@@ -16,7 +16,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => {}}
+          setIsOpen={() => { }}
           preMatch={preMatch}
         />
       </Provider>
@@ -26,7 +26,7 @@ describe('MatchFoundModal', () => {
     expect(screen.getByText('Ranqueada · 5x5')).toBeInTheDocument()
   })
 
-  it('should renders the user icons based on the preMatch data', () => {
+  it('should render the user icons based on the preMatch data', () => {
     const preMatch = {
       players_total: 5,
       players_ready_count: 3,
@@ -37,7 +37,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => {}}
+          setIsOpen={() => { }}
           preMatch={preMatch}
         />
       </Provider>
@@ -62,7 +62,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => {}}
+          setIsOpen={() => { }}
           preMatch={preMatch}
         />
       </Provider>
@@ -78,7 +78,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => {}}
+          setIsOpen={() => { }}
           preMatch={preMatch}
         />
       </Provider>
@@ -94,7 +94,7 @@ describe('MatchFoundModal', () => {
       <Provider store={mockStore}>
         <MatchFoundModal
           isOpen={true}
-          setIsOpen={() => {}}
+          setIsOpen={() => { }}
           preMatch={undefined}
         />
       </Provider>

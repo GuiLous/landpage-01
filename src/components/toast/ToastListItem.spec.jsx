@@ -20,7 +20,7 @@ describe('ToastListItem Component', () => {
     preloadedState: { app, invites },
   })
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     app.toasts.push({
       id: 1,
       title: 'Feedback!',

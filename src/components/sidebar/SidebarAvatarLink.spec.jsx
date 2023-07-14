@@ -23,7 +23,7 @@ describe('SidebarAvatarLink Component', () => {
     status: 'online',
   }
 
-  it('should renders correctly', async () => {
+  it('should render correctly', async () => {
     render(
       <BrowserRouter>
         <SidebarAvatarLink user={user} />

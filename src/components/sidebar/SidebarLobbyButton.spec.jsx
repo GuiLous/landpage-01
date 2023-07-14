@@ -12,7 +12,7 @@ describe('SidebarLobbyButton Component', () => {
 
   let match = null
 
-  it('should renders correctly', async () => {
+  it('should render correctly', async () => {
     render(
       <BrowserRouter>
         <SidebarLobbyButton lobby={lobby} match={match} />
@@ -22,7 +22,7 @@ describe('SidebarLobbyButton Component', () => {
     expect(screen.getByText('Lobby')).toBeInTheDocument()
   })
 
-  it('should renders match button when is on match', async () => {
+  it('should render match button when is on match', async () => {
     render(
       <BrowserRouter>
         <SidebarLobbyButton lobby={lobby} match={true} />
@@ -32,7 +32,7 @@ describe('SidebarLobbyButton Component', () => {
     expect(screen.getByText('Em partida')).toBeInTheDocument()
   })
 
-  it('should renders queue button when is on queue', async () => {
+  it('should render queue button when is on queue', async () => {
     lobby.queue = true
     lobby.queue_time = 60
 
@@ -46,7 +46,7 @@ describe('SidebarLobbyButton Component', () => {
     expect(screen.getByText('01:00')).toBeInTheDocument()
   })
 
-  it('should renders restricted button when is restricted', async () => {
+  it('should render restricted button when is restricted', async () => {
     lobby.queue = false
     lobby.restriction_countdown = 60
 

@@ -35,7 +35,7 @@ describe('ToastList Component', () => {
     preloadedState: { app, invites },
   })
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <Provider store={store}>
         <ToastList />

@@ -57,7 +57,7 @@ const store = configureStore({
 })
 
 describe('MatchTeamStats Component', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -71,7 +71,7 @@ describe('MatchTeamStats Component', () => {
     expect(screen.getByText('A')).toBeInTheDocument()
   })
 
-  it('should renders team data', () => {
+  it('should render team data', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>

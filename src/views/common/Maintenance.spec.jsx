@@ -18,7 +18,7 @@ describe('Maintenance Component', () => {
     preloadedState: { app },
   })
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
