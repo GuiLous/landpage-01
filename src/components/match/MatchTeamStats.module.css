@@ -25,27 +25,23 @@
 	text-align: center;
 }
 
-.tableContainer .winner,
-.tableContainer .loser {
+.tableContainer .team {
+	color: white;
+	font-size: 16px;
+	font-weight: var(--chakra-fontWeights-semiBold);
 	max-width: 300px;
 	overflow: hidden;
+	text-align: left;
+	text-transform: uppercase;
 	width: 300px;
 }
 
 .tableContainer .winner {
 	color: var(--chakra-colors-green-400);
-	font-size: 16px;
-	font-weight: var(--chakra-fontWeights-regular);
-	text-align: left;
-	text-transform: uppercase;
 }
 
 .tableContainer .loser {
 	color: var(--chakra-colors-red-500);
-	font-size: 16px;
-	font-weight: var(--chakra-fontWeights-regular);
-	text-align: left;
-	text-transform: uppercase;
 }
 
 .tableContainer table tbody tr td {
