@@ -98,7 +98,7 @@ export default function LevelStatsCard({
                   label="Max Win Streak: Maior quantidade de vitórias seguidas"
                   aria-label="Maior quantidade de vitórias seguidas"
                 >
-                  <Text className={style.statsListItemTitle}>Max Win</Text>
+                  <Text className={style.statsListItemTitle}>Max Wins</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
                   {highest_win_streak}

@@ -15,7 +15,7 @@
 }
 
 .teamScore.winner {
-	color: var(--chakra-colors-cyan-400);
+	color: var(--chakra-colors-green-400);
 }
 
 .teamScore.loser {
