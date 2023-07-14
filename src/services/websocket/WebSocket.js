@@ -188,6 +188,10 @@ export const WSS = () => {
         navigate(`/partidas/${data.payload.id}/conectar/`)
         break
 
+      case 'matches/update':
+        dispatch(updateMatch(data.payload))
+        break
+
       // Toasts
       case `toasts/create`:
         dispatch(
