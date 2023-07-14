@@ -34,9 +34,10 @@ describe('SupportModal Component', () => {
 
     expect(
       screen.getByText(
-        'Tem alguma dúvida? Envie para nosso suporte e logo retornaremos.'
+        'Tem alguma dúvida? Preencha o formulário ou visite nossa'
       )
     ).toBeInTheDocument()
+    expect(screen.getByText('central de suporte.')).toBeInTheDocument()
     expect(screen.getByText('ENVIAR')).toBeInTheDocument()
   })
 })
