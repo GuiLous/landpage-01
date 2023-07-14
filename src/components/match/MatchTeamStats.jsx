@@ -17,7 +17,7 @@ import { Container } from '@components'
 import { useNavigate } from 'react-router-dom'
 import style from './MatchTeamStats.module.css'
 
-export default function MatchTeamStats({ team, isWinning = false }) {
+export default function MatchTeamStats({ team, isWinning, isSameScore }) {
   const user = useSelector((state) => state.user)
 
   const navigate = useNavigate()
@@ -69,9 +69,18 @@ export default function MatchTeamStats({ team, isWinning = false }) {
       <Table bgColor="gray.900">
         <Thead>
           <Tr>
-            <Th className={isWinning ? style.winner : style.loser}>
-              Time {team.name}
-            </Th>
+            {isSameScore ? (
+              <Th className={style.team}>Time {team.name}</Th>
+            ) : (
+              <Th
+                className={[
+                  style.team,
+                  isWinning ? style.winner : style.loser,
+                ].join(' ')}
+              >
+                Time {team.name}
+              </Th>
+            )}
             <Tooltip label="Abates" aria-label="Abates tooltip">
               <Th>K</Th>
             </Tooltip>

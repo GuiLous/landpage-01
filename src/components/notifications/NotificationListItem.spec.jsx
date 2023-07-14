@@ -11,13 +11,13 @@ describe('NotificationListItem Component', () => {
     create_date: new Date().toISOString(),
   }
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(<NotificationListItem {...props} />)
 
     expect(screen.getByText(props.content)).toBeInTheDocument()
   })
 
-  it('should renders with class unread when not has read_date', () => {
+  it('should render with class unread when not has read_date', () => {
     render(<NotificationListItem {...props} />)
 
     expect(screen.getByTestId('notification')).toHaveClass('unread')
