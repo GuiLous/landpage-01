@@ -1,5 +1,5 @@
 .header {
-	font-size: 24px;
+	font-size: 20px;
 	text-transform: uppercase;
 }
 
@@ -9,6 +9,7 @@
 }
 
 .teamScore {
+	color: white;
 	font-size: 32px;
 	font-weight: var(--chakra-fontWeights-bold);
 }
@@ -22,8 +23,8 @@
 }
 
 .teamName {
-	font-size: 22px;
-	font-weight: var(--chakra-fontWeights-medium);
+	font-size: 20px;
+	font-weight: var(--chakra-fontWeights-semiBold);
 	max-width: 350px;
 	overflow: hidden;
 	text-overflow: ellipsis;
