@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera a label `MAX WIN STREAK` no componente `MatchTeamStats`.
 - Altera `SupportModal` para adicionar link `central de suporte` [#529](https://github.com/3C-gg/reload-frontend/issues/529).
 - Adiciona `hover` e `cursor pointer` no componente `MatchTeamStats`.
 - Faz um `redirect` para a página de `perfil` ao clicar em um usuário na tabela de detalhes da partida no componente `MatchTeamStats` [#528](https://github.com/3C-gg/reload-frontend/issues/528).
@@ -47,6 +48,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ajusta `LobbyView` para chamar o useEffect apenas quando muda o valor do `preMatch.state` para evitar chamar a rota de `lockIn` mais de uma vez [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
 - Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503).
+
+### Removed
+
+- Remove todas as informações de `clutch` dos componentes `MatchTeamStates` e `LevelStatsCard` pois não teremos essa informação no momento [#532](https://github.com/3C-gg/reload-frontend/issues/532).
 
 ## [e248506 - 9/7/2023]
 

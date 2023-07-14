@@ -75,21 +75,6 @@ export default function LevelStatsCard({
               </Tooltip>
               <Text className={style.statsListItemValue}>{highest_level}</Text>
             </Container>
-
-            <Container
-              column
-              className={[style.statsListItem, style.maxWinStreak].join(' ')}
-            >
-              <Tooltip
-                label="Maior quantidade de vitórias seguidas"
-                aria-label="Maior quantidade de vitórias seguidas"
-              >
-                <Text className={style.statsListItemTitle}>Max Win Streak</Text>
-              </Tooltip>
-              <Text className={style.statsListItemValue}>
-                {highest_win_streak}
-              </Text>
-            </Container>
           </Container>
 
           <Container column>
@@ -110,17 +95,13 @@ export default function LevelStatsCard({
             <Container className={style.statsListItem} justify="center">
               <Container column fitContent>
                 <Tooltip
-                  label="Rounds vencidos em situações 1vX"
-                  aria-label="Rounds vencidos em situações 1vX"
+                  label="Max Win Streak: Maior quantidade de vitórias seguidas"
+                  aria-label="Maior quantidade de vitórias seguidas"
                 >
-                  <Text className={style.statsListItemTitle}>Clutches</Text>
+                  <Text className={style.statsListItemTitle}>Max Wins</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.clutch_v1 +
-                    stats.clutch_v2 +
-                    stats.clutch_v3 +
-                    stats.clutch_v4 +
-                    stats.clutch_v5 || 0}
+                  {highest_win_streak}
                 </Text>
               </Container>
             </Container>
