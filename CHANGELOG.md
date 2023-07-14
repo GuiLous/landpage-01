@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ajusta cor do `score` na view de `Match`.
 - Ajusta o nome do mapa no componente `MatchInfos` que estava `teste`.
 - Ajusta `MatchInfos` para quando não tiver `match.start_date` mostrar um `-` [#516](https://github.com/3C-gg/reload-frontend/issues/516).
 - Ajusta `LobbyView` para chamar o useEffect apenas quando muda o valor do `preMatch.state` para evitar chamar a rota de `lockIn` mais de uma vez [#513](https://github.com/3C-gg/reload-frontend/issues/513).
