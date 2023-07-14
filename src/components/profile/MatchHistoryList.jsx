@@ -45,9 +45,10 @@ export default function MatchHistoryList({ user_id }) {
     } else if (formattedDate.hasSame(today.minus({ days: 1 }), 'day')) {
       return 'Ontem'
     } else {
-      return `${formattedDate.toFormat('dd')} de ${formattedDate.toFormat(
-        'MMMM'
-      )}`
+      return formattedDate.toLocaleString({
+        day: '2-digit',
+        month: 'long',
+      })
     }
   }
 
