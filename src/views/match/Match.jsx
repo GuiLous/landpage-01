@@ -18,7 +18,7 @@ import { StorageService } from '@services'
 
 import style from './Match.module.css'
 
-export default function MatchView(props) {
+export default function MatchView() {
   const navigate = useNavigate()
   const user = useSelector((state) => state.user)
   const match = useSelector((state) => state.match)
