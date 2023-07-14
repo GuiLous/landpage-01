@@ -13,8 +13,8 @@ describe('MatchInfos Component', () => {
   it('should render correctly', () => {
     render(<MatchInfos match={match} />)
     expect(screen.getByText('Ranked 1x1')).toBeInTheDocument()
-    expect(screen.getByText('7/13/2023 00:00')).toBeInTheDocument()
-    expect(screen.getByText('7/13/2023 01:00')).toBeInTheDocument()
+    expect(screen.getByText('13/07/2023 00:00')).toBeInTheDocument()
+    expect(screen.getByText('13/07/2023 01:00')).toBeInTheDocument()
   })
 
   it('should render Ranked 1x1', () => {

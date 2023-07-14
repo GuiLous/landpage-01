@@ -36,6 +36,10 @@ export default function MatchHistoryList({ user_id }) {
     }, {})
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   const formatDate = (date) => {
     let today = DateTime.local().startOf('day')
     let formattedDate = DateTime.fromISO(date)
@@ -45,9 +49,10 @@ export default function MatchHistoryList({ user_id }) {
     } else if (formattedDate.hasSame(today.minus({ days: 1 }), 'day')) {
       return 'Ontem'
     } else {
-      return `${formattedDate.toFormat('dd')} de ${formattedDate.toFormat(
-        'MMMM'
-      )}`
+      return `${
+        formattedDate.toFormat("dd 'de' ") +
+        capitalizeFirstLetter(formattedDate.toFormat('MMMM', { locale: 'pt' }))
+      }`
     }
   }
 

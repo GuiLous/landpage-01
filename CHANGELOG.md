@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `mês` em `inglês` [#538](https://github.com/3C-gg/reload-frontend/issues/538).
 - Ajusta cor do `score` na view de `Match`.
 - Ajusta o nome do mapa no componente `MatchInfos` que estava `teste`.
 - Ajusta `MatchInfos` para quando não tiver `match.start_date` mostrar um `-` [#516](https://github.com/3C-gg/reload-frontend/issues/516).
