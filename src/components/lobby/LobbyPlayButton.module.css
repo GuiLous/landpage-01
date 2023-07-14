@@ -46,7 +46,6 @@
 .container.disabled,
 .container.disabled:hover {
 	background-color: var(--chakra-colors-gray-800);
-	color: var(--chakra-colors-gray-400);
 	cursor: not-allowed;
 }
 

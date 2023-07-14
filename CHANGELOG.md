@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige cor do texto do botão de jogar que fica cinza ao estar restringido e alguém se juntar a esse lobby restringido [#540](https://github.com/3C-gg/reload-frontend/issues/540).
 - Corrige `mês` em `inglês` [#538](https://github.com/3C-gg/reload-frontend/issues/538).
 - Ajusta cor do `score` na view de `Match`.
 - Ajusta o nome do mapa no componente `MatchInfos` que estava `teste`.
