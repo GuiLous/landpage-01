@@ -59,12 +59,18 @@ export default function MatchInfos({ match }) {
       <Container>
         <Container justify="center">
           <Tooltip label="Iniciada em" aria-label="Iniciada em">
-            <Box>{match.start_date ? startDate.toFormat('D T') : '-'}</Box>
+            <Box>
+              {match.start_date
+                ? startDate.toFormat('D T', { locale: 'pt' })
+                : '-'}
+            </Box>
           </Tooltip>
         </Container>
         <Container justify="center">
           <Tooltip label="Finalizada em" aria-label="Finalizada em">
-            <Box>{endDate ? endDate.toFormat('D T') : '-'}</Box>
+            <Box>
+              {endDate ? endDate.toFormat('D T', { locale: 'pt' }) : '-'}
+            </Box>
           </Tooltip>
         </Container>
       </Container>
