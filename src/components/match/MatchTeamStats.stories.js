@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
+import { MatchTeamStats } from '@components'
 import UserReducer from '@slices/UserSlice'
-import MatchTeamStats from './MatchTeamStats'
 
 export default {
   title: 'Match/MatchTeamStats',
@@ -227,8 +228,10 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => (
-    <Provider store={store}>
-      <MatchTeamStats {...props} />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <MatchTeamStats {...props} />
+      </Provider>
+    </BrowserRouter>
   ),
 }

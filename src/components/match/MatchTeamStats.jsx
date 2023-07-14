@@ -14,10 +14,13 @@ import { useSelector } from 'react-redux'
 
 import { Container } from '@components'
 
+import { useNavigate } from 'react-router-dom'
 import style from './MatchTeamStats.module.css'
 
 export default function MatchTeamStats({ team, isWinning = false }) {
   const user = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
 
   const players = team.players
 
@@ -65,6 +68,10 @@ export default function MatchTeamStats({ team, isWinning = false }) {
       player.stats.clutch_v4 +
       player.stats.clutch_v5
     )
+  }
+
+  const handleRedirectToProfile = (id) => {
+    navigate(`/perfil/${id}`)
   }
 
   return (
@@ -163,6 +170,11 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             <Tr
               key={player.id}
               className={player.user_id === user.id ? style.highlight : ''}
+              onClick={() => handleRedirectToProfile(player.user_id)}
+              cursor="pointer"
+              _hover={{
+                bgColor: 'gray.700',
+              }}
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>
