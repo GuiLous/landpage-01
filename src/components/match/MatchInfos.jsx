@@ -3,6 +3,7 @@ import React from 'react'
 
 import { Container, Timer } from '@components'
 
+import { Box, Tooltip } from '@chakra-ui/react'
 import style from './MatchInfos.module.css'
 
 export default function MatchInfos({ match }) {
@@ -29,25 +30,42 @@ export default function MatchInfos({ match }) {
     <Container className={style.container}>
       <Container>
         <Container justify="center">
-          {typeMap[match.game_type]} {modeMap[match.game_mode]}
+          <Tooltip label="Modo de Jogo" aria-label="Modo de Jogo">
+            <Box>
+              {typeMap[match.game_type]} {modeMap[match.game_mode]}
+            </Box>
+          </Tooltip>
         </Container>
-        <Container justify="center">{match.map?.name}</Container>
+
+        <Container justify="center">
+          <Tooltip label="Mapa" aria-label="Mapa">
+            <Box>teste</Box>
+          </Tooltip>
+        </Container>
       </Container>
 
       <Container justify="center">
-        {match.start_date ? (
-          <Timer initialTime={elapsedTime} stop={endDate} />
-        ) : (
-          '-'
-        )}
+        <Tooltip label="Duração" aria-label="Duração">
+          <Box>
+            {match.start_date ? (
+              <Timer initialTime={elapsedTime} stop={endDate} />
+            ) : (
+              '-'
+            )}
+          </Box>
+        </Tooltip>
       </Container>
 
       <Container>
         <Container justify="center">
-          {match.start_date ? startDate.toFormat('D T') : '-'}
+          <Tooltip label="Iniciada em" aria-label="Iniciada em">
+            <Box>{match.start_date ? startDate.toFormat('D T') : '-'}</Box>
+          </Tooltip>
         </Container>
         <Container justify="center">
-          {endDate ? endDate.toFormat('D T') : '-'}
+          <Tooltip label="Finalizada em" aria-label="Finalizada em">
+            <Box>{endDate ? endDate.toFormat('D T') : '-'}</Box>
+          </Tooltip>
         </Container>
       </Container>
     </Container>
