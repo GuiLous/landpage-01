@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Adiciona `Tooltip` no componente `MatchInfos` [#525](https://github.com/3C-gg/reload-frontend/issues/525).
 - Adiciona `reticências (...)` quando o `username` do usuário for muito grande [#518](https://github.com/3C-gg/reload-frontend/issues/518).
 - Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519). 
 - Redireciona usuário para tela de `detalhes da partida` quando o timer da página de `conectar` chegar a `0` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
