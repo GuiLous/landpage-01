@@ -123,6 +123,30 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             >
               <Th>D/A</Th>
             </Tooltip>
+            <Tooltip
+              label="Total de 2 abates"
+              aria-label="Total de 2 abates tooltip"
+            >
+              <Th>2k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 3 abates"
+              aria-label="Total de 3 abates tooltip"
+            >
+              <Th>3k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 4 abates"
+              aria-label="Total de 4 abates tooltip"
+            >
+              <Th>4k</Th>
+            </Tooltip>
+            <Tooltip
+              label="Total de 5 abates"
+              aria-label="Total de 5 abates tooltip"
+            >
+              <Th>5k</Th>
+            </Tooltip>
           </Tr>
         </Thead>
         <Tbody>
@@ -164,6 +188,10 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               <Td>{player.stats.firstkills}</Td>
               <Td data-testid="kdr">{calculateKdr(player)}</Td>
               <Td data-testid="dh">{calculateDh(player)}</Td>
+              <Td>{player.stats.double_kills}</Td>
+              <Td>{player.stats.triple_kills}</Td>
+              <Td>{player.stats.quadra_kills}</Td>
+              <Td>{player.stats.aces}</Td>
             </Tr>
           ))}
         </Tbody>
