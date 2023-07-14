@@ -19,12 +19,13 @@ import { StorageService } from '@services'
 import style from './Match.module.css'
 
 export default function MatchView() {
-  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
   const match = useSelector((state) => state.match)
 
+  const navigate = useNavigate()
   const params = useParams()
   const matchId = params.matchId
+
   const [fetching, setFetching] = useState(true)
   const [loadedMatch, setLoadedMatch] = useState(null)
 
@@ -60,6 +61,7 @@ export default function MatchView() {
 
       if (response.errorMsg) {
         navigate('/404')
+        return
       }
 
       setLoadedMatch(response)
