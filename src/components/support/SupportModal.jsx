@@ -1,4 +1,11 @@
-import { Button, Text, Textarea, VStack, useMediaQuery } from '@chakra-ui/react'
+import {
+  Button,
+  Link,
+  Text,
+  Textarea,
+  VStack,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -134,13 +141,25 @@ export default function SupportModal({ isOpen, setIsOpen }) {
           align="center"
           column
           gap={isLessThan2xl ? 20 : 32}
+          style={{
+            minWidth: isLessThan2xl ? '410px' : '500px',
+            maxWidth: isLessThan2xl ? '410px' : '500px',
+          }}
         >
           <Text
-            color="gray.300"
+            color="white"
             fontSize={{ base: 14, md: 12, '2xl': 14 }}
             textAlign="center"
+            maxW="335px"
           >
-            Tem alguma dúvida? Envie para nosso suporte e logo retornaremos.
+            Tem alguma dúvida? Preencha o formulário ou visite nossa{' '}
+            <Link
+              href="https://reloadclub.freshdesk.com/support/home"
+              isExternal
+              variant={'inline'}
+            >
+              central de suporte.
+            </Link>
           </Text>
 
           <form
@@ -155,7 +174,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
           >
             <Container
               column
-              gap={isLessThan2xl ? 12 : 14}
+              gap={isLessThan2xl ? 8 : 14}
               style={{ overflow: 'hidden' }}
             >
               <VStack alignItems="initial" w="100%">
@@ -224,8 +243,8 @@ export default function SupportModal({ isOpen, setIsOpen }) {
               <Container
                 align="center"
                 justify="between"
-                gap={isLessThan2xl ? 10 : 12}
-                style={{ flexWrap: 'wrap', maxWidth: '410px' }}
+                gap={isLessThan2xl ? 6 : 12}
+                style={{ flexWrap: 'wrap' }}
               >
                 {files.map((file, index) => (
                   <FileCard
