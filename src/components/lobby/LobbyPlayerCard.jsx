@@ -4,6 +4,7 @@ import {
   Icon,
   Link,
   Text,
+  Tooltip,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { FaCrown } from 'react-icons/fa'
@@ -75,13 +76,24 @@ export default function LobbyPlayerCard({
             />
           )}
 
-          <Text
-            fontSize={{ base: 18, md: 14, '2xl': 18 }}
-            fontWeight="semibold"
-            textTransform="uppercase"
+          <Tooltip
+            label={player.username}
+            aria-label="username"
+            placement="left-end"
+            bg="gray.300"
           >
-            {player.username}
-          </Text>
+            <Text
+              fontSize={{ base: 18, md: 14, '2xl': 18 }}
+              fontWeight="semibold"
+              textTransform="uppercase"
+              maxW={{ base: '200px', md: '150px', '2xl': '200px' }}
+              textOverflow="ellipsis"
+              whiteSpace="nowrap"
+              overflow="hidden"
+            >
+              {player.username}
+            </Text>
+          </Tooltip>
         </Container>
       </Container>
 
