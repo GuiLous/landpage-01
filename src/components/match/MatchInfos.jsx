@@ -39,7 +39,7 @@ export default function MatchInfos({ match }) {
 
         <Container justify="center">
           <Tooltip label="Mapa" aria-label="Mapa">
-            <Box>teste</Box>
+            <Box>{match.map?.name}</Box>
           </Tooltip>
         </Container>
       </Container>
