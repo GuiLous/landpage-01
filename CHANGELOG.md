@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona novo case de `WebSocket` `lobbies/queue_start` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
 - Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Cria componente `SidebarMenuItem`.
 - Cria componente `SidebarFooter`
@@ -56,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Remove `useEffect` que era responsável por reiniciar a fila quando alguém não aceitava uma partida da view `LobbyView` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
 - Remove todas as informações de `clutch` dos componentes `MatchTeamStates` e `LevelStatsCard` pois não teremos essa informação no momento [#532](https://github.com/3C-gg/reload-frontend/issues/532).
 
 ## [e248506 - 9/7/2023]

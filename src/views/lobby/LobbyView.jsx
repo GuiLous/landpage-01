@@ -2,7 +2,7 @@ import { Badge, Icon, Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LobbiesAPI, PreMatchesAPI } from '@api'
+import { PreMatchesAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -12,7 +12,6 @@ import {
 } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { removeRestartQueue } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -53,30 +52,6 @@ export default function LobbyView() {
     if (preMatch && preMatch.state === 'pre_start') lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch?.state])
-
-  useEffect(() => {
-    const restartQueue = async () => {
-      const userToken = StorageService.get('token')
-      let response
-
-      response = await LobbiesAPI.startQueue(userToken, lobby.id)
-
-      if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
-      }
-    }
-
-    if (lobby && lobby.restart) {
-      restartQueue()
-      dispatch(removeRestartQueue())
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lobby])
 
   useEffect(() => {
     if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
