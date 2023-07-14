@@ -36,6 +36,10 @@ export default function MatchHistoryList({ user_id }) {
     }, {})
   }
 
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1)
+  }
+
   const formatDate = (date) => {
     let today = DateTime.local().startOf('day')
     let formattedDate = DateTime.fromISO(date)
@@ -45,9 +49,10 @@ export default function MatchHistoryList({ user_id }) {
     } else if (formattedDate.hasSame(today.minus({ days: 1 }), 'day')) {
       return 'Ontem'
     } else {
-      return `${formattedDate.toFormat('dd')} de ${formattedDate.toFormat(
-        'MMMM'
-      )}`
+      return `${
+        formattedDate.toFormat("dd 'de' ") +
+        capitalizeFirstLetter(formattedDate.toFormat('MMMM', { locale: 'pt' }))
+      }`
     }
   }
 
@@ -94,7 +99,7 @@ export default function MatchHistoryList({ user_id }) {
       isLoaded={!fetching}
       flex="1"
       borderRadius="8px"
-      startColor="gray.400"
+      startColor="gray.700"
       endColor="500"
     >
       <Container className={style.container} column>
@@ -110,7 +115,7 @@ export default function MatchHistoryList({ user_id }) {
             >
               Últimas Partidas
             </Text>
-            <Text as="span" color="gray.700" fontSize={14} lineHeight={1}>
+            <Text as="span" color="gray.300" fontSize={14} lineHeight={1}>
               {matches.length === 1
                 ? matches.length + ' Partida'
                 : matches.length + ' Partidas'}
@@ -131,7 +136,7 @@ export default function MatchHistoryList({ user_id }) {
                 {formatDate(date)}
               </Text>
               <Container className={style.matchesNumber} fitContent>
-                <Text lineHeight={1} color="gray.700" fontSize={12}>
+                <Text lineHeight={1} color="gray.300" fontSize={12}>
                   {groupedMatches[date].length}
                 </Text>
               </Container>
@@ -156,7 +161,7 @@ export default function MatchHistoryList({ user_id }) {
             style={{ marginTop: '24px' }}
             className={style.empty}
           >
-            <Text fontSize={16} color="gray.700">
+            <Text fontSize={16} color="gray.300">
               Ops, você ainda não tem partidas.
             </Text>
           </Container>

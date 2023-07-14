@@ -11,10 +11,6 @@ import style from './MatchFoundModal.module.css'
 export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
   const dispatch = useDispatch()
 
-  const handleClose = () => {
-    setIsOpen(false)
-  }
-
   const playersLeft = preMatch
     ? preMatch.players_total - preMatch.players_ready_count
     : 0
@@ -53,14 +49,14 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
       isCentered
       title="PARTIDA ENCONTRADA"
       isOpen={isOpen}
-      onClose={handleClose}
       closeOnEsc={false}
       closeOnOverlayClick={false}
       headerMarginBottom={12}
       maxWidthModal="650px"
+      showCloseButton={false}
     >
       <Container justify="center" align="center" column gap={40}>
-        <Text color="secondary.400" fontSize={14} textAlign="center">
+        <Text color="cyan.400" fontSize={14} textAlign="center">
           Ranqueada · 5x5
         </Text>
 

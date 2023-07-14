@@ -14,10 +14,13 @@ import { useSelector } from 'react-redux'
 
 import { Container } from '@components'
 
+import { useNavigate } from 'react-router-dom'
 import style from './MatchTeamStats.module.css'
 
-export default function MatchTeamStats({ team, isWinning = false }) {
+export default function MatchTeamStats({ team, isWinning, isSameScore }) {
   const user = useSelector((state) => state.user)
+
+  const navigate = useNavigate()
 
   const players = team.players
 
@@ -57,14 +60,8 @@ export default function MatchTeamStats({ team, isWinning = false }) {
     ).toFixed(2)
   }
 
-  const calculateOneVsX = (player) => {
-    return (
-      player.stats.clutch_v1 +
-      player.stats.clutch_v2 +
-      player.stats.clutch_v3 +
-      player.stats.clutch_v4 +
-      player.stats.clutch_v5
-    )
+  const handleRedirectToProfile = (id) => {
+    navigate(`/perfil/${id}`)
   }
 
   return (
@@ -72,9 +69,18 @@ export default function MatchTeamStats({ team, isWinning = false }) {
       <Table bgColor="gray.900">
         <Thead>
           <Tr>
-            <Th className={isWinning ? style.winner : style.loser}>
-              Time {team.name}
-            </Th>
+            {isSameScore ? (
+              <Th className={style.team}>Time {team.name}</Th>
+            ) : (
+              <Th
+                className={[
+                  style.team,
+                  isWinning ? style.winner : style.loser,
+                ].join(' ')}
+              >
+                Time {team.name}
+              </Th>
+            )}
             <Tooltip label="Abates" aria-label="Abates tooltip">
               <Th>K</Th>
             </Tooltip>
@@ -150,12 +156,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             >
               <Th>5k</Th>
             </Tooltip>
-            <Tooltip
-              label="Total de clutches"
-              aria-label="Total de clutches tooltip"
-            >
-              <Th textTransform="initial">1vsX</Th>
-            </Tooltip>
           </Tr>
         </Thead>
         <Tbody>
@@ -163,6 +163,11 @@ export default function MatchTeamStats({ team, isWinning = false }) {
             <Tr
               key={player.id}
               className={player.user_id === user.id ? style.highlight : ''}
+              onClick={() => handleRedirectToProfile(player.user_id)}
+              cursor="pointer"
+              _hover={{
+                bgColor: 'gray.700',
+              }}
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>
@@ -196,7 +201,6 @@ export default function MatchTeamStats({ team, isWinning = false }) {
               <Td>{player.stats.triple_kills}</Td>
               <Td>{player.stats.quadra_kills}</Td>
               <Td>{player.stats.aces}</Td>
-              <Td data-testid="1vsX">{calculateOneVsX(player)}</Td>
             </Tr>
           ))}
         </Tbody>

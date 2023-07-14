@@ -657,7 +657,7 @@ describe('MatchHistoryList Component', () => {
     )
 
     await waitFor(() => {
-      screen.getByText('19 de April')
+      screen.getByText('19 de Abril')
     })
 
     expect(screen.getByText('Últimas Partidas')).toBeInTheDocument()

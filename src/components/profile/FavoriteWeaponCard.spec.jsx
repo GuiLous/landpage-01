@@ -19,7 +19,7 @@ describe('FavoriteWeaponCard Component', () => {
     },
   }
 
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(<FavoriteWeaponCard weapon={weapon} />)
     expect(screen.getByText('Arma favorita')).toBeInTheDocument()
     expect(screen.getByText('SMG')).toBeInTheDocument()

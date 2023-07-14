@@ -60,7 +60,7 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
 
               {fieldsErrors?.email && (
                 <InputRightElement
-                  color="danger.400"
+                  color="red.500"
                   fontSize={22}
                   children={<RiErrorWarningFill />}
                 />

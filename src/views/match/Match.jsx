@@ -18,15 +18,21 @@ import { StorageService } from '@services'
 
 import style from './Match.module.css'
 
-export default function MatchView(props) {
-  const navigate = useNavigate()
+export default function MatchView() {
   const user = useSelector((state) => state.user)
   const match = useSelector((state) => state.match)
 
+  const navigate = useNavigate()
   const params = useParams()
   const matchId = params.matchId
+
   const [fetching, setFetching] = useState(true)
   const [loadedMatch, setLoadedMatch] = useState(null)
+
+  const firstTeamScore = (loadedMatch && loadedMatch.teams[0].score) || 0
+  const secondTeamScore = (loadedMatch && loadedMatch.teams[1].score) || 0
+
+  const isSameScore = firstTeamScore === secondTeamScore
 
   const statusMap = {
     loading: 'Configurando',
@@ -55,6 +61,7 @@ export default function MatchView(props) {
 
       if (response.errorMsg) {
         navigate('/404')
+        return
       }
 
       setLoadedMatch(response)
@@ -103,23 +110,25 @@ export default function MatchView(props) {
             <Text
               className={[
                 style.teamScore,
-                loadedMatch.teams[0].score > loadedMatch.teams[1].score
-                  ? style.winner
-                  : style.loser,
+                isSameScore && '',
+                firstTeamScore > secondTeamScore && style.winner,
+                firstTeamScore < secondTeamScore && style.loser,
               ].join(' ')}
             >
-              {loadedMatch.teams[0].score}
+              {firstTeamScore}
             </Text>
-            <Text style={{ fontWeight: 'bold' }}>vs</Text>
+            <Text fontWeight="bold" fontSize="32px">
+              :
+            </Text>
             <Text
               className={[
                 style.teamScore,
-                loadedMatch.teams[1].score > loadedMatch.teams[0].score
-                  ? style.winner
-                  : style.loser,
+                isSameScore && '',
+                secondTeamScore > firstTeamScore && style.winner,
+                secondTeamScore < firstTeamScore && style.loser,
               ].join(' ')}
             >
-              {loadedMatch.teams[1].score}
+              {secondTeamScore}
             </Text>
           </Container>
           <Text className={style.teamName}>
@@ -140,6 +149,7 @@ export default function MatchView(props) {
             key={team.id}
             team={team}
             isWinning={winningTeam.id === team.id}
+            isSameScore={isSameScore}
           />
         ))}
       </Container>

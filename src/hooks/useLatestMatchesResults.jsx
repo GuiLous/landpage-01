@@ -5,13 +5,11 @@ const useLatestMatchesResults = (latestMatchesResults, colorize = true) =>
   latestMatchesResults.map((matchResultItem, index) => (
     <Container fitContent key={index}>
       <Text
-        color={
-          colorize && (matchResultItem === 'V' ? 'secondary.400' : 'gray.700')
-        }
+        color={colorize && (matchResultItem === 'V' ? 'cyan.400' : 'gray.300')}
       >
         {matchResultItem}
       </Text>
-      <Text color={colorize && 'gray.700'} margin="0 3px">
+      <Text color={colorize && 'gray.300'} margin="0 3px">
         {latestMatchesResults.length !== index + 1 && ' - '}
       </Text>
     </Container>

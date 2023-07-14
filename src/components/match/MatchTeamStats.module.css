@@ -1,5 +1,5 @@
 .tableContainer {
-	background-color: var(--chakra-colors-gray-600);
+	background-color: var(--chakra-colors-gray-500);
 	border: 1px solid var(--chakra-colors-gray-900);
 	border-radius: 14px;
 	display: flex;
@@ -9,7 +9,7 @@
 
 .tableContainer table thead tr,
 .tableContainer table tbody tr {
-	border-bottom: 1px solid var(--chakra-colors-gray-600);
+	border-bottom: 1px solid var(--chakra-colors-gray-500);
 }
 
 .tableContainer table tbody tr:last-child {
@@ -18,34 +18,30 @@
 
 .tableContainer table thead tr th {
 	border: none;
-	color: var(--chakra-colors-gray-700);
+	color: var(--chakra-colors-gray-300);
 	font-size: 14px;
 	font-weight: var(--chakra-fontWeights-regular);
 	padding: 18px 14px;
 	text-align: center;
 }
 
-.tableContainer .winner,
-.tableContainer .loser {
+.tableContainer .team {
+	color: white;
+	font-size: 16px;
+	font-weight: var(--chakra-fontWeights-semiBold);
 	max-width: 300px;
 	overflow: hidden;
+	text-align: left;
+	text-transform: uppercase;
 	width: 300px;
 }
 
 .tableContainer .winner {
-	color: var(--chakra-colors-success);
-	font-size: 16px;
-	font-weight: var(--chakra-fontWeights-regular);
-	text-align: left;
-	text-transform: uppercase;
+	color: var(--chakra-colors-green-400);
 }
 
 .tableContainer .loser {
-	color: var(--chakra-colors-danger-400);
-	font-size: 16px;
-	font-weight: var(--chakra-fontWeights-regular);
-	text-align: left;
-	text-transform: uppercase;
+	color: var(--chakra-colors-red-500);
 }
 
 .tableContainer table tbody tr td {
@@ -60,5 +56,5 @@
 }
 
 .tableContainer table tbody tr.highlight {
-	background-color: var(--chakra-colors-gray-400);
+	background-color: var(--chakra-colors-gray-700);
 }

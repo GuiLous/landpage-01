@@ -18,7 +18,7 @@ import style from './ToastListItem.module.css'
 
 export default function ToastListItem({
   id,
-  content,
+  content = '',
   variant,
   duration = 6,
   title = null,
@@ -27,8 +27,12 @@ export default function ToastListItem({
 }) {
   const dispatch = useDispatch()
   const invites = useSelector((state) => state.invites)
-  const [timer, setTimer] = useState(duration - 1)
+
+  const dynamicDuration = content.length <= 67 ? duration : 10
+
+  const [timer, setTimer] = useState(dynamicDuration - 1)
   const [defaultTitle, setDefaultTitle] = useState(title)
+
   const invite = invites.find((item) => item.id === invite_id)
 
   const handleClose = () => {
@@ -54,20 +58,20 @@ export default function ToastListItem({
   const renderIcon = () => {
     switch (variant) {
       case 'success':
-        return <Icon as={CheckCircleIcon} color="success" />
+        return <Icon as={CheckCircleIcon} color="green.400" />
 
       case 'warning':
-        return <Icon as={WarningCircleIcon} color="warning" />
+        return <Icon as={WarningCircleIcon} color="yellow.400" />
 
       case 'error':
-        return <Icon as={CloseCircleIcon} color="danger.400" />
+        return <Icon as={CloseCircleIcon} color="red.500" />
 
       case 'invite':
       case 'notification':
         return <Avatar variant="teaming" src={avatar} size="sm" />
 
       default:
-        return <Icon as={BellCircleIcon} color="primary.400" />
+        return <Icon as={BellCircleIcon} color="purple.400" />
     }
   }
 
@@ -139,13 +143,13 @@ export default function ToastListItem({
                 <Text
                   fontSize={14}
                   fontWeight="medium"
-                  color={variant === 'invite' ? 'primary.300' : 'white'}
+                  color={variant === 'invite' ? 'purple.300' : 'white'}
                 >
                   {title || defaultTitle}
                 </Text>
               </Container>
               <Container className={style.content}>
-                <Text fontSize={12} color="gray.625">
+                <Text fontSize={12} color="gray.100">
                   {content}
                 </Text>
               </Container>
@@ -171,7 +175,7 @@ export default function ToastListItem({
 
       <Container
         className={style.countdownBar}
-        style={{ animationDuration: `${duration}s` }}
+        style={{ animationDuration: `${dynamicDuration}s` }}
       ></Container>
     </Container>
   )

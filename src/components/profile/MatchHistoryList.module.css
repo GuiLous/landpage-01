@@ -1,5 +1,5 @@
 .container {
-	background-color: var(--chakra-colors-gray-800);
+	background-color: var(--chakra-colors-gray-1000);
 	border-radius: 8px;
 	min-height: 1052px;
 	padding: 24px;
@@ -7,7 +7,7 @@
 
 .matchesNumber {
 	align-items: center;
-	background-color: var(--chakra-colors-gray-500);
+	background-color: var(--chakra-colors-gray-800);
 	border-radius: 4px;
 	height: 24px;
 	justify-content: center;

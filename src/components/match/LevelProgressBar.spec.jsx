@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { LevelProgressBar } from '@components'
 
 describe('LevelProgressBar Component', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     const progress = {
       earned_points: 0,
       level_points_before: 0,

@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adicionar case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
+- Adiciona novo case de `WebSocket` `lobbies/queue_start` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
 - Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Cria componente `SidebarMenuItem`.
 - Cria componente `SidebarFooter`
@@ -18,6 +20,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Ajusta nome dos testes de `renders` para `render`.
+- altera componente `MatchTeamStats` para mudar a cor do nome dos times para `branco` quando estiverem com placar igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
+- Altera view `Match` para mudar a cor da label do placar para `branco` quando forem igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
+- Altera a label `MAX WIN STREAK` no componente `MatchTeamStats`.
+- Altera `SupportModal` para adicionar link `central de suporte` [#529](https://github.com/3C-gg/reload-frontend/issues/529).
+- Adiciona `hover` e `cursor pointer` no componente `MatchTeamStats`.
+- Faz um `redirect` para a página de `perfil` ao clicar em um usuário na tabela de detalhes da partida no componente `MatchTeamStats` [#528](https://github.com/3C-gg/reload-frontend/issues/528).
+- Adiciona `Tooltip` no componente `MatchInfos` [#525](https://github.com/3C-gg/reload-frontend/issues/525).
+- Adiciona `reticências (...)` quando o `username` do usuário for muito grande [#518](https://github.com/3C-gg/reload-frontend/issues/518).
+- Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519). 
+- Redireciona usuário para tela de `detalhes da partida` quando o timer da página de `conectar` chegar a `0` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
+- Adiciona useEffect no `App` para remover do local storage a chave `matchConnectTimer` e seu valor caso o usuário saia da pagina de `conectar` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
+- Redireciona para `/jogar` quando usuário está em `preMatch` e tenta acessar outra página [#513](https://github.com/3C-gg/reload-frontend/issues/513).
+- Redireciona para `/jogar` quando recebe `WebSocket` de `pre_matches/create` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
+- Remove função `handleClose` e `botão de fechar` do componente `MatchFoundModal` [#513](https://github.com/3C-gg/reload-frontend/issues/513).
+- Altera as cores em toda a aplicação para seguir o novo padrão de cores do tema.
+- Refatora as cores no `tema` do `chakra` para ficar mais padronizado [#398](https://github.com/3C-gg/reload-frontend/issues/398).
+- Altera opacidade do componente `FriendListGroupItem` quando o `status` for `offline` para `0.5` [#511](https://github.com/3C-gg/reload-frontend/issues/511);
 - Altera componente `LobbyLineup` para passar a prop `isLobbyOwner` para o componente `LobbyPlayerCard`.
 - Altera componente `LobbyPlayerCard` para receber nova prop `isLobbyOwner` para mostrar ícone de `coroa` apenas para quem é dono do lobby [#482](https://github.com/3C-gg/reload-frontend/issues/482).
 - Altera os componentes `App, Input, LobbySeat, LevelProgressBar, Progress, Sidebar, ToastList, SidebarLayout, SignupLayout, Home` para seguir o padrão de `z-index` do tema [#291](https://github.com/3C-gg/reload-frontend/issues/291).
@@ -29,8 +49,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige cor do texto do botão de jogar que fica cinza ao estar restringido e alguém se juntar a esse lobby restringido [#540](https://github.com/3C-gg/reload-frontend/issues/540).
+- Corrige `mês` em `inglês` [#538](https://github.com/3C-gg/reload-frontend/issues/538).
+- Ajusta cor do `score` na view de `Match`.
+- Ajusta o nome do mapa no componente `MatchInfos` que estava `teste`.
+- Ajusta `MatchInfos` para quando não tiver `match.start_date` mostrar um `-` [#516](https://github.com/3C-gg/reload-frontend/issues/516).
+- Ajusta `LobbyView` para chamar o useEffect apenas quando muda o valor do `preMatch.state` para evitar chamar a rota de `lockIn` mais de uma vez [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
 - Reseta o state `fieldsErrors` após erro de requisição e o usuário voltar a digitar no input [#503](https://github.com/3C-gg/reload-frontend/issues/503).
+
+### Removed
+
+- Remove `useEffect` que era responsável por reiniciar a fila quando alguém não aceitava uma partida da view `LobbyView` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
+- Remove todas as informações de `clutch` dos componentes `MatchTeamStates` e `LevelStatsCard` pois não teremos essa informação no momento [#532](https://github.com/3C-gg/reload-frontend/issues/532).
 
 ## [e248506 - 9/7/2023]
 
@@ -155,7 +186,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adiciona nova cor de `gray.625` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
+- Adiciona nova cor de `gray.100` no tema [#387](https://github.com/3C-gg/reload-frontend/issues/387).
 - Adicionado prop `disabled` no `LobbyPlayButton` na `LobbyView` para não deixar quem não é dono da fila dar start na fila [#389](https://github.com/3C-gg/reload-frontend/issues/389).
 - Adicionado componente `MatchFoundModal` na `LobbyView` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
 - adicionado case `matches/found` no `WebSocket` [#356](https://github.com/3C-gg/reload-frontend/issues/356).
@@ -384,14 +415,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
 - Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
-- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado cor `gray.200` no tema do chakra ui.
 - Adicionado estilos para o `Drawer` no tema do chakra ui.
 - Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
 - Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
 - Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
 - Alterado path da `AccountView` para `/conta/:userId`.
 - Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
-- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado background do `Modal` para `gray.1000` no tema do chakra.
 - Alterado gray 800 para `#1B1B1B`.
 - Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 
@@ -424,7 +455,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona `hooks` pra que a gente possa criar nossos próprios hooks e já adiciona um hook `useOutsideClick` que replica a lógica do hook do Chakra, mas adicionando uma exceção para determinadas classes.
 - Propriedade `fontWeights` no tema do Chakra pra que a gente possa utilizar sempre o mesmo padrão do Figma.
 - Variante `disabled` e estilo base (`baseStyle`) para o componente `Badge`.
-- Mais um tom de cinza: `#1E1E1E` ou `gray.800`.
+- Mais um tom de cinza: `#1E1E1E` ou `gray.1000`.
 - Adicionamos as fontes do Google na renderização do _Storybook_, bem como o carregamento dos arquivos da pasta `public`.
 - Borda com cor primária no componente `Avatar`.
 - Componente `Progress` foi criado para que pudéssemos simplificar a lógica do componente `LevelProgressBar`.
@@ -440,14 +471,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adicionado uma `key` no map na View `Account`.
 - Alterado `Link` na `SideBar` de notificações para um `button`.
 - Alterado componentes `NotificationListItem` e `NotificationList` para ficar igual ao design [#252](https://github.com/3C-gg/reload-frontend/issues/252).
-- Adicionado cor `gray.650` no tema do chakra ui.
+- Adicionado cor `gray.200` no tema do chakra ui.
 - Adicionado estilos para o `Drawer` no tema do chakra ui.
 - Alterado view de `Account` para refletir o design [#134](https://github.com/3C-gg/reload-frontend/issues/134).
 - Movido `HeaderProfile` e função `renderButtonsNavigation` para `LayoutProfile`.
 - Removido `HeaderProfile` e função `renderButtonsNavigation` da view `Profile`.
 - Alterado path da `AccountView` para `/conta/:userId`.
 - Alterado componente `ChangeEmailCard` para usar o método `updateEmail`.
-- Alterado background do `Modal` para `gray.800` no tema do chakra.
+- Alterado background do `Modal` para `gray.1000` no tema do chakra.
 - Alterado gray 800 para `#1B1B1B`.
 - Alterado `HeaderProfile` e `LevelStatsCard` para não quebrar quando o usuário logado for uma conta recém criada.
 - Alterado `HttpService` para adicionar uma `/` no final da url apenas quando não tiver uma interrogação `?` [#243] (https://github.com/3C-gg/reload-frontend/issues/243).

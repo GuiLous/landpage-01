@@ -1,5 +1,5 @@
 .container {
-	background-color: var(--chakra-colors-primary-400);
+	background-color: var(--chakra-colors-purple-400);
 	border-radius: 8px;
 	color: white;
 	cursor: pointer;
@@ -12,15 +12,15 @@
 }
 
 .container:hover {
-	background-color: var(--chakra-colors-primary-300);
+	background-color: var(--chakra-colors-purple-300);
 }
 
 .container.queued {
-	background-color: var(--chakra-colors-primary-500);
+	background-color: var(--chakra-colors-purple-500);
 }
 
 .container.queued:hover {
-	background-color: var(--chakra-colors-danger-400);
+	background-color: var(--chakra-colors-red-500);
 }
 
 .cancelQueue {
@@ -45,8 +45,7 @@
 
 .container.disabled,
 .container.disabled:hover {
-	background-color: var(--chakra-colors-gray-750);
-	color: var(--chakra-colors-gray-550);
+	background-color: var(--chakra-colors-gray-800);
 	cursor: not-allowed;
 }
 
@@ -61,7 +60,7 @@
 
 .container.restricted,
 .container.restricted:hover {
-	background-color: var(--chakra-colors-danger-400);
+	background-color: var(--chakra-colors-red-500);
 	cursor: not-allowed;
 }
 

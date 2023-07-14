@@ -55,7 +55,7 @@ export default function AccountView() {
           <Link
             key={linkItem.id}
             href={'#' + linkItem.id}
-            color="gray.700"
+            color="gray.300"
             fontWeight="regular"
             fontSize={18}
             lineHeight={1}
@@ -64,7 +64,7 @@ export default function AccountView() {
             gap="10px"
             className={style.link}
           >
-            <Icon as={icons[`${linkItem.id}`]} fill="gray.700" />
+            <Icon as={icons[`${linkItem.id}`]} fill="gray.300" />
             <Text>{linkItem.label}</Text>
           </Link>
         ))}

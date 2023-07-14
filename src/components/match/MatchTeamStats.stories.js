@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
+import { MatchTeamStats } from '@components'
 import UserReducer from '@slices/UserSlice'
-import MatchTeamStats from './MatchTeamStats'
 
 export default {
   title: 'Match/MatchTeamStats',
@@ -43,11 +44,6 @@ export default {
             triple_kills: 0,
             quadra_kills: 0,
             aces: 0,
-            clutch_v1: 0,
-            clutch_v2: 0,
-            clutch_v3: 0,
-            clutch_v4: 0,
-            clutch_v5: 0,
             firstkills: 0,
             shots_fired: 0,
             head_shots: 0,
@@ -81,11 +77,6 @@ export default {
             triple_kills: 0,
             quadra_kills: 0,
             aces: 0,
-            clutch_v1: 0,
-            clutch_v2: 0,
-            clutch_v3: 0,
-            clutch_v4: 0,
-            clutch_v5: 0,
             firstkills: 0,
             shots_fired: 0,
             head_shots: 0,
@@ -119,11 +110,6 @@ export default {
             triple_kills: 0,
             quadra_kills: 0,
             aces: 0,
-            clutch_v1: 0,
-            clutch_v2: 0,
-            clutch_v3: 0,
-            clutch_v4: 0,
-            clutch_v5: 0,
             firstkills: 0,
             shots_fired: 0,
             head_shots: 0,
@@ -157,11 +143,6 @@ export default {
             triple_kills: 0,
             quadra_kills: 0,
             aces: 0,
-            clutch_v1: 0,
-            clutch_v2: 0,
-            clutch_v3: 0,
-            clutch_v4: 0,
-            clutch_v5: 0,
             firstkills: 0,
             shots_fired: 0,
             head_shots: 0,
@@ -195,11 +176,6 @@ export default {
             triple_kills: 0,
             quadra_kills: 0,
             aces: 0,
-            clutch_v1: 0,
-            clutch_v2: 0,
-            clutch_v3: 0,
-            clutch_v4: 0,
-            clutch_v5: 0,
             firstkills: 0,
             shots_fired: 0,
             head_shots: 0,
@@ -227,8 +203,10 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => (
-    <Provider store={store}>
-      <MatchTeamStats {...props} />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <MatchTeamStats {...props} />
+      </Provider>
+    </BrowserRouter>
   ),
 }

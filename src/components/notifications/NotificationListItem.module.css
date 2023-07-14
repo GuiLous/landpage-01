@@ -6,7 +6,7 @@
 }
 
 .container.unread {
-	background-color: var(--chakra-colors-gray-750);
+	background-color: var(--chakra-colors-gray-800);
 }
 
 @media (max-width: 1600px) {

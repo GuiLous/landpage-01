@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
+import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import MatchReducer from '@slices/MatchSlice'
 import { ConnectView } from '@views'
-import { Provider } from 'react-redux'
 
 export default {
   title: 'Views/ConnectView',
@@ -22,8 +23,10 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => (
-    <Provider store={store}>
-      <ConnectView {...props} />,
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ConnectView {...props} />,
+      </Provider>
+    </BrowserRouter>
   ),
 }

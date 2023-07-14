@@ -1,6 +1,7 @@
 import { Box, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import gta_avatar from '@assets/images/gta_avatar.png'
 import loadingGif from '@assets/images/loading.gif'
@@ -14,8 +15,10 @@ import style from './Connect.module.css'
 const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
 
-export default function Connect(props) {
+export default function Connect() {
   const match = useSelector((state) => state.match)
+
+  const navigate = useNavigate()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
@@ -42,6 +45,10 @@ export default function Connect(props) {
     }
   })
 
+  useEffect(() => {
+    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
+  }, [timeLeft, match.id, navigate])
+
   return (
     <Container className={style.container} align="end">
       <Container className={style.gtaAvatarWrapper} align="end">
@@ -61,7 +68,7 @@ export default function Connect(props) {
             <Text className={style.helper}>
               Para se conectar, abra o FiveM e insira o IP abaixo na lista{' '}
               <br /> de servidores.{' '}
-              <Text color="secondary.400" as="span" fontWeight="medium">
+              <Text color="cyan.400" as="span" fontWeight="medium">
                 Você tem até 3 minutos para se conectar.
               </Text>
             </Text>
@@ -75,7 +82,7 @@ export default function Connect(props) {
               >
                 <Text
                   className={style.ip}
-                  color={copied ? 'primary.400' : 'white'}
+                  color={copied ? 'purple.400' : 'white'}
                 >
                   IP: {match.server_ip}
                 </Text>
@@ -85,13 +92,13 @@ export default function Connect(props) {
                   aria-label="clip icon"
                   placement="right-start"
                   isOpen={copied}
-                  bg="gray.800"
+                  bg="gray.1000"
                   color="white"
                 >
                   <Box className={style.iconClip}>
                     <Icon
                       as={ClipboardIcon}
-                      color={copied ? 'primary.400' : 'white'}
+                      color={copied ? 'purple.400' : 'white'}
                     />
                   </Box>
                 </Tooltip>

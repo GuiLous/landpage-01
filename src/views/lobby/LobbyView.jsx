@@ -2,7 +2,7 @@ import { Badge, Icon, Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LobbiesAPI, PreMatchesAPI } from '@api'
+import { PreMatchesAPI } from '@api'
 import {
   ArrowUpFilledIcon,
   Container,
@@ -12,7 +12,6 @@ import {
 } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
-import { removeRestartQueue } from '@slices/LobbySlice'
 
 import style from './LobbyView.module.css'
 
@@ -52,36 +51,13 @@ export default function LobbyView() {
 
     if (preMatch && preMatch.state === 'pre_start') lockIn()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preMatch])
-
-  useEffect(() => {
-    const restartQueue = async () => {
-      const userToken = StorageService.get('token')
-      let response
-
-      response = await LobbiesAPI.startQueue(userToken, lobby.id)
-
-      if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
-      }
-    }
-
-    if (lobby && lobby.restart) {
-      restartQueue()
-      dispatch(removeRestartQueue())
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lobby])
+  }, [preMatch?.state])
 
   useEffect(() => {
     if (preMatch && preMatch.state === 'lock_in') setOpenMatchFoundModal(true)
     else setOpenMatchFoundModal(false)
-  }, [preMatch])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [preMatch?.state])
 
   return (
     <Container
@@ -138,7 +114,7 @@ export default function LobbyView() {
           align="center"
         >
           <Container className={style.arrowUpIcon} justify="center">
-            <Icon as={ArrowUpFilledIcon} color="primary.400" />
+            <Icon as={ArrowUpFilledIcon} color="purple.400" />
           </Container>
           <Text fontSize={{ base: 18, md: 16, '2xl': 18 }}>Ranqueada 5x5</Text>
         </Container>

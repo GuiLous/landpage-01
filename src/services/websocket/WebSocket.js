@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import useWebSocket from 'react-use-websocket'
 
+import { LobbiesAPI } from '@api'
 import { REACT_APP_WS_URL } from '@config'
 import { StorageService } from '@services'
 import { addToast, updateMaintenance } from '@slices/AppSlice'
@@ -52,6 +53,19 @@ export const WSS = () => {
   const logout = async () => {
     StorageService.remove('token')
     window.location.href = '/'
+  }
+
+  const start_queue = async () => {
+    const response = await LobbiesAPI.startQueue(token, user.lobby_id)
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+    }
   }
 
   useWebSocket(
@@ -140,6 +154,10 @@ export const WSS = () => {
         dispatch(updateQueueTime(data.payload))
         break
 
+      case 'lobbies/queue_start':
+        start_queue()
+        break
+
       // Notifications
       case 'notifications/add':
         dispatch(addNotification(data.payload))
@@ -154,16 +172,24 @@ export const WSS = () => {
         break
 
       // PreMatches
-      case 'pre_matches/create':
       case 'pre_matches/update':
       case 'pre_matches/delete':
         dispatch(updatePreMatch(data.payload))
+        break
+
+      case 'pre_matches/create':
+        dispatch(updatePreMatch(data.payload))
+        if (data.payload.state === 'pre_start') navigate('/jogar')
         break
 
       // Matches
       case 'matches/create':
         dispatch(updateMatch(data.payload))
         navigate(`/partidas/${data.payload.id}/conectar/`)
+        break
+
+      case 'matches/update':
+        dispatch(updateMatch(data.payload))
         break
 
       // Toasts

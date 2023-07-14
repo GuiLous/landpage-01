@@ -38,11 +38,6 @@ const data = {
         triple_kills: 2,
         quadra_kills: 1,
         aces: 1,
-        clutch_v1: 1,
-        clutch_v2: 3,
-        clutch_v3: 5,
-        clutch_v4: 2,
-        clutch_v5: 1,
         firstkills: 6,
         shots_fired: 500,
         head_shots: 5,
@@ -62,7 +57,7 @@ const store = configureStore({
 })
 
 describe('MatchTeamStats Component', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>
@@ -76,7 +71,7 @@ describe('MatchTeamStats Component', () => {
     expect(screen.getByText('A')).toBeInTheDocument()
   })
 
-  it('should renders team data', () => {
+  it('should render team data', () => {
     render(
       <BrowserRouter>
         <Provider store={store}>

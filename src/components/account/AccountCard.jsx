@@ -20,7 +20,7 @@ export default function AccountCard({ title, description, children }) {
             {title}
           </Text>
           {description && (
-            <Text fontSize={14} color="gray.700" as="p">
+            <Text fontSize={14} color="gray.300" as="p">
               {description}
             </Text>
           )}

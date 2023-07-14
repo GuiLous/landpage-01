@@ -123,11 +123,11 @@ export default function FileInput({
             fontSize={{ base: 12, md: 10, '2xl': 12 }}
             fontWeight="regular"
             lineHeight={1}
-            color="gray.700"
+            color="gray.300"
             as="span"
           >
             Solte os arquivos aqui ou{' '}
-            <Text fontWeight="semiBold" color="primary.400" as="span">
+            <Text fontWeight="semiBold" color="purple.400" as="span">
               Procure
             </Text>
           </Text>
@@ -142,7 +142,7 @@ export default function FileInput({
               fontSize={{ base: 10, md: 8, '2xl': 10 }}
               lineHeight={1}
               fontWeight="regular"
-              color="gray.700"
+              color="gray.300"
               as="span"
             >
               Arquivos suportados:{' '}
@@ -155,7 +155,7 @@ export default function FileInput({
               fontSize={{ base: 10, md: 8, '2xl': 10 }}
               lineHeight={1}
               fontWeight="regular"
-              color="gray.700"
+              color="gray.300"
               as="span"
             >
               Tamanho máximo:{' '}

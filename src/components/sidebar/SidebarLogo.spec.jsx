@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { SidebarLogo } from '@components'
 
 describe('SidebarLogo Component', () => {
-  it('should renders correctly', async () => {
+  it('should render correctly', async () => {
     render(
       <BrowserRouter>
         <SidebarLogo />

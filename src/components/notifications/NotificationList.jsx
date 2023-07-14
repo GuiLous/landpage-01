@@ -128,11 +128,11 @@ export default function NotificationList({ isOpen, onClose }) {
               totalNotificationsNotRead.length === 0
             }
             _disabled={{
-              backgroundColor: 'gray.400',
+              backgroundColor: 'gray.700',
               cursor: 'not-allowed',
-              color: 'gray.700',
+              color: 'gray.300',
               _hover: {
-                backgroundColor: 'gray.400',
+                backgroundColor: 'gray.700',
               },
             }}
             onClick={readAll}

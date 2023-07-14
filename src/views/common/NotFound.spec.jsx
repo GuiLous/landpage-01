@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { NotFoundView } from '@views'
 
 describe('NotFound Component', () => {
-  it('should renders correctly', () => {
+  it('should render correctly', () => {
     render(
       <BrowserRouter>
         <NotFoundView />
