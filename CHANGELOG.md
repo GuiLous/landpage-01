@@ -18,6 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- altera componente `MatchTeamStats` para mudar a cor do nome dos times para `branco` quando estiverem com placar igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
+- Altera view `Match` para mudar a cor da label do placar para `branco` quando forem igual [#523](https://github.com/3C-gg/reload-frontend/issues/523).
 - Altera a label `MAX WIN STREAK` no componente `MatchTeamStats`.
 - Altera `SupportModal` para adicionar link `central de suporte` [#529](https://github.com/3C-gg/reload-frontend/issues/529).
 - Adiciona `hover` e `cursor pointer` no componente `MatchTeamStats`.
@@ -44,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ajusta o nome do mapa no componente `MatchInfos` que estava `teste`.
 - Ajusta `MatchInfos` para quando não tiver `match.start_date` mostrar um `-` [#516](https://github.com/3C-gg/reload-frontend/issues/516).
 - Ajusta `LobbyView` para chamar o useEffect apenas quando muda o valor do `preMatch.state` para evitar chamar a rota de `lockIn` mais de uma vez [#513](https://github.com/3C-gg/reload-frontend/issues/513).
 - Ajusta bug no componente `FriendListGroup` que deixava o `Online` marcado como ativo após aceitar um convite.
