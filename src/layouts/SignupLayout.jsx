@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom'
 
 import liquidObject from '@assets/images/liquid_object.png'
 import logo from '@assets/images/logo_type_white.svg'
+import rectangle from '@assets/images/signup_bg_top_right.png'
 
 import { Container, Footer } from '@components'
 import { StorageService } from '@services'
@@ -36,6 +37,8 @@ export default function SignupLayout() {
       <Container className={style.liquidObject}>
         <img src={liquidObject} alt="Liquid object" />
       </Container>
+
+      <img src={rectangle} alt="rectangle" className={style.rectangleImg} />
 
       <Container align="center" justify="center" column gap={55}>
         <Container
