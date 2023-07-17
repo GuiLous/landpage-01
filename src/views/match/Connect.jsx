@@ -7,7 +7,13 @@ import gta_avatar from '@assets/images/gta_avatar.png'
 import loadingGif from '@assets/images/loading.gif'
 import logo from '@assets/images/logo_type_white.svg'
 
-import { ClipboardIcon, Container, Timer } from '@components'
+import {
+  ClipboardIcon,
+  Container,
+  Loading,
+  LoadingBackdrop,
+  Timer,
+} from '@components'
 import { usePersistentTimer } from '@hooks'
 import { StorageService } from '@services'
 
@@ -18,13 +24,14 @@ const TIMER_NAME = 'matchConnectTimer'
 
 export default function Connect() {
   const match = useSelector((state) => state.match)
-
   const navigate = useNavigate()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
 
-  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME)
+  const isLoading = match && match.status === 'loading'
+
+  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 
   const handleClipboard = () => {
     navigator.clipboard.writeText(match.server_ip)
@@ -57,7 +64,11 @@ export default function Connect() {
     if (timeLeft === 0) navigate(`/partidas/${match.id}`)
   }, [timeLeft, match?.id, navigate])
 
-  return (
+  return isLoading ? (
+    <LoadingBackdrop>
+      <Loading />
+    </LoadingBackdrop>
+  ) : (
     <Container className={style.container} align="end">
       <Container className={style.gtaAvatarWrapper} align="end">
         <Container className={style.gtaAvatar} align="end">
