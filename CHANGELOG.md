@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [5f3b172 - 17/7/2023]
+
 ### Added
 
 - Adiciona case de `WebSocket` `matches/delete` para remover uma partida do redux.
@@ -30,7 +32,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Faz um `redirect` para a página de `perfil` ao clicar em um usuário na tabela de detalhes da partida no componente `MatchTeamStats` [#528](https://github.com/3C-gg/reload-frontend/issues/528).
 - Adiciona `Tooltip` no componente `MatchInfos` [#525](https://github.com/3C-gg/reload-frontend/issues/525).
 - Adiciona `reticências (...)` quando o `username` do usuário for muito grande [#518](https://github.com/3C-gg/reload-frontend/issues/518).
-- Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519). 
+- Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519).
 - Redireciona usuário para tela de `detalhes da partida` quando o timer da página de `conectar` chegar a `0` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
 - Adiciona useEffect no `App` para remover do local storage a chave `matchConnectTimer` e seu valor caso o usuário saia da pagina de `conectar` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
 - Redireciona para `/jogar` quando usuário está em `preMatch` e tenta acessar outra página [#513](https://github.com/3C-gg/reload-frontend/issues/513).
