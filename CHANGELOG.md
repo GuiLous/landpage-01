@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionar case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
+- Adiciona case de `WebSocket` `matches/delete` para remover uma partida do redux.
+- Adiciona case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
 - Adiciona novo case de `WebSocket` `lobbies/queue_start` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
 - Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Cria componente `SidebarMenuItem`.
