@@ -9,6 +9,7 @@ import logo from '@assets/images/logo_type_white.svg'
 
 import { ClipboardIcon, Container, Timer } from '@components'
 import { usePersistentTimer } from '@hooks'
+import { StorageService } from '@services'
 
 import style from './Connect.module.css'
 
@@ -47,6 +48,7 @@ export default function Connect() {
 
   useEffect(() => {
     if (!match) {
+      StorageService.remove('matchConnectTimer')
       navigate('/jogar')
     }
   }, [match, navigate])
