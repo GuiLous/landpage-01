@@ -46,8 +46,14 @@ export default function Connect() {
   })
 
   useEffect(() => {
+    if (!match) {
+      navigate('/jogar')
+    }
+  }, [match, navigate])
+
+  useEffect(() => {
     if (timeLeft === 0) navigate(`/partidas/${match.id}`)
-  }, [timeLeft, match.id, navigate])
+  }, [timeLeft, match?.id, navigate])
 
   return (
     <Container className={style.container} align="end">
@@ -84,7 +90,7 @@ export default function Connect() {
                   className={style.ip}
                   color={copied ? 'purple.400' : 'white'}
                 >
-                  IP: {match.server_ip}
+                  IP: {match && match.server_ip}
                 </Text>
 
                 <Tooltip
