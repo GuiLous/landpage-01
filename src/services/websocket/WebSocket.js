@@ -192,6 +192,10 @@ export const WSS = () => {
         dispatch(updateMatch(data.payload))
         break
 
+      case 'matches/delete':
+        dispatch(updateMatch(data.payload))
+        break
+
       // Toasts
       case `toasts/create`:
         dispatch(

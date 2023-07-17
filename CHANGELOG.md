@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionar case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
+- Adiciona case de `WebSocket` `matches/delete` para remover uma partida do redux.
+- Adiciona case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
 - Adiciona novo case de `WebSocket` `lobbies/queue_start` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
 - Adiciona padrões de `z-index` no tema do chakra [#291](https://github.com/3C-gg/reload-frontend/issues/291).
 - Cria componente `SidebarMenuItem`.
@@ -49,6 +50,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ajusta imagem background que estava terminando de forma brusca para o preto no layout `SignupLayout` [#545](https://github.com/3C-gg/reload-frontend/issues/545).
 - Corrige cor do texto do botão de jogar que fica cinza ao estar restringido e alguém se juntar a esse lobby restringido [#540](https://github.com/3C-gg/reload-frontend/issues/540).
 - Corrige `mês` em `inglês` [#538](https://github.com/3C-gg/reload-frontend/issues/538).
 - Ajusta cor do `score` na view de `Match`.

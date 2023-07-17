@@ -1,9 +1,9 @@
 .container {
-	background-color: black;
-	background-image: url('@assets/images/signup_bg_bottom_left.png'),
-		url('@assets/images/signup_bg_top_right.png');
-	background-position: left bottom, right 40px top 40px;
-	background-repeat: no-repeat;
+	background: linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%),
+		url('@assets/images/signup_bg_bottom_left.png'),
+		lightgray -220.902px -17.757px / 116.173% 131.467% no-repeat;
+	background-repeat: round;
+	background-size: cover;
 	color: white;
 	height: 100vh;
 	position: relative;
@@ -29,4 +29,10 @@
 	position: absolute;
 	top: 32px;
 	width: fit-content;
+}
+
+.rectangleImg {
+	position: absolute;
+	right: 40px;
+	top: 40px;
 }
