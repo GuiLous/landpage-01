@@ -28,6 +28,7 @@ export default function MatchView() {
 
   const [fetching, setFetching] = useState(true)
   const [loadedMatch, setLoadedMatch] = useState(null)
+  const [isFirstRender, setIsFirstRender] = useState(true)
 
   const firstTeamScore = (loadedMatch && loadedMatch.teams[0].score) || 0
   const secondTeamScore = (loadedMatch && loadedMatch.teams[1].score) || 0
@@ -76,6 +77,14 @@ export default function MatchView() {
     } else fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchId])
+
+  useEffect(() => {
+    if (!isFirstRender && !match) {
+      navigate('/jogar')
+    }
+    setIsFirstRender(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match, navigate])
 
   return fetching || !loadedMatch ? (
     <LoadingBackdrop>
