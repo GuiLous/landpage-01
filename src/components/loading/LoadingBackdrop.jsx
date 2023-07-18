@@ -5,7 +5,13 @@ import style from './LoadingBackdrop.module.css'
 
 export default function LoadingBackdrop({ children }) {
   return (
-    <Container align="center" justify="center" className={style.container}>
+    <Container
+      align="center"
+      justify="center"
+      column
+      gap={12}
+      className={style.container}
+    >
       {children}
     </Container>
   )
