@@ -12,6 +12,7 @@ import {
   Container,
   Loading,
   LoadingBackdrop,
+  LoadingTexts,
   Timer,
 } from '@components'
 import { usePersistentTimer } from '@hooks'
@@ -21,6 +22,17 @@ import style from './Connect.module.css'
 
 const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
+
+const textsArray = [
+  `Ligando as luzes`,
+  `Limpando os bombsites`,
+  `Calibrando as armas da loja`,
+  `Testando a c4`,
+  `Checando a validade dos coletes`,
+  `Distribuindo os créditos`,
+  `Sorteando os lados iniciais`,
+  `Distribuindo os trajes`,
+]
 
 export default function Connect() {
   const match = useSelector((state) => state.match)
@@ -67,6 +79,7 @@ export default function Connect() {
   return isLoading ? (
     <LoadingBackdrop>
       <Loading />
+      <LoadingTexts textsArray={textsArray} />
     </LoadingBackdrop>
   ) : (
     <Container className={style.container} align="end">
