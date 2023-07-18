@@ -131,7 +131,7 @@ export default function LobbyPlayerCard({
 
       <Container justify="center" fitContent gap={isLessThan2xl ? 22 : 32}>
         <Container fitContent className={style.footerButton}>
-          <Tooltip label="Ver perfil" aria-label="username" bg="gray.300">
+          <Tooltip label="Ver perfil" aria-label="Ver perfil" bg="gray.300">
             <Link
               as={ReactRouterLink}
               to={`/perfil/${player.user_id}`}
@@ -149,7 +149,7 @@ export default function LobbyPlayerCard({
         <Container fitContent className={style.footerButton}>
           <Tooltip
             label="Visitar perfil na steam"
-            aria-label="username"
+            aria-label="Visitar perfil na steam"
             bg="gray.300"
           >
             <Link href={player.steam_url} isExternal color="white">
