@@ -194,6 +194,14 @@ export const WSS = () => {
 
       case 'matches/delete':
         dispatch(updateMatch(data.payload))
+        dispatch(
+          addToast({
+            variant: 'warning',
+            title: 'Partida cancelada',
+            content:
+              'Todos os jogadores não se conectaram a tempo ou algum fator desconhecido aconteceu e a sua partida foi cancelada.',
+          })
+        )
         break
 
       // Toasts
