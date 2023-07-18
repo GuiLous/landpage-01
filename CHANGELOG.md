@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Redireciona para `/jogar` na tela de detalhes da partida ao receber websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Dispatch `toast` de alerta no websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Renderiza o componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 - Adiciona `gap` e `flex-direction column` no componente `LoadingBackdrop`.
 - Adiciona `fitContent` no componente `Loading`.
