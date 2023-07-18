@@ -131,27 +131,35 @@ export default function LobbyPlayerCard({
 
       <Container justify="center" fitContent gap={isLessThan2xl ? 22 : 32}>
         <Container fitContent className={style.footerButton}>
-          <Link
-            as={ReactRouterLink}
-            to={`/perfil/${player.user_id}`}
-            color="white"
-          >
-            <Icon
-              as={UserIcon}
-              fontSize={{ base: 24, md: 18, '2xl': 24 }}
-              verticalAlign="middle"
-            />
-          </Link>
+          <Tooltip label="Ver perfil" aria-label="username" bg="gray.300">
+            <Link
+              as={ReactRouterLink}
+              to={`/perfil/${player.user_id}`}
+              color="white"
+            >
+              <Icon
+                as={UserIcon}
+                fontSize={{ base: 24, md: 18, '2xl': 24 }}
+                verticalAlign="middle"
+              />
+            </Link>
+          </Tooltip>
         </Container>
 
         <Container fitContent className={style.footerButton}>
-          <Link href={player.steam_url} isExternal color="white">
-            <Icon
-              as={SiSteam}
-              fontSize={{ base: 24, md: 18, '2xl': 24 }}
-              verticalAlign="middle"
-            />
-          </Link>
+          <Tooltip
+            label="Visitar perfil na steam"
+            aria-label="username"
+            bg="gray.300"
+          >
+            <Link href={player.steam_url} isExternal color="white">
+              <Icon
+                as={SiSteam}
+                fontSize={{ base: 24, md: 18, '2xl': 24 }}
+                verticalAlign="middle"
+              />
+            </Link>
+          </Tooltip>
         </Container>
       </Container>
     </Container>
