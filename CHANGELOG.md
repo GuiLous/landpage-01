@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
+
+### Changed
+
+- Renderiza o componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+- Adiciona `gap` e `flex-direction column` no componente `LoadingBackdrop`.
+- Adiciona `fitContent` no componente `Loading`.
+- Adiciona componente de `Loading` na tela de `Conectar` quando `match.status` for `loading` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+- Adiciona prop `isLoading` no hook `usePersistentTimer` para não adicionar informação no storage quando não deve.
+- Redireciona para `/jogar` na página de conectar caso `match` seja `null` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
+### Removed
+
+- Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
 ## [5f3b172 - 17/7/2023]
 
 ### Added
