@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { Text } from '@chakra-ui/react'
 import { Container } from '@components'
 
-export default function LoadingTexts({ textsArray, intervalTime = 3000 }) {
+export default function LoadingTexts({ textsArray = [], intervalTime = 3000 }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0)
 
   const transitions = useTransition(textsArray[currentTextIndex], {
