@@ -12,7 +12,7 @@ export default function Loading(props) {
       justify="center"
       className={style.container}
     >
-      <img src={loadingGif} alt="Carregando..." />
+      <img src={loadingGif} alt="Carregando..." data-testid="loading" />
     </Container>
   )
 }
