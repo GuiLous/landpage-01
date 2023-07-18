@@ -85,14 +85,14 @@ export default function Connect() {
     <Container className={style.container} align="end">
       <Container className={style.gtaAvatarWrapper} align="end">
         <Container className={style.gtaAvatar} align="end">
-          <img src={gta_avatar} alt="Personagem do GTA V" />
+          <img src={gta_avatar} alt="Personagem do GTA V" data-testid="gta" />
         </Container>
       </Container>
 
       <Container column style={{ marginBottom: '110px' }}>
         <Container column align="end" justify="center" gap={80}>
           <Container className={style.logo} justify="end">
-            <img src={logo} alt="ReloadClub" />
+            <img src={logo} alt="ReloadClub" data-testid="logo" />
           </Container>
 
           <Container column align="end" gap={18}>
@@ -111,6 +111,7 @@ export default function Connect() {
                 align="center"
                 gap={32}
                 onClick={handleClipboard}
+                testID="clipboard"
               >
                 <Text
                   className={style.ip}
