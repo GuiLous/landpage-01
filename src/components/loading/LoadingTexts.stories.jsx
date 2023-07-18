@@ -20,8 +20,8 @@ export default {
   },
   args: {
     intervalTime: 3000,
-    textsArray: textsArray
-  }
+    textsArray: textsArray,
+  },
 }
 
 export const Default = {
