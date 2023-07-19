@@ -176,7 +176,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                       width="40px"
                       height="40px"
                       src={player.avatar?.medium}
-                      borderWidth={2}
+                      variant="purple"
                     />
                   </Container>
 
