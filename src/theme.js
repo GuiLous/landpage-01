@@ -734,6 +734,11 @@ export default extendTheme({
             borderColor: 'white',
           },
         },
+        purple: {
+          container: {
+            border: '2px solid #6847FF',
+          },
+        },
       },
       sizes: {
         xxs: {
