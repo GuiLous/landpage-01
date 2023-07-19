@@ -2,8 +2,6 @@
 import Avatar from './avatar/Avatar'
 import Container from './container/Container'
 import Footer from './footer/Footer'
-import Loading from './loading/Loading'
-import LoadingBackdrop from './loading/LoadingBackdrop'
 import Progress from './progress/Progress'
 import RequireAuth from './route/RequireAuth'
 import Scrollbars from './scrollbars/Scrollbars'
@@ -123,6 +121,11 @@ import SidebarMenuItem from './sidebar/SidebarMenuItem'
 // Logout
 import LogoutModal from './logout/LogoutModal'
 
+// Loading
+import Loading from './loading/Loading'
+import LoadingBackdrop from './loading/LoadingBackdrop'
+import LoadingTexts from './loading/LoadingTexts'
+
 export {
   AcceptIcon,
   AccountCard,
@@ -173,6 +176,7 @@ export {
   LevelStatsCard,
   Loading,
   LoadingBackdrop,
+  LoadingTexts,
   LobbyLineup,
   LobbyPlayButton,
   LobbyPlayerCard,

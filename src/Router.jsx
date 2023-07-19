@@ -87,20 +87,22 @@ export default function Router({ user, maintenance }) {
       )}
 
       {verifiedUser && (
-        <Route element={<SidebarLayout />}>
-          <Route element={<MainLayout />}>
-            <Route path="/jogar" element={<LobbyView />} />
-            <Route path="/partidas/:matchId" element={<MatchView />} />
-          </Route>
+        <>
           <Route
             path="/partidas/:matchId/conectar/"
             element={<ConnectView />}
           />
-          <Route element={<ProfileLayout />}>
-            <Route path="/conta" element={<AccountView />} />
-            <Route path="/perfil/:userId" element={<ProfileView />} />
+          <Route element={<SidebarLayout />}>
+            <Route element={<MainLayout />}>
+              <Route path="/jogar" element={<LobbyView />} />
+              <Route path="/partidas/:matchId" element={<MatchView />} />
+            </Route>
+            <Route element={<ProfileLayout />}>
+              <Route path="/conta" element={<AccountView />} />
+              <Route path="/perfil/:userId" element={<ProfileView />} />
+            </Route>
           </Route>
-        </Route>
+        </>
       )}
 
       <Route path="/auth" element={<AuthView />} />

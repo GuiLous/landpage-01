@@ -7,23 +7,43 @@ import gta_avatar from '@assets/images/gta_avatar.png'
 import loadingGif from '@assets/images/loading.gif'
 import logo from '@assets/images/logo_type_white.svg'
 
-import { ClipboardIcon, Container, Timer } from '@components'
+import {
+  ClipboardIcon,
+  Container,
+  Loading,
+  LoadingBackdrop,
+  LoadingTexts,
+  Timer,
+} from '@components'
 import { usePersistentTimer } from '@hooks'
+import { StorageService } from '@services'
 
 import style from './Connect.module.css'
 
 const COUNTDOWN_TIME = 3 * 60 // 3 minutes in seconds
 const TIMER_NAME = 'matchConnectTimer'
 
+const textsArray = [
+  `Ligando as luzes`,
+  `Limpando os bombsites`,
+  `Calibrando as armas da loja`,
+  `Testando a c4`,
+  `Checando a validade dos coletes`,
+  `Distribuindo os créditos`,
+  `Sorteando os lados iniciais`,
+  `Distribuindo os trajes`,
+]
+
 export default function Connect() {
   const match = useSelector((state) => state.match)
-
   const navigate = useNavigate()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
 
-  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME)
+  const isLoading = match && match.status === 'loading'
+
+  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 
   const handleClipboard = () => {
     navigator.clipboard.writeText(match.server_ip)
@@ -46,21 +66,33 @@ export default function Connect() {
   })
 
   useEffect(() => {
-    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
-  }, [timeLeft, match.id, navigate])
+    if (!match) {
+      StorageService.remove('matchConnectTimer')
+      navigate('/jogar')
+    }
+  }, [match, navigate])
 
-  return (
+  useEffect(() => {
+    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
+  }, [timeLeft, match?.id, navigate])
+
+  return isLoading ? (
+    <LoadingBackdrop>
+      <Loading />
+      <LoadingTexts textsArray={textsArray} />
+    </LoadingBackdrop>
+  ) : (
     <Container className={style.container} align="end">
       <Container className={style.gtaAvatarWrapper} align="end">
         <Container className={style.gtaAvatar} align="end">
-          <img src={gta_avatar} alt="Personagem do GTA V" />
+          <img src={gta_avatar} alt="Personagem do GTA V" data-testid="gta" />
         </Container>
       </Container>
 
       <Container column style={{ marginBottom: '110px' }}>
         <Container column align="end" justify="center" gap={80}>
           <Container className={style.logo} justify="end">
-            <img src={logo} alt="ReloadClub" />
+            <img src={logo} alt="ReloadClub" data-testid="logo" />
           </Container>
 
           <Container column align="end" gap={18}>
@@ -79,12 +111,13 @@ export default function Connect() {
                 align="center"
                 gap={32}
                 onClick={handleClipboard}
+                testID="clipboard"
               >
                 <Text
                   className={style.ip}
                   color={copied ? 'purple.400' : 'white'}
                 >
-                  IP: {match.server_ip}
+                  IP: {match && match.server_ip}
                 </Text>
 
                 <Tooltip
