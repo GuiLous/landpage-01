@@ -23,8 +23,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona prop `isLoading` no hook `usePersistentTimer` para não adicionar informação no storage quando não deve.
 - Redireciona para `/jogar` na página de conectar caso `match` seja `null` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
+### Fixed
+
+- Ajusta lógica do botão de `aceitar partida` para não gerar erros ao clicar adicionando um `delay` [#557](https://github.com/3C-gg/reload-frontend/issues/557).
+- Previne de tentar entrar na fila ao clicar no botão de `restricted` no lobby e gerar um toast de erro.
+
 ### Removed
 
+- Remove `setIsOpen` prop de `MatchFoundModal`.
 - Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
 ## [5f3b172 - 17/7/2023]
