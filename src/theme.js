@@ -682,8 +682,8 @@ export default extendTheme({
         online: {
           badge: {
             boxSize: '12px',
-            backgroundColor: 'green.400',
-            bg: 'green.400',
+            backgroundColor: 'green.500',
+            bg: 'green.500',
             border: '2px solid',
             right: '2px',
             bottom: '2px',
@@ -879,6 +879,9 @@ export default extendTheme({
       400: '#FF4242',
       500: '#F63535',
       600: '#8d1919',
+    },
+    salmon: {
+      500: '#F0A87B',
     },
   },
   fontWeights: {
