@@ -84,8 +84,11 @@ export default function NotificationList({ isOpen, onClose }) {
           fontSize={12}
           width="fit-content"
           height="fit-content"
-          top={5}
-          right={5}
+          top={4}
+          right={4}
+          _hover={{
+            color: 'gray.300',
+          }}
         />
 
         <DrawerHeader>NOTIFICAÇÕES</DrawerHeader>
