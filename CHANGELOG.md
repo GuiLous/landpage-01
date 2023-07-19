@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
 - Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
 
 ### Changed
