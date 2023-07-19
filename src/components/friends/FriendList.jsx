@@ -147,16 +147,14 @@ export default function FriendList({ isOpen, onClose }) {
                 </Container>
               )}
 
-              {teamingFriends.length > 0 && (
-                <Container className={style.group}>
-                  <FriendListGroup
-                    title="No seu grupo"
-                    items={filteredTeamingFriends}
-                    open
-                    showHeader={filter === ''}
-                  />
-                </Container>
-              )}
+              <Container className={style.group}>
+                <FriendListGroup
+                  title="No seu grupo"
+                  items={filteredTeamingFriends}
+                  open
+                  showHeader={filter === ''}
+                />
+              </Container>
 
               <Container className={style.group}>
                 <FriendListGroup
