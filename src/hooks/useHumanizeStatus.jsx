@@ -1,8 +1,8 @@
 const statusMap = {
-  online: 'Disponível',
+  online: 'Online',
   offline: 'Offline',
   away: 'Ausente',
-  in_game: 'Em partida',
+  in_game: 'Em jogo',
   teaming: 'Em grupo',
   queued: 'Na fila',
 }
