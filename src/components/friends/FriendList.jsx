@@ -85,6 +85,17 @@ export default function FriendList({ isOpen, onClose }) {
         w={isLessThan2xl ? '300px' : '320px'}
         maxW={isLessThan2xl ? '300px' : '320px'}
       >
+        <DrawerCloseButton
+          fontSize={12}
+          width="fit-content"
+          height="fit-content"
+          top={4}
+          right={4}
+          _hover={{
+            color: 'gray.300',
+          }}
+        />
+
         <Container
           className={style.container}
           column
@@ -99,27 +110,9 @@ export default function FriendList({ isOpen, onClose }) {
           >
             <Container className={style.title} align="center">
               <Container>
-                <Text
-                  fontSize={16}
-                  fontWeight="semibold"
-                  textTransform="uppercase"
-                >
+                <Text fontSize={16} fontWeight="medium">
                   Amigos
                 </Text>
-              </Container>
-
-              <Container
-                className={style.closeBtn}
-                align="center"
-                fitContent
-                testID="close-btn"
-              >
-                <DrawerCloseButton
-                  fontSize={12}
-                  width="fit-content"
-                  height="fit-content"
-                  pos="initial"
-                />
               </Container>
             </Container>
 
