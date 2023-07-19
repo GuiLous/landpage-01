@@ -1,4 +1,5 @@
 import { Button, Icon, Text } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { PreMatchesAPI } from '@api'
@@ -8,14 +9,21 @@ import { addToast } from '@slices/AppSlice'
 
 import style from './MatchFoundModal.module.css'
 
-export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
+export default function MatchFoundModal({ isOpen, preMatch }) {
   const dispatch = useDispatch()
+
+  const [timeExpired, setTimeExpired] = useState(false)
+
+  const gapTimeout = 3000
+  const timeOutMultiplier = 1000
 
   const playersLeft = preMatch
     ? preMatch.players_total - preMatch.players_ready_count
     : 0
 
   const handleAccept = async () => {
+    if (timeExpired) return
+
     const userToken = StorageService.get('token')
     let response = null
 
@@ -44,6 +52,26 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
     ))
     .reverse()
 
+  useEffect(() => {
+    let timeoutId
+
+    if (preMatch?.countdown) {
+      timeoutId = setTimeout(() => {
+        setTimeExpired(true)
+      }, preMatch.countdown * timeOutMultiplier + gapTimeout)
+    }
+
+    return () => {
+      clearTimeout(timeoutId)
+    }
+  }, [preMatch?.countdown])
+
+  useEffect(() => {
+    if (!isOpen) {
+      setTimeExpired(false)
+    }
+  }, [isOpen])
+
   return (
     <Modal
       isCentered
@@ -66,7 +94,7 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
 
         <Container align="center" justify="center" column>
           <Button
-            isDisabled={preMatch && preMatch.user_ready}
+            isDisabled={(preMatch && preMatch.user_ready) || timeExpired}
             onClick={handleAccept}
           >
             {preMatch && preMatch.user_ready
@@ -79,13 +107,16 @@ export default function MatchFoundModal({ isOpen, setIsOpen, preMatch }) {
             style={{ marginTop: '14px' }}
             testID="countdown-timer"
           >
-            {preMatch && (
-              <Timer
-                reverse
-                formatted={true}
-                initialTime={preMatch.countdown}
-              />
-            )}
+            {preMatch && preMatch.countdown <= 0
+              ? '00:00'
+              : preMatch &&
+                preMatch.countdown && (
+                  <Timer
+                    reverse
+                    formatted={true}
+                    initialTime={preMatch.countdown}
+                  />
+                )}
           </Container>
         </Container>
       </Container>
