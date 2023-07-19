@@ -1,4 +1,4 @@
-import { Avatar, Icon, Text } from '@chakra-ui/react'
+import { Avatar, AvatarBadge, Icon, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 
 import { LobbiesAPI } from '@api'
@@ -53,7 +53,9 @@ export default function InviteListGroupItem({
             variant={status}
             src={avatar}
             size={{ base: 'md', md: 'smd', '2xl': 'md' }}
-          />
+          >
+            <AvatarBadge borderColor="gray.1100" />
+          </Avatar>
         </Container>
 
         <Container column>
