@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react'
 
 import { StorageService } from '@services'
 
-const usePersistentTimer = (initialTime, timerName, isLoading = false) => {
+const usePersistentTimer = (initialTime, timerName, isLoading) => {
   const getRemainingTime = () => {
-    if (isLoading) return null
-
     const expiryTime = StorageService.load(timerName)
     const currentTime = Math.floor(Date.now() / 1000)
 
@@ -35,6 +33,12 @@ const usePersistentTimer = (initialTime, timerName, isLoading = false) => {
       StorageService.remove(timerName)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeLeft, initialTime, isLoading])
+
+  useEffect(() => {
+    if (timeLeft === null && initialTime > 0) {
+      setTimeLeft(initialTime)
+    }
   }, [timeLeft, initialTime])
 
   return timeLeft

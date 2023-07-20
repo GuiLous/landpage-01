@@ -27,6 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Ajusta lógica do botão de `aceitar partida` para não gerar erros ao clicar adicionando um `delay` [#557](https://github.com/3C-gg/reload-frontend/issues/557).
 - Previne de tentar entrar na fila ao clicar no botão de `restricted` no lobby e gerar um toast de erro.
+- Ajusta hook `usePersistentTimer` para não salvar os dados no storage enquanto `isLoading` for true.
 
 ### Removed
 
