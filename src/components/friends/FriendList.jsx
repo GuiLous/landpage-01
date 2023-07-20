@@ -13,13 +13,7 @@ import {
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import {
-  Container,
-  FriendListGroup,
-  InviteListGroup,
-  Scrollbars,
-  SearchIcon,
-} from '@components'
+import { Container, FriendListGroup, Scrollbars, SearchIcon } from '@components'
 
 import style from './FriendList.module.css'
 
@@ -140,17 +134,6 @@ export default function FriendList({ isOpen, onClose }) {
 
           <Container className={style.groups} column>
             <Scrollbars autoHide>
-              {receivedInvites.length > 0 && (
-                <Container className={style.group}>
-                  <InviteListGroup
-                    title="Convites"
-                    items={filteredInvites}
-                    open={filter === ''}
-                    unread={receivedInvites.length > 0}
-                  />
-                </Container>
-              )}
-
               <Container className={style.group}>
                 <FriendListGroup
                   title="No seu grupo"
@@ -164,6 +147,7 @@ export default function FriendList({ isOpen, onClose }) {
                 <FriendListGroup
                   title="Online"
                   items={filteredOnlineFriends}
+                  invites={filteredInvites}
                   showHeader={filter === ''}
                   open
                 />
