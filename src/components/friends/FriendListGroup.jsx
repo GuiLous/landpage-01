@@ -43,7 +43,7 @@ export default function FriendListGroup({
 
   return (
     <Container
-      className={[style.container].join(' ')}
+      className={[style.container, isOpen && style.open].join(' ')}
       column
       testID="container"
     >
