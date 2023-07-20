@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona nova cor `green.500` no tema.
+- Adiciona nova cor `salmon` no tema.
 - Adiciona variante `purple` do `Avatar` no tema.
 - Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
 - Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
@@ -16,6 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `InviteListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendListGroup` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendList` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+- Muda aba `No seu grupo` na `FriendList` para ficar sempre visível [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+- Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+- Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design. 
+- Muda `FriendList` para ficar igual ao novo design.
 - Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
 - Ajusta badge de status do `AvatarBadge`.
 - Remove borda das variantes do componente `Avatar` no tema [#559](https://github.com/3C-gg/reload-frontend/issues/559).
@@ -35,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
 - Remove `setIsOpen` prop de `MatchFoundModal`.
 - Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
