@@ -7,15 +7,12 @@
 }
 
 .container:hover {
-	background-color: rgba(152, 130, 255, 0.15);
-}
-
-.container.disabled {
-	cursor: default;
-}
-
-.container.disabled:hover {
-	background-color: var(--chakra-colors-gray-1000);
+	background: linear-gradient(
+			90deg,
+			rgba(51, 51, 51, 0.5) 0%,
+			rgba(51, 51, 51, 0) 100%
+		),
+		#1e1e1e;
 }
 
 .groupAddBtn {
@@ -24,10 +21,6 @@
 }
 
 .container:hover .groupAddBtn {
-	opacity: 1;
-}
-
-.container.disabled .groupAddBtn {
 	opacity: 1;
 }
 

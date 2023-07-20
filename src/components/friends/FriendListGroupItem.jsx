@@ -1,15 +1,24 @@
 import { Avatar, AvatarBadge, Icon, Text } from '@chakra-ui/react'
-import { BsPersonFillCheck } from 'react-icons/bs'
+import { BsThreeDots } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { LobbiesAPI } from '@api'
-import { Container, GroupAddIcon } from '@components'
+import { Container } from '@components'
 import { useHumanizeStatus } from '@hooks'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
 
 import style from './FriendListGroupItem.module.css'
+
+const colorsStatus = {
+  online: 'green.500',
+  offline: 'gray.300',
+  away: 'salmon.500',
+  in_game: 'yellow.400',
+  teaming: 'purple.400',
+  queued: 'yellow.400',
+}
 
 export default function FriendListGroupItem({
   user_id,
@@ -24,7 +33,9 @@ export default function FriendListGroupItem({
   const invites = useSelector((state) => state.invites)
 
   const dispatch = useDispatch()
-  const humanStatus = useHumanizeStatus(status)
+  let humanStatus = useHumanizeStatus(status)
+
+  humanStatus += status === 'in_game' ? ' (RANKED 5X5)' : ''
 
   const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
@@ -33,7 +44,7 @@ export default function FriendListGroupItem({
   )
   const alreadyInvited =
     invites.filter((invite) => invite.to_player.user_id === user_id).length >
-      0 || alreadyInvitedByFriend
+    0 || alreadyInvitedByFriend
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable =
@@ -68,13 +79,13 @@ export default function FriendListGroupItem({
 
   return (
     <Container
-      onClick={handleInvite}
+      // onClick={handleInvite}
       className={[
         style.container,
         (!isAvailable || alreadyInvited) && style.disabled,
         status === 'offline' && style.offline,
       ].join(' ')}
-      gap={8}
+      gap={14}
       align="center"
       testID="invite-button"
       fitContent
@@ -89,38 +100,27 @@ export default function FriendListGroupItem({
         </Avatar>
       </Container>
 
-      <Container column>
-        <Text fontSize={14} fontWeight="medium">
+      <Container column gap={4}>
+        <Text fontSize={12} fontWeight="medium" color="white">
           {username}
         </Text>
-        <Text fontSize={12} fontWeight="medium" color="gray.300">
+        <Text fontSize={10} fontWeight="medium" color={colorsStatus[status]}>
           {alreadyOnTeam ? 'No seu grupo' : humanStatus}
         </Text>
       </Container>
 
-      {isAvailable && (
-        <Container
-          justify="end"
-          className={style.groupAddBtn}
-          data-testid="icon-wrapper"
-        >
-          {alreadyInvited ? (
-            <Icon
-              as={BsPersonFillCheck}
-              fill="gray.300"
-              fontSize={22}
-              data-testid="icon-invited"
-            />
-          ) : (
-            <Icon
-              as={GroupAddIcon}
-              fill="white"
-              fontSize={26}
-              data-testid="icon-available"
-            />
-          )}
-        </Container>
-      )}
+      <Container
+        justify="end"
+        className={style.groupAddBtn}
+        data-testid="icon-wrapper"
+      >
+        <Icon
+          as={BsThreeDots}
+          fill="white"
+          fontSize={18}
+          data-testid="icon-available"
+        />
+      </Container>
     </Container>
   )
 }
