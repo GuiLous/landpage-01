@@ -23,6 +23,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona prop `isLoading` no hook `usePersistentTimer` para não adicionar informação no storage quando não deve.
 - Redireciona para `/jogar` na página de conectar caso `match` seja `null` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
+### Fixed
+
+- Ajusta hook `usePersistentTimer` para não salvar os dados no storage enquanto `isLoading` for true.
+
 ### Removed
 
 - Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
