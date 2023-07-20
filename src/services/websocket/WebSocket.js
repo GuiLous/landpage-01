@@ -9,7 +9,7 @@ import { addToast, updateMaintenance } from '@slices/AppSlice'
 import { addFriend, updateFriend } from '@slices/FriendSlice'
 import { addInvite, deleteInvite } from '@slices/InviteSlice'
 import { updateLobby, updateQueueTime } from '@slices/LobbySlice'
-import { updateMatch } from '@slices/MatchSlice'
+import { cancelMatch, updateMatch } from '@slices/MatchSlice'
 import { addNotification } from '@slices/NotificationSlice'
 import { updatePreMatch } from '@slices/PreMatchSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -193,7 +193,7 @@ export const WSS = () => {
         break
 
       case 'matches/delete':
-        dispatch(updateMatch(data.payload))
+        dispatch(cancelMatch())
         dispatch(
           addToast({
             variant: 'warning',
