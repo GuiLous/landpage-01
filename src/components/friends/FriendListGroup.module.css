@@ -1,7 +1,10 @@
 .container {
-	border-bottom: 1px solid var(--chakra-colors-gray-700);
 	color: white;
 	height: 100%;
+}
+
+.container.addBorder {
+	border-bottom: 1px solid var(--chakra-colors-gray-700);
 }
 
 .header {

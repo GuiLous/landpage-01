@@ -63,7 +63,11 @@ export default function FriendListGroup({
 
   return (
     <Container
-      className={[style.container, isOpen && style.open].join(' ')}
+      className={[
+        style.container,
+        isOpen && style.open,
+        showHeader && style.addBorder,
+      ].join(' ')}
       column
       testID="container"
     >
