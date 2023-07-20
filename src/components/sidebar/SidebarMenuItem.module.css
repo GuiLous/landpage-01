@@ -28,7 +28,7 @@
 
 .menuItem:not(.soon) a:hover,
 .menuItem:not(.soon) button:hover {
-	background-color: rgba(152, 130, 255, 0.15);
+	background-color: rgba(104, 71, 255, 0.3);
 	border-radius: 4px;
 }
 
