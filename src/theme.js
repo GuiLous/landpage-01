@@ -447,8 +447,15 @@ export default extendTheme({
         },
         lighter: {
           field: {
+            padding: 3,
             bg: 'gray.700',
             backgroundColor: 'gray.700',
+            fontWeight: 'regular',
+            _focus: {
+              border: '1px solid',
+              borderColor: 'purple.400',
+              padding: '11px',
+            },
           },
         },
       },

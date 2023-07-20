@@ -6,7 +6,7 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputRightElement,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
@@ -117,19 +117,23 @@ export default function FriendList({ isOpen, onClose }) {
             </Container>
 
             <Container className={style.filter} align="center">
-              <InputGroup>
-                <InputLeftElement height="100%">
-                  <Icon as={SearchIcon} fontSize={14} color="gray.300" />
-                </InputLeftElement>
+              <InputGroup
+                color="gray.300"
+                _focusWithin={{
+                  color: 'white',
+                }}
+              >
                 <Input
                   variant="lighter"
                   color="white"
-                  fontWeight="light"
-                  placeholder="Pesquisar..."
-                  fontSize={14}
+                  placeholder="Procurar amigos..."
+                  fontSize={12}
                   onChange={updateFilter}
                   data-testid="filter-input"
                 />
+                <InputRightElement height="100%">
+                  <Icon as={SearchIcon} fontSize={14} color="currentColor" />
+                </InputRightElement>
               </InputGroup>
             </Container>
           </Container>
