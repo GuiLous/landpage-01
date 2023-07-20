@@ -61,6 +61,12 @@ export default function FriendListGroup({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items])
 
+  useEffect(() => {
+    if (title === 'No seu grupo' && items.length > 0) {
+      setIsOpen(true)
+    }
+  }, [title, items])
+
   return (
     <Container
       className={[
