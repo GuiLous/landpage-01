@@ -44,7 +44,7 @@ export default function FriendListGroupItem({
   )
   const alreadyInvited =
     invites.filter((invite) => invite.to_player.user_id === user_id).length >
-    0 || alreadyInvitedByFriend
+      0 || alreadyInvitedByFriend
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable =
@@ -109,18 +109,13 @@ export default function FriendListGroupItem({
         </Text>
       </Container>
 
-      <Container
-        justify="end"
-        className={style.groupAddBtn}
-        data-testid="icon-wrapper"
-      >
-        <Icon
-          as={BsThreeDots}
-          fill="white"
-          fontSize={18}
-          data-testid="icon-available"
-        />
-      </Container>
+      <Icon
+        as={BsThreeDots}
+        fill="white"
+        fontSize={18}
+        data-testid="icon-available"
+        className={style.dotsIcon}
+      />
     </Container>
   )
 }

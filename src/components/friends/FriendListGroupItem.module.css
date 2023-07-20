@@ -15,12 +15,12 @@
 		#1e1e1e;
 }
 
-.groupAddBtn {
+.dotsIcon {
 	opacity: 0;
 	transition: all 100ms linear;
 }
 
-.container:hover .groupAddBtn {
+.container:hover .dotsIcon {
 	opacity: 1;
 }
 
