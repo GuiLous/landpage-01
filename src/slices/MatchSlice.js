@@ -8,9 +8,16 @@ export const MatchReducer = createSlice({
       state = action.payload
       return state
     },
+
+    cancelMatch: (state, action) => {
+      return {
+        ...state,
+        status: 'canceled',
+      }
+    },
   },
 })
 
-export const { updateMatch } = MatchReducer.actions
+export const { updateMatch, cancelMatch } = MatchReducer.actions
 
 export default MatchReducer.reducer
