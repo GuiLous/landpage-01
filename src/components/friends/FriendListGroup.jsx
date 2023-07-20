@@ -43,7 +43,7 @@ export default function FriendListGroup({
 
   return (
     <Container
-      className={[style.container, isOpen && style.open].join(' ')}
+      className={[style.container].join(' ')}
       column
       testID="container"
     >
@@ -59,7 +59,11 @@ export default function FriendListGroup({
         onClick={handleCollapse}
       >
         <Container>
-          <Text fontSize={14} color={isOpen ? 'white' : 'gray.300'}>
+          <Text
+            fontSize={12}
+            color={isOpen ? 'white' : 'gray.300'}
+            fontWeight={isOpen ? 'medium' : 'regular'}
+          >
             {title} {renderItemsLength()}
           </Text>
         </Container>
