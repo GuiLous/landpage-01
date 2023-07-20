@@ -91,7 +91,7 @@ export default function NotificationList({ isOpen, onClose }) {
           }}
         />
 
-        <DrawerHeader>NOTIFICAÇÕES</DrawerHeader>
+        <DrawerHeader textTransform="capitalize">Notificações</DrawerHeader>
 
         <DrawerBody
           p={0}
