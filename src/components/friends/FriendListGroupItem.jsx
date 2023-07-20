@@ -12,7 +12,7 @@ import { addInvite } from '@slices/InviteSlice'
 import style from './FriendListGroupItem.module.css'
 
 const colorsStatus = {
-  online: 'green.500',
+  online: 'green.600',
   offline: 'gray.300',
   away: 'salmon.500',
   in_game: 'yellow.400',
