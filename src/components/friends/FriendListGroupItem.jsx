@@ -16,7 +16,7 @@ const colorsStatus = {
   offline: 'gray.300',
   away: 'salmon.500',
   in_game: 'yellow.400',
-  teaming: 'purple.400',
+  teaming: 'purple.300',
   queued: 'yellow.400',
 }
 
@@ -79,7 +79,7 @@ export default function FriendListGroupItem({
 
   return (
     <Container
-      // onClick={handleInvite}
+      onClick={handleInvite}
       className={[
         style.container,
         (!isAvailable || alreadyInvited) && style.disabled,
