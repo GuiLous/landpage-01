@@ -29,8 +29,8 @@ export default extendTheme({
           },
         },
         _active: {
-          bg: 'purple.600',
-          backgroundColor: 'purple.600',
+          bg: 'purple.700',
+          backgroundColor: 'purple.700',
         },
         _disabled: {
           backgroundColor: 'gray.800',
@@ -854,7 +854,8 @@ export default extendTheme({
       300: '#9882FF',
       400: '#6847FF',
       500: '#34218C',
-      600: '#1A1240',
+      600: '#3d336d',
+      700: '#1A1240',
     },
     gray: {
       100: '#c8c5c5',

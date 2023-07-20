@@ -222,6 +222,5 @@ export {
   ToastListItem,
   TrashIcon,
   UserIcon,
-  WarningCircleIcon
+  WarningCircleIcon,
 }
-
