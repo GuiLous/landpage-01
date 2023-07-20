@@ -75,9 +75,10 @@ export default function InviteListGroupItem({
         >
           <Icon
             as={AcceptIcon}
-            color="green.500"
+            color="green.600"
             fontSize={20}
-            _hover={{ color: 'green.600' }}
+            _hover={{ color: 'green.500', transform: 'scale(1.1)' }}
+            transition="all 0.2s ease-in-out"
           />
         </Container>
 
@@ -89,9 +90,10 @@ export default function InviteListGroupItem({
         >
           <Icon
             as={CloseIcon}
-            color="gray.300"
+            color="white"
             fontSize={12}
-            _hover={{ color: 'white' }}
+            _hover={{ color: 'gray.300' }}
+            transition="all 0.2s ease-in-out"
           />
         </Container>
       </Container>

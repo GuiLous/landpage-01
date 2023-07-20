@@ -16,7 +16,7 @@ const colorsStatus = {
   offline: 'gray.300',
   away: 'salmon.500',
   in_game: 'yellow.400',
-  teaming: 'purple.300',
+  teaming: 'green.600',
   queued: 'yellow.400',
 }
 
@@ -90,9 +90,9 @@ export default function FriendListGroupItem({
       testID="invite-button"
       fitContent
     >
-      <Container fitContent>
+      <Container fitContent className={style.avatar}>
         <Avatar
-          variant={status}
+          variant={status === 'teaming' ? 'online' : status}
           src={avatar}
           size={{ base: 'md', md: 'smd', '2xl': 'md' }}
         >
@@ -100,12 +100,12 @@ export default function FriendListGroupItem({
         </Avatar>
       </Container>
 
-      <Container column gap={4}>
+      <Container column gap={4} className={style.userInfos}>
         <Text fontSize={12} fontWeight="medium" color="white">
           {username}
         </Text>
         <Text fontSize={10} fontWeight="medium" color={colorsStatus[status]}>
-          {alreadyOnTeam ? 'No seu grupo' : humanStatus}
+          {alreadyOnTeam ? 'online' : humanStatus}
         </Text>
       </Container>
 
@@ -115,7 +115,10 @@ export default function FriendListGroupItem({
         fontSize={18}
         data-testid="icon-dots"
         className={style.dotsIcon}
+        transition="all 0.2s ease-in-out"
+        _hover={{ fill: 'gray.300' }}
       />
+      {/* <FriendListMenu /> */}
     </Container>
   )
 }
