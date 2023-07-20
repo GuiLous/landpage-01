@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
@@ -65,7 +64,7 @@ describe('FriendListGroupItem Component', () => {
       </Provider>
     )
     expect(screen.getByText('friendUsername')).toBeInTheDocument()
-    expect(screen.getByText('Disponível')).toBeInTheDocument()
+    expect(screen.getByText('Online')).toBeInTheDocument()
   })
 
   it('should not render action if friend is offline', () => {
@@ -86,13 +85,11 @@ describe('FriendListGroupItem Component', () => {
     expect(screen.queryByTestId('icon-wrapper')).not.toBeInTheDocument()
   })
 
-  it('should render the correspondent icon for invite or invited', async () => {
-    const user = userEvent.setup()
-
+  it('should render dots icon', () => {
     const friend = {
       user_id: 2,
       lobby_id: 2,
-      status: 'online',
+      status: 'offline',
       avatar:
         'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
       username: 'friendUsername',
@@ -103,14 +100,6 @@ describe('FriendListGroupItem Component', () => {
         <FriendListGroupItem {...friend} />
       </Provider>
     )
-    const inviteButton = await screen.findByTestId('invite-button')
-    expect(inviteButton).toBeInTheDocument()
-    expect(screen.queryByTestId('icon-invited')).not.toBeInTheDocument()
-    expect(await screen.findByTestId('icon-available')).toBeInTheDocument()
-
-    await waitFor(() => user.click(inviteButton))
-
-    expect(await screen.findByTestId('icon-invited')).toBeInTheDocument()
-    expect(screen.queryByTestId('icon-available')).not.toBeInTheDocument()
+    expect(screen.getByTestId('icon-dots')).toBeInTheDocument()
   })
 })

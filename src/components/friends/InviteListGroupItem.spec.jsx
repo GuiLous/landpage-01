@@ -48,6 +48,6 @@ describe('InviteListGroupItem Component', () => {
       </Provider>
     )
     expect(screen.getByText('Username')).toBeInTheDocument()
-    expect(screen.getByText('Disponível')).toBeInTheDocument()
+    expect(screen.getByText('Convidou você')).toBeInTheDocument()
   })
 })

@@ -113,7 +113,7 @@ export default function FriendListGroupItem({
         as={BsThreeDots}
         fill="white"
         fontSize={18}
-        data-testid="icon-available"
+        data-testid="icon-dots"
         className={style.dotsIcon}
       />
     </Container>
