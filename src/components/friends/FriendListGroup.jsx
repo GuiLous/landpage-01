@@ -1,18 +1,25 @@
 import { Icon, Text } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 
-import { ArrowDownIcon, Container, FriendListGroupItem } from '@components'
+import {
+  ArrowDownIcon,
+  Container,
+  FriendListGroupItem,
+  InviteListGroupItem,
+} from '@components'
 
 import style from './FriendListGroup.module.css'
 
 export default function FriendListGroup({
   title,
   items = [],
+  invites = [],
   collapse = true,
   open = false,
   showHeader = true,
 }) {
   const [isOpen, setIsOpen] = useState()
+  const [filteredItems, setFilteredItems] = useState([])
 
   const handleCollapse = () => {
     if (!collapse || items.length <= 0) return
@@ -22,6 +29,13 @@ export default function FriendListGroup({
   const renderItemsLength = () => {
     if (items.length < 10 && items.length > 0) return `(0${items.length})`
     else return `(${items.length})`
+  }
+
+  function filterItems() {
+    return items.filter(
+      (item) =>
+        !invites.some((invite) => item.user_id === invite.from_player.user_id)
+    )
   }
 
   useEffect(() => {
@@ -39,6 +53,12 @@ export default function FriendListGroup({
     if (items.length === 0) {
       setIsOpen(false)
     }
+  }, [items])
+
+  useEffect(() => {
+    const itemsWithoutInvite = filterItems()
+    setFilteredItems(itemsWithoutInvite)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [items])
 
   return (
@@ -81,9 +101,23 @@ export default function FriendListGroup({
         )}
       </Container>
 
-      {items.length > 0 && isOpen && (
+      {invites.length > 0 && isOpen && (
         <Container className={style.list} column>
-          {items.map((item) => (
+          {invites.map((invite) => (
+            <InviteListGroupItem
+              key={invite.id}
+              invite_id={invite.id}
+              avatar={invite.from_player.avatar.medium}
+              status={invite.from_player.status}
+              username={invite.from_player.username}
+            />
+          ))}
+        </Container>
+      )}
+
+      {filteredItems.length > 0 && isOpen && (
+        <Container className={style.list} column>
+          {filteredItems.map((item) => (
             <FriendListGroupItem
               key={item.user_id}
               {...item}
