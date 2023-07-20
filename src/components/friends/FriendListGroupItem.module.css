@@ -20,14 +20,11 @@
 	transition: all 100ms linear;
 }
 
-.dotsIcon:hover {
-	fill: var(--chakra-colors-gray-300);
-}
-
 .container:hover .dotsIcon {
 	opacity: 1;
 }
 
-.offline {
+.container.offline .avatar,
+.container.offline .userInfos {
 	opacity: 0.5;
 }
