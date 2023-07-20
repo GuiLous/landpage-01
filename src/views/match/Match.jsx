@@ -77,6 +77,13 @@ export default function MatchView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matchId])
 
+  useEffect(() => {
+    if (playerOnMatch && match && match.status === 'canceled') {
+      navigate('/jogar')
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [match, navigate])
+
   return fetching || !loadedMatch ? (
     <LoadingBackdrop>
       <Loading />

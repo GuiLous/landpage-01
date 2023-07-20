@@ -9,16 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
 - Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
 
 ### Changed
 
+- Redireciona para `/jogar` na tela de detalhes da partida ao receber websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Dispatch `toast` de alerta no websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Renderiza o componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 - Adiciona `gap` e `flex-direction column` no componente `LoadingBackdrop`.
 - Adiciona `fitContent` no componente `Loading`.
 - Adiciona componente de `Loading` na tela de `Conectar` quando `match.status` for `loading` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 - Adiciona prop `isLoading` no hook `usePersistentTimer` para não adicionar informação no storage quando não deve.
 - Redireciona para `/jogar` na página de conectar caso `match` seja `null` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
+### Fixed
+
+- Ajusta hook `usePersistentTimer` para não salvar os dados no storage enquanto `isLoading` for true.
 
 ### Removed
 

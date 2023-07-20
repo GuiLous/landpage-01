@@ -36,12 +36,12 @@ const textsArray = [
 
 export default function Connect() {
   const match = useSelector((state) => state.match)
+
   const navigate = useNavigate()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)
-
-  const isLoading = match && match.status === 'loading'
+  const [isLoading, setIsLoading] = useState(true)
 
   const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 
@@ -66,7 +66,7 @@ export default function Connect() {
   })
 
   useEffect(() => {
-    if (!match) {
+    if (match && match.status === 'canceled') {
       StorageService.remove('matchConnectTimer')
       navigate('/jogar')
     }
@@ -75,6 +75,12 @@ export default function Connect() {
   useEffect(() => {
     if (timeLeft === 0) navigate(`/partidas/${match.id}`)
   }, [timeLeft, match?.id, navigate])
+
+  useEffect(() => {
+    if (match && match.status !== 'loading') {
+      setIsLoading(false)
+    }
+  }, [match])
 
   return isLoading ? (
     <LoadingBackdrop>
