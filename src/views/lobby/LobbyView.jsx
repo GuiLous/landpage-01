@@ -142,11 +142,7 @@ export default function LobbyView() {
         />
       </Container>
 
-      <MatchFoundModal
-        isOpen={openMatchFoundModal}
-        setIsOpen={setOpenMatchFoundModal}
-        preMatch={preMatch}
-      />
+      <MatchFoundModal isOpen={openMatchFoundModal} preMatch={preMatch} />
     </Container>
   )
 }

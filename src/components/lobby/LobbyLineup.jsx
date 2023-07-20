@@ -33,6 +33,8 @@ export default function LobbyLineup({
   const isOwner = lobby.owner_id === userPlayer.user_id
 
   const handleQueue = async (action) => {
+    if (lobby.restriction_countdown || lobby.restriction_countdown === 0) return
+
     if (preMatch || match) return
 
     if (action === 'start' && !isOwner) return
