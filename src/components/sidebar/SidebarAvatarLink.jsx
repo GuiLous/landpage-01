@@ -1,4 +1,4 @@
-import { Avatar, Link, Text, Tooltip } from '@chakra-ui/react'
+import { Avatar, AvatarBadge, Link, Text, Tooltip } from '@chakra-ui/react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import { Container } from '@components'
@@ -15,7 +15,9 @@ export default function SidebarAvatarLink({ user }) {
         justifyContent="center"
         w="full"
       >
-        <Avatar src={user.account.avatar.medium} variant={user.status} />
+        <Avatar src={user.account.avatar.medium} variant={user.status}>
+          <AvatarBadge borderColor="gray.1100" />
+        </Avatar>
         <Container column>
           <Text
             color="white"

@@ -678,87 +678,65 @@ export default extendTheme({
       },
     },
     Avatar: {
-      baseStyle: {
-        container: {
-          borderWidth: '2px ',
-          borderColor: 'purple.400',
-          borderStyle: 'solid',
-        },
-      },
       variants: {
         online: {
-          container: {
-            borderColor: 'green.400',
-            borderStyle: 'solid',
-          },
           badge: {
-            boxSize: '11px',
+            boxSize: '12px',
             backgroundColor: 'green.400',
             bg: 'green.400',
-            border: 'none',
-            top: '-2px',
-            right: 0,
+            border: '2px solid',
+            right: '2px',
+            bottom: '2px',
           },
         },
         offline: {
-          container: {
-            borderColor: 'gray.300',
-            borderStyle: 'solid',
-          },
           badge: {
-            boxSize: '11px',
+            boxSize: '12px',
             backgroundColor: 'gray.300',
             bg: 'gray.300',
-            border: 'none',
-            top: 0,
-            right: 0,
+            border: '2px solid',
+            right: '2px',
+            bottom: '2px',
           },
         },
         teaming: {
-          container: {
-            borderColor: 'purple.300',
-            borderStyle: 'solid',
-          },
           badge: {
-            boxSize: '11px',
+            boxSize: '12px',
             backgroundColor: 'purple.300',
             bg: 'purple.300',
-            border: 'none',
-            top: 0,
-            right: 0,
+            border: '2px solid',
+            right: '2px',
+            bottom: '2px',
           },
         },
         in_game: {
-          container: {
-            borderColor: 'yellow.500',
-            borderStyle: 'solid',
-          },
           badge: {
-            boxSize: '11px',
+            boxSize: '12px',
             backgroundColor: 'yellow.500',
             bg: 'yellow.500',
-            border: 'none',
-            top: 0,
-            right: 0,
+            border: '2px solid',
+            right: '2px',
+            bottom: '2px',
           },
         },
         queued: {
-          container: {
-            borderColor: 'yellow.500',
-            borderStyle: 'solid',
-          },
           badge: {
-            boxSize: '11px',
+            boxSize: '12px',
             backgroundColor: 'yellow.500',
             bg: 'yellow.500',
-            border: 'none',
-            top: 0,
-            right: 0,
+            border: '2px solid',
+            right: '2px',
+            bottom: '2px',
           },
         },
         white: {
           container: {
             borderColor: 'white',
+          },
+        },
+        purple: {
+          container: {
+            border: '2px solid #6847FF',
           },
         },
       },
@@ -767,42 +745,36 @@ export default extendTheme({
           container: {
             width: '16px',
             height: '16px',
-            borderWidth: '0',
           },
         },
         xs: {
           container: {
             width: '24px',
             height: '24px',
-            borderWidth: '0',
           },
         },
         sm: {
           container: {
             width: '32px',
             height: '32px',
-            borderWidth: '2px',
           },
         },
         smd: {
           container: {
             width: '38px',
             height: '38px',
-            borderWidth: '2px',
           },
         },
         md: {
           container: {
             width: '44px',
             height: '44px',
-            borderWidth: '2px',
           },
         },
         lg: {
           container: {
             width: '64px',
             height: '64px',
-            borderWidth: '3px',
           },
         },
         xl: {

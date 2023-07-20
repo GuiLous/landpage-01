@@ -9,6 +9,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona variante `purple` do `Avatar` no tema.
+- Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
+- Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
+- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
+
+### Changed
+
+- Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
+- Ajusta badge de status do `AvatarBadge`.
+- Remove borda das variantes do componente `Avatar` no tema [#559](https://github.com/3C-gg/reload-frontend/issues/559).
+- Redireciona para `/jogar` na tela de detalhes da partida ao receber websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Dispatch `toast` de alerta no websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Renderiza o componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+- Adiciona `gap` e `flex-direction column` no componente `LoadingBackdrop`.
+- Adiciona `fitContent` no componente `Loading`.
+- Adiciona componente de `Loading` na tela de `Conectar` quando `match.status` for `loading` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+- Adiciona prop `isLoading` no hook `usePersistentTimer` para não adicionar informação no storage quando não deve.
+- Redireciona para `/jogar` na página de conectar caso `match` seja `null` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
+### Fixed
+
+- Ajusta lógica do botão de `aceitar partida` para não gerar erros ao clicar adicionando um `delay` [#557](https://github.com/3C-gg/reload-frontend/issues/557).
+- Previne de tentar entrar na fila ao clicar no botão de `restricted` no lobby e gerar um toast de erro.
+- Ajusta hook `usePersistentTimer` para não salvar os dados no storage enquanto `isLoading` for true.
+
+### Removed
+
+- Remove `setIsOpen` prop de `MatchFoundModal`.
+- Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
+## [5f3b172 - 17/7/2023]
+
+### Added
+
 - Adiciona case de `WebSocket` `matches/delete` para remover uma partida do redux.
 - Adiciona case de `WebSocket` `matches/update` para atualizar os detalhes da partida [#533](https://github.com/3C-gg/reload-frontend/issues/533).
 - Adiciona novo case de `WebSocket` `lobbies/queue_start` [#534](https://github.com/3C-gg/reload-frontend/issues/534).
@@ -30,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Faz um `redirect` para a página de `perfil` ao clicar em um usuário na tabela de detalhes da partida no componente `MatchTeamStats` [#528](https://github.com/3C-gg/reload-frontend/issues/528).
 - Adiciona `Tooltip` no componente `MatchInfos` [#525](https://github.com/3C-gg/reload-frontend/issues/525).
 - Adiciona `reticências (...)` quando o `username` do usuário for muito grande [#518](https://github.com/3C-gg/reload-frontend/issues/518).
-- Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519). 
+- Altera `ToastListItem` para demorar `10 segundos` quando a prop `content` tiver mais que `67 caracteres` [#519](https://github.com/3C-gg/reload-frontend/issues/519).
 - Redireciona usuário para tela de `detalhes da partida` quando o timer da página de `conectar` chegar a `0` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
 - Adiciona useEffect no `App` para remover do local storage a chave `matchConnectTimer` e seu valor caso o usuário saia da pagina de `conectar` [#514](https://github.com/3C-gg/reload-frontend/issues/514).
 - Redireciona para `/jogar` quando usuário está em `preMatch` e tenta acessar outra página [#513](https://github.com/3C-gg/reload-frontend/issues/513).
