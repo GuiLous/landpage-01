@@ -9,12 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona variante `purple` do `Avatar` no tema.
+- Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
 - Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
 - Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
 
 ### Changed
 
+- Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
+- Ajusta badge de status do `AvatarBadge`.
+- Remove borda das variantes do componente `Avatar` no tema [#559](https://github.com/3C-gg/reload-frontend/issues/559).
 - Redireciona para `/jogar` na tela de detalhes da partida ao receber websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Dispatch `toast` de alerta no websocket `match/delete` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Renderiza o componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).

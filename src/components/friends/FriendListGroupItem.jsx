@@ -1,4 +1,4 @@
-import { Avatar, Icon, Text } from '@chakra-ui/react'
+import { Avatar, AvatarBadge, Icon, Text } from '@chakra-ui/react'
 import { BsPersonFillCheck } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -84,7 +84,9 @@ export default function FriendListGroupItem({
           variant={status}
           src={avatar}
           size={{ base: 'md', md: 'smd', '2xl': 'md' }}
-        />
+        >
+          <AvatarBadge borderColor="gray.1000" />
+        </Avatar>
       </Container>
 
       <Container column>
