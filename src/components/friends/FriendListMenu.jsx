@@ -121,6 +121,8 @@ export default function FriendListMenu({
           fontSize={18}
           display="flex"
           alignItems="center"
+          _hover={{ color: 'gray.300' }}
+          transition="all 0.2s ease-in-out"
           justifyContent="center"
         />
         <MenuList
