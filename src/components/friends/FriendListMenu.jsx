@@ -17,7 +17,7 @@ import { useNavigate } from 'react-router-dom'
 import { LobbiesAPI } from '@api'
 import { AcceptIcon, SupportModal, UserIcon } from '@components'
 import { StorageService } from '@services'
-import { addToast } from '@slices/AppSlice'
+import { addToast, toggleFriendList } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
 
 import style from './FriendListMenu.module.css'
@@ -89,6 +89,7 @@ export default function FriendListMenu({
         break
 
       case 'profile':
+        dispatch(toggleFriendList(false))
         navigate(`/perfil/${user.id}`)
         break
 
