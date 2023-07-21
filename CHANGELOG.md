@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente `FriendListMenu`.
 - Adiciona nova cor `green.500` no tema.
 - Adiciona nova cor `salmon` no tema.
 - Adiciona variante `purple` do `Avatar` no tema.
@@ -18,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `Sidebar` para ficar igual ao novo design.
+- Altera `Título` do componente `NotificationList` para remover `uppercase`.
 - Altera `InviteListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Altera `FriendListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Altera `FriendListGroup` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
