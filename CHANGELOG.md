@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `FakeSigninForm` para adicionar um select com emails padrões [#565](https://github.com/3C-gg/reload-frontend/issues/565).
 - Muda texto da página de manutenção [#563](https://github.com/3C-gg/reload-frontend/issues/563).
 - Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
 - Ajusta badge de status do `AvatarBadge`.
