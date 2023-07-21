@@ -9,11 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
 - Adiciona variante `purple` do `Avatar` no tema.
 - Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
 - Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
-- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
+- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
 ### Changed
 
