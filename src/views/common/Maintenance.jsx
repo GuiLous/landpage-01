@@ -96,7 +96,7 @@ export default function MaintenanceView() {
           <Text fontSize={16} color="white" textAlign="center" w="600px">
             Calmô meu cria, a gente deu um pause pra ajustar umas coisas, mas já
             voltamos. Fica tranquilo que assim que terminar por aqui, a gente te
-            libera no automático
+            libera no automático.
           </Text>
 
           <Button
