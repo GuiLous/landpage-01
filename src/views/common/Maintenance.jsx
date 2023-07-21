@@ -94,8 +94,9 @@ export default function MaintenanceView() {
           <Image src={alert} alt="Alert" />
 
           <Text fontSize={16} color="white" textAlign="center" w="600px">
-            Neste momento, ReloadClub está indisponível para uma manutenção.
-            Volte mais tarde quando o serviço for restaurado.
+            Calmô meu cria, a gente deu um pause pra ajustar umas coisas, mas já
+            voltamos. Fica tranquilo que assim que terminar por aqui, a gente te
+            libera no automático
           </Text>
 
           <Button
