@@ -5,6 +5,8 @@ import {
   FormLabel,
   InputGroup,
   InputRightElement,
+  Select,
+  Text,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
@@ -16,6 +18,19 @@ import style from './FakeSigninForm.module.css'
 
 export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
   const [value, setValue] = useState()
+
+  const emails = [
+    'player1@reloadclub.gg',
+    'player2@reloadclub.gg',
+    'player3@reloadclub.gg',
+    'player4@reloadclub.gg',
+    'player5@reloadclub.gg',
+    'player6@reloadclub.gg',
+    'player7@reloadclub.gg',
+    'player8@reloadclub.gg',
+    'player9@reloadclub.gg',
+    'player10@reloadclub.gg',
+  ]
 
   const handleButtonClick = () => {
     if (isEmailValid(value)) onSubmit({ email: value })
@@ -46,31 +61,59 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
         style={{ width: '100%' }}
       >
         <Container className={style.formset} column>
-          <FormControl isInvalid={fieldsErrors?.email}>
-            <FormLabel>Entrar sem Steam</FormLabel>
+          <Container column gap={8}>
+            <FormControl isInvalid={fieldsErrors?.email}>
+              <FormLabel>Entrar sem Steam</FormLabel>
 
-            <InputGroup>
-              <Input
-                onChange={handleChange}
-                onKeyDown={handleKeyEnterDown}
-                type="email"
-                name="email"
-                placeholder="exemplo@email.com"
-              />
+              <InputGroup>
+                <Input
+                  onChange={handleChange}
+                  onKeyDown={handleKeyEnterDown}
+                  type="email"
+                  name="email"
+                  placeholder="exemplo@email.com"
+                />
+
+                {fieldsErrors?.email && (
+                  <InputRightElement
+                    color="red.500"
+                    fontSize={22}
+                    children={<RiErrorWarningFill />}
+                  />
+                )}
+              </InputGroup>
 
               {fieldsErrors?.email && (
-                <InputRightElement
-                  color="red.500"
-                  fontSize={22}
-                  children={<RiErrorWarningFill />}
-                />
+                <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
               )}
-            </InputGroup>
+            </FormControl>
 
-            {fieldsErrors?.email && (
-              <FormErrorMessage>{fieldsErrors?.email}</FormErrorMessage>
-            )}
-          </FormControl>
+            <Container align="center" justify="center">
+              <Text color="white" fontSize={16} fontWeight="medium">
+                ou
+              </Text>
+            </Container>
+            <Select
+              bg="gray.800"
+              border="none"
+              onChange={handleChange}
+              minH="44px"
+              borderRadius={4}
+            >
+              <option
+                style={{ backgroundColor: '#1E1E1E' }}
+                value={''}
+                disabled
+              >
+                Selecione um email
+              </option>
+              {emails.map((item) => (
+                <option style={{ backgroundColor: '#1E1E1E' }} value={item}>
+                  {item}
+                </option>
+              ))}
+            </Select>
+          </Container>
 
           <Container>
             <Button
