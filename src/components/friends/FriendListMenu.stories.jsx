@@ -12,6 +12,7 @@ export default {
     alreadyInvited: { control: { type: 'boolean' } },
     alreadyOnTeam: { control: { type: 'boolean' } },
     user_id: { control: { type: 'number' } },
+    username: { control: { type: 'text' } },
   },
   args: {
     open: false,
@@ -19,6 +20,7 @@ export default {
     alreadyInvited: false,
     alreadyOnTeam: false,
     user_id: 1,
+    username: 'player 1',
   },
 }
 

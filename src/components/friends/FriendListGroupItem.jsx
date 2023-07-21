@@ -110,6 +110,7 @@ export default function FriendListGroupItem({
           isAvailable={isAvailable}
           alreadyInvited={alreadyInvited}
           alreadyOnTeam={alreadyOnTeam}
+          username={username}
         />
       </Container>
     </Box>
