@@ -12,6 +12,7 @@ import { BsEnvelopeFill, BsThreeDots } from 'react-icons/bs'
 import { RiErrorWarningFill } from 'react-icons/ri'
 import { SiSteam } from 'react-icons/si'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI } from '@api'
 import { AcceptIcon, UserIcon } from '@components'
@@ -19,7 +20,6 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
 
-import { useNavigate } from 'react-router-dom'
 import style from './FriendListMenu.module.css'
 
 export default function FriendListMenu({
@@ -131,7 +131,7 @@ export default function FriendListMenu({
             p="12px 18px"
             gap="18px"
             onClick={() => onClickFunction(key)}
-            _hover={{ bg: isAvailable && hover }}
+            _hover={{ bg: hover }}
             className={[
               style.menuItem,
               key === 'invite' && alreadyInvited && style.invited,
