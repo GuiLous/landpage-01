@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona nova cor `salmon` no tema.
 - Adiciona variante `purple` do `Avatar` no tema.
 - Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
+- Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
 - Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
 
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Ajusta lógica do botão de `aceitar partida` para não gerar erros ao clicar adicionando um `delay` [#557](https://github.com/3C-gg/reload-frontend/issues/557).
 - Previne de tentar entrar na fila ao clicar no botão de `restricted` no lobby e gerar um toast de erro.
+- Ajusta hook `usePersistentTimer` para não salvar os dados no storage enquanto `isLoading` for true.
 
 ### Removed
 
