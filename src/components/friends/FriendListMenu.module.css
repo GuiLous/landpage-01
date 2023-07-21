@@ -22,10 +22,10 @@
 
 .menuItem.invited {
 	background: linear-gradient(
-		0deg,
-		rgba(104, 71, 255, 0.3) 0%,
-		rgba(104, 71, 255, 0.3) 100%
-	),
+			0deg,
+			rgba(104, 71, 255, 0.3) 0%,
+			rgba(104, 71, 255, 0.3) 100%
+		),
 		#333;
 	cursor: initial;
 }

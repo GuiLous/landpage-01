@@ -15,7 +15,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { LobbiesAPI } from '@api'
-import { AcceptIcon, UserIcon } from '@components'
+import { AcceptIcon, SupportModal, UserIcon } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
@@ -29,8 +29,10 @@ export default function FriendListMenu({
   alreadyInvited,
   alreadyOnTeam,
   user_id,
+  username,
 }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [openSupport, setOpenSupport] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -76,6 +78,10 @@ export default function FriendListMenu({
     }
   }
 
+  const handleOpenModalSupport = () => {
+    setOpenSupport(true)
+  }
+
   const onClickFunction = (key) => {
     switch (key) {
       case 'invite':
@@ -91,7 +97,8 @@ export default function FriendListMenu({
         break
 
       case 'report':
-        return null
+        handleOpenModalSupport()
+        break
 
       default:
         return null
@@ -103,61 +110,69 @@ export default function FriendListMenu({
   }, [open])
 
   return (
-    <Menu isOpen={isOpen} placement="left-start">
-      <MenuButton
-        as={Button}
-        variant={'unstyled'}
-        rightIcon={<BsThreeDots style={{ margin: '0' }} opacity={0} />}
-        minH={0}
-        minW={0}
-        fontSize={18}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      />
-      <MenuList
-        border="none"
-        p={0}
-        overflow="hidden"
-        borderRadius={4}
-        bg="gray.700"
-      >
-        {keys.map((key) => (
-          <MenuItem
-            key={key}
-            display="flex"
-            alignItems="center"
-            bg="gray.700"
-            p="12px 18px"
-            gap="18px"
-            onClick={() => onClickFunction(key)}
-            _hover={{ bg: hover }}
-            className={[
-              style.menuItem,
-              key === 'invite' && alreadyInvited && style.invited,
-              key === 'invite' && !isAvailable && style.disabled,
-            ].join(' ')}
-          >
-            <Icon
-              as={
-                key === 'invite' && alreadyInvited
-                  ? AcceptIcon
-                  : menuItems[key].icon
-              }
-              fill="gray.300"
-              color="gray.300"
-              fontSize={key === 'report' ? 18 : 16}
-              ml={key === 'report' ? '-1px' : 0}
-            />
+    <>
+      <Menu isOpen={isOpen} placement="left-start">
+        <MenuButton
+          as={Button}
+          variant={'unstyled'}
+          rightIcon={<BsThreeDots style={{ margin: '0' }} opacity={0} />}
+          minH={0}
+          minW={0}
+          fontSize={18}
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+        />
+        <MenuList
+          border="none"
+          p={0}
+          overflow="hidden"
+          borderRadius={4}
+          bg="gray.700"
+        >
+          {keys.map((key) => (
+            <MenuItem
+              key={key}
+              display="flex"
+              alignItems="center"
+              bg="gray.700"
+              p="12px 18px"
+              gap="18px"
+              onClick={() => onClickFunction(key)}
+              _hover={{ bg: hover }}
+              className={[
+                style.menuItem,
+                key === 'invite' && alreadyInvited && style.invited,
+                key === 'invite' && !isAvailable && style.disabled,
+              ].join(' ')}
+            >
+              <Icon
+                as={
+                  key === 'invite' && alreadyInvited
+                    ? AcceptIcon
+                    : menuItems[key].icon
+                }
+                fill="gray.300"
+                color="gray.300"
+                fontSize={key === 'report' ? 18 : 16}
+                ml={key === 'report' ? '-1px' : 0}
+              />
 
-            <Text color="gray.300" fontSize={12} as="span">
-              {key === 'invite' && alreadyInvited
-                ? 'Convite enviado!'
-                : menuItems[key].label}
-            </Text>
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+              <Text color="gray.300" fontSize={12} as="span">
+                {key === 'invite' && alreadyInvited
+                  ? 'Convite enviado!'
+                  : menuItems[key].label}
+              </Text>
+            </MenuItem>
+          ))}
+        </MenuList>
+      </Menu>
+
+      <SupportModal
+        isOpen={openSupport}
+        setIsOpen={setOpenSupport}
+        username={username}
+      />
+    </>
   )
 }
