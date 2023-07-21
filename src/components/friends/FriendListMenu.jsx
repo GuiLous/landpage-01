@@ -139,7 +139,7 @@ export default function FriendListMenu({
               p="12px 18px"
               gap="18px"
               onClick={() => onClickFunction(key)}
-              _hover={{ bg: hover }}
+              _hover={{ bg: key === 'invite' && alreadyOnTeam ? '' : hover }}
               className={[
                 style.menuItem,
                 key === 'invite' && alreadyInvited && style.invited,

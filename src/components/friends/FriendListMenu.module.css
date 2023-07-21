@@ -34,3 +34,7 @@
 	background: var(--chakra-colors-gray-800);
 	cursor: initial;
 }
+
+.menuItem.disabled:hover {
+	background: var(--chakra-colors-gray-800);
+}
