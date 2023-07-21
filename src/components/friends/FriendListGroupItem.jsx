@@ -1,13 +1,9 @@
-import { Avatar, AvatarBadge, Icon, Text } from '@chakra-ui/react'
-import { BsThreeDots } from 'react-icons/bs'
-import { useDispatch, useSelector } from 'react-redux'
+import { Avatar, AvatarBadge, Box, Text } from '@chakra-ui/react'
+import { useEffect, useRef, useState } from 'react'
+import { useSelector } from 'react-redux'
 
-import { LobbiesAPI } from '@api'
-import { Container } from '@components'
+import { Container, FriendListMenu } from '@components'
 import { useHumanizeStatus } from '@hooks'
-import { StorageService } from '@services'
-import { addToast } from '@slices/AppSlice'
-import { addInvite } from '@slices/InviteSlice'
 
 import style from './FriendListGroupItem.module.css'
 
@@ -16,7 +12,7 @@ const colorsStatus = {
   offline: 'gray.300',
   away: 'salmon.500',
   in_game: 'yellow.400',
-  teaming: 'green.600',
+  teaming: 'yellow.400',
   queued: 'yellow.400',
 }
 
@@ -30,14 +26,16 @@ export default function FriendListGroupItem({
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
 
+  const itemRef = useRef()
+
   const invites = useSelector((state) => state.invites)
 
-  const dispatch = useDispatch()
   let humanStatus = useHumanizeStatus(status)
+
+  const [openMenu, setOpenMenu] = useState(false)
 
   humanStatus += status === 'in_game' ? ' (RANKED 5X5)' : ''
 
-  const userToken = StorageService.get('token')
   const availableStatuses = ['online', 'away', 'teaming']
   const alreadyInvitedByFriend = lobby.invited_players_ids.some(
     (id) => id === user_id
@@ -50,75 +48,70 @@ export default function FriendListGroupItem({
   const isAvailable =
     !alreadyOnTeam && availableStatuses.includes(status) && !lobby.queue
 
-  const handleInvite = async () => {
-    if (!isAvailable || alreadyInvited || alreadyOnTeam) return
-    const response = await LobbiesAPI.createInvite(
-      userToken,
-      user.lobby_id,
-      user.id,
-      user_id
-    )
-
-    if (response.errorMsg)
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
-    else if (response) {
-      dispatch(addInvite(response))
-      dispatch(
-        addToast({
-          title: 'Convite enviado',
-          variant: 'success',
-        })
-      )
-    }
+  const handleToggleMenu = () => {
+    setOpenMenu(!openMenu)
   }
 
+  const handleCloseMenu = () => {
+    setOpenMenu(false)
+  }
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!itemRef.current) return
+      if (!itemRef.current.contains(e.target)) {
+        handleCloseMenu()
+      }
+    }
+
+    document.addEventListener('mousedown', handler)
+
+    return () => {
+      document.removeEventListener('mousedown', handler)
+    }
+  })
+
   return (
-    <Container
-      onClick={handleInvite}
-      className={[
-        style.container,
-        (!isAvailable || alreadyInvited) && style.disabled,
-        status === 'offline' && style.offline,
-      ].join(' ')}
-      gap={14}
-      align="center"
-      testID="invite-button"
-      fitContent
-    >
-      <Container fitContent className={style.avatar}>
-        <Avatar
-          variant={status === 'teaming' ? 'online' : status}
-          src={avatar}
-          size={{ base: 'md', md: 'smd', '2xl': 'md' }}
-        >
-          <AvatarBadge borderColor="gray.1000" />
-        </Avatar>
-      </Container>
+    <Box display="flex" width="100%" ref={itemRef}>
+      <Container
+        onClick={handleToggleMenu}
+        className={[
+          style.container,
+          (!isAvailable || alreadyInvited) && style.disabled,
+          status === 'offline' && style.offline,
+        ].join(' ')}
+        gap={14}
+        align="center"
+        testID="invite-button"
+      >
+        <Container fitContent className={style.avatar}>
+          <Avatar
+            variant={status === 'teaming' ? 'queued' : status}
+            src={avatar}
+            size={{ base: 'md', md: 'smd', '2xl': 'md' }}
+          >
+            <AvatarBadge borderColor="gray.1000" />
+          </Avatar>
+        </Container>
 
-      <Container column gap={4} className={style.userInfos}>
-        <Text fontSize={12} fontWeight="medium" color="white">
-          {username}
-        </Text>
-        <Text fontSize={10} fontWeight="medium" color={colorsStatus[status]}>
-          {alreadyOnTeam ? 'online' : humanStatus}
-        </Text>
-      </Container>
+        <Container column gap={4} className={style.userInfos}>
+          <Text fontSize={12} fontWeight="medium" color="white">
+            {username}
+          </Text>
+          <Text fontSize={10} fontWeight="medium" color={colorsStatus[status]}>
+            {alreadyOnTeam ? 'Em grupo' : humanStatus}
+          </Text>
+        </Container>
 
-      <Icon
-        as={BsThreeDots}
-        fill="white"
-        fontSize={18}
-        data-testid="icon-dots"
-        className={style.dotsIcon}
-        transition="all 0.2s ease-in-out"
-        _hover={{ fill: 'gray.300' }}
-      />
-      {/* <FriendListMenu /> */}
-    </Container>
+        <FriendListMenu
+          open={openMenu}
+          user={user}
+          user_id={user_id}
+          isAvailable={isAvailable}
+          alreadyInvited={alreadyInvited}
+          alreadyOnTeam={alreadyOnTeam}
+        />
+      </Container>
+    </Box>
   )
 }
