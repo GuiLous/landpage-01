@@ -48,7 +48,8 @@ export default function FriendListGroupItem({
   const isAvailable =
     !alreadyOnTeam && availableStatuses.includes(status) && !lobby.queue
 
-  const handleToggleMenu = () => {
+  const handleToggleMenu = (e) => {
+    e.preventDefault()
     setOpenMenu(!openMenu)
   }
 
@@ -72,7 +73,12 @@ export default function FriendListGroupItem({
   })
 
   return (
-    <Box display="flex" width="100%" ref={itemRef}>
+    <Box
+      display="flex"
+      width="100%"
+      onContextMenu={handleToggleMenu}
+      ref={itemRef}
+    >
       <Container
         onClick={handleToggleMenu}
         className={[
