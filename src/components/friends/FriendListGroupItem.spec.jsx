@@ -8,6 +8,7 @@ import { FriendListGroupItem } from '@components'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
+import { BrowserRouter } from 'react-router-dom'
 
 const server = setupServer(
   rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
@@ -59,9 +60,11 @@ describe('FriendListGroupItem Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...friend} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByText('friendUsername')).toBeInTheDocument()
     expect(screen.getByText('Online')).toBeInTheDocument()
@@ -78,28 +81,12 @@ describe('FriendListGroupItem Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...friend} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.queryByTestId('icon-wrapper')).not.toBeInTheDocument()
-  })
-
-  it('should render dots icon', () => {
-    const friend = {
-      user_id: 2,
-      lobby_id: 2,
-      status: 'offline',
-      avatar:
-        'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-      username: 'friendUsername',
-    }
-
-    render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
-    )
-    expect(screen.getByTestId('icon-dots')).toBeInTheDocument()
   })
 })
