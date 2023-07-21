@@ -1,0 +1,35 @@
+.menuItem {
+	transition: background 0.2s ease-in-out;
+}
+
+.menuItem.disabled svg,
+.menuItem.disabled span {
+	opacity: 0.5;
+}
+
+.menuItem.invited svg,
+.menuItem.invited span {
+	color: white;
+	fill: white;
+}
+
+.menuItem:not(.disabled):hover svg,
+.menuItem:not(.disabled):hover span {
+	color: white;
+	fill: white;
+}
+
+.menuItem.invited {
+	background: linear-gradient(
+			0deg,
+			rgba(104, 71, 255, 0.3) 0%,
+			rgba(104, 71, 255, 0.3) 100%
+		),
+		#333;
+	cursor: initial;
+}
+
+.menuItem.disabled {
+	background: var(--chakra-colors-gray-800);
+	cursor: initial;
+}
