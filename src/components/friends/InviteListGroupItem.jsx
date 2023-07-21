@@ -90,9 +90,9 @@ export default function InviteListGroupItem({
         >
           <Icon
             as={CloseIcon}
-            color="white"
+            color="gray.300"
             fontSize={12}
-            _hover={{ color: 'gray.300' }}
+            _hover={{ color: 'white' }}
             transition="all 0.2s ease-in-out"
           />
         </Container>

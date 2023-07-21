@@ -120,8 +120,9 @@ export default function FriendListMenu({
           minW={0}
           fontSize={18}
           display="flex"
+          color="gray.300"
           alignItems="center"
-          _hover={{ color: 'gray.300' }}
+          _hover={{ color: 'white' }}
           transition="all 0.2s ease-in-out"
           justifyContent="center"
         />
