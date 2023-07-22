@@ -1,9 +1,4 @@
-import {
-  Badge,
-  Icon,
-  Link,
-  Text
-} from '@chakra-ui/react'
+import { Badge, Icon, Link, Text } from '@chakra-ui/react'
 import { BsEnvelopeFill } from 'react-icons/bs'
 
 import {
