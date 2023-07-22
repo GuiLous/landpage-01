@@ -2,9 +2,7 @@ import {
   Badge,
   Icon,
   Link,
-  Text,
-  keyframes,
-  usePrefersReducedMotion,
+  Text
 } from '@chakra-ui/react'
 import { BsEnvelopeFill } from 'react-icons/bs'
 
@@ -31,27 +29,6 @@ const icons = {
 
 const soonItems = ['ranking', 'loja']
 
-const shake = keyframes`
-  0%{
-    transform: rotate(0deg);
-  }
-  10%{
-    transform: rotate(0deg);
-  }
-  25% {
-    transform: rotate(-10deg);
-  }
-  50% {
-    transform: rotate(10deg);
-  }
-  75% {
-    transform: rotate(-10deg);
-  }
-  100% {
-    transform: rotate(0deg);
-  }
-`
-
 export default function SidebarMenuItem({
   item,
   receivedInvites,
@@ -59,12 +36,6 @@ export default function SidebarMenuItem({
   onClickFunction,
 }) {
   const isSoon = soonItems.includes(item)
-
-  const prefersReducedMotion = usePrefersReducedMotion()
-
-  const animation = prefersReducedMotion
-    ? undefined
-    : `${shake} 1s ease-in-out infinite`
 
   return (
     <Container className={[style.menuItem, isSoon && style.soon].join(' ')}>
@@ -87,7 +58,7 @@ export default function SidebarMenuItem({
                 as={BsEnvelopeFill}
                 fill="white"
                 fontSize={14}
-                animation={animation}
+                className={style.envelop}
               />
               <Text
                 as="span"

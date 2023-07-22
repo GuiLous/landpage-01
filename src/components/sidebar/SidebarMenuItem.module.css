@@ -37,6 +37,53 @@
 	font-size: 14px;
 }
 
+.envelop {
+	animation: shake 3.5s ease infinite;
+}
+
+@keyframes shake {
+	0%,
+	20%,
+	40% {
+		transform: rotate(0);
+	}
+	1.5%,
+	21.5%,
+	41.5% {
+		transform: rotate(-13deg);
+		transform: scale(1.2);
+	}
+	2.5%,
+	22.5%,
+	42.5% {
+		transform: rotate(13deg) scale(1.2);
+	}
+	4%,
+	24%,
+	44% {
+		transform: rotate(-13deg) scale(1.2);
+	}
+	5%,
+	25%,
+	45% {
+		transform: rotate(13deg) scale(1.2);
+	}
+	6.5%,
+	26.5%,
+	46.5% {
+		transform: rotate(-13deg) scale(1.2);
+	}
+	7.5%,
+	27.5%,
+	47.5% {
+		transform: rotate(0deg);
+		transform: scale(1);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}
+
 @media (max-width: 1600px) {
 	.menuItem {
 		font-size: 16px;
