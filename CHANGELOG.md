@@ -12,11 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cria componente `FriendListMenu` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Adiciona nova cor `green.500` no tema.
 - Adiciona nova cor `salmon` no tema.
+- Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
 - Adiciona variante `purple` do `Avatar` no tema.
 - Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
 - Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
 - Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
-- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547). 
+- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
 ### Changed
 
@@ -31,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
 - Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design. 
 - Muda `FriendList` para ficar igual ao novo design.
+- Altera `FakeSigninForm` para adicionar um select com emails padrões [#565](https://github.com/3C-gg/reload-frontend/issues/565).
+- Muda texto da página de manutenção [#563](https://github.com/3C-gg/reload-frontend/issues/563).
 - Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
 - Ajusta badge de status do `AvatarBadge`.
 - Remove borda das variantes do componente `Avatar` no tema [#559](https://github.com/3C-gg/reload-frontend/issues/559).
