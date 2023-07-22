@@ -57,10 +57,18 @@ export default function InviteListGroupItem({
         </Container>
 
         <Container column gap={4}>
-          <Text fontSize={12} fontWeight="medium" color="white">
+          <Text
+            fontSize={{ base: 14, md: 12, '2xl': 14 }}
+            fontWeight="medium"
+            color="white"
+          >
             {username}
           </Text>
-          <Text fontSize={10} fontWeight="medium" color="purple.300">
+          <Text
+            fontSize={{ base: 12, md: 10, '2xl': 12 }}
+            fontWeight="medium"
+            color="purple.300"
+          >
             Convidou você
           </Text>
         </Container>
