@@ -22,7 +22,7 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
-export default function SupportModal({ isOpen, setIsOpen, username }) {
+export default function SupportModal({ isOpen, setIsOpen, username, user_id }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const dispatch = useDispatch()
@@ -75,6 +75,7 @@ export default function SupportModal({ isOpen, setIsOpen, username }) {
 
     formData.append('description', data.description)
     formData.append('subject', data.subject)
+    formData.append('report_user_id', user_id ?? null)
 
     for (let file of files) {
       formData.append('files', file)

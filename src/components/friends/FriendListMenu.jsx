@@ -176,6 +176,7 @@ export default function FriendListMenu({
         isOpen={openSupport}
         setIsOpen={setOpenSupport}
         username={username}
+        user_id={user_id}
       />
     </>
   )
