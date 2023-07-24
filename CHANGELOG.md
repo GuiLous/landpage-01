@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera `NotificationList` e `NotificationListItem` para ficar igual ao novo design [#572](https://github.com/3C-gg/reload-frontend/issues/572).
 - Altera `SupportModal` para preencher os dados automático quando clicado em reportar no `FriendLintMenu`.
 - Altera `Sidebar` para ficar igual ao novo design.
 - Altera `Título` do componente `NotificationList` para remover `uppercase`.
