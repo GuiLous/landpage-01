@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9219ca2 - 21/7/2023]
+
 ### Added
 
 - Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
