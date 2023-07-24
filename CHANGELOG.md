@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [9219ca2 - 21/7/2023]
+
 ### Added
 
 - Cria componente `FriendListMenu` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
