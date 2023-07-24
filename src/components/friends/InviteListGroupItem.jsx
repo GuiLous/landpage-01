@@ -68,6 +68,7 @@ export default function InviteListGroupItem({
             fontSize={{ base: 12, md: 10, '2xl': 12 }}
             fontWeight="medium"
             color="purple.300"
+            minW="95px"
           >
             Convidou você
           </Text>
