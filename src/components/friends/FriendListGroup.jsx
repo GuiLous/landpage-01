@@ -62,7 +62,7 @@ export default function FriendListGroup({
   }, [items])
 
   useEffect(() => {
-    if (title === 'No seu grupo' && items.length > 0) {
+    if (['No seu grupo', 'Online'].includes(title) && items.length > 0) {
       setIsOpen(true)
     }
   }, [title, items])
