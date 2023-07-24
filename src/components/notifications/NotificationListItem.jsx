@@ -14,7 +14,7 @@ export default function NotificationListItem({
   return (
     <Container
       testID="notification"
-      className={[style.container, read_date && style.unread].join(' ')}
+      className={[style.container, !read_date && style.unread].join(' ')}
       gap={15}
       align="center"
     >
