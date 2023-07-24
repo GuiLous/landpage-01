@@ -7,21 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [9219ca2 - 21/7/2023]
-
 ### Added
 
 - Cria componente `FriendListMenu` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Adiciona nova cor `green.500` no tema.
 - Adiciona nova cor `salmon` no tema.
-- Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
-- Adiciona variante `purple` do `Avatar` no tema.
-- Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
-- Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
-- Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
-- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
-### Changed
+### Changed 
 
 - Altera `SupportModal` para preencher os dados automático quando clicado em reportar no `FriendLintMenu`.
 - Altera `Sidebar` para ficar igual ao novo design.
@@ -34,6 +26,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
 - Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design. 
 - Muda `FriendList` para ficar igual ao novo design.
+
+### Removed 
+
+- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+
+## [9219ca2 - 21/7/2023]
+
+### Added
+
+- Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
+- Adiciona variante `purple` do `Avatar` no tema.
+- Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
+- Adiciona novo `reducer` `cancelMatch` para alterar o status de uma match para `canceled` [#550](https://github.com/3C-gg/reload-frontend/issues/550).
+- Adiciona `tooltips` `Ver perfil` e `Visitar perfil na steam` no card do jogador [#553](https://github.com/3C-gg/reload-frontend/issues/553).
+- Adiciona novo componente `LoadingTexts` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
+
+### Changed
+
 - Altera `FakeSigninForm` para adicionar um select com emails padrões [#565](https://github.com/3C-gg/reload-frontend/issues/565).
 - Muda texto da página de manutenção [#563](https://github.com/3C-gg/reload-frontend/issues/563).
 - Muda variante do `Avatar` no componentes `MatchTeamStats` e `NotificationListItem` para `purple`.
@@ -56,7 +66,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
 - Remove `setIsOpen` prop de `MatchFoundModal`.
 - Remove `Sidebar` da tela de `Conectar` [#547](https://github.com/3C-gg/reload-frontend/issues/547).
 
