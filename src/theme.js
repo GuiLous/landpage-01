@@ -29,8 +29,8 @@ export default extendTheme({
           },
         },
         _active: {
-          bg: 'purple.600',
-          backgroundColor: 'purple.600',
+          bg: 'purple.700',
+          backgroundColor: 'purple.700',
         },
         _disabled: {
           backgroundColor: 'gray.800',
@@ -447,8 +447,15 @@ export default extendTheme({
         },
         lighter: {
           field: {
+            padding: 3,
             bg: 'gray.700',
             backgroundColor: 'gray.700',
+            fontWeight: 'regular',
+            _focus: {
+              border: '1px solid',
+              borderColor: 'purple.400',
+              padding: '11px',
+            },
           },
         },
       },
@@ -682,8 +689,8 @@ export default extendTheme({
         online: {
           badge: {
             boxSize: '12px',
-            backgroundColor: 'green.400',
-            bg: 'green.400',
+            backgroundColor: 'green.600',
+            bg: 'green.600',
             border: '2px solid',
             right: '2px',
             bottom: '2px',
@@ -847,7 +854,8 @@ export default extendTheme({
       300: '#9882FF',
       400: '#6847FF',
       500: '#34218C',
-      600: '#1A1240',
+      600: '#3d336d',
+      700: '#1A1240',
     },
     gray: {
       100: '#c8c5c5',
@@ -869,7 +877,8 @@ export default extendTheme({
     },
     green: {
       400: '#6BE400',
-      500: '#26BD39',
+      500: '#2BD641',
+      600: '#26BD39',
     },
     yellow: {
       400: '#FFD426',
@@ -879,6 +888,9 @@ export default extendTheme({
       400: '#FF4242',
       500: '#F63535',
       600: '#8d1919',
+    },
+    salmon: {
+      500: '#F0A87B',
     },
   },
   fontWeights: {

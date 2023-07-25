@@ -8,6 +8,7 @@ import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('FriendList Component', () => {
   const user = {
@@ -89,9 +90,11 @@ describe('FriendList Component', () => {
 
   it('should not render if closed', () => {
     render(
-      <Provider store={store}>
-        <FriendList />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendList />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.queryByTestId('friendlist-container')).not.toBeInTheDocument()
     expect(screen.queryByText('Amigos')).not.toBeInTheDocument()
@@ -99,9 +102,11 @@ describe('FriendList Component', () => {
 
   it('should render if open', async () => {
     render(
-      <Provider store={store}>
-        <FriendList isOpen />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendList isOpen />
+        </Provider>
+      </BrowserRouter>
     )
     expect(
       await screen.findByTestId('friendlist-container')
@@ -113,9 +118,11 @@ describe('FriendList Component', () => {
     const user = userEvent.setup()
 
     render(
-      <Provider store={store}>
-        <FriendList isOpen />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendList isOpen />
+        </Provider>
+      </BrowserRouter>
     )
 
     const filterInput = screen.queryByTestId('filter-input')

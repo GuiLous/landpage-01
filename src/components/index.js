@@ -13,7 +13,7 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
-import InviteListGroup from './friends/InviteListGroup'
+import FriendListMenu from './friends/FriendListMenu'
 import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Forms
@@ -162,13 +162,13 @@ export {
   FriendList,
   FriendListGroup,
   FriendListGroupItem,
+  FriendListMenu,
   FriendsIcon,
   GroupAddIcon,
   HeatmapStatsCard,
   HomeIcon,
   InactivateAccountCard,
   Input,
-  InviteListGroup,
   InviteListGroupItem,
   JoystickIcon,
   LevelBadge,

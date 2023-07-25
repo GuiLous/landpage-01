@@ -22,7 +22,7 @@ import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { useDispatch } from 'react-redux'
 
-export default function SupportModal({ isOpen, setIsOpen }) {
+export default function SupportModal({ isOpen, setIsOpen, username, user_id }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const dispatch = useDispatch()
@@ -43,6 +43,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
   })
 
   const { description, files, subject } = watch()
+
   const canSubmit = description !== '' && subject !== ''
 
   const formatSubjectOptions = (options) => {
@@ -74,6 +75,7 @@ export default function SupportModal({ isOpen, setIsOpen }) {
 
     formData.append('description', data.description)
     formData.append('subject', data.subject)
+    formData.append('report_user_id', user_id ?? null)
 
     for (let file of files) {
       formData.append('files', file)
@@ -125,6 +127,13 @@ export default function SupportModal({ isOpen, setIsOpen }) {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen])
+
+  useEffect(() => {
+    if (username && subjectOptions.length > 1) {
+      setValue('subject', 'Reportar um usuário')
+      setValue('description', `Quero reportar o usuário "${username}"`)
+    }
+  }, [username, subjectOptions, setValue])
 
   return (
     <Modal
