@@ -122,8 +122,8 @@ export default function NotificationList({ isOpen, onClose }) {
         <DrawerFooter py={0} px={6}>
           <Button
             w="100%"
-            minH="37px"
-            h="37px"
+            minH="42px"
+            h="42px"
             fontSize={14}
             fontWeight="semiBold"
             isDisabled={
