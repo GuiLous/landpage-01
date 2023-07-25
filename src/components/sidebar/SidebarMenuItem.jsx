@@ -1,4 +1,5 @@
 import { Badge, Icon, Link, Text } from '@chakra-ui/react'
+import { BsEnvelopeFill } from 'react-icons/bs'
 
 import {
   BellFilledIcon,
@@ -42,16 +43,34 @@ export default function SidebarMenuItem({
         <Container justify="end" className={style.unreadBadge}>
           {item === 'amigos' && (
             <Badge
-              variant="counter"
-              style={{ opacity: receivedInvites > 0 ? 1 : 0 }}
+              p="2px 10px"
+              opacity={receivedInvites > 0 ? 1 : 0}
+              display="flex"
+              alignItems="center"
+              gap="8px"
             >
-              {receivedInvites}
+              <Icon
+                as={BsEnvelopeFill}
+                fill="white"
+                fontSize={14}
+                className={style.envelop}
+              />
+              <Text
+                as="span"
+                fontSize={{ base: 12, md: 10, '2xl': 12 }}
+                mt={{ base: 0, md: '1px', '2xl': 0 }}
+              >
+                {receivedInvites}
+              </Text>
             </Badge>
           )}
 
           {item === 'notificações' && (
             <Badge
               variant="counter"
+              fontSize={{ base: 12, md: 10, '2xl': 12 }}
+              w={{ base: '22px', md: '18px', '2xl': '22px' }}
+              h={{ base: '22px', md: '18px', '2xl': '22px' }}
               style={{ opacity: unreadNotifications > 0 ? 1 : 0 }}
             >
               {unreadNotifications}

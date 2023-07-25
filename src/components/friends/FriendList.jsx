@@ -6,20 +6,14 @@ import {
   Icon,
   Input,
   InputGroup,
-  InputLeftElement,
+  InputRightElement,
   Text,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import {
-  Container,
-  FriendListGroup,
-  InviteListGroup,
-  Scrollbars,
-  SearchIcon,
-} from '@components'
+import { Container, FriendListGroup, Scrollbars, SearchIcon } from '@components'
 
 import style from './FriendList.module.css'
 
@@ -85,6 +79,17 @@ export default function FriendList({ isOpen, onClose }) {
         w={isLessThan2xl ? '300px' : '320px'}
         maxW={isLessThan2xl ? '300px' : '320px'}
       >
+        <DrawerCloseButton
+          fontSize={12}
+          width="fit-content"
+          height="fit-content"
+          top={4}
+          right={4}
+          _hover={{
+            color: 'gray.300',
+          }}
+        />
+
         <Container
           className={style.container}
           column
@@ -99,76 +104,50 @@ export default function FriendList({ isOpen, onClose }) {
           >
             <Container className={style.title} align="center">
               <Container>
-                <Text
-                  fontSize={16}
-                  fontWeight="semibold"
-                  textTransform="uppercase"
-                >
+                <Text fontSize={16} fontWeight="medium">
                   Amigos
                 </Text>
-              </Container>
-
-              <Container
-                className={style.closeBtn}
-                align="center"
-                fitContent
-                testID="close-btn"
-              >
-                <DrawerCloseButton
-                  fontSize={12}
-                  width="fit-content"
-                  height="fit-content"
-                  pos="initial"
-                />
               </Container>
             </Container>
 
             <Container className={style.filter} align="center">
-              <InputGroup>
-                <InputLeftElement height="100%">
-                  <Icon as={SearchIcon} fontSize={14} color="gray.300" />
-                </InputLeftElement>
+              <InputGroup
+                color="gray.300"
+                _focusWithin={{
+                  color: 'white',
+                }}
+              >
                 <Input
                   variant="lighter"
                   color="white"
-                  fontWeight="light"
-                  placeholder="Pesquisar..."
-                  fontSize={14}
+                  placeholder="Procurar amigos..."
+                  fontSize={12}
                   onChange={updateFilter}
                   data-testid="filter-input"
                 />
+                <InputRightElement height="100%">
+                  <Icon as={SearchIcon} fontSize={14} color="currentColor" />
+                </InputRightElement>
               </InputGroup>
             </Container>
           </Container>
 
           <Container className={style.groups} column>
             <Scrollbars autoHide>
-              {receivedInvites.length > 0 && (
-                <Container className={style.group}>
-                  <InviteListGroup
-                    title="Convites"
-                    items={filteredInvites}
-                    open={filter === ''}
-                    unread={receivedInvites.length > 0}
-                  />
-                </Container>
-              )}
-
-              {teamingFriends.length > 0 && (
-                <Container className={style.group}>
-                  <FriendListGroup
-                    title="No seu grupo"
-                    items={filteredTeamingFriends}
-                    open
-                    showHeader={filter === ''}
-                  />
-                </Container>
-              )}
+              <Container className={style.group}>
+                <FriendListGroup
+                  title="No seu grupo"
+                  items={filteredTeamingFriends}
+                  open
+                  showHeader={filter === ''}
+                />
+              </Container>
 
               <Container className={style.group}>
                 <FriendListGroup
                   title="Online"
                   items={filteredOnlineFriends}
+                  invites={filteredInvites}
                   showHeader={filter === ''}
                   open
                 />

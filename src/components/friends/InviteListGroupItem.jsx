@@ -2,8 +2,7 @@ import { Avatar, AvatarBadge, Icon, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 
 import { LobbiesAPI } from '@api'
-import { AcceptIcon, Container, RefuseIcon } from '@components'
-import { useHumanizeStatus } from '@hooks'
+import { AcceptIcon, CloseIcon, Container } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
@@ -15,7 +14,6 @@ export default function InviteListGroupItem({
   status,
   username,
 }) {
-  const humanStatus = useHumanizeStatus(status)
   const dispatch = useDispatch()
   const userToken = StorageService.get('token')
 
@@ -47,44 +45,65 @@ export default function InviteListGroupItem({
 
   return (
     <Container className={style.container} align="stretch">
-      <Container className={style.userInfo} align="center" gap={8}>
+      <Container className={style.userInfo} align="center" gap={14}>
         <Container fitContent>
           <Avatar
             variant={status}
             src={avatar}
             size={{ base: 'md', md: 'smd', '2xl': 'md' }}
           >
-            <AvatarBadge borderColor="gray.1100" />
+            <AvatarBadge borderColor="purple.600" />
           </Avatar>
         </Container>
 
-        <Container column>
-          <Text fontSize={14} fontWeight="medium" color="white">
+        <Container column gap={4}>
+          <Text
+            fontSize={{ base: 14, md: 12, '2xl': 14 }}
+            fontWeight="medium"
+            color="white"
+          >
             {username}
           </Text>
-          <Text fontSize={12} fontWeight="medium" color="gray.300">
-            {humanStatus}
+          <Text
+            fontSize={{ base: 12, md: 10, '2xl': 12 }}
+            fontWeight="medium"
+            color="purple.300"
+            minW="95px"
+          >
+            Convidou você
           </Text>
         </Container>
       </Container>
 
-      <Container className={style.actions} align="center">
-        <Container
-          className={style.actionBtn}
-          fitContent
-          align="center"
-          onClick={handleRefuse}
-        >
-          <Icon as={RefuseIcon} color="red.500" fontSize={20} />
-        </Container>
-
+      <Container align="center" justify="end" gap={14}>
         <Container
           className={style.actionBtn}
           fitContent
           align="center"
           onClick={handleAccept}
         >
-          <Icon as={AcceptIcon} color="green.400" fontSize={20} />
+          <Icon
+            as={AcceptIcon}
+            color="green.600"
+            fontSize={20}
+            _hover={{ color: 'green.500', transform: 'scale(1.1)' }}
+            transition="all 0.2s ease-in-out"
+          />
+        </Container>
+
+        <Container
+          className={style.actionBtn}
+          fitContent
+          align="center"
+          onClick={handleRefuse}
+        >
+          <Icon
+            as={CloseIcon}
+            color="gray.300"
+            fontSize={12}
+            _hover={{ color: 'white' }}
+            transition="all 0.2s ease-in-out"
+          />
         </Container>
       </Container>
     </Container>

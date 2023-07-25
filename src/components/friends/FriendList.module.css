@@ -4,9 +4,23 @@
 }
 
 .header {
-	padding: 24px 18px;
+	padding: 24px 20px 16px;
 }
 
-.closeBtn {
-	cursor: pointer;
+.groups {
+	position: relative;
+}
+
+.groups::after {
+	background: linear-gradient(360deg, #1e1e1e 0%, rgba(30, 30, 30, 0) 100%);
+	bottom: 0;
+	content: '';
+	height: 30px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+}
+
+.groups > div {
+	border-top: 1px solid var(--chakra-colors-gray-700);
 }
