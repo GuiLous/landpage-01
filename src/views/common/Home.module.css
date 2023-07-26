@@ -1,0 +1,116 @@
+.container {
+	background-color: black;
+	background-image: url('@assets/images/home_bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: white;
+	height: 100vh;
+	position: relative;
+}
+
+.animatedBg {
+	position: absolute;
+	top: 10px;
+	z-index: var(--chakra-zIndices-base);
+}
+
+.animatedBg img {
+	margin-right: 200px;
+	margin-top: 125px;
+	max-width: 700px;
+}
+
+.hero {
+	max-width: 715px;
+	padding-left: 70px;
+	position: relative;
+	z-index: var(--chakra-zIndices-one);
+}
+
+.heroImg {
+	margin-right: 30px;
+	margin-top: auto;
+	min-width: 1100px;
+	position: relative;
+	z-index: var(--chakra-zIndices-one);
+}
+
+.brand {
+	max-width: 305px;
+	position: relative;
+}
+
+.description {
+	font-size: 16px;
+	line-height: 28px;
+	max-width: 310px;
+}
+
+.actions {
+	max-width: 305px;
+}
+
+.fakeSigninForm {
+	max-width: 310px;
+}
+
+@media (max-width: 1645px) {
+	.heroImg {
+		justify-content: end;
+		min-width: 1000px;
+	}
+}
+
+@media (max-width: 1530px) {
+	.heroImg {
+		justify-content: end;
+		min-width: 960px;
+	}
+}
+
+@media (max-width: 767px) {
+	.heroImg {
+		margin: 0;
+		max-width: 100%;
+		min-width: 0;
+	}
+	.heroImg img {
+		max-width: 100%;
+	}
+	.hero {
+		align-items: center;
+		max-width: 100%;
+		padding: 0;
+	}
+	.description {
+		max-width: 305px;
+	}
+	.animatedBg {
+		display: none;
+	}
+	.brand {
+		max-width: 75%;
+	}
+}
+
+.containerMobile {
+	background: url('@assets/images/home_mobile_bg_bottom.png') no-repeat bottom
+			left,
+		url('@assets/images/home_mobile_bg_top.png') no-repeat top right black;
+	color: white;
+	min-height: 100vh;
+	padding: 0 30px;
+}
+
+.mobileHeader {
+	position: relative;
+	z-index: var(--chakra-zIndices-one);
+}
+
+.mobileBrand {
+	width: 75%;
+}
+
+.mobileJoinUs {
+	font-size: 12px;
+}

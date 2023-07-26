@@ -1,0 +1,32 @@
+.header {
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.title,
+.score {
+	height: 48px;
+}
+
+.teamScore {
+	color: white;
+	font-size: 32px;
+	font-weight: var(--chakra-fontWeights-bold);
+}
+
+.teamScore.winner {
+	color: var(--chakra-colors-green-400);
+}
+
+.teamScore.loser {
+	color: var(--chakra-colors-red-500);
+}
+
+.teamName {
+	font-size: 20px;
+	font-weight: var(--chakra-fontWeights-semiBold);
+	max-width: 350px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}

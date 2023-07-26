@@ -1,0 +1,14 @@
+.substitle {
+	color: var(--chakra-colors-cyan-400);
+	font-size: 14px;
+	font-weight: var(--chakra-fontWeights-regular);
+}
+
+.userIcon {
+	align-items: center;
+	border: 1px solid white;
+	border-radius: 4px;
+	justify-content: center;
+	min-height: 44px;
+	min-width: 44px;
+}

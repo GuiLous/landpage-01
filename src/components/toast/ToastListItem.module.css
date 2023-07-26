@@ -1,0 +1,115 @@
+.container {
+	background-color: var(--chakra-colors-gray-1100);
+	border-radius: 4px;
+	color: white;
+	opacity: 0.9;
+	overflow: hidden;
+	position: relative;
+	transition: opacity 100ms linear;
+}
+
+.container:hover {
+	opacity: 1;
+}
+
+.containerWrapper {
+	background: linear-gradient(
+		to right,
+		rgba(104, 71, 255, 0.1),
+		rgba(104, 71, 255, 0) 50%
+	);
+	border-radius: 4px;
+	padding: 14px;
+}
+
+.container.success .containerWrapper {
+	background: linear-gradient(
+		to right,
+		rgb(107, 228, 0, 0.1),
+		rgba(107, 228, 0, 0) 50%
+	);
+}
+
+.container.warning .containerWrapper {
+	background: linear-gradient(
+		to right,
+		rgb(255, 212, 38, 0.1),
+		rgba(255, 212, 38, 0) 50%
+	);
+}
+
+.container.error .containerWrapper {
+	background: linear-gradient(
+		to right,
+		rgb(246, 53, 53, 0.1),
+		rgba(246, 53, 53, 0) 50%
+	);
+}
+
+.iconWrapper {
+	border: 5px solid var(--chakra-colors-gray-900);
+	border-radius: 50%;
+	font-size: 20px;
+	max-height: 32px;
+	max-width: 32px;
+	min-height: 32px;
+	min-width: 32px;
+}
+
+.avatarWrapper {
+	border: none;
+	border-radius: 50%;
+	font-size: 20px;
+	max-height: 32px;
+	max-width: 32px;
+	min-height: 32px;
+	min-width: 32px;
+}
+
+.closeBtn {
+	cursor: pointer;
+	font-size: 10px;
+	min-height: 100%;
+	transition: opacity 100ms linear;
+}
+
+.countdownBar {
+	animation-name: progress;
+	animation-timing-function: linear;
+	background-color: var(--chakra-colors-purple-400);
+	max-height: 5px;
+	max-width: 0;
+	min-height: 5px;
+}
+
+.container.success .countdownBar {
+	background-color: var(--chakra-colors-green-400);
+}
+
+.container.warning .countdownBar {
+	background-color: var(--chakra-colors-yellow-400);
+}
+
+.container.error .countdownBar {
+	background-color: var(--chakra-colors-red-500);
+}
+
+@keyframes progress {
+	0% {
+		max-width: 100%;
+	}
+	100% {
+		max-width: 0;
+	}
+}
+
+@keyframes show {
+	0% {
+		left: -100px;
+		opacity: 0;
+	}
+	100% {
+		left: 0;
+		opacity: 1;
+	}
+}

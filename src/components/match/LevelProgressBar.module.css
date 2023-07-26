@@ -1,0 +1,10 @@
+.container {
+	left: -35px;
+	position: relative;
+	width: calc(100% + 70px);
+}
+
+.level {
+	position: relative;
+	z-index: var(--chakra-zIndices-docked);
+}

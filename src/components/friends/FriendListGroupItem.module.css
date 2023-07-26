@@ -1,0 +1,36 @@
+.container {
+	background-color: var(--chakra-colors-gray-1000);
+	color: white;
+	cursor: pointer;
+	padding: 12px 18px;
+	transition: all 100ms linear;
+}
+
+.container:hover {
+	background-color: rgba(152, 130, 255, 0.15);
+}
+
+.container.disabled {
+	cursor: default;
+}
+
+.container.disabled:hover {
+	background-color: var(--chakra-colors-gray-1000);
+}
+
+.groupAddBtn {
+	opacity: 0;
+	transition: all 100ms linear;
+}
+
+.container:hover .groupAddBtn {
+	opacity: 1;
+}
+
+.container.disabled .groupAddBtn {
+	opacity: 1;
+}
+
+.offline {
+	opacity: 0.5;
+}

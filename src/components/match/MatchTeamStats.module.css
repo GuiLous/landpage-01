@@ -1,0 +1,60 @@
+.tableContainer {
+	background-color: var(--chakra-colors-gray-500);
+	border: 1px solid var(--chakra-colors-gray-900);
+	border-radius: 14px;
+	display: flex;
+	flex: 1;
+	width: 100%;
+}
+
+.tableContainer table thead tr,
+.tableContainer table tbody tr {
+	border-bottom: 1px solid var(--chakra-colors-gray-500);
+}
+
+.tableContainer table tbody tr:last-child {
+	border-bottom: none;
+}
+
+.tableContainer table thead tr th {
+	border: none;
+	color: var(--chakra-colors-gray-300);
+	font-size: 14px;
+	font-weight: var(--chakra-fontWeights-regular);
+	padding: 18px 14px;
+	text-align: center;
+}
+
+.tableContainer .team {
+	color: white;
+	font-size: 16px;
+	font-weight: var(--chakra-fontWeights-semiBold);
+	max-width: 300px;
+	overflow: hidden;
+	text-align: left;
+	text-transform: uppercase;
+	width: 300px;
+}
+
+.tableContainer .winner {
+	color: var(--chakra-colors-green-400);
+}
+
+.tableContainer .loser {
+	color: var(--chakra-colors-red-500);
+}
+
+.tableContainer table tbody tr td {
+	border: none;
+	font-weight: var(--chakra-fontWeights-medium);
+	padding: 6px 14px;
+	text-align: center;
+}
+
+.tableContainer .user {
+	text-align: left;
+}
+
+.tableContainer table tbody tr.highlight {
+	background-color: var(--chakra-colors-gray-700);
+}

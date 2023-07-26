@@ -1,0 +1,10 @@
+.container {
+	height: 100vh;
+	padding: 40px 5%;
+}
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 30px 2%;
+	}
+}

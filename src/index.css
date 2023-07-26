@@ -1,13 +1,125 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+
+html,
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', sans-serif, 'System Default', serif;
+	margin: 0;
+	padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ul {
+	list-style: none;
+}
+
+button,
+input,
+select {
+	margin: 0;
+}
+
+html {
+	background: #111;
+	box-sizing: border-box;
+}
+
+body {
+	background: rgba(0, 0, 0, 0.9);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont,
+		'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans',
+		'Helvetica Neue', sans-serif, 'System Default', serif;
+}
+
+img,
+video {
+	height: auto;
+	max-width: 100%;
+}
+
+iframe {
+	border: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+/* global vars */
+
+:root {
+	--color-primary: #ff3300;
+	--color-primary-dark: #ff2308;
+	--color-primary-darker: #ff1410;
+	--color-primary-light: #ff4100;
+	--color-primary-lighter: #ff5000;
+	--color-primary-disabled: #ff8566;
+	--color-secondary: #0f2b46;
+	--color-secondary-dark: #062339;
+	--color-secondary-darker: #081929;
+	--color-secondary-light: #123555;
+	--color-secondary-lighter: #163d63;
+	--color-danger-background: rgba(255, 90, 71, 0.45);
+	--color-info-background: rgba(107, 174, 194, 0.45);
+	--color-success-background: rgba(129, 217, 153, 0.45);
+	--color-warning-background: rgba(237, 216, 150, 0.45);
+	--color-danger: rgb(183, 36, 36);
+	--color-warning: rgb(164, 134, 35);
+	--color-success: rgb(49, 129, 71);
+	--color-info: rgb(71, 122, 209);
+	--color-win: rgb(43, 218, 89);
+	--color-lose: rgb(227, 89, 74);
+	--box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+	--shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+		0 41.8px 33.4px rgba(0, 0, 0, 0.086), 0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.animatedPop {
+	transition: all 200ms ease-out;
+}
+
+.animatedPop:hover {
+	animation: pop 200ms ease-out 1;
+}
+
+@keyframes pop {
+	50% {
+		opacity: 0.5;
+		transform: scale(1.1);
+	}
 }

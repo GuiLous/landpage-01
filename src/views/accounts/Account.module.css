@@ -1,0 +1,13 @@
+.header {
+	background-color: var(--chakra-colors-purple-500);
+	padding: 125px 64px 32px;
+}
+
+.content {
+	padding: 0 64px;
+}
+
+.link:hover svg {
+	color: white;
+	fill: white;
+}

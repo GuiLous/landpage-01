@@ -1,0 +1,83 @@
+.container {
+	display: flex;
+	flex: 1;
+	width: 100%;
+}
+
+.row {
+	flex-direction: row;
+}
+
+.column {
+	flex-direction: column;
+}
+
+.reverseRow {
+	flex-direction: row-reverse;
+}
+
+.reverseColumn {
+	flex-direction: column-reverse;
+}
+
+.alignCenter {
+	align-items: center;
+}
+
+.alignStart {
+	align-items: flex-start;
+}
+
+.alignEnd {
+	align-items: flex-end;
+}
+
+.alignStretch {
+	align-items: stretch;
+}
+
+.justifyCenter {
+	justify-content: center;
+}
+
+.justifyStart {
+	justify-content: flex-start;
+}
+
+.justifyEnd {
+	justify-content: flex-end;
+}
+
+.justifyAround {
+	justify-content: space-around;
+}
+
+.justifyBetween {
+	justify-content: space-between;
+}
+
+.justifyEven {
+	justify-content: space-evenly;
+}
+
+.container.fitContent {
+	flex: 0;
+}
+
+@media (min-width: 1401px) {
+	.hidden-lg {
+		display: none;
+	}
+}
+
+@media (min-width: 601px) and (max-width: 1400px) {
+	.hidden-md {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) {
+	.hidden-sm {
+		display: none;
+	}
+}

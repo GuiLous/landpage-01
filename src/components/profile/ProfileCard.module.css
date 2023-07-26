@@ -1,0 +1,11 @@
+.container {
+	background-color: var(--chakra-colors-gray-1000);
+	border-radius: 8px;
+	color: white;
+	padding: 24px;
+}
+
+.title {
+	color: white;
+	text-transform: uppercase;
+}

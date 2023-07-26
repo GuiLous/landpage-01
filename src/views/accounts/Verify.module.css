@@ -1,0 +1,15 @@
+.container {
+	max-width: fit-content;
+	position: relative;
+}
+
+.pin {
+	margin-top: 40px;
+	max-width: 100%;
+}
+
+.formTitle {
+	font-size: 20px;
+	font-weight: var(--chakra-fontWeights-bold);
+	text-transform: uppercase;
+}

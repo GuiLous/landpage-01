@@ -1,0 +1,15 @@
+.container {
+	align-items: initial;
+}
+
+.bodyContainer {
+	align-items: center;
+	height: 190px;
+	justify-content: center;
+	width: 73px;
+}
+
+.centerStats {
+	justify-content: space-evenly;
+	padding-right: 26px;
+}
