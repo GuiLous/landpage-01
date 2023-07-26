@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera url default para acessar o `Websocket` sendo a nova url `ws://localhost:8000/ws/` [#573](https://github.com/3C-gg/reload-frontend/issues/573)
 - Altera `NotificationList` e `NotificationListItem` para ficar igual ao novo design [#572](https://github.com/3C-gg/reload-frontend/issues/572).
 - Altera `SupportModal` para preencher os dados automático quando clicado em reportar no `FriendLintMenu`.
 - Altera `Sidebar` para ficar igual ao novo design.
@@ -22,15 +23,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera `InviteListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Altera `FriendListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Altera `FriendListGroup` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
-- Altera `FriendList` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
-- Muda aba `No seu grupo` na `FriendList` para ficar sempre visível [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
-- Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+- Altera `FriendList` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Muda aba `No seu grupo` na `FriendList` para ficar sempre visível [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design. 
 - Muda `FriendList` para ficar igual ao novo design.
 
 ### Removed 
 
-- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561)..
+- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 
 ## [9219ca2 - 21/7/2023]
 
