@@ -30,7 +30,7 @@ export default function FriendListMenu({
   alreadyOnTeam,
   user_id,
   username,
-  steam_url
+  steam_url,
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
