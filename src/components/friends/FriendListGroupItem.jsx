@@ -22,6 +22,7 @@ export default function FriendListGroupItem({
   avatar,
   username,
   lobby_id,
+  steam_url,
 }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
@@ -42,7 +43,7 @@ export default function FriendListGroupItem({
   )
   const alreadyInvited =
     invites.filter((invite) => invite.to_player.user_id === user_id).length >
-      0 || alreadyInvitedByFriend
+    0 || alreadyInvitedByFriend
   const alreadyOnTeam = user.lobby_id === lobby_id
 
   const isAvailable =
@@ -124,6 +125,7 @@ export default function FriendListGroupItem({
           alreadyInvited={alreadyInvited}
           alreadyOnTeam={alreadyOnTeam}
           username={username}
+          steam_url={steam_url}
         />
       </Container>
     </Box>
