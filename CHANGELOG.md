@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera tamanho da fonte no componente `NotificationListItem` [#587](https://github.com/3C-gg/reload-frontend/issues/587).
 - Altera tamanhos de fontes e botões nos componentes `AccountCard`, `DeleteAccountCard` e `InactiveAccountCard` para ficar igual ao design [#583](https://github.com/3C-gg/reload-frontend/issues/583).
 - Passa prop `steam_url` para o componente `FriendListMenu`.
 - Altera url default para acessar o `Websocket` sendo a nova url `ws://localhost:8000/ws/` [#573](https://github.com/3C-gg/reload-frontend/issues/573)

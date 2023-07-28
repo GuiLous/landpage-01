@@ -21,11 +21,11 @@ export default function NotificationListItem({
       <Container gap={16} align="center">
         <Container column className={style.content} gap={12}>
           <Container>
-            <Text fontSize={{ base: 12, md: 10, '2xl': 12 }}>{content}</Text>
+            <Text fontSize={{ base: 14, md: 12, '2xl': 14 }}>{content}</Text>
           </Container>
 
           <Container>
-            <Text fontSize={10} color="gray.200" lineHeight={1}>
+            <Text fontSize={12} color="gray.200" lineHeight={1}>
               {DateTime.fromISO(create_date).toRelative()}
             </Text>
           </Container>
