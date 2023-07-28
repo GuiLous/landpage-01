@@ -22,6 +22,7 @@ export default function FriendListGroupItem({
   avatar,
   username,
   lobby_id,
+  steam_url,
 }) {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
@@ -124,6 +125,7 @@ export default function FriendListGroupItem({
           alreadyInvited={alreadyInvited}
           alreadyOnTeam={alreadyOnTeam}
           username={username}
+          steam_url={steam_url}
         />
       </Container>
     </Box>

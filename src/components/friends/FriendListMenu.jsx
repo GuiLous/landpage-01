@@ -30,6 +30,7 @@ export default function FriendListMenu({
   alreadyOnTeam,
   user_id,
   username,
+  steam_url,
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
@@ -90,11 +91,11 @@ export default function FriendListMenu({
 
       case 'profile':
         dispatch(toggleFriendList(false))
-        navigate(`/perfil/${user.id}`)
+        navigate(`/perfil/${user_id}`)
         break
 
       case 'steam':
-        window.open(user.account.steam_url, '_blank')
+        window.open(steam_url, '_blank')
         break
 
       case 'report':

@@ -107,8 +107,12 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
               >
                 Selecione um email
               </option>
-              {emails.map((item) => (
-                <option style={{ backgroundColor: '#1E1E1E' }} value={item}>
+              {emails.map((item, index) => (
+                <option
+                  key={index}
+                  style={{ backgroundColor: '#1E1E1E' }}
+                  value={item}
+                >
                   {item}
                 </option>
               ))}

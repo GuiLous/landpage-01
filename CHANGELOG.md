@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Passa prop `steam_url` para o componente `FriendListMenu`.
 - Altera url default para acessar o `Websocket` sendo a nova url `ws://localhost:8000/ws/` [#573](https://github.com/3C-gg/reload-frontend/issues/573)
 - Altera `NotificationList` e `NotificationListItem` para ficar igual ao novo design [#572](https://github.com/3C-gg/reload-frontend/issues/572).
 - Altera `SupportModal` para preencher os dados automático quando clicado em reportar no `FriendLintMenu`.
@@ -28,6 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
 - Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design. 
 - Muda `FriendList` para ficar igual ao novo design.
+
+### Fixed
+
+- Ajusta menu de `Ver perfil` e `Ver perfil na steam` para usar a prop `user_id` e `steam_url` do amigo [#584](https://github.com/3C-gg/reload-frontend/issues/584).
+- Adiciona key no map do component `FakeSigninForm`.
 
 ### Removed 
 
