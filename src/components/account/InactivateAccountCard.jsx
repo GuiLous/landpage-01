@@ -57,7 +57,8 @@ export default function InactivateAccountCard() {
           fontWeight="semibold"
           fontSize={14}
           borderRadius="4px"
-          minHeight="37px"
+          minHeight="38px"
+          height="38px"
           onClick={() => setIsOpenModal(true)}
         >
           Prosseguir com a inativação
@@ -72,11 +73,11 @@ export default function InactivateAccountCard() {
           maxWidthModal="784px"
         >
           <Container justify="center" align="center" column gap={40}>
-            <Text color="white" fontSize={14} textAlign="center" maxW="624px">
+            <Text color="white" fontSize={16} textAlign="center" maxW="624px">
               Atenção! Ao inativar sua conta você pode perder quaisquer
-              benefícios adquiridos <br /> e seu perfil não aparecerá nos
-              resultados e buscas. Pare reativar a conta, será <br /> necessário
-              entrar em contato com suporte pelo e-mail <br />{' '}
+              benefícios adquiridos e seu perfil não aparecerá nos resultados e
+              buscas. Pare reativar a conta, será necessário entrar em contato
+              com suporte pelo e-mail <br />{' '}
               <Text color="cyan.400" as="span">
                 suporte@reloadclub.gg
               </Text>
@@ -87,7 +88,8 @@ export default function InactivateAccountCard() {
               fontWeight="semibold"
               fontSize={14}
               borderRadius="4px"
-              minHeight="37px"
+              minHeight="38px"
+              height="38px"
               loadingText="Inativando..."
               isLoading={fetching}
               onClick={handleAccountInactivation}
