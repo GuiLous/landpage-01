@@ -33,31 +33,9 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
     if (totalShots === 0) return 0
 
     // calculate head shots percent
-    return Math.round((player.stats.head_shots * 100) / totalShots)
-  }
-
-  const calculateKdr = (player) => {
-    if (player.stats.deaths === 0) return 0
-
-    // calculate Kill-Death Ratio number
-    return Number(player.stats.kills / player.stats.deaths).toFixed(2)
-  }
-
-  const calculateDh = (player) => {
-    const totalShots =
-      player.stats.chest_shots +
-      player.stats.other_shots +
-      player.stats.head_shots
-
-    if (totalShots === 0) return 0
-
-    // calculate Damage per Hit Ratio number
-    return Number(
-      player.stats.damage /
-        (player.stats.chest_shots +
-          player.stats.other_shots +
-          player.stats.head_shots)
-    ).toFixed(2)
+    return Math.round(
+      (player.stats.head_shots / player.stats.shots_fired) * 100
+    )
   }
 
   const handleRedirectToProfile = (id) => {
@@ -126,11 +104,8 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
             >
               <Th>KDR</Th>
             </Tooltip>
-            <Tooltip
-              label="Dano por acerto"
-              aria-label="Dano por acerto tooltip"
-            >
-              <Th>D/A</Th>
+            <Tooltip label="Dano por round" aria-label="Dano por round tooltip">
+              <Th>ADR</Th>
             </Tooltip>
             <Tooltip
               label="Total de 2 abates"
@@ -195,8 +170,8 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
               <Td>{player.stats.plants}</Td>
               <Td>{player.stats.defuses}</Td>
               <Td>{player.stats.firstkills}</Td>
-              <Td data-testid="kdr">{calculateKdr(player)}</Td>
-              <Td data-testid="dh">{calculateDh(player)}</Td>
+              <Td>{player.stats.kdr}</Td>
+              <Td>{player.stats.adr}</Td>
               <Td>{player.stats.double_kills}</Td>
               <Td>{player.stats.triple_kills}</Td>
               <Td>{player.stats.quadra_kills}</Td>
