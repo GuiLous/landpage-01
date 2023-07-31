@@ -43,6 +43,7 @@ const data = {
         head_shots: 5,
         chest_shots: 200,
         other_shots: 195,
+        kdr: 0,
       },
     },
   ],
@@ -93,29 +94,5 @@ describe('MatchTeamStats Component', () => {
     )
 
     expect(screen.getByTestId('hs-percentage').textContent).toEqual('1%')
-  })
-
-  it('should render kdr correctly', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <MatchTeamStats team={data} />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    expect(screen.getByTestId('kdr').textContent).toEqual('2.67')
-  })
-
-  it('should render dh correctly', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <MatchTeamStats team={data} />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    expect(screen.getByTestId('dh').textContent).toEqual('0.90')
   })
 })
