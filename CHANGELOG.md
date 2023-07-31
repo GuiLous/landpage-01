@@ -38,6 +38,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Redireciona para `/jogar` na tela de `conectar` caso não tenha `match` [602](https://github.com/3C-gg/reload-frontend/issues/602).
 - Verifica o status de `match` se é diferente de `canceled` no botão `jogar` da `sidebar` e do `lobby` para saber se está em partida [#591](https://github.com/3C-gg/reload-frontend/issues/591).
 - Ajusta menu de `Ver perfil` e `Ver perfil na steam` para usar a prop `user_id` e `steam_url` do amigo [#584](https://github.com/3C-gg/reload-frontend/issues/584).
 - Adiciona key no map do component `FakeSigninForm`.
