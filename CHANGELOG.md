@@ -36,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Ajusta props do componente `MatchHistoryPagination`.
 - Ajusta menu de `Ver perfil` e `Ver perfil na steam` para usar a prop `user_id` e `steam_url` do amigo [#584](https://github.com/3C-gg/reload-frontend/issues/584).
 - Adiciona key no map do component `FakeSigninForm`.
 
