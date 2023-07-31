@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera variante `pagination` do botão para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589). 
+- Altera componentes `MatchHistoryPagination` e `MatchHistoryPaginationItem` para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589). 
 - Altera tamanho da fonte no componente `NotificationListItem` [#587](https://github.com/3C-gg/reload-frontend/issues/587).
 - Altera tamanhos de fontes e botões nos componentes `AccountCard`, `DeleteAccountCard` e `InactiveAccountCard` para ficar igual ao design [#583](https://github.com/3C-gg/reload-frontend/issues/583).
 - Passa prop `steam_url` para o componente `FriendListMenu`.
