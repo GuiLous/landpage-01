@@ -5,14 +5,16 @@ import { HomeIcon, Timer } from '@components'
 import { formatSecondsToMinutes } from '@utils'
 
 export default function SidebarLobbyButton({ lobby, match }) {
-  const isOnLobby = !lobby.queue && !match && !lobby.restriction_countdown
-
   const isInQueue = lobby.queue && !match && !lobby.restriction_countdown
 
   const isRestricted = lobby.restriction_countdown && !match
 
+  const isInMatch = match && match.status !== 'canceled'
+
+  const isOnLobby = !lobby.queue && !isInMatch && !lobby.restriction_countdown
+
   const getBtnVariant = () => {
-    if (match) return 'queue'
+    if (isInMatch) return 'queue'
 
     if (isOnLobby) return ''
 
@@ -22,7 +24,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
   }
 
   const getButtonLabel = () => {
-    if (match) return 'Em partida'
+    if (isInMatch) return 'Em partida'
 
     if (isOnLobby) return 'Lobby'
 
@@ -34,7 +36,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
   return (
     <Button
       as={ReactRouterLink}
-      to={match ? `partidas/${match.id}` : '/jogar'}
+      to={isInMatch ? `partidas/${match.id}` : '/jogar'}
       leftIcon={<HomeIcon />}
       justifyContent="flex-start"
       px="14px"

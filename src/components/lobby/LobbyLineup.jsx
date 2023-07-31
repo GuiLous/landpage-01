@@ -32,6 +32,8 @@ export default function LobbyLineup({
 
   const isOwner = lobby.owner_id === userPlayer.user_id
 
+  const isInMatch = match && match.status !== 'canceled'
+
   const handleQueue = async (action) => {
     if (lobby.restriction_countdown || lobby.restriction_countdown === 0) return
 
@@ -150,7 +152,7 @@ export default function LobbyLineup({
                 queueTime={lobby.queue && lobby.queue_time}
                 restrictionCountdown={lobby.restriction_countdown}
                 restricted={lobby.restriction_countdown}
-                disabled={(!isOwner && !lobby.queue) || preMatch || match}
+                disabled={(!isOwner && !lobby.queue) || preMatch || isInMatch}
                 onClick={
                   lobby.queue_time !== null
                     ? handleCancelQueue
