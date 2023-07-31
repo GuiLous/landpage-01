@@ -4,14 +4,12 @@ export default {
   title: 'Profile/MatchHistoryPagination',
   component: MatchHistoryPagination,
   argTypes: {
-    totalCountOfRegisters: { control: 'number' },
-    registerPerPage: { control: 'number' },
+    totalPages: { control: 'number' },
     currentPage: { control: 'number' },
     onPageChange: { table: { disable: true } },
   },
   args: {
-    totalCountOfRegisters: 100,
-    registerPerPage: 10,
+    totalPages: 1,
     currentPage: 1,
     onPageChange: () => {},
   },
