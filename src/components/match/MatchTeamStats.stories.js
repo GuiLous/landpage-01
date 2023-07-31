@@ -49,6 +49,8 @@ export default {
             head_shots: 0,
             chest_shots: 0,
             other_shots: 0,
+            kdr: 0,
+            adr: 0,
           },
         },
         {
@@ -82,6 +84,8 @@ export default {
             head_shots: 0,
             chest_shots: 0,
             other_shots: 0,
+            kdr: 0,
+            adr: 0,
           },
         },
         {
@@ -115,6 +119,8 @@ export default {
             head_shots: 0,
             chest_shots: 0,
             other_shots: 0,
+            kdr: 0,
+            adr: 0,
           },
         },
         {
@@ -148,6 +154,8 @@ export default {
             head_shots: 0,
             chest_shots: 0,
             other_shots: 0,
+            kdr: 0,
+            adr: 0,
           },
         },
         {
@@ -181,6 +189,8 @@ export default {
             head_shots: 0,
             chest_shots: 0,
             other_shots: 0,
+            kdr: 0,
+            adr: 0,
           },
         },
       ],
