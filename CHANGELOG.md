@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Remove `decimais` de `HS%` nos componentes `MatchTeamStats` e `LevelStatsCard` [#592](https://github.com/3C-gg/reload-frontend/issues/592).
 - Altera variante `pagination` do botão para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589). 
 - Altera componentes `MatchHistoryPagination` e `MatchHistoryPaginationItem` para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589). 
 - Altera tamanho da fonte no componente `NotificationListItem` [#587](https://github.com/3C-gg/reload-frontend/issues/587).

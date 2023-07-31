@@ -35,7 +35,7 @@ export default function LevelStatsCard({
       return '0%'
     }
 
-    return Math.ceil((stats.head_shots / stats.shots_fired) * 100) + '%'
+    return Math.round((stats.head_shots / stats.shots_fired) * 100) + '%'
   }
 
   return (

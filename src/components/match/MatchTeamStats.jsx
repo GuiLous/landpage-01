@@ -33,7 +33,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
     if (totalShots === 0) return 0
 
     // calculate head shots percent
-    return Number((player.stats.head_shots * 100) / totalShots).toFixed(2)
+    return Math.round((player.stats.head_shots * 100) / totalShots)
   }
 
   const calculateKdr = (player) => {
