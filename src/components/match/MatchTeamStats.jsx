@@ -25,19 +25,19 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
   const players = team.players
 
   const calculateHsPercent = (player) => {
-    const totalShots =
-      player.stats.chest_shots +
-      player.stats.other_shots +
-      player.stats.head_shots
-
-    if (totalShots === 0) return 0
+    if (
+      !player.stats.head_shots ||
+      !player.stats.shots_fired ||
+      player.stats.shots_fired === 0
+    ) {
+      return 0
+    }
 
     // calculate head shots percent
     return Math.round(
       (player.stats.head_shots / player.stats.shots_fired) * 100
     )
   }
-
   const handleRedirectToProfile = (id) => {
     navigate(`/perfil/${id}`)
   }
