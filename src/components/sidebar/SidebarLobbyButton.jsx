@@ -9,7 +9,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
 
   const isRestricted = lobby.restriction_countdown && !match
 
-  const isInMatch = match && match.status !== 'canceled'
+  const isInMatch = match && match.status !== 'cancelled'
 
   const isOnLobby = !lobby.queue && !isInMatch && !lobby.restriction_countdown
 
