@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link as RouterLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Container, Input } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
@@ -110,16 +110,20 @@ export default function SignupView() {
 
           <FormHelperText color="gray.300">
             Ao se cadastrar, você concorda com os{' '}
-            <Link as={RouterLink} to="/termos-de-uso" variant={'inline'}>
-              Termos de Uso
-            </Link>{' '}
-            e a{' '}
             <Link
-              as={RouterLink}
-              to="/política-de-privacidade"
+              href="https://reloadclub.freshdesk.com/support/solutions/articles/150000108190-termos-de-uso"
+              isExternal
               variant={'inline'}
             >
-              Política de Privacidade
+              Termos de Uso
+            </Link>{' '}
+            e as{' '}
+            <Link
+              href="https://reloadclub.freshdesk.com/support/solutions/articles/150000108164-pol%C3%ADtica-de-privacidade"
+              isExternal
+              variant={'inline'}
+            >
+              Políticas de Privacidade
             </Link>
           </FormHelperText>
         </Container>
