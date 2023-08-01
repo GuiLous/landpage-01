@@ -87,46 +87,50 @@ export default function FriendListGroupItem({
           (!isAvailable || alreadyInvited) && style.disabled,
           status === 'offline' && style.offline,
         ].join(' ')}
-        gap={14}
+        gap={16}
         align="center"
         testID="invite-button"
       >
-        <Container fitContent className={style.avatar}>
-          <Avatar
-            variant={status === 'teaming' ? 'queued' : status}
-            src={avatar}
-            size={{ base: 'md', md: 'smd', '2xl': 'md' }}
-          >
-            <AvatarBadge borderColor="gray.1000" />
-          </Avatar>
-        </Container>
+        <Container className={style.leftBorder} fitContent />
 
-        <Container column gap={4} className={style.userInfos}>
-          <Text
-            fontSize={{ base: 14, md: 12, '2xl': 14 }}
-            fontWeight="medium"
-            color="white"
-          >
-            {username}
-          </Text>
-          <Text
-            fontSize={{ base: 12, md: 10, '2xl': 12 }}
-            color={colorsStatus[status]}
-          >
-            {alreadyOnTeam ? 'Em grupo' : humanStatus}
-          </Text>
-        </Container>
+        <Container align="center" gap={14} className={style.friendWrapper}>
+          <Container fitContent className={style.avatar}>
+            <Avatar
+              variant={status === 'teaming' ? 'queued' : status}
+              src={avatar}
+              size={{ base: 'md', md: 'smd', '2xl': 'md' }}
+            >
+              <AvatarBadge borderColor="gray.1000" />
+            </Avatar>
+          </Container>
 
-        <FriendListMenu
-          open={openMenu}
-          user={user}
-          user_id={user_id}
-          isAvailable={isAvailable}
-          alreadyInvited={alreadyInvited}
-          alreadyOnTeam={alreadyOnTeam}
-          username={username}
-          steam_url={steam_url}
-        />
+          <Container column gap={2} className={style.userInfos}>
+            <Text
+              fontSize={{ base: 14, md: 12, '2xl': 14 }}
+              fontWeight="medium"
+              color="white"
+            >
+              {username}
+            </Text>
+            <Text
+              fontSize={{ base: 12, md: 10, '2xl': 12 }}
+              color={colorsStatus[status]}
+            >
+              {alreadyOnTeam ? 'Em grupo' : humanStatus}
+            </Text>
+          </Container>
+
+          <FriendListMenu
+            open={openMenu}
+            user={user}
+            user_id={user_id}
+            isAvailable={isAvailable}
+            alreadyInvited={alreadyInvited}
+            alreadyOnTeam={alreadyOnTeam}
+            username={username}
+            steam_url={steam_url}
+          />
+        </Container>
       </Container>
     </Box>
   )

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import { FriendListGroupItem } from '@components'
 import InviteReducer, { addInvite, deleteInvite } from '@slices/InviteSlice'
@@ -68,9 +69,11 @@ export const Default = {
     else store.dispatch(deleteInvite(invite))
 
     return (
-      <Provider store={store}>
-        <FriendListGroupItem {...props} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...props} />
+        </Provider>
+      </BrowserRouter>
     )
   },
 }
