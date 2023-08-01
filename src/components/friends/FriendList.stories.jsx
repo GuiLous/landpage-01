@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import { Container, FriendList } from '@components'
 import FriendReducer from '@slices/FriendSlice'
@@ -187,10 +188,12 @@ const store = configureStore({
 
 export const Default = {
   render: (props) => (
-    <Provider store={store}>
-      <Container style={{ height: '100vh' }} column>
-        <FriendList {...props} />
-      </Container>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <Container style={{ height: '100vh' }} column>
+          <FriendList {...props} />
+        </Container>
+      </Provider>
+    </BrowserRouter>
   ),
 }

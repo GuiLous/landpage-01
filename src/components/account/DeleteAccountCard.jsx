@@ -57,7 +57,8 @@ export default function DeleteAccountCard() {
           fontWeight="semibold"
           fontSize={14}
           borderRadius="4px"
-          minHeight="37px"
+          minHeight="38px"
+          height="38px"
           onClick={() => setIsOpenModal(true)}
         >
           Prosseguir com a exclusão
@@ -72,7 +73,7 @@ export default function DeleteAccountCard() {
           maxWidthModal="784px"
         >
           <Container justify="center" align="center" column gap={40}>
-            <Text color="white" fontSize={14} textAlign="center" maxW="624px">
+            <Text color="white" fontSize={16} textAlign="center" maxW="624px">
               Atenção! Ao confirmar, você perderá todo histórico de partidas,
               nível, itens adquiridos na loja ou por outros meios. A exclusão
               apaga permanentemente todas as informações associadas à sua conta.
@@ -85,7 +86,8 @@ export default function DeleteAccountCard() {
               fontWeight="semibold"
               fontSize={14}
               borderRadius="4px"
-              minHeight="37px"
+              minHeight="38px"
+              height="38px"
               loadingText="Excluindo..."
               isLoading={fetching}
               onClick={handleDeleteAccount}

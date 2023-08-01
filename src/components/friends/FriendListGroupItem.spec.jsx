@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { render, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
@@ -9,6 +8,7 @@ import { FriendListGroupItem } from '@components'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
+import { BrowserRouter } from 'react-router-dom'
 
 const server = setupServer(
   rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
@@ -60,12 +60,14 @@ describe('FriendListGroupItem Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...friend} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByText('friendUsername')).toBeInTheDocument()
-    expect(screen.getByText('Disponível')).toBeInTheDocument()
+    expect(screen.getByText('Online')).toBeInTheDocument()
   })
 
   it('should not render action if friend is offline', () => {
@@ -79,38 +81,12 @@ describe('FriendListGroupItem Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...friend} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.queryByTestId('icon-wrapper')).not.toBeInTheDocument()
-  })
-
-  it('should render the correspondent icon for invite or invited', async () => {
-    const user = userEvent.setup()
-
-    const friend = {
-      user_id: 2,
-      lobby_id: 2,
-      status: 'online',
-      avatar:
-        'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-      username: 'friendUsername',
-    }
-
-    render(
-      <Provider store={store}>
-        <FriendListGroupItem {...friend} />
-      </Provider>
-    )
-    const inviteButton = await screen.findByTestId('invite-button')
-    expect(inviteButton).toBeInTheDocument()
-    expect(screen.queryByTestId('icon-invited')).not.toBeInTheDocument()
-    expect(await screen.findByTestId('icon-available')).toBeInTheDocument()
-
-    await waitFor(() => user.click(inviteButton))
-
-    expect(await screen.findByTestId('icon-invited')).toBeInTheDocument()
-    expect(screen.queryByTestId('icon-available')).not.toBeInTheDocument()
   })
 })

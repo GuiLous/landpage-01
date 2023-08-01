@@ -38,7 +38,7 @@ export default function MatchView() {
     loading: 'Configurando',
     running: 'Em andamento',
     finished: 'Finalizada',
-    canceled: 'Cancelada',
+    cancelled: 'Cancelada',
   }
 
   const playerOnMatch = loadedMatch?.teams
@@ -78,7 +78,7 @@ export default function MatchView() {
   }, [matchId])
 
   useEffect(() => {
-    if (playerOnMatch && match && match.status === 'canceled') {
+    if (playerOnMatch && match && match.status === 'cancelled') {
       navigate('/jogar')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

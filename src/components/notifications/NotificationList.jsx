@@ -84,11 +84,14 @@ export default function NotificationList({ isOpen, onClose }) {
           fontSize={12}
           width="fit-content"
           height="fit-content"
-          top={5}
-          right={5}
+          top={4}
+          right={4}
+          _hover={{
+            color: 'gray.300',
+          }}
         />
 
-        <DrawerHeader>NOTIFICAÇÕES</DrawerHeader>
+        <DrawerHeader textTransform="capitalize">Notificações</DrawerHeader>
 
         <DrawerBody
           p={0}
@@ -119,8 +122,8 @@ export default function NotificationList({ isOpen, onClose }) {
         <DrawerFooter py={0} px={6}>
           <Button
             w="100%"
-            minH="37px"
-            h="37px"
+            minH="42px"
+            h="42px"
             fontSize={14}
             fontWeight="semiBold"
             isDisabled={

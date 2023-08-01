@@ -66,7 +66,12 @@ export default function Connect() {
   })
 
   useEffect(() => {
-    if (match && match.status === 'canceled') {
+    if (!match) {
+      StorageService.remove('matchConnectTimer')
+      navigate('/jogar')
+    }
+
+    if (match && match.status === 'cancelled') {
       StorageService.remove('matchConnectTimer')
       navigate('/jogar')
     }
@@ -80,7 +85,12 @@ export default function Connect() {
     if (match && match.status !== 'loading') {
       setIsLoading(false)
     }
-  }, [match])
+
+    if (match && match.status !== 'loading' && match.status !== 'warmup') {
+      StorageService.remove('matchConnectTimer')
+      navigate(`/partidas/${match.id}`)
+    }
+  }, [match, navigate])
 
   return isLoading ? (
     <LoadingBackdrop>

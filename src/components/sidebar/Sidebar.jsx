@@ -71,7 +71,10 @@ export default function Sidebar() {
     if (friendListOpen) {
       dispatch(toggleFriendList(false))
       setFriendListOpen(false)
-    } else setFriendListOpen(true)
+    } else {
+      dispatch(toggleFriendList(true))
+      setFriendListOpen(true)
+    }
   }
 
   const onClickFunction = (item) => {

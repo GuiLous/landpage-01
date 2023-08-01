@@ -6,6 +6,7 @@ import { FriendListGroup } from '@components'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
+import { BrowserRouter } from 'react-router-dom'
 
 describe('FriendListGroup Component', () => {
   const user = {
@@ -35,7 +36,11 @@ describe('FriendListGroup Component', () => {
       items: [],
     }
 
-    render(<FriendListGroup {...args} />)
+    render(
+      <BrowserRouter>
+        <FriendListGroup {...args} />
+      </BrowserRouter>
+    )
     expect(screen.getByText('Disponível (0)')).toBeInTheDocument()
 
     args.title = 'Offline'
@@ -49,9 +54,11 @@ describe('FriendListGroup Component', () => {
     })
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByText('Offline (01)')).toBeInTheDocument()
   })
@@ -73,9 +80,11 @@ describe('FriendListGroup Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.queryByTestId('arrow-collapse')).not.toBeInTheDocument()
   })
@@ -87,9 +96,11 @@ describe('FriendListGroup Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByTestId('container')).not.toHaveClass('open')
   })
@@ -111,9 +122,11 @@ describe('FriendListGroup Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByTestId('container')).toHaveClass('open')
   })
@@ -125,9 +138,11 @@ describe('FriendListGroup Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByTestId('container')).not.toHaveClass('open')
     expect(screen.getByTestId('header')).toHaveClass('disabled')
@@ -150,9 +165,11 @@ describe('FriendListGroup Component', () => {
     }
 
     render(
-      <Provider store={store}>
-        <FriendListGroup {...args} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroup {...args} />
+        </Provider>
+      </BrowserRouter>
     )
     expect(screen.getByTestId('header')).toHaveClass('hideHeader')
   })

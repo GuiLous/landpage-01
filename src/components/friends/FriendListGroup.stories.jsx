@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import { Container, FriendListGroup } from '@components'
 import InviteReducer from '@slices/InviteSlice'
@@ -81,11 +82,13 @@ export const Default = {
       })
     )
     return (
-      <Provider store={store}>
-        <Container style={{ height: '90vh' }}>
-          <FriendListGroup {...props} items={genItems} />
-        </Container>
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <Container style={{ height: '90vh' }}>
+            <FriendListGroup {...props} items={genItems} />
+          </Container>
+        </Provider>
+      </BrowserRouter>
     )
   },
 }

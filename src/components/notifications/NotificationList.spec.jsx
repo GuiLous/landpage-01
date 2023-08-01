@@ -22,7 +22,7 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(screen.getByText('NOTIFICAÇÕES')).toBeInTheDocument()
+    expect(screen.getByText('Notificações')).toBeInTheDocument()
     expect(screen.getByText('LER TUDO')).toBeInTheDocument()
   })
 
@@ -33,7 +33,7 @@ describe('NotificationList Component', () => {
       </Provider>
     )
 
-    expect(screen.queryByText('NOTIFICAÇÕES')).not.toBeInTheDocument()
+    expect(screen.queryByText('Notificações')).not.toBeInTheDocument()
     expect(screen.queryByText('LER TUDO')).not.toBeInTheDocument()
   })
 
