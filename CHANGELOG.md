@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera `LevelStatsCard` para remover cálculos desnecessários [#593](https://github.com/3C-gg/reload-frontend/issues/593).
+- Altera `MatchTeamStats` para remover cálculos desnecessários e adiciona campo `ADR` no lugar de `D/H` [#593](https://github.com/3C-gg/reload-frontend/issues/593).
 - Remove `decimais` de `HS%` nos componentes `MatchTeamStats` e `LevelStatsCard` [#592](https://github.com/3C-gg/reload-frontend/issues/592).
 - Altera todas as ocorrências do status `canceled` para `cancelled`.
 - Altera variante `pagination` do botão para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589). 
