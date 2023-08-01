@@ -66,7 +66,7 @@ export default function Connect() {
   })
 
   useEffect(() => {
-    if (match && match.status === 'canceled') {
+    if (match && match.status === 'cancelled') {
       StorageService.remove('matchConnectTimer')
       navigate('/jogar')
     }
