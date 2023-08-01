@@ -117,13 +117,13 @@ export default function SignupView() {
             >
               Termos de Uso
             </Link>{' '}
-            e as{' '}
+            e a{' '}
             <Link
               href="https://reloadclub.freshdesk.com/support/solutions/articles/150000108164-pol%C3%ADtica-de-privacidade"
               isExternal
               variant={'inline'}
             >
-              Políticas de Privacidade
+              Política de Privacidade
             </Link>
           </FormHelperText>
         </Container>
