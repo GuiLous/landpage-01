@@ -9,8 +9,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={1}
       />
     )
@@ -21,12 +20,11 @@ describe('MatchHistoryPagination Component', () => {
     expect(screen.getByText('10')).toBeInTheDocument()
   })
 
-  it('should render 1 button if totalCountOfRegisters is 0', () => {
+  it('should render 1 button if totalPages is 1', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={0}
-        registerPerPage={10}
+        totalPages={0}
         currentPage={1}
       />
     )
@@ -35,12 +33,11 @@ describe('MatchHistoryPagination Component', () => {
     expect(buttons.length).toBe(1)
   })
 
-  it('should render 4 buttons if totalCountOfRegisters is 100', () => {
+  it('should render 4 buttons if totalPages is 10', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={1}
       />
     )
@@ -53,8 +50,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={4}
       />
     )
@@ -67,8 +63,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={10}
       />
     )
@@ -81,8 +76,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={1}
       />
     )
@@ -95,8 +89,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={10}
       />
     )
@@ -109,8 +102,7 @@ describe('MatchHistoryPagination Component', () => {
     render(
       <MatchHistoryPagination
         onPageChange={handleClick}
-        totalCountOfRegisters={100}
-        registerPerPage={10}
+        totalPages={10}
         currentPage={5}
       />
     )

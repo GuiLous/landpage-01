@@ -24,20 +24,6 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
 
   const players = team.players
 
-  const calculateHsPercent = (player) => {
-    if (
-      !player.stats.head_shots ||
-      !player.stats.shots_fired ||
-      player.stats.shots_fired === 0
-    ) {
-      return 0
-    }
-
-    // calculate head shots percent
-    return Math.round(
-      (player.stats.head_shots / player.stats.shots_fired) * 100
-    )
-  }
   const handleRedirectToProfile = (id) => {
     navigate(`/perfil/${id}`)
   }
@@ -166,12 +152,12 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
               <Td>{player.stats.deaths}</Td>
               <Td>{player.stats.assists}</Td>
               <Td>{player.stats.head_shots}</Td>
-              <Td data-testid="hs-percentage">{calculateHsPercent(player)}%</Td>
+              <Td>{Math.ceil(player.stats.head_accuracy || 0)}%</Td>
               <Td>{player.stats.plants}</Td>
               <Td>{player.stats.defuses}</Td>
               <Td>{player.stats.firstkills}</Td>
-              <Td>{player.stats.kdr}</Td>
-              <Td>{player.stats.adr}</Td>
+              <Td>{player.stats.kdr || 0}</Td>
+              <Td>{player.stats.adr || 0}</Td>
               <Td>{player.stats.double_kills}</Td>
               <Td>{player.stats.triple_kills}</Td>
               <Td>{player.stats.quadra_kills}</Td>

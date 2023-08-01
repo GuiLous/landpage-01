@@ -17,27 +17,6 @@ export default function LevelStatsCard({
 }) {
   const latestResults = useLatestMatchesResults(latest_matches_results)
 
-  const calculateKDR = () => {
-    if (!stats || !stats.deaths || stats.deaths === 0) {
-      return '0.00'
-    }
-
-    return (stats.kills / stats.deaths).toFixed(2)
-  }
-
-  function calculateHeadShots() {
-    if (
-      !stats ||
-      !stats.head_shots ||
-      !stats.shots_fired ||
-      stats.shots_fired === 0
-    ) {
-      return '0%'
-    }
-
-    return Math.round((stats.head_shots / stats.shots_fired) * 100) + '%'
-  }
-
   return (
     <ProfileCard>
       <Container column>
@@ -63,7 +42,7 @@ export default function LevelStatsCard({
               >
                 <Text className={style.statsListItemTitle}>KDR</Text>
               </Tooltip>
-              <Text className={style.statsListItemValue}>{calculateKDR()}</Text>
+              <Text className={style.statsListItemValue}>{stats.kdr || 0}</Text>
             </Container>
 
             <Container column className={style.statsListItem}>
@@ -117,7 +96,7 @@ export default function LevelStatsCard({
                   <Text className={style.statsListItemTitle}>HeadShots %</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {calculateHeadShots()}
+                  {stats.head_accuracy || 0}%
                 </Text>
               </Container>
             </Container>

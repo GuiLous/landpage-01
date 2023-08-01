@@ -44,6 +44,8 @@ const data = {
         chest_shots: 200,
         other_shots: 195,
         kdr: 0,
+        adr: 0,
+        head_accuracy: 10,
       },
     },
   ],
@@ -70,6 +72,7 @@ describe('MatchTeamStats Component', () => {
     expect(screen.getByText('K')).toBeInTheDocument()
     expect(screen.getByText('D')).toBeInTheDocument()
     expect(screen.getByText('A')).toBeInTheDocument()
+    expect(screen.getByText('10%')).toBeInTheDocument()
   })
 
   it('should render team data', () => {
@@ -82,17 +85,5 @@ describe('MatchTeamStats Component', () => {
     )
     expect(screen.getByText('Time OsKaravelhos')).toBeInTheDocument()
     expect(screen.getByText('GuiLous')).toBeInTheDocument()
-  })
-
-  it('should render hs% correctly', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <MatchTeamStats team={data} />
-        </Provider>
-      </BrowserRouter>
-    )
-
-    expect(screen.getByTestId('hs-percentage').textContent).toEqual('1%')
   })
 })
