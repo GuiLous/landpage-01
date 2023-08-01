@@ -19,12 +19,11 @@ const generatePagesArray = (from, to) => {
 }
 
 export default function MatchHistoryPagination({
-  totalCountOfRegisters,
-  registerPerPage = 15,
+  totalPages,
   currentPage = 1,
   onPageChange,
 }) {
-  const lastPage = Math.ceil(totalCountOfRegisters / registerPerPage)
+  const lastPage = totalPages
 
   const previousPages =
     currentPage > 1
