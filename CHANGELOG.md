@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed 
 
+- Altera links de `Políticas de Privacidade` e `Termos de Uso` [#610](https://github.com/3C-gg/reload-frontend/issues/610).
 - Muda imagem de `favicon` [#605](https://github.com/3C-gg/reload-frontend/issues/605)
 - Adiciona borda na esquerda no componente `FriendListGroupItem` [#604](https://github.com/3C-gg/reload-frontend/issues/604).
 - Verifica `match.status` se é diferente de `warmup` para redirecionar para os detalhes da partida.s
