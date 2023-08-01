@@ -36,6 +36,8 @@ export default {
       head_shots: 45,
       chest_shots: 4065,
       other_shots: 390,
+      kdr: 0,
+      head_accuracy: 0,
     },
   },
 }

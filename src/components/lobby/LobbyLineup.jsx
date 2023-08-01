@@ -32,7 +32,7 @@ export default function LobbyLineup({
 
   const isOwner = lobby.owner_id === userPlayer.user_id
 
-  const isInMatch = match && match.status !== 'canceled'
+  const isInMatch = match && match.status !== 'cancelled'
 
   const handleQueue = async (action) => {
     if (lobby.restriction_countdown || lobby.restriction_countdown === 0) return

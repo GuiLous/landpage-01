@@ -71,7 +71,7 @@ export default function Connect() {
       navigate('/jogar')
     }
 
-    if (match && match.status === 'canceled') {
+    if (match && match.status === 'cancelled') {
       StorageService.remove('matchConnectTimer')
       navigate('/jogar')
     }

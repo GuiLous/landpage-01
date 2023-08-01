@@ -51,6 +51,7 @@ export default {
             other_shots: 0,
             kdr: 0,
             adr: 0,
+            head_accuracy: 0,
           },
         },
         {
@@ -86,6 +87,7 @@ export default {
             other_shots: 0,
             kdr: 0,
             adr: 0,
+            head_accuracy: 0,
           },
         },
         {
@@ -121,6 +123,7 @@ export default {
             other_shots: 0,
             kdr: 0,
             adr: 0,
+            head_accuracy: 0,
           },
         },
         {
@@ -156,6 +159,7 @@ export default {
             other_shots: 0,
             kdr: 0,
             adr: 0,
+            head_accuracy: 0,
           },
         },
         {
@@ -191,6 +195,7 @@ export default {
             other_shots: 0,
             kdr: 0,
             adr: 0,
+            head_accuracy: 0,
           },
         },
       ],
