@@ -85,7 +85,12 @@ export default function Connect() {
     if (match && match.status !== 'loading') {
       setIsLoading(false)
     }
-  }, [match])
+
+    if (match && match.status !== 'loading' && match.status !== 'warmup') {
+      StorageService.remove('matchConnectTimer')
+      navigate(`/partidas/${match.id}`)
+    }
+  }, [match, navigate])
 
   return isLoading ? (
     <LoadingBackdrop>
