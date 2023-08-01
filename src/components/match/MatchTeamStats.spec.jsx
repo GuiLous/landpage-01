@@ -92,7 +92,7 @@ describe('MatchTeamStats Component', () => {
       </BrowserRouter>
     )
 
-    expect(screen.getByTestId('hs-percentage').textContent).toEqual('1.25%')
+    expect(screen.getByTestId('hs-percentage').textContent).toEqual('1%')
   })
 
   it('should render kdr correctly', () => {
