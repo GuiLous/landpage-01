@@ -1,21 +1,42 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { rest } from 'msw'
+import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { InactivateAccountCard } from '@components'
 
-describe('InactivateAccountCard Component', () => {
+const server = setupServer(
+  rest.patch(
+    'http://localhost:8000/api/accounts/inactivate/',
+    (req, res, ctx) => {
+      return res(ctx.status(200), ctx.json(null))
+    }
+  )
+)
+
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
+  return (
+    <Provider store={mockStore}>
+      <BrowserRouter>
+        <InactivateAccountCard />
+      </BrowserRouter>
+    </Provider>
+  )
+}
+
+describe('InactivateAccountCard Component', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => {
+    server.resetHandlers()
+  })
+  afterAll(() => server.close())
+
   it('should render correctly', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     expect(screen.getByText('INATIVAR CONTA')).toBeInTheDocument()
     expect(
@@ -27,13 +48,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -42,13 +57,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -59,5 +68,26 @@ describe('InactivateAccountCard Component', () => {
     fireEvent.click(screen.getByLabelText('Close'))
 
     expect(modal).not.toBeInTheDocument()
+  })
+
+  it('should call inactivate endpoint on click button', async () => {
+    render(renderComponent())
+
+    fireEvent.click(screen.getByText('Prosseguir com a inativação'))
+
+    const modal = screen.getByRole('dialog')
+
+    expect(modal).toBeInTheDocument()
+
+    const deleteBtn = screen.getByTestId('inactiveBtn')
+    fireEvent.click(deleteBtn)
+
+    expect(screen.getByText('Inativando...')).toBeInTheDocument()
+
+    await waitFor(() =>
+      expect(server.listHandlers()[0].info.path).toBe(
+        'http://localhost:8000/api/accounts/inactivate/'
+      )
+    )
   })
 })

@@ -93,6 +93,7 @@ export default function InactivateAccountCard() {
               loadingText="Inativando..."
               isLoading={fetching}
               onClick={handleAccountInactivation}
+              data-testid="inactiveBtn"
             >
               Prosseguir com a inativação
             </Button>
