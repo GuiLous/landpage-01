@@ -115,7 +115,7 @@ export default function ChangeEmailCard() {
     }
 
     if (!isCurrentEmailValid) {
-      setEditingTrue(true)
+      setEditingTrue()
       inputRef.current.focus()
     }
   }
@@ -185,6 +185,7 @@ export default function ChangeEmailCard() {
                       fill="gray.300"
                       _hover={{ fill: 'white' }}
                       transition="all 0.2s ease"
+                      data-testid="pencilIcon"
                     />
                   </Box>
                 </Tooltip>
@@ -193,18 +194,34 @@ export default function ChangeEmailCard() {
               {user.email !== email &&
                 !isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
+                  <Icon
+                    as={CheckCircleIcon}
+                    data-testid="checkCircleIcon1"
+                    color="green.400"
+                    fontSize={22}
+                  />
                 ) : (
-                  <Icon as={WarningCircleIcon} color="red.500" fontSize={22} />
+                  <Icon
+                    as={WarningCircleIcon}
+                    data-testid="warningCircleIcon1"
+                    color="red.500"
+                    fontSize={22}
+                  />
                 ))}
 
               {isEditing &&
                 (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
+                  <Icon
+                    as={CheckCircleIcon}
+                    data-testid="checkCircleIcon2"
+                    color="green.400"
+                    fontSize={22}
+                  />
                 ) : (
                   email !== '' && (
                     <Icon
                       as={WarningCircleIcon}
+                      data-testid="warningCircleIcon2"
                       color="red.500"
                       fontSize={22}
                     />
@@ -232,10 +249,9 @@ export default function ChangeEmailCard() {
           fontSize={14}
           minH="34px"
           h="fit-content"
-          isDisabled={
-            fieldsErrors?.email || !isEmailValid(email) || user.email === email
-          }
+          isDisabled={hasErrors() || user.email === email}
           onClick={handleClickButtonSave}
+          data-testid="saveBtn"
         >
           Salvar Alterações
         </Button>
