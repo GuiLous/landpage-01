@@ -191,7 +191,7 @@ describe('ChangeEmailCard Component', () => {
         (req, res, ctx) => {
           return res(
             ctx.status(400),
-            ctx.json({ fieldsErrors: { email: 'Email já existe' } })
+            ctx.json({ fieldsErrors: { email: 'Email already exists' } })
           )
         }
       )
@@ -208,6 +208,6 @@ describe('ChangeEmailCard Component', () => {
     const saveBtn = screen.getByTestId('saveBtn')
     saveBtn.click()
 
-    await screen.findByText('Email já existe')
+    await screen.findByText('Email already exists')
   })
 })
