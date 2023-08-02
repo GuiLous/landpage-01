@@ -24,6 +24,7 @@ export default function DeleteAccountCard() {
     setFetching(true)
     const token = StorageService.get('token')
     const response = await AccountsAPI.delete(token)
+
     setFetching(false)
 
     if (response.errorMsg) {
@@ -91,6 +92,7 @@ export default function DeleteAccountCard() {
               loadingText="Excluindo..."
               isLoading={fetching}
               onClick={handleDeleteAccount}
+              data-testid="deleteBtn"
             >
               Prosseguir com a exclusão
             </Button>

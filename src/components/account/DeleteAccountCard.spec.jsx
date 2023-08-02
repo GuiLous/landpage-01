@@ -1,21 +1,39 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { rest } from 'msw'
+import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { DeleteAccountCard } from '@components'
 
-describe('DeleteAccountCard Component', () => {
+const server = setupServer(
+  rest.delete('http://localhost:8000/api/accounts/', (req, res, ctx) => {
+    return res(ctx.status(200), ctx.json(null))
+  })
+)
+
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
+  return (
+    <Provider store={mockStore}>
+      <BrowserRouter>
+        <DeleteAccountCard />
+      </BrowserRouter>
+    </Provider>
+  )
+}
+
+describe('DeleteAccountCard Component', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => {
+    server.resetHandlers()
+  })
+  afterAll(() => server.close())
+
   it('should render correctly', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     expect(screen.getByText('EXCLUIR CONTA')).toBeInTheDocument()
     expect(
@@ -27,13 +45,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -42,13 +54,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -59,5 +65,26 @@ describe('DeleteAccountCard Component', () => {
     fireEvent.click(screen.getByLabelText('Close'))
 
     expect(modal).not.toBeInTheDocument()
+  })
+
+  it('should call delete endpoint on click button', async () => {
+    render(renderComponent())
+
+    fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
+
+    const modal = screen.getByRole('dialog')
+
+    expect(modal).toBeInTheDocument()
+
+    const deleteBtn = screen.getByTestId('deleteBtn')
+    fireEvent.click(deleteBtn)
+
+    expect(screen.getByText('Excluindo...')).toBeInTheDocument()
+
+    await waitFor(() =>
+      expect(server.listHandlers()[0].info.path).toBe(
+        'http://localhost:8000/api/accounts/'
+      )
+    )
   })
 })
