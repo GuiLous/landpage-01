@@ -165,7 +165,7 @@ export default function MatchHistoryList({ user_id }) {
             </Text>
           </Container>
         ) : (
-          totalPages > 0 && (
+          totalPages > 1 && (
             <Container
               align="start"
               justify="center"
