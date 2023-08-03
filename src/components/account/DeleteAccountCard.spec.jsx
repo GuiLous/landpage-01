@@ -5,11 +5,19 @@ import configureStore from 'redux-mock-store'
 
 import { AccountsAPI } from '@api'
 import { DeleteAccountCard } from '@components'
+import { updateUser } from '@slices/UserSlice'
 
 jest.mock('@api', () => ({
   AccountsAPI: {
     delete: jest.fn(),
   },
+}))
+
+const mockDispatch = jest.fn()
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
 }))
 
 const renderComponent = () => {
@@ -77,5 +85,6 @@ describe('DeleteAccountCard Component', () => {
     await screen.findByText('Excluindo...')
 
     expect(AccountsAPI.delete).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledWith(updateUser(null))
   })
 })

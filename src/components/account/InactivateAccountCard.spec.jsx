@@ -5,11 +5,19 @@ import configureStore from 'redux-mock-store'
 
 import { AccountsAPI } from '@api'
 import { InactivateAccountCard } from '@components'
+import { updateUser } from '@slices/UserSlice'
 
 jest.mock('@api', () => ({
   AccountsAPI: {
     inactivate: jest.fn(),
   },
+}))
+
+const mockDispatch = jest.fn()
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
 }))
 
 const renderComponent = () => {
@@ -78,5 +86,6 @@ describe('InactivateAccountCard Component', () => {
     await screen.findByText('Inativando...')
 
     expect(AccountsAPI.inactivate).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledWith(updateUser(null))
   })
 })

@@ -4,12 +4,20 @@ import { Provider } from 'react-redux'
 
 import { AccountsAPI } from '@api'
 import { ChangeEmailCard } from '@components'
-import UserReducer from '@slices/UserSlice'
+import { addToast } from '@slices/AppSlice'
+import UserReducer, { updateUser } from '@slices/UserSlice'
 
 jest.mock('@api', () => ({
   AccountsAPI: {
     updateEmail: jest.fn(),
   },
+}))
+
+const mockDispatch = jest.fn()
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
 }))
 
 const renderComponent = () => {
@@ -126,6 +134,16 @@ describe('ChangeEmailCard Component', () => {
     await waitFor(() =>
       expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
     )
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateUser({ email: 'userUpdate@example.com' })
+    )
+    expect(mockDispatch).toHaveBeenCalledWith(
+      addToast({
+        title: 'E-mail atualizado com sucesso!',
+        variant: 'success',
+      })
+    )
   })
 
   it('should change email when clicked on save, email is correct and email is different of current email', async () => {
@@ -146,6 +164,16 @@ describe('ChangeEmailCard Component', () => {
 
     await waitFor(() =>
       expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
+    )
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateUser({ email: 'userUpdate@example.com' })
+    )
+    expect(mockDispatch).toHaveBeenCalledWith(
+      addToast({
+        title: 'E-mail atualizado com sucesso!',
+        variant: 'success',
+      })
     )
   })
 
