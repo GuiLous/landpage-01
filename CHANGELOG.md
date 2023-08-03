@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Adiciona prefixo `connect` ao `clipboard` ao clicar no botão de `IP` [#618](https://github.com/3C-gg/reload-frontend/issues/618).
+
 ### Fixed
 
 - Corrige `useEffect` para redirecionar corretamente baseado no` match.status` na view de `Connect` [#591](https://github.com/3C-gg/reload-frontend/issues/591).
