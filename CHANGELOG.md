@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Workflow do Github que checa se CHANGELOG.md foi alterado [#614](https://github.com/3C-gg/reload-frontend/issues/614).
 
+### Removed
+
+- Deleta `Avatar` componente.
+- Remove `useNavigate` desnecessários nos componente `DeleteAccountCard` e `InactivateAccountCard`.
+
 ## [63d58f6 - 1/8/2023]
 
 ### Added
