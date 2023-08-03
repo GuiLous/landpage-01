@@ -1,27 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import { FriendListGroupItem } from '@components'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
-import { BrowserRouter } from 'react-router-dom'
-
-const server = setupServer(
-  rest.post('http://localhost:8000/api/lobbies/invites/', (req, res, ctx) => {
-    return res(
-      ctx.json({
-        id: '1:2',
-        lobby_id: 1,
-        from_player: { user_id: 1 },
-        to_player: { user_id: 2 },
-      })
-    )
-  })
-)
 
 const renderComponent = (status, inviteUserId = null) => {
   const user = {
@@ -64,10 +49,6 @@ const renderComponent = (status, inviteUserId = null) => {
 }
 
 describe('FriendListGroupItem Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
-
   it('should render an online friend correctly', () => {
     renderComponent('online')
 
