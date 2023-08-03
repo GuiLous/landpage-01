@@ -39,7 +39,7 @@ export default function MatchHistoryPagination({
       : []
 
   return (
-    <Container gap={12} align="center" justify="center">
+    <Container gap={12} align="center" justify="center" testID="pagination">
       {currentPage > 1 && (
         <Container
           align="center"
