@@ -1,5 +1,4 @@
 // Common
-import Avatar from './avatar/Avatar'
 import Container from './container/Container'
 import Footer from './footer/Footer'
 import Progress from './progress/Progress'
@@ -135,7 +134,6 @@ export {
   ArrowRightSimpleIcon,
   ArrowUpFilledIcon,
   ArrowUpIcon,
-  Avatar,
   BackpackIcon,
   BellCircleIcon,
   BellFilledIcon,
