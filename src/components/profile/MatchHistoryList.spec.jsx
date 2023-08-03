@@ -44,7 +44,7 @@ const server = setupServer(
         ],
         count: 1,
         page_size: 10,
-        total_pages: 0,
+        total_pages: 1,
         prev_page: null,
         current_page: 1,
         next_page: null,
@@ -53,23 +53,26 @@ const server = setupServer(
   })
 )
 
+const renderComponent = () => {
+  const mockStore = configureStore()({})
+  const user_id = 9
+
+  return (
+    <BrowserRouter>
+      <Provider store={mockStore}>
+        <MatchHistoryList user_id={user_id} />
+      </Provider>
+    </BrowserRouter>
+  )
+}
+
 describe('MatchHistoryList Component', () => {
   beforeAll(() => server.listen())
   afterEach(() => server.resetHandlers())
   afterAll(() => server.close())
 
-  const user_id = 9
-
-  const mockStore = configureStore()({}) // Cria um mock store
-
   it('should render correctly', async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={mockStore}>
-          <MatchHistoryList user_id={user_id} />
-        </Provider>
-      </BrowserRouter>
-    )
+    render(renderComponent())
 
     await waitFor(() => {
       screen.getByText('06 de Maio')
@@ -80,16 +83,108 @@ describe('MatchHistoryList Component', () => {
   })
 
   it('should render message when there is not matches', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={mockStore}>
-          <MatchHistoryList user_id={user_id} />
-        </Provider>
-      </BrowserRouter>
-    )
+    render(renderComponent())
 
     expect(
       screen.getByText('Ops, você ainda não tem partidas.')
     ).toBeInTheDocument()
+  })
+
+  it('should render 0 Partidas if matches.length is 0', async () => {
+    render(renderComponent())
+
+    screen.getAllByText('0 Partidas')
+  })
+
+  it('should render 2 Partidas if matches.length is 2', async () => {
+    render(renderComponent())
+
+    await screen.findByText('2 Partidas')
+  })
+
+  it('should render 1 Partida if matches.length is 1', async () => {
+    server.use(
+      rest.get('http://localhost:8000/api/matches', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            results: [
+              {
+                stats: {
+                  kda: '0/0/0',
+                  kdr: 2,
+                  head_accuracy: 20,
+                  adr: 33.33,
+                  firstkills: 4,
+                },
+                id: 0,
+                score: '10:2',
+                end_date: '2023-05-05T10:30:00',
+                won: true,
+                map_name: 'Auditório',
+              },
+            ],
+            count: 1,
+            page_size: 10,
+            total_pages: 0,
+            prev_page: null,
+            current_page: 1,
+            next_page: null,
+          })
+        )
+      })
+    )
+
+    render(renderComponent())
+
+    await screen.findByText('1 Partida')
+  })
+
+  it('should not render pagination if totalPages <= 1', async () => {
+    render(renderComponent())
+
+    await waitFor(() =>
+      expect(screen.queryByTestId('pagination')).not.toBeInTheDocument()
+    )
+  })
+
+  it('should render pagination if totalPages > 1', async () => {
+    server.use(
+      rest.get('http://localhost:8000/api/matches', (req, res, ctx) => {
+        return res(
+          ctx.status(200),
+          ctx.json({
+            results: [
+              {
+                stats: {
+                  kda: '0/0/0',
+                  kdr: 2,
+                  head_accuracy: 20,
+                  adr: 33.33,
+                  firstkills: 4,
+                },
+                id: 0,
+                score: '10:2',
+                end_date: '2023-05-05T10:30:00',
+                won: true,
+                map_name: 'Auditório',
+              },
+            ],
+            count: 1,
+            page_size: 10,
+            total_pages: 2,
+            prev_page: null,
+            current_page: 1,
+            next_page: null,
+          })
+        )
+      })
+    )
+
+    render(renderComponent())
+
+    await waitFor(() =>
+      expect(screen.queryByTestId('pagination')).not.toBeInTheDocument()
+    )
   })
 })
