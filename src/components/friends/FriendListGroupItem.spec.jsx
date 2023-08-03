@@ -23,21 +23,17 @@ const server = setupServer(
   })
 )
 
-beforeAll(() => server.listen())
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
-
-describe('FriendListGroupItem Component', () => {
+const renderComponent = (status, inviteUserId = null) => {
   const user = {
     id: 1,
     lobby_id: 1,
   }
 
-  const invites = []
+  const invites = [{ to_player: { user_id: inviteUserId } }]
 
   const lobby = {
     queue: null,
-    invited_players_ids: [],
+    invited_players_ids: [2],
   }
 
   const store = configureStore({
@@ -49,44 +45,70 @@ describe('FriendListGroupItem Component', () => {
     preloadedState: { user, invites, lobby },
   })
 
-  it('should render an online friend corretcly', () => {
-    const friend = {
-      user_id: 2,
-      lobby_id: 2,
-      status: 'online',
-      avatar:
-        'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-      username: 'friendUsername',
-    }
+  const friend = {
+    user_id: 2,
+    lobby_id: 2,
+    status,
+    avatar:
+      'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+    username: 'friendUsername',
+  }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroupItem {...friend} />
-        </Provider>
-      </BrowserRouter>
-    )
+  render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <FriendListGroupItem {...friend} />
+      </Provider>
+    </BrowserRouter>
+  )
+}
+
+describe('FriendListGroupItem Component', () => {
+  beforeAll(() => server.listen())
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
+
+  it('should render an online friend correctly', () => {
+    renderComponent('online')
+
     expect(screen.getByText('friendUsername')).toBeInTheDocument()
     expect(screen.getByText('Online')).toBeInTheDocument()
   })
 
-  it('should not render action if friend is offline', () => {
-    const friend = {
-      user_id: 2,
-      lobby_id: 2,
-      status: 'offline',
-      avatar:
-        'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-      username: 'friendUsername',
-    }
+  it('should render an offline friend correctly', () => {
+    renderComponent('offline')
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroupItem {...friend} />
-        </Provider>
-      </BrowserRouter>
-    )
-    expect(screen.queryByTestId('icon-wrapper')).not.toBeInTheDocument()
+    expect(screen.getByText('friendUsername')).toBeInTheDocument()
+    expect(screen.getByText('Offline')).toBeInTheDocument()
+  })
+
+  it('should render an teaming friend correctly', () => {
+    renderComponent('teaming')
+
+    expect(screen.getByText('friendUsername')).toBeInTheDocument()
+    expect(screen.getByText('Em grupo')).toBeInTheDocument()
+  })
+
+  it('should render with class offline if is offline', () => {
+    renderComponent('offline')
+
+    expect(screen.getByTestId('invite-button')).toHaveClass('offline')
+  })
+
+  it('should render with class disabled if status is offline', () => {
+    renderComponent('offline')
+
+    expect(screen.getByTestId('invite-button')).toHaveClass('disabled')
+  })
+
+  it('should render with class disabled if already invited by user', () => {
+    renderComponent('offline', 2)
+
+    expect(screen.getByTestId('invite-button')).toHaveClass('disabled')
+  })
+
+  it('should render with class disabled if already invited by friend', () => {
+    renderComponent('offline', 2)
+    expect(screen.getByTestId('invite-button')).toHaveClass('disabled')
   })
 })
