@@ -72,6 +72,7 @@ export default function MatchHistoryStatsLink({ match }) {
       as={RouterLink}
       to={`/partidas/${match.id}`}
       align="center"
+      data-testid="link"
       className={[style.container, match.won ? style.won : style.defeated].join(
         ' '
       )}
@@ -101,6 +102,7 @@ export default function MatchHistoryStatsLink({ match }) {
           fontWeight="semiBold"
           textAlign="center"
           color="white"
+          data-testid="score"
         >
           {match.score}
         </Text>
@@ -109,7 +111,13 @@ export default function MatchHistoryStatsLink({ match }) {
       <Container align="center" justify="center" gap={40}>
         {renderStats()}
 
-        <Icon as={ArrowRightSimpleIcon} fill="white" h="12px" w="7px" />
+        <Icon
+          as={ArrowRightSimpleIcon}
+          fill="white"
+          h="12px"
+          w="7px"
+          data-testid="arrow"
+        />
       </Container>
     </Link>
   )

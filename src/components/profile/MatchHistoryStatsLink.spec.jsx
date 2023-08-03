@@ -51,9 +51,42 @@ describe('MatchHistoryStatsLink Component', () => {
     expect(screen.getByTestId('adr').textContent).toEqual('33.33')
   })
 
+  it('should render score correctly', () => {
+    render(renderComponent())
+
+    expect(screen.getByTestId('score').textContent).toEqual('10:2')
+  })
+
   it('should render firstkills correctly', () => {
     render(renderComponent())
 
     expect(screen.getByTestId('firstkills').textContent).toEqual('4')
+  })
+
+  it('should render arrow icon', () => {
+    render(renderComponent())
+
+    expect(screen.getByTestId('arrow')).toBeInTheDocument()
+  })
+
+  it('should render default map name when has no map_name', () => {
+    match.map_name = null
+
+    render(renderComponent())
+
+    expect(screen.getByText('Nome do mapa')).toBeInTheDocument()
+  })
+
+  it('should render won class if won', () => {
+    render(renderComponent())
+
+    expect(screen.getByTestId('link')).toHaveClass('won')
+  })
+
+  it('should render defeated class if won is false', () => {
+    match.won = false
+    render(renderComponent())
+
+    expect(screen.getByTestId('link')).toHaveClass('defeated')
   })
 })
