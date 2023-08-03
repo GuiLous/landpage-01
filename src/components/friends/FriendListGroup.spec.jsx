@@ -8,7 +8,7 @@ import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 import { BrowserRouter } from 'react-router-dom'
 
-describe('FriendListGroup Component', () => {
+const renderComponent = (args) => {
   const user = {
     id: 1,
     lobby_id: 1,
@@ -30,17 +30,24 @@ describe('FriendListGroup Component', () => {
     preloadedState: { user, invites, lobby },
   })
 
+  render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <FriendListGroup {...args} />
+      </Provider>
+    </BrowserRouter>
+  )
+}
+
+describe('FriendListGroup Component', () => {
   it('should render title and count correctly', () => {
     let args = {
       title: 'Disponível',
       items: [],
     }
 
-    render(
-      <BrowserRouter>
-        <FriendListGroup {...args} />
-      </BrowserRouter>
-    )
+    renderComponent(args)
+
     expect(screen.getByText('Disponível (0)')).toBeInTheDocument()
 
     args.title = 'Offline'
@@ -53,13 +60,7 @@ describe('FriendListGroup Component', () => {
       lobby_id: 2,
     })
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
     expect(screen.getByText('Offline (01)')).toBeInTheDocument()
   })
 
@@ -79,13 +80,7 @@ describe('FriendListGroup Component', () => {
       collapse: false,
     }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
     expect(screen.queryByTestId('arrow-collapse')).not.toBeInTheDocument()
   })
 
@@ -95,13 +90,7 @@ describe('FriendListGroup Component', () => {
       items: [],
     }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
     expect(screen.getByTestId('container')).not.toHaveClass('open')
   })
 
@@ -121,13 +110,7 @@ describe('FriendListGroup Component', () => {
       open: true,
     }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
     expect(screen.getByTestId('container')).toHaveClass('open')
   })
 
@@ -137,13 +120,7 @@ describe('FriendListGroup Component', () => {
       items: [],
     }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
     expect(screen.getByTestId('container')).not.toHaveClass('open')
     expect(screen.getByTestId('header')).toHaveClass('disabled')
   })
@@ -164,13 +141,29 @@ describe('FriendListGroup Component', () => {
       showHeader: false,
     }
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <FriendListGroup {...args} />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent(args)
+
     expect(screen.getByTestId('header')).toHaveClass('hideHeader')
+  })
+
+  it('should render with class addBorder if showHeader is true', () => {
+    let args = {
+      title: 'Offline',
+      items: [
+        {
+          user_id: 11,
+          status: 'offline',
+          username: 'Username',
+          avatar:
+            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+          lobby_id: 2,
+        },
+      ],
+      showHeader: true,
+    }
+
+    renderComponent(args)
+
+    expect(screen.getByTestId('container')).toHaveClass('addBorder')
   })
 })
