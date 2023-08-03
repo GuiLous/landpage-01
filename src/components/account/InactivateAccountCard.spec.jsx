@@ -15,7 +15,7 @@ jest.mock('@api', () => ({
 const renderComponent = () => {
   const mockStore = configureStore()({})
 
-  return (
+  render(
     <Provider store={mockStore}>
       <BrowserRouter>
         <InactivateAccountCard />
@@ -26,7 +26,7 @@ const renderComponent = () => {
 
 describe('InactivateAccountCard Component', () => {
   it('should render correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('INATIVAR CONTA')).toBeInTheDocument()
     expect(
@@ -38,7 +38,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -47,7 +47,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -63,7 +63,7 @@ describe('InactivateAccountCard Component', () => {
   it('should call inactivate endpoint on click button', async () => {
     AccountsAPI.inactivate.mockResolvedValue({})
 
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 

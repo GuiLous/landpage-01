@@ -5,7 +5,7 @@ import { FakeSigninForm } from '@components'
 const mockSubmit = jest.fn()
 
 const renderComponent = (errors = {}) => {
-  return (
+  render(
     <FakeSigninForm
       fetching={false}
       onSubmit={mockSubmit}
@@ -16,7 +16,7 @@ const renderComponent = (errors = {}) => {
 
 describe('FakeSigninForm Component', () => {
   it('should render correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('Entrar sem Steam')).toBeInTheDocument()
     expect(
@@ -29,14 +29,14 @@ describe('FakeSigninForm Component', () => {
       email: 'Email error test',
     }
 
-    render(renderComponent(errors))
+    renderComponent(errors)
 
     expect(screen.getByTestId('warningIcon')).toBeInTheDocument()
     expect(screen.getByText('Email error test')).toBeInTheDocument()
   })
 
   it('should change email input on change', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByPlaceholderText('exemplo@email.com')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
@@ -45,7 +45,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should call onSubmit function on press Enter', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByPlaceholderText('exemplo@email.com')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
@@ -56,7 +56,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should call onSubmit function on click button', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByPlaceholderText('exemplo@email.com')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
@@ -70,7 +70,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should change select contente on change', () => {
-    render(renderComponent())
+    renderComponent()
 
     const select = screen.getByTestId('select')
     fireEvent.change(select, { target: { value: 'player2@reloadclub.gg' } })
@@ -79,7 +79,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should render default option on select when not changed', () => {
-    render(renderComponent())
+    renderComponent()
 
     const select = screen.getByTestId('select')
 
@@ -88,7 +88,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should disable button if value is null or undefined', () => {
-    render(renderComponent())
+    renderComponent()
 
     const submitBtn = screen.getByText('Entrar')
 
@@ -96,7 +96,7 @@ describe('FakeSigninForm Component', () => {
   })
 
   it('should enable button if has value', () => {
-    render(renderComponent())
+    renderComponent()
 
     const submitBtn = screen.getByText('Entrar')
 

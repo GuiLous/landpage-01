@@ -15,7 +15,7 @@ jest.mock('@api', () => ({
 const renderComponent = () => {
   const mockStore = configureStore()({})
 
-  return (
+  render(
     <Provider store={mockStore}>
       <BrowserRouter>
         <DeleteAccountCard />
@@ -26,7 +26,7 @@ const renderComponent = () => {
 
 describe('DeleteAccountCard Component', () => {
   it('should render correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('EXCLUIR CONTA')).toBeInTheDocument()
     expect(
@@ -38,7 +38,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -47,7 +47,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -63,7 +63,7 @@ describe('DeleteAccountCard Component', () => {
   it('should call delete endpoint on click button', async () => {
     AccountsAPI.delete.mockResolvedValue({})
 
-    render(renderComponent())
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 

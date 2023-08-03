@@ -28,7 +28,7 @@ const renderComponent = () => {
     preloadedState: { user },
   })
 
-  return (
+  render(
     <Provider store={store}>
       <ChangeEmailCard />
     </Provider>
@@ -37,21 +37,21 @@ const renderComponent = () => {
 
 describe('ChangeEmailCard Component', () => {
   it('should render correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('ALTERAR E-MAIL')).toBeInTheDocument()
     expect(screen.getByTestId('pencilIcon')).toBeInTheDocument()
   })
 
   it('should disable button if is not editing', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     expect(input).toBeDisabled()
   })
 
   it('should enable editing when input group is clicked', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -60,7 +60,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should update email when handleChange is called', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
@@ -69,7 +69,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should change icon to CheckCircleIcon if user.email is different of email, is not editing and email is valid', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
@@ -79,7 +79,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should change icon to CheckCircleIcon if is editing and email is valid', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -90,7 +90,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should change icon to WarningCircleIcon if user.email is different of email, is not editing and email is not valid', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: 'test@example.' } })
@@ -100,7 +100,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should change icon to WarningCircleIcon if is editing and email is not valid', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -114,7 +114,7 @@ describe('ChangeEmailCard Component', () => {
     AccountsAPI.updateEmail.mockResolvedValue({
       email: 'userUpdate@example.com',
     })
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -133,7 +133,7 @@ describe('ChangeEmailCard Component', () => {
       email: 'userUpdate@example.com',
     })
 
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -150,7 +150,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should disable button if email is equal of user.email', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -162,7 +162,7 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should disable button if email is invalid', () => {
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)
@@ -178,7 +178,7 @@ describe('ChangeEmailCard Component', () => {
       fieldsErrors: { email: 'Email already exists' },
     })
 
-    render(renderComponent())
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.click(input)

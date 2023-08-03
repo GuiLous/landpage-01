@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { Footer } from '@components'
 
 const renderComponent = () => {
-  return (
+  render(
     <BrowserRouter>
       <Footer />
     </BrowserRouter>
@@ -13,7 +13,7 @@ const renderComponent = () => {
 
 describe('Footer Component', () => {
   it('should render desktop correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(
       screen.getAllByText('Copyright ©2023. Todos os direitos reservados.')
@@ -51,7 +51,7 @@ describe('Footer Component', () => {
   })
 
   it('should render mobile correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     window.innerWidth = 320
     window.dispatchEvent(new Event('resize'))
