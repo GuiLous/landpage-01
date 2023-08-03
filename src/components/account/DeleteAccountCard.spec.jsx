@@ -1,17 +1,17 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
+/* eslint-disable testing-library/no-unnecessary-act */
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
+import { AccountsAPI } from '@api'
 import { DeleteAccountCard } from '@components'
 
-const server = setupServer(
-  rest.delete('http://localhost:8000/api/accounts/', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(null))
-  })
-)
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    delete: jest.fn(),
+  },
+}))
 
 const renderComponent = () => {
   const mockStore = configureStore()({})
@@ -26,12 +26,6 @@ const renderComponent = () => {
 }
 
 describe('DeleteAccountCard Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-  })
-  afterAll(() => server.close())
-
   it('should render correctly', () => {
     render(renderComponent())
 
@@ -68,6 +62,8 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should call delete endpoint on click button', async () => {
+    AccountsAPI.delete.mockResolvedValue({})
+
     render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
@@ -79,12 +75,8 @@ describe('DeleteAccountCard Component', () => {
     const deleteBtn = screen.getByTestId('deleteBtn')
     fireEvent.click(deleteBtn)
 
-    expect(screen.getByText('Excluindo...')).toBeInTheDocument()
+    await screen.findByText('Excluindo...')
 
-    await waitFor(() =>
-      expect(server.listHandlers()[0].info.path).toBe(
-        'http://localhost:8000/api/accounts/'
-      )
-    )
+    expect(AccountsAPI.delete).toHaveBeenCalledTimes(1)
   })
 })

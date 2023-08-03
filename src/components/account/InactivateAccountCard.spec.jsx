@@ -1,20 +1,17 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
+/* eslint-disable testing-library/no-unnecessary-act */
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
+import { AccountsAPI } from '@api'
 import { InactivateAccountCard } from '@components'
 
-const server = setupServer(
-  rest.patch(
-    'http://localhost:8000/api/accounts/inactivate/',
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(null))
-    }
-  )
-)
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    inactivate: jest.fn(),
+  },
+}))
 
 const renderComponent = () => {
   const mockStore = configureStore()({})
@@ -29,12 +26,6 @@ const renderComponent = () => {
 }
 
 describe('InactivateAccountCard Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-  })
-  afterAll(() => server.close())
-
   it('should render correctly', () => {
     render(renderComponent())
 
@@ -71,6 +62,8 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should call inactivate endpoint on click button', async () => {
+    AccountsAPI.inactivate.mockResolvedValue({})
+
     render(renderComponent())
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
@@ -80,14 +73,11 @@ describe('InactivateAccountCard Component', () => {
     expect(modal).toBeInTheDocument()
 
     const deleteBtn = screen.getByTestId('inactiveBtn')
+
     fireEvent.click(deleteBtn)
 
-    expect(screen.getByText('Inativando...')).toBeInTheDocument()
+    await screen.findByText('Inativando...')
 
-    await waitFor(() =>
-      expect(server.listHandlers()[0].info.path).toBe(
-        'http://localhost:8000/api/accounts/inactivate/'
-      )
-    )
+    expect(AccountsAPI.inactivate).toHaveBeenCalledTimes(1)
   })
 })

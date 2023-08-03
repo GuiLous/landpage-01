@@ -1,24 +1,16 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 
+import { AccountsAPI } from '@api'
 import { ChangeEmailCard } from '@components'
 import UserReducer from '@slices/UserSlice'
 
-const fakeResponse = {
-  email: 'userUpdate@example.com',
-}
-
-const server = setupServer(
-  rest.patch(
-    'http://localhost:8000/api/accounts/update-email/',
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(fakeResponse))
-    }
-  )
-)
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    updateEmail: jest.fn(),
+  },
+}))
 
 const renderComponent = () => {
   const user = {
@@ -44,12 +36,6 @@ const renderComponent = () => {
 }
 
 describe('ChangeEmailCard Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-  })
-  afterAll(() => server.close())
-
   it('should render correctly', () => {
     render(renderComponent())
 
@@ -125,6 +111,9 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should change email when press Enter, email is correct and email is different of current email', async () => {
+    AccountsAPI.updateEmail.mockResolvedValue({
+      email: 'userUpdate@example.com',
+    })
     render(renderComponent())
 
     const input = screen.getByRole('textbox')
@@ -132,16 +121,18 @@ describe('ChangeEmailCard Component', () => {
     fireEvent.change(input, { target: { value: 'test@example.com' } })
     fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
 
-    expect(input.value).toBe('test@example.com')
+    await waitFor(() => expect(input.value).toBe('test@example.com'))
 
     await waitFor(() =>
-      expect(server.listHandlers()[0].info.path).toBe(
-        'http://localhost:8000/api/accounts/update-email/'
-      )
+      expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
     )
   })
 
   it('should change email when clicked on save, email is correct and email is different of current email', async () => {
+    AccountsAPI.updateEmail.mockResolvedValue({
+      email: 'userUpdate@example.com',
+    })
+
     render(renderComponent())
 
     const input = screen.getByRole('textbox')
@@ -154,9 +145,7 @@ describe('ChangeEmailCard Component', () => {
     saveBtn.click()
 
     await waitFor(() =>
-      expect(server.listHandlers()[0].info.path).toBe(
-        'http://localhost:8000/api/accounts/update-email/'
-      )
+      expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
     )
   })
 
@@ -185,17 +174,9 @@ describe('ChangeEmailCard Component', () => {
   })
 
   it('should disable button if server return error with the email', async () => {
-    server.use(
-      rest.patch(
-        'http://localhost:8000/api/accounts/update-email/',
-        (req, res, ctx) => {
-          return res(
-            ctx.status(400),
-            ctx.json({ fieldsErrors: { email: 'Email already exists' } })
-          )
-        }
-      )
-    )
+    AccountsAPI.updateEmail.mockResolvedValue({
+      fieldsErrors: { email: 'Email already exists' },
+    })
 
     render(renderComponent())
 
@@ -206,6 +187,7 @@ describe('ChangeEmailCard Component', () => {
     expect(input.value).toBe('test@example.com')
 
     const saveBtn = screen.getByTestId('saveBtn')
+
     saveBtn.click()
 
     await screen.findByText('Email already exists')
