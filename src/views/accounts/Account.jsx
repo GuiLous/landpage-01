@@ -97,7 +97,7 @@ export default function AccountView() {
   ) : (
     <Container column gap={40} className={style.container}>
       <Container className={style.header} column gap={40}>
-        <ProfileHeader profile={profile} />
+        <ProfileHeader profile={profile} isUserLogged={true} />
       </Container>
 
       <Container className={style.content}>
