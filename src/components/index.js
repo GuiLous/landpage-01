@@ -91,6 +91,8 @@ import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
 import ProfileHeader from './profile/ProfileHeader'
+import ProfileHeaderButtons from './profile/ProfileHeaderButtons'
+import ProfileHeaderSocialButtons from './profile/ProfileHeaderSocialButtons'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -200,6 +202,8 @@ export {
   PodiumIcon,
   ProfileCard,
   ProfileHeader,
+  ProfileHeaderButtons,
+  ProfileHeaderSocialButtons,
   Progress,
   RefuseIcon,
   RequireAuth,
