@@ -66,6 +66,10 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
         navigate(`/conta`)
         break
 
+      case 'steam_chat':
+        window.open(`https://steamcommunity.com/chat`, '_blank')
+        break
+
       case 'report':
         handleOpenModalSupport()
         break
