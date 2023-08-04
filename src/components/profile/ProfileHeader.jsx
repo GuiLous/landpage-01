@@ -1,12 +1,19 @@
-import { Avatar, Progress, Text } from '@chakra-ui/react'
-import { DateTime } from 'luxon'
-import { NavLink as RouterLink } from 'react-router-dom'
+import { Avatar, Badge, Progress, Text } from '@chakra-ui/react'
 
-import { Container } from '@components'
+import {
+  Container,
+  ProfileHeaderButtons,
+  ProfileHeaderSocialButtons,
+} from '@components'
+import { useHumanizeStatus } from '@hooks'
 
 import style from './ProfileHeader.module.css'
 
-export default function ProfileHeader({ profile, hideNav }) {
+export default function ProfileHeader({ profile, isUserLogged }) {
+  let humanStatus = useHumanizeStatus(profile.status)
+
+  humanStatus += profile?.status === 'in_game' ? ' (RANKED 5X5)' : ''
+
   return (
     <Container
       align="end"
@@ -16,68 +23,45 @@ export default function ProfileHeader({ profile, hideNav }) {
     >
       <Container gap={16} align="center" className={style.info}>
         <Container fitContent>
-          <Avatar src={profile.avatar.large} size="xl" variant="white" />
+          <Avatar src={profile.avatar.large} size="xxl" variant="white" />
         </Container>
 
-        <Container column gap={18}>
+        <Container column gap={14}>
           <Container column>
-            <Text fontSize={20} fontWeight="bold" color="white">
-              {profile.username}
-            </Text>
-
-            <Container gap={5}>
-              <Text fontSize={14} color="white">
-                Membro desde
+            <Container align="center" gap={14} fitContent>
+              <Text fontSize={20} fontWeight="bold" color="white">
+                {profile.username}
               </Text>
-              <Text fontSize={14} color="white" fontWeight="bold">
-                {DateTime.fromISO(profile.date_joined).toLocaleString({
-                  month: 'long',
-                  year: 'numeric',
-                })}
-              </Text>
+              <Container align="center" gap={8}>
+                <Badge variant={profile.status} />
+                <Text lineHeight={1} color="white" fontSize={14}>
+                  {humanStatus}
+                </Text>
+              </Container>
             </Container>
           </Container>
 
-          <Container column gap={6}>
+          <Container column gap={8}>
             <Progress h="9px" w="100%" value={profile.level_points} />
 
             <Container justify="between">
-              <Text fontSize={12} color="white" textTransform="uppercase">
-                Pontos de nível
+              <Text fontSize={14} color="white" fontWeight="medium">
+                Level {profile.level}
               </Text>
-              <Text fontSize={12} color="white">
+              <Text fontSize={14} fontWeight="medium" color="white">
                 {profile.level_points}/100
               </Text>
             </Container>
           </Container>
+
+          <ProfileHeaderSocialButtons socials={profile.socials} />
         </Container>
       </Container>
 
-      {!hideNav && (
-        <Container gap={32} fitContent>
-          <Container>
-            <RouterLink
-              to={`/perfil/${profile.user_id}`}
-              className={({ isActive }) =>
-                [style.link, isActive && style.active].join(' ')
-              }
-            >
-              Perfil
-            </RouterLink>
-          </Container>
-
-          <Container>
-            <RouterLink
-              to={`/conta`}
-              className={({ isActive }) =>
-                [style.link, isActive && style.active].join(' ')
-              }
-            >
-              Conta
-            </RouterLink>
-          </Container>
-        </Container>
-      )}
+      <ProfileHeaderButtons
+        isUserLogged={isUserLogged}
+        username={profile.username}
+      />
     </Container>
   )
 }
