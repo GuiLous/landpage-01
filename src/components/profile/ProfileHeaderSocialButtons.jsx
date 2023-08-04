@@ -27,6 +27,7 @@ export default function ProfileHeaderSocialButtons({ socials }) {
               as={socialIcons[social.name]}
               fontSize={18}
               verticalAlign="middle"
+              data-testid={social.name}
             />
           </Link>
         </Tooltip>
