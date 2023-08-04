@@ -5,11 +5,11 @@ import { HomeIcon, Timer } from '@components'
 import { formatSecondsToMinutes } from '@utils'
 
 export default function SidebarLobbyButton({ lobby, match }) {
-  const isInQueue = lobby.queue && !match && !lobby.restriction_countdown
-
-  const isRestricted = lobby.restriction_countdown && !match
-
   const isInMatch = match && match.status !== 'cancelled'
+
+  const isInQueue = lobby.queue && !isInMatch && !lobby.restriction_countdown
+
+  const isRestricted = lobby.restriction_countdown && !isInMatch
 
   const isOnLobby = !lobby.queue && !isInMatch && !lobby.restriction_countdown
 

@@ -1,5 +1,5 @@
 import { Box, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -50,6 +50,25 @@ export default function Connect() {
     setCopied(match.server_ip)
   }
 
+  const verifyMatchStatus = useCallback(() => {
+    if (!match || match.status === 'cancelled') {
+      StorageService.remove('matchConnectTimer')
+      navigate('/jogar')
+    } else {
+      switch (match.status) {
+        case 'warmup':
+          setIsLoading(false)
+          break
+        case 'running':
+          StorageService.remove('matchConnectTimer')
+          navigate(`/partidas/${match.id}`)
+          break
+        default:
+          break
+      }
+    }
+  }, [match, navigate])
+
   useEffect(() => {
     if (copied) {
       const maxCopiedTime = 3
@@ -66,31 +85,12 @@ export default function Connect() {
   })
 
   useEffect(() => {
-    if (!match) {
-      StorageService.remove('matchConnectTimer')
-      navigate('/jogar')
-    }
-
-    if (match && match.status === 'cancelled') {
-      StorageService.remove('matchConnectTimer')
-      navigate('/jogar')
-    }
-  }, [match, navigate])
+    verifyMatchStatus()
+  }, [match, navigate, verifyMatchStatus])
 
   useEffect(() => {
     if (timeLeft === 0) navigate(`/partidas/${match.id}`)
   }, [timeLeft, match?.id, navigate])
-
-  useEffect(() => {
-    if (match && match.status !== 'loading') {
-      setIsLoading(false)
-    }
-
-    if (match && match.status !== 'loading' && match.status !== 'warmup') {
-      StorageService.remove('matchConnectTimer')
-      navigate(`/partidas/${match.id}`)
-    }
-  }, [match, navigate])
 
   return isLoading ? (
     <LoadingBackdrop>

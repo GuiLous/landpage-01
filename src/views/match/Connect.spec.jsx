@@ -10,7 +10,7 @@ import { ConnectView } from '@views'
 describe('MatchView Component', () => {
   const match = {
     id: 1,
-    status: 'finished',
+    status: 'warmup',
     server_ip: '999.999.999.999',
   }
 
@@ -52,7 +52,7 @@ describe('MatchView Component', () => {
   })
 
   it('should copy ip when clicked', async () => {
-    match.status = 'finished'
+    match.status = 'warmup'
 
     const user = userEvent.setup()
 
