@@ -46,7 +46,7 @@ export default function Connect() {
   const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 
   const handleClipboard = () => {
-    navigator.clipboard.writeText(match.server_ip)
+    navigator.clipboard.writeText(`connect ${match.server_ip}`)
     setCopied(match.server_ip)
   }
 
