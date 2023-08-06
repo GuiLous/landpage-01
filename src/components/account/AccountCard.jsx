@@ -6,7 +6,7 @@ import style from './AccountCard.module.css'
 
 export default function AccountCard({ title, description, children, icon }) {
   return (
-    <Container align={'stretch'} gap={32} className={style.container} column>
+    <Container gap={32} className={style.container} column>
       {title && (
         <Container className={style.title} gap={12}>
           <Container align="center" gap={12}>
