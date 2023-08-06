@@ -154,79 +154,82 @@ export default function ChangeEmailCard() {
                 >
                   E-mail
                 </FormLabel>
-                <Input
-                  ref={inputRef}
-                  id="email"
-                  name="email"
-                  autoFocus
-                  variant="secondary"
-                  value={email}
-                  _focus={
-                    email === user.email || email === ''
-                      ? {
-                          border: '1px solid',
-                          borderColor: 'purple.400',
-                        }
-                      : {
-                          border: '1px solid',
-                          borderColor:
-                            hasErrors() && email !== ''
-                              ? 'red.500'
-                              : 'green.400',
-                        }
-                  }
-                  disabled={!isEditing}
-                  onChange={handleChange}
-                  onKeyDown={handleKeyEnterDown}
-                />
+
+                <Container align="center" style={{ position: 'relative' }}>
+                  <Input
+                    ref={inputRef}
+                    id="email"
+                    name="email"
+                    autoFocus
+                    variant="secondary"
+                    value={email}
+                    _focus={
+                      email === user.email || email === ''
+                        ? {
+                            border: '1px solid',
+                            borderColor: 'purple.400',
+                          }
+                        : {
+                            border: '1px solid',
+                            borderColor:
+                              hasErrors() && email !== ''
+                                ? 'red.500'
+                                : 'green.400',
+                          }
+                    }
+                    disabled={!isEditing}
+                    onChange={handleChange}
+                    onKeyDown={handleKeyEnterDown}
+                  />
+                  <InputRightElement
+                    right={4}
+                    cursor="pointer"
+                    width="fit-content"
+                    height="100%"
+                    as="button"
+                    type="submit"
+                  >
+                    {user.email === email && !isEditing && (
+                      <Text fontSize={14} fontWeight="medium" color="gray.400">
+                        EDITAR
+                      </Text>
+                    )}
+
+                    {user.email !== email &&
+                      !isEditing &&
+                      (isEmailValid(email) ? (
+                        <Icon
+                          as={CheckCircleIcon}
+                          color="green.400"
+                          fontSize={22}
+                        />
+                      ) : (
+                        <Icon
+                          as={WarningCircleIcon}
+                          color="red.500"
+                          fontSize={22}
+                        />
+                      ))}
+
+                    {isEditing &&
+                      (isEmailValid(email) ? (
+                        <Icon
+                          as={CheckCircleIcon}
+                          color="green.400"
+                          fontSize={22}
+                        />
+                      ) : (
+                        email !== '' && (
+                          <Icon
+                            as={WarningCircleIcon}
+                            color="red.500"
+                            fontSize={22}
+                          />
+                        )
+                      ))}
+                  </InputRightElement>
+                </Container>
               </Container>
-              <InputRightElement
-                right={4}
-                cursor="pointer"
-                width="fit-content"
-                height="100%"
-                as="button"
-                type="submit"
-              >
-                {user.email === email && !isEditing && (
-                  <Text fontSize={14} fontWeight="medium" color="gray.400">
-                    EDITAR
-                  </Text>
-                )}
-
-                {user.email !== email &&
-                  !isEditing &&
-                  (isEmailValid(email) ? (
-                    <Icon
-                      as={CheckCircleIcon}
-                      color="green.400"
-                      fontSize={22}
-                    />
-                  ) : (
-                    <Icon
-                      as={WarningCircleIcon}
-                      color="red.500"
-                      fontSize={22}
-                    />
-                  ))}
-
-                {isEditing &&
-                  (isEmailValid(email) ? (
-                    <Icon
-                      as={CheckCircleIcon}
-                      color="green.400"
-                      fontSize={22}
-                    />
-                  ) : (
-                    email !== '' && (
-                      <Icon
-                        as={WarningCircleIcon}
-                        color="red.500"
-                        fontSize={22}
-                      />
-                    )
-                  ))}
-              </InputRightElement>
             </InputGroup>
           </FormControl>
 
