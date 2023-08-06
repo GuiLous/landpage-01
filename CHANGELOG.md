@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `ChangeEmailCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `InactivateAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `DeleteAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `AccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `Account` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
 - Altera `ProfileHeader` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
 - Altera estilos da view `Profile` e `Account` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
 - Adiciona `testID` no componente `MatchHistoryPagination`.
