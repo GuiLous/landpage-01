@@ -7,6 +7,10 @@
 	width: 100%;
 }
 
+.title {
+	padding: 0 60px;
+}
+
 .content {
 	padding: 0 60px;
 }
