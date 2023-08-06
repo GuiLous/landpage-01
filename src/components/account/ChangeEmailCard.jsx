@@ -1,12 +1,12 @@
 import {
-  Box,
   Button,
+  FormControl,
+  FormLabel,
   Icon,
   Input,
   InputGroup,
   InputRightElement,
   Text,
-  Tooltip,
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
@@ -17,7 +17,7 @@ import {
   AccountCard,
   CheckCircleIcon,
   Container,
-  PencilIcon,
+  LockIcon,
   WarningCircleIcon,
 } from '@components'
 import { isEmailValid } from '@components/forms/Validators'
@@ -137,81 +137,87 @@ export default function ChangeEmailCard() {
 
   return (
     <AccountCard
-      title="ALTERAR E-MAIL"
+      title="INFORMAÇÕES PESSOAIS"
       description="Essa informação é particular e não será compartilhada com outras pessoas."
+      icon={LockIcon}
     >
-      <Container className={style.container} gap={24}>
+      <Container className={style.container} gap={32}>
         <Container column>
-          <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
-            <Input
-              ref={inputRef}
-              autoFocus
-              variant="secondary"
-              value={email}
-              _focus={
-                email === user.email || email === ''
-                  ? {
-                      border: '1px solid',
-                      borderColor: 'purple.400',
-                    }
-                  : {
-                      border: '1px solid',
-                      borderColor:
-                        hasErrors() && email !== '' ? 'red.500' : 'green.400',
-                    }
-              }
-              disabled={!isEditing}
-              onChange={handleChange}
-              onKeyDown={handleKeyEnterDown}
-            />
+          <FormControl>
+            <FormLabel fontSize={14} color="gray.300" fontWeight="medium">
+              E-mail
+            </FormLabel>
+            <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
+              <Input
+                ref={inputRef}
+                autoFocus
+                variant="secondary"
+                value={email}
+                _focus={
+                  email === user.email || email === ''
+                    ? {
+                        border: '1px solid',
+                        borderColor: 'purple.400',
+                      }
+                    : {
+                        border: '1px solid',
+                        borderColor:
+                          hasErrors() && email !== '' ? 'red.500' : 'green.400',
+                      }
+                }
+                disabled={!isEditing}
+                onChange={handleChange}
+                onKeyDown={handleKeyEnterDown}
+              />
+              <InputRightElement
+                right={4}
+                cursor="pointer"
+                width="fit-content"
+                height="100%"
+                as="button"
+                type="submit"
+              >
+                {user.email === email && !isEditing && (
+                  <Text fontSize={14} fontWeight="medium" color="gray.400">
+                    EDITAR
+                  </Text>
+                )}
 
-            <InputRightElement
-              right={4}
-              cursor="pointer"
-              width="fit-content"
-              height="100%"
-              as="button"
-              type="submit"
-            >
-              {user.email === email && !isEditing && (
-                <Tooltip
-                  label="Editar e-mail"
-                  aria-label="edit icon"
-                  placement="right-start"
-                >
-                  <Box display="flex">
+                {user.email !== email &&
+                  !isEditing &&
+                  (isEmailValid(email) ? (
                     <Icon
-                      as={PencilIcon}
-                      fill="gray.300"
-                      _hover={{ fill: 'white' }}
-                      transition="all 0.2s ease"
+                      as={CheckCircleIcon}
+                      color="green.400"
+                      fontSize={22}
                     />
-                  </Box>
-                </Tooltip>
-              )}
-
-              {user.email !== email &&
-                !isEditing &&
-                (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
-                ) : (
-                  <Icon as={WarningCircleIcon} color="red.500" fontSize={22} />
-                ))}
-
-              {isEditing &&
-                (isEmailValid(email) ? (
-                  <Icon as={CheckCircleIcon} color="green.400" fontSize={22} />
-                ) : (
-                  email !== '' && (
+                  ) : (
                     <Icon
                       as={WarningCircleIcon}
                       color="red.500"
                       fontSize={22}
                     />
-                  )
-                ))}
-            </InputRightElement>
-          </InputGroup>
+                  ))}
+
+                {isEditing &&
+                  (isEmailValid(email) ? (
+                    <Icon
+                      as={CheckCircleIcon}
+                      color="green.400"
+                      fontSize={22}
+                    />
+                  ) : (
+                    email !== '' && (
+                      <Icon
+                        as={WarningCircleIcon}
+                        color="red.500"
+                        fontSize={22}
+                      />
+                    )
+                  ))}
+              </InputRightElement>
+            </InputGroup>
+          </FormControl>
 
           {fieldsErrors?.email && (
             <Text
@@ -230,14 +236,14 @@ export default function ChangeEmailCard() {
           borderRadius="4px"
           fontWeight="semiBold"
           fontSize={14}
-          minH="34px"
+          minH="42px"
           h="fit-content"
           isDisabled={
             fieldsErrors?.email || !isEmailValid(email) || user.email === email
           }
           onClick={handleClickButtonSave}
         >
-          Salvar Alterações
+          Salvar
         </Button>
       </Container>
     </AccountCard>
