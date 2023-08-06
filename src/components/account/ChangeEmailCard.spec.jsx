@@ -442,7 +442,7 @@ describe('ChangeEmailCard Component', () => {
       </Provider>
     )
 
-    expect(screen.getByText('ALTERAR E-MAIL')).toBeInTheDocument()
+    expect(screen.getByText('INFORMAÇÕES PESSOAIS')).toBeInTheDocument()
   })
 
   it('should enable editing when input group is clicked', () => {
