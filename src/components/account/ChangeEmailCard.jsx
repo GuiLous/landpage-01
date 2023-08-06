@@ -144,31 +144,42 @@ export default function ChangeEmailCard() {
       <Container className={style.container} gap={32}>
         <Container column>
           <FormControl>
-            <FormLabel fontSize={14} color="gray.300" fontWeight="medium">
-              E-mail
-            </FormLabel>
             <InputGroup maxW={424} ref={inputGroupRef} onClick={setEditingTrue}>
-              <Input
-                ref={inputRef}
-                autoFocus
-                variant="secondary"
-                value={email}
-                _focus={
-                  email === user.email || email === ''
-                    ? {
-                        border: '1px solid',
-                        borderColor: 'purple.400',
-                      }
-                    : {
-                        border: '1px solid',
-                        borderColor:
-                          hasErrors() && email !== '' ? 'red.500' : 'green.400',
-                      }
-                }
-                disabled={!isEditing}
-                onChange={handleChange}
-                onKeyDown={handleKeyEnterDown}
-              />
+              <Container column>
+                <FormLabel
+                  htmlFor="email"
+                  fontSize={14}
+                  color="gray.300"
+                  fontWeight="medium"
+                >
+                  E-mail
+                </FormLabel>
+                <Input
+                  ref={inputRef}
+                  id="email"
+                  name="email"
+                  autoFocus
+                  variant="secondary"
+                  value={email}
+                  _focus={
+                    email === user.email || email === ''
+                      ? {
+                          border: '1px solid',
+                          borderColor: 'purple.400',
+                        }
+                      : {
+                          border: '1px solid',
+                          borderColor:
+                            hasErrors() && email !== ''
+                              ? 'red.500'
+                              : 'green.400',
+                        }
+                  }
+                  disabled={!isEditing}
+                  onChange={handleChange}
+                  onKeyDown={handleKeyEnterDown}
+                />
+              </Container>
               <InputRightElement
                 right={4}
                 cursor="pointer"
