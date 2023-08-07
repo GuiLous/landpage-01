@@ -13,7 +13,7 @@ export default function LobbySeat({ mini, disabled }) {
         mini && style.mini,
         disabled && style.disabled,
       ].join(' ')}
-      testID="container"
+      testID="seatContainer"
     >
       <Container align="center" justify="center" className={style.wrapper}>
         <CloseIcon className={style.icon} data-testid="icon" />
