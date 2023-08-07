@@ -1,10 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
 
 import { LobbiesAPI } from '@api'
 import { InviteListGroupItem } from '@components'
-import AppReducer from '@slices/AppSlice'
 
 jest.mock('@api', () => ({
   LobbiesAPI: {
@@ -14,18 +13,6 @@ jest.mock('@api', () => ({
 }))
 
 const renderComponent = () => {
-  const app = {
-    toasts: [],
-    friendListOpen: false,
-  }
-
-  const store = configureStore({
-    reducer: {
-      app: AppReducer,
-    },
-    preloadedState: { app },
-  })
-
   const invite = {
     invite_id: '3:1',
     avatar:
@@ -34,8 +21,10 @@ const renderComponent = () => {
     username: 'Username',
   }
 
+  const mockStore = configureStore()({})
+
   render(
-    <Provider store={store}>
+    <Provider store={mockStore}>
       <InviteListGroupItem {...invite} />
     </Provider>
   )
