@@ -14,31 +14,11 @@ jest.mock('@api', () => ({
   },
 }))
 
-const renderComponent = (
-  queue_time = null,
-  restriction_countdown = null,
-  preMatch = null,
-  match = null,
-  queue = null
-) => {
-  let props = {
-    otherPlayers: [
-      {
-        username: 'Username 2',
-        user_id: 2,
-        avatar: {
-          large:
-            'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
-        },
-        latest_matches_results: ['V', 'D', 'N/A', 'N/A', 'N/A'],
-        matches_played: 2,
-        level: 1,
-        steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
-      },
-    ],
-    userPlayer: {
-      username: 'Username',
-      user_id: 1,
+let props = {
+  otherPlayers: [
+    {
+      username: 'Username 2',
+      user_id: 2,
       avatar: {
         large:
           'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
@@ -48,17 +28,31 @@ const renderComponent = (
       level: 1,
       steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
     },
-    lobby: {
-      id: 1,
-      owner_id: 1,
-      queue,
-      queue_time,
-      restriction_countdown,
+  ],
+  userPlayer: {
+    username: 'Username',
+    user_id: 1,
+    avatar: {
+      large:
+        'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
     },
-    match,
-    preMatch,
-  }
+    latest_matches_results: ['V', 'D', 'N/A', 'N/A', 'N/A'],
+    matches_played: 2,
+    level: 1,
+    steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
+  },
+  lobby: {
+    id: 1,
+    owner_id: 1,
+    queue: null,
+    queue_time: null,
+    restriction_countdown: null,
+  },
+  match: null,
+  preMatch: null,
+}
 
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
   render(
@@ -93,8 +87,9 @@ describe('LobbyLineup Component', () => {
   it('should call cancelQueue on click button', async () => {
     LobbiesAPI.cancelQueue.mockResolvedValue({})
 
-    const queueTime = 1
-    renderComponent(queueTime)
+    props.lobby.queue_time = 1
+
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -106,9 +101,10 @@ describe('LobbyLineup Component', () => {
   it('should not call startQueue if has restriction_countdown', async () => {
     LobbiesAPI.startQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = 1
-    renderComponent(queueTime, restrictionCountdown)
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = 1
+
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -120,10 +116,11 @@ describe('LobbyLineup Component', () => {
   it('should not call startQueue if has preMatch', async () => {
     LobbiesAPI.startQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = null
-    const preMatch = true
-    renderComponent(queueTime, restrictionCountdown, preMatch)
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = null
+    props.preMatch = true
+
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -135,12 +132,12 @@ describe('LobbyLineup Component', () => {
   it('should not call startQueue if is in match', async () => {
     LobbiesAPI.startQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = null
-    const preMatch = false
-    const match = { status: 'running' }
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = null
+    props.preMatch = null
+    props.match = { status: 'running' }
 
-    renderComponent(queueTime, restrictionCountdown, preMatch, match)
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -152,9 +149,10 @@ describe('LobbyLineup Component', () => {
   it('should not call cancelQueue if has restriction_countdown', async () => {
     LobbiesAPI.cancelQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = 1
-    renderComponent(queueTime, restrictionCountdown)
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = 1
+
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -166,10 +164,11 @@ describe('LobbyLineup Component', () => {
   it('should not call cancelQueue if has preMatch', async () => {
     LobbiesAPI.cancelQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = null
-    const preMatch = true
-    renderComponent(queueTime, restrictionCountdown, preMatch)
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = null
+    props.preMatch = true
+
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -181,12 +180,12 @@ describe('LobbyLineup Component', () => {
   it('should not call cancelQueue if is in match', async () => {
     LobbiesAPI.cancelQueue.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = null
-    const preMatch = false
-    const match = { status: 'running' }
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = null
+    props.preMatch = null
+    props.match = { status: 'running' }
 
-    renderComponent(queueTime, restrictionCountdown, preMatch, match)
+    renderComponent()
 
     const playBtn = screen.getByTestId('container')
 
@@ -212,13 +211,13 @@ describe('LobbyLineup Component', () => {
   it('should not call removePlayer if has lobby.queue', async () => {
     LobbiesAPI.removePlayer.mockResolvedValue({})
 
-    const queueTime = null
-    const restrictionCountdown = null
-    const preMatch = null
-    const match = null
-    const queue = true
+    props.lobby.queue_time = null
+    props.lobby.restriction_countdown = null
+    props.preMatch = null
+    props.match = null
+    props.lobby.queue = true
 
-    renderComponent(queueTime, restrictionCountdown, preMatch, match, queue)
+    renderComponent()
 
     expect(screen.queryByTestId('close')).not.toBeInTheDocument()
 
