@@ -1,43 +1,119 @@
-import { render, screen } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
+import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 
+import { SupportAPI } from '@api'
 import { SupportModal } from '@components'
-import { Provider } from 'react-redux'
 
-const server = setupServer(
-  rest.get(
-    'http://localhost:8000/api/support/tickets/subjects/',
-    (req, res, ctx) => {
-      return res(
-        ctx.status(200),
-        ctx.json(['option 1', 'option 2', 'option 3', 'option 4'])
-      )
-    }
-  )
-)
+jest.mock('@api', () => ({
+  SupportAPI: {
+    createTicket: jest.fn(),
+    listTickets: jest.fn(),
+  },
+}))
 
-describe('SupportModal Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => server.resetHandlers())
-  afterAll(() => server.close())
-
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
+  render(
+    <Provider store={mockStore}>
+      <SupportModal isOpen={true} setIsOpen={() => {}} />
+    </Provider>
+  )
+}
+
+describe('SupportModal Component', () => {
   it('should render correctly', async () => {
-    render(
-      <Provider store={mockStore}>
-        <SupportModal isOpen={true} setIsOpen={() => {}} />
-      </Provider>
+    SupportAPI.listTickets.mockResolvedValue([
+      'option 1',
+      'option 2',
+      'option 3',
+      'option 4',
+    ])
+    renderComponent()
+
+    await screen.findByText(
+      'Tem alguma dúvida? Preencha o formulário ou visite nossa'
+    )
+    await screen.findByText('central de suporte.')
+    await screen.findByText('ENVIAR')
+  })
+
+  it('should disable ENVIAR button when description and subject is empty', async () => {
+    SupportAPI.listTickets.mockResolvedValue([
+      'option 1',
+      'option 2',
+      'option 3',
+      'option 4',
+    ])
+    renderComponent()
+
+    await waitFor(() => expect(screen.getByText('ENVIAR')).toBeDisabled())
+  })
+
+  it('should enable ENVIAR button when description and subject has content', async () => {
+    SupportAPI.listTickets.mockResolvedValue([
+      'option 1',
+      'option 2',
+      'option 3',
+      'option 4',
+    ])
+    renderComponent()
+
+    fireEvent.mouseDown(screen.getByRole('combobox'))
+
+    await waitFor(() =>
+      expect(screen.queryByText('Carregando opções...')).not.toBeInTheDocument()
     )
 
-    expect(
-      screen.getByText(
-        'Tem alguma dúvida? Preencha o formulário ou visite nossa'
-      )
-    ).toBeInTheDocument()
-    expect(screen.getByText('central de suporte.')).toBeInTheDocument()
-    expect(screen.getByText('ENVIAR')).toBeInTheDocument()
+    fireEvent.mouseDown(screen.getByRole('combobox'))
+
+    const option = await screen.findByText('option 2')
+    fireEvent.click(option)
+
+    expect(screen.getByText('option 2')).toBeInTheDocument()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'description test' } })
+
+    expect(input.value).toBe('description test')
+
+    expect(screen.getByText('ENVIAR')).toBeEnabled()
+  })
+
+  it('should call createTicket on click ENVIAR', async () => {
+    SupportAPI.listTickets.mockResolvedValue([
+      'option 1',
+      'option 2',
+      'option 3',
+      'option 4',
+    ])
+    SupportAPI.createTicket.mockResolvedValue({})
+    renderComponent()
+
+    fireEvent.mouseDown(screen.getByRole('combobox'))
+
+    await waitFor(() =>
+      expect(screen.queryByText('Carregando opções...')).not.toBeInTheDocument()
+    )
+
+    fireEvent.mouseDown(screen.getByRole('combobox'))
+
+    const option = await screen.findByText('option 2')
+    fireEvent.click(option)
+
+    expect(screen.getByText('option 2')).toBeInTheDocument()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'description test' } })
+
+    expect(input.value).toBe('description test')
+
+    const sendBtn = screen.getByText('ENVIAR')
+    fireEvent.click(sendBtn)
+
+    await waitFor(() =>
+      expect(SupportAPI.createTicket).toHaveBeenCalledTimes(1)
+    )
   })
 })
