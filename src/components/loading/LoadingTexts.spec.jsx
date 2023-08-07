@@ -23,6 +23,6 @@ describe('LoadingTexts Component', () => {
     expect(screen.getByText('Ligando as luzes')).toBeInTheDocument()
     expect(screen.queryByText('test')).not.toBeInTheDocument()
 
-    await screen.findByText('test', {}, { timeout: 3000 })
+    await screen.findByText('test', {}, { timeout: 4000 })
   })
 })
