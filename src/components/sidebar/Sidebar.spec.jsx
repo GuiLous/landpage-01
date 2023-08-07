@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/node'
 import { Provider } from 'react-redux'
@@ -80,11 +80,7 @@ const server = setupServer(
   })
 )
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }))
-afterEach(() => server.resetHandlers())
-afterAll(() => server.close())
-
-describe('Sidebar Component', () => {
+const renderComponent = () => {
   const user = {
     id: 1,
     account: {
@@ -151,14 +147,22 @@ describe('Sidebar Component', () => {
     },
   })
 
+  render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <Sidebar />
+      </Provider>
+    </BrowserRouter>
+  )
+}
+
+describe('Sidebar Component', () => {
+  beforeAll(() => server.listen({ onUnhandledRequest: 'bypass' }))
+  afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
+
   it('should render correctly', async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <Sidebar />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent()
 
     expect(screen.getByText('Username')).toBeInTheDocument()
     expect(screen.getByText('LEVEL 2')).toBeInTheDocument()
@@ -169,5 +173,45 @@ describe('Sidebar Component', () => {
     expect(screen.getByText('loja')).toBeInTheDocument()
     expect(screen.getByText('suporte')).toBeInTheDocument()
     expect(screen.getByText('sair')).toBeInTheDocument()
+  })
+
+  it('should open friend list drawer on click button', async () => {
+    renderComponent()
+
+    const friendsBtn = screen.getByTestId('amigos')
+
+    fireEvent.click(friendsBtn)
+
+    await screen.findByText('Amigos')
+  })
+
+  it('should open notifications list drawer on click button', async () => {
+    renderComponent()
+
+    const notificationsBtn = screen.getByTestId('notificações')
+
+    fireEvent.click(notificationsBtn)
+
+    await screen.findByText('Notificações')
+  })
+
+  it('should open support modal on click button', async () => {
+    renderComponent()
+
+    const supportBtn = screen.getByTestId('suporte')
+
+    fireEvent.click(supportBtn)
+
+    await screen.findByText('SUPORTE RELOAD CLUB')
+  })
+
+  it('should open logout modal on click button', async () => {
+    renderComponent()
+
+    const logoutBtn = screen.getByTestId('sair')
+
+    fireEvent.click(logoutBtn)
+
+    await screen.findByText('ESTÁ INDO EMBORA?')
   })
 })
