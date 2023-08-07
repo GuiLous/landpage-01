@@ -37,7 +37,7 @@ export default function LobbyLineup({
   const handleQueue = async (action) => {
     if (lobby.restriction_countdown || lobby.restriction_countdown === 0) return
 
-    if (preMatch || match) return
+    if (preMatch || isInMatch) return
 
     if (action === 'start' && !isOwner) return
 
