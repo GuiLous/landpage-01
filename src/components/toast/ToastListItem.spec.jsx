@@ -1,39 +1,48 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
+import { LobbiesAPI } from '@api'
 import { ToastListItem } from '@components'
-import AppReducer from '@slices/AppSlice'
 import InviteReducer from '@slices/InviteSlice'
 
-describe('ToastListItem Component', () => {
-  let app = {
-    toasts: [],
-    friendListOpen: false,
-  }
+jest.mock('@api', () => ({
+  LobbiesAPI: {
+    acceptInvite: jest.fn(),
+  },
+}))
 
-  const invites = []
+const toast = {
+  id: 1,
+  title: 'Feedback!',
+  content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
+  duration: 6,
+  variant: 'success',
+}
 
+let invites = []
+
+const renderComponent = () => {
   const store = configureStore({
-    reducer: { app: AppReducer, invites: InviteReducer },
-    devTools: true,
-    preloadedState: { app, invites },
+    reducer: { invites: InviteReducer },
+    preloadedState: { invites },
+  })
+
+  render(
+    <Provider store={store}>
+      <ToastListItem {...toast} />
+    </Provider>
+  )
+}
+
+describe('ToastListItem Component', () => {
+  afterEach(() => {
+    invites = []
   })
 
   it('should render correctly', () => {
-    app.toasts.push({
-      id: 1,
-      title: 'Feedback!',
-      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-      duration: 6,
-      variant: 'success',
-    })
+    renderComponent()
 
-    render(
-      <Provider store={store}>
-        <ToastListItem {...app.toasts[0]} />
-      </Provider>
-    )
     expect(screen.getByText('Feedback!')).toBeInTheDocument()
     expect(
       screen.getByText(
@@ -43,44 +52,51 @@ describe('ToastListItem Component', () => {
   })
 
   it('should render variant correctly', () => {
-    render(
-      <Provider store={store}>
-        <ToastListItem {...app.toasts[0]} />
-      </Provider>
-    )
-
-    expect(screen.getByTestId('container')).toHaveClass(app.toasts[0].variant)
+    renderComponent()
+    expect(screen.getByTestId('container')).toHaveClass(toast.variant)
   })
 
   it('should render default title', () => {
-    app.toasts = []
-    app.toasts.push({
-      id: 1,
-      content: 'Default title toast.',
-      duration: 6,
-      variant: 'success',
-    })
-    render(
-      <Provider store={store}>
-        <ToastListItem {...app.toasts[0]} />
-      </Provider>
-    )
+    toast.title = null
+
+    renderComponent()
     expect(screen.getByText('Tudo certo!')).toBeInTheDocument()
 
-    app.toasts[0].variant = 'warning'
-    render(
-      <Provider store={store}>
-        <ToastListItem {...app.toasts[0]} />
-      </Provider>
-    )
+    toast.variant = 'warning'
+
+    renderComponent()
     expect(screen.getByText('Atenção!')).toBeInTheDocument()
 
-    app.toasts[0].variant = 'error'
-    render(
-      <Provider store={store}>
-        <ToastListItem {...app.toasts[0]} />
-      </Provider>
-    )
+    toast.variant = 'error'
+
+    renderComponent()
     expect(screen.getByText('Algo saiu errado...')).toBeInTheDocument()
+
+    toast.variant = 'invite'
+
+    renderComponent()
+    expect(screen.getByText('Info')).toBeInTheDocument()
+  })
+
+  it('should render Aceitar button when variant is invite', () => {
+    toast.variant = 'invite'
+
+    renderComponent()
+
+    expect(screen.getByText('Aceitar')).toBeInTheDocument()
+  })
+
+  it('should call acceptInvite on click Aceitar button', async () => {
+    LobbiesAPI.acceptInvite.mockResolvedValue({})
+    toast.variant = 'invite'
+
+    renderComponent()
+
+    const acceptInviteBtn = screen.getByText('Aceitar')
+    fireEvent.click(acceptInviteBtn)
+
+    await waitFor(() =>
+      expect(LobbiesAPI.acceptInvite).toHaveBeenCalledTimes(1)
+    )
   })
 })
