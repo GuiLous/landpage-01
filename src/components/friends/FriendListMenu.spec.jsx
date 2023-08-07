@@ -191,4 +191,18 @@ describe('FriendListMenu Component', () => {
 
     await screen.findByText('SUPORTE RELOAD CLUB')
   })
+
+  it('should call window.open on click button', async () => {
+    window.open = jest.fn()
+
+    renderComponent(false, 'online')
+
+    const steamBtn = screen.getByText('Ver perfil na Steam')
+
+    fireEvent.click(steamBtn)
+
+    await waitFor(() =>
+      expect(window.open).toHaveBeenCalledWith(`testUrl`, '_blank')
+    )
+  })
 })
