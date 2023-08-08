@@ -128,6 +128,7 @@ export default function AddSocialModal({
             px="8px"
             onChange={handleChange}
             onKeyDown={handleKeyEnterDown}
+            data-testid={`input-${item}`}
           />
 
           <Text
@@ -140,6 +141,7 @@ export default function AddSocialModal({
             cursor="pointer"
             _hover={{ color: 'white' }}
             onClick={handleUpdateSocials}
+            data-testid={`send-${item}`}
           >
             Enviar
           </Text>
@@ -154,6 +156,7 @@ export default function AddSocialModal({
             _hover={{
               color: 'gray.300',
             }}
+            data-testid={`cancel-${item}`}
             onClick={() => setActiveSocialItem('')}
           />
         </Container>
@@ -183,6 +186,7 @@ export default function AddSocialModal({
               color: 'gray.300',
             }}
             onClick={() => handleDeleteSocials(item)}
+            data-testid={`delete-${item}`}
           />
         </Container>
       )
@@ -206,6 +210,7 @@ export default function AddSocialModal({
         onClick={() => handleChangeActiveSocialName(item)}
         isDisabled={isFetching}
         isLoading={item === activeSocialItem && isFetching}
+        data-testid={`add-${item}`}
       >
         Vincular
       </Button>
