@@ -23,17 +23,10 @@ export default {
       },
       user_id: 1,
       status: 'online',
-      socials: [
-        {
-          name: 'steam',
-          url: 'https://steamcommunity.com/profiles/76561199086242260/',
-        },
-        { name: 'discord', url: 'https://discord.gg/mMMKshktfT' },
-        {
-          name: 'youtube',
-          url: 'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A',
-        },
-      ],
+      social_handles: {
+        steam: '112415987456519643',
+        twitch: 'coreano',
+      },
     },
   },
 }

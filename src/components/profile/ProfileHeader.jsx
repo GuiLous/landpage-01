@@ -55,7 +55,7 @@ export default function ProfileHeader({ profile, isUserLogged }) {
           </Container>
 
           <ProfileHeaderSocialButtons
-            socials={profile.socials}
+            socials={profile.social_handles || []}
             isUserLogged={isUserLogged}
           />
         </Container>
