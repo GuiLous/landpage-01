@@ -1,17 +1,20 @@
-import { Icon, Input, Text } from '@chakra-ui/react'
+import { Button, Icon, Input, Text } from '@chakra-ui/react'
 import { useState } from 'react'
+import { SiDiscord, SiTwitch, SiYoutube } from 'react-icons/si'
 import { useDispatch } from 'react-redux'
 
+import { ProfilesAPI } from '@api'
 import { CloseIcon, Container, Modal } from '@components'
-
-import { SiDiscord, SiTwitch, SiYoutube } from 'react-icons/si'
+import { StorageService } from '@services'
+import { addToast } from '@slices/AppSlice'
 
 import style from './AddSocialModal.module.css'
 
 export default function AddSocialModal({
   isOpen,
   setIsOpen,
-  socialsLinked = [],
+  socialsLinked,
+  socials,
 }) {
   const dispatch = useDispatch()
 
@@ -25,13 +28,17 @@ export default function AddSocialModal({
     youtube: SiYoutube,
   }
 
-  const keys = Object.keys(socialIcons)
-  const keysLinked = keys.filter((key) => socialsLinked.includes(key))
+  const keysIcons = Object.keys(socialIcons)
 
   const handleCloseModalSupport = () => {
     setIsOpen(false)
     setSocialName('')
     setActiveSocialItem('')
+  }
+
+  const handleChangeActiveSocialName = (item) => {
+    setSocialName('')
+    setActiveSocialItem(item)
   }
 
   const handleChange = (event) => {
@@ -41,13 +48,67 @@ export default function AddSocialModal({
   }
 
   const handleKeyEnterDown = (event) => {
-    if (event.key === 'Enter' && socialName !== '') {
-      console.log('enter')
+    if (event.key === 'Enter') {
+      handleUpdateSocials()
     }
   }
 
+  const handleSubmit = async (action, item) => {
+    debugger
+    if (action === 'update' && socialName === '') return
+
+    setIsFetching(true)
+    const token = StorageService.get('token')
+
+    let payload
+    let response
+
+    if (action === 'update') {
+      payload = {
+        social_handles: {
+          ...socials,
+        },
+      }
+
+      payload.social_handles[activeSocialItem] = socialName
+
+      response = await ProfilesAPI.updateSocials(token, payload)
+    } else {
+      payload = {
+        social_handles: {
+          ...socials,
+        },
+      }
+
+      delete payload.social_handles[item]
+
+      response = await ProfilesAPI.updateSocials(token, payload)
+    }
+
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
+
+      setIsFetching(false)
+      return
+    }
+
+    setIsFetching(false)
+    setActiveSocialItem('')
+    setSocialName('')
+  }
+
+  const handleUpdateSocials = () => handleSubmit('update')
+  const handleDeleteSocials = (item) => {
+    handleSubmit('delete', item)
+  }
+
   const renderRightContent = (item) => {
-    if (item === activeSocialItem) {
+    if (item === activeSocialItem && !isFetching) {
       return (
         <Container gap={14} align="center" fitContent>
           <Input
@@ -75,19 +136,21 @@ export default function AddSocialModal({
             fontSize={12}
             fontWeight="medium"
             as="span"
-            transition="all 0.2s ease-in-out"
+            transition="color 0.2s ease-in-out"
             cursor="pointer"
             _hover={{ color: 'white' }}
+            onClick={handleUpdateSocials}
           >
             Enviar
           </Text>
+
           <Icon
             as={CloseIcon}
             fontSize={10}
             color="white"
             verticalAlign="middle"
             cursor="pointer"
-            transition="all 0.2s ease-in-out"
+            transition="color 0.2s ease-in-out"
             _hover={{
               color: 'gray.300',
             }}
@@ -97,7 +160,7 @@ export default function AddSocialModal({
       )
     }
 
-    if (keysLinked.includes(item)) {
+    if (socialsLinked.includes(item)) {
       return (
         <Container gap={14} align="center" fitContent>
           <Text
@@ -107,7 +170,7 @@ export default function AddSocialModal({
             fontWeight="medium"
             as="span"
           >
-            @nickname
+            {socials[item]}
           </Text>
           <Icon
             as={CloseIcon}
@@ -115,40 +178,44 @@ export default function AddSocialModal({
             color="white"
             verticalAlign="middle"
             cursor="pointer"
-            transition="all 0.2s ease-in-out"
+            transition="color 0.2s ease-in-out"
             _hover={{
               color: 'gray.300',
             }}
+            onClick={() => handleDeleteSocials(item)}
           />
         </Container>
       )
     }
 
     return (
-      <Container
-        align="center"
-        justify="center"
-        fitContent
-        className={style.addBtn}
-        onClick={() => setActiveSocialItem(item)}
+      <Button
+        minH="28px"
+        h="28px"
+        fontSize={12}
+        fontWeight="medium"
+        borderRadius="67px"
+        textTransform="capitalize"
+        lineHeight={1}
+        _disabled={{
+          fontSize: 12,
+          color: 'gray.400',
+          bgColor: 'gray.800',
+          cursor: 'not-allowed',
+        }}
+        onClick={() => handleChangeActiveSocialName(item)}
+        isDisabled={isFetching}
+        isLoading={item === activeSocialItem && isFetching}
       >
-        <Text
-          lineHeight={1}
-          color="white"
-          fontSize={12}
-          fontWeight="medium"
-          as="span"
-        >
-          Vincular
-        </Text>
-      </Container>
+        Vincular
+      </Button>
     )
   }
 
   const renderSocialItems = () => {
     return (
       <Container column>
-        {keys.map((item) => (
+        {keysIcons.map((item) => (
           <Container
             key={item}
             justify="between"
