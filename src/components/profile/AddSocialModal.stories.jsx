@@ -18,10 +18,19 @@ const mockStore = configureStore()({})
 
 const socialsLinked = ['twitch']
 
+let socials = {
+  steam: '112415987456519643',
+  twitch: 'coreano',
+}
+
 export const Default = {
   render: (props) => (
     <Provider store={mockStore}>
-      <AddSocialModal socialsLinked={socialsLinked} {...props} />
+      <AddSocialModal
+        socialsLinked={socialsLinked}
+        socials={socials}
+        {...props}
+      />
     </Provider>
   ),
 }
