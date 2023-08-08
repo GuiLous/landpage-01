@@ -16,17 +16,10 @@ const renderComponent = (isUserLogged = false, status = 'online') => {
     },
     user_id: 1,
     status: status,
-    socials: [
-      {
-        name: 'steam',
-        url: 'https://steamcommunity.com/profiles/76561199086242260/',
-      },
-      { name: 'discord', url: 'https://discord.gg/mMMKshktfT' },
-      {
-        name: 'youtube',
-        url: 'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A',
-      },
-    ],
+    social_handles: {
+      steam: '112415987456519643',
+      twitch: 'coreano',
+    },
   }
 
   const mockStore = configureStore()({})
@@ -96,6 +89,6 @@ describe('ProfileHeader Component', () => {
     renderComponent(true, 'in_game')
 
     expect(screen.getByTestId('steam')).toBeInTheDocument()
-    expect(screen.getByTestId('youtube')).toBeInTheDocument()
+    expect(screen.getByTestId('twitch')).toBeInTheDocument()
   })
 })
