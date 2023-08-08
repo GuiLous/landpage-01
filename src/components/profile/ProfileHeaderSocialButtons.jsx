@@ -9,11 +9,20 @@ import style from './ProfileHeaderSocialButtons.module.css'
 export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
   const [openAddSocialModal, setOpenAddSocialModal] = useState(false)
 
+  const socialLinkedKeys = Object.keys(socials)
+
   const socialIcons = {
     steam: SiSteam,
     discord: SiDiscord,
     twitch: SiTwitch,
     youtube: SiYoutube,
+  }
+
+  const socialsLinksPrefix = {
+    steam: 'https://steamcommunity.com/profiles/',
+    discord: 'https://discord.gg/',
+    twitch: 'https://www.twitch.tv/',
+    youtube: 'https://www.youtube.com/',
   }
 
   const handleOpenModalSupport = () => {
@@ -22,21 +31,25 @@ export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
 
   return (
     <Container gap={14} fitContent align="center">
-      {socials?.map((social) => (
+      {socialLinkedKeys?.map((item) => (
         <Tooltip
-          key={social.name}
-          label={`Visitar perfil ${social.name}`}
-          aria-label={`Visitar perfil ${social.name}`}
+          key={item}
+          label={`Visitar perfil ${item}`}
+          aria-label={`Visitar perfil ${item}`}
           bg="rgba(51, 51, 51, 0.70)"
           padding="12px 10px"
           fontSize={12}
         >
-          <Link href={social.url} isExternal color="white">
+          <Link
+            href={socialsLinksPrefix[item] + socials[item]}
+            isExternal
+            color="white"
+          >
             <Icon
-              as={socialIcons[social.name]}
+              as={socialIcons[item]}
               fontSize={18}
               verticalAlign="middle"
-              data-testid={social.name}
+              data-testid={item}
             />
           </Link>
         </Tooltip>
@@ -67,7 +80,8 @@ export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
       <AddSocialModal
         isOpen={openAddSocialModal}
         setIsOpen={setOpenAddSocialModal}
-        socialsLinked={[]}
+        socialsLinked={socialLinkedKeys}
+        socials={socials}
       />
     </Container>
   )
