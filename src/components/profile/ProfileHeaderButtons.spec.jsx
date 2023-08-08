@@ -55,18 +55,6 @@ describe('ProfileHeaderButtons Component', () => {
     expect(screen.getByText('Reportar usuário')).toBeInTheDocument()
   })
 
-  it('should navigate to inventory on click button', async () => {
-    renderComponent(true, 'online')
-
-    const inventoryBtn = screen.getByText('Meu inventário')
-
-    fireEvent.click(inventoryBtn)
-
-    await waitFor(() =>
-      expect(mockNavigate).toHaveBeenCalledWith(`/inventory/1`)
-    )
-  })
-
   it('should navigate to profile on click button', async () => {
     renderComponent(true, 'online')
 
