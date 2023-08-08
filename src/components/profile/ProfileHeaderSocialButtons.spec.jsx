@@ -22,4 +22,10 @@ describe('ProfileHeaderButtons Component', () => {
     expect(screen.getByTestId('discord')).toBeInTheDocument()
     expect(screen.getByTestId('youtube')).toBeInTheDocument()
   })
+
+  it('should render add social button', () => {
+    render(<ProfileHeaderSocialButtons socials={socials} />)
+
+    expect(screen.getByText('+')).toBeInTheDocument()
+  })
 })
