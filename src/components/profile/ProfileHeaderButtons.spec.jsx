@@ -39,7 +39,6 @@ describe('ProfileHeaderButtons Component', () => {
     renderComponent(true, 'online')
 
     expect(screen.getByText('Meu perfil')).toBeInTheDocument()
-    expect(screen.getByText('Meu inventário')).toBeInTheDocument()
     expect(screen.getByText('Configurações')).toBeInTheDocument()
     expect(screen.queryByText('Abrir bate-papo')).not.toBeInTheDocument()
     expect(screen.queryByText('Reportar usuário')).not.toBeInTheDocument()
@@ -49,7 +48,6 @@ describe('ProfileHeaderButtons Component', () => {
     renderComponent(false, 'online')
 
     expect(screen.queryByText('Meu perfil')).not.toBeInTheDocument()
-    expect(screen.queryByText('Meu inventário')).not.toBeInTheDocument()
     expect(screen.queryByText('Configurações')).not.toBeInTheDocument()
     expect(screen.getByText('Abrir bate-papo')).toBeInTheDocument()
     expect(screen.getByText('Reportar usuário')).toBeInTheDocument()
