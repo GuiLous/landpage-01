@@ -3,6 +3,8 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import { MatchTeamStats } from '@components'
+import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
 
 export default {
@@ -25,7 +27,7 @@ export default {
           match_id: 0,
           team_id: 0,
           user_id: 1,
-          username: 'Username',
+          username: 'Username 1',
           avatar: {
             medium:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
@@ -53,6 +55,9 @@ export default {
             adr: 0,
             head_accuracy: 0,
           },
+          status: 'online',
+          steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
+          lobby_id: 2,
         },
         {
           id: 2,
@@ -61,7 +66,7 @@ export default {
           match_id: 0,
           team_id: 0,
           user_id: 2,
-          username: 'Username',
+          username: 'Username 2',
           avatar: {
             medium:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
@@ -89,6 +94,9 @@ export default {
             adr: 0,
             head_accuracy: 0,
           },
+          status: 'online',
+          steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
+          lobby_id: 2,
         },
         {
           id: 3,
@@ -97,7 +105,7 @@ export default {
           match_id: 0,
           team_id: 0,
           user_id: 3,
-          username: 'Username',
+          username: 'Username 3',
           avatar: {
             medium:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
@@ -125,6 +133,9 @@ export default {
             adr: 0,
             head_accuracy: 0,
           },
+          status: 'online',
+          steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
+          lobby_id: 2,
         },
         {
           id: 4,
@@ -133,7 +144,7 @@ export default {
           match_id: 0,
           team_id: 0,
           user_id: 4,
-          username: 'Username',
+          username: 'Username 4',
           avatar: {
             medium:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
@@ -161,6 +172,9 @@ export default {
             adr: 0,
             head_accuracy: 0,
           },
+          status: 'online',
+          steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
+          lobby_id: 2,
         },
         {
           id: 5,
@@ -169,7 +183,7 @@ export default {
           match_id: 0,
           team_id: 0,
           user_id: 5,
-          username: 'Username',
+          username: 'Username 5',
           avatar: {
             medium:
               'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
@@ -197,6 +211,9 @@ export default {
             adr: 0,
             head_accuracy: 0,
           },
+          status: 'online',
+          steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
+          lobby_id: 2,
         },
       ],
       match_id: 0,
@@ -207,13 +224,23 @@ export default {
 
 const user = {
   id: 1,
+  lobby_id: 1,
+}
+
+const invites = [{ to_player: { user_id: null } }]
+
+const lobby = {
+  queue: null,
+  invited_players_ids: [],
 }
 
 const store = configureStore({
   reducer: {
     user: UserReducer,
+    invites: InviteReducer,
+    lobby: LobbyReducer,
   },
-  preloadedState: { user },
+  preloadedState: { user, invites, lobby },
 })
 
 export const Default = {
