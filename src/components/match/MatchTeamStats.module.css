@@ -58,3 +58,7 @@
 .tableContainer table tbody tr.highlight {
 	background-color: var(--chakra-colors-gray-700);
 }
+
+.tableContainer table tbody tr.highlight:hover {
+	background-color: rgba(104, 71, 255, 0.15);
+}
