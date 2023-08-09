@@ -2,7 +2,7 @@ import { Avatar, AvatarBadge, Box, Text } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { Container, FriendListMenu } from '@components'
+import { Container, UserMenuOptions } from '@components'
 import { useHumanizeStatus } from '@hooks'
 
 import style from './FriendListGroupItem.module.css'
@@ -120,7 +120,7 @@ export default function FriendListGroupItem({
             </Text>
           </Container>
 
-          <FriendListMenu
+          <UserMenuOptions
             open={openMenu}
             user={user}
             user_id={user_id}
@@ -129,6 +129,7 @@ export default function FriendListGroupItem({
             alreadyOnTeam={alreadyOnTeam}
             username={username}
             steam_url={steam_url}
+            placement="left-start"
           />
         </Container>
       </Container>
