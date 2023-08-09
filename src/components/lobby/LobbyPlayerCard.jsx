@@ -45,6 +45,7 @@ export default function LobbyPlayerCard({
           align="center"
           gap={isLessThan2xl ? 8 : 10}
           onClick={onClose}
+          testID="close"
         >
           <Icon
             as={CloseIcon}

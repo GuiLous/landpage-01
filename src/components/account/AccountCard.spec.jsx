@@ -11,7 +11,7 @@ describe('AccountCard Component', () => {
     expect(screen.queryByTestId('title').textContent).toBe(title)
   })
 
-  it('should render without title', () => {
+  it('should not render without title', () => {
     render(<AccountCard />)
     expect(screen.queryByTestId('title')).not.toBeInTheDocument()
   })
