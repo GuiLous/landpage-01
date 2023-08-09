@@ -82,6 +82,7 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import AddSocialModal from './profile/AddSocialModal'
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
@@ -131,6 +132,7 @@ import LoadingTexts from './loading/LoadingTexts'
 export {
   AcceptIcon,
   AccountCard,
+  AddSocialModal,
   AddUserIcon,
   ArrowDownIcon,
   ArrowRightIcon,

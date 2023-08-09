@@ -1,25 +1,37 @@
 import { render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
 
 import { ProfileHeaderSocialButtons } from '@components'
 
-const socials = [
-  {
-    name: 'steam',
-    url: 'https://steamcommunity.com/profiles/76561199086242260/',
-  },
-  { name: 'discord', url: 'https://discord.gg/mMMKshktfT' },
-  {
-    name: 'youtube',
-    url: 'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A',
-  },
-]
+const socials = {
+  steam: '112415987456519643',
+  twitch: 'coreano',
+}
 
-describe('ProfileHeaderButtons Component', () => {
+const renderComponent = (isUserLogged = false) => {
+  const mockStore = configureStore()({})
+
+  render(
+    <Provider store={mockStore}>
+      <ProfileHeaderSocialButtons
+        socials={socials}
+        isUserLogged={isUserLogged}
+      />
+    </Provider>
+  )
+}
+describe('ProfileHeaderSocialButtons Component', () => {
   it('should render icons', () => {
-    render(<ProfileHeaderSocialButtons socials={socials} />)
+    renderComponent()
 
     expect(screen.getByTestId('steam')).toBeInTheDocument()
-    expect(screen.getByTestId('discord')).toBeInTheDocument()
-    expect(screen.getByTestId('youtube')).toBeInTheDocument()
+    expect(screen.getByTestId('twitch')).toBeInTheDocument()
+  })
+
+  it('should render add social button', () => {
+    renderComponent(true)
+
+    expect(screen.getByText('+')).toBeInTheDocument()
   })
 })

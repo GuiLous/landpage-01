@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
 import {
-  BackpackIcon,
   Container,
   SettingsIcon,
   SupportIcon,
@@ -16,11 +15,10 @@ import { toggleFriendList } from '@slices/AppSlice'
 
 import style from './ProfileHeaderButtons.module.css'
 
-const userLoggedButtons = ['inventory', 'config', 'profile']
+const userLoggedButtons = ['config', 'profile']
 const linksPaths = {
   perfil: 'profile',
   conta: 'config',
-  inventario: 'inventory',
 }
 
 export default function ProfileHeaderButtons({ isUserLogged, username }) {
@@ -37,7 +35,6 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
 
   const profileButtons = {
     profile: { icon: UserIcon, label: 'Meu perfil' },
-    inventory: { icon: BackpackIcon, label: 'Meu inventário' },
     config: { icon: SettingsIcon, label: 'Configurações' },
     steam_chat: { icon: SupportIcon, label: 'Abrir bate-papo' },
     report: { icon: WarningCircleIcon, label: 'Reportar usuário' },
@@ -51,11 +48,6 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
 
   const onClickFunction = (key) => {
     switch (key) {
-      case 'inventory':
-        dispatch(toggleFriendList(false))
-        navigate(`/inventory/${user.id}`)
-        break
-
       case 'profile':
         dispatch(toggleFriendList(false))
         navigate(`/perfil/${user.id}`)

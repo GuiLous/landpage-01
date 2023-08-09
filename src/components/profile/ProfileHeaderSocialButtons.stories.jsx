@@ -1,26 +1,30 @@
+import { Provider } from 'react-redux'
+import configureStore from 'redux-mock-store'
+
 import { ProfileHeaderSocialButtons } from '@components'
 
 export default {
   title: 'Profile/ProfileHeaderSocialButtons',
   component: ProfileHeaderSocialButtons,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    isUserLogged: { control: { type: 'boolean' } },
+  },
+  args: {
+    isUserLogged: false,
+  },
 }
 
-const socials = [
-  {
-    name: 'steam',
-    url: 'https://steamcommunity.com/profiles/76561199086242260/',
-  },
-  { name: 'discord', url: 'https://discord.gg/mMMKshktfT' },
-  {
-    name: 'youtube',
-    url: 'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A',
-  },
-]
+const socials = {
+  steam: '112415987456519643',
+  twitch: 'coreano',
+}
+
+const mockStore = configureStore()({})
 
 export const Default = {
   render: (props) => (
-    <ProfileHeaderSocialButtons socials={socials} {...props} />
+    <Provider store={mockStore}>
+      <ProfileHeaderSocialButtons socials={socials} {...props} />
+    </Provider>
   ),
 }

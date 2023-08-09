@@ -16,17 +16,10 @@ const renderComponent = (isUserLogged = false, status = 'online') => {
     },
     user_id: 1,
     status: status,
-    socials: [
-      {
-        name: 'steam',
-        url: 'https://steamcommunity.com/profiles/76561199086242260/',
-      },
-      { name: 'discord', url: 'https://discord.gg/mMMKshktfT' },
-      {
-        name: 'youtube',
-        url: 'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A',
-      },
-    ],
+    social_handles: {
+      steam: '112415987456519643',
+      twitch: 'coreano',
+    },
   }
 
   const mockStore = configureStore()({})
@@ -76,7 +69,6 @@ describe('ProfileHeader Component', () => {
     renderComponent(true, 'in_game')
 
     expect(screen.getByText('Meu perfil')).toBeInTheDocument()
-    expect(screen.getByText('Meu inventário')).toBeInTheDocument()
     expect(screen.getByText('Configurações')).toBeInTheDocument()
     expect(screen.queryByText('Abrir bate-papo')).not.toBeInTheDocument()
     expect(screen.queryByText('Reportar usuário')).not.toBeInTheDocument()
@@ -86,7 +78,6 @@ describe('ProfileHeader Component', () => {
     renderComponent(false, 'in_game')
 
     expect(screen.queryByText('Meu perfil')).not.toBeInTheDocument()
-    expect(screen.queryByText('Meu inventário')).not.toBeInTheDocument()
     expect(screen.queryByText('Configurações')).not.toBeInTheDocument()
     expect(screen.getByText('Abrir bate-papo')).toBeInTheDocument()
     expect(screen.getByText('Reportar usuário')).toBeInTheDocument()
@@ -96,6 +87,6 @@ describe('ProfileHeader Component', () => {
     renderComponent(true, 'in_game')
 
     expect(screen.getByTestId('steam')).toBeInTheDocument()
-    expect(screen.getByTestId('youtube')).toBeInTheDocument()
+    expect(screen.getByTestId('twitch')).toBeInTheDocument()
   })
 })
