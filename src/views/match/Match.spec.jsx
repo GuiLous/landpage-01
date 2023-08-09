@@ -5,6 +5,8 @@ import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+import InviteReducer from '@slices/InviteSlice'
+import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
 import UserReducer from '@slices/UserSlice'
 import { MatchView } from '@views'
@@ -156,12 +158,21 @@ describe('MatchView Component', () => {
     id: 1,
   }
 
+  const invites = [{ to_player: { user_id: null } }]
+
+  const lobby = {
+    queue: null,
+    invited_players_ids: [],
+  }
+
   const store = configureStore({
     reducer: {
       user: UserReducer,
       match: MatchReducer,
+      invites: InviteReducer,
+      lobby: LobbyReducer,
     },
-    preloadedState: { user, match },
+    preloadedState: { user, match, invites, lobby },
   })
 
   it('should render correctly', async () => {
