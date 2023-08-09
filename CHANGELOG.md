@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Renderiza `UserMenuOptions` no componente `MatchTeamStats` ao clicar em um player da lista [#634](https://github.com/3C-gg/reload-frontend/issues/634).
+- Renderiza `UserMenuOptions` no componente `FriendListGroupItem`.
+- Muda componente `UserMenuOptions` para uma nova pasta `menu`.
+- Altera nome do componente `FriendListMenu` para `UserMenuOptions`.
 - Altera `MainLayout` e `ProfileLayout` position para `relative` para que o `LoadingBackdrop` fique centralizado [#632](https://github.com/3C-gg/reload-frontend/issues/632).
 - Altera estilos do componente `LoadingBackdrop` para que fique sempre `centralizado` com base no `container` em volta [#632](https://github.com/3C-gg/reload-frontend/issues/632).
 - Adiciona `testID` no componente `MatchHistoryPagination`.
