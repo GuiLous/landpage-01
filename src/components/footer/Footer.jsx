@@ -26,7 +26,7 @@ export default function Footer(props) {
           <Container align="center" justify="center" className={style.wrapper}>
             <Container column className={style.brand} gap={12}>
               <Link as={RouterLink} to="/" style={{ width: 170 }}>
-                <img src={logo} alt="Reload" />
+                <img src={logo} alt="Reload" data-testid="logo" />
               </Link>
             </Container>
 
@@ -37,21 +37,34 @@ export default function Footer(props) {
             </Container>
 
             <Container justify="end" gap={24} className={style.social}>
-              <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
+              <Link
+                href="https://www.instagram.com/reloadclubgg/"
+                isExternal
+                data-testid="instagram"
+              >
                 <SiInstagram />
               </Link>
 
-              <Link href="https://twitter.com/reloadclubgg" isExternal>
+              <Link
+                href="https://twitter.com/reloadclubgg"
+                isExternal
+                data-testid="twitter"
+              >
                 <SiTwitter />
               </Link>
 
-              <Link href="https://discord.gg/mMMKshktfT" isExternal>
+              <Link
+                href="https://discord.gg/mMMKshktfT"
+                isExternal
+                data-testid="discord"
+              >
                 <SiDiscord />
               </Link>
 
               <Link
                 href="https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A"
                 isExternal
+                data-testid="youtube"
               >
                 <SiYoutube />
               </Link>
@@ -59,6 +72,7 @@ export default function Footer(props) {
               <Link
                 href="https://www.facebook.com/profile.php?id=100089787770305"
                 isExternal
+                data-testid="facebook"
               >
                 <SiFacebook />
               </Link>
@@ -83,7 +97,7 @@ export default function Footer(props) {
               justify="center"
             >
               <Link as={RouterLink} to="/" style={{ width: 130 }}>
-                <img src={logo} alt="Reload" />
+                <img src={logo} alt="Reload" data-testid="logoMobile" />
               </Link>
             </Container>
 
@@ -100,21 +114,34 @@ export default function Footer(props) {
             align="center"
             justify="center"
           >
-            <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
+            <Link
+              href="https://www.instagram.com/reloadclubgg/"
+              isExternal
+              data-testid="instagramMobile"
+            >
               <SiInstagram />
             </Link>
 
-            <Link href="https://twitter.com/reloadclubgg" isExternal>
+            <Link
+              href="https://twitter.com/reloadclubgg"
+              isExternal
+              data-testid="twitterMobile"
+            >
               <SiTwitter />
             </Link>
 
-            <Link href="https://discord.gg/mMMKshktfT" isExternal>
+            <Link
+              href="https://discord.gg/mMMKshktfT"
+              isExternal
+              data-testid="discordMobile"
+            >
               <SiDiscord />
             </Link>
 
             <Link
               href="https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A"
               isExternal
+              data-testid="youtubeMobile"
             >
               <SiYoutube />
             </Link>
@@ -122,6 +149,7 @@ export default function Footer(props) {
             <Link
               href="https://www.facebook.com/profile.php?id=100089787770305"
               isExternal
+              data-testid="facebookMobile"
             >
               <SiFacebook />
             </Link>

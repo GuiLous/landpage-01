@@ -79,6 +79,7 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
                     color="red.500"
                     fontSize={22}
                     children={<RiErrorWarningFill />}
+                    data-testid="warningIcon"
                   />
                 )}
               </InputGroup>
@@ -99,6 +100,7 @@ export default function FakeSigninForm({ fetching, onSubmit, fieldsErrors }) {
               onChange={handleChange}
               minH="44px"
               borderRadius={4}
+              data-testid="select"
             >
               <option
                 style={{ backgroundColor: '#1E1E1E' }}

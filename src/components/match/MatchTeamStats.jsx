@@ -174,6 +174,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                 bgColor: 'rgba(104, 71, 255, 0.15)',
               }}
               ref={trRef}
+              data-testid="row"
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>
