@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { LobbiesAPI, SupportAPI } from '@api'
-import { FriendListMenu } from '@components'
+import { UserMenuOptions } from '@components'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
 
@@ -41,7 +41,7 @@ const renderComponent = (props) => {
   render(
     <BrowserRouter>
       <Provider store={mockStore}>
-        <FriendListMenu
+        <UserMenuOptions
           user={user}
           user_id={2}
           username="userTest1"
@@ -53,7 +53,7 @@ const renderComponent = (props) => {
   )
 }
 
-describe('FriendListMenu Component', () => {
+describe('UserMenuOptions Component', () => {
   const props = {
     open: true,
     isAvailable: true,
