@@ -20,6 +20,8 @@ const renderComponent = (isUserLogged = false, status = 'online') => {
     social_handles: {
       steam: '112415987456519643',
       twitch: 'coreano',
+      discord: null,
+      youtube: null,
     },
   }
 

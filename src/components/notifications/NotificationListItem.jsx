@@ -33,7 +33,7 @@ export default function NotificationListItem({
       </Container>
 
       <Container className={style.avatar} justify="end" fitContent>
-        <Avatar src={avatar} size="sm" variant="purple" />
+        <Avatar src={avatar} size="sm" variant="purple" data-testid="avatar" />
       </Container>
     </Container>
   )

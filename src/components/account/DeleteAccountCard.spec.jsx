@@ -3,19 +3,38 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
+import { AccountsAPI } from '@api'
 import { DeleteAccountCard } from '@components'
+import { updateUser } from '@slices/UserSlice'
 
-describe('DeleteAccountCard Component', () => {
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    delete: jest.fn(),
+  },
+}))
+
+const mockDispatch = jest.fn()
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}))
+
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
+  render(
+    <Provider store={mockStore}>
+      <BrowserRouter>
+        <DeleteAccountCard />
+      </BrowserRouter>
+    </Provider>
+  )
+}
+
+describe('DeleteAccountCard Component', () => {
   it('should render correctly', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     expect(screen.getByText('EXCLUIR CONTA')).toBeInTheDocument()
     expect(
@@ -27,13 +46,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -42,13 +55,7 @@ describe('DeleteAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <DeleteAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
 
@@ -59,5 +66,25 @@ describe('DeleteAccountCard Component', () => {
     fireEvent.click(screen.getByLabelText('Close'))
 
     expect(modal).not.toBeInTheDocument()
+  })
+
+  it('should call delete endpoint on click button', async () => {
+    AccountsAPI.delete.mockResolvedValue({})
+
+    renderComponent()
+
+    fireEvent.click(screen.getByText('Prosseguir com a exclusão'))
+
+    const modal = screen.getByRole('dialog')
+
+    expect(modal).toBeInTheDocument()
+
+    const deleteBtn = screen.getByTestId('deleteBtn')
+    fireEvent.click(deleteBtn)
+
+    await screen.findByText('Excluindo...')
+
+    expect(AccountsAPI.delete).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledWith(updateUser(null))
   })
 })

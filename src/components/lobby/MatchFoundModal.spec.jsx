@@ -1,26 +1,33 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import configureStore from 'redux-mock-store'
 
+import { PreMatchesAPI } from '@api'
 import MatchFoundModal from './MatchFoundModal'
 
-describe('MatchFoundModal', () => {
+jest.mock('@api', () => ({
+  PreMatchesAPI: {
+    playerReady: jest.fn(),
+  },
+}))
+
+const renderComponent = (preMatch) => {
   const mockStore = configureStore()({})
 
+  render(
+    <Provider store={mockStore}>
+      <MatchFoundModal isOpen={true} setIsOpen={() => {}} preMatch={preMatch} />
+    </Provider>
+  )
+}
+
+describe('MatchFoundModal component', () => {
   it('should render correctly', () => {
     const preMatch = {
       countdown: 10,
     }
 
-    render(
-      <Provider store={mockStore}>
-        <MatchFoundModal
-          isOpen={true}
-          setIsOpen={() => {}}
-          preMatch={preMatch}
-        />
-      </Provider>
-    )
+    renderComponent(preMatch)
 
     expect(screen.getByText('PARTIDA ENCONTRADA')).toBeInTheDocument()
     expect(screen.getByText('Ranqueada · 5x5')).toBeInTheDocument()
@@ -33,15 +40,7 @@ describe('MatchFoundModal', () => {
       countdown: 10,
     }
 
-    render(
-      <Provider store={mockStore}>
-        <MatchFoundModal
-          isOpen={true}
-          setIsOpen={() => {}}
-          preMatch={preMatch}
-        />
-      </Provider>
-    )
+    renderComponent(preMatch)
 
     const userIcons = screen.getAllByTestId('user-icon')
     expect(userIcons.length).toBe(5)
@@ -58,15 +57,7 @@ describe('MatchFoundModal', () => {
       countdown: 10,
     }
 
-    render(
-      <Provider store={mockStore}>
-        <MatchFoundModal
-          isOpen={true}
-          setIsOpen={() => {}}
-          preMatch={preMatch}
-        />
-      </Provider>
-    )
+    renderComponent(preMatch)
 
     const acceptButton = screen.getByText('Você está pronto!')
     expect(acceptButton).toBeDisabled()
@@ -74,15 +65,8 @@ describe('MatchFoundModal', () => {
 
   it('should display the countdown timer if preMatch is defined', () => {
     const preMatch = { countdown: 60 }
-    render(
-      <Provider store={mockStore}>
-        <MatchFoundModal
-          isOpen={true}
-          setIsOpen={() => {}}
-          preMatch={preMatch}
-        />
-      </Provider>
-    )
+
+    renderComponent(preMatch)
 
     const timerElement = screen.getByTestId('countdown-timer')
     expect(timerElement).toBeInTheDocument()
@@ -90,17 +74,23 @@ describe('MatchFoundModal', () => {
   })
 
   it('should does not display the countdown timer if preMatch is undefined', () => {
-    render(
-      <Provider store={mockStore}>
-        <MatchFoundModal
-          isOpen={true}
-          setIsOpen={() => {}}
-          preMatch={undefined}
-        />
-      </Provider>
-    )
+    renderComponent()
 
     const timerElement = screen.getByTestId('countdown-timer')
     expect(timerElement).not.toHaveTextContent('01:00')
+  })
+
+  it('should call playerReady on click button', async () => {
+    PreMatchesAPI.playerReady.mockResolvedValue({})
+
+    renderComponent()
+
+    const acceptButton = screen.getByText('Aceitar partida')
+
+    fireEvent.click(acceptButton)
+
+    await waitFor(() =>
+      expect(PreMatchesAPI.playerReady).toHaveBeenCalledTimes(1)
+    )
   })
 })

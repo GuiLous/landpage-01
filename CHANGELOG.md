@@ -26,19 +26,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera `DeleteAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
 - Altera `AccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
 - Altera `Account` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera tamanho `xxl` do `Avatar` para `112px`.
 - Adiciona prop `justifyTitle` no componente `Modal`.
 - Altera `ProfileHeader` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
 - Altera estilos da view `Profile` e `Account` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Altera `MainLayout` e `ProfileLayout` position para `relative` para que o `LoadingBackdrop` fique centralizado [#632](https://github.com/3C-gg/reload-frontend/issues/632).
+- Altera estilos do componente `LoadingBackdrop` para que fique sempre `centralizado` com base no `container` em volta [#632](https://github.com/3C-gg/reload-frontend/issues/632).
+- Melhora e cria novos `testes` para todos os componentes [#613](https://github.com/3C-gg/reload-frontend/issues/613).
 - Adiciona `testID` no componente `MatchHistoryPagination`.
 - Altera `MatchHistoryStatsLink` para refletir mudanças do BE [#617](https://github.com/3C-gg/reload-frontend/issues/617).
 - Adiciona prefixo `connect` ao `clipboard` ao clicar no botão de `IP` [#618](https://github.com/3C-gg/reload-frontend/issues/618).
 
 ### Fixed
 
+- Corrige nome do componente `Scrollbars` que estava `Sidebar`.
 - Corrige `useEffect` para redirecionar corretamente baseado no` match.status` na view de `Connect` [#591](https://github.com/3C-gg/reload-frontend/issues/591).
 - Corrige `botão de jogar` na `sidebar` e no `lobby` para funcionar corretamente após uma partida cancelada [#591](https://github.com/3C-gg/reload-frontend/issues/591).
 - Paginação no componente `MatchHistoryList` deve aparecer somente se `totalPages` for maior que `1`.
 - Workflow do Github que checa se CHANGELOG.md foi alterado [#614](https://github.com/3C-gg/reload-frontend/issues/614).
+
+### Removed
+
+- Deleta `Avatar` componente.
+- Remove `useNavigate` desnecessários nos componente `DeleteAccountCard` e `InactivateAccountCard`.
 
 ## [63d58f6 - 1/8/2023]
 

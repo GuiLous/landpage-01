@@ -22,6 +22,8 @@ const socialsLinked = ['twitch']
 let socials = {
   steam: '112415987456519643',
   twitch: 'coreano',
+  discord: null,
+  youtube: null,
 }
 
 const user = {

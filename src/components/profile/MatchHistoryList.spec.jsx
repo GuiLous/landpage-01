@@ -57,7 +57,7 @@ const renderComponent = () => {
   const mockStore = configureStore()({})
   const user_id = 9
 
-  return (
+  render(
     <BrowserRouter>
       <Provider store={mockStore}>
         <MatchHistoryList user_id={user_id} />
@@ -72,7 +72,7 @@ describe('MatchHistoryList Component', () => {
   afterAll(() => server.close())
 
   it('should render correctly', async () => {
-    render(renderComponent())
+    renderComponent()
 
     await waitFor(() => {
       screen.getByText('06 de Maio')
@@ -83,7 +83,7 @@ describe('MatchHistoryList Component', () => {
   })
 
   it('should render message when there is not matches', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(
       screen.getByText('Ops, você ainda não tem partidas.')
@@ -91,13 +91,13 @@ describe('MatchHistoryList Component', () => {
   })
 
   it('should render 0 Partidas if matches.length is 0', async () => {
-    render(renderComponent())
+    renderComponent()
 
     screen.getAllByText('0 Partidas')
   })
 
   it('should render 2 Partidas if matches.length is 2', async () => {
-    render(renderComponent())
+    renderComponent()
 
     await screen.findByText('2 Partidas')
   })
@@ -135,13 +135,13 @@ describe('MatchHistoryList Component', () => {
       })
     )
 
-    render(renderComponent())
+    renderComponent()
 
     await screen.findByText('1 Partida')
   })
 
   it('should not render pagination if totalPages <= 1', async () => {
-    render(renderComponent())
+    renderComponent()
 
     await waitFor(() =>
       expect(screen.queryByTestId('pagination')).not.toBeInTheDocument()
@@ -181,7 +181,7 @@ describe('MatchHistoryList Component', () => {
       })
     )
 
-    render(renderComponent())
+    renderComponent()
 
     await waitFor(() =>
       expect(screen.queryByTestId('pagination')).not.toBeInTheDocument()

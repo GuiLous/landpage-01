@@ -813,8 +813,8 @@ export default extendTheme({
         },
         xxl: {
           container: {
-            width: '128px',
-            height: '128px',
+            width: '112px',
+            height: '112px',
             borderWidth: '4px',
           },
         },

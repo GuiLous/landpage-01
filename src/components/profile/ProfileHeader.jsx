@@ -26,7 +26,7 @@ export default function ProfileHeader({ profile, isUserLogged }) {
           <Avatar src={profile.avatar.large} size="xxl" variant="white" />
         </Container>
 
-        <Container column gap={14}>
+        <Container column gap={10}>
           <Container column>
             <Container align="center" gap={14} fitContent>
               <Text fontSize={20} fontWeight="bold" color="white">

@@ -9,6 +9,8 @@ import { ProfileDetailsProvider } from '@contexts'
 const socials = {
   steam: '112415987456519643',
   twitch: 'coreano',
+  discord: null,
+  youtube: null,
 }
 
 const renderComponent = (isUserLogged = false) => {

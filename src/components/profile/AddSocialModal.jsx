@@ -52,45 +52,29 @@ export default function AddSocialModal({
     setSocialName(value)
   }
 
-  const handleKeyEnterDown = (event) => {
+  const handleKeyEnterDown = (event, item) => {
     if (event.key === 'Enter') {
-      handleUpdateSocials()
+      handleUpdateSocials(item)
     }
   }
 
   const handleSubmit = async (action, item) => {
-    debugger
     if (action === 'update' && socialName === '') return
 
     setIsFetching(true)
     const token = StorageService.get('token')
 
-    let payload
     let response
 
-    if (action === 'update') {
-      payload = {
-        social_handles: {
-          ...socials,
-        },
-      }
-
-      payload.social_handles[activeSocialItem] = socialName
-
-      response = await ProfilesAPI.updateSocials(token, payload)
-      getProfileDetails(user.id, false)
-    } else {
-      payload = {
-        social_handles: {
-          ...socials,
-        },
-      }
-
-      delete payload.social_handles[item]
-
-      response = await ProfilesAPI.updateSocials(token, payload)
-      getProfileDetails(user.id, false)
+    const payload = {
+      social_handles: {
+        ...socials,
+      },
     }
+
+    payload.social_handles[item] = action === 'update' ? socialName : null
+
+    response = await ProfilesAPI.updateSocials(token, payload)
 
     if (response.errorMsg) {
       dispatch(
@@ -109,7 +93,7 @@ export default function AddSocialModal({
     setSocialName('')
   }
 
-  const handleUpdateSocials = () => handleSubmit('update')
+  const handleUpdateSocials = (item) => handleSubmit('update', item)
   const handleDeleteSocials = (item) => {
     handleSubmit('delete', item)
   }
@@ -134,7 +118,7 @@ export default function AddSocialModal({
             bgColor="gray.1200"
             px="8px"
             onChange={handleChange}
-            onKeyDown={handleKeyEnterDown}
+            onKeyDown={(e) => handleKeyEnterDown(e, item)}
             data-testid={`input-${item}`}
           />
 
@@ -147,7 +131,7 @@ export default function AddSocialModal({
             transition="color 0.2s ease-in-out"
             cursor="pointer"
             _hover={{ color: 'white' }}
-            onClick={handleUpdateSocials}
+            onClick={() => handleUpdateSocials(item)}
             data-testid={`send-${item}`}
           >
             Enviar
