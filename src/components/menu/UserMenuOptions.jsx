@@ -32,7 +32,7 @@ export default function UserMenuOptions({
   username,
   steam_url,
   placement,
-  hideBtn = false
+  hideBtn = false,
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
@@ -128,6 +128,9 @@ export default function UserMenuOptions({
           display="flex"
           color="gray.300"
           alignItems="center"
+          _focusVisible={{
+            boxShadow: hideBtn && 'none',
+          }}
           _hover={{ color: 'white' }}
           transition="all 0.2s ease-in-out"
           justifyContent="center"
