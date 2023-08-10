@@ -1,6 +1,7 @@
 .container {
 	height: 100vh;
 	padding: 40px 5%;
+	position: relative;
 }
 
 @media (max-width: 1600px) {

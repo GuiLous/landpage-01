@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `MainLayout` e `ProfileLayout` position para `relative` para que o `LoadingBackdrop` fique centralizado [#632](https://github.com/3C-gg/reload-frontend/issues/632).
+- Altera estilos do componente `LoadingBackdrop` para que fique sempre `centralizado` com base no `container` em volta [#632](https://github.com/3C-gg/reload-frontend/issues/632).
 - Melhora e cria novos `testes` para todos os componentes [#613](https://github.com/3C-gg/reload-frontend/issues/613).
 - Adiciona `testID` no componente `MatchHistoryPagination`.
 - Altera `MatchHistoryStatsLink` para refletir mudanças do BE [#617](https://github.com/3C-gg/reload-frontend/issues/617).
