@@ -26,6 +26,8 @@ export default {
       social_handles: {
         steam: '112415987456519643',
         twitch: 'coreano',
+        discord: null,
+        youtube: null,
       },
     },
   },

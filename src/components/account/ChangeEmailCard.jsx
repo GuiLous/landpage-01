@@ -115,7 +115,7 @@ export default function ChangeEmailCard() {
     }
 
     if (!isCurrentEmailValid) {
-      setEditingTrue(true)
+      setEditingTrue()
       inputRef.current.focus()
     }
   }
@@ -166,16 +166,16 @@ export default function ChangeEmailCard() {
                     _focus={
                       email === user.email || email === ''
                         ? {
-                            border: '1px solid',
-                            borderColor: 'purple.400',
-                          }
+                          border: '1px solid',
+                          borderColor: 'purple.400',
+                        }
                         : {
-                            border: '1px solid',
-                            borderColor:
-                              hasErrors() && email !== ''
-                                ? 'red.500'
-                                : 'green.400',
-                          }
+                          border: '1px solid',
+                          borderColor:
+                            hasErrors() && email !== ''
+                              ? 'red.500'
+                              : 'green.400',
+                        }
                     }
                     disabled={!isEditing}
                     onChange={handleChange}
@@ -190,7 +190,7 @@ export default function ChangeEmailCard() {
                     type="submit"
                   >
                     {user.email === email && !isEditing && (
-                      <Text fontSize={14} fontWeight="medium" color="gray.400">
+                      <Text fontSize={14} fontWeight="medium" color="gray.400" data-testid="pencilIcon">
                         EDITAR
                       </Text>
                     )}
@@ -200,12 +200,14 @@ export default function ChangeEmailCard() {
                       (isEmailValid(email) ? (
                         <Icon
                           as={CheckCircleIcon}
+                          data-testid="checkCircleIcon1"
                           color="green.400"
                           fontSize={22}
                         />
                       ) : (
                         <Icon
                           as={WarningCircleIcon}
+                          data-testid="warningCircleIcon1"
                           color="red.500"
                           fontSize={22}
                         />
@@ -215,6 +217,7 @@ export default function ChangeEmailCard() {
                       (isEmailValid(email) ? (
                         <Icon
                           as={CheckCircleIcon}
+                          data-testid="checkCircleIcon2"
                           color="green.400"
                           fontSize={22}
                         />
@@ -222,6 +225,7 @@ export default function ChangeEmailCard() {
                         email !== '' && (
                           <Icon
                             as={WarningCircleIcon}
+                            data-testid="warningCircleIcon2"
                             color="red.500"
                             fontSize={22}
                           />
@@ -252,10 +256,9 @@ export default function ChangeEmailCard() {
           fontSize={14}
           minH="42px"
           h="fit-content"
-          isDisabled={
-            fieldsErrors?.email || !isEmailValid(email) || user.email === email
-          }
+          isDisabled={hasErrors() || user.email === email}
           onClick={handleClickButtonSave}
+          data-testid="saveBtn"
         >
           Salvar
         </Button>

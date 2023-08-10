@@ -3,34 +3,30 @@ import React from 'react'
 
 import { FileInput } from '@components'
 
-describe('FileInput Component', () => {
-  const setValueMock = jest.fn()
-  const setFieldsErrorsMock = jest.fn()
+const setValueMock = jest.fn()
+const setFieldsErrorsMock = jest.fn()
 
+const renderComponent = (files = []) => {
+  render(
+    <FileInput
+      files={files}
+      setFiles={() => {}}
+      setValue={setValueMock}
+      setFieldsErrors={setFieldsErrorsMock}
+    />
+  )
+}
+
+describe('FileInput Component', () => {
   it('should render correctly', () => {
-    render(
-      <FileInput
-        files={[]}
-        setFiles={() => {}}
-        setValue={() => {}}
-        setFieldsErrors={setFieldsErrorsMock}
-      />
-    )
+    renderComponent()
 
     expect(screen.getByText('Solte os arquivos aqui ou')).toBeInTheDocument()
     expect(screen.getByText('Arquivos suportados:')).toBeInTheDocument()
   })
 
   it('should update the files correctly when selecting a file', () => {
-    const files = []
-
-    render(
-      <FileInput
-        files={files}
-        setValue={setValueMock}
-        setFieldsErrors={setFieldsErrorsMock}
-      />
-    )
+    renderComponent()
 
     const file = new File(['conteúdo do arquivo'], 'arquivo.png', {
       type: 'image/png',
@@ -44,15 +40,7 @@ describe('FileInput Component', () => {
   })
 
   it('should upload the file correctly when dragging and dropping', () => {
-    const files = []
-
-    render(
-      <FileInput
-        files={files}
-        setValue={setValueMock}
-        setFieldsErrors={setFieldsErrorsMock}
-      />
-    )
+    renderComponent()
 
     const file = new File(['conteúdo do arquivo'], 'arquivo.png', {
       type: 'image/png',
@@ -70,13 +58,7 @@ describe('FileInput Component', () => {
       new File(['conteúdo do arquivo'], 'arquivo1.png', { type: 'image/png' }),
     ]
 
-    render(
-      <FileInput
-        files={files}
-        setValue={setValueMock}
-        setFieldsErrors={setFieldsErrorsMock}
-      />
-    )
+    renderComponent(files)
 
     const additionalFiles = [
       new File(['conteúdo do arquivo'], 'arquivo2.png', { type: 'image/png' }),
@@ -93,15 +75,7 @@ describe('FileInput Component', () => {
   })
 
   it('should prevent the selection of invalid files', () => {
-    const files = []
-
-    render(
-      <FileInput
-        files={files}
-        setValue={setValueMock}
-        setFieldsErrors={setFieldsErrorsMock}
-      />
-    )
+    renderComponent()
 
     const invalidFile = new File(['conteúdo do arquivo'], 'arquivo.txt', {
       type: 'text/plain',

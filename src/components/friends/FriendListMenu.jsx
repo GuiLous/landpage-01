@@ -150,6 +150,7 @@ export default function FriendListMenu({
                 key === 'invite' && alreadyInvited && style.invited,
                 key === 'invite' && !isAvailable && style.disabled,
               ].join(' ')}
+              data-testid={key}
             >
               <Icon
                 as={

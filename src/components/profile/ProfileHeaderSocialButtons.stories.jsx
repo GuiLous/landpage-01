@@ -17,6 +17,8 @@ export default {
 const socials = {
   steam: '112415987456519643',
   twitch: 'coreano',
+  discord: 'coreano',
+  youtube: null,
 }
 
 const mockStore = configureStore()({})
