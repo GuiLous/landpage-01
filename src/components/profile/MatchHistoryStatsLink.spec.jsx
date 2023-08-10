@@ -19,7 +19,7 @@ const match = {
 }
 
 const renderComponent = () => {
-  return (
+  render(
     <BrowserRouter>
       <MatchHistoryStatsLink match={match} />
     </BrowserRouter>
@@ -28,43 +28,43 @@ const renderComponent = () => {
 
 describe('MatchHistoryStatsLink Component', () => {
   it('should render correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('Auditório')).toBeInTheDocument()
   })
 
   it('should render kdr correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('kdr').textContent).toEqual('2')
   })
 
   it('should render hs percentage correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('head_accuracy').textContent).toEqual('20%')
   })
 
   it('should render adr correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('adr').textContent).toEqual('33.33')
   })
 
   it('should render score correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('score').textContent).toEqual('10:2')
   })
 
   it('should render firstkills correctly', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('firstkills').textContent).toEqual('4')
   })
 
   it('should render arrow icon', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('arrow')).toBeInTheDocument()
   })
@@ -72,20 +72,20 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render default map name when has no map_name', () => {
     match.map_name = null
 
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByText('Nome do mapa')).toBeInTheDocument()
   })
 
   it('should render won class if won', () => {
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('link')).toHaveClass('won')
   })
 
   it('should render defeated class if won is false', () => {
     match.won = false
-    render(renderComponent())
+    renderComponent()
 
     expect(screen.getByTestId('link')).toHaveClass('defeated')
   })

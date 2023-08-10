@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import RSC from 'react-scrollbars-custom'
 
-export default function Sidebar({ autoHide, children, ...props }) {
+export default function Scrollbars({ autoHide, children, ...props }) {
   const [inUse, setInUse] = useState()
 
   const trackYStyle = {

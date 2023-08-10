@@ -15,6 +15,7 @@ describe('NotificationListItem Component', () => {
     render(<NotificationListItem {...props} />)
 
     expect(screen.getByText(props.content)).toBeInTheDocument()
+    expect(screen.getByTestId('avatar')).toBeInTheDocument()
   })
 
   it('should render with class unread when not has read_date', () => {
@@ -24,8 +25,9 @@ describe('NotificationListItem Component', () => {
   })
 
   it('should not renders with class unread when has read_date', () => {
+    props.read_date = new Date().toISOString()
     render(<NotificationListItem {...props} />)
 
-    expect(screen.getByTestId('notification')).toHaveClass('false')
+    expect(screen.getByTestId('notification')).not.toHaveClass('unread')
   })
 })

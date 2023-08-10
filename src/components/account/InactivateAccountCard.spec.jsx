@@ -3,19 +3,38 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
+import { AccountsAPI } from '@api'
 import { InactivateAccountCard } from '@components'
+import { updateUser } from '@slices/UserSlice'
 
-describe('InactivateAccountCard Component', () => {
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    inactivate: jest.fn(),
+  },
+}))
+
+const mockDispatch = jest.fn()
+
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}))
+
+const renderComponent = () => {
   const mockStore = configureStore()({})
 
+  render(
+    <Provider store={mockStore}>
+      <BrowserRouter>
+        <InactivateAccountCard />
+      </BrowserRouter>
+    </Provider>
+  )
+}
+
+describe('InactivateAccountCard Component', () => {
   it('should render correctly', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     expect(screen.getByText('INATIVAR CONTA')).toBeInTheDocument()
     expect(
@@ -27,13 +46,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should open the modal when button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -42,13 +55,7 @@ describe('InactivateAccountCard Component', () => {
   })
 
   it('should close the modal when the close button is clicked', () => {
-    render(
-      <Provider store={mockStore}>
-        <BrowserRouter>
-          <InactivateAccountCard />
-        </BrowserRouter>
-      </Provider>
-    )
+    renderComponent()
 
     fireEvent.click(screen.getByText('Prosseguir com a inativação'))
 
@@ -59,5 +66,26 @@ describe('InactivateAccountCard Component', () => {
     fireEvent.click(screen.getByLabelText('Close'))
 
     expect(modal).not.toBeInTheDocument()
+  })
+
+  it('should call inactivate endpoint on click button', async () => {
+    AccountsAPI.inactivate.mockResolvedValue({})
+
+    renderComponent()
+
+    fireEvent.click(screen.getByText('Prosseguir com a inativação'))
+
+    const modal = screen.getByRole('dialog')
+
+    expect(modal).toBeInTheDocument()
+
+    const deleteBtn = screen.getByTestId('inactiveBtn')
+
+    fireEvent.click(deleteBtn)
+
+    await screen.findByText('Inativando...')
+
+    expect(AccountsAPI.inactivate).toHaveBeenCalledTimes(1)
+    expect(mockDispatch).toHaveBeenCalledWith(updateUser(null))
   })
 })

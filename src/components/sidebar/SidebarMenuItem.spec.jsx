@@ -1,14 +1,14 @@
-import { render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 
 import { SidebarMenuItem } from '@components'
 
-describe('SidebarMenuItem Component', () => {
-  const props = {
-    receivedInvites: 0,
-    unreadNotifications: 0,
-    item: 'amigos',
-  }
+const props = {
+  receivedInvites: 0,
+  unreadNotifications: 0,
+  item: 'amigos',
+}
 
+describe('SidebarMenuItem Component', () => {
   it('should render with amigos label correctly', async () => {
     render(<SidebarMenuItem {...props} />)
 
@@ -58,5 +58,18 @@ describe('SidebarMenuItem Component', () => {
 
     expect(screen.getByText('loja')).toBeInTheDocument()
     expect(screen.getByText('Em breve')).toBeInTheDocument()
+  })
+
+  it('should call onClickFunction', async () => {
+    const onClickMock = jest.fn()
+    props.item = 'amigos'
+
+    render(<SidebarMenuItem {...props} onClickFunction={onClickMock} />)
+
+    const button = screen.getByTestId('amigos')
+
+    fireEvent.click(button)
+
+    expect(onClickMock).toHaveBeenCalled()
   })
 })
