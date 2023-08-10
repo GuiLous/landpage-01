@@ -1,8 +1,7 @@
 import { Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
-import { ProfilesAPI } from '@api'
 import {
   ChangeEmailCard,
   Container,
@@ -12,35 +11,19 @@ import {
   LoadingBackdrop,
   ProfileHeader,
 } from '@components'
-import { StorageService } from '@services'
+import { useProfileDetails } from '@hooks'
 
-import { useSelector } from 'react-redux'
 import style from './Account.module.css'
 
 export default function AccountView() {
-  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
 
-  const [fetching, setFetching] = useState(true)
-  const [profile, setProfile] = useState(null)
+  const { fetching, profile, getProfileDetails } = useProfileDetails()
 
   useEffect(() => {
-    const fetch = async () => {
-      setFetching(true)
-      const userToken = StorageService.get('token')
-
-      const response = await ProfilesAPI.detail(userToken, user.id)
-      if (response.errorMsg) {
-        navigate('/404')
-      }
-
-      setProfile(response)
-      setFetching(false)
-    }
-
-    fetch()
+    getProfileDetails(user.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user.id])
 
   return fetching ? (
     <LoadingBackdrop>

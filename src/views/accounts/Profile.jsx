@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import { ProfilesAPI } from '@api'
 import {
   Container,
   HeatmapStatsCard,
@@ -12,35 +11,21 @@ import {
   MatchHistoryList,
   ProfileHeader,
 } from '@components'
-import { StorageService } from '@services'
+import { useProfileDetails } from '@hooks'
 
 import style from './Profile.module.css'
 
 export default function ProfileView() {
-  const params = useParams()
-  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
+
+  const params = useParams()
+
+  const { fetching, profile, getProfileDetails } = useProfileDetails()
 
   const { userId } = params
 
-  const [fetching, setFetching] = useState(true)
-  const [profile, setProfile] = useState(null)
-
   useEffect(() => {
-    const fetch = async () => {
-      setFetching(true)
-      const userToken = StorageService.get('token')
-
-      const response = await ProfilesAPI.detail(userToken, userId)
-      if (response.errorMsg) {
-        navigate('/404')
-      }
-
-      setProfile(response)
-      setFetching(false)
-    }
-
-    fetch()
+    getProfileDetails(userId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId])
 
