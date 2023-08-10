@@ -2,19 +2,27 @@ import { fireEvent, render, screen } from '@testing-library/react'
 
 import { MatchHistoryPaginationItem } from '@components'
 
-describe('MatchHistoryPaginationItem Component', () => {
-  const handleClick = jest.fn()
+const handleClick = jest.fn()
 
+const renderComponent = (content = 1, isCurrent = false) => {
+  render(
+    <MatchHistoryPaginationItem
+      content={content}
+      onPageChange={handleClick}
+      isCurrent={isCurrent}
+    />
+  )
+}
+
+describe('MatchHistoryPaginationItem Component', () => {
   it('should render correctly', () => {
-    render(<MatchHistoryPaginationItem content="1" />)
+    renderComponent()
 
     expect(screen.getByText('1')).toBeInTheDocument()
   })
 
   it('should call handleClick function when clicked', () => {
-    render(
-      <MatchHistoryPaginationItem content="1" onPageChange={handleClick} />
-    )
+    renderComponent()
 
     fireEvent.click(screen.getByText('1'))
 
@@ -22,26 +30,22 @@ describe('MatchHistoryPaginationItem Component', () => {
   })
 
   it('should be disabled when isCurrent is true', () => {
-    render(
-      <MatchHistoryPaginationItem
-        content="1"
-        onPageChange={handleClick}
-        isCurrent={true}
-      />
-    )
+    const isCurrent = true
+    renderComponent('1', isCurrent)
 
     expect(screen.getByRole('button')).toBeDisabled()
   })
 
   it('should not be disabled when isCurrent is false', () => {
-    render(
-      <MatchHistoryPaginationItem
-        content="1"
-        onPageChange={handleClick}
-        isCurrent={false}
-      />
-    )
+    renderComponent()
 
     expect(screen.getByRole('button')).toBeEnabled()
+  })
+
+  it('should render ...', () => {
+    const content = '...'
+    renderComponent(content)
+
+    expect(screen.getByText('...')).toBeInTheDocument()
   })
 })

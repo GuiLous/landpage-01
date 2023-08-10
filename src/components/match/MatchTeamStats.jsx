@@ -129,6 +129,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
               _hover={{
                 bgColor: 'gray.700',
               }}
+              data-testid="row"
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>

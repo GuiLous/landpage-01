@@ -81,6 +81,7 @@ export default function InviteListGroupItem({
           fitContent
           align="center"
           onClick={handleAccept}
+          testID="acceptInvite"
         >
           <Icon
             as={AcceptIcon}
@@ -96,6 +97,7 @@ export default function InviteListGroupItem({
           fitContent
           align="center"
           onClick={handleRefuse}
+          testID="refuseInvite"
         >
           <Icon
             as={CloseIcon}
