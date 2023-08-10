@@ -9,7 +9,9 @@ import style from './ProfileHeaderSocialButtons.module.css'
 export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
   const [openAddSocialModal, setOpenAddSocialModal] = useState(false)
 
-  const socialLinkedKeys = Object.keys(socials)
+  const socialLinkedKeys = Object.keys(socials).filter(
+    (key) => socials[key] !== null
+  )
 
   const socialIcons = {
     steam: SiSteam,
