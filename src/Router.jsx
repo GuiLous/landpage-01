@@ -23,6 +23,8 @@ import {
   VerifyView,
 } from '@views'
 
+import { ProfileDetailsProvider } from '@contexts'
+
 export default function Router({ user, maintenance }) {
   const location = useLocation()
 
@@ -62,52 +64,55 @@ export default function Router({ user, maintenance }) {
   }
 
   return (
-    <Routes>
-      {maintenance && (
-        <Route path="/manutencao" element={<MaintenanceView />} />
-      )}
+    <ProfileDetailsProvider>
+      <Routes>
+        {maintenance && (
+          <Route path="/manutencao" element={<MaintenanceView />} />
+        )}
 
-      {user && !activeUser && (
-        <Route path="/conta-inativa" element={<InactiveView />} />
-      )}
+        {user && !activeUser && (
+          <Route path="/conta-inativa" element={<InactiveView />} />
+        )}
 
-      <Route path="/" element={<HomeView />} />
+        <Route path="/" element={<HomeView />} />
 
-      {signupRequired && (
-        <Route element={<SignupLayout />}>
-          <Route path="/cadastrar" element={<SignupView />} />
-        </Route>
-      )}
-
-      {verificationRequired && (
-        <Route element={<SignupLayout />}>
-          <Route path="/verificar" element={<VerifyView />} />
-          <Route path="/alterar-email" element={<UpdateEmailView />} />
-        </Route>
-      )}
-
-      {verifiedUser && (
-        <>
-          <Route
-            path="/partidas/:matchId/conectar/"
-            element={<ConnectView />}
-          />
-          <Route element={<SidebarLayout />}>
-            <Route element={<MainLayout />}>
-              <Route path="/jogar" element={<LobbyView />} />
-              <Route path="/partidas/:matchId" element={<MatchView />} />
-            </Route>
-            <Route element={<ProfileLayout />}>
-              <Route path="/conta" element={<AccountView />} />
-              <Route path="/perfil/:userId" element={<ProfileView />} />
-            </Route>
+        {signupRequired && (
+          <Route element={<SignupLayout />}>
+            <Route path="/cadastrar" element={<SignupView />} />
           </Route>
-        </>
-      )}
+        )}
 
-      <Route path="/auth" element={<AuthView />} />
-      <Route path="/404" element={<NotFoundView />} />
-      <Route path="*" element={<Navigate to="/404" />} />
-    </Routes>
+        {verificationRequired && (
+          <Route element={<SignupLayout />}>
+            <Route path="/verificar" element={<VerifyView />} />
+            <Route path="/alterar-email" element={<UpdateEmailView />} />
+          </Route>
+        )}
+
+        {verifiedUser && (
+          <>
+            <Route
+              path="/partidas/:matchId/conectar/"
+              element={<ConnectView />}
+            />
+            <Route element={<SidebarLayout />}>
+              <Route element={<MainLayout />}>
+                <Route path="/jogar" element={<LobbyView />} />
+                <Route path="/partidas/:matchId" element={<MatchView />} />
+              </Route>
+
+              <Route element={<ProfileLayout />}>
+                <Route path="/conta" element={<AccountView />} />
+                <Route path="/perfil/:userId" element={<ProfileView />} />
+              </Route>
+            </Route>
+          </>
+        )}
+
+        <Route path="/auth" element={<AuthView />} />
+        <Route path="/404" element={<NotFoundView />} />
+        <Route path="*" element={<Navigate to="/404" />} />
+      </Routes>
+    </ProfileDetailsProvider>
   )
 }
