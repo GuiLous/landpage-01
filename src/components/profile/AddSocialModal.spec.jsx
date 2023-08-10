@@ -1,12 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import configureStore from 'redux-mock-store'
 
 import { ProfilesAPI } from '@api'
 import { AddSocialModal } from '@components'
 import { ProfileDetailsProvider } from '@contexts'
-import UserReducer from '@slices/UserSlice'
 
 jest.mock('@api', () => ({
   ProfilesAPI: {
@@ -25,21 +24,12 @@ let socials = {
 }
 
 const renderComponent = () => {
-  const user = {
-    id: 1,
-  }
-
-  const store = configureStore({
-    reducer: {
-      user: UserReducer,
-    },
-    preloadedState: { user },
-  })
+  const mockStore = configureStore()({})
 
   render(
     <BrowserRouter>
       <ProfileDetailsProvider>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <AddSocialModal
             isOpen={true}
             onClose={jest.fn()}
