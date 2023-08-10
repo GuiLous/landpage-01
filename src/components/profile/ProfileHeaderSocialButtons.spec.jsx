@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { ProfileHeaderSocialButtons } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 const socials = {
   steam: '112415987456519643',
@@ -13,12 +15,16 @@ const renderComponent = (isUserLogged = false) => {
   const mockStore = configureStore()({})
 
   render(
-    <Provider store={mockStore}>
-      <ProfileHeaderSocialButtons
-        socials={socials}
-        isUserLogged={isUserLogged}
-      />
-    </Provider>
+    <BrowserRouter>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <ProfileHeaderSocialButtons
+            socials={socials}
+            isUserLogged={isUserLogged}
+          />
+        </Provider>
+      </ProfileDetailsProvider>
+    </BrowserRouter>
   )
 }
 describe('ProfileHeaderSocialButtons Component', () => {
