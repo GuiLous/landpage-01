@@ -1,13 +1,17 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+import { BrowserRouter } from 'react-router-dom'
 
 import { ProfilesAPI } from '@api'
 import { AddSocialModal } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
+import UserReducer from '@slices/UserSlice'
 
 jest.mock('@api', () => ({
   ProfilesAPI: {
     updateSocials: jest.fn(),
+    detail: jest.fn(),
   },
 }))
 
@@ -19,17 +23,30 @@ let socials = {
 }
 
 const renderComponent = () => {
-  const mockStore = configureStore()({})
+  const user = {
+    id: 1,
+  }
+
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+    },
+    preloadedState: { user },
+  })
 
   render(
-    <Provider store={mockStore}>
-      <AddSocialModal
-        isOpen={true}
-        onClose={jest.fn()}
-        socialsLinked={socialsLinked}
-        socials={socials}
-      />
-    </Provider>
+    <BrowserRouter>
+      <ProfileDetailsProvider>
+        <Provider store={store}>
+          <AddSocialModal
+            isOpen={true}
+            onClose={jest.fn()}
+            socialsLinked={socialsLinked}
+            socials={socials}
+          />
+        </Provider>
+      </ProfileDetailsProvider>
+    </BrowserRouter>
   )
 }
 
@@ -99,6 +116,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on click Enviar', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     renderComponent()
 
@@ -130,6 +148,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on press Enter', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     renderComponent()
 
@@ -159,6 +178,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on click delete button', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     socialsLinked.push('twitch')
     renderComponent()
