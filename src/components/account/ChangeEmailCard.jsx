@@ -166,16 +166,16 @@ export default function ChangeEmailCard() {
                     _focus={
                       email === user.email || email === ''
                         ? {
-                          border: '1px solid',
-                          borderColor: 'purple.400',
-                        }
+                            border: '1px solid',
+                            borderColor: 'purple.400',
+                          }
                         : {
-                          border: '1px solid',
-                          borderColor:
-                            hasErrors() && email !== ''
-                              ? 'red.500'
-                              : 'green.400',
-                        }
+                            border: '1px solid',
+                            borderColor:
+                              hasErrors() && email !== ''
+                                ? 'red.500'
+                                : 'green.400',
+                          }
                     }
                     disabled={!isEditing}
                     onChange={handleChange}
@@ -190,7 +190,7 @@ export default function ChangeEmailCard() {
                     type="submit"
                   >
                     {user.email === email && !isEditing && (
-                      <Text fontSize={14} fontWeight="medium" color="gray.400" data-testid="pencilIcon">
+                      <Text fontSize={14} fontWeight="medium" color="gray.400">
                         EDITAR
                       </Text>
                     )}
