@@ -1,7 +1,9 @@
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { ProfileHeaderSocialButtons } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 export default {
   title: 'Profile/ProfileHeaderSocialButtons',
@@ -23,8 +25,12 @@ const mockStore = configureStore()({})
 
 export const Default = {
   render: (props) => (
-    <Provider store={mockStore}>
-      <ProfileHeaderSocialButtons socials={socials} {...props} />
-    </Provider>
+    <BrowserRouter>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <ProfileHeaderSocialButtons socials={socials} {...props} />
+        </Provider>
+      </ProfileDetailsProvider>
+    </BrowserRouter>
   ),
 }
