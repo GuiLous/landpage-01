@@ -44,7 +44,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
       (invite) => invite.to_player.user_id === selectedPlayer?.user_id
     ).length > 0 || alreadyInvitedByFriend
 
-  const alreadyOnTeam = user.lobby_id === selectedPlayer?.lobby_id
+  const alreadyOnTeam = lobby.players_ids.includes(selectedPlayer?.user_id)
 
   const isAvailable =
     !alreadyOnTeam &&
