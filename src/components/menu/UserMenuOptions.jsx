@@ -32,6 +32,7 @@ export default function UserMenuOptions({
   username,
   steam_url,
   placement,
+  hideBtn = false
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
@@ -121,6 +122,8 @@ export default function UserMenuOptions({
           rightIcon={<BsThreeDots style={{ margin: '0' }} opacity={0} />}
           minH={0}
           minW={0}
+          w={hideBtn && 0}
+          h={hideBtn && 0}
           fontSize={18}
           display="flex"
           color="gray.300"

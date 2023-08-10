@@ -205,6 +205,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                     username={player.username}
                     steam_url={player.steam_url || ''}
                     placement="right-start"
+                    hideBtn={true}
                   />
                 </Container>
               </Td>
