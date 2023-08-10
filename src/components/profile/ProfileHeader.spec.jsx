@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { ProfileHeader } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 const renderComponent = (isUserLogged = false, status = 'online') => {
   const profile = {
@@ -25,9 +26,11 @@ const renderComponent = (isUserLogged = false, status = 'online') => {
   const mockStore = configureStore()({})
   render(
     <BrowserRouter>
-      <Provider store={mockStore}>
-        <ProfileHeader isUserLogged={isUserLogged} profile={profile} />
-      </Provider>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <ProfileHeader isUserLogged={isUserLogged} profile={profile} />
+        </Provider>
+      </ProfileDetailsProvider>
     </BrowserRouter>
   )
 }
