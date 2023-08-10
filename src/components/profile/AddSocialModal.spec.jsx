@@ -15,7 +15,9 @@ let socialsLinked = []
 
 let socials = {
   steam: '112415987456519643',
-  twitch: 'teste',
+  twitch: null,
+  discord: null,
+  youtube: null,
 }
 
 const renderComponent = () => {
@@ -36,6 +38,7 @@ const renderComponent = () => {
 describe('AddSocialModal Component', () => {
   afterEach(() => {
     socialsLinked = []
+    socials.twitch = null
   })
 
   it('should render correctly', () => {
@@ -59,6 +62,7 @@ describe('AddSocialModal Component', () => {
 
   it('should render social name with delete button if social already linked', () => {
     socialsLinked.push('twitch')
+    socials.twitch = 'teste'
 
     renderComponent()
 
@@ -118,7 +122,8 @@ describe('AddSocialModal Component', () => {
     const payload = {
       social_handles: {
         steam: '112415987456519643',
-        twitch: 'teste',
+        twitch: null,
+        discord: null,
         youtube: 'test',
       },
     }
@@ -147,7 +152,8 @@ describe('AddSocialModal Component', () => {
     const payload = {
       social_handles: {
         steam: '112415987456519643',
-        twitch: 'teste',
+        twitch: null,
+        discord: null,
         youtube: 'test',
       },
     }
@@ -161,6 +167,7 @@ describe('AddSocialModal Component', () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
 
     socialsLinked.push('twitch')
+    socials.twitch = 'teste'
     renderComponent()
 
     expect(screen.queryByTestId('add-twitch')).not.toBeInTheDocument()
@@ -172,6 +179,9 @@ describe('AddSocialModal Component', () => {
     const payload = {
       social_handles: {
         steam: '112415987456519643',
+        discord: null,
+        twitch: null,
+        youtube: null,
       },
     }
 
