@@ -28,7 +28,7 @@ function ProfileDetailsProvider({ children }) {
 
   return (
     <ProfileDetailsContext.Provider
-      value={{ profile, fetching, getProfileDetails }}
+      value={{ profile, setProfile, fetching, getProfileDetails }}
     >
       {children}
     </ProfileDetailsContext.Provider>
