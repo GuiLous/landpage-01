@@ -128,8 +128,8 @@ export default function AddSocialModal({
             fontWeight="medium"
             as="span"
             transition="color 0.2s ease-in-out"
-            cursor="pointer"
-            _hover={{ color: 'white' }}
+            cursor={!!socialName && 'pointer'}
+            _hover={{ color: !!socialName && 'white' }}
             onClick={() => handleUpdateSocials(item)}
             data-testid={`send-${item}`}
           >
