@@ -1,10 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
+import configureStore from 'redux-mock-store'
 
 import { AddSocialModal } from '@components'
 import { ProfileDetailsProvider } from '@contexts'
-import UserReducer from '@slices/UserSlice'
 
 export default {
   title: 'Profile/AddSocialModal',
@@ -26,22 +25,13 @@ let socials = {
   youtube: null,
 }
 
-const user = {
-  id: 1,
-}
-
-const store = configureStore({
-  reducer: {
-    user: UserReducer,
-  },
-  preloadedState: { user },
-})
+const mockStore = configureStore()({})
 
 export const Default = {
   render: (props) => (
     <BrowserRouter>
       <ProfileDetailsProvider>
-        <Provider store={store}>
+        <Provider store={mockStore}>
           <AddSocialModal
             socialsLinked={socialsLinked}
             socials={socials}
