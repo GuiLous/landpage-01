@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { AccountsAPI } from '@api'
-import { AccountCard, Container, Modal } from '@components'
+import { AccountCard, Container, Modal, TrashIcon } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -47,6 +47,7 @@ export default function DeleteAccountCard() {
     <AccountCard
       title="EXCLUIR CONTA"
       description="Exclua permanentemente a sua conta. Essa ação é permanente e não pode ser desfeita."
+      icon={TrashIcon}
     >
       <Container className={style.container}>
         <Button
