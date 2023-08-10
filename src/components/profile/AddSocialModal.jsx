@@ -1,10 +1,11 @@
 import { Button, Icon, Input, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { SiDiscord, SiTwitch, SiYoutube } from 'react-icons/si'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { ProfilesAPI } from '@api'
 import { CloseIcon, Container, Modal } from '@components'
+import { useProfileDetails } from '@hooks'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
@@ -16,7 +17,11 @@ export default function AddSocialModal({
   socialsLinked,
   socials,
 }) {
+  const user = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
+
+  const { getProfileDetails } = useProfileDetails()
 
   const [socialName, setSocialName] = useState('')
   const [isFetching, setIsFetching] = useState(false)
@@ -73,6 +78,7 @@ export default function AddSocialModal({
       payload.social_handles[activeSocialItem] = socialName
 
       response = await ProfilesAPI.updateSocials(token, payload)
+      getProfileDetails(user.id, false)
     } else {
       payload = {
         social_handles: {
@@ -83,6 +89,7 @@ export default function AddSocialModal({
       delete payload.social_handles[item]
 
       response = await ProfilesAPI.updateSocials(token, payload)
+      getProfileDetails(user.id, false)
     }
 
     if (response.errorMsg) {
