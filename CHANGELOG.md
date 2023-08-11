@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera background do componente `LobbyPlayerCard` [#639](https://github.com/3C-gg/reload-frontend/issues/639).
 - Renderiza `UserMenuOptions` no componente `MatchTeamStats` ao clicar em um player da lista [#634](https://github.com/3C-gg/reload-frontend/issues/634).
 - Renderiza `UserMenuOptions` no componente `FriendListGroupItem`.
 - Muda componente `UserMenuOptions` para uma nova pasta `menu`.
@@ -43,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige espaçamentos do `lobby`.
 - Corrige nome do componente `Scrollbars` que estava `Sidebar`.
 - Corrige `useEffect` para redirecionar corretamente baseado no` match.status` na view de `Connect` [#591](https://github.com/3C-gg/reload-frontend/issues/591).
 - Corrige `botão de jogar` na `sidebar` e no `lobby` para funcionar corretamente após uma partida cancelada [#591](https://github.com/3C-gg/reload-frontend/issues/591).
