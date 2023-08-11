@@ -29,6 +29,6 @@ describe('SidebarAvatarLink Component', () => {
     renderComponent()
 
     expect(screen.getByText('Username')).toBeInTheDocument()
-    expect(screen.getByText('LEVEL 2')).toBeInTheDocument()
+    expect(screen.getByText('Level 2')).toBeInTheDocument()
   })
 })
