@@ -90,13 +90,13 @@ export default function LevelStatsCard({
             <Container className={style.statsListItem}>
               <Container column fitContent>
                 <Tooltip
-                  label="Percentual de acertos na cabeça"
-                  aria-label="Percentual de acertos na cabeça"
+                  label="Percentual de abates por tiros na cabeça"
+                  aria-label="Percentual de abates por tiros na cabeça"
                 >
-                  <Text className={style.statsListItemTitle}>HeadShots %</Text>
+                  <Text className={style.statsListItemTitle}>Hs Kills %</Text>
                 </Tooltip>
                 <Text className={style.statsListItemValue}>
-                  {stats.head_accuracy || 0}%
+                  {stats.hsk || 0}%
                 </Text>
               </Container>
             </Container>
