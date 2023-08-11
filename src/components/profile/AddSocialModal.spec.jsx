@@ -51,10 +51,15 @@ describe('AddSocialModal Component', () => {
   it('should render correctly', () => {
     renderComponent()
 
-    expect(screen.getByText('SOCIAL LINKS')).toBeInTheDocument()
+    expect(screen.getByText('REDES SOCIAIS')).toBeInTheDocument()
     expect(
       screen.getByText(
-        'Adicione o link de suas redes sociais que ficarão visíveis no seu perfil.'
+        'Adicione suas redes sociais. Elas ficarão visíveis no seu perfil.'
+      )
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Não adicione links nessa área. Coloque apenas o nome do canal (handle) ou a hash do convite para um servidor no Discord.'
       )
     ).toBeInTheDocument()
   })
@@ -77,7 +82,7 @@ describe('AddSocialModal Component', () => {
     expect(screen.getByTestId('add-discord').textContent).toBe('Vincular')
     expect(screen.getByTestId('add-youtube').textContent).toBe('Vincular')
 
-    expect(screen.getByText('twitch')).toBeInTheDocument()
+    expect(screen.getByText('Twitch')).toBeInTheDocument()
     expect(screen.getByTestId('delete-twitch')).toBeInTheDocument()
   })
 
@@ -181,7 +186,7 @@ describe('AddSocialModal Component', () => {
     renderComponent()
 
     expect(screen.queryByTestId('add-twitch')).not.toBeInTheDocument()
-    expect(screen.getByText('twitch')).toBeInTheDocument()
+    expect(screen.getByText('Twitch')).toBeInTheDocument()
 
     const deleteBtn = screen.getByTestId('delete-twitch')
     fireEvent.click(deleteBtn)
