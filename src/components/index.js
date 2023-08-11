@@ -12,7 +12,6 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
-import FriendListMenu from './friends/FriendListMenu'
 import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Forms
@@ -128,6 +127,9 @@ import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
 import LoadingTexts from './loading/LoadingTexts'
 
+// Menu
+import UserMenuOptions from './menu/UserMenuOptions'
+
 export {
   AcceptIcon,
   AccountCard,
@@ -164,7 +166,6 @@ export {
   FriendList,
   FriendListGroup,
   FriendListGroupItem,
-  FriendListMenu,
   FriendsIcon,
   GroupAddIcon,
   HeatmapStatsCard,
@@ -228,5 +229,6 @@ export {
   ToastListItem,
   TrashIcon,
   UserIcon,
+  UserMenuOptions,
   WarningCircleIcon,
 }
