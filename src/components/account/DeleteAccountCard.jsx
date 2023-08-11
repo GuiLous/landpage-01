@@ -1,10 +1,9 @@
 import { Button, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 import { AccountsAPI } from '@api'
-import { AccountCard, Container, Modal } from '@components'
+import { AccountCard, Container, Modal, TrashIcon } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -13,7 +12,6 @@ import style from './DeleteAccountCard.module.css'
 
 export default function DeleteAccountCard() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [fetching, setFetching] = useState(false)
@@ -24,6 +22,7 @@ export default function DeleteAccountCard() {
     setFetching(true)
     const token = StorageService.get('token')
     const response = await AccountsAPI.delete(token)
+
     setFetching(false)
 
     if (response.errorMsg) {
@@ -38,7 +37,6 @@ export default function DeleteAccountCard() {
 
     dispatch(updateUser(null))
     StorageService.remove('token')
-    navigate('/')
   }
 
   const handleClose = () => {
@@ -49,6 +47,7 @@ export default function DeleteAccountCard() {
     <AccountCard
       title="EXCLUIR CONTA"
       description="Exclua permanentemente a sua conta. Essa ação é permanente e não pode ser desfeita."
+      icon={TrashIcon}
     >
       <Container className={style.container}>
         <Button
@@ -91,6 +90,7 @@ export default function DeleteAccountCard() {
               loadingText="Excluindo..."
               isLoading={fetching}
               onClick={handleDeleteAccount}
+              data-testid="deleteBtn"
             >
               Prosseguir com a exclusão
             </Button>

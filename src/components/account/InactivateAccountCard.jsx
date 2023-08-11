@@ -1,10 +1,9 @@
 import { Button, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 
 import { AccountsAPI } from '@api'
-import { AccountCard, Container, Modal } from '@components'
+import { AccountCard, BlockIcon, Container, Modal } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -13,7 +12,6 @@ import style from './InactivateAccountCard.module.css'
 
 export default function InactivateAccountCard() {
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const [isOpenModal, setIsOpenModal] = useState(false)
   const [fetching, setFetching] = useState(false)
@@ -38,7 +36,6 @@ export default function InactivateAccountCard() {
 
     dispatch(updateUser(null))
     StorageService.remove('token')
-    navigate('/')
   }
 
   const handleClose = () => {
@@ -49,6 +46,7 @@ export default function InactivateAccountCard() {
     <AccountCard
       title="INATIVAR CONTA"
       description="Ao inativar sua conta suas informações tornam-se privadas e você não será capaz de acessar nossos serviços até que a reative novamente."
+      icon={BlockIcon}
     >
       <Container className={style.container}>
         <Button
@@ -93,6 +91,7 @@ export default function InactivateAccountCard() {
               loadingText="Inativando..."
               isLoading={fetching}
               onClick={handleAccountInactivation}
+              data-testid="inactiveBtn"
             >
               Prosseguir com a inativação
             </Button>

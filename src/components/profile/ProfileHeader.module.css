@@ -1,24 +1,8 @@
 .container {
-	background-color: var(--chakra-colors-purple-500);
+	background-color: transparent;
+	z-index: var(--chakra-zIndices-one);
 }
 
 .info {
 	max-width: 600px;
-}
-
-.link {
-	color: var(--chakra-colors-gray-300);
-	font-size: 14px;
-	font-weight: var(--chakra-fontWeights-medium);
-	text-transform: uppercase;
-}
-
-.link:hover {
-	color: white;
-}
-
-.link.active {
-	color: white;
-	cursor: default;
-	pointer-events: none;
 }

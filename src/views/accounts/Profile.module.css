@@ -1,8 +1,12 @@
 .header {
-	background-color: var(--chakra-colors-purple-500);
-	padding: 125px 64px 32px;
+	background-image: url('@assets/images/profile_header_bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 100%;
+	padding: 60px;
+	width: 100%;
 }
 
 .content {
-	padding: 0 64px;
+	padding: 0 60px;
 }

@@ -107,6 +107,7 @@ export default function NotificationList({ isOpen, onClose }) {
                   onMouseEnter={() => read(item.id)}
                   key={item.id}
                   fitContent
+                  testID="notificationItem"
                 >
                   <NotificationListItem {...item} />
                 </Container>

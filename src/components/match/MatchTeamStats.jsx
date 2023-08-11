@@ -9,24 +9,64 @@ import {
   Thead,
   Tooltip,
   Tr,
+  useOutsideClick,
 } from '@chakra-ui/react'
+import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-
-import { Container } from '@components'
-
 import { useNavigate } from 'react-router-dom'
+
+import { Container, UserMenuOptions } from '@components'
+
 import style from './MatchTeamStats.module.css'
 
 export default function MatchTeamStats({ team, isWinning, isSameScore }) {
   const user = useSelector((state) => state.user)
+  const lobby = useSelector((state) => state.lobby)
+  const invites = useSelector((state) => state.invites)
 
   const navigate = useNavigate()
+  const trRef = useRef(null)
+
+  const [selectedPlayer, setSelectedPlayer] = useState(null)
+
+  const isMenuOpen = !!selectedPlayer
 
   const players = team.players
 
-  const handleRedirectToProfile = (id) => {
-    navigate(`/perfil/${id}`)
+  const availableStatuses = ['online', 'away', 'teaming']
+
+  const alreadyInvitedByFriend = lobby.invited_players_ids.some(
+    (id) => id === selectedPlayer?.user_id
+  )
+
+  const alreadyInvited =
+    invites.filter(
+      (invite) => invite.to_player.user_id === selectedPlayer?.user_id
+    ).length > 0 || alreadyInvitedByFriend
+
+  const alreadyOnTeam = lobby.players_ids.includes(selectedPlayer?.user_id)
+
+  const isAvailable =
+    !alreadyOnTeam &&
+    availableStatuses.includes(selectedPlayer?.status) &&
+    !lobby.queue
+
+  const handleRedirectToProfile = () => {
+    navigate(`/perfil/${user.id}`)
   }
+
+  const handleOpenMenu = (player) => {
+    setSelectedPlayer(player)
+  }
+
+  const handleOutsideClick = () => {
+    setSelectedPlayer(null)
+  }
+
+  useOutsideClick({
+    ref: trRef,
+    handler: handleOutsideClick,
+  })
 
   return (
     <TableContainer className={style.tableContainer}>
@@ -124,11 +164,17 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
             <Tr
               key={player.id}
               className={player.user_id === user.id ? style.highlight : ''}
-              onClick={() => handleRedirectToProfile(player.user_id)}
+              onClick={() =>
+                player.user_id === user.id
+                  ? handleRedirectToProfile()
+                  : handleOpenMenu(player)
+              }
               cursor="pointer"
               _hover={{
-                bgColor: 'gray.700',
+                bgColor: 'rgba(104, 71, 255, 0.15)',
               }}
+              ref={trRef}
+              data-testid="row"
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>
@@ -146,6 +192,21 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                       {player.username}
                     </Text>
                   </Container>
+
+                  <UserMenuOptions
+                    open={
+                      isMenuOpen && player.username === selectedPlayer.username
+                    }
+                    user={user}
+                    user_id={player.user_id}
+                    isAvailable={isAvailable}
+                    alreadyInvited={alreadyInvited}
+                    alreadyOnTeam={alreadyOnTeam}
+                    username={player.username}
+                    steam_url={player.steam_url || ''}
+                    placement="right-start"
+                    hideBtn={true}
+                  />
                 </Container>
               </Td>
               <Td>{player.stats.kills}</Td>
