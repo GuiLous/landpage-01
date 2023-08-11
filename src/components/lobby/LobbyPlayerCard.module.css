@@ -1,5 +1,5 @@
 .container {
-	background: url('@assets/images/lobby_player_card_bg.png') center;
+	background: url('@assets/images/lobby_player_card_bg.jpg') center;
 	background-size: cover;
 	border-radius: 8px;
 	color: white;
