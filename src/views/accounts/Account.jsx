@@ -1,94 +1,29 @@
-import { Hide, Icon, Link, Text } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
-import { ProfilesAPI } from '@api'
 import {
-  BlockIcon,
   ChangeEmailCard,
   Container,
   DeleteAccountCard,
   InactivateAccountCard,
   Loading,
   LoadingBackdrop,
-  MessageIcon,
   ProfileHeader,
-  TrashIcon,
 } from '@components'
-import { StorageService } from '@services'
+import { useProfileDetails } from '@hooks'
 
-import { useSelector } from 'react-redux'
 import style from './Account.module.css'
 
-const linksOptions = [
-  {
-    id: 'email',
-    label: 'Alterar e-mail',
-  },
-  {
-    id: 'inactive',
-    label: 'Inativar conta',
-  },
-  {
-    id: 'delete',
-    label: 'Excluir conta',
-  },
-]
-
-const icons = {
-  email: MessageIcon,
-  inactive: BlockIcon,
-  delete: TrashIcon,
-}
-
 export default function AccountView() {
-  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
 
-  const [fetching, setFetching] = useState(true)
-  const [profile, setProfile] = useState(null)
-
-  const renderLinks = () => {
-    return (
-      <Container gap={22} column>
-        {linksOptions.map((linkItem) => (
-          <Link
-            key={linkItem.id}
-            href={'#' + linkItem.id}
-            color="gray.300"
-            fontWeight="regular"
-            fontSize={18}
-            lineHeight={1}
-            display="flex"
-            alignItems="center"
-            gap="10px"
-            className={style.link}
-          >
-            <Icon as={icons[`${linkItem.id}`]} fill="gray.300" />
-            <Text>{linkItem.label}</Text>
-          </Link>
-        ))}
-      </Container>
-    )
-  }
+  const { fetching, profile, getProfileDetails } = useProfileDetails()
 
   useEffect(() => {
-    const fetch = async () => {
-      setFetching(true)
-      const userToken = StorageService.get('token')
-
-      const response = await ProfilesAPI.detail(userToken, user.id)
-      if (response.errorMsg) {
-        navigate('/404')
-      }
-
-      setProfile(response)
-      setFetching(false)
-    }
-
-    fetch()
+    getProfileDetails(user.id)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [user.id])
 
   return fetching ? (
     <LoadingBackdrop>
@@ -97,30 +32,28 @@ export default function AccountView() {
   ) : (
     <Container column gap={40} className={style.container}>
       <Container className={style.header} column gap={40}>
-        <ProfileHeader profile={profile} />
+        <ProfileHeader profile={profile} isUserLogged={true} />
+      </Container>
+
+      <Container align="center" className={style.title}>
+        <Text
+          fontSize={20}
+          color="white"
+          fontWeight="semiBold"
+          lineHeight={1}
+          as="h2"
+        >
+          CONFIGURAÇÕES DE CONTA
+        </Text>
       </Container>
 
       <Container className={style.content}>
-        <Hide above="2xl">
-          <Container column style={{ maxWidth: '350px' }}>
-            <Container fitContent style={{ marginBottom: '40px' }}>
-              <Text
-                color="white"
-                fontWeight="bold"
-                fontSize={20}
-                textTransform="uppercase"
-              >
-                Gerenciamento de conta
-              </Text>
-            </Container>
-
-            {renderLinks()}
-          </Container>
-        </Hide>
         <Container column gap={24}>
           <ChangeEmailCard />
-          <InactivateAccountCard />
-          <DeleteAccountCard />
+          <Container style={{ alignItems: 'initial' }} gap={24}>
+            <InactivateAccountCard />
+            <DeleteAccountCard />
+          </Container>
         </Container>
       </Container>
     </Container>

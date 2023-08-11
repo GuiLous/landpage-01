@@ -81,6 +81,7 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import AddSocialModal from './profile/AddSocialModal'
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
@@ -90,6 +91,8 @@ import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
 import ProfileHeader from './profile/ProfileHeader'
+import ProfileHeaderButtons from './profile/ProfileHeaderButtons'
+import ProfileHeaderSocialButtons from './profile/ProfileHeaderSocialButtons'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -128,6 +131,7 @@ import LoadingTexts from './loading/LoadingTexts'
 export {
   AcceptIcon,
   AccountCard,
+  AddSocialModal,
   AddUserIcon,
   ArrowDownIcon,
   ArrowRightIcon,
@@ -198,6 +202,8 @@ export {
   PodiumIcon,
   ProfileCard,
   ProfileHeader,
+  ProfileHeaderButtons,
+  ProfileHeaderSocialButtons,
   Progress,
   RefuseIcon,
   RequireAuth,

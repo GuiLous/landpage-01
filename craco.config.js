@@ -15,6 +15,7 @@ module.exports = {
       '@layouts': path.resolve(__dirname, 'src/layouts'),
       '@hooks': path.resolve(__dirname, 'src/hooks'),
       '@api': path.resolve(__dirname, 'src/api'),
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
     },
   },
   jest: {
@@ -36,6 +37,7 @@ module.exports = {
         '^@layouts(.*)$': '<rootDir>/src/layouts$1',
         '^@api(.*)$': '<rootDir>/src/api$1',
         '^@hooks(.*)$': '<rootDir>/src/hooks$1',
+        '^@contexts(.*)$': '<rootDir>/src/contexts$1',
       },
     },
   },

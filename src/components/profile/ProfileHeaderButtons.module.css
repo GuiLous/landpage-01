@@ -1,0 +1,40 @@
+.container {
+	max-width: fit-content;
+}
+
+.profileBtn {
+	background: rgba(27, 27, 27, 0.5);
+	border: 1px solid var(--chakra-colors-gray-700);
+	border-radius: 4px;
+	color: var(--chakra-colors-gray-300);
+	cursor: pointer;
+	max-width: fit-content;
+	overflow: hidden;
+	padding: 14px;
+	transition: all 0.2s ease-in-out;
+}
+
+.profileBtn:hover {
+	background: rgba(27, 27, 27, 0.8);
+	border: 1px solid rgba(153, 153, 153, 0.5);
+	color: white;
+}
+
+.profileBtn svg {
+	color: var(--chakra-colors-gray-300);
+	transition: all 0.2s ease-in-out;
+}
+
+.profileBtn:hover svg {
+	color: white;
+}
+
+.profileBtn.active {
+	background: rgba(27, 27, 27, 0.8);
+	border: 1px solid rgba(153, 153, 153, 0.5);
+	color: white;
+}
+
+.profileBtn.active svg {
+	color: white;
+}

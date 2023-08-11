@@ -35,6 +35,7 @@ const config = {
       '@layouts': path.resolve(__dirname, '../src/layouts'),
       '@api': path.resolve(__dirname, '../src/api'),
       '@hooks': path.resolve(__dirname, '../src/hooks'),
+      '@contexts': path.resolve(__dirname, '../src/contexts'),
     }
 
     return config
