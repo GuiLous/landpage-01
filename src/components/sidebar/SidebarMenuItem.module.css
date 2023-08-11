@@ -1,7 +1,7 @@
 .menuItem {
 	border-radius: 4px;
 	font-size: 18px;
-	min-height: 42px;
+	min-height: 40px;
 	position: relative;
 }
 
@@ -13,7 +13,7 @@
 	flex: 1;
 	gap: 14px;
 	height: 100%;
-	padding: 10px 14px;
+	padding: 9px 12px;
 	position: relative;
 }
 
