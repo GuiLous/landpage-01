@@ -47,8 +47,8 @@ describe('ChangeEmailCard Component', () => {
   it('should render correctly', () => {
     renderComponent()
 
-    expect(screen.getByText('ALTERAR E-MAIL')).toBeInTheDocument()
-    expect(screen.getByTestId('pencilIcon')).toBeInTheDocument()
+    expect(screen.getByText('INFORMAÇÕES PESSOAIS')).toBeInTheDocument()
+    expect(screen.getByText('EDITAR')).toBeInTheDocument()
   })
 
   it('should disable button if is not editing', () => {

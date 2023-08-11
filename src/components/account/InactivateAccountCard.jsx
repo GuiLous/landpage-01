@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { AccountsAPI } from '@api'
-import { AccountCard, Container, Modal } from '@components'
+import { AccountCard, BlockIcon, Container, Modal } from '@components'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
@@ -46,6 +46,7 @@ export default function InactivateAccountCard() {
     <AccountCard
       title="INATIVAR CONTA"
       description="Ao inativar sua conta suas informações tornam-se privadas e você não será capaz de acessar nossos serviços até que a reative novamente."
+      icon={BlockIcon}
     >
       <Container className={style.container}>
         <Button

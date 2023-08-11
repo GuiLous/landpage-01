@@ -18,6 +18,7 @@ export default function Modal({
   showCloseButton = true,
   headerMarginBottom = 40,
   maxWidthModal = 'fit-content',
+  justifyTitle = 'center',
   ...props
 }) {
   return (
@@ -31,7 +32,7 @@ export default function Modal({
       <ModalOverlay />
       <ModalContent p={{ base: 10, md: 8, '2xl': 10 }} maxW={maxWidthModal}>
         <ModalHeader p={0} mb={headerMarginBottom + 'px'}>
-          <Container justify="center">
+          <Container justify={justifyTitle}>
             {title && (
               <Text
                 color="white"

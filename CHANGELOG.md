@@ -7,12 +7,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Criar `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria novo método `updateSocials` em `ProfilesApi`.
+- Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderSocialButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Adiciona novar variantes para `Badge` (`online, offline, teaming, queue, in_game`).
+
 ### Changed
 
 - Renderiza `UserMenuOptions` no componente `MatchTeamStats` ao clicar em um player da lista [#634](https://github.com/3C-gg/reload-frontend/issues/634).
 - Renderiza `UserMenuOptions` no componente `FriendListGroupItem`.
 - Muda componente `UserMenuOptions` para uma nova pasta `menu`.
 - Altera nome do componente `FriendListMenu` para `UserMenuOptions`.
+- Usa função `getProfileDetails` do hook `useProfileDetails` para atualizar os dados da tela de `/perfil` ao vincular ou remover uma nova rede social [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Usa função `getProfileDetails` do hook `useProfileDetails` para fazer fetch dos dados do usuário nas telas de `perfil` e `conta` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Altera `ChangeEmailCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `InactivateAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `DeleteAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `AccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `Account` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera tamanho `xxl` do `Avatar` para `112px`.
+- Adiciona prop `justifyTitle` no componente `Modal`.
+- Altera `ProfileHeader` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Altera estilos da view `Profile` e `Account` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
 - Altera `MainLayout` e `ProfileLayout` position para `relative` para que o `LoadingBackdrop` fique centralizado [#632](https://github.com/3C-gg/reload-frontend/issues/632).
 - Altera estilos do componente `LoadingBackdrop` para que fique sempre `centralizado` com base no `container` em volta [#632](https://github.com/3C-gg/reload-frontend/issues/632).
 - Melhora e cria novos `testes` para todos os componentes [#613](https://github.com/3C-gg/reload-frontend/issues/613).
@@ -232,7 +253,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona useEffect no `App` para verificar se está em manutenção após login.
 - Adiciona rota `manutencao` para a view `Maintenance`.
 - Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
-- Cria interface `AppAPI`.
+- Criao método na  `AppAPI`.
 - Cria slice de `Maintenance`.
 - View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460).
 - Pasta de views `match` para conter views relacionadas a partidas.
@@ -279,7 +300,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera case `match/found` para `pre_matches/create` [#423](https://github.com/3C-gg/reload-frontend/issues/423).
 - Altera importação de `updatePreMatch` agora vindo de `PreMatchSlice`.
 - Adiciona `PreMatchReducer` no arquivo `store`.
-- Altera a url do método `inactivate` da interface de `Accounts` para `accounts/inactivate/` [#414](https://github.com/3C-gg/reload-frontend/issues/414).
+- Altera a url do método `inactivate` dao método na  de `Accounts` para `accounts/inactivate/` [#414](https://github.com/3C-gg/reload-frontend/issues/414).
 - Altera componente `FriendList` fechar o componente `InviteListGroup` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 - Altera componente `FriendListGroup` para adicionar `useEffect` que altera o state `isOpen` para `true` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 

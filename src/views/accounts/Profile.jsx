@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
-import { ProfilesAPI } from '@api'
 import {
   Container,
   HeatmapStatsCard,
@@ -12,39 +11,21 @@ import {
   MatchHistoryList,
   ProfileHeader,
 } from '@components'
-import { StorageService } from '@services'
+import { useProfileDetails } from '@hooks'
 
 import style from './Profile.module.css'
 
 export default function ProfileView() {
-  const params = useParams()
-  const navigate = useNavigate()
   const user = useSelector((state) => state.user)
-  const location = useLocation()
+
+  const params = useParams()
+
+  const { fetching, profile, getProfileDetails } = useProfileDetails()
 
   const { userId } = params
 
-  const [fetching, setFetching] = useState(true)
-  const [profile, setProfile] = useState(null)
-
-  const hideNav =
-    location.pathname.includes('perfil') && parseInt(userId) !== user.id
-
   useEffect(() => {
-    const fetch = async () => {
-      setFetching(true)
-      const userToken = StorageService.get('token')
-
-      const response = await ProfilesAPI.detail(userToken, userId)
-      if (response.errorMsg) {
-        navigate('/404')
-      }
-
-      setProfile(response)
-      setFetching(false)
-    }
-
-    fetch()
+    getProfileDetails(userId)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId])
 
@@ -55,7 +36,10 @@ export default function ProfileView() {
   ) : (
     <Container column gap={40}>
       <Container className={style.header} column gap={40}>
-        <ProfileHeader profile={profile} hideNav={hideNav} />
+        <ProfileHeader
+          profile={profile}
+          isUserLogged={Number(userId) === user.id}
+        />
       </Container>
 
       <Container gap={18} className={style.content}>

@@ -595,11 +595,38 @@ export default extendTheme({
       },
       variants: {
         online: {
-          bg: 'green.400',
-          backgroundColor: 'green.400',
+          backgroundColor: 'green.600',
           borderRadius: '50%',
-          height: '9px',
-          width: '9px',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        offline: {
+          backgroundColor: 'gray.300',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        teaming: {
+          backgroundColor: 'purple.300',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        in_game: {
+          backgroundColor: 'yellow.500',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        queued: {
+          backgroundColor: 'yellow.500',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
           padding: 'initial',
         },
 
@@ -786,9 +813,9 @@ export default extendTheme({
         },
         xxl: {
           container: {
-            width: '128px',
-            height: '128px',
-            borderWidth: '6px',
+            width: '112px',
+            height: '112px',
+            borderWidth: '4px',
           },
         },
       },
