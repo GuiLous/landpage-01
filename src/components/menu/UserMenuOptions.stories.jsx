@@ -1,11 +1,11 @@
-import { Container, FriendListMenu } from '@components'
+import { Container, UserMenuOptions } from '@components'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 export default {
-  title: 'Friends/FriendListMenu',
-  component: FriendListMenu,
+  title: 'Menu/UserMenuOptions',
+  component: UserMenuOptions,
   argProps: {
     open: { control: { type: 'boolean' } },
     isAvailable: { control: { type: 'boolean' } },
@@ -39,7 +39,7 @@ export const Default = {
     <BrowserRouter>
       <Provider store={mockStore}>
         <Container style={{ position: 'relative' }} fitContent>
-          <FriendListMenu {...props} user={user} />
+          <UserMenuOptions {...props} user={user} />
         </Container>
       </Provider>
     </BrowserRouter>

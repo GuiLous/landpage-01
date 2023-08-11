@@ -20,9 +20,9 @@ import { StorageService } from '@services'
 import { addToast, toggleFriendList } from '@slices/AppSlice'
 import { addInvite } from '@slices/InviteSlice'
 
-import style from './FriendListMenu.module.css'
+import style from './UserMenuOptions.module.css'
 
-export default function FriendListMenu({
+export default function UserMenuOptions({
   open,
   isAvailable,
   user,
@@ -31,6 +31,8 @@ export default function FriendListMenu({
   user_id,
   username,
   steam_url,
+  placement,
+  hideBtn = false,
 }) {
   const [isOpen, setIsOpen] = useState(false)
   const [openSupport, setOpenSupport] = useState(false)
@@ -113,17 +115,22 @@ export default function FriendListMenu({
 
   return (
     <>
-      <Menu isOpen={isOpen} placement="left-start">
+      <Menu isOpen={isOpen} placement={placement}>
         <MenuButton
           as={Button}
           variant={'unstyled'}
           rightIcon={<BsThreeDots style={{ margin: '0' }} opacity={0} />}
           minH={0}
           minW={0}
+          w={hideBtn && 0}
+          h={hideBtn && 0}
           fontSize={18}
           display="flex"
           color="gray.300"
           alignItems="center"
+          _focusVisible={{
+            boxShadow: hideBtn && 'none',
+          }}
           _hover={{ color: 'white' }}
           transition="all 0.2s ease-in-out"
           justifyContent="center"
