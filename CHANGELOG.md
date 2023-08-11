@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `SidebarLogo` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `SidebarLobbyButton` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `SidebarAvatarLink` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `Sidebar` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
 - Altera background do componente `LobbyPlayerCard` [#639](https://github.com/3C-gg/reload-frontend/issues/639).
 - Renderiza `UserMenuOptions` no componente `MatchTeamStats` ao clicar em um player da lista [#634](https://github.com/3C-gg/reload-frontend/issues/634).
 - Renderiza `UserMenuOptions` no componente `FriendListGroupItem`.
