@@ -1,7 +1,9 @@
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { AddSocialModal } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 export default {
   title: 'Profile/AddSocialModal',
@@ -14,8 +16,6 @@ export default {
   },
 }
 
-const mockStore = configureStore()({})
-
 const socialsLinked = ['twitch']
 
 let socials = {
@@ -25,14 +25,20 @@ let socials = {
   youtube: null,
 }
 
+const mockStore = configureStore()({})
+
 export const Default = {
   render: (props) => (
-    <Provider store={mockStore}>
-      <AddSocialModal
-        socialsLinked={socialsLinked}
-        socials={socials}
-        {...props}
-      />
-    </Provider>
+    <BrowserRouter>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <AddSocialModal
+            socialsLinked={socialsLinked}
+            socials={socials}
+            {...props}
+          />
+        </Provider>
+      </ProfileDetailsProvider>
+    </BrowserRouter>
   ),
 }

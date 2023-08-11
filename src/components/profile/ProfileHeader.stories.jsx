@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { ProfileHeader } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 export default {
   title: 'Profile/ProfileHeader',
@@ -38,9 +39,11 @@ const mockStore = configureStore()({})
 export const Default = {
   render: (props) => (
     <BrowserRouter>
-      <Provider store={mockStore}>
-        <ProfileHeader {...props} />
-      </Provider>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <ProfileHeader {...props} />
+        </Provider>
+      </ProfileDetailsProvider>
     </BrowserRouter>
   ),
 }

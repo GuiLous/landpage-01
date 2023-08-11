@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { ProfilesAPI } from '@api'
 import { CloseIcon, Container, Modal } from '@components'
+import { useProfileDetails } from '@hooks'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
 
@@ -17,6 +18,8 @@ export default function AddSocialModal({
   socials,
 }) {
   const dispatch = useDispatch()
+
+  const { setProfile } = useProfileDetails()
 
   const [socialName, setSocialName] = useState('')
   const [isFetching, setIsFetching] = useState(false)
@@ -83,6 +86,7 @@ export default function AddSocialModal({
       return
     }
 
+    setProfile(response)
     setIsFetching(false)
     setActiveSocialItem('')
     setSocialName('')
@@ -124,8 +128,8 @@ export default function AddSocialModal({
             fontWeight="medium"
             as="span"
             transition="color 0.2s ease-in-out"
-            cursor="pointer"
-            _hover={{ color: 'white' }}
+            cursor={!!socialName && 'pointer'}
+            _hover={{ color: !!socialName && 'white' }}
             onClick={() => handleUpdateSocials(item)}
             data-testid={`send-${item}`}
           >

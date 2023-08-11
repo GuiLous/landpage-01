@@ -1,13 +1,16 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import configureStore from 'redux-mock-store'
 
 import { ProfilesAPI } from '@api'
 import { AddSocialModal } from '@components'
+import { ProfileDetailsProvider } from '@contexts'
 
 jest.mock('@api', () => ({
   ProfilesAPI: {
     updateSocials: jest.fn(),
+    detail: jest.fn(),
   },
 }))
 
@@ -24,14 +27,18 @@ const renderComponent = () => {
   const mockStore = configureStore()({})
 
   render(
-    <Provider store={mockStore}>
-      <AddSocialModal
-        isOpen={true}
-        onClose={jest.fn()}
-        socialsLinked={socialsLinked}
-        socials={socials}
-      />
-    </Provider>
+    <BrowserRouter>
+      <ProfileDetailsProvider>
+        <Provider store={mockStore}>
+          <AddSocialModal
+            isOpen={true}
+            onClose={jest.fn()}
+            socialsLinked={socialsLinked}
+            socials={socials}
+          />
+        </Provider>
+      </ProfileDetailsProvider>
+    </BrowserRouter>
   )
 }
 
@@ -103,6 +110,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on click Enviar', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     renderComponent()
 
@@ -135,6 +143,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on press Enter', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     renderComponent()
 
@@ -165,6 +174,7 @@ describe('AddSocialModal Component', () => {
 
   it('should call handleSubmit on click delete button', async () => {
     ProfilesAPI.updateSocials.mockResolvedValue({})
+    ProfilesAPI.detail.mockResolvedValue({})
 
     socialsLinked.push('twitch')
     socials.twitch = 'teste'

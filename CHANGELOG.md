@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criar `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
 - Cria novo método `updateSocials` em `ProfilesApi`.
 - Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
 - Cria novo componente `ProfileHeaderSocialButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
@@ -17,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Usa função `getProfileDetails` do hook `useProfileDetails` para atualizar os dados da tela de `/perfil` ao vincular ou remover uma nova rede social [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Usa função `getProfileDetails` do hook `useProfileDetails` para fazer fetch dos dados do usuário nas telas de `perfil` e `conta` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
 - Altera `ChangeEmailCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
 - Altera `InactivateAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
 - Altera `DeleteAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
