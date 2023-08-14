@@ -25,13 +25,28 @@ export default function AddSocialModal({
   const [isFetching, setIsFetching] = useState(false)
   const [activeSocialItem, setActiveSocialItem] = useState('')
 
-  const socialIcons = {
-    twitch: SiTwitch,
-    discord: SiDiscord,
-    youtube: SiYoutube,
+  const socialHashes = {
+    twitch: {
+      title: 'Twitch',
+      icon: SiTwitch,
+      helper: 'Nome do canal',
+      placeholder: 'Ex: meucanal',
+    },
+    discord: {
+      title: 'Servidor do Discord',
+      icon: SiDiscord,
+      helper: 'Hash de convite',
+      placeholder: 'Ex: XXyy99ZZ',
+    },
+    youtube: {
+      title: 'Youtube',
+      icon: SiYoutube,
+      helper: 'Nome do canal',
+      placeholder: 'Ex: meucanal',
+    },
   }
 
-  const keysIcons = Object.keys(socialIcons)
+  const socialKeys = Object.keys(socialHashes)
 
   const handleCloseModalSupport = () => {
     setIsOpen(false)
@@ -109,7 +124,7 @@ export default function AddSocialModal({
             minH="28px"
             fontSize={12}
             value={socialName}
-            placeholder="Insira o nome de usuário"
+            placeholder={socialHashes[item].placeholder}
             _focus={{
               border: '1px solid',
               borderColor: 'purple.400',
@@ -210,7 +225,7 @@ export default function AddSocialModal({
   const renderSocialItems = () => {
     return (
       <Container column>
-        {keysIcons.map((item) => (
+        {socialKeys.map((item) => (
           <Container
             key={item}
             justify="between"
@@ -218,20 +233,23 @@ export default function AddSocialModal({
             className={style.container}
           >
             <Container gap={14} align="center">
-              <Icon
-                as={socialIcons[item]}
-                fontSize={18}
-                verticalAlign="middle"
-              />
+              <Container fitContent>
+                <Icon
+                  as={socialHashes[item].icon}
+                  fontSize={18}
+                  verticalAlign="middle"
+                />
+              </Container>
 
-              <Text
-                fontSize={14}
-                fontWeight="medium"
-                color="white"
-                textTransform="capitalize"
-              >
-                {item}
-              </Text>
+              <Container column>
+                <Text fontSize={14} fontWeight="medium" color="white">
+                  {socialHashes[item].title}
+                </Text>
+
+                <Text fontSize={12} color="gray.200">
+                  {socialHashes[item].helper}
+                </Text>
+              </Container>
             </Container>
 
             {renderRightContent(item)}
@@ -244,16 +262,22 @@ export default function AddSocialModal({
   return (
     <Modal
       isOpen={isOpen}
-      title="SOCIAL LINKS"
+      title="REDES SOCIAIS"
       onClose={handleCloseModalSupport}
       headerMarginBottom={24}
       justifyTitle="start"
     >
       <Container justify="center" align="center" column gap={40}>
-        <Text color="white" fontSize={14} textAlign="center">
-          Adicione o link de suas redes sociais que ficarão visíveis no seu
-          perfil.
-        </Text>
+        <Container column gap={5}>
+          <Text color="white" fontSize={14} maxW={600}>
+            Adicione suas redes sociais. Elas ficarão visíveis no seu perfil.
+          </Text>
+
+          <Text color="gray.300" fontSize={12} maxW={500}>
+            Não adicione links nessa área. Coloque apenas o nome do canal
+            (handle) ou a hash do convite para um servidor no Discord.
+          </Text>
+        </Container>
 
         {renderSocialItems()}
       </Container>
