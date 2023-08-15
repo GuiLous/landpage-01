@@ -165,7 +165,7 @@ describe('Sidebar Component', () => {
     renderComponent()
 
     expect(screen.getByText('Username')).toBeInTheDocument()
-    expect(screen.getByText('LEVEL 2')).toBeInTheDocument()
+    expect(screen.getByText('Level 2')).toBeInTheDocument()
     expect(screen.getByText('Lobby')).toBeInTheDocument()
     expect(screen.getByText('amigos')).toBeInTheDocument()
     expect(screen.getByText('notificações')).toBeInTheDocument()

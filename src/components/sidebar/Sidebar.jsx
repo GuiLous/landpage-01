@@ -115,16 +115,20 @@ export default function Sidebar() {
       >
         <SidebarLogo />
 
-        <Container className={style.body} column gap={isLessThan2xl ? 35 : 50}>
+        <Container className={style.body} column gap={isLessThan2xl ? 35 : 40}>
           <Container className={style.userInfo} gap={24} align="center" column>
-            <SidebarAvatarLink user={user} />
+            <Container gap={16} column className={style.userWrapper}>
+              <SidebarAvatarLink user={user} />
+            </Container>
+          </Container>
 
+          <Container className={style.lobbyBtn}>
             <SidebarLobbyButton lobby={lobby} match={match} />
           </Container>
 
           <Container
             column
-            gap={isLessThan2xl ? 26 : 38}
+            gap={isLessThan2xl ? 26 : 30}
             className={style.menu}
           >
             <Container className={style.topMenu} column>

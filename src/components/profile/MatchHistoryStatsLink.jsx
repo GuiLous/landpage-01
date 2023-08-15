@@ -11,33 +11,44 @@ const statsFields = [
     field: 'kda',
     title: 'kda',
     label: 'Abates e assistências por morte',
+    minWidth: '106',
   },
   {
     field: 'kdr',
     title: 'kdr',
     label: 'Abates por morte',
+    minWidth: '35',
   },
   {
     field: 'head_accuracy',
     title: 'hs%',
     label: 'Porcentagem de tiros na cabeça',
+    minWidth: '40',
   },
   {
     field: 'adr',
     title: 'adr',
     label: 'Dano médio por round',
+    minWidth: '35',
   },
   {
     field: 'firstkills',
     title: 'fk',
     label: 'Primeiros abates',
+    minWidth: '31',
   },
 ]
 
 export default function MatchHistoryStatsLink({ match }) {
   const renderStats = () => {
     return statsFields.map((stats, index) => (
-      <Container key={index} column gap={11}>
+      <Container
+        key={index}
+        align="center"
+        column
+        gap={11}
+        style={{ minWidth: `${stats.minWidth}px` }}
+      >
         <Tooltip label={stats.label} aria-label={`${stats.field} tooltip`}>
           <Text
             as="span"
