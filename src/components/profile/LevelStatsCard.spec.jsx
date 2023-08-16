@@ -23,7 +23,7 @@ describe('LevelStatsCard Component', () => {
       chest_shots: 4065,
       other_shots: 390,
       kdr: 0,
-      head_accuracy: 1,
+      hsk: 10,
     },
   }
 
@@ -33,6 +33,6 @@ describe('LevelStatsCard Component', () => {
     expect(screen.getByText('Vitórias')).toBeInTheDocument()
     expect(screen.getByText('KDR')).toBeInTheDocument()
     expect(screen.getByText('Max Level')).toBeInTheDocument()
-    expect(screen.getByText('1%')).toBeInTheDocument()
+    expect(screen.getByText('10%')).toBeInTheDocument()
   })
 })

@@ -14,7 +14,8 @@ export default function SidebarLogo() {
         <Link as={ReactRouterLink} to="/jogar">
           <Image
             src={logoFull}
-            style={{ height: 'auto' }}
+            height="auto"
+            width="166"
             data-testid="logo-full"
           />
         </Link>

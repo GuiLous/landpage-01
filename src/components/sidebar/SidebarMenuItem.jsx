@@ -7,7 +7,7 @@ import {
   ExitIcon,
   FriendsIcon,
   PodiumIcon,
-  ShopIcon,
+  StoreIcon,
   SupportIcon,
 } from '@components'
 
@@ -17,7 +17,7 @@ const icons = {
   amigos: FriendsIcon,
   notificações: BellFilledIcon,
   ranking: PodiumIcon,
-  loja: ShopIcon,
+  loja: StoreIcon,
   suporte: SupportIcon,
   sair: ExitIcon,
 }
@@ -40,7 +40,11 @@ export default function SidebarMenuItem({
         data-testid={item}
       >
         <Container className={style.menuLinkWrapper} gap={14} align="center">
-          <Icon as={icons[`${item}`]} fill="gray.300" />
+          <Icon
+            as={icons[`${item}`]}
+            fill="gray.300"
+            fontSize={item === 'suporte' && 16}
+          />
           <Text textTransform="capitalize">{item}</Text>
         </Container>
 

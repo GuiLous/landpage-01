@@ -37,13 +37,18 @@ export default function SidebarLobbyButton({ lobby, match }) {
     <Button
       as={ReactRouterLink}
       to={isInMatch ? `partidas/${match.id}` : '/jogar'}
-      leftIcon={<HomeIcon />}
+      leftIcon={
+        <HomeIcon
+          style={{ width: '16px', height: '16px', marginRight: '6px' }}
+        />
+      }
       justifyContent="flex-start"
-      px="14px"
+      px={{ base: '14px', md: '12px', '2xl': '14px' }}
       w="full"
       fontWeight="semiBold"
       textTransform="capitalize"
-      height={{ base: '42px', md: '32px', '2xl': '42px' }}
+      height="40px"
+      minH="40px"
       fontSize={14}
       variant={getBtnVariant()}
     >
