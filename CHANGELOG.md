@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Remove `decimais` das stats do componente `Heatmap` [#657](https://github.com/3C-gg/reload-frontend/issues/657).
 - Altera `MatchHistoryStatsLink` para adicionar min width para o conteúdo não ficar "sambando" [#646](https://github.com/3C-gg/reload-frontend/issues/646).
 - Altera `Headshots %` para `Hs Kills %` no componente `LevelStatsCard` [#644](https://github.com/3C-gg/reload-frontend/issues/644).
 - Altera `SidebarLogo` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
