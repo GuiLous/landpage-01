@@ -24,8 +24,8 @@ describe('HeatmapStatsCard Component', () => {
   it('should render percentage correctly', () => {
     renderComponent()
 
-    expect(screen.getByTestId('hs-percentage').textContent).toEqual('10.0%')
-    expect(screen.getByTestId('body-percentage').textContent).toEqual('30.0%')
-    expect(screen.getByTestId('other-percentage').textContent).toEqual('60.0%')
+    expect(screen.getByTestId('hs-percentage').textContent).toEqual('10%')
+    expect(screen.getByTestId('body-percentage').textContent).toEqual('30%')
+    expect(screen.getByTestId('other-percentage').textContent).toEqual('60%')
   })
 })
