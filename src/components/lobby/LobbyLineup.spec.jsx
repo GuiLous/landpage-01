@@ -48,7 +48,7 @@ let props = {
     queue_time: null,
     restriction_countdown: null,
   },
-  match: null,
+  match_id: null,
   preMatch: null,
 }
 
@@ -135,7 +135,7 @@ describe('LobbyLineup Component', () => {
     props.lobby.queue_time = null
     props.lobby.restriction_countdown = null
     props.preMatch = null
-    props.match = { status: 'running' }
+    props.match_id = 1
 
     renderComponent()
 
@@ -183,7 +183,7 @@ describe('LobbyLineup Component', () => {
     props.lobby.queue_time = null
     props.lobby.restriction_countdown = null
     props.preMatch = null
-    props.match = { status: 'running' }
+    props.match_id = 1
 
     renderComponent()
 
@@ -214,7 +214,7 @@ describe('LobbyLineup Component', () => {
     props.lobby.queue_time = null
     props.lobby.restriction_countdown = null
     props.preMatch = null
-    props.match = null
+    props.match_id = null
     props.lobby.queue = true
 
     renderComponent()

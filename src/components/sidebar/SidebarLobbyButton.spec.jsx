@@ -9,12 +9,12 @@ let lobby = {
   restriction_countdown: null,
 }
 
-let match = null
+let match_id = null
 
 const renderComponent = () => {
   render(
     <BrowserRouter>
-      <SidebarLobbyButton lobby={lobby} match={match} />
+      <SidebarLobbyButton lobby={lobby} match_id={match_id} />
     </BrowserRouter>
   )
 }
@@ -26,7 +26,7 @@ describe('SidebarLobbyButton Component', () => {
   })
 
   it('should render match button when is on match', async () => {
-    match = true
+    match_id = 1
     renderComponent()
 
     expect(screen.getByText('Em partida')).toBeInTheDocument()
@@ -35,7 +35,7 @@ describe('SidebarLobbyButton Component', () => {
   it('should render queue button when is on queue', async () => {
     lobby.queue = true
     lobby.queue_time = 60
-    match = false
+    match_id = null
     renderComponent()
 
     expect(screen.getByText('Na fila')).toBeInTheDocument()

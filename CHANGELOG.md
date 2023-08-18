@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Criar `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
+- Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
 - Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
 - Cria novo método `updateSocials` em `ProfilesApi`.
 - Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
@@ -52,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige verificação de partida no botão de iniciar partida no Lobby e no botão principal da Sidebar. A verificação era feita no slice de partida, e mudamos para ser realizado no campo `match_id` do slice de usuário.
 - Corrige espaçamentos do `lobby`.
 - Corrige nome do componente `Scrollbars` que estava `Sidebar`.
 - Corrige `useEffect` para redirecionar corretamente baseado no` match.status` na view de `Connect` [#591](https://github.com/3C-gg/reload-frontend/issues/591).

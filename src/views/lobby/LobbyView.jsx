@@ -21,7 +21,6 @@ export default function LobbyView() {
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const preMatch = useSelector((state) => state.preMatch)
-  const match = useSelector((state) => state.match)
 
   const dispatch = useDispatch()
 
@@ -138,7 +137,7 @@ export default function LobbyView() {
           otherPlayers={otherPlayers}
           lobby={lobby}
           preMatch={preMatch}
-          match={match}
+          match_id={user.match_id}
         />
       </Container>
 

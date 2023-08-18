@@ -4,17 +4,15 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { HomeIcon, Timer } from '@components'
 import { formatSecondsToMinutes } from '@utils'
 
-export default function SidebarLobbyButton({ lobby, match }) {
-  const isInMatch = match && match.status !== 'cancelled'
+export default function SidebarLobbyButton({ lobby, match_id }) {
+  const isInQueue = lobby.queue && !match_id && !lobby.restriction_countdown
 
-  const isInQueue = lobby.queue && !isInMatch && !lobby.restriction_countdown
+  const isRestricted = lobby.restriction_countdown && !match_id
 
-  const isRestricted = lobby.restriction_countdown && !isInMatch
-
-  const isOnLobby = !lobby.queue && !isInMatch && !lobby.restriction_countdown
+  const isOnLobby = !lobby.queue && !match_id && !lobby.restriction_countdown
 
   const getBtnVariant = () => {
-    if (isInMatch) return 'queue'
+    if (match_id) return 'queue'
 
     if (isOnLobby) return ''
 
@@ -24,7 +22,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
   }
 
   const getButtonLabel = () => {
-    if (isInMatch) return 'Em partida'
+    if (match_id) return 'Em partida'
 
     if (isOnLobby) return 'Lobby'
 
@@ -36,7 +34,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
   return (
     <Button
       as={ReactRouterLink}
-      to={isInMatch ? `partidas/${match.id}` : '/jogar'}
+      to={match_id ? `partidas/${match_id}` : '/jogar'}
       leftIcon={
         <HomeIcon
           style={{ width: '16px', height: '16px', marginRight: '6px' }}
