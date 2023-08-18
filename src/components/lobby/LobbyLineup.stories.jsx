@@ -32,7 +32,7 @@ export default {
       owner_id: 1,
       queue: null,
     },
-    match: null,
+    match_id: null,
     preMatch: null,
   },
   parameters: {
