@@ -26,11 +26,11 @@ export const Default = {
       restriction_countdown: props.isRestricted ? 300 : null,
     }
 
-    const match = props.isInMatch
+    const match_id = props.isInMatch && 1
 
     return (
       <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match={match} {...props} />
+        <SidebarLobbyButton lobby={lobby} match_id={match_id} {...props} />
       </BrowserRouter>
     )
   },

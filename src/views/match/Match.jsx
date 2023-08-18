@@ -75,7 +75,7 @@ export default function MatchView() {
       } else fetch()
     } else fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matchId])
+  }, [matchId, match])
 
   useEffect(() => {
     if (playerOnMatch && match && match.status === 'cancelled') {

@@ -28,7 +28,6 @@ export default function Sidebar() {
 
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const match = useSelector((state) => state.match)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
@@ -123,7 +122,7 @@ export default function Sidebar() {
           </Container>
 
           <Container className={style.lobbyBtn}>
-            <SidebarLobbyButton lobby={lobby} match={match} />
+            <SidebarLobbyButton lobby={lobby} match_id={user.match_id} />
           </Container>
 
           <Container
