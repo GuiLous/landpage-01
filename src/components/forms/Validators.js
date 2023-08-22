@@ -7,3 +7,7 @@ export const isEmailValid = (email) => {
       ) !== null
   )
 }
+
+export const hasUrlOnText = (text) => {
+  return String(text).match(/(?:https?|www|ftp)\S+(?:\.com)?\S*/gi) !== null
+}
