@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux'
 
 import { ProfilesAPI } from '@api'
 import { CloseIcon, Container, Modal } from '@components'
+import { hasUrlOnText } from '@components/forms/Validators'
 import { useProfileDetails } from '@hooks'
 import { StorageService } from '@services'
 import { addToast } from '@slices/AppSlice'
@@ -72,6 +73,8 @@ export default function AddSocialModal({
   }
 
   const handleSubmit = async (action, item) => {
+    if (hasUrlOnText(socialName)) return
+
     if (action === 'update' && socialName === '') return
 
     setIsFetching(true)
@@ -127,9 +130,10 @@ export default function AddSocialModal({
             placeholder={socialHashes[item].placeholder}
             _focus={{
               border: '1px solid',
-              borderColor: 'purple.400',
+              borderColor: hasUrlOnText(socialName) ? 'red.500' : 'purple.400',
             }}
             bgColor="gray.1200"
+            borderColor={hasUrlOnText(socialName) ? 'red.500' : 'gray.700'}
             px="8px"
             onChange={handleChange}
             onKeyDown={(e) => handleKeyEnterDown(e, item)}
