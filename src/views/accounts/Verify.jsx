@@ -102,14 +102,15 @@ export default function VerifyView() {
                   isInvalid={fieldsErrors?.pin}
                   manageFocus
                 >
-                  <PinInputField border="transparent" />
-                  <PinInputField border="transparent" />
-                  <PinInputField border="transparent" />
-                  <PinInputField border="transparent" />
-                  <PinInputField border="transparent" />
+                  <PinInputField border="transparent" data-testid="input1" />
+                  <PinInputField border="transparent" data-testid="input2" />
+                  <PinInputField border="transparent" data-testid="input3" />
+                  <PinInputField border="transparent" data-testid="input4" />
+                  <PinInputField border="transparent" data-testid="input5" />
                   <PinInputField
                     border="transparent"
                     onKeyDown={handleKeyEnterDown}
+                    data-testid="input6"
                   />
                 </PinInput>
                 <IconButton
@@ -121,6 +122,7 @@ export default function VerifyView() {
                   minW="56px"
                   minH="56px"
                   icon={<ArrowRightIcon color="currentColor" />}
+                  data-testid="sendButton"
                 />
               </Container>
             </Container>
