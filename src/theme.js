@@ -395,7 +395,8 @@ export default extendTheme({
             borderRadius: 4,
             minHeight: '42px',
             cursor: 'pointer',
-            border: '1px solid gray.700',
+            border: '1px solid',
+            borderColor: 'gray.700',
             _hover: {
               bg: 'gray.700',
               backgroundColor: 'gray.700',
