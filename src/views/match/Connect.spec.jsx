@@ -4,16 +4,32 @@ import userEvent from '@testing-library/user-event'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+import { StorageService } from '@services'
 import MatchReducer from '@slices/MatchSlice'
 import { ConnectView } from '@views'
 
-describe('MatchView Component', () => {
-  const match = {
-    id: 1,
-    status: 'warmup',
-    server_ip: '999.999.999.999',
-  }
+jest.mock('@services', () => ({
+  StorageService: {
+    remove: jest.fn(),
+    load: jest.fn(),
+    save: jest.fn(),
+  },
+}))
 
+const mockNavigate = jest.fn()
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}))
+
+let match = {
+  id: 1,
+  status: 'warmup',
+  server_ip: '999.999.999.999',
+}
+
+const renderComponent = () => {
   const store = configureStore({
     reducer: {
       match: MatchReducer,
@@ -21,14 +37,26 @@ describe('MatchView Component', () => {
     preloadedState: { match },
   })
 
+  render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <ConnectView />
+      </Provider>
+    </BrowserRouter>
+  )
+}
+
+describe('Connect View', () => {
+  beforeEach(() => {
+    match = {
+      id: 1,
+      status: 'warmup',
+      server_ip: '999.999.999.999',
+    }
+  })
+
   it('should render correctly', () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <ConnectView />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent()
 
     expect(screen.getByTestId('gta')).toBeInTheDocument()
     expect(screen.getByTestId('logo')).toBeInTheDocument()
@@ -39,13 +67,7 @@ describe('MatchView Component', () => {
   it('should render loading when status is loading', () => {
     match.status = 'loading'
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <ConnectView />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent()
 
     expect(screen.getByTestId('loading')).toBeInTheDocument()
     expect(screen.getByText('Ligando as luzes')).toBeInTheDocument()
@@ -56,13 +78,7 @@ describe('MatchView Component', () => {
 
     const user = userEvent.setup()
 
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <ConnectView />
-        </Provider>
-      </BrowserRouter>
-    )
+    renderComponent()
 
     const copyButton = screen.getByTestId('clipboard')
 
@@ -73,5 +89,41 @@ describe('MatchView Component', () => {
     await waitFor(() => {
       expect(screen.getByText('Copiado!')).toBeInTheDocument()
     })
+  })
+
+  it('should redirect to /jogar if has no match', async () => {
+    match = null
+
+    renderComponent()
+
+    await waitFor(() =>
+      expect(StorageService.remove).toHaveBeenCalledWith('matchConnectTimer')
+    )
+    expect(mockNavigate).toHaveBeenCalledWith('/jogar')
+    expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
+  })
+
+  it('should redirect to /jogar if match status is cancelled', async () => {
+    match.status = 'cancelled'
+
+    renderComponent()
+
+    await waitFor(() =>
+      expect(StorageService.remove).toHaveBeenCalledWith('matchConnectTimer')
+    )
+    expect(mockNavigate).toHaveBeenCalledWith('/jogar')
+    expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
+  })
+
+  it('should redirect to /partidas/matchId if match status is running', async () => {
+    match.status = 'running'
+
+    renderComponent()
+
+    await waitFor(() =>
+      expect(StorageService.remove).toHaveBeenCalledWith('matchConnectTimer')
+    )
+    expect(mockNavigate).toHaveBeenCalledWith('/partidas/1')
+    expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
   })
 })
