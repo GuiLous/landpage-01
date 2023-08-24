@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
 - Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
 - Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
@@ -20,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Remove `decimais` das stats do componente `Heatmap` [#657](https://github.com/3C-gg/reload-frontend/issues/657).
 - Altera `MatchHistoryStatsLink` para adicionar min width para o conteúdo não ficar "sambando" [#646](https://github.com/3C-gg/reload-frontend/issues/646).
 - Altera `Headshots %` para `Hs Kills %` no componente `LevelStatsCard` [#644](https://github.com/3C-gg/reload-frontend/issues/644).
