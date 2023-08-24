@@ -163,6 +163,7 @@ export default function ChangeEmailCard() {
                     autoFocus
                     variant="secondary"
                     value={email}
+                    zIndex={'hide'}
                     _focus={
                       email === user.email || email === ''
                         ? {
