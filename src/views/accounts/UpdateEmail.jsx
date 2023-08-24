@@ -16,7 +16,7 @@ import { addToast } from '@slices/AppSlice'
 import { updateUser } from '@slices/UserSlice'
 import style from './UpdateEmail.module.css'
 
-export default function SignupView() {
+export default function UpdateEmailView() {
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
