@@ -1,15 +1,27 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen, waitFor } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
+import { MatchesAPI } from '@api'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
 import UserReducer from '@slices/UserSlice'
 import { MatchView } from '@views'
+
+jest.mock('@api', () => ({
+  MatchesAPI: {
+    detail: jest.fn(),
+  },
+}))
+
+const mockNavigate = jest.fn()
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockNavigate,
+}))
 
 const fakeResponse = {
   id: 0,
@@ -137,35 +149,23 @@ const fakeResponse = {
   winner_id: 0,
 }
 
-const server = setupServer(
-  rest.get('http://localhost:8000/api/matches/undefined/', (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(fakeResponse))
-  })
-)
+const user = {
+  id: 1,
+}
 
-describe('MatchView Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-  })
-  afterAll(() => server.close())
+const match = {
+  id: 1,
+}
 
-  const user = {
-    id: 1,
-  }
+const invites = [{ to_player: { user_id: null } }]
 
-  const match = {
-    id: 1,
-  }
+const lobby = {
+  queue: null,
+  invited_players_ids: [],
+  players_ids: [],
+}
 
-  const invites = [{ to_player: { user_id: null } }]
-
-  const lobby = {
-    queue: null,
-    invited_players_ids: [],
-    players_ids: [],
-  }
-
+const renderComponent = () => {
   const store = configureStore({
     reducer: {
       user: UserReducer,
@@ -176,21 +176,43 @@ describe('MatchView Component', () => {
     preloadedState: { user, match, invites, lobby },
   })
 
-  it('should render correctly', async () => {
-    render(
-      <BrowserRouter>
-        <Provider store={store}>
-          <MatchView />
-        </Provider>
-      </BrowserRouter>
-    )
+  render(
+    <BrowserRouter>
+      <Provider store={store}>
+        <MatchView />
+      </Provider>
+    </BrowserRouter>
+  )
+}
 
-    await waitFor(() => {
-      expect(screen.getByText('Partida')).toBeInTheDocument()
-    })
+describe('Match View', () => {
+  it('should render correctly', async () => {
+    MatchesAPI.detail.mockResolvedValue(fakeResponse)
+    renderComponent()
+
+    await waitFor(() => expect(MatchesAPI.detail).toHaveBeenCalled())
+    await screen.findByText('Partida')
     expect(screen.getByText('Configurando')).toBeInTheDocument()
     expect(screen.getByText('Ranked 1x1')).toBeInTheDocument()
     expect(screen.getByText('Auditorio')).toBeInTheDocument()
     expect(screen.getAllByText('Time Team 2')).toHaveLength(2)
+  })
+
+  it('should redirect to /404 if response has errorMsg', async () => {
+    MatchesAPI.detail.mockResolvedValue({ errorMsg: true })
+    renderComponent()
+
+    await waitFor(() => expect(MatchesAPI.detail).toHaveBeenCalled())
+    expect(mockNavigate).toHaveBeenCalledWith('/404')
+  })
+
+  it('should redirect to /jogar if player is on match and match status is cancelled', async () => {
+    fakeResponse.status = 'running'
+    MatchesAPI.detail.mockResolvedValue(fakeResponse)
+    match.status = 'cancelled'
+    renderComponent()
+
+    await waitFor(() => expect(MatchesAPI.detail).toHaveBeenCalled())
+    await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/jogar'))
   })
 })
