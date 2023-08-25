@@ -1,3 +1,4 @@
+import { useMediaQuery } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -16,6 +17,8 @@ import { useProfileDetails } from '@hooks'
 import style from './Profile.module.css'
 
 export default function ProfileView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
 
   const params = useParams()
@@ -34,16 +37,20 @@ export default function ProfileView() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <Container column gap={40}>
-      <Container className={style.header} column gap={40}>
+    <Container column gap={isLessThan2xl ? 30 : 40}>
+      <Container className={style.header} column>
         <ProfileHeader
           profile={profile}
           isUserLogged={Number(userId) === user.id}
         />
       </Container>
 
-      <Container gap={18} className={style.content}>
-        <Container column gap={18} style={{ maxWidth: '350px' }}>
+      <Container gap={isLessThan2xl ? 16 : 18} className={style.content}>
+        <Container
+          column
+          gap={isLessThan2xl ? 16 : 18}
+          style={{ maxWidth: isLessThan2xl ? '300px' : '350px' }}
+        >
           <LevelStatsCard
             level={profile.level}
             highest_level={profile.highest_level}
