@@ -23,14 +23,6 @@
 	width: auto;
 }
 
-.bigTitle {
-	color: white;
-	font-size: 60px;
-	font-weight: var(--chakra-fontWeights-bold);
-	/* margin-bottom: 60px; */
-	text-transform: uppercase;
-}
-
 .logo {
 	max-width: 455px;
 }
@@ -65,4 +57,32 @@
 .ip {
 	font-size: 16px;
 	opacity: 1;
+}
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 0 8%;
+	}
+	.gtaAvatarWrapper {
+		height: 85%;
+	}
+	.gtaAvatar {
+		height: 90%;
+	}
+	.logo {
+		max-width: 400px;
+	}
+	.title {
+		font-size: 18px;
+	}
+	.helper {
+		font-size: 14px;
+	}
+	.connectionBox {
+		margin-top: 22px;
+		padding: 10px 14px;
+	}
+	.ip {
+		font-size: 14px;
+	}
 }
