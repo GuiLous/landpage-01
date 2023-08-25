@@ -18,3 +18,15 @@
 .empty {
 	min-height: 287px;
 }
+
+@media (max-width: 1600px) {
+	.container {
+		min-height: 852px;
+		padding: 20px;
+	}
+	.matchesNumber {
+		height: 22px;
+		min-width: 22px;
+		padding: 6px 8px;
+	}
+}
