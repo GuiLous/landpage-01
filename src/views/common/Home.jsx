@@ -1,4 +1,11 @@
-import { Button, Divider, Hide, Show, Text } from '@chakra-ui/react'
+import {
+  Button,
+  Divider,
+  Hide,
+  Show,
+  Text,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { SiDiscord, SiSteam } from 'react-icons/si'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,6 +26,8 @@ import { updatePreMatch } from '@slices/PreMatchSlice'
 import style from './Home.module.css'
 
 export default function HomeView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -86,7 +95,12 @@ export default function HomeView() {
               <img src={heroImg} alt="Personagem do GTA 5" />
             </Container>
 
-            <Container column className={style.hero} gap={25} justify="center">
+            <Container
+              column
+              className={style.hero}
+              gap={isLessThan2xl ? 20 : 25}
+              justify="center"
+            >
               <Container className={style.brand}>
                 <img src={logo} alt="Reload" />
               </Container>
