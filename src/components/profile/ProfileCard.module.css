@@ -9,3 +9,9 @@
 	color: white;
 	text-transform: uppercase;
 }
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 22px;
+	}
+}
