@@ -39,3 +39,14 @@
 .defeated .border {
 	background-color: var(--chakra-colors-red-500);
 }
+
+@media (max-width: 1600px) {
+	.container {
+		padding: 14px;
+		padding-left: 0;
+	}
+	.border {
+		height: 50px;
+		margin-right: 14px;
+	}
+}
