@@ -8,6 +8,10 @@
 	position: relative;
 }
 
+.hero img {
+	width: 16%;
+}
+
 .title {
 	font-size: 20px;
 	font-weight: var(--chakra-fontWeights-bold);
@@ -29,4 +33,23 @@
 .logout {
 	font-size: 14px;
 	margin-top: 10px;
+}
+
+@media (max-width: 1600px) {
+	.title {
+		font-size: 18px;
+	}
+	.body {
+		font-size: 14px;
+		margin-top: 6px;
+		max-width: 400px;
+	}
+	.social {
+		font-size: 18px;
+		margin-top: 22px;
+	}
+	.logout {
+		font-size: 14px;
+		margin-top: 10px;
+	}
 }

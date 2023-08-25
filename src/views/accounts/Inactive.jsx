@@ -1,4 +1,4 @@
-import { Icon, Link } from '@chakra-ui/react'
+import { Icon, Link, useMediaQuery } from '@chakra-ui/react'
 import React from 'react'
 import { SiDiscord, SiFacebook, SiInstagram, SiTwitter } from 'react-icons/si'
 import { useDispatch } from 'react-redux'
@@ -12,6 +12,8 @@ import inactiveBg from '@assets/images/inactive_bg.png'
 import style from './Inactive.module.css'
 
 export default function InactiveView(props) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const dispatch = useDispatch()
 
   const handleLogout = async () => {
@@ -52,7 +54,7 @@ export default function InactiveView(props) {
           align="center"
           justify="center"
           fitContent
-          gap={30}
+          gap={isLessThan2xl ? 20 : 30}
         >
           <Container align="center" justify="center">
             Isso significa que ou você solicitou a inativação ou <br />
@@ -69,7 +71,7 @@ export default function InactiveView(props) {
           justify="center"
           className={style.social}
           fitContent
-          gap={30}
+          gap={isLessThan2xl ? 20 : 30}
         >
           <Link href="https://discord.gg/mMMKshktfT" isExternal>
             <Icon as={SiDiscord} data-testid="discord" />
