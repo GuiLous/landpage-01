@@ -9,6 +9,7 @@ import {
   Thead,
   Tooltip,
   Tr,
+  useMediaQuery,
   useOutsideClick,
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
@@ -20,6 +21,8 @@ import { Container, UserMenuOptions } from '@components'
 import style from './MatchTeamStats.module.css'
 
 export default function MatchTeamStats({ team, isWinning, isSameScore }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
   const invites = useSelector((state) => state.invites)
@@ -177,18 +180,21 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
               data-testid="row"
             >
               <Td className={style.user}>
-                <Container align="center" gap={20}>
+                <Container align="center" gap={isLessThan2xl ? 18 : 20}>
                   <Container className={style.avatar} fitContent>
                     <Avatar
-                      width="40px"
-                      height="40px"
+                      width={{ base: '40px', md: '38px', '2xl': '40px' }}
+                      height={{ base: '40px', md: '38px', '2xl': '40px' }}
                       src={player.avatar?.medium}
                       variant="purple"
                     />
                   </Container>
 
                   <Container className={style.username} column fitContent>
-                    <Text fontWeight="medium" fontSize={'16px'}>
+                    <Text
+                      fontWeight="medium"
+                      fontSize={{ base: '16px', md: '14px', '2xl': '16px' }}
+                    >
                       {player.username}
                     </Text>
                   </Container>
