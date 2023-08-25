@@ -1,4 +1,4 @@
-import { Icon, Text } from '@chakra-ui/react'
+import { Icon, Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -19,6 +19,8 @@ import { StorageService } from '@services'
 import style from './Match.module.css'
 
 export default function MatchView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const match = useSelector((state) => state.match)
 
@@ -90,9 +92,13 @@ export default function MatchView() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <Container className={style.container} column gap={25}>
+    <Container className={style.container} column gap={isLessThan2xl ? 20 : 25}>
       <Container className={style.header} justify="around" align="center">
-        <Container className={style.title} align="center" gap={14}>
+        <Container
+          className={style.title}
+          align="center"
+          gap={isLessThan2xl ? 12 : 14}
+        >
           {loadedMatch.status === 'running' ? (
             <Icon as={ClockIcon} />
           ) : (
@@ -108,13 +114,13 @@ export default function MatchView() {
         <Container
           className={style.score}
           justify="end"
-          gap={24}
+          gap={isLessThan2xl ? 22 : 24}
           align="center"
         >
           <Text className={style.teamName}>
             Time {loadedMatch.teams[0].name}
           </Text>
-          <Container fitContent gap={14} align="center">
+          <Container fitContent gap={isLessThan2xl ? 12 : 14} align="center">
             <Text
               className={[
                 style.teamScore,
@@ -125,7 +131,10 @@ export default function MatchView() {
             >
               {firstTeamScore}
             </Text>
-            <Text fontWeight="bold" fontSize="32px">
+            <Text
+              fontWeight="bold"
+              fontSize={{ base: '32px', md: '28px', '2xl': '32px' }}
+            >
               :
             </Text>
             <Text
@@ -151,7 +160,11 @@ export default function MatchView() {
 
       <MatchInfos match={loadedMatch} />
 
-      <Container column gap={18}>
+      <Container
+        column
+        gap={isLessThan2xl ? 16 : 18}
+        style={{ marginBottom: isLessThan2xl && '30px' }}
+      >
         {loadedMatch?.teams.map((team) => (
           <MatchTeamStats
             key={team.id}
