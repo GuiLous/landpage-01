@@ -11,7 +11,7 @@
 	max-width: fit-content;
 	overflow: hidden;
 	padding: 14px;
-	transition: all 0.2s ease-in-out;
+	transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
 .profileBtn:hover {
@@ -22,7 +22,7 @@
 
 .profileBtn svg {
 	color: var(--chakra-colors-gray-300);
-	transition: all 0.2s ease-in-out;
+	transition: color 0.2s ease-in-out;
 }
 
 .profileBtn:hover svg {
@@ -37,4 +37,10 @@
 
 .profileBtn.active svg {
 	color: white;
+}
+
+@media (max-width: 1600px) {
+	.profileBtn {
+		padding: 12px;
+	}
 }
