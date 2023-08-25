@@ -155,7 +155,10 @@ export default function ChangeEmailCard() {
                   E-mail
                 </FormLabel>
 
-                <Container align="center" style={{ position: 'relative' }}>
+                <Container
+                  align="center"
+                  style={{ position: 'relative', cursor: 'pointer' }}
+                >
                   <Input
                     ref={inputRef}
                     id="email"
@@ -163,6 +166,7 @@ export default function ChangeEmailCard() {
                     autoFocus
                     variant="secondary"
                     value={email}
+                    zIndex={'hide'}
                     _focus={
                       email === user.email || email === ''
                         ? {
