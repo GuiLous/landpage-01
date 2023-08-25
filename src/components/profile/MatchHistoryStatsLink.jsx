@@ -1,4 +1,4 @@
-import { Icon, Link, Text, Tooltip } from '@chakra-ui/react'
+import { Icon, Link, Text, Tooltip, useMediaQuery } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -11,42 +11,44 @@ const statsFields = [
     field: 'kda',
     title: 'kda',
     label: 'Abates e assistências por morte',
-    minWidth: '106',
+    minWidth: '101',
   },
   {
     field: 'kdr',
     title: 'kdr',
     label: 'Abates por morte',
-    minWidth: '35',
+    minWidth: '30',
   },
   {
     field: 'head_accuracy',
     title: 'hs%',
     label: 'Porcentagem de tiros na cabeça',
-    minWidth: '40',
+    minWidth: '35',
   },
   {
     field: 'adr',
     title: 'adr',
     label: 'Dano médio por round',
-    minWidth: '35',
+    minWidth: '30',
   },
   {
     field: 'firstkills',
     title: 'fk',
     label: 'Primeiros abates',
-    minWidth: '31',
+    minWidth: '26',
   },
 ]
 
 export default function MatchHistoryStatsLink({ match }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const renderStats = () => {
     return statsFields.map((stats, index) => (
       <Container
         key={index}
         align="center"
         column
-        gap={11}
+        gap={isLessThan2xl ? 9 : 11}
         style={{ minWidth: `${stats.minWidth}px` }}
       >
         <Tooltip label={stats.label} aria-label={`${stats.field} tooltip`}>
@@ -64,7 +66,7 @@ export default function MatchHistoryStatsLink({ match }) {
         </Tooltip>
         <Text
           as="span"
-          fontSize={16}
+          fontSize={{ base: 16, md: 14, '2xl': 16 }}
           fontWeight="semiBold"
           color="white"
           align="flex-start"
@@ -90,10 +92,10 @@ export default function MatchHistoryStatsLink({ match }) {
     >
       <Container className={style.border} fitContent></Container>
 
-      <Container column gap={8}>
+      <Container column gap={isLessThan2xl ? 6 : 8}>
         <Text
           as="span"
-          fontSize={20}
+          fontSize={{ base: 20, md: 18, '2xl': 20 }}
           fontWeight="medium"
           lineHeight={1}
           letterSpacing="0.5pt"
@@ -101,7 +103,12 @@ export default function MatchHistoryStatsLink({ match }) {
         >
           {match.map_name || 'Nome do mapa'}
         </Text>
-        <Text lineHeight={1} color="gray.300" fontSize={14} fontWeight="medium">
+        <Text
+          lineHeight={1}
+          color="gray.300"
+          fontSize={{ base: 14, md: 12, '2xl': 14 }}
+          fontWeight="medium"
+        >
           {DateTime.fromISO(match.end_date).toRelative()}
         </Text>
       </Container>
@@ -109,7 +116,7 @@ export default function MatchHistoryStatsLink({ match }) {
       <Container>
         <Text
           as="span"
-          fontSize={24}
+          fontSize={{ base: 24, md: 22, '2xl': 24 }}
           fontWeight="semiBold"
           textAlign="center"
           color="white"
@@ -119,7 +126,7 @@ export default function MatchHistoryStatsLink({ match }) {
         </Text>
       </Container>
 
-      <Container align="center" justify="center" gap={40}>
+      <Container align="center" justify="center" gap={isLessThan2xl ? 30 : 40}>
         {renderStats()}
 
         <Icon

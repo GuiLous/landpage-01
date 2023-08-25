@@ -1,4 +1,4 @@
-import { Icon } from '@chakra-ui/react'
+import { Icon, useMediaQuery } from '@chakra-ui/react'
 
 import {
   ArrowRightSimpleIcon,
@@ -23,6 +23,8 @@ export default function MatchHistoryPagination({
   currentPage = 1,
   onPageChange,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const lastPage = totalPages
 
   const previousPages =
@@ -39,7 +41,12 @@ export default function MatchHistoryPagination({
       : []
 
   return (
-    <Container gap={12} align="center" justify="center" testID="pagination">
+    <Container
+      gap={isLessThan2xl ? 10 : 12}
+      align="center"
+      justify="center"
+      testID="pagination"
+    >
       {currentPage > 1 && (
         <Container
           align="center"
@@ -50,8 +57,8 @@ export default function MatchHistoryPagination({
           <Icon
             as={ArrowRightSimpleIcon}
             color="gray.300"
-            h="16px"
-            w="16px"
+            h={{ base: '16px', md: '14px', '2xl': '16px' }}
+            w={{ base: '16px', md: '14px', '2xl': '16px' }}
             transform="scaleX(-1)"
             data-testid="previous-icon"
             onClick={() => onPageChange(currentPage - 1)}
@@ -124,8 +131,8 @@ export default function MatchHistoryPagination({
           <Icon
             as={ArrowRightSimpleIcon}
             color="gray.300"
-            h="16px"
-            w="16px"
+            h={{ base: '16px', md: '14px', '2xl': '16px' }}
+            w={{ base: '16px', md: '14px', '2xl': '16px' }}
             data-testid="next-icon"
             onClick={() => onPageChange(currentPage + 1)}
           />
