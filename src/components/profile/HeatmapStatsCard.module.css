@@ -13,3 +13,13 @@
 	justify-content: space-evenly;
 	padding-right: 26px;
 }
+
+@media (max-width: 1600px) {
+	.bodyContainer {
+		height: 180px;
+		width: 63px;
+	}
+	.centerStats {
+		padding-right: 10px;
+	}
+}
