@@ -105,6 +105,7 @@ export default function MaintenanceView() {
             isLoading={isFetching}
             disabled={isFetching}
             onClick={handleLogout}
+            data-testid="logout"
           >
             <Text
               textTransform="uppercase"

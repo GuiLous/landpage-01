@@ -24,6 +24,7 @@ export default function MatchView() {
 
   const navigate = useNavigate()
   const params = useParams()
+
   const matchId = params.matchId
 
   const [fetching, setFetching] = useState(true)
@@ -82,7 +83,7 @@ export default function MatchView() {
       navigate('/jogar')
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [match, navigate])
+  }, [match, navigate, playerOnMatch])
 
   return fetching || !loadedMatch ? (
     <LoadingBackdrop>

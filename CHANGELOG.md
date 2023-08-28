@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Adiciona função `hasUrlOnText` no arquivo `Validators.js`.
 - Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
 - Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
@@ -21,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Checa se o valor do `input` é uma `url` no componente `AddSocialModal` [#651](https://github.com/3C-gg/reload-frontend/issues/651).
 - Remove `decimais` das stats do componente `Heatmap` [#657](https://github.com/3C-gg/reload-frontend/issues/657).
 - Altera `MatchHistoryStatsLink` para adicionar min width para o conteúdo não ficar "sambando" [#646](https://github.com/3C-gg/reload-frontend/issues/646).
@@ -55,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
 - Corrige cor da `borda` do `input` no tema.
 - Corrige verificação de partida no botão de iniciar partida no Lobby e no botão principal da Sidebar. A verificação era feita no slice de partida, e mudamos para ser realizado no campo `match_id` do slice de usuário.
 - Corrige espaçamentos do `lobby`.
