@@ -20,12 +20,12 @@ export default function NotFoundView() {
         style={{ paddingBottom: '40px' }}
       >
         <Container justify="center" fitContent>
-          <Image src={logo} alt="ReloadClub" width={200} />
+          <Image src={logo} alt="Logo" width={200} />
         </Container>
 
         <Container justify="center" align="center" fitContent column gap={40}>
-          <Image src={text404} alt="ReloadClub" width={295} />
-          <Image src={errorPage} alt="ReloadClub" width={295} />
+          <Image src={text404} alt="404" width={295} />
+          <Image src={errorPage} alt="Error page" width={295} />
         </Container>
 
         <Container column fitContent justify="center" align="center" gap={40}>

@@ -72,19 +72,19 @@ export default function InactiveView(props) {
           gap={30}
         >
           <Link href="https://discord.gg/mMMKshktfT" isExternal>
-            <Icon as={SiDiscord} />
+            <Icon as={SiDiscord} data-testid="discord" />
           </Link>
           <Link href="https://www.instagram.com/reloadclubgg/" isExternal>
-            <Icon as={SiInstagram} />
+            <Icon as={SiInstagram} data-testid="instagram" />
           </Link>
           <Link href="https://twitter.com/reloadclubgg" isExternal>
-            <Icon as={SiTwitter} />
+            <Icon as={SiTwitter} data-testid="twitter" />
           </Link>
           <Link
             href="https://www.facebook.com/profile.php?id=100089787770305"
             isExternal
           >
-            <Icon as={SiFacebook} />
+            <Icon as={SiFacebook} data-testid="facebook" />
           </Link>
         </Container>
 
