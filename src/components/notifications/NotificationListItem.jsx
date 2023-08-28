@@ -1,4 +1,4 @@
-import { Avatar, Badge, Text } from '@chakra-ui/react'
+import { Avatar, Text } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 
 import { Container } from '@components'
@@ -19,19 +19,13 @@ export default function NotificationListItem({
       align="center"
     >
       <Container gap={16} align="center">
-        {!read_date && <Badge variant="unread" w={2} h={2} />}
-
         <Container column className={style.content} gap={12}>
           <Container>
-            <Text fontSize={{ base: 12, md: 10, '2xl': 12 }}>{content}</Text>
+            <Text fontSize={{ base: 14, md: 12, '2xl': 14 }}>{content}</Text>
           </Container>
 
           <Container>
-            <Text
-              fontSize={{ base: 12, md: 10, '2xl': 12 }}
-              color="gray.200"
-              lineHeight={1}
-            >
+            <Text fontSize={12} color="gray.200" lineHeight={1}>
               {DateTime.fromISO(create_date).toRelative()}
             </Text>
           </Container>
@@ -39,7 +33,7 @@ export default function NotificationListItem({
       </Container>
 
       <Container className={style.avatar} justify="end" fitContent>
-        <Avatar src={avatar} size="smd" variant="purple" />
+        <Avatar src={avatar} size="sm" variant="purple" data-testid="avatar" />
       </Container>
     </Container>
   )

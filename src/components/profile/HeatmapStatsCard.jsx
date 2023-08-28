@@ -14,11 +14,11 @@ export default function HeatmapStatsCard({
   const totalShots = head_shots + chest_shots + other_shots
 
   const headShotsPercent =
-    totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(1)
+    totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(0)
   const chestShotsPercent =
-    totalShots === 0 ? 0 : Number((chest_shots * 100) / totalShots).toFixed(1)
+    totalShots === 0 ? 0 : Number((chest_shots * 100) / totalShots).toFixed(0)
   const otherShotsPercent =
-    totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(1)
+    totalShots === 0 ? 0 : Number((other_shots * 100) / totalShots).toFixed(0)
 
   return (
     <ProfileCard title="Heatmap de Acertos">

@@ -9,6 +9,122 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
+- Adiciona função `hasUrlOnText` no arquivo `Validators.js`.
+- Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
+- Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria novo método `updateSocials` em `ProfilesApi`.
+- Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderSocialButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Adiciona novar variantes para `Badge` (`online, offline, teaming, queue, in_game`).
+
+### Changed
+
+- Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
+- Checa se o valor do `input` é uma `url` no componente `AddSocialModal` [#651](https://github.com/3C-gg/reload-frontend/issues/651).
+- Remove `decimais` das stats do componente `Heatmap` [#657](https://github.com/3C-gg/reload-frontend/issues/657).
+- Altera `MatchHistoryStatsLink` para adicionar min width para o conteúdo não ficar "sambando" [#646](https://github.com/3C-gg/reload-frontend/issues/646).
+- Altera `Headshots %` para `Hs Kills %` no componente `LevelStatsCard` [#644](https://github.com/3C-gg/reload-frontend/issues/644).
+- Altera `SidebarLogo` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `SidebarLobbyButton` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `SidebarAvatarLink` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera `Sidebar` para ficar igual ao novo design [#643](https://github.com/3C-gg/reload-frontend/issues/643).
+- Altera textos e placeholders do componente `AddSocialModal` [#626](https://github.com/3C-gg/reload-frontend/issues/626).
+- Altera background do componente `LobbyPlayerCard` [#639](https://github.com/3C-gg/reload-frontend/issues/639).
+- Renderiza `UserMenuOptions` no componente `MatchTeamStats` ao clicar em um player da lista [#634](https://github.com/3C-gg/reload-frontend/issues/634).
+- Renderiza `UserMenuOptions` no componente `FriendListGroupItem`.
+- Muda componente `UserMenuOptions` para uma nova pasta `menu`.
+- Altera nome do componente `FriendListMenu` para `UserMenuOptions`.
+- Usa função `getProfileDetails` do hook `useProfileDetails` para atualizar os dados da tela de `/perfil` ao vincular ou remover uma nova rede social [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Usa função `getProfileDetails` do hook `useProfileDetails` para fazer fetch dos dados do usuário nas telas de `perfil` e `conta` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Altera `ChangeEmailCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `InactivateAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `DeleteAccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `AccountCard` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera `Account` view para ficar igual ao novo layout [#623](https://github.com/3C-gg/reload-frontend/issues/623).
+- Altera tamanho `xxl` do `Avatar` para `112px`.
+- Adiciona prop `justifyTitle` no componente `Modal`.
+- Altera `ProfileHeader` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Altera estilos da view `Profile` e `Account` para ficar igual ao design [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Altera `MainLayout` e `ProfileLayout` position para `relative` para que o `LoadingBackdrop` fique centralizado [#632](https://github.com/3C-gg/reload-frontend/issues/632).
+- Altera estilos do componente `LoadingBackdrop` para que fique sempre `centralizado` com base no `container` em volta [#632](https://github.com/3C-gg/reload-frontend/issues/632).
+- Melhora e cria novos `testes` para todos os componentes [#613](https://github.com/3C-gg/reload-frontend/issues/613).
+- Adiciona `testID` no componente `MatchHistoryPagination`.
+- Altera `MatchHistoryStatsLink` para refletir mudanças do BE [#617](https://github.com/3C-gg/reload-frontend/issues/617).
+- Adiciona prefixo `connect` ao `clipboard` ao clicar no botão de `IP` [#618](https://github.com/3C-gg/reload-frontend/issues/618).
+
+### Fixed
+
+- Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
+- Corrige cor da `borda` do `input` no tema.
+- Corrige verificação de partida no botão de iniciar partida no Lobby e no botão principal da Sidebar. A verificação era feita no slice de partida, e mudamos para ser realizado no campo `match_id` do slice de usuário.
+- Corrige espaçamentos do `lobby`.
+- Corrige nome do componente `Scrollbars` que estava `Sidebar`.
+- Corrige `useEffect` para redirecionar corretamente baseado no` match.status` na view de `Connect` [#591](https://github.com/3C-gg/reload-frontend/issues/591).
+- Corrige `botão de jogar` na `sidebar` e no `lobby` para funcionar corretamente após uma partida cancelada [#591](https://github.com/3C-gg/reload-frontend/issues/591).
+- Paginação no componente `MatchHistoryList` deve aparecer somente se `totalPages` for maior que `1`.
+- Workflow do Github que checa se CHANGELOG.md foi alterado [#614](https://github.com/3C-gg/reload-frontend/issues/614).
+
+### Removed
+
+- Deleta `Avatar` componente.
+- Remove `useNavigate` desnecessários nos componente `DeleteAccountCard` e `InactivateAccountCard`.
+
+## [63d58f6 - 1/8/2023]
+
+### Added
+
+- Cria componente `FriendListMenu` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Adiciona nova cor `green.500` no tema.
+- Adiciona nova cor `salmon` no tema.
+
+### Changed
+
+- Altera links de `Políticas de Privacidade` e `Termos de Uso` [#610](https://github.com/3C-gg/reload-frontend/issues/610).
+- Muda imagem de `favicon` [#605](https://github.com/3C-gg/reload-frontend/issues/605)
+- Adiciona borda na esquerda no componente `FriendListGroupItem` [#604](https://github.com/3C-gg/reload-frontend/issues/604).
+- Verifica `match.status` se é diferente de `warmup` para redirecionar para os detalhes da partida.s
+- Altera `LevelStatsCard` para remover cálculos desnecessários [#593](https://github.com/3C-gg/reload-frontend/issues/593).
+- Altera `MatchTeamStats` para remover cálculos desnecessários e adiciona campo `ADR` no lugar de `D/H` [#593](https://github.com/3C-gg/reload-frontend/issues/593).
+- Remove `decimais` de `HS%` nos componentes `MatchTeamStats` e `LevelStatsCard` [#592](https://github.com/3C-gg/reload-frontend/issues/592).
+- Altera todas as ocorrências do status `canceled` para `cancelled`.
+- Altera variante `pagination` do botão para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589).
+- Altera componentes `MatchHistoryPagination` e `MatchHistoryPaginationItem` para ficar igual ao novo design [#589](https://github.com/3C-gg/reload-frontend/issues/589).
+- Altera tamanho da fonte no componente `NotificationListItem` [#587](https://github.com/3C-gg/reload-frontend/issues/587).
+- Altera tamanhos de fontes e botões nos componentes `AccountCard`, `DeleteAccountCard` e `InactiveAccountCard` para ficar igual ao design [#583](https://github.com/3C-gg/reload-frontend/issues/583).
+- Passa prop `steam_url` para o componente `FriendListMenu`.
+- Altera url default para acessar o `Websocket` sendo a nova url `ws://localhost:8000/ws/` [#573](https://github.com/3C-gg/reload-frontend/issues/573)
+- Altera `NotificationList` e `NotificationListItem` para ficar igual ao novo design [#572](https://github.com/3C-gg/reload-frontend/issues/572).
+- Altera `SupportModal` para preencher os dados automático quando clicado em reportar no `FriendLintMenu`.
+- Altera `Sidebar` para ficar igual ao novo design.
+- Altera `Título` do componente `NotificationList` para remover `uppercase`.
+- Altera `InviteListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendListGroupItem` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendListGroup` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera `FriendList` para ficar igual ao novo design [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Muda aba `No seu grupo` na `FriendList` para ficar sempre visível [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Altera label dos status no hook `useHumanizeStatus` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+- Adiciona `hover` no botão de `fechar o drawer` no componente `NotificationList` e muda a posição para ficar igual ao design.
+- Muda `FriendList` para ficar igual ao novo design.
+
+### Fixed
+
+- Redireciona para `/jogar` na tela de `conectar` caso não tenha `match` [602](https://github.com/3C-gg/reload-frontend/issues/602).
+- Verifica o status de `match` se é diferente de `canceled` no botão `jogar` da `sidebar` e do `lobby` para saber se está em partida [#591](https://github.com/3C-gg/reload-frontend/issues/591).
+- Ajusta props do componente `MatchHistoryPagination`.
+- Ajusta menu de `Ver perfil` e `Ver perfil na steam` para usar a prop `user_id` e `steam_url` do amigo [#584](https://github.com/3C-gg/reload-frontend/issues/584).
+- Adiciona key no map do component `FakeSigninForm`.
+
+### Removed
+
+- Remove componente `InviteListGroup` [#561](https://github.com/3C-gg/reload-frontend/issues/561).
+
+## [9219ca2 - 21/7/2023]
+
+### Added
+
 - Variável de ambiente `REACT_APP_SHOW_FAKE_SIGNIN` para determinar se mostramos ou não o formulário de fake signin [#568](https://github.com/3C-gg/reload-frontend/issues/568).
 - Adiciona variante `purple` do `Avatar` no tema.
 - Adiciona componente `AvatarBadge` no `Avatar` dos componentes `FriendListGroupItem`, `InviteListGroupItem` e `SidebarAvatarLink` [#559](https://github.com/3C-gg/reload-frontend/issues/559).
@@ -155,7 +271,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona useEffect no `App` para verificar se está em manutenção após login.
 - Adiciona rota `manutencao` para a view `Maintenance`.
 - Adiciona cases `maintenance/start` e `maintenance/end` no `WebSocket` [#447](https://github.com/3C-gg/reload-frontend/issues/447).
-- Cria interface `AppAPI`.
+- Criao método na `AppAPI`.
 - Cria slice de `Maintenance`.
 - View `Maintenance` [#460](https://github.com/3C-gg/reload-frontend/issues/460).
 - Pasta de views `match` para conter views relacionadas a partidas.
@@ -202,7 +318,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera case `match/found` para `pre_matches/create` [#423](https://github.com/3C-gg/reload-frontend/issues/423).
 - Altera importação de `updatePreMatch` agora vindo de `PreMatchSlice`.
 - Adiciona `PreMatchReducer` no arquivo `store`.
-- Altera a url do método `inactivate` da interface de `Accounts` para `accounts/inactivate/` [#414](https://github.com/3C-gg/reload-frontend/issues/414).
+- Altera a url do método `inactivate` dao método na de `Accounts` para `accounts/inactivate/` [#414](https://github.com/3C-gg/reload-frontend/issues/414).
 - Altera componente `FriendList` fechar o componente `InviteListGroup` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 - Altera componente `FriendListGroup` para adicionar `useEffect` que altera o state `isOpen` para `true` quando estiver filtrando [#418](https://github.com/3C-gg/reload-frontend/pull/418).
 

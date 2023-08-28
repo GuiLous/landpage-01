@@ -6,6 +6,8 @@ import {
   MatchHistoryPaginationItem,
 } from '@components'
 
+import style from './MatchHistoryPagination.module.css'
+
 const siblingsCount = 1
 
 const generatePagesArray = (from, to) => {
@@ -17,12 +19,11 @@ const generatePagesArray = (from, to) => {
 }
 
 export default function MatchHistoryPagination({
-  totalCountOfRegisters,
-  registerPerPage = 15,
+  totalPages,
   currentPage = 1,
   onPageChange,
 }) {
-  const lastPage = Math.ceil(totalCountOfRegisters / registerPerPage)
+  const lastPage = totalPages
 
   const previousPages =
     currentPage > 1
@@ -38,18 +39,24 @@ export default function MatchHistoryPagination({
       : []
 
   return (
-    <Container gap={12} align="center" justify="center">
+    <Container gap={12} align="center" justify="center" testID="pagination">
       {currentPage > 1 && (
-        <Icon
-          as={ArrowRightSimpleIcon}
-          fill="#444444"
-          h="10px"
-          w="6px"
-          transform="scaleX(-1)"
-          _hover={{ fill: 'white', cursor: 'pointer' }}
-          data-testid="previous-icon"
-          onClick={() => onPageChange(currentPage - 1)}
-        />
+        <Container
+          align="center"
+          justify="center"
+          fitContent
+          className={style.icon}
+        >
+          <Icon
+            as={ArrowRightSimpleIcon}
+            color="gray.300"
+            h="16px"
+            w="16px"
+            transform="scaleX(-1)"
+            data-testid="previous-icon"
+            onClick={() => onPageChange(currentPage - 1)}
+          />
+        </Container>
       )}
 
       {currentPage > 1 + siblingsCount && (
@@ -108,15 +115,21 @@ export default function MatchHistoryPagination({
       )}
 
       {currentPage < lastPage && (
-        <Icon
-          as={ArrowRightSimpleIcon}
-          fill="#444444"
-          h="10px"
-          w="6px"
-          _hover={{ fill: 'white', cursor: 'pointer' }}
-          data-testid="next-icon"
-          onClick={() => onPageChange(currentPage + 1)}
-        />
+        <Container
+          align="center"
+          justify="center"
+          fitContent
+          className={style.icon}
+        >
+          <Icon
+            as={ArrowRightSimpleIcon}
+            color="gray.300"
+            h="16px"
+            w="16px"
+            data-testid="next-icon"
+            onClick={() => onPageChange(currentPage + 1)}
+          />
+        </Container>
       )}
     </Container>
   )

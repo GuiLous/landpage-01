@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 
 import { FriendListGroupItem } from '@components'
 import InviteReducer, { addInvite, deleteInvite } from '@slices/InviteSlice'
@@ -18,6 +19,7 @@ export default {
     username: { control: 'text' },
     avatar: { control: 'text' },
     invited: { control: 'boolean' },
+    steam_url: { control: 'text' },
   },
   args: {
     invited: false,
@@ -27,6 +29,7 @@ export default {
     lobby_id: 2,
     avatar:
       'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+    steam_url: 'https://steamcommunity.com/profiles/783276758063212485',
   },
 }
 
@@ -66,9 +69,11 @@ export const Default = {
     else store.dispatch(deleteInvite(invite))
 
     return (
-      <Provider store={store}>
-        <FriendListGroupItem {...props} />
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <FriendListGroupItem {...props} />
+        </Provider>
+      </BrowserRouter>
     )
   },
 }

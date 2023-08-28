@@ -6,7 +6,7 @@ import { ToastList } from '@components'
 import AppReducer from '@slices/AppSlice'
 import InviteReducer from '@slices/InviteSlice'
 
-describe('ToastList Component', () => {
+const renderComponent = () => {
   const app = {
     toasts: [
       {
@@ -35,12 +35,17 @@ describe('ToastList Component', () => {
     preloadedState: { app, invites },
   })
 
+  render(
+    <Provider store={store}>
+      <ToastList />
+    </Provider>
+  )
+}
+
+describe('ToastList Component', () => {
   it('should render correctly', () => {
-    render(
-      <Provider store={store}>
-        <ToastList />
-      </Provider>
-    )
+    renderComponent()
+
     expect(screen.getAllByTestId('toast-item')).toHaveLength(2)
   })
 })

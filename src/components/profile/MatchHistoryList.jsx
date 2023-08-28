@@ -22,7 +22,6 @@ export default function MatchHistoryList({ user_id }) {
   const [groupedMatches, setGroupedMatches] = useState([])
   const [sortedDates, setSortedDates] = useState([])
   const [page, setPage] = useState(1)
-  const [pageSize, setPageSize] = useState(0)
   const [totalPages, setTotalPages] = useState(0)
 
   const groupByDay = (matches) => {
@@ -58,6 +57,7 @@ export default function MatchHistoryList({ user_id }) {
 
   useEffect(() => {
     const fetch = async () => {
+      setIsFetching(true)
       const userToken = StorageService.get('token')
 
       const response = await MatchesAPI.list(userToken, user_id, page)
@@ -72,7 +72,6 @@ export default function MatchHistoryList({ user_id }) {
       }
 
       setTotalPages(response.total_pages)
-      setPageSize(response.page_size)
       setMatches(response.results)
       setIsFetching(false)
     }
@@ -166,17 +165,16 @@ export default function MatchHistoryList({ user_id }) {
             </Text>
           </Container>
         ) : (
-          totalPages > 0 && (
+          totalPages > 1 && (
             <Container
               align="start"
               justify="center"
               style={{ marginTop: '24px' }}
             >
               <MatchHistoryPagination
-                totalCountOfRegisters={matches.length}
+                totalPages={totalPages}
                 currentPage={page}
                 onPageChange={setPage}
-                registerPerPage={pageSize}
               />
             </Container>
           )

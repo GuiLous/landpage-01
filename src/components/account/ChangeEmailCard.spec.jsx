@@ -1,425 +1,26 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { fireEvent, render, screen } from '@testing-library/react'
-import { rest } from 'msw'
-import { setupServer } from 'msw/lib/node'
+import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
+import { AccountsAPI } from '@api'
 import { ChangeEmailCard } from '@components'
-import UserReducer from '@slices/UserSlice'
+import { addToast } from '@slices/AppSlice'
+import UserReducer, { updateUser } from '@slices/UserSlice'
 
-const fakeResponse = {
-  id: 0,
-  email: 'userUpdate@example.com',
-  is_active: true,
-  account: {
-    steamid: 'string',
-    username: 'string',
-    level: 0,
-    level_points: 0,
-    is_verified: false,
-    avatar: {},
-    friends: [
-      {
-        steamid: 'string',
-        username: 'string',
-        level: 0,
-        level_points: 0,
-        id: 0,
-        avatar: {},
-        is_online: true,
-        status: 'string',
-        lobby: {
-          id: 0,
-          owner_id: 0,
-          lobby_type: 'string',
-          mode: 0,
-          max_players: 0,
-          players_ids: ['string'],
-          players: [
-            {
-              id: 0,
-              steamid: 'string',
-              username: 'string',
-              avatar: {},
-              is_online: true,
-              level: 0,
-              status: 'string',
-              steam_url: 'string',
-            },
-          ],
-          players_count: 0,
-          non_owners_ids: ['string'],
-          is_public: true,
-          invites: [
-            {
-              from_id: 0,
-              to_id: 0,
-              lobby_id: 0,
-            },
-          ],
-          invited_players_ids: ['string'],
-          overall: 0,
-          seats: 0,
-          queue: 'string',
-          queue_time: 0,
-          restriction_countdown: 0,
-        },
-        steam_url: 'string',
-        match: {
-          id: 0,
-          create_date: 'string',
-          start_date: 'string',
-          end_date: 'string',
-          status: 'string',
-          game_type: 'string',
-          game_mode: 0,
-          server_ip: 'string',
-          teams: [
-            {
-              id: 0,
-              name: 'string',
-              score: 0,
-              players: [
-                {
-                  id: 0,
-                  match_id: 0,
-                  team_id: 0,
-                  user_id: 0,
-                  username: 'string',
-                  avatar: {},
-                  stats: {
-                    kills: 0,
-                    deaths: 0,
-                    assists: 0,
-                    damage: 0,
-                    hs_kills: 0,
-                    afk: 0,
-                    plants: 0,
-                    defuses: 0,
-                    double_kills: 0,
-                    triple_kills: 0,
-                    quadra_kills: 0,
-                    aces: 0,
-                    clutch_v1: 0,
-                    clutch_v2: 0,
-                    clutch_v3: 0,
-                    clutch_v4: 0,
-                    clutch_v5: 0,
-                    firstkills: 0,
-                    shots_fired: 0,
-                    head_shots: 0,
-                    chest_shots: 0,
-                    other_shots: 0,
-                    rounds_played: 0,
-                    clutches: 0,
-                    shots_hit: 0,
-                    adr: 0,
-                    kdr: 0,
-                    kda: 0,
-                    ahk: 0,
-                    ahr: 0,
-                    accuracy: 0,
-                    head_accuracy: 0,
-                    chest_accuracy: 0,
-                    others_accuracy: 0,
-                  },
-                  progress: {
-                    level_before: 0,
-                    level_after: 0,
-                    level_points_before: 0,
-                    level_points_after: 0,
-                    points_earned: 0,
-                  },
-                },
-              ],
-              match_id: 0,
-            },
-          ],
-          rounds: 0,
-          winner_id: 0,
-        },
-        matches_played: 0,
-        latest_matches_results: ['string'],
-      },
-    ],
-    lobby: {
-      id: 0,
-      owner_id: 0,
-      lobby_type: 'string',
-      mode: 0,
-      max_players: 0,
-      players_ids: ['string'],
-      players: [
-        {
-          id: 0,
-          steamid: 'string',
-          username: 'string',
-          avatar: {},
-          is_online: true,
-          level: 0,
-          status: 'string',
-          steam_url: 'string',
-        },
-      ],
-      players_count: 0,
-      non_owners_ids: ['string'],
-      is_public: true,
-      invites: [
-        {
-          from_id: 0,
-          to_id: 0,
-          lobby_id: 0,
-        },
-      ],
-      invited_players_ids: ['string'],
-      overall: 0,
-      seats: 0,
-      queue: 'string',
-      queue_time: 0,
-      restriction_countdown: 0,
-    },
-    lobby_invites: [
-      {
-        id: 'string',
-        lobby_id: 0,
-        lobby: {
-          id: 0,
-          owner_id: 0,
-          lobby_type: 'string',
-          mode: 0,
-          max_players: 0,
-          players_ids: ['string'],
-          players: [
-            {
-              id: 0,
-              steamid: 'string',
-              username: 'string',
-              avatar: {},
-              is_online: true,
-              level: 0,
-              status: 'string',
-              steam_url: 'string',
-            },
-          ],
-          players_count: 0,
-          non_owners_ids: ['string'],
-          is_public: true,
-          invites: [
-            {
-              from_id: 0,
-              to_id: 0,
-              lobby_id: 0,
-            },
-          ],
-          invited_players_ids: ['string'],
-          overall: 0,
-          seats: 0,
-          queue: 'string',
-          queue_time: 0,
-          restriction_countdown: 0,
-        },
-        from_player: {
-          id: 0,
-          steamid: 'string',
-          username: 'string',
-          avatar: {},
-          is_online: true,
-          level: 0,
-          status: 'string',
-          steam_url: 'string',
-        },
-        to_player: {
-          id: 0,
-          steamid: 'string',
-          username: 'string',
-          avatar: {},
-          is_online: true,
-          level: 0,
-          status: 'string',
-          steam_url: 'string',
-        },
-        create_date: 'string',
-      },
-    ],
-    lobby_invites_sent: [
-      {
-        id: 'string',
-        lobby_id: 0,
-        lobby: {
-          id: 0,
-          owner_id: 0,
-          lobby_type: 'string',
-          mode: 0,
-          max_players: 0,
-          players_ids: ['string'],
-          players: [
-            {
-              id: 0,
-              steamid: 'string',
-              username: 'string',
-              avatar: {},
-              is_online: true,
-              level: 0,
-              status: 'string',
-              steam_url: 'string',
-            },
-          ],
-          players_count: 0,
-          non_owners_ids: ['string'],
-          is_public: true,
-          invites: [
-            {
-              from_id: 0,
-              to_id: 0,
-              lobby_id: 0,
-            },
-          ],
-          invited_players_ids: ['string'],
-          overall: 0,
-          seats: 0,
-          queue: 'string',
-          queue_time: 0,
-          restriction_countdown: 0,
-        },
-        from_player: {
-          id: 0,
-          steamid: 'string',
-          username: 'string',
-          avatar: {},
-          is_online: true,
-          level: 0,
-          status: 'string',
-          steam_url: 'string',
-        },
-        to_player: {
-          id: 0,
-          steamid: 'string',
-          username: 'string',
-          avatar: {},
-          is_online: true,
-          level: 0,
-          status: 'string',
-          steam_url: 'string',
-        },
-        create_date: 'string',
-      },
-    ],
-    pre_match: {
-      id: 'string',
-      state: 'string',
-      countdown: 0,
-      players_ready_count: 0,
-      players_total: 0,
-      user_ready: false,
-    },
-    steam_url: 'string',
-    match: {
-      id: 0,
-      create_date: 'string',
-      start_date: 'string',
-      end_date: 'string',
-      status: 'string',
-      game_type: 'string',
-      game_mode: 0,
-      server_ip: 'string',
-      teams: [
-        {
-          id: 0,
-          name: 'string',
-          score: 0,
-          players: [
-            {
-              id: 0,
-              match_id: 0,
-              team_id: 0,
-              user_id: 0,
-              username: 'string',
-              avatar: {},
-              stats: {
-                kills: 0,
-                deaths: 0,
-                assists: 0,
-                damage: 0,
-                hs_kills: 0,
-                afk: 0,
-                plants: 0,
-                defuses: 0,
-                double_kills: 0,
-                triple_kills: 0,
-                quadra_kills: 0,
-                aces: 0,
-                clutch_v1: 0,
-                clutch_v2: 0,
-                clutch_v3: 0,
-                clutch_v4: 0,
-                clutch_v5: 0,
-                firstkills: 0,
-                shots_fired: 0,
-                head_shots: 0,
-                chest_shots: 0,
-                other_shots: 0,
-                rounds_played: 0,
-                clutches: 0,
-                shots_hit: 0,
-                adr: 0,
-                kdr: 0,
-                kda: 0,
-                ahk: 0,
-                ahr: 0,
-                accuracy: 0,
-                head_accuracy: 0,
-                chest_accuracy: 0,
-                others_accuracy: 0,
-              },
-              progress: {
-                level_before: 0,
-                level_after: 0,
-                level_points_before: 0,
-                level_points_after: 0,
-                points_earned: 0,
-              },
-            },
-          ],
-          match_id: 0,
-        },
-      ],
-      rounds: 0,
-      winner_id: 0,
-    },
-    notifications: [
-      {
-        id: 0,
-        to_user_id: 0,
-        content: 'string',
-        avatar: 'string',
-        create_date: 'string',
-        from_user_id: 0,
-        read_date: 'string',
-      },
-    ],
-    matches_played: 0,
-    latest_matches_results: ['string'],
+jest.mock('@api', () => ({
+  AccountsAPI: {
+    updateEmail: jest.fn(),
   },
-  is_online: true,
-  status: 'string',
-}
+}))
 
-const server = setupServer(
-  rest.patch(
-    'http://localhost:8000/api/accounts/update-email/',
-    (req, res, ctx) => {
-      return res(ctx.status(200), ctx.json(fakeResponse))
-    }
-  )
-)
+const mockDispatch = jest.fn()
 
-describe('ChangeEmailCard Component', () => {
-  beforeAll(() => server.listen())
-  afterEach(() => {
-    server.resetHandlers()
-  })
-  afterAll(() => server.close())
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux'),
+  useDispatch: () => mockDispatch,
+}))
 
+const renderComponent = () => {
   const user = {
     id: 1,
     email: 'email@example.com',
@@ -435,39 +36,188 @@ describe('ChangeEmailCard Component', () => {
     preloadedState: { user },
   })
 
-  it('should render correctly', () => {
-    render(
-      <Provider store={store}>
-        <ChangeEmailCard />
-      </Provider>
-    )
+  render(
+    <Provider store={store}>
+      <ChangeEmailCard />
+    </Provider>
+  )
+}
 
-    expect(screen.getByText('ALTERAR E-MAIL')).toBeInTheDocument()
+describe('ChangeEmailCard Component', () => {
+  it('should render correctly', () => {
+    renderComponent()
+
+    expect(screen.getByText('INFORMAÇÕES PESSOAIS')).toBeInTheDocument()
+    expect(screen.getByText('EDITAR')).toBeInTheDocument()
+  })
+
+  it('should disable button if is not editing', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    expect(input).toBeDisabled()
   })
 
   it('should enable editing when input group is clicked', () => {
-    render(
-      <Provider store={store}>
-        <ChangeEmailCard />
-      </Provider>
-    )
+    renderComponent()
 
-    const inputGroup = screen.getByRole('textbox')
-    fireEvent.click(inputGroup)
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
 
-    expect(inputGroup).not.toBeDisabled()
+    expect(input).toBeEnabled()
   })
 
   it('should update email when handleChange is called', () => {
-    render(
-      <Provider store={store}>
-        <ChangeEmailCard />
-      </Provider>
-    )
+    renderComponent()
 
     const input = screen.getByRole('textbox')
     fireEvent.change(input, { target: { value: 'test@example.com' } })
 
     expect(input.value).toBe('test@example.com')
+  })
+
+  it('should change icon to CheckCircleIcon if user.email is different of email, is not editing and email is valid', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
+
+    expect(input.value).toBe('test@example.com')
+    expect(screen.getByTestId('checkCircleIcon1')).toBeInTheDocument()
+  })
+
+  it('should change icon to CheckCircleIcon if is editing and email is valid', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
+
+    expect(input.value).toBe('test@example.com')
+    expect(screen.getByTestId('checkCircleIcon2')).toBeInTheDocument()
+  })
+
+  it('should change icon to WarningCircleIcon if user.email is different of email, is not editing and email is not valid', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.change(input, { target: { value: 'test@example.' } })
+
+    expect(input.value).toBe('test@example.')
+    expect(screen.getByTestId('warningCircleIcon1')).toBeInTheDocument()
+  })
+
+  it('should change icon to WarningCircleIcon if is editing and email is not valid', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'test@example.' } })
+
+    expect(input.value).toBe('test@example.')
+    expect(screen.getByTestId('warningCircleIcon2')).toBeInTheDocument()
+  })
+
+  it('should change email when press Enter, email is correct and email is different of current email', async () => {
+    AccountsAPI.updateEmail.mockResolvedValue({
+      email: 'userUpdate@example.com',
+    })
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
+    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' })
+
+    await waitFor(() => expect(input.value).toBe('test@example.com'))
+
+    await waitFor(() =>
+      expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
+    )
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateUser({ email: 'userUpdate@example.com' })
+    )
+    expect(mockDispatch).toHaveBeenCalledWith(
+      addToast({
+        title: 'E-mail atualizado com sucesso!',
+        variant: 'success',
+      })
+    )
+  })
+
+  it('should change email when clicked on save, email is correct and email is different of current email', async () => {
+    AccountsAPI.updateEmail.mockResolvedValue({
+      email: 'userUpdate@example.com',
+    })
+
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
+
+    expect(input.value).toBe('test@example.com')
+
+    const saveBtn = screen.getByTestId('saveBtn')
+    saveBtn.click()
+
+    await waitFor(() =>
+      expect(AccountsAPI.updateEmail).toHaveBeenCalledTimes(1)
+    )
+    expect(mockDispatch).toHaveBeenCalledTimes(2)
+    expect(mockDispatch).toHaveBeenCalledWith(
+      updateUser({ email: 'userUpdate@example.com' })
+    )
+    expect(mockDispatch).toHaveBeenCalledWith(
+      addToast({
+        title: 'E-mail atualizado com sucesso!',
+        variant: 'success',
+      })
+    )
+  })
+
+  it('should disable button if email is equal of user.email', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'email@example.com' } })
+
+    expect(input.value).toBe('email@example.com')
+    const saveBtn = screen.getByTestId('saveBtn')
+    expect(saveBtn).toBeDisabled()
+  })
+
+  it('should disable button if email is invalid', () => {
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'email@example.' } })
+
+    expect(input.value).toBe('email@example.')
+    const saveBtn = screen.getByTestId('saveBtn')
+    expect(saveBtn).toBeDisabled()
+  })
+
+  it('should disable button if server return error with the email', async () => {
+    AccountsAPI.updateEmail.mockResolvedValue({
+      fieldsErrors: { email: 'Email already exists' },
+    })
+
+    renderComponent()
+
+    const input = screen.getByRole('textbox')
+    fireEvent.click(input)
+    fireEvent.change(input, { target: { value: 'test@example.com' } })
+
+    expect(input.value).toBe('test@example.com')
+
+    const saveBtn = screen.getByTestId('saveBtn')
+
+    saveBtn.click()
+
+    await screen.findByText('Email already exists')
   })
 })

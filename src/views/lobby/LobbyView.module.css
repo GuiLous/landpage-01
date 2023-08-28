@@ -4,6 +4,10 @@
 	height: 100%;
 }
 
+.header {
+	margin-bottom: 25px;
+}
+
 .gameTypeItem {
 	border-bottom: 1px solid var(--chakra-colors-gray-400);
 	color: var(--chakra-colors-gray-400);

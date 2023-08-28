@@ -3,31 +3,31 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { SidebarLobbyButton } from '@components'
 
+let lobby = {
+  queue: null,
+  queue_time: 300,
+  restriction_countdown: null,
+}
+
+let match_id = null
+
+const renderComponent = () => {
+  render(
+    <BrowserRouter>
+      <SidebarLobbyButton lobby={lobby} match_id={match_id} />
+    </BrowserRouter>
+  )
+}
 describe('SidebarLobbyButton Component', () => {
-  let lobby = {
-    queue: null,
-    queue_time: 300,
-    restriction_countdown: null,
-  }
-
-  let match = null
-
   it('should render correctly', async () => {
-    render(
-      <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match={match} />
-      </BrowserRouter>
-    )
+    renderComponent()
 
     expect(screen.getByText('Lobby')).toBeInTheDocument()
   })
 
   it('should render match button when is on match', async () => {
-    render(
-      <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match={true} />
-      </BrowserRouter>
-    )
+    match_id = 1
+    renderComponent()
 
     expect(screen.getByText('Em partida')).toBeInTheDocument()
   })
@@ -35,12 +35,8 @@ describe('SidebarLobbyButton Component', () => {
   it('should render queue button when is on queue', async () => {
     lobby.queue = true
     lobby.queue_time = 60
-
-    render(
-      <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match={match} />
-      </BrowserRouter>
-    )
+    match_id = null
+    renderComponent()
 
     expect(screen.getByText('Na fila')).toBeInTheDocument()
     expect(screen.getByText('01:00')).toBeInTheDocument()
@@ -50,11 +46,7 @@ describe('SidebarLobbyButton Component', () => {
     lobby.queue = false
     lobby.restriction_countdown = 60
 
-    render(
-      <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match={match} />
-      </BrowserRouter>
-    )
+    renderComponent()
 
     expect(screen.getByText('Restrito')).toBeInTheDocument()
     expect(screen.getByText('01:00')).toBeInTheDocument()

@@ -1,5 +1,4 @@
 // Common
-import Avatar from './avatar/Avatar'
 import Container from './container/Container'
 import Footer from './footer/Footer'
 import Progress from './progress/Progress'
@@ -13,7 +12,6 @@ import ToastListItem from './toast/ToastListItem'
 import FriendList from './friends/FriendList'
 import FriendListGroup from './friends/FriendListGroup'
 import FriendListGroupItem from './friends/FriendListGroupItem'
-import InviteListGroup from './friends/InviteListGroup'
 import InviteListGroupItem from './friends/InviteListGroupItem'
 
 // Forms
@@ -82,6 +80,7 @@ import MatchInfos from './match/MatchInfos'
 import MatchTeamStats from './match/MatchTeamStats'
 
 // Profile
+import AddSocialModal from './profile/AddSocialModal'
 import FavoriteWeaponCard from './profile/FavoriteWeaponCard'
 import HeatmapStatsCard from './profile/HeatmapStatsCard'
 import LevelStatsCard from './profile/LevelStatsCard'
@@ -91,6 +90,8 @@ import MatchHistoryPaginationItem from './profile/MatchHistoryPaginationItem'
 import MatchHistoryStatsLink from './profile/MatchHistoryStatsLink'
 import ProfileCard from './profile/ProfileCard'
 import ProfileHeader from './profile/ProfileHeader'
+import ProfileHeaderButtons from './profile/ProfileHeaderButtons'
+import ProfileHeaderSocialButtons from './profile/ProfileHeaderSocialButtons'
 
 // Notifications
 import NotificationList from './notifications/NotificationList'
@@ -126,16 +127,19 @@ import Loading from './loading/Loading'
 import LoadingBackdrop from './loading/LoadingBackdrop'
 import LoadingTexts from './loading/LoadingTexts'
 
+// Menu
+import UserMenuOptions from './menu/UserMenuOptions'
+
 export {
   AcceptIcon,
   AccountCard,
+  AddSocialModal,
   AddUserIcon,
   ArrowDownIcon,
   ArrowRightIcon,
   ArrowRightSimpleIcon,
   ArrowUpFilledIcon,
   ArrowUpIcon,
-  Avatar,
   BackpackIcon,
   BellCircleIcon,
   BellFilledIcon,
@@ -168,7 +172,6 @@ export {
   HomeIcon,
   InactivateAccountCard,
   Input,
-  InviteListGroup,
   InviteListGroupItem,
   JoystickIcon,
   LevelBadge,
@@ -200,6 +203,8 @@ export {
   PodiumIcon,
   ProfileCard,
   ProfileHeader,
+  ProfileHeaderButtons,
+  ProfileHeaderSocialButtons,
   Progress,
   RefuseIcon,
   RequireAuth,
@@ -224,5 +229,6 @@ export {
   ToastListItem,
   TrashIcon,
   UserIcon,
+  UserMenuOptions,
   WarningCircleIcon,
 }

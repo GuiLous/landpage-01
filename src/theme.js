@@ -29,8 +29,8 @@ export default extendTheme({
           },
         },
         _active: {
-          bg: 'purple.600',
-          backgroundColor: 'purple.600',
+          bg: 'purple.700',
+          backgroundColor: 'purple.700',
         },
         _disabled: {
           backgroundColor: 'gray.800',
@@ -148,44 +148,37 @@ export default extendTheme({
         },
 
         pagination: {
-          bg: 'transparent',
-          backgroundColor: 'transparent',
-          borderRadius: 'full',
-          border: '1px solid',
-          borderColor: '#444444',
-          fontWeight: 'normal',
-          fontSize: 12,
-          color: '#444444',
+          backgroundColor: 'gray.700',
+          borderRadius: '8px',
+          fontWeight: 'semiBold',
+          fontSize: 16,
+          color: 'gray.300',
           cursor: 'pointer',
-          width: '26px',
-          height: '26px',
-          padding: '0 0 0 1px',
+          width: '32px',
+          height: '32px',
           minHeight: 'initial',
           minWidth: 'initial',
+          ps: 0,
+          pe: 0,
+          mr: 0,
+          pt: '1px',
           _disabled: {
-            bg: 'purple.400',
-            backgroundColor: 'purple.400',
+            fontSize: 16,
+            backgroundColor: 'gray.400',
             color: 'white',
             cursor: 'initial',
-            border: '1px solid',
-            borderColor: 'purple.400',
             opacity: 1,
-            _active: {
-              color: 'white',
-            },
           },
           _active: {
-            bg: 'transparent',
-            backgroundColor: 'transparent',
-            borderColor: '#444444',
-            color: '#444444',
+            backgroundColor: 'gray.400',
+            color: 'white',
           },
           _hover: {
             color: 'white',
-            borderColor: 'white',
-            bgColor: 'transparent',
+            bgColor: 'gray.400',
             _disabled: {
-              borderColor: 'purple.400',
+              backgroundColor: 'gray.400',
+              color: 'white',
             },
           },
         },
@@ -402,7 +395,8 @@ export default extendTheme({
             borderRadius: 4,
             minHeight: '42px',
             cursor: 'pointer',
-            border: '1px solid gray.700',
+            border: '1px solid',
+            borderColor: 'gray.700',
             _hover: {
               bg: 'gray.700',
               backgroundColor: 'gray.700',
@@ -447,8 +441,15 @@ export default extendTheme({
         },
         lighter: {
           field: {
+            padding: 3,
             bg: 'gray.700',
             backgroundColor: 'gray.700',
+            fontWeight: 'regular',
+            _focus: {
+              border: '1px solid',
+              borderColor: 'purple.400',
+              padding: '11px',
+            },
           },
         },
       },
@@ -595,11 +596,38 @@ export default extendTheme({
       },
       variants: {
         online: {
-          bg: 'green.400',
-          backgroundColor: 'green.400',
+          backgroundColor: 'green.600',
           borderRadius: '50%',
-          height: '9px',
-          width: '9px',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        offline: {
+          backgroundColor: 'gray.300',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        teaming: {
+          backgroundColor: 'purple.300',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        in_game: {
+          backgroundColor: 'yellow.500',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
+          padding: 'initial',
+        },
+        queued: {
+          backgroundColor: 'yellow.500',
+          borderRadius: '50%',
+          height: '10px',
+          width: '10px',
           padding: 'initial',
         },
 
@@ -682,8 +710,8 @@ export default extendTheme({
         online: {
           badge: {
             boxSize: '12px',
-            backgroundColor: 'green.400',
-            bg: 'green.400',
+            backgroundColor: 'green.600',
+            bg: 'green.600',
             border: '2px solid',
             right: '2px',
             bottom: '2px',
@@ -786,9 +814,9 @@ export default extendTheme({
         },
         xxl: {
           container: {
-            width: '128px',
-            height: '128px',
-            borderWidth: '6px',
+            width: '112px',
+            height: '112px',
+            borderWidth: '4px',
           },
         },
       },
@@ -847,7 +875,8 @@ export default extendTheme({
       300: '#9882FF',
       400: '#6847FF',
       500: '#34218C',
-      600: '#1A1240',
+      600: '#3d336d',
+      700: '#1A1240',
     },
     gray: {
       100: '#c8c5c5',
@@ -869,7 +898,8 @@ export default extendTheme({
     },
     green: {
       400: '#6BE400',
-      500: '#26BD39',
+      500: '#2BD641',
+      600: '#26BD39',
     },
     yellow: {
       400: '#FFD426',
@@ -879,6 +909,9 @@ export default extendTheme({
       400: '#FF4242',
       500: '#F63535',
       600: '#8d1919',
+    },
+    salmon: {
+      500: '#F0A87B',
     },
   },
   fontWeights: {

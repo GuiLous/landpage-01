@@ -1,4 +1,5 @@
 import { Badge, Icon, Link, Text } from '@chakra-ui/react'
+import { BsEnvelopeFill } from 'react-icons/bs'
 
 import {
   BellFilledIcon,
@@ -6,7 +7,7 @@ import {
   ExitIcon,
   FriendsIcon,
   PodiumIcon,
-  ShopIcon,
+  StoreIcon,
   SupportIcon,
 } from '@components'
 
@@ -16,7 +17,7 @@ const icons = {
   amigos: FriendsIcon,
   notificações: BellFilledIcon,
   ranking: PodiumIcon,
-  loja: ShopIcon,
+  loja: StoreIcon,
   suporte: SupportIcon,
   sair: ExitIcon,
 }
@@ -33,25 +34,51 @@ export default function SidebarMenuItem({
 
   return (
     <Container className={[style.menuItem, isSoon && style.soon].join(' ')}>
-      <Link as="button" onClick={() => onClickFunction(item)}>
+      <Link
+        as="button"
+        onClick={() => onClickFunction(item)}
+        data-testid={item}
+      >
         <Container className={style.menuLinkWrapper} gap={14} align="center">
-          <Icon as={icons[`${item}`]} fill="gray.300" />
+          <Icon
+            as={icons[`${item}`]}
+            fill="gray.300"
+            fontSize={item === 'suporte' && 16}
+          />
           <Text textTransform="capitalize">{item}</Text>
         </Container>
 
         <Container justify="end" className={style.unreadBadge}>
           {item === 'amigos' && (
             <Badge
-              variant="counter"
-              style={{ opacity: receivedInvites > 0 ? 1 : 0 }}
+              p="2px 10px"
+              opacity={receivedInvites > 0 ? 1 : 0}
+              display="flex"
+              alignItems="center"
+              gap="8px"
             >
-              {receivedInvites}
+              <Icon
+                as={BsEnvelopeFill}
+                fill="white"
+                fontSize={14}
+                className={style.envelop}
+              />
+              <Text
+                as="span"
+                fontSize={{ base: 12, md: 10, '2xl': 12 }}
+                mt={{ base: 0, md: '1px', '2xl': 0 }}
+              >
+                {receivedInvites}
+              </Text>
             </Badge>
           )}
 
           {item === 'notificações' && (
             <Badge
               variant="counter"
+              fontSize={{ base: 12, md: 10, '2xl': 12 }}
+              w={{ base: '22px', md: '18px', '2xl': '22px' }}
+              h={{ base: '22px', md: '18px', '2xl': '22px' }}
               style={{ opacity: unreadNotifications > 0 ? 1 : 0 }}
             >
               {unreadNotifications}

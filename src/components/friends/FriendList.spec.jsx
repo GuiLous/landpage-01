@@ -1,6 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { render, screen, waitFor } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
 
 import { FriendList } from '@components'
@@ -8,8 +7,9 @@ import FriendReducer from '@slices/FriendSlice'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import UserReducer from '@slices/UserSlice'
+import { BrowserRouter } from 'react-router-dom'
 
-describe('FriendList Component', () => {
+const renderComponent = (isOpen = false) => {
   const user = {
     id: 1,
     lobby_id: 1,
@@ -87,36 +87,34 @@ describe('FriendList Component', () => {
     preloadedState: { user, friends, invites, lobby },
   })
 
-  it('should not render if closed', () => {
-    render(
+  render(
+    <BrowserRouter>
       <Provider store={store}>
-        <FriendList />
+        <FriendList isOpen={isOpen} />
       </Provider>
-    )
-    expect(screen.queryByTestId('friendlist-container')).not.toBeInTheDocument()
-    expect(screen.queryByText('Amigos')).not.toBeInTheDocument()
-  })
+    </BrowserRouter>
+  )
+}
 
+describe('FriendList Component', () => {
   it('should render if open', async () => {
-    render(
-      <Provider store={store}>
-        <FriendList isOpen />
-      </Provider>
-    )
+    renderComponent(true)
+
     expect(
       await screen.findByTestId('friendlist-container')
     ).toBeInTheDocument()
     expect(await screen.findByText('Amigos')).toBeInTheDocument()
   })
 
-  it('should filter results on input change', async () => {
-    const user = userEvent.setup()
+  it('should not render if closed', () => {
+    renderComponent()
 
-    render(
-      <Provider store={store}>
-        <FriendList isOpen />
-      </Provider>
-    )
+    expect(screen.queryByTestId('friendlist-container')).not.toBeInTheDocument()
+    expect(screen.queryByText('Amigos')).not.toBeInTheDocument()
+  })
+
+  it('should filter results on input change', async () => {
+    renderComponent(true)
 
     const filterInput = screen.queryByTestId('filter-input')
     const friend2 = await screen.findByText('Amigo 2')
@@ -125,7 +123,7 @@ describe('FriendList Component', () => {
     expect(friend2).toBeInTheDocument()
     expect(friend3).toBeInTheDocument()
 
-    await waitFor(() => user.type(filterInput, '2'))
+    fireEvent.change(filterInput, { target: { value: '2' } })
     expect(friend2).toBeInTheDocument()
     expect(friend3).not.toBeInTheDocument()
   })

@@ -12,7 +12,7 @@ export const MatchReducer = createSlice({
     cancelMatch: (state, action) => {
       return {
         ...state,
-        status: 'canceled',
+        status: 'cancelled',
       }
     },
   },

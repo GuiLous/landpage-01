@@ -28,7 +28,6 @@ export default function Sidebar() {
 
   const user = useSelector((state) => state.user)
   const lobby = useSelector((state) => state.lobby)
-  const match = useSelector((state) => state.match)
   const notifications = useSelector((state) => state.notifications)
   const invites = useSelector((state) => state.invites)
   const friendListOpenByApp = useSelector((state) => state.app.friendListOpen)
@@ -71,7 +70,10 @@ export default function Sidebar() {
     if (friendListOpen) {
       dispatch(toggleFriendList(false))
       setFriendListOpen(false)
-    } else setFriendListOpen(true)
+    } else {
+      dispatch(toggleFriendList(true))
+      setFriendListOpen(true)
+    }
   }
 
   const onClickFunction = (item) => {
@@ -112,16 +114,20 @@ export default function Sidebar() {
       >
         <SidebarLogo />
 
-        <Container className={style.body} column gap={isLessThan2xl ? 35 : 50}>
+        <Container className={style.body} column gap={isLessThan2xl ? 35 : 40}>
           <Container className={style.userInfo} gap={24} align="center" column>
-            <SidebarAvatarLink user={user} />
+            <Container gap={16} column className={style.userWrapper}>
+              <SidebarAvatarLink user={user} />
+            </Container>
+          </Container>
 
-            <SidebarLobbyButton lobby={lobby} match={match} />
+          <Container className={style.lobbyBtn}>
+            <SidebarLobbyButton lobby={lobby} match_id={user.match_id} />
           </Container>
 
           <Container
             column
-            gap={isLessThan2xl ? 26 : 38}
+            gap={isLessThan2xl ? 26 : 30}
             className={style.menu}
           >
             <Container className={style.topMenu} column>

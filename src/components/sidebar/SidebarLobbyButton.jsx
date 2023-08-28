@@ -4,15 +4,15 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { HomeIcon, Timer } from '@components'
 import { formatSecondsToMinutes } from '@utils'
 
-export default function SidebarLobbyButton({ lobby, match }) {
-  const isOnLobby = !lobby.queue && !match && !lobby.restriction_countdown
+export default function SidebarLobbyButton({ lobby, match_id }) {
+  const isInQueue = lobby.queue && !match_id && !lobby.restriction_countdown
 
-  const isInQueue = lobby.queue && !match && !lobby.restriction_countdown
+  const isRestricted = lobby.restriction_countdown && !match_id
 
-  const isRestricted = lobby.restriction_countdown && !match
+  const isOnLobby = !lobby.queue && !match_id && !lobby.restriction_countdown
 
   const getBtnVariant = () => {
-    if (match) return 'queue'
+    if (match_id) return 'queue'
 
     if (isOnLobby) return ''
 
@@ -22,7 +22,7 @@ export default function SidebarLobbyButton({ lobby, match }) {
   }
 
   const getButtonLabel = () => {
-    if (match) return 'Em partida'
+    if (match_id) return 'Em partida'
 
     if (isOnLobby) return 'Lobby'
 
@@ -34,14 +34,19 @@ export default function SidebarLobbyButton({ lobby, match }) {
   return (
     <Button
       as={ReactRouterLink}
-      to={match ? `partidas/${match.id}` : '/jogar'}
-      leftIcon={<HomeIcon />}
+      to={match_id ? `partidas/${match_id}` : '/jogar'}
+      leftIcon={
+        <HomeIcon
+          style={{ width: '16px', height: '16px', marginRight: '6px' }}
+        />
+      }
       justifyContent="flex-start"
-      px="14px"
+      px={{ base: '14px', md: '12px', '2xl': '14px' }}
       w="full"
       fontWeight="semiBold"
       textTransform="capitalize"
-      height={{ base: '42px', md: '32px', '2xl': '42px' }}
+      height="40px"
+      minH="40px"
       fontSize={14}
       variant={getBtnVariant()}
     >

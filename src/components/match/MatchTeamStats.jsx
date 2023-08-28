@@ -9,60 +9,64 @@ import {
   Thead,
   Tooltip,
   Tr,
+  useOutsideClick,
 } from '@chakra-ui/react'
+import { useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-
-import { Container } from '@components'
-
 import { useNavigate } from 'react-router-dom'
+
+import { Container, UserMenuOptions } from '@components'
+
 import style from './MatchTeamStats.module.css'
 
 export default function MatchTeamStats({ team, isWinning, isSameScore }) {
   const user = useSelector((state) => state.user)
+  const lobby = useSelector((state) => state.lobby)
+  const invites = useSelector((state) => state.invites)
 
   const navigate = useNavigate()
+  const trRef = useRef(null)
+
+  const [selectedPlayer, setSelectedPlayer] = useState(null)
+
+  const isMenuOpen = !!selectedPlayer
 
   const players = team.players
 
-  const calculateHsPercent = (player) => {
-    const totalShots =
-      player.stats.chest_shots +
-      player.stats.other_shots +
-      player.stats.head_shots
+  const availableStatuses = ['online', 'away', 'teaming']
 
-    if (totalShots === 0) return 0
+  const alreadyInvitedByFriend = lobby.invited_players_ids.some(
+    (id) => id === selectedPlayer?.user_id
+  )
 
-    // calculate head shots percent
-    return Number((player.stats.head_shots * 100) / totalShots).toFixed(2)
+  const alreadyInvited =
+    invites.filter(
+      (invite) => invite.to_player.user_id === selectedPlayer?.user_id
+    ).length > 0 || alreadyInvitedByFriend
+
+  const alreadyOnTeam = lobby.players_ids.includes(selectedPlayer?.user_id)
+
+  const isAvailable =
+    !alreadyOnTeam &&
+    availableStatuses.includes(selectedPlayer?.status) &&
+    !lobby.queue
+
+  const handleRedirectToProfile = () => {
+    navigate(`/perfil/${user.id}`)
   }
 
-  const calculateKdr = (player) => {
-    if (player.stats.deaths === 0) return 0
-
-    // calculate Kill-Death Ratio number
-    return Number(player.stats.kills / player.stats.deaths).toFixed(2)
+  const handleOpenMenu = (player) => {
+    setSelectedPlayer(player)
   }
 
-  const calculateDh = (player) => {
-    const totalShots =
-      player.stats.chest_shots +
-      player.stats.other_shots +
-      player.stats.head_shots
-
-    if (totalShots === 0) return 0
-
-    // calculate Damage per Hit Ratio number
-    return Number(
-      player.stats.damage /
-        (player.stats.chest_shots +
-          player.stats.other_shots +
-          player.stats.head_shots)
-    ).toFixed(2)
+  const handleOutsideClick = () => {
+    setSelectedPlayer(null)
   }
 
-  const handleRedirectToProfile = (id) => {
-    navigate(`/perfil/${id}`)
-  }
+  useOutsideClick({
+    ref: trRef,
+    handler: handleOutsideClick,
+  })
 
   return (
     <TableContainer className={style.tableContainer}>
@@ -126,11 +130,8 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
             >
               <Th>KDR</Th>
             </Tooltip>
-            <Tooltip
-              label="Dano por acerto"
-              aria-label="Dano por acerto tooltip"
-            >
-              <Th>D/A</Th>
+            <Tooltip label="Dano por round" aria-label="Dano por round tooltip">
+              <Th>ADR</Th>
             </Tooltip>
             <Tooltip
               label="Total de 2 abates"
@@ -163,11 +164,17 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
             <Tr
               key={player.id}
               className={player.user_id === user.id ? style.highlight : ''}
-              onClick={() => handleRedirectToProfile(player.user_id)}
+              onClick={() =>
+                player.user_id === user.id
+                  ? handleRedirectToProfile()
+                  : handleOpenMenu(player)
+              }
               cursor="pointer"
               _hover={{
-                bgColor: 'gray.700',
+                bgColor: 'rgba(104, 71, 255, 0.15)',
               }}
+              ref={trRef}
+              data-testid="row"
             >
               <Td className={style.user}>
                 <Container align="center" gap={20}>
@@ -185,18 +192,33 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                       {player.username}
                     </Text>
                   </Container>
+
+                  <UserMenuOptions
+                    open={
+                      isMenuOpen && player.username === selectedPlayer.username
+                    }
+                    user={user}
+                    user_id={player.user_id}
+                    isAvailable={isAvailable}
+                    alreadyInvited={alreadyInvited}
+                    alreadyOnTeam={alreadyOnTeam}
+                    username={player.username}
+                    steam_url={player.steam_url || ''}
+                    placement="right-start"
+                    hideBtn={true}
+                  />
                 </Container>
               </Td>
               <Td>{player.stats.kills}</Td>
               <Td>{player.stats.deaths}</Td>
               <Td>{player.stats.assists}</Td>
               <Td>{player.stats.head_shots}</Td>
-              <Td data-testid="hs-percentage">{calculateHsPercent(player)}%</Td>
+              <Td>{Math.ceil(player.stats.head_accuracy || 0)}%</Td>
               <Td>{player.stats.plants}</Td>
               <Td>{player.stats.defuses}</Td>
               <Td>{player.stats.firstkills}</Td>
-              <Td data-testid="kdr">{calculateKdr(player)}</Td>
-              <Td data-testid="dh">{calculateDh(player)}</Td>
+              <Td>{player.stats.kdr || 0}</Td>
+              <Td>{player.stats.adr || 0}</Td>
               <Td>{player.stats.double_kills}</Td>
               <Td>{player.stats.triple_kills}</Td>
               <Td>{player.stats.quadra_kills}</Td>

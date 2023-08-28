@@ -20,7 +20,7 @@ export default function LobbyLineup({
   otherPlayers = [],
   maxPlayers = 5,
   lobby,
-  match,
+  match_id,
   preMatch,
 }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
@@ -35,7 +35,7 @@ export default function LobbyLineup({
   const handleQueue = async (action) => {
     if (lobby.restriction_countdown || lobby.restriction_countdown === 0) return
 
-    if (preMatch || match) return
+    if (preMatch || match_id) return
 
     if (action === 'start' && !isOwner) return
 
@@ -150,7 +150,7 @@ export default function LobbyLineup({
                 queueTime={lobby.queue && lobby.queue_time}
                 restrictionCountdown={lobby.restriction_countdown}
                 restricted={lobby.restriction_countdown}
-                disabled={(!isOwner && !lobby.queue) || preMatch || match}
+                disabled={(!isOwner && !lobby.queue) || preMatch || match_id}
                 onClick={
                   lobby.queue_time !== null
                     ? handleCancelQueue
