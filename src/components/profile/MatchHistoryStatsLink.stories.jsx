@@ -24,7 +24,7 @@ export default {
       won: true,
       map_name: 'Auditório',
       status: 'running',
-      map_url:
+      map_image:
         'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
       game_type: 'competitive',
     },

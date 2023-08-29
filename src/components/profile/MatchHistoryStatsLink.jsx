@@ -132,7 +132,7 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
 
       <Container style={{ alignItems: 'initial' }} gap={16}>
         <Image
-          src={match.map_url}
+          src={match.map_image}
           objectFit="cover"
           borderRadius="4px"
           w="54px"

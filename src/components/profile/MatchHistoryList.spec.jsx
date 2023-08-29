@@ -28,7 +28,7 @@ const server = setupServer(
             won: true,
             map_name: 'Auditório',
             status: 'running',
-            map_url:
+            map_image:
               'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
             game_type: 'competitive',
           },
@@ -47,7 +47,7 @@ const server = setupServer(
             won: false,
             map_name: 'Auditório',
             status: 'finished',
-            map_url:
+            map_image:
               'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
             game_type: 'competitive',
           },
@@ -133,7 +133,7 @@ describe('MatchHistoryList Component', () => {
                 won: true,
                 map_name: 'Auditório',
                 status: 'finished',
-                map_url:
+                map_image:
                   'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
                 game_type: 'competitive',
               },
@@ -184,7 +184,7 @@ describe('MatchHistoryList Component', () => {
                 won: true,
                 map_name: 'Auditório',
                 status: 'finished',
-                map_url:
+                map_image:
                   'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
                 game_type: 'competitive',
               },
