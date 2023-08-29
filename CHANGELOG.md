@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `MatchHistoryStatsLink` para ficar igual ao novo design [#675](https://github.com/3C-gg/reload-frontend/issues/675).
 - Ajusta aplicação para dispositivos com telas menores (notebook) [#189](https://github.com/3C-gg/reload-frontend/issues/189).
 - Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Checa se o valor do `input` é uma `url` no componente `AddSocialModal` [#651](https://github.com/3C-gg/reload-frontend/issues/651).
@@ -58,6 +59,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige padrão de fin de linha no editor config.
 - Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
 - Corrige cor da `borda` do `input` no tema.
 - Corrige verificação de partida no botão de iniciar partida no Lobby e no botão principal da Sidebar. A verificação era feita no slice de partida, e mudamos para ser realizado no campo `match_id` do slice de usuário.
