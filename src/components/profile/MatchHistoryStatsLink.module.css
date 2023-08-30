@@ -28,6 +28,14 @@
 	);
 }
 
+.won.disableHover:hover {
+	background: linear-gradient(
+		90deg,
+		rgba(38, 189, 57, 0.2) 0%,
+		#282828 9.27%
+	);
+}
+
 .defeated {
 	background: linear-gradient(
 		90deg,
@@ -41,6 +49,14 @@
 		90deg,
 		rgba(246, 53, 53, 0.2) 0%,
 		#282828 58.56%
+	);
+}
+
+.defeated.disableHover:hover {
+	background: linear-gradient(
+		90deg,
+		rgba(246, 53, 53, 0.2) 0%,
+		#282828 9.27%
 	);
 }
 

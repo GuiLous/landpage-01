@@ -130,6 +130,7 @@ export default function MatchHistoryStatsLink({
       className={[
         style.container,
         match.status !== 'running' && (match.won ? style.won : style.defeated),
+        !isLink && style.disableHover,
       ].join(' ')}
     >
       <Container className={style.border} fitContent></Container>
@@ -162,8 +163,7 @@ export default function MatchHistoryStatsLink({
             </Text>
 
             <Text lineHeight={1} color="gray.300" fontSize={12}>
-              {match.status === 'running' &&
-                `${startDate.toFormat('dd/MM/yyyy')} - `}
+              {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}
               {formatSeconds(elapsedTime)}
             </Text>
           </Container>
@@ -186,8 +186,8 @@ export default function MatchHistoryStatsLink({
               match.status === 'running'
                 ? 'gray.300'
                 : match.won
-                  ? 'green.600'
-                  : 'red.500'
+                ? 'green.600'
+                : 'red.500'
             }
             lineHeight={1}
           >
