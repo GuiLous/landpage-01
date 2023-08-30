@@ -1,7 +1,8 @@
-import { Icon, Text, useMediaQuery } from '@chakra-ui/react'
+import { Icon, Link, Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { IoIosArrowRoundBack } from 'react-icons/io'
 import { useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link as RouterLink, useNavigate, useParams } from 'react-router-dom'
 
 import { MatchesAPI } from '@api'
 import {
@@ -11,7 +12,7 @@ import {
   LevelProgressBar,
   Loading,
   LoadingBackdrop,
-  MatchInfos,
+  MatchHistoryStatsLink,
   MatchTeamStats,
 } from '@components'
 import { StorageService } from '@services'
@@ -27,10 +28,12 @@ export default function MatchView() {
   const navigate = useNavigate()
   const params = useParams()
 
-  const matchId = params.matchId
+  const { matchId, username } = params
 
   const [fetching, setFetching] = useState(true)
   const [loadedMatch, setLoadedMatch] = useState(null)
+  const [matchStats, setMatchStats] = useState(null)
+  const [userId, setUserId] = useState(null)
 
   const firstTeamScore = (loadedMatch && loadedMatch.teams[0].score) || 0
   const secondTeamScore = (loadedMatch && loadedMatch.teams[1].score) || 0
@@ -87,18 +90,68 @@ export default function MatchView() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [match, navigate, playerOnMatch])
 
-  return fetching || !loadedMatch ? (
+  useEffect(() => {
+    if (winningTeam && loadedMatch) {
+      const player = loadedMatch.teams
+        .map((team) =>
+          team.players.find((player) => player.username === username)
+        )
+        .find((player) => player !== undefined)
+
+      const scoreOne = loadedMatch.teams[0].score
+      const scoreTwo = loadedMatch.teams[1].score
+
+      const matchStats = {
+        stats: {
+          kda: player.stats.kda,
+          kdr: player.stats.kdr,
+          head_accuracy: player.stats.head_accuracy,
+          adr: player.stats.adr,
+          firstkills: player.stats.firstkills,
+        },
+        id: loadedMatch.id,
+        score: `${scoreOne} - ${scoreTwo}`,
+        start_date: loadedMatch.start_date,
+        end_date: loadedMatch.end_date,
+        won: winningTeam.id === player.team_id,
+        map_name: loadedMatch.map.name,
+        status: loadedMatch.status,
+        map_image:
+          'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
+        game_type: loadedMatch.game_type,
+      }
+
+      setMatchStats(matchStats)
+      setUserId(player.user_id)
+    }
+  }, [winningTeam, loadedMatch, username])
+
+  return fetching || !loadedMatch || !matchStats ? (
     <LoadingBackdrop>
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <Container className={style.container} column gap={isLessThan2xl ? 20 : 25}>
-      <Container className={style.header} justify="around" align="center">
-        <Container
-          className={style.title}
-          align="center"
-          gap={isLessThan2xl ? 12 : 14}
-        >
+    <Container className={style.container} column gap={isLessThan2xl ? 26 : 28}>
+      <Container className={style.header} justify="between" align="center">
+        <Container fitContent>
+          <Link
+            as={RouterLink}
+            display="flex"
+            alignItems="center"
+            gap="8px"
+            ml="-6px"
+            fontWeight="medium"
+            width="fit-content"
+            to={`/perfil/${userId}`}
+          >
+            <IoIosArrowRoundBack size={31} />
+            <Text textTransform="capitalize" fontSize={14}>
+              Voltar
+            </Text>
+          </Link>
+        </Container>
+
+        <Container align="center" gap={12} style={{ maxWidth: 'fit-content' }}>
           {loadedMatch.status === 'running' ? (
             <Icon as={ClockIcon} />
           ) : (
@@ -106,51 +159,13 @@ export default function MatchView() {
           )}
 
           <Container gap={5}>
-            <Text>Partida</Text>
-            <Text fontWeight="bold">{statusMap[loadedMatch.status]}</Text>
-          </Container>
-        </Container>
-
-        <Container
-          className={style.score}
-          justify="end"
-          gap={isLessThan2xl ? 22 : 24}
-          align="center"
-        >
-          <Text className={style.teamName}>
-            Time {loadedMatch.teams[0].name}
-          </Text>
-          <Container fitContent gap={isLessThan2xl ? 12 : 14} align="center">
-            <Text
-              className={[
-                style.teamScore,
-                isSameScore && '',
-                firstTeamScore > secondTeamScore && style.winner,
-                firstTeamScore < secondTeamScore && style.loser,
-              ].join(' ')}
-            >
-              {firstTeamScore}
+            <Text fontWeight="regular" lineHeight={1}>
+              Partida
             </Text>
-            <Text
-              fontWeight="bold"
-              fontSize={{ base: '32px', md: '28px', '2xl': '32px' }}
-            >
-              :
-            </Text>
-            <Text
-              className={[
-                style.teamScore,
-                isSameScore && '',
-                secondTeamScore > firstTeamScore && style.winner,
-                secondTeamScore < firstTeamScore && style.loser,
-              ].join(' ')}
-            >
-              {secondTeamScore}
+            <Text fontWeight="bold" lineHeight={1}>
+              {statusMap[loadedMatch.status]}
             </Text>
           </Container>
-          <Text className={style.teamName}>
-            Time {loadedMatch.teams[1].name}
-          </Text>
         </Container>
       </Container>
 
@@ -158,13 +173,19 @@ export default function MatchView() {
         <LevelProgressBar {...playerOnMatch.progress} />
       )}
 
-      <MatchInfos match={loadedMatch} />
-
       <Container
         column
-        gap={isLessThan2xl ? 16 : 18}
-        style={{ marginBottom: isLessThan2xl && '30px' }}
+        gap={isLessThan2xl ? 22 : 24}
+        className={style.statsContainer}
       >
+        <Container align="center" gap={isLessThan2xl ? 22 : 24}>
+          <MatchHistoryStatsLink
+            isLink={false}
+            match={matchStats}
+            username={username}
+          />
+        </Container>
+
         {loadedMatch?.teams.map((team) => (
           <MatchTeamStats
             key={team.id}
