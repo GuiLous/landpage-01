@@ -51,7 +51,11 @@ const TYPE_MAP = {
   custom: 'Personalizada',
 }
 
-export default function MatchHistoryStatsLink({ match, isLink = true }) {
+export default function MatchHistoryStatsLink({
+  match,
+  isLink = true,
+  username,
+}) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const startDate = DateTime.fromISO(match.start_date)
@@ -119,7 +123,7 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
   return (
     <Link
       as={isLink ? RouterLink : 'div'}
-      to={isLink ? `/partidas/${match.id}` : null}
+      to={isLink ? `/partidas/${username}/${match.id}` : null}
       align="center"
       cursor={isLink ? 'pointer' : 'initial'}
       data-testid="link"
@@ -182,8 +186,8 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
               match.status === 'running'
                 ? 'gray.300'
                 : match.won
-                ? 'green.600'
-                : 'red.500'
+                  ? 'green.600'
+                  : 'red.500'
             }
             lineHeight={1}
           >

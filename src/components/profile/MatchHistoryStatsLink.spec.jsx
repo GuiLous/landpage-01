@@ -26,7 +26,7 @@ const match = {
 const renderComponent = (isLink = true) => {
   render(
     <BrowserRouter>
-      <MatchHistoryStatsLink match={match} isLink={isLink} />
+      <MatchHistoryStatsLink match={match} isLink={isLink} username="player1" />
     </BrowserRouter>
   )
 }
