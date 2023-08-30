@@ -180,6 +180,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                       size="sm"
                       src={player.avatar?.medium}
                       variant="purple"
+                      borderWidth="1px"
                     />
                   </Container>
 
