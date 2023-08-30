@@ -14,7 +14,7 @@ import { addToast } from '@slices/AppSlice'
 
 import style from './MatchHistoryList.module.css'
 
-export default function MatchHistoryList({ user_id }) {
+export default function MatchHistoryList({ user_id, username }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const dispatch = useDispatch()
@@ -158,6 +158,7 @@ export default function MatchHistoryList({ user_id }) {
                   key={match.id}
                   user_id={Number(user_id)}
                   match={match}
+                  username={username}
                 />
               ))}
             </Container>

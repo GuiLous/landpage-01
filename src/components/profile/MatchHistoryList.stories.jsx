@@ -7,8 +7,14 @@ import configureStore from 'redux-mock-store'
 export default {
   title: 'Profile/MatchHistoryList',
   component: MatchHistoryList,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    userId: { control: 'boolean' },
+    username: { control: 'text' },
+  },
+  args: {
+    userId: 1,
+    username: 'player1',
+  },
   parameters: {
     mockData: [
       {
