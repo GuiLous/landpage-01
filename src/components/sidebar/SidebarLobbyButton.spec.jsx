@@ -14,7 +14,11 @@ let match_id = null
 const renderComponent = () => {
   render(
     <BrowserRouter>
-      <SidebarLobbyButton lobby={lobby} match_id={match_id} />
+      <SidebarLobbyButton
+        lobby={lobby}
+        match_id={match_id}
+        username="player1"
+      />
     </BrowserRouter>
   )
 }

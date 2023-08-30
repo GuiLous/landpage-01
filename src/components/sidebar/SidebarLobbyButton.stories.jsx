@@ -30,7 +30,12 @@ export const Default = {
 
     return (
       <BrowserRouter>
-        <SidebarLobbyButton lobby={lobby} match_id={match_id} {...props} />
+        <SidebarLobbyButton
+          lobby={lobby}
+          match_id={match_id}
+          username="player1"
+          {...props}
+        />
       </BrowserRouter>
     )
   },
