@@ -7,7 +7,6 @@ import { MatchesAPI } from '@api'
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
-import UserReducer from '@slices/UserSlice'
 import { MatchView } from '@views'
 
 jest.mock('@api', () => ({
@@ -150,10 +149,6 @@ const fakeResponse = {
   winner_id: 1,
 }
 
-const user = {
-  id: 1,
-}
-
 let match = null
 
 const invites = [{ to_player: { user_id: null } }]
@@ -167,12 +162,11 @@ const lobby = {
 const renderComponent = () => {
   const store = configureStore({
     reducer: {
-      user: UserReducer,
       match: MatchReducer,
       invites: InviteReducer,
       lobby: LobbyReducer,
     },
-    preloadedState: { user, match, invites, lobby },
+    preloadedState: { match, invites, lobby },
   })
 
   render(
