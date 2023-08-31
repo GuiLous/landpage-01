@@ -168,7 +168,7 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
         </Container>
       </Container>
 
-      <Container>
+      <Container className={style.score}>
         <Container
           gap={14}
           column
