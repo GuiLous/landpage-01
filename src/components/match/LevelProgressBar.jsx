@@ -35,7 +35,7 @@ export default function LevelProgressBar({
       <Container
         className={style.level}
         fitContent
-        style={{ left: 30, ...levelAnimation }}
+        style={{ left: 8, ...levelAnimation }}
       >
         <LevelBadge
           level={levelUpdateReady ? level_after : level_before}
@@ -48,27 +48,23 @@ export default function LevelProgressBar({
           <Progress
             initial={level_points_before}
             value={points_earned}
-            horizontalPadding={18}
+            horizontalPadding={
+              level_points_before < 7 && points_earned < 10 && points_earned > 0
+                ? 37
+                : 0
+            }
           />
         </Container>
 
-        <Container
-          justify="between"
-          style={{ paddingLeft: 30, paddingRight: 30 }}
-        >
+        <Container justify="between">
           <Container>
             <Text textTransform={'uppercase'} fontSize={12}>
-              Classificação Ranqueada
+              Level {level_after}
             </Text>
           </Container>
 
           <Container justify="end">
-            <Text
-              fontSize={12}
-              fontWeight="medium"
-              color="cyan.400"
-              as={'span'}
-            >
+            <Text fontSize={12} fontWeight="medium" color="white" as={'span'}>
               <CountUp start={level_points_before} end={level_points_after} />
             </Text>
 
@@ -82,7 +78,7 @@ export default function LevelProgressBar({
       <Container
         className={style.level}
         fitContent
-        style={{ right: 30, ...levelAnimation }}
+        style={{ right: 8, ...levelAnimation }}
       >
         <LevelBadge
           level={levelUpdateReady ? level_after + 1 : level_before + 1}

@@ -15,7 +15,7 @@ export default function Progress({
   radius = true,
   horizontalPadding = 0,
   labelSuffix = 'pts',
-  labelSize = '14px',
+  labelSize = '12px',
   labelGap = 5,
 }) {
   const [progress, setProgress] = useState(0)
@@ -92,14 +92,14 @@ export default function Progress({
                   right:
                     !isPositive &&
                     Math.abs(value) - initial < 3 &&
-                    55 + horizontalPadding,
+                    32 + horizontalPadding,
                   left:
                     isPositive &&
                     initial + value < 103 &&
-                    55 + horizontalPadding,
+                    27 + horizontalPadding,
                 }}
               >
-                <Text fontSize={labelSize || '14px'}>
+                <Text fontSize={labelSize || '12px'}>
                   {labelPrefix}
                   <CountUp start={0} end={value} /> {labelSuffix}
                 </Text>
@@ -136,15 +136,15 @@ export default function Progress({
                 position: 'relative',
                 paddingLeft:
                   initial + value === min || initial + value === max
-                    ? 30 + horizontalPadding
+                    ? 0 + horizontalPadding
                     : horizontalPadding,
                 paddingRight:
                   initial + value === min || initial + value === max
-                    ? 30 + horizontalPadding
+                    ? 0 + horizontalPadding
                     : horizontalPadding,
               }}
             >
-              <Text fontSize={labelSize || '14px'}>
+              <Text fontSize={labelSize || '12px'}>
                 {labelPrefix}
                 <CountUp start={0} end={value} /> {labelSuffix}
               </Text>
@@ -174,7 +174,7 @@ export default function Progress({
         >
           {showLabel && (
             <Container className={style.label}>
-              <Text fontSize={labelSize || '14px'} visibility={'hidden'}>
+              <Text fontSize={labelSize || '12px'} visibility={'hidden'}>
                 {initial} {labelSuffix}
               </Text>
             </Container>
@@ -194,7 +194,7 @@ export default function Progress({
         <Container className={style.barWrapper} column gap={labelGap}>
           {showLabel && (
             <Container className={style.label}>
-              <Text fontSize={labelSize || '14px'} visibility={'hidden'}>
+              <Text fontSize={labelSize || '12px'} visibility={'hidden'}>
                 {min} {labelSuffix}
               </Text>
             </Container>
