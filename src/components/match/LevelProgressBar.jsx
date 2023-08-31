@@ -31,11 +31,11 @@ export default function LevelProgressBar({
   })
 
   return (
-    <Container align="end" className={style.container}>
+    <Container align="end" gap={4} className={style.container}>
       <Container
         className={style.level}
         fitContent
-        style={{ left: 8, ...levelAnimation }}
+        style={{ ...levelAnimation }}
       >
         <LevelBadge
           level={levelUpdateReady ? level_after : level_before}
@@ -79,7 +79,7 @@ export default function LevelProgressBar({
       <Container
         className={style.level}
         fitContent
-        style={{ right: 8, ...levelAnimation }}
+        style={{ ...levelAnimation }}
       >
         <LevelBadge
           level={levelUpdateReady ? level_after + 1 : level_before + 1}
