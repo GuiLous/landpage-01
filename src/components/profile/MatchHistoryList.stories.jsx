@@ -8,7 +8,7 @@ export default {
   title: 'Profile/MatchHistoryList',
   component: MatchHistoryList,
   argTypes: {
-    userId: { control: 'boolean' },
+    userId: { control: 'number' },
     username: { control: 'text' },
   },
   args: {

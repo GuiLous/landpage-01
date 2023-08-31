@@ -13,6 +13,8 @@ export default {
   argTypes: {
     team: { control: 'object' },
     isWinning: { control: 'boolean' },
+    isSameScore: { control: 'boolean' },
+    userId: { control: 'number' },
   },
   args: {
     team: {
@@ -219,6 +221,8 @@ export default {
       match_id: 0,
     },
     isWinning: false,
+    userId: 1,
+    isSameScore: false,
   },
 }
 
