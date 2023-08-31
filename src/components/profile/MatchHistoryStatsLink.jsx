@@ -143,7 +143,7 @@ export default function MatchHistoryStatsLink({
           w="54px"
           h="54px"
           alt="map name"
-          className={style.mapImage}
+          className={isLink && style.mapImage}
         />
 
         <Container column justify="between" gap={8}>
@@ -162,15 +162,17 @@ export default function MatchHistoryStatsLink({
               {TYPE_MAP[match.game_type]}
             </Text>
 
-            <Text lineHeight={1} color="gray.300" fontSize={12}>
-              {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}
-              {formatSeconds(elapsedTime)}
-            </Text>
+            <Tooltip label="Duração da partida" aria-label="Duração da partida">
+              <Text lineHeight={1} color="gray.300" fontSize={12}>
+                {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}
+                {formatSeconds(elapsedTime)}
+              </Text>
+            </Tooltip>
           </Container>
         </Container>
       </Container>
 
-      <Container>
+      <Container className={style.score}>
         <Container
           gap={14}
           column
