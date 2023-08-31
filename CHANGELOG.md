@@ -22,6 +22,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera view `Match` para se adequar ao novo design [#677](https://github.com/3C-gg/reload-frontend/issues/677).
+- Altera componente `MatchTeamStats` para se adequar ao novo design.
+- Altera padding de `MainLayout` para se adequar ao novo design.
+- Altera componente `SidebarLobbyButton` para receber prop `username`.
+- Altera componente `MatchHistoryStatsLink` para receber prop `username`.
+- Altera componente `MatchHistoryList` para receber prop `username`.
+- Altera path para a view de Match para `/partidas/:username/:matchId`
 - Altera `MatchHistoryStatsLink` para ficar igual ao novo design [#675](https://github.com/3C-gg/reload-frontend/issues/675).
 - Ajusta aplicação para dispositivos com telas menores (notebook) [#189](https://github.com/3C-gg/reload-frontend/issues/189).
 - Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
@@ -59,6 +66,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige posição dos pontos ganhos no componente `LevelProgressBar` e `Progress`
+- Corrige `navigate` para detalhes da partida na view `Connect` baseado no username.
+- Corrige hover em `MatchHistoryStatsLink` com base na prop `isLink`.
 - Corrige padrão de fin de linha no editor config.
 - Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
 - Corrige cor da `borda` do `input` no tema.
