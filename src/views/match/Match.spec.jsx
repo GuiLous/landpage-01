@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { render, screen, waitFor } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { BrowserRouter, useParams } from 'react-router-dom'
 
 import { MatchesAPI } from '@api'
 import InviteReducer from '@slices/InviteSlice'
@@ -21,11 +21,12 @@ const mockNavigate = jest.fn()
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useNavigate: () => mockNavigate,
+  useParams: jest.fn(),
 }))
 
 const fakeResponse = {
-  id: 0,
-  status: 'loading',
+  id: 1,
+  status: 'finished',
   map: {
     name: 'Auditorio',
   },
@@ -37,14 +38,14 @@ const fakeResponse = {
     {
       id: 1,
       name: 'Team 1',
-      score: 0,
+      score: 1,
       players: [
         {
           id: 1,
           match_id: 0,
           team_id: 0,
           user_id: 1,
-          username: 'string',
+          username: 'player1',
           avatar: {},
           stats: {
             kills: 0,
@@ -146,16 +147,14 @@ const fakeResponse = {
     },
   ],
   rounds: 0,
-  winner_id: 0,
+  winner_id: 1,
 }
 
 const user = {
   id: 1,
 }
 
-const match = {
-  id: 1,
-}
+let match = null
 
 const invites = [{ to_player: { user_id: null } }]
 
@@ -186,16 +185,20 @@ const renderComponent = () => {
 }
 
 describe('Match View', () => {
-  it('should render correctly', async () => {
+  beforeEach(() => {
     MatchesAPI.detail.mockResolvedValue(fakeResponse)
+    useParams.mockReturnValue({ matchId: '1', username: 'player1' })
+  })
+
+  it('should render correctly', async () => {
     renderComponent()
 
     await waitFor(() => expect(MatchesAPI.detail).toHaveBeenCalled())
     await screen.findByText('Partida')
-    expect(screen.getByText('Configurando')).toBeInTheDocument()
-    expect(screen.getByText('Ranked 1x1')).toBeInTheDocument()
+    expect(screen.getByText('Finalizada')).toBeInTheDocument()
+    expect(screen.getByText('Ranqueada')).toBeInTheDocument()
     expect(screen.getByText('Auditorio')).toBeInTheDocument()
-    expect(screen.getAllByText('Time Team 2')).toHaveLength(2)
+    expect(screen.getByText('Voltar')).toBeInTheDocument()
   })
 
   it('should redirect to /404 if response has errorMsg', async () => {
@@ -209,7 +212,10 @@ describe('Match View', () => {
   it('should redirect to /jogar if player is on match and match status is cancelled', async () => {
     fakeResponse.status = 'running'
     MatchesAPI.detail.mockResolvedValue(fakeResponse)
-    match.status = 'cancelled'
+    match = {
+      status: 'cancelled',
+    }
+
     renderComponent()
 
     await waitFor(() => expect(MatchesAPI.detail).toHaveBeenCalled())

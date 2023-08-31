@@ -170,10 +170,8 @@ describe('MatchHistoryStatsLink Component', () => {
     expect(screen.getByText('DERROTA')).toBeInTheDocument()
   })
 
-  it('should render date start if status is running', () => {
-    match.status = 'running'
-
-    renderComponent()
+  it('should render date start if isLink is false', () => {
+    renderComponent(false)
 
     expect(screen.getByText('05/05/2023 - 10m00s')).toBeInTheDocument()
   })
