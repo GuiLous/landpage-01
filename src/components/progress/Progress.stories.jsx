@@ -13,6 +13,7 @@ export default {
     radius: { control: 'boolean' },
     labelSize: { control: 'number' },
     labelGap: { control: 'number' },
+    changeInitialBg: { control: 'boolean' },
   },
   args: {
     initial: 30,
@@ -24,6 +25,7 @@ export default {
     radius: false,
     labelSize: 14,
     labelGap: 5,
+    changeInitialBg: false,
   },
 }
 

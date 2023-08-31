@@ -53,6 +53,7 @@ export default function LevelProgressBar({
                 ? 37
                 : 0
             }
+            changeInitialBg={levelUpdateReady}
           />
         </Container>
 

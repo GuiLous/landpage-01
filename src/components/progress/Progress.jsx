@@ -17,6 +17,7 @@ export default function Progress({
   labelSuffix = 'pts',
   labelSize = '12px',
   labelGap = 5,
+  changeInitialBg = false,
 }) {
   const [progress, setProgress] = useState(0)
   const [overflowed, setOverflowed] = useState(false)
@@ -201,7 +202,13 @@ export default function Progress({
           )}
 
           <Container
-            className={[style.backgroundBar, style.bar].join(' ')}
+            className={[
+              style.backgroundBar,
+              style.bar,
+              initial + value < 0 &&
+                changeInitialBg &&
+                style.backgroundBarNegative,
+            ].join(' ')}
             style={{ borderRadius: radius && 4 }}
           ></Container>
         </Container>

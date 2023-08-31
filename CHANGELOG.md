@@ -66,7 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Corrige posição dos pontos ganhos no componente `LevelProgressBar` e `Progress`
+- Corrige cor do background para `purple.300` quando os pontos ganhos forem negativo e descer de nível em `LevelProgressBar` e `Progress`.
+- Corrige posição dos pontos ganhos no componente `LevelProgressBar` e `Progress`.
 - Corrige `navigate` para detalhes da partida na view `Connect` baseado no username.
 - Corrige hover em `MatchHistoryStatsLink` com base na prop `isLink`.
 - Corrige padrão de fin de linha no editor config.
