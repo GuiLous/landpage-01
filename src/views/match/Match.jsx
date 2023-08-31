@@ -22,7 +22,6 @@ import style from './Match.module.css'
 export default function MatchView() {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
-  const user = useSelector((state) => state.user)
   const match = useSelector((state) => state.match)
 
   const navigate = useNavigate()
@@ -48,7 +47,7 @@ export default function MatchView() {
   }
 
   const playerOnMatch = loadedMatch?.teams
-    .map((team) => team.players.find((player) => player.user_id === user.id))
+    .map((team) => team.players.find((player) => player.user_id === userId))
     .find((player) => player !== undefined)
 
   const winningTeam = loadedMatch?.teams.reduce((currentTeam, team) => {
@@ -190,14 +189,16 @@ export default function MatchView() {
           )}
         </Container>
 
-        {loadedMatch?.teams.map((team) => (
-          <MatchTeamStats
-            key={team.id}
-            team={team}
-            isWinning={winningTeam.id === team.id}
-            isSameScore={isSameScore}
-          />
-        ))}
+        {userId &&
+          loadedMatch?.teams.map((team) => (
+            <MatchTeamStats
+              key={team.id}
+              team={team}
+              isWinning={winningTeam.id === team.id}
+              isSameScore={isSameScore}
+              userId={userId}
+            />
+          ))}
       </Container>
     </Container>
   )

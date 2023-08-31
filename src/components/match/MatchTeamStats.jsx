@@ -20,7 +20,12 @@ import { Container, UserMenuOptions } from '@components'
 
 import style from './MatchTeamStats.module.css'
 
-export default function MatchTeamStats({ team, isWinning, isSameScore }) {
+export default function MatchTeamStats({
+  team,
+  isWinning,
+  isSameScore,
+  userId,
+}) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const user = useSelector((state) => state.user)
@@ -160,7 +165,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
           {players.map((player) => (
             <Tr
               key={player.id}
-              className={player.user_id === user.id ? style.highlight : ''}
+              className={player.user_id === userId ? style.highlight : ''}
               onClick={() =>
                 player.user_id === user.id
                   ? handleRedirectToProfile()
