@@ -7,6 +7,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
+import { useLayoutEffect, useRef, useState } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 
 import { ArrowRightSimpleIcon, Container } from '@components'
@@ -57,6 +58,16 @@ export default function MatchHistoryStatsLink({
   username,
 }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
+  const [linkWidth, setLinkWidth] = useState(0)
+
+  const linkRef = useRef(null)
+
+  const handleResize = () => {
+    if (linkRef.current) {
+      setLinkWidth(linkRef.current.offsetWidth)
+    }
+  }
 
   const startDate = DateTime.fromISO(match.start_date)
   const endDate = match.end_date && DateTime.fromISO(match.end_date)
@@ -120,6 +131,12 @@ export default function MatchHistoryStatsLink({
     ))
   }
 
+  useLayoutEffect(() => {
+    handleResize()
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <Link
       as={isLink ? RouterLink : 'div'}
@@ -132,6 +149,7 @@ export default function MatchHistoryStatsLink({
         match.status !== 'running' && (match.won ? style.won : style.defeated),
         !isLink && style.disableHover,
       ].join(' ')}
+      ref={linkRef}
     >
       <Container className={style.border} fitContent></Container>
 
@@ -172,7 +190,7 @@ export default function MatchHistoryStatsLink({
         </Container>
       </Container>
 
-      <Container className={style.score}>
+      <Container justify={linkWidth < 950 ? 'center' : 'start'}>
         <Container
           gap={14}
           column
