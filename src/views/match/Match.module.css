@@ -9,6 +9,21 @@
 	text-transform: uppercase;
 }
 
-/* @media (max-width: 1600px) {
+.statsHeader {
+	align-items: initial;
+}
 
-} */
+.progressBar {
+	align-items: center;
+	background: rgba(40, 40, 40, 0.8);
+	border-radius: 4px;
+	min-height: 82px;
+	min-width: 38%;
+	padding: 0 6px;
+}
+
+@media (max-width: 1500px) {
+	.statsHeader {
+		flex-direction: column;
+	}
+}

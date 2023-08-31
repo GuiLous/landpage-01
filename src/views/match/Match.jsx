@@ -101,28 +101,30 @@ export default function MatchView() {
       const scoreOne = loadedMatch.teams[0].score
       const scoreTwo = loadedMatch.teams[1].score
 
-      const matchStats = {
-        stats: {
-          kda: player.stats.kda,
-          kdr: player.stats.kdr,
-          head_accuracy: player.stats.head_accuracy,
-          adr: player.stats.adr,
-          firstkills: player.stats.firstkills,
-        },
-        id: loadedMatch.id,
-        score: `${scoreOne} - ${scoreTwo}`,
-        start_date: loadedMatch.start_date,
-        end_date: loadedMatch.end_date,
-        won: winningTeam.id === player.team_id,
-        map_name: loadedMatch.map.name,
-        status: loadedMatch.status,
-        map_image:
-          'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
-        game_type: loadedMatch.game_type,
-      }
+      if (player) {
+        const matchStats = {
+          stats: {
+            kda: player.stats.kda,
+            kdr: player.stats.kdr,
+            head_accuracy: player.stats.head_accuracy,
+            adr: player.stats.adr,
+            firstkills: player.stats.firstkills,
+          },
+          id: loadedMatch.id,
+          score: `${scoreOne} - ${scoreTwo}`,
+          start_date: loadedMatch.start_date,
+          end_date: loadedMatch.end_date,
+          won: winningTeam.id === player.team_id,
+          map_name: loadedMatch.map.name,
+          status: loadedMatch.status,
+          map_image:
+            'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
+          game_type: loadedMatch.game_type,
+        }
 
-      setMatchStats(matchStats)
-      setUserId(player.user_id)
+        setMatchStats(matchStats)
+        setUserId(player.user_id)
+      }
     }
   }, [winningTeam, loadedMatch, username])
 
@@ -169,21 +171,23 @@ export default function MatchView() {
         </Container>
       </Container>
 
-      {playerOnMatch && loadedMatch.status === 'finished' && (
-        <LevelProgressBar {...playerOnMatch.progress} />
-      )}
-
       <Container
         column
         gap={isLessThan2xl ? 22 : 24}
         className={style.statsContainer}
       >
-        <Container align="center" gap={isLessThan2xl ? 22 : 24}>
+        <Container gap={isLessThan2xl ? 22 : 24} className={style.statsHeader}>
           <MatchHistoryStatsLink
             isLink={false}
             match={matchStats}
             username={username}
           />
+
+          {playerOnMatch && loadedMatch.status === 'finished' && (
+            <Container className={style.progressBar}>
+              <LevelProgressBar {...playerOnMatch.progress} />
+            </Container>
+          )}
         </Container>
 
         {loadedMatch?.teams.map((team) => (
