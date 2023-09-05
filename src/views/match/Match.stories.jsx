@@ -146,7 +146,7 @@ export default {
   },
   decorators: [
     (Story) => (
-      <MemoryRouter initialEntries={['/partidas/player1/1']}>
+      <MemoryRouter initialEntries={['/perfil/1/partidas/1']}>
         <Routes>
           <Route
             element={
@@ -154,7 +154,7 @@ export default {
                 <MatchView />
               </Provider>
             }
-            path="/partidas/:username/:matchId"
+            path="/perfil/:user_id/partidas/:match_id"
           />
         </Routes>
       </MemoryRouter>

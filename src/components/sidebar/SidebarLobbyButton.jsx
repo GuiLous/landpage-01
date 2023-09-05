@@ -4,7 +4,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { HomeIcon, Timer } from '@components'
 import { formatSecondsToMinutes } from '@utils'
 
-export default function SidebarLobbyButton({ lobby, match_id, username }) {
+export default function SidebarLobbyButton({ lobby, match_id, userId }) {
   const isInQueue = lobby.queue && !match_id && !lobby.restriction_countdown
 
   const isRestricted = lobby.restriction_countdown && !match_id
@@ -34,7 +34,7 @@ export default function SidebarLobbyButton({ lobby, match_id, username }) {
   return (
     <Button
       as={ReactRouterLink}
-      to={match_id ? `partidas/${username}/${match_id}` : '/jogar'}
+      to={match_id ? `perfil/${userId}/partidas/${match_id}` : '/jogar'}
       leftIcon={
         <HomeIcon
           style={{ width: '16px', height: '16px', marginRight: '6px' }}

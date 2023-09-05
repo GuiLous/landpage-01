@@ -125,7 +125,7 @@ export default function Sidebar() {
             <SidebarLobbyButton
               lobby={lobby}
               match_id={user.match_id}
-              username={user.account.username}
+              userId={user.id}
             />
           </Container>
 

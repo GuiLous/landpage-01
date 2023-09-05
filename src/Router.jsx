@@ -99,7 +99,7 @@ export default function Router({ user, maintenance }) {
               <Route element={<MainLayout />}>
                 <Route path="/jogar" element={<LobbyView />} />
                 <Route
-                  path="/partidas/:username/:matchId"
+                  path="/perfil/:user_id/partidas/:match_id"
                   element={<MatchView />}
                 />
               </Route>

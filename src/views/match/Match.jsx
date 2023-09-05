@@ -27,12 +27,11 @@ export default function MatchView() {
   const navigate = useNavigate()
   const params = useParams()
 
-  const { matchId, username } = params
+  const { match_id, user_id } = params
 
   const [fetching, setFetching] = useState(true)
   const [loadedMatch, setLoadedMatch] = useState(null)
   const [matchStats, setMatchStats] = useState(null)
-  const [userId, setUserId] = useState(null)
 
   const firstTeamScore = (loadedMatch && loadedMatch.teams[0].score) || 0
   const secondTeamScore = (loadedMatch && loadedMatch.teams[1].score) || 0
@@ -47,7 +46,9 @@ export default function MatchView() {
   }
 
   const playerOnMatch = loadedMatch?.teams
-    .map((team) => team.players.find((player) => player.user_id === userId))
+    .map((team) =>
+      team.players.find((player) => player.user_id === Number(user_id))
+    )
     .find((player) => player !== undefined)
 
   const winningTeam = loadedMatch?.teams.reduce((currentTeam, team) => {
@@ -62,7 +63,7 @@ export default function MatchView() {
     const fetch = async () => {
       const userToken = StorageService.get('token')
 
-      const response = await MatchesAPI.detail(userToken, matchId)
+      const response = await MatchesAPI.detail(userToken, match_id)
 
       if (response.errorMsg) {
         navigate('/404')
@@ -74,13 +75,13 @@ export default function MatchView() {
     }
 
     if (match) {
-      if (parseInt(matchId) === parseInt(match.id)) {
+      if (parseInt(match_id) === parseInt(match.id)) {
         setLoadedMatch(match)
         setFetching(false)
       } else fetch()
     } else fetch()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [matchId, match])
+  }, [match_id, match])
 
   useEffect(() => {
     if (playerOnMatch && match && match.status === 'cancelled') {
@@ -93,7 +94,7 @@ export default function MatchView() {
     if (winningTeam && loadedMatch) {
       const player = loadedMatch.teams
         .map((team) =>
-          team.players.find((player) => player.username === username)
+          team.players.find((player) => player.user_id === Number(user_id))
         )
         .find((player) => player !== undefined)
 
@@ -122,10 +123,9 @@ export default function MatchView() {
         }
 
         setMatchStats(matchStats)
-        setUserId(player.user_id)
       }
     }
-  }, [winningTeam, loadedMatch, username])
+  }, [winningTeam, loadedMatch, user_id])
 
   return fetching || !loadedMatch || !matchStats ? (
     <LoadingBackdrop>
@@ -143,7 +143,7 @@ export default function MatchView() {
             ml="-6px"
             fontWeight="medium"
             width="fit-content"
-            to={`/perfil/${userId}`}
+            to={`/perfil/${user_id}`}
           >
             <IoIosArrowRoundBack size={31} />
             <Text textTransform="capitalize" fontSize={14}>
@@ -179,7 +179,7 @@ export default function MatchView() {
           <MatchHistoryStatsLink
             isLink={false}
             match={matchStats}
-            username={username}
+            userId={user_id}
           />
 
           {playerOnMatch && loadedMatch.status === 'finished' && (
@@ -189,14 +189,14 @@ export default function MatchView() {
           )}
         </Container>
 
-        {userId &&
+        {user_id &&
           loadedMatch?.teams.map((team) => (
             <MatchTeamStats
               key={team.id}
               team={team}
               isWinning={winningTeam.id === team.id}
               isSameScore={isSameScore}
-              userId={userId}
+              userId={user_id}
             />
           ))}
       </Container>

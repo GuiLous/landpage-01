@@ -55,7 +55,7 @@ const TYPE_MAP = {
 export default function MatchHistoryStatsLink({
   match,
   isLink = true,
-  username,
+  userId,
 }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
@@ -140,7 +140,7 @@ export default function MatchHistoryStatsLink({
   return (
     <Link
       as={isLink ? RouterLink : 'div'}
-      to={isLink ? `/partidas/${username}/${match.id}` : null}
+      to={isLink ? `/perfil/${userId}/partidas/${match.id}` : null}
       align="center"
       cursor={isLink ? 'pointer' : 'initial'}
       data-testid="link"

@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera componente `SidebarLobbyButton` para receber prop `username`.
 - Altera componente `MatchHistoryStatsLink` para receber prop `username`.
 - Altera componente `MatchHistoryList` para receber prop `username`.
-- Altera path para a view de Match para `/partidas/:username/:matchId`
+- Altera path para a view de Match para `perfil/:user_id/partidas/:matchId`.
 - Altera `MatchHistoryStatsLink` para ficar igual ao novo design [#675](https://github.com/3C-gg/reload-frontend/issues/675).
 - Ajusta aplicação para dispositivos com telas menores (notebook) [#189](https://github.com/3C-gg/reload-frontend/issues/189).
 - Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).

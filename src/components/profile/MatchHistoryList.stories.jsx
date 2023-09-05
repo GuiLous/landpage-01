@@ -9,11 +9,9 @@ export default {
   component: MatchHistoryList,
   argTypes: {
     userId: { control: 'number' },
-    username: { control: 'text' },
   },
   args: {
     userId: 1,
-    username: 'player1',
   },
   parameters: {
     mockData: [

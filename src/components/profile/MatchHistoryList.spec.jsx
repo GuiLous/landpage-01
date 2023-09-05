@@ -70,7 +70,7 @@ const renderComponent = () => {
   render(
     <BrowserRouter>
       <Provider store={mockStore}>
-        <MatchHistoryList user_id={user_id} username="player1" />
+        <MatchHistoryList user_id={user_id} />
       </Provider>
     </BrowserRouter>
   )

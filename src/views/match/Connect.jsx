@@ -70,13 +70,13 @@ export default function Connect() {
           break
         case 'running':
           StorageService.remove('matchConnectTimer')
-          navigate(`/partidas/${user.account.username}/${match.id}`)
+          navigate(`/perfil/${user.id}/partidas/${match.id}`)
           break
         default:
           break
       }
     }
-  }, [match, navigate, user.account.username])
+  }, [match, navigate, user.id])
 
   useEffect(() => {
     if (copied) {
@@ -98,9 +98,8 @@ export default function Connect() {
   }, [match, navigate, verifyMatchStatus])
 
   useEffect(() => {
-    if (timeLeft === 0)
-      navigate(`/partidas/${user.account.username}/${match.id}`)
-  }, [timeLeft, match?.id, navigate, user.account.username])
+    if (timeLeft === 0) navigate(`/perfil/${user.id}/partidas/${match.id}`)
+  }, [timeLeft, match?.id, navigate, user.id])
 
   return isLoading ? (
     <LoadingBackdrop>

@@ -18,9 +18,7 @@ let match = {
 }
 
 const user = {
-  account: {
-    username: 'player1',
-  },
+  id: 1,
 }
 
 const store = configureStore({

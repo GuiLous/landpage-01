@@ -31,9 +31,7 @@ let match = {
 }
 
 const user = {
-  account: {
-    username: 'player1',
-  },
+  id: 1,
 }
 
 const renderComponent = () => {
@@ -123,7 +121,7 @@ describe('Connect View', () => {
     expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
   })
 
-  it('should redirect to /partidas/username/matchId if match status is running', async () => {
+  it('should redirect to /perfil/:user_id/partidas/:match_id if match status is running', async () => {
     match.status = 'running'
 
     renderComponent()
@@ -131,7 +129,7 @@ describe('Connect View', () => {
     await waitFor(() =>
       expect(StorageService.remove).toHaveBeenCalledWith('matchConnectTimer')
     )
-    expect(mockNavigate).toHaveBeenCalledWith('/partidas/player1/1')
+    expect(mockNavigate).toHaveBeenCalledWith('/perfil/1/partidas/1')
     expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
   })
 })

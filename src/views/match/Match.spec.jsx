@@ -181,7 +181,7 @@ const renderComponent = () => {
 describe('Match View', () => {
   beforeEach(() => {
     MatchesAPI.detail.mockResolvedValue(fakeResponse)
-    useParams.mockReturnValue({ matchId: '1', username: 'player1' })
+    useParams.mockReturnValue({ match_id: '1', user_id: '1' })
   })
 
   it('should render correctly', async () => {

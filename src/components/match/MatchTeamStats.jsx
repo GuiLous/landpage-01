@@ -165,7 +165,9 @@ export default function MatchTeamStats({
           {players.map((player) => (
             <Tr
               key={player.id}
-              className={player.user_id === userId ? style.highlight : ''}
+              className={
+                player.user_id === Number(userId) ? style.highlight : ''
+              }
               onClick={() =>
                 player.user_id === user.id
                   ? handleRedirectToProfile()
