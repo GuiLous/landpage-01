@@ -54,7 +54,7 @@ export default function Footer(props) {
               </Link>
 
               <Link
-                href="https://discord.gg/mMMKshktfT"
+                href="https://discord.gg/8TaCAQ7cce"
                 isExternal
                 data-testid="discord"
               >
@@ -131,7 +131,7 @@ export default function Footer(props) {
             </Link>
 
             <Link
-              href="https://discord.gg/mMMKshktfT"
+              href="https://discord.gg/8TaCAQ7cce"
               isExternal
               data-testid="discordMobile"
             >

@@ -36,7 +36,7 @@ describe('Footer Component', () => {
 
     expect(screen.getByTestId('discord')).toHaveAttribute(
       'href',
-      'https://discord.gg/mMMKshktfT'
+      'https://discord.gg/8TaCAQ7cce'
     )
 
     expect(screen.getByTestId('youtube')).toHaveAttribute(
@@ -71,7 +71,7 @@ describe('Footer Component', () => {
 
     expect(screen.getByTestId('discordMobile')).toHaveAttribute(
       'href',
-      'https://discord.gg/mMMKshktfT'
+      'https://discord.gg/8TaCAQ7cce'
     )
 
     expect(screen.getByTestId('youtubeMobile')).toHaveAttribute(
