@@ -64,6 +64,10 @@ export default function HomeView() {
     navigate(0)
   }
 
+  const handleDiscordClick = () => {
+    window.open('https://discord.gg/8TaCAQ7cce', '_blank')
+  }
+
   return (
     <>
       <Hide below="md">
@@ -142,62 +146,65 @@ export default function HomeView() {
       </Hide>
 
       <Show below="md">
-        <Container
-          column
-          className={style.containerMobile}
-          align="center"
-          justify="center"
-        >
-          <Container className={style.mobileJoinUs} align="center">
-            <Container justify="center" style={{ flex: '1.6 1' }}>
-              MADE FOR GAMERS
-            </Container>
-            <Container justify="center" style={{ maxWidth: 30 }}>
-              <img src={arrow} alt="-->" />
-            </Container>
-            <Container justify="center">JOIN US</Container>
-            <Container justify="center">
-              <img src={joinUsGraphic} alt="Join Us" />
-            </Container>
-          </Container>
-
-          <Container>
-            <img src={heroMobileImg} alt="Personagem do GTA 5" />
-          </Container>
-
-          <Container className={style.mobileContent} column>
-            <Container className={style.mobileBrand}>
-              <img src={logo} alt="Reload" />
-            </Container>
-
-            <Container column>
-              <Text>
-                Jogue GTA em partidas ranqueadas 5x5. Plante, desarme, suba de
-                nível e prove seu valor. Reload.
-              </Text>
+        <Container column>
+          <Container
+            column
+            className={style.containerMobile}
+            align="center"
+            justify="center"
+          >
+            <Container className={style.mobileJoinUs} align="center">
+              <Container justify="center" style={{ flex: '1.6 1' }}>
+                MADE FOR GAMERS
+              </Container>
+              <Container justify="center" style={{ maxWidth: 30 }}>
+                <img src={arrow} alt="-->" />
+              </Container>
+              <Container justify="center">JOIN US</Container>
+              <Container justify="center">
+                <img src={joinUsGraphic} alt="Join Us" />
+              </Container>
             </Container>
 
             <Container>
-              <Button
-                size={'lg'}
-                style={{ fontSize: 16 }}
-                leftIcon={<SiDiscord style={{ fontSize: 26 }} />}
-              >
-                Faça parte do nosso
-                <strong
-                  style={{
-                    display: 'inline-block',
-                    marginLeft: 5,
-                  }}
+              <img src={heroMobileImg} alt="Personagem do GTA 5" />
+            </Container>
+
+            <Container className={style.mobileContent} column>
+              <Container className={style.mobileBrand}>
+                <img src={logo} alt="Reload" />
+              </Container>
+
+              <Container column>
+                <Text>
+                  Jogue GTA em partidas ranqueadas 5x5. Plante, desarme, suba de
+                  nível e prove seu valor. Reload.
+                </Text>
+              </Container>
+
+              <Container>
+                <Button
+                  size={'lg'}
+                  style={{ fontSize: 16 }}
+                  leftIcon={<SiDiscord style={{ fontSize: 26 }} />}
+                  onClick={handleDiscordClick}
                 >
-                  Discord
-                </strong>
-              </Button>
+                  Faça parte do nosso
+                  <strong
+                    style={{
+                      display: 'inline-block',
+                      marginLeft: 5,
+                    }}
+                  >
+                    Discord
+                  </strong>
+                </Button>
+              </Container>
             </Container>
           </Container>
-        </Container>
 
-        <Footer />
+          <Footer />
+        </Container>
       </Show>
     </>
   )

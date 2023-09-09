@@ -57,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige home para dispositivos pequenos.
 - Corrige função que verifica se um amigo já está no seu grupo no componente `FriendGroupItem` [#672](https://github.com/3C-gg/reload-frontend/issues/672).
 - Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
 - Corrige cor da `borda` do `input` no tema.
