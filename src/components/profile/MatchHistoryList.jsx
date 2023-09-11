@@ -98,16 +98,14 @@ export default function MatchHistoryList({ user_id, username }) {
   }, [matches])
 
   return (
-    <Skeleton
-      isLoaded={!fetching}
-      flex="1"
-      borderRadius="8px"
-      startColor="gray.700"
-      endColor="500"
-    >
-      <Container className={style.container} column>
-        <Container align="center" justify="between" fitContent>
-          <Container gap={12} style={{ alignItems: 'baseline' }}>
+    <Container className={style.container} column>
+      <Container align="center" justify="between" fitContent>
+        <Container gap={12} style={{ alignItems: 'baseline' }}>
+          <Skeleton
+            isLoaded={!fetching}
+            startColor="gray.700"
+            endColor="gray.800"
+          >
             <Text
               as="h2"
               color="white"
@@ -118,6 +116,13 @@ export default function MatchHistoryList({ user_id, username }) {
             >
               Últimas Partidas
             </Text>
+          </Skeleton>
+          <Skeleton
+            isLoaded={!fetching}
+            maxH="21px"
+            startColor="gray.700"
+            endColor="gray.800"
+          >
             <Text
               as="span"
               color="gray.300"
@@ -128,18 +133,24 @@ export default function MatchHistoryList({ user_id, username }) {
                 ? matches.length + ' Partida'
                 : matches.length + ' Partidas'}
             </Text>
-          </Container>
+          </Skeleton>
         </Container>
+      </Container>
 
-        {sortedDates.map((date) => (
-          <Container
-            key={date}
-            fitContent
-            column
-            style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
-            gap={isLessThan2xl ? 20 : 30}
-          >
-            <Container align="center" gap={12}>
+      {sortedDates.map((date) => (
+        <Container
+          key={date}
+          fitContent
+          column
+          style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
+          gap={isLessThan2xl ? 20 : 30}
+        >
+          <Container align="center" gap={12}>
+            <Skeleton
+              isLoaded={!fetching}
+              startColor="gray.700"
+              endColor="gray.800"
+            >
               <Text
                 fontSize={{ base: 18, md: 16, '2xl': 18 }}
                 color="white"
@@ -147,13 +158,42 @@ export default function MatchHistoryList({ user_id, username }) {
               >
                 {formatDate(date)}
               </Text>
+            </Skeleton>
+            <Skeleton
+              isLoaded={!fetching}
+              startColor="gray.700"
+              endColor="gray.800"
+            >
               <Container className={style.matchesNumber} fitContent>
                 <Text lineHeight={1} color="gray.300" fontSize={12}>
                   {groupedMatches[date].length}
                 </Text>
               </Container>
-            </Container>
+            </Skeleton>
+          </Container>
 
+          {fetching ? (
+            <Container column gap={8}>
+              <Skeleton
+                w="full"
+                minH="82px"
+                startColor="gray.700"
+                endColor="gray.800"
+              />
+              <Skeleton
+                w="full"
+                minH="82px"
+                startColor="gray.700"
+                endColor="gray.800"
+              />
+              <Skeleton
+                w="full"
+                minH="82px"
+                startColor="gray.700"
+                endColor="gray.800"
+              />
+            </Container>
+          ) : (
             <Container column gap={8}>
               {groupedMatches[date].map((match) => (
                 <MatchHistoryStatsLink
@@ -163,24 +203,31 @@ export default function MatchHistoryList({ user_id, username }) {
                 />
               ))}
             </Container>
-          </Container>
-        ))}
+          )}
+        </Container>
+      ))}
 
-        {sortedDates.length === 0 ? (
-          <Container
-            align="center"
-            justify="center"
-            style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
-            className={style.empty}
+      {sortedDates.length === 0 && !fetching ? (
+        <Container
+          align="center"
+          justify="center"
+          style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
+          className={style.empty}
+        >
+          <Text fontSize={{ base: 16, md: 14, '2xl': 16 }} color="gray.300">
+            {`Ops, ${
+              user.id === Number(user_id) ? 'você' : username
+            } ainda não tem partidas.`}
+          </Text>
+        </Container>
+      ) : (
+        totalPages > 1 && (
+          <Skeleton
+            isLoaded={!fetching}
+            w="full"
+            startColor="gray.700"
+            endColor="gray.800"
           >
-            <Text fontSize={{ base: 16, md: 14, '2xl': 16 }} color="gray.300">
-              {`Ops, ${
-                user.id === Number(user_id) ? 'você' : username
-              } ainda não tem partidas.`}
-            </Text>
-          </Container>
-        ) : (
-          totalPages > 1 && (
             <Container
               align="start"
               justify="center"
@@ -192,9 +239,9 @@ export default function MatchHistoryList({ user_id, username }) {
                 onPageChange={setPage}
               />
             </Container>
-          )
-        )}
-      </Container>
-    </Skeleton>
+          </Skeleton>
+        )
+      )}
+    </Container>
   )
 }
