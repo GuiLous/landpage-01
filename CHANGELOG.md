@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera componente `MatchHistoryList` para mostrar skeleton no lugar dos conteúdos da pagina [#684](https://github.com/3C-gg/reload-frontend/issues/684).
+- Altera componente `MatchHistoryList` para ocupar o tamanho mínimo igual os cards da esquerda [#684](https://github.com/3C-gg/reload-frontend/issues/684).
 - Altera componente `MatchHistoryList` para mostrar `nome do usuário` na mensagem de `partidas vazias` quando tiver visitando outro perfil [#682](https://github.com/3C-gg/reload-frontend/issues/682).
 - Altera view `Match` para se adequar ao novo design [#677](https://github.com/3C-gg/reload-frontend/issues/677).
 - Altera componente `MatchTeamStats` para se adequar ao novo design.
