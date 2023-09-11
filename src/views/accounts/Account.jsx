@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react'
+import { Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 
@@ -16,6 +16,8 @@ import { useProfileDetails } from '@hooks'
 import style from './Account.module.css'
 
 export default function AccountView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
 
   const { fetching, profile, getProfileDetails } = useProfileDetails()
@@ -30,14 +32,14 @@ export default function AccountView() {
       <Loading />
     </LoadingBackdrop>
   ) : (
-    <Container column gap={40} className={style.container}>
-      <Container className={style.header} column gap={40}>
+    <Container column gap={isLessThan2xl ? 30 : 40} className={style.container}>
+      <Container className={style.header} column>
         <ProfileHeader profile={profile} isUserLogged={true} />
       </Container>
 
       <Container align="center" className={style.title}>
         <Text
-          fontSize={20}
+          fontSize={{ base: 20, md: 18, '2xl': 20 }}
           color="white"
           fontWeight="semiBold"
           lineHeight={1}
@@ -48,9 +50,12 @@ export default function AccountView() {
       </Container>
 
       <Container className={style.content}>
-        <Container column gap={24}>
+        <Container column gap={isLessThan2xl ? 22 : 24}>
           <ChangeEmailCard />
-          <Container style={{ alignItems: 'initial' }} gap={24}>
+          <Container
+            style={{ alignItems: 'initial' }}
+            gap={isLessThan2xl ? 22 : 24}
+          >
             <InactivateAccountCard />
             <DeleteAccountCard />
           </Container>

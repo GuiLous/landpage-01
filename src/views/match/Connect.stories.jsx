@@ -10,7 +10,9 @@ export default {
   component: ConnectView,
 }
 
-const match = {
+let match = {
+  id: 1,
+  status: 'warmup',
   server_ip: '999.999.999.999',
 }
 
@@ -25,7 +27,7 @@ export const Default = {
   render: (props) => (
     <BrowserRouter>
       <Provider store={store}>
-        <ConnectView {...props} />,
+        <ConnectView {...props} />
       </Provider>
     </BrowserRouter>
   ),

@@ -1,4 +1,4 @@
-import { Skeleton, Text } from '@chakra-ui/react'
+import { Skeleton, Text, useMediaQuery } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -15,6 +15,8 @@ import { addToast } from '@slices/AppSlice'
 import style from './MatchHistoryList.module.css'
 
 export default function MatchHistoryList({ user_id }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const dispatch = useDispatch()
 
   const [fetching, setIsFetching] = useState(true)
@@ -107,14 +109,19 @@ export default function MatchHistoryList({ user_id }) {
             <Text
               as="h2"
               color="white"
-              fontSize={22}
+              fontSize={{ base: 22, md: 20, '2xl': 22 }}
               fontWeight="bold"
               textTransform="uppercase"
               lineHeight={1}
             >
               Últimas Partidas
             </Text>
-            <Text as="span" color="gray.300" fontSize={14} lineHeight={1}>
+            <Text
+              as="span"
+              color="gray.300"
+              fontSize={{ base: 14, md: 12, '2xl': 14 }}
+              lineHeight={1}
+            >
               {matches.length === 1
                 ? matches.length + ' Partida'
                 : matches.length + ' Partidas'}
@@ -127,11 +134,15 @@ export default function MatchHistoryList({ user_id }) {
             key={date}
             fitContent
             column
-            style={{ marginTop: '36px' }}
-            gap={30}
+            style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
+            gap={isLessThan2xl ? 20 : 30}
           >
             <Container align="center" gap={12}>
-              <Text fontSize={18} color="white" lineHeight={1}>
+              <Text
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
+                color="white"
+                lineHeight={1}
+              >
                 {formatDate(date)}
               </Text>
               <Container className={style.matchesNumber} fitContent>
@@ -157,10 +168,10 @@ export default function MatchHistoryList({ user_id }) {
           <Container
             align="center"
             justify="center"
-            style={{ marginTop: '24px' }}
+            style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
             className={style.empty}
           >
-            <Text fontSize={16} color="gray.300">
+            <Text fontSize={{ base: 16, md: 14, '2xl': 16 }} color="gray.300">
               Ops, você ainda não tem partidas.
             </Text>
           </Container>
@@ -169,7 +180,7 @@ export default function MatchHistoryList({ user_id }) {
             <Container
               align="start"
               justify="center"
-              style={{ marginTop: '24px' }}
+              style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
             >
               <MatchHistoryPagination
                 totalPages={totalPages}

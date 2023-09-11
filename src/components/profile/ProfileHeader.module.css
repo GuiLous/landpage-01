@@ -6,3 +6,9 @@
 .info {
 	max-width: 600px;
 }
+
+@media (max-width: 1600px) {
+	.info {
+		max-width: 520px;
+	}
+}

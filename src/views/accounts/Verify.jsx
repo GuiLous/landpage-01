@@ -9,6 +9,7 @@ import {
   PinInput,
   PinInputField,
   Text,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -20,6 +21,8 @@ import { addToast } from '@slices/AppSlice'
 import style from './Verify.module.css'
 
 export default function VerifyView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const user = useSelector((state) => state.user)
   const dispatch = useDispatch()
   const [value, setValue] = useState()
@@ -73,7 +76,13 @@ export default function VerifyView() {
           justify="center"
           column
         >
-          <Icon style={{ fontSize: 40, marginBottom: 32 }} as={LockIcon} />
+          <Icon
+            style={{
+              fontSize: isLessThan2xl ? 38 : 40,
+              marginBottom: isLessThan2xl ? 28 : 32,
+            }}
+            as={LockIcon}
+          />
           Verificação obrigatória
         </Container>
 
@@ -93,7 +102,7 @@ export default function VerifyView() {
             </FormLabel>
 
             <Container justify="center" className={style.pin}>
-              <Container justify="between" gap={10}>
+              <Container justify="between" gap={isLessThan2xl ? 8 : 10}>
                 <PinInput
                   placeholder=""
                   onChange={handleChange}
@@ -102,12 +111,39 @@ export default function VerifyView() {
                   isInvalid={fieldsErrors?.pin}
                   manageFocus
                 >
-                  <PinInputField border="transparent" data-testid="input1" />
-                  <PinInputField border="transparent" data-testid="input2" />
-                  <PinInputField border="transparent" data-testid="input3" />
-                  <PinInputField border="transparent" data-testid="input4" />
-                  <PinInputField border="transparent" data-testid="input5" />
                   <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    border="transparent"
+                    data-testid="input1"
+                  />
+                  <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    border="transparent"
+                    data-testid="input2"
+                  />
+                  <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    border="transparent"
+                    data-testid="input3"
+                  />
+                  <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    border="transparent"
+                    data-testid="input4"
+                  />
+                  <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    border="transparent"
+                    data-testid="input5"
+                  />
+                  <PinInputField
+                    minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                    minH={{ base: '56px', md: '50px', '2xl': '56px' }}
                     border="transparent"
                     onKeyDown={handleKeyEnterDown}
                     data-testid="input6"
@@ -119,8 +155,8 @@ export default function VerifyView() {
                   onClick={handleButtonClick}
                   aria-label="Validar e jogar agora!"
                   style={{ fontSize: '22px' }}
-                  minW="56px"
-                  minH="56px"
+                  minW={{ base: '56px', md: '50px', '2xl': '56px' }}
+                  minH={{ base: '56px', md: '50px', '2xl': '56px' }}
                   icon={<ArrowRightIcon color="currentColor" />}
                   data-testid="sendButton"
                 />

@@ -1,4 +1,4 @@
-import { Icon, Text } from '@chakra-ui/react'
+import { Icon, Text, useMediaQuery } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -22,6 +22,8 @@ const linksPaths = {
 }
 
 export default function ProfileHeaderButtons({ isUserLogged, username }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const params = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -72,13 +74,13 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
   }
 
   return (
-    <Container gap={12} className={style.container}>
+    <Container gap={isLessThan2xl ? 10 : 12} className={style.container}>
       {keys.map((key) =>
         isUserLogged
           ? userLoggedButtons.includes(key) && (
               <Container
                 key={key}
-                gap={14}
+                gap={isLessThan2xl ? 12 : 14}
                 align="center"
                 className={[
                   style.profileBtn,
@@ -87,7 +89,11 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
                 onClick={() => onClickFunction(key)}
               >
                 <Icon as={profileButtons[key].icon} />
-                <Text fontSize={14} as="span" lineHeight={1}>
+                <Text
+                  fontSize={{ base: 14, md: 12, '2xl': 14 }}
+                  as="span"
+                  lineHeight={1}
+                >
                   {profileButtons[key].label}
                 </Text>
               </Container>
@@ -95,13 +101,17 @@ export default function ProfileHeaderButtons({ isUserLogged, username }) {
           : !userLoggedButtons.includes(key) && (
               <Container
                 key={key}
-                gap={14}
+                gap={isLessThan2xl ? 12 : 14}
                 align="center"
                 className={style.profileBtn}
                 onClick={() => onClickFunction(key)}
               >
                 <Icon as={profileButtons[key].icon} />
-                <Text fontSize={14} as="span" lineHeight={1}>
+                <Text
+                  fontSize={{ base: 14, md: 12, '2xl': 14 }}
+                  as="span"
+                  lineHeight={1}
+                >
                   {profileButtons[key].label}
                 </Text>
               </Container>

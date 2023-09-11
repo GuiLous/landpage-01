@@ -12,16 +12,21 @@ const match = {
     firstkills: 4,
   },
   id: 0,
-  score: '10:2',
+  score: '10 - 2',
+  start_date: '2023-05-05T10:20:00',
   end_date: '2023-05-05T10:30:00',
   won: true,
   map_name: 'Auditório',
+  status: 'finished',
+  map_image:
+    'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
+  game_type: 'competitive',
 }
 
-const renderComponent = () => {
+const renderComponent = (isLink = true) => {
   render(
     <BrowserRouter>
-      <MatchHistoryStatsLink match={match} />
+      <MatchHistoryStatsLink match={match} isLink={isLink} />
     </BrowserRouter>
   )
 }
@@ -54,7 +59,7 @@ describe('MatchHistoryStatsLink Component', () => {
   it('should render score correctly', () => {
     renderComponent()
 
-    expect(screen.getByTestId('score').textContent).toEqual('10:2')
+    expect(screen.getByTestId('score').textContent).toEqual('10 - 2')
   })
 
   it('should render firstkills correctly', () => {
@@ -88,5 +93,97 @@ describe('MatchHistoryStatsLink Component', () => {
     renderComponent()
 
     expect(screen.getByTestId('link')).toHaveClass('defeated')
+  })
+
+  it('should not render won class if match status is running', () => {
+    match.status = 'running'
+    match.won = true
+    renderComponent()
+
+    expect(screen.queryByTestId('link')).not.toHaveClass('won')
+  })
+
+  it('should not render defeated class if match status is running', () => {
+    match.status = 'running'
+    match.won = false
+    renderComponent()
+
+    expect(screen.queryByTestId('link')).not.toHaveClass('defeated')
+  })
+
+  it('should render game type Ranqueada correctly', () => {
+    match.game_type = 'competitive'
+    renderComponent()
+
+    expect(screen.getByText('Ranqueada')).toBeInTheDocument()
+  })
+
+  it('should render game type Personalizada correctly', () => {
+    match.game_type = 'custom'
+    renderComponent()
+
+    expect(screen.getByText('Personalizada')).toBeInTheDocument()
+  })
+
+  it('should render map image', () => {
+    renderComponent()
+
+    expect(screen.getByAltText('map name')).toBeInTheDocument()
+  })
+
+  it('should render map duration', () => {
+    match.status = 'finished'
+    renderComponent()
+
+    expect(screen.getByText('10m00s')).toBeInTheDocument()
+  })
+
+  it('should render - if match status is running', () => {
+    match.status = 'running'
+    renderComponent()
+
+    expect(screen.getAllByText('-')).toHaveLength(5)
+  })
+
+  it('should render EM PARTIDA if status is running', () => {
+    match.status = 'running'
+    renderComponent()
+
+    expect(screen.getByText('EM PARTIDA')).toBeInTheDocument()
+  })
+
+  it('should render VITÓRIA if status is not running and won is true', () => {
+    match.status = 'finished'
+    match.won = true
+
+    renderComponent()
+
+    expect(screen.getByText('VITÓRIA')).toBeInTheDocument()
+  })
+
+  it('should render DERROTA if status is not running and won is true', () => {
+    match.status = 'finished'
+    match.won = false
+
+    renderComponent()
+
+    expect(screen.getByText('DERROTA')).toBeInTheDocument()
+  })
+
+  it('should render date start if status is running', () => {
+    match.status = 'running'
+
+    renderComponent()
+
+    expect(screen.getByText('05/05/2023 - 10m00s')).toBeInTheDocument()
+  })
+
+  it('should not render arrow icons if isLink is false', () => {
+    match.status = 'running'
+
+    const isLink = false
+    renderComponent(isLink)
+
+    expect(screen.queryByTestId('arrow')).not.toBeInTheDocument()
   })
 })

@@ -1,4 +1,4 @@
-import { Icon, Text } from '@chakra-ui/react'
+import { Icon, Text, useMediaQuery } from '@chakra-ui/react'
 
 import { Container, ProfileCard } from '@components'
 
@@ -11,6 +11,8 @@ export default function HeatmapStatsCard({
   chest_shots,
   other_shots,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const totalShots = head_shots + chest_shots + other_shots
 
   const headShotsPercent =
@@ -22,7 +24,7 @@ export default function HeatmapStatsCard({
 
   return (
     <ProfileCard title="Heatmap de Acertos">
-      <Container gap={40} className={style.container}>
+      <Container gap={isLessThan2xl ? 30 : 40} className={style.container}>
         <Container
           className={style.bodyContainer}
           align="center"
@@ -31,8 +33,8 @@ export default function HeatmapStatsCard({
         >
           <Icon
             as={FullBodyIcon}
-            w={238}
-            h={238}
+            w={{ base: 238, md: 228, '2xl': 238 }}
+            h={{ base: 238, md: 228, '2xl': 238 }}
             mt={5}
             opacityOthers={otherShotsPercent / 100}
             opacityChest={chestShotsPercent / 100}
@@ -53,7 +55,7 @@ export default function HeatmapStatsCard({
                 CABEÇA
               </Text>
               <Text
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"
@@ -66,7 +68,7 @@ export default function HeatmapStatsCard({
             <Container column gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"
@@ -96,7 +98,7 @@ export default function HeatmapStatsCard({
                 PEITO
               </Text>
               <Text
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"
@@ -109,7 +111,7 @@ export default function HeatmapStatsCard({
             <Container column gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"
@@ -139,7 +141,7 @@ export default function HeatmapStatsCard({
                 OUTROS
               </Text>
               <Text
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"
@@ -152,7 +154,7 @@ export default function HeatmapStatsCard({
             <Container column gap={3} fitContent>
               <Text
                 lineHeight={1}
-                fontSize={16}
+                fontSize={{ base: 16, md: 14, '2xl': 16 }}
                 fontWeight="bold"
                 color="white"
                 as="span"

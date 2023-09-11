@@ -5,8 +5,8 @@ export default {
   title: 'Profile/MatchHistoryStatsLink',
   component: MatchHistoryStatsLink,
   argTypes: {
-    user_id: { control: 'number' },
     match: { control: 'object' },
+    isLink: { control: 'boolean' },
   },
   args: {
     match: {
@@ -18,11 +18,17 @@ export default {
         firstkills: 0,
       },
       id: 0,
-      score: '10:2',
+      score: '13 - 10',
+      start_date: '2023-05-05T10:20:00',
       end_date: '2023-05-05T10:30:00',
       won: true,
       map_name: 'Auditório',
+      status: 'running',
+      map_image:
+        'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
+      game_type: 'competitive',
     },
+    isLink: true,
   },
 }
 

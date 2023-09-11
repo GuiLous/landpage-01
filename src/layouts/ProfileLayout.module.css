@@ -5,3 +5,9 @@
 .content {
 	position: relative;
 }
+
+@media (max-width: 1600px) {
+	.container {
+		padding-bottom: 30px;
+	}
+}
