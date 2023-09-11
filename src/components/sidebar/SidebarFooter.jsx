@@ -32,7 +32,7 @@ export default function SidebarFooter() {
         </Link>
 
         <Link
-          href="https://discord.gg/mMMKshktfT"
+          href="https://discord.gg/8TaCAQ7cce"
           isExternal
           fontSize={{ base: 18, md: 16, '2xl': 18 }}
         >
