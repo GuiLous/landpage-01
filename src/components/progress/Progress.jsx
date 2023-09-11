@@ -46,7 +46,9 @@ export default function Progress({
     from: { width: `${animationWidthFrom}%` },
     to: {
       width:
-        animationWidthFrom === progress
+        value === 0
+          ? '0%'
+          : animationWidthFrom === progress
           ? `${Math.abs(progress + 1)}%`
           : `${Math.abs(progress)}%`,
     },
