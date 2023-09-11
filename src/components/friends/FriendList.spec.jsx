@@ -75,6 +75,7 @@ const renderComponent = (isOpen = false) => {
     id: 1,
     players: [{ user_id: 1 }],
     invited_players_ids: [],
+    players_ids: [],
   }
 
   const store = configureStore({

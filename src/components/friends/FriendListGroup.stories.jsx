@@ -49,6 +49,7 @@ const user = {
 const lobby = {
   queue: null,
   invited_players_ids: [],
+  players_ids: [],
 }
 
 const invites = [
