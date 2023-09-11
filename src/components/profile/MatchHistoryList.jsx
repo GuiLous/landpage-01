@@ -174,24 +174,15 @@ export default function MatchHistoryList({ user_id, username }) {
 
           {fetching ? (
             <Container column gap={8}>
-              <Skeleton
-                w="full"
-                minH="82px"
-                startColor="gray.700"
-                endColor="gray.800"
-              />
-              <Skeleton
-                w="full"
-                minH="82px"
-                startColor="gray.700"
-                endColor="gray.800"
-              />
-              <Skeleton
-                w="full"
-                minH="82px"
-                startColor="gray.700"
-                endColor="gray.800"
-              />
+              {Array.from(Array(5)).map((_, index) => (
+                <Skeleton
+                  key={index}
+                  w="full"
+                  minH="82px"
+                  startColor="gray.700"
+                  endColor="gray.800"
+                />
+              ))}
             </Container>
           ) : (
             <Container column gap={8}>
