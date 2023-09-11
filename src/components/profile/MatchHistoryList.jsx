@@ -137,9 +137,8 @@ export default function MatchHistoryList({ user_id, username }) {
         </Container>
       </Container>
 
-      {sortedDates.map((date) => (
+      {fetching ? (
         <Container
-          key={date}
           fitContent
           column
           style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
@@ -150,7 +149,40 @@ export default function MatchHistoryList({ user_id, username }) {
               isLoaded={!fetching}
               startColor="gray.700"
               endColor="gray.800"
-            >
+              minH="20px"
+              w={120}
+            />
+
+            <Skeleton
+              isLoaded={!fetching}
+              startColor="gray.700"
+              endColor="gray.800"
+              minH="24px"
+              w="24px"
+            />
+          </Container>
+          <Container column gap={8}>
+            {Array.from(Array(5)).map((_, index) => (
+              <Skeleton
+                key={index}
+                w="full"
+                minH="82px"
+                startColor="gray.700"
+                endColor="gray.800"
+              />
+            ))}
+          </Container>
+        </Container>
+      ) : (
+        sortedDates.map((date) => (
+          <Container
+            key={date}
+            fitContent
+            column
+            style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
+            gap={isLessThan2xl ? 20 : 30}
+          >
+            <Container align="center" gap={12}>
               <Text
                 fontSize={{ base: 18, md: 16, '2xl': 18 }}
                 color="white"
@@ -158,33 +190,14 @@ export default function MatchHistoryList({ user_id, username }) {
               >
                 {formatDate(date)}
               </Text>
-            </Skeleton>
-            <Skeleton
-              isLoaded={!fetching}
-              startColor="gray.700"
-              endColor="gray.800"
-            >
+
               <Container className={style.matchesNumber} fitContent>
                 <Text lineHeight={1} color="gray.300" fontSize={12}>
                   {groupedMatches[date].length}
                 </Text>
               </Container>
-            </Skeleton>
-          </Container>
-
-          {fetching ? (
-            <Container column gap={8}>
-              {Array.from(Array(5)).map((_, index) => (
-                <Skeleton
-                  key={index}
-                  w="full"
-                  minH="82px"
-                  startColor="gray.700"
-                  endColor="gray.800"
-                />
-              ))}
             </Container>
-          ) : (
+
             <Container column gap={8}>
               {groupedMatches[date].map((match) => (
                 <MatchHistoryStatsLink
@@ -194,9 +207,9 @@ export default function MatchHistoryList({ user_id, username }) {
                 />
               ))}
             </Container>
-          )}
-        </Container>
-      ))}
+          </Container>
+        ))
+      )}
 
       {sortedDates.length === 0 && !fetching ? (
         <Container
@@ -213,24 +226,17 @@ export default function MatchHistoryList({ user_id, username }) {
         </Container>
       ) : (
         totalPages > 1 && (
-          <Skeleton
-            isLoaded={!fetching}
-            w="full"
-            startColor="gray.700"
-            endColor="gray.800"
+          <Container
+            align="start"
+            justify="center"
+            style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
           >
-            <Container
-              align="start"
-              justify="center"
-              style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
-            >
-              <MatchHistoryPagination
-                totalPages={totalPages}
-                currentPage={page}
-                onPageChange={setPage}
-              />
-            </Container>
-          </Skeleton>
+            <MatchHistoryPagination
+              totalPages={totalPages}
+              currentPage={page}
+              onPageChange={setPage}
+            />
+          </Container>
         )
       )}
     </Container>
