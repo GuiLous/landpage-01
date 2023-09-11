@@ -1,7 +1,7 @@
 import { Skeleton, Text, useMediaQuery } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { MatchesAPI } from '@api'
 import {
@@ -14,8 +14,10 @@ import { addToast } from '@slices/AppSlice'
 
 import style from './MatchHistoryList.module.css'
 
-export default function MatchHistoryList({ user_id }) {
+export default function MatchHistoryList({ user_id, username }) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
+  const user = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 
@@ -172,7 +174,9 @@ export default function MatchHistoryList({ user_id }) {
             className={style.empty}
           >
             <Text fontSize={{ base: 16, md: 14, '2xl': 16 }} color="gray.300">
-              Ops, você ainda não tem partidas.
+              {`Ops, ${
+                user.id === Number(user_id) ? 'você' : username
+              } ainda não tem partidas.`}
             </Text>
           </Container>
         ) : (

@@ -1,11 +1,12 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { render, screen, waitFor } from '@testing-library/react'
 import { rest } from 'msw'
 import { setupServer } from 'msw/lib/node'
 import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+import { BrowserRouter } from 'react-router-dom'
 
 import { MatchHistoryList } from '@components'
-import { BrowserRouter } from 'react-router-dom'
+import UserReducer from '@slices/UserSlice'
 
 const server = setupServer(
   rest.get('http://localhost:8000/api/matches', (req, res, ctx) => {
@@ -63,14 +64,22 @@ const server = setupServer(
   })
 )
 
-const renderComponent = () => {
-  const mockStore = configureStore()({})
-  const user_id = 9
+const renderComponent = (username = '', user_id = 1) => {
+  const user = {
+    id: 1,
+  }
+
+  const store = configureStore({
+    reducer: {
+      user: UserReducer,
+    },
+    preloadedState: { user },
+  })
 
   render(
     <BrowserRouter>
-      <Provider store={mockStore}>
-        <MatchHistoryList user_id={user_id} />
+      <Provider store={store}>
+        <MatchHistoryList user_id={user_id} username={username} />
       </Provider>
     </BrowserRouter>
   )
@@ -91,11 +100,19 @@ describe('MatchHistoryList Component', () => {
     expect(screen.getByText('Últimas Partidas')).toBeInTheDocument()
   })
 
-  it('should render message when there is not matches', () => {
+  it('should render message without username when there is no matches and user.id is equal to user_id', () => {
     renderComponent()
 
     expect(
       screen.getByText('Ops, você ainda não tem partidas.')
+    ).toBeInTheDocument()
+  })
+
+  it('should render message with username when there is no matches and user.id is not equal to user_id', () => {
+    renderComponent('User1', 2)
+
+    expect(
+      screen.getByText('Ops, User1 ainda não tem partidas.')
     ).toBeInTheDocument()
   })
 
