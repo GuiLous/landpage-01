@@ -182,7 +182,7 @@ export default function MatchView() {
             userId={user_id}
           />
 
-          {playerOnMatch && loadedMatch.status === 'finished' && (
+          {playerOnMatch && (
             <Container className={style.progressBar}>
               <LevelProgressBar {...playerOnMatch.progress} />
             </Container>
