@@ -1,7 +1,6 @@
 .container {
 	background-color: var(--chakra-colors-gray-1000);
-	border-radius: 8px;
-	min-height: 1052px;
+	border-radius: 4px;
 	padding: 24px;
 }
 
