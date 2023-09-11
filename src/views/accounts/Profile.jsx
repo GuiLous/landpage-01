@@ -68,7 +68,7 @@ export default function ProfileView() {
           />
         </Container>
 
-        <MatchHistoryList user_id={userId} />
+        <MatchHistoryList user_id={userId} username={profile.username} />
       </Container>
     </Container>
   )

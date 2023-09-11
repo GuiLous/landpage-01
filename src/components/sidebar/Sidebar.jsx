@@ -122,7 +122,11 @@ export default function Sidebar() {
           </Container>
 
           <Container className={style.lobbyBtn}>
-            <SidebarLobbyButton lobby={lobby} match_id={user.match_id} />
+            <SidebarLobbyButton
+              lobby={lobby}
+              match_id={user.match_id}
+              userId={user.id}
+            />
           </Container>
 
           <Container

@@ -52,7 +52,11 @@ const TYPE_MAP = {
   custom: 'Personalizada',
 }
 
-export default function MatchHistoryStatsLink({ match, isLink = true }) {
+export default function MatchHistoryStatsLink({
+  match,
+  isLink = true,
+  userId,
+}) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const [linkWidth, setLinkWidth] = useState(0)
@@ -136,13 +140,14 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
   return (
     <Link
       as={isLink ? RouterLink : 'div'}
-      to={isLink ? `/partidas/${match.id}` : null}
+      to={isLink ? `/perfil/${userId}/partidas/${match.id}` : null}
       align="center"
       cursor={isLink ? 'pointer' : 'initial'}
       data-testid="link"
       className={[
         style.container,
         match.status !== 'running' && (match.won ? style.won : style.defeated),
+        !isLink && style.disableHover,
       ].join(' ')}
       ref={linkRef}
     >
@@ -177,8 +182,7 @@ export default function MatchHistoryStatsLink({ match, isLink = true }) {
 
             <Tooltip label="Duração da partida" aria-label="Duração da partida">
               <Text lineHeight={1} color="gray.300" fontSize={12}>
-                {match.status === 'running' &&
-                  `${startDate.toFormat('dd/MM/yyyy')} - `}
+                {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}
                 {formatSeconds(elapsedTime)}
               </Text>
             </Tooltip>

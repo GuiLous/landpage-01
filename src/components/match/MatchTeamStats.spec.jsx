@@ -60,7 +60,7 @@ const data = {
   match_id: 0,
 }
 
-const renderComponent = () => {
+const renderComponent = (isWinning = true, isSameScore = true) => {
   const user = {
     id: 1,
     lobby_id: 2,
@@ -86,7 +86,12 @@ const renderComponent = () => {
   render(
     <BrowserRouter>
       <Provider store={store}>
-        <MatchTeamStats team={data} />
+        <MatchTeamStats
+          team={data}
+          isWinning={isWinning}
+          isSameScore={isSameScore}
+          userId={1}
+        />
       </Provider>
     </BrowserRouter>
   )

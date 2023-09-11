@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
 
 import InviteReducer from '@slices/InviteSlice'
 import LobbyReducer from '@slices/LobbySlice'
 import MatchReducer from '@slices/MatchSlice'
-import UserReducer from '@slices/UserSlice'
 import { MatchView } from '@views'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 
 export default {
   title: 'Views/MatchView',
@@ -14,12 +13,12 @@ export default {
   parameters: {
     mockData: [
       {
-        url: 'http://localhost:8000/api/matches/undefined/',
+        url: 'http://localhost:8000/api/matches/1/',
         method: 'GET',
         status: 200,
         response: {
           id: 0,
-          status: 'loading',
+          status: 'running',
           map: {
             name: 'Auditorio',
           },
@@ -38,7 +37,7 @@ export default {
                   match_id: 0,
                   team_id: 0,
                   user_id: 1,
-                  username: 'string',
+                  username: 'player1',
                   avatar: {},
                   stats: {
                     kills: 0,
@@ -145,42 +144,41 @@ export default {
       },
     ],
   },
+  decorators: [
+    (Story) => (
+      <MemoryRouter initialEntries={['/perfil/1/partidas/1']}>
+        <Routes>
+          <Route
+            element={
+              <Provider store={store}>
+                <MatchView />
+              </Provider>
+            }
+            path="/perfil/:user_id/partidas/:match_id"
+          />
+        </Routes>
+      </MemoryRouter>
+    ),
+  ],
 }
 
-export const Default = {
-  render: (props) => {
-    const user = {
-      id: 1,
-    }
+const match = null
 
-    const match = {
-      id: 1,
-    }
+const invites = [{ to_player: { user_id: null } }]
 
-    const invites = [{ to_player: { user_id: null } }]
+const lobby = {
+  queue: null,
+  invited_players_ids: [],
+  players_ids: [],
+}
 
-    const lobby = {
-      queue: null,
-      invited_players_ids: [],
-      players_ids: [],
-    }
-
-    const store = configureStore({
-      reducer: {
-        user: UserReducer,
-        match: MatchReducer,
-        invites: InviteReducer,
-        lobby: LobbyReducer,
-      },
-      preloadedState: { user, match, invites, lobby },
-    })
-
-    return (
-      <BrowserRouter>
-        <Provider store={store}>
-          <MatchView {...props} />
-        </Provider>
-      </BrowserRouter>
-    )
+const store = configureStore({
+  reducer: {
+    match: MatchReducer,
+    invites: InviteReducer,
+    lobby: LobbyReducer,
   },
-}
+  preloadedState: { match, invites, lobby },
+})
+
+export const Default = () => <MatchView />

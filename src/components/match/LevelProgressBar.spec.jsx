@@ -14,7 +14,7 @@ describe('LevelProgressBar Component', () => {
   it('should render correctly', () => {
     render(<LevelProgressBar {...progress} />)
 
-    expect(screen.getByText('Classificação Ranqueada')).toBeInTheDocument()
+    expect(screen.getByText('Level 0')).toBeInTheDocument()
     expect(screen.getByText('/100')).toBeInTheDocument()
   })
 

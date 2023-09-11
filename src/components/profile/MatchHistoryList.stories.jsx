@@ -1,14 +1,22 @@
 /* eslint-disable no-sequences */
-import { MatchHistoryList } from '@components'
+import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import configureStore from 'redux-mock-store'
+
+import { MatchHistoryList } from '@components'
+import UserReducer from '@slices/UserSlice'
 
 export default {
   title: 'Profile/MatchHistoryList',
   component: MatchHistoryList,
-  argTypes: {},
-  args: {},
+  argTypes: {
+    user_id: { control: 'number' },
+    username: { control: 'text' },
+  },
+  args: {
+    user_id: 1,
+    username: 'User1',
+  },
   parameters: {
     mockData: [
       {
@@ -87,13 +95,22 @@ export default {
   },
 }
 
-const mockStore = configureStore()({})
+const user = {
+  id: 1,
+}
+
+const store = configureStore({
+  reducer: {
+    user: UserReducer,
+  },
+  preloadedState: { user },
+})
 
 export const Default = {
   render: (props) => {
     return (
       <BrowserRouter>
-        <Provider store={mockStore}>
+        <Provider store={store}>
           <MatchHistoryList {...props} />
         </Provider>
       </BrowserRouter>

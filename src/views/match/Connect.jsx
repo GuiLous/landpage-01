@@ -43,6 +43,7 @@ const textsArray = [
 
 export default function Connect() {
   const match = useSelector((state) => state.match)
+  const user = useSelector((state) => state.user)
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const navigate = useNavigate()
@@ -69,13 +70,13 @@ export default function Connect() {
           break
         case 'running':
           StorageService.remove('matchConnectTimer')
-          navigate(`/partidas/${match.id}`)
+          navigate(`/perfil/${user.id}/partidas/${match.id}`)
           break
         default:
           break
       }
     }
-  }, [match, navigate])
+  }, [match, navigate, user.id])
 
   useEffect(() => {
     if (copied) {
@@ -97,8 +98,8 @@ export default function Connect() {
   }, [match, navigate, verifyMatchStatus])
 
   useEffect(() => {
-    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
-  }, [timeLeft, match?.id, navigate])
+    if (timeLeft === 0) navigate(`/perfil/${user.id}/partidas/${match.id}`)
+  }, [timeLeft, match?.id, navigate, user.id])
 
   return isLoading ? (
     <LoadingBackdrop>

@@ -20,7 +20,12 @@ import { Container, UserMenuOptions } from '@components'
 
 import style from './MatchTeamStats.module.css'
 
-export default function MatchTeamStats({ team, isWinning, isSameScore }) {
+export default function MatchTeamStats({
+  team,
+  isWinning,
+  isSameScore,
+  userId,
+}) {
   const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const user = useSelector((state) => state.user)
@@ -54,6 +59,9 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
     availableStatuses.includes(selectedPlayer?.status) &&
     !lobby.queue
 
+  const hoverBg =
+    'linear-gradient(0deg, rgba(51, 51, 51, 0.80) 0%, rgba(51, 51, 51, 0.80) 100%), rgba(40, 40, 40, 0.80);'
+
   const handleRedirectToProfile = () => {
     navigate(`/perfil/${user.id}`)
   }
@@ -75,19 +83,10 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
     <TableContainer className={style.tableContainer}>
       <Table bgColor="gray.900">
         <Thead>
-          <Tr>
-            {isSameScore ? (
-              <Th className={style.team}>Time {team.name}</Th>
-            ) : (
-              <Th
-                className={[
-                  style.team,
-                  isWinning ? style.winner : style.loser,
-                ].join(' ')}
-              >
-                Time {team.name}
-              </Th>
-            )}
+          <Tr
+            className={!isSameScore && (isWinning ? style.winner : style.loser)}
+          >
+            <Th className={style.team}>Time {team.name}</Th>
             <Tooltip label="Abates" aria-label="Abates tooltip">
               <Th>K</Th>
             </Tooltip>
@@ -166,7 +165,9 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
           {players.map((player) => (
             <Tr
               key={player.id}
-              className={player.user_id === user.id ? style.highlight : ''}
+              className={
+                player.user_id === Number(userId) ? style.highlight : ''
+              }
               onClick={() =>
                 player.user_id === user.id
                   ? handleRedirectToProfile()
@@ -174,7 +175,7 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
               }
               cursor="pointer"
               _hover={{
-                bgColor: 'rgba(104, 71, 255, 0.15)',
+                bg: hoverBg,
               }}
               ref={trRef}
               data-testid="row"
@@ -183,10 +184,10 @@ export default function MatchTeamStats({ team, isWinning, isSameScore }) {
                 <Container align="center" gap={isLessThan2xl ? 18 : 20}>
                   <Container className={style.avatar} fitContent>
                     <Avatar
-                      width={{ base: '40px', md: '38px', '2xl': '40px' }}
-                      height={{ base: '40px', md: '38px', '2xl': '40px' }}
+                      size="sm"
                       src={player.avatar?.medium}
                       variant="purple"
+                      borderWidth="1px"
                     />
                   </Container>
 

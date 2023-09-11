@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import MatchReducer from '@slices/MatchSlice'
+import UserReducer from '@slices/UserSlice'
 import { ConnectView } from '@views'
 
 export default {
@@ -16,11 +17,16 @@ let match = {
   server_ip: '999.999.999.999',
 }
 
+const user = {
+  id: 1,
+}
+
 const store = configureStore({
   reducer: {
     match: MatchReducer,
+    user: UserReducer,
   },
-  preloadedState: { match },
+  preloadedState: { match, user },
 })
 
 export const Default = {

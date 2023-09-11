@@ -7,6 +7,7 @@ export default {
   argTypes: {
     match: { control: 'object' },
     isLink: { control: 'boolean' },
+    userId: { control: 'number' },
   },
   args: {
     match: {
@@ -29,6 +30,7 @@ export default {
       game_type: 'competitive',
     },
     isLink: true,
+    userId: 1,
   },
 }
 
