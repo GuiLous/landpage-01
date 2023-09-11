@@ -19,6 +19,7 @@ const renderComponent = (status, inviteUserId = null) => {
   const lobby = {
     queue: null,
     invited_players_ids: [2],
+    players_ids: [],
   }
 
   const store = configureStore({

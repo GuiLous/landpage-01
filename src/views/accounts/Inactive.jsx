@@ -73,7 +73,7 @@ export default function InactiveView(props) {
           fitContent
           gap={isLessThan2xl ? 20 : 30}
         >
-          <Link href="https://discord.gg/mMMKshktfT" isExternal>
+          <Link href="https://discord.gg/8TaCAQ7cce" isExternal>
             <Icon as={SiDiscord} data-testid="discord" />
           </Link>
           <Link href="https://www.instagram.com/reloadclubgg/" isExternal>

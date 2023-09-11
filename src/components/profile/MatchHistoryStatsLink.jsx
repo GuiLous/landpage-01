@@ -202,7 +202,13 @@ export default function MatchHistoryStatsLink({
             fontSize={12}
             fontWeight="medium"
             textAlign="center"
-            color={isLink ? 'gray.300' : match.won ? 'green.600' : 'red.500'}
+            color={
+              isLink || match.status === 'running'
+                ? 'gray.300'
+                : match.won
+                ? 'green.600'
+                : 'red.500'
+            }
             lineHeight={1}
           >
             {match.status === 'running' && 'EM PARTIDA'}

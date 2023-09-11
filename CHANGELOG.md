@@ -71,6 +71,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrige `navigate` para detalhes da partida na view `Connect` baseado no username.
 - Corrige hover em `MatchHistoryStatsLink` com base na prop `isLink`.
 - Corrige padrão de fin de linha no editor config.
+- Corrige home para dispositivos pequenos.
+- Corrige função que verifica se um amigo já está no seu grupo no componente `FriendGroupItem` [#672](https://github.com/3C-gg/reload-frontend/issues/672).
 - Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).
 - Corrige cor da `borda` do `input` no tema.
 - Corrige verificação de partida no botão de iniciar partida no Lobby e no botão principal da Sidebar. A verificação era feita no slice de partida, e mudamos para ser realizado no campo `match_id` do slice de usuário.
