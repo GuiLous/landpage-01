@@ -8,6 +8,7 @@
 }
 
 .content {
+	align-items: initial;
 	padding: 0 60px;
 }
 
