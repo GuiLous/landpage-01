@@ -13,6 +13,8 @@ export default function Progress({
   overflow = true,
   showLabel = true,
   radius = true,
+  rightRadius = true,
+  leftRadius = true,
   horizontalPadding = 0,
   labelSuffix = 'pts',
   labelSize = '12px',
@@ -115,7 +117,7 @@ export default function Progress({
                 style.bar,
                 !isPositive && style.danger,
               ].join(' ')}
-              style={{ borderRadius: radius && 4 }}
+              style={{ borderRadius: radius && 8 }}
             ></Container>
           </Container>
         )}
@@ -161,10 +163,10 @@ export default function Progress({
               !isPositive && style.danger,
             ].join(' ')}
             style={{
-              borderBottomRightRadius: radius && 4,
-              borderTopRightRadius: radius && 4,
-              borderBottomLeftRadius: radius && !isPositive && 4,
-              borderTopLeftRadius: radius && !isPositive && 4,
+              borderBottomRightRadius: rightRadius ? 8 : 0,
+              borderTopRightRadius: rightRadius ? 8 : 0,
+              borderBottomLeftRadius: leftRadius ? 8 : 0,
+              borderTopLeftRadius: leftRadius ? 8 : 0,
             }}
           ></Container>
         </Container>
@@ -173,7 +175,13 @@ export default function Progress({
           className={style.barWrapper}
           column
           gap={labelGap}
-          style={{ width: `${initial}%` }}
+          style={{
+            width:
+              (value > 0 && value + initial <= 100) ||
+              (value > 0 && initial < 100)
+                ? `${initial + 1}%`
+                : `${initial}%`,
+          }}
         >
           {showLabel && (
             <Container className={style.label}>
@@ -186,10 +194,10 @@ export default function Progress({
           <Container
             className={[style.initialBar, style.bar].join(' ')}
             style={{
-              borderBottomLeftRadius: radius && 4,
-              borderTopLeftRadius: radius && 4,
-              borderBottomRightRadius: !isPositive && radius && 4,
-              borderTopRightRadius: !isPositive && radius && 4,
+              borderBottomLeftRadius: radius ? 8 : 0,
+              borderTopLeftRadius: radius ? 8 : 0,
+              borderBottomRightRadius: radius ? 8 : 0,
+              borderTopRightRadius: radius ? 8 : 0,
             }}
           ></Container>
         </Container>
@@ -211,7 +219,7 @@ export default function Progress({
                 changeInitialBg &&
                 style.backgroundBarNegative,
             ].join(' ')}
-            style={{ borderRadius: radius && 4 }}
+            style={{ borderRadius: radius && 8 }}
           ></Container>
         </Container>
       </Container>
