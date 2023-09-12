@@ -1,32 +1,29 @@
+.statsContainer {
+	background-color: var(--chakra-colors-gray-1100);
+	border-radius: 8px;
+	padding: 24px;
+}
+
 .header {
-	font-size: 20px;
+	font-size: 18px;
 	text-transform: uppercase;
 }
 
-.title,
-.score {
-	height: 48px;
+.statsHeader {
+	align-items: initial;
 }
 
-.teamScore {
-	color: white;
-	font-size: 32px;
-	font-weight: var(--chakra-fontWeights-bold);
+.progressBar {
+	align-items: center;
+	background: rgba(40, 40, 40, 0.8);
+	border-radius: 4px;
+	min-height: 82px;
+	min-width: 38%;
+	padding: 0 14px;
 }
 
-.teamScore.winner {
-	color: var(--chakra-colors-green-400);
-}
-
-.teamScore.loser {
-	color: var(--chakra-colors-red-500);
-}
-
-.teamName {
-	font-size: 20px;
-	font-weight: var(--chakra-fontWeights-semiBold);
-	max-width: 350px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+@media (max-width: 1500px) {
+	.statsHeader {
+		flex-direction: column;
+	}
 }

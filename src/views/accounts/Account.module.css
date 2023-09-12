@@ -14,3 +14,15 @@
 .content {
 	padding: 0 60px;
 }
+
+@media (max-width: 1600px) {
+	.header {
+		padding: 30px;
+	}
+	.title {
+		padding: 0 30px;
+	}
+	.content {
+		padding: 0 30px;
+	}
+}

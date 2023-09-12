@@ -3,6 +3,7 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
 import MatchReducer from '@slices/MatchSlice'
+import UserReducer from '@slices/UserSlice'
 import { ConnectView } from '@views'
 
 export default {
@@ -10,22 +11,29 @@ export default {
   component: ConnectView,
 }
 
-const match = {
+let match = {
+  id: 1,
+  status: 'warmup',
   server_ip: '999.999.999.999',
+}
+
+const user = {
+  id: 1,
 }
 
 const store = configureStore({
   reducer: {
     match: MatchReducer,
+    user: UserReducer,
   },
-  preloadedState: { match },
+  preloadedState: { match, user },
 })
 
 export const Default = {
   render: (props) => (
     <BrowserRouter>
       <Provider store={store}>
-        <ConnectView {...props} />,
+        <ConnectView {...props} />
       </Provider>
     </BrowserRouter>
   ),

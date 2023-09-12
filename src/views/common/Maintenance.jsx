@@ -1,4 +1,4 @@
-import { Button, Image, Text } from '@chakra-ui/react'
+import { Button, Image, Text, useMediaQuery } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -15,6 +15,8 @@ import style from './Maintenance.module.css'
 const TIME_TO_CHECK_AGAIN = 1000 * 60 * 1 // 1 minute
 
 export default function MaintenanceView() {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const maintenance = useSelector((state) => state.app.maintenance)
 
   const dispatch = useDispatch()
@@ -81,7 +83,7 @@ export default function MaintenanceView() {
     <Container className={style.container}>
       <Container
         column
-        gap={160}
+        gap={isLessThan2xl ? 130 : 160}
         align="center"
         justify="center"
         style={{ paddingBottom: '40px' }}

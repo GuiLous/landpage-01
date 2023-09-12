@@ -1,7 +1,7 @@
-import { Skeleton, Text } from '@chakra-ui/react'
+import { Skeleton, Text, useMediaQuery } from '@chakra-ui/react'
 import { DateTime } from 'luxon'
 import { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { MatchesAPI } from '@api'
 import {
@@ -14,7 +14,11 @@ import { addToast } from '@slices/AppSlice'
 
 import style from './MatchHistoryList.module.css'
 
-export default function MatchHistoryList({ user_id }) {
+export default function MatchHistoryList({ user_id, username }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
+  const user = useSelector((state) => state.user)
+
   const dispatch = useDispatch()
 
   const [fetching, setIsFetching] = useState(true)
@@ -94,46 +98,99 @@ export default function MatchHistoryList({ user_id }) {
   }, [matches])
 
   return (
-    <Skeleton
-      isLoaded={!fetching}
-      flex="1"
-      borderRadius="8px"
-      startColor="gray.700"
-      endColor="500"
-    >
-      <Container className={style.container} column>
-        <Container align="center" justify="between" fitContent>
-          <Container gap={12} style={{ alignItems: 'baseline' }}>
+    <Container className={style.container} column>
+      <Container align="center" justify="between" fitContent>
+        <Container gap={12} style={{ alignItems: 'baseline' }}>
+          <Skeleton
+            isLoaded={!fetching}
+            startColor="gray.700"
+            endColor="gray.800"
+          >
             <Text
               as="h2"
               color="white"
-              fontSize={22}
+              fontSize={{ base: 22, md: 20, '2xl': 22 }}
               fontWeight="bold"
               textTransform="uppercase"
               lineHeight={1}
             >
               Últimas Partidas
             </Text>
-            <Text as="span" color="gray.300" fontSize={14} lineHeight={1}>
+          </Skeleton>
+          <Skeleton
+            isLoaded={!fetching}
+            maxH="21px"
+            startColor="gray.700"
+            endColor="gray.800"
+          >
+            <Text
+              as="span"
+              color="gray.300"
+              fontSize={{ base: 14, md: 12, '2xl': 14 }}
+              lineHeight={1}
+            >
               {matches.length === 1
                 ? matches.length + ' Partida'
                 : matches.length + ' Partidas'}
             </Text>
+          </Skeleton>
+        </Container>
+      </Container>
+
+      {fetching ? (
+        <Container
+          fitContent
+          column
+          style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
+          gap={isLessThan2xl ? 20 : 30}
+        >
+          <Container align="center" gap={12}>
+            <Skeleton
+              isLoaded={!fetching}
+              startColor="gray.700"
+              endColor="gray.800"
+              minH="20px"
+              w={120}
+            />
+
+            <Skeleton
+              isLoaded={!fetching}
+              startColor="gray.700"
+              endColor="gray.800"
+              minH="24px"
+              w="24px"
+            />
+          </Container>
+          <Container column gap={8}>
+            {Array.from(Array(5)).map((_, index) => (
+              <Skeleton
+                key={index}
+                w="full"
+                minH="82px"
+                startColor="gray.700"
+                endColor="gray.800"
+              />
+            ))}
           </Container>
         </Container>
-
-        {sortedDates.map((date) => (
+      ) : (
+        sortedDates.map((date) => (
           <Container
             key={date}
             fitContent
             column
-            style={{ marginTop: '36px' }}
-            gap={30}
+            style={{ marginTop: isLessThan2xl ? '32px' : '36px' }}
+            gap={isLessThan2xl ? 20 : 30}
           >
             <Container align="center" gap={12}>
-              <Text fontSize={18} color="white" lineHeight={1}>
+              <Text
+                fontSize={{ base: 18, md: 16, '2xl': 18 }}
+                color="white"
+                lineHeight={1}
+              >
                 {formatDate(date)}
               </Text>
+
               <Container className={style.matchesNumber} fitContent>
                 <Text lineHeight={1} color="gray.300" fontSize={12}>
                   {groupedMatches[date].length}
@@ -145,41 +202,43 @@ export default function MatchHistoryList({ user_id }) {
               {groupedMatches[date].map((match) => (
                 <MatchHistoryStatsLink
                   key={match.id}
-                  user_id={Number(user_id)}
+                  userId={Number(user_id)}
                   match={match}
                 />
               ))}
             </Container>
           </Container>
-        ))}
+        ))
+      )}
 
-        {sortedDates.length === 0 ? (
+      {sortedDates.length === 0 && !fetching ? (
+        <Container
+          align="center"
+          justify="center"
+          style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
+          className={style.empty}
+        >
+          <Text fontSize={{ base: 16, md: 14, '2xl': 16 }} color="gray.300">
+            {`Ops, ${
+              user.id === Number(user_id) ? 'você' : username
+            } ainda não tem partidas.`}
+          </Text>
+        </Container>
+      ) : (
+        totalPages > 1 && (
           <Container
-            align="center"
+            align="start"
             justify="center"
-            style={{ marginTop: '24px' }}
-            className={style.empty}
+            style={{ marginTop: isLessThan2xl ? '20px' : '24px' }}
           >
-            <Text fontSize={16} color="gray.300">
-              Ops, você ainda não tem partidas.
-            </Text>
+            <MatchHistoryPagination
+              totalPages={totalPages}
+              currentPage={page}
+              onPageChange={setPage}
+            />
           </Container>
-        ) : (
-          totalPages > 1 && (
-            <Container
-              align="start"
-              justify="center"
-              style={{ marginTop: '24px' }}
-            >
-              <MatchHistoryPagination
-                totalPages={totalPages}
-                currentPage={page}
-                onPageChange={setPage}
-              />
-            </Container>
-          )
-        )}
-      </Container>
-    </Skeleton>
+        )
+      )}
+    </Container>
   )
 }

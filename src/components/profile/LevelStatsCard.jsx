@@ -1,4 +1,4 @@
-import { Text, Tooltip } from '@chakra-ui/react'
+import { Text, Tooltip, useMediaQuery } from '@chakra-ui/react'
 
 import { Container, LevelBadge, ProfileCard } from '@components'
 import { useLatestMatchesResults } from '@hooks'
@@ -15,14 +15,16 @@ export default function LevelStatsCard({
   most_damage_in_a_match,
   stats,
 }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const latestResults = useLatestMatchesResults(latest_matches_results)
 
   return (
     <ProfileCard>
       <Container column>
-        <Container gap={20} align="center">
+        <Container gap={isLessThan2xl ? 16 : 20} align="center">
           <Container className={style.level} fitContent>
-            <LevelBadge level={level} />
+            <LevelBadge level={level} size={isLessThan2xl ? 'smd' : 'md'} />
           </Container>
 
           <Container column>

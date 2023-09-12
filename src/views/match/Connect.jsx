@@ -1,4 +1,11 @@
-import { Box, Icon, Image, Text, Tooltip } from '@chakra-ui/react'
+import {
+  Box,
+  Icon,
+  Image,
+  Text,
+  Tooltip,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import React, { useCallback, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -36,6 +43,8 @@ const textsArray = [
 
 export default function Connect() {
   const match = useSelector((state) => state.match)
+  const user = useSelector((state) => state.user)
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
 
   const navigate = useNavigate()
 
@@ -61,13 +70,13 @@ export default function Connect() {
           break
         case 'running':
           StorageService.remove('matchConnectTimer')
-          navigate(`/partidas/${match.id}`)
+          navigate(`/perfil/${user.id}/partidas/${match.id}`)
           break
         default:
           break
       }
     }
-  }, [match, navigate])
+  }, [match, navigate, user.id])
 
   useEffect(() => {
     if (copied) {
@@ -89,8 +98,8 @@ export default function Connect() {
   }, [match, navigate, verifyMatchStatus])
 
   useEffect(() => {
-    if (timeLeft === 0) navigate(`/partidas/${match.id}`)
-  }, [timeLeft, match?.id, navigate])
+    if (timeLeft === 0) navigate(`/perfil/${user.id}/partidas/${match.id}`)
+  }, [timeLeft, match?.id, navigate, user.id])
 
   return isLoading ? (
     <LoadingBackdrop>
@@ -105,13 +114,21 @@ export default function Connect() {
         </Container>
       </Container>
 
-      <Container column style={{ marginBottom: '110px' }}>
-        <Container column align="end" justify="center" gap={80}>
+      <Container
+        column
+        style={{ marginBottom: isLessThan2xl ? '90px' : '110px' }}
+      >
+        <Container
+          column
+          align="end"
+          justify="center"
+          gap={isLessThan2xl ? 60 : 80}
+        >
           <Container className={style.logo} justify="end">
             <img src={logo} alt="ReloadClub" data-testid="logo" />
           </Container>
 
-          <Container column align="end" gap={18}>
+          <Container column align="end" gap={isLessThan2xl ? 16 : 18}>
             <Text className={style.title}>É hora do jogo!</Text>
             <Text className={style.helper}>
               Para se conectar, abra o FiveM e insira o IP abaixo na lista{' '}
@@ -125,7 +142,7 @@ export default function Connect() {
               <Container
                 className={style.connectionBox}
                 align="center"
-                gap={32}
+                gap={isLessThan2xl ? 28 : 32}
                 onClick={handleClipboard}
                 testID="clipboard"
               >
@@ -156,11 +173,19 @@ export default function Connect() {
           </Container>
 
           <Container justify="end" gap={14}>
-            <Text fontSize={24} color="white" fontWeight="semibold">
+            <Text
+              fontSize={{ base: 24, md: 22, '2xl': 24 }}
+              color="white"
+              fontWeight="semibold"
+            >
               <Timer initialTime={timeLeft || 1} reverse />
             </Text>
 
-            <Image src={loadingGif} alt="loading" width="48px" />
+            <Image
+              src={loadingGif}
+              alt="loading"
+              width={{ base: '48px', md: '44px', '2xl': '48px' }}
+            />
           </Container>
         </Container>
       </Container>

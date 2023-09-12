@@ -1,4 +1,4 @@
-import { Box, Icon, Link, Tooltip } from '@chakra-ui/react'
+import { Box, Icon, Link, Tooltip, useMediaQuery } from '@chakra-ui/react'
 import { useState } from 'react'
 import { SiDiscord, SiSteam, SiTwitch, SiYoutube } from 'react-icons/si'
 
@@ -7,6 +7,8 @@ import { AddSocialModal, Container } from '@components'
 import style from './ProfileHeaderSocialButtons.module.css'
 
 export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
+  const [isLessThan2xl] = useMediaQuery('(max-width: 1600px)')
+
   const [openAddSocialModal, setOpenAddSocialModal] = useState(false)
 
   const socialLinkedKeys = Object.keys(socials).filter(
@@ -32,7 +34,7 @@ export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
   }
 
   return (
-    <Container gap={14} fitContent align="center">
+    <Container gap={isLessThan2xl ? 12 : 14} fitContent align="center">
       {socialLinkedKeys?.map((item) => (
         <Tooltip
           key={item}
@@ -49,7 +51,7 @@ export default function ProfileHeaderSocialButtons({ socials, isUserLogged }) {
           >
             <Icon
               as={socialIcons[item]}
-              fontSize={18}
+              fontSize={{ base: 18, md: 16, '2xl': 18 }}
               verticalAlign="middle"
               data-testid={item}
             />

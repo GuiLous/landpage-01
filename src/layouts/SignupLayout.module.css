@@ -13,15 +13,12 @@
 	bottom: 85px;
 	left: 0;
 	position: absolute;
+	width: 26%;
 	z-index: var(--chakra-zIndices-base);
 }
 
-.brand {
-	max-width: 365px;
-}
-
 .brand img {
-	width: 100%;
+	width: 19%;
 }
 
 .cancelBtn {

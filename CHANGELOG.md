@@ -22,6 +22,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera componente `MatchHistoryList` para mostrar skeleton no lugar dos conteúdos da pagina [#684](https://github.com/3C-gg/reload-frontend/issues/684).
+- Altera componente `MatchHistoryList` para ocupar o tamanho mínimo igual os cards da esquerda [#684](https://github.com/3C-gg/reload-frontend/issues/684).
+- Altera componente `MatchHistoryList` para mostrar `nome do usuário` na mensagem de `partidas vazias` quando tiver visitando outro perfil [#682](https://github.com/3C-gg/reload-frontend/issues/682).
+- Altera view `Match` para se adequar ao novo design [#677](https://github.com/3C-gg/reload-frontend/issues/677).
+- Altera componente `MatchTeamStats` para se adequar ao novo design.
+- Altera padding de `MainLayout` para se adequar ao novo design.
+- Altera componente `SidebarLobbyButton` para receber prop `username`.
+- Altera componente `MatchHistoryStatsLink` para receber prop `username`.
+- Altera componente `MatchHistoryList` para receber prop `username`.
+- Altera path para a view de Match para `perfil/:user_id/partidas/:matchId`.
+- Altera `MatchHistoryStatsLink` para ficar igual ao novo design [#675](https://github.com/3C-gg/reload-frontend/issues/675).
+- Ajusta aplicação para dispositivos com telas menores (notebook) [#189](https://github.com/3C-gg/reload-frontend/issues/189).
 - Refatora testes de `Views` [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Checa se o valor do `input` é uma `url` no componente `AddSocialModal` [#651](https://github.com/3C-gg/reload-frontend/issues/651).
 - Remove `decimais` das stats do componente `Heatmap` [#657](https://github.com/3C-gg/reload-frontend/issues/657).
@@ -57,6 +69,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige cor do background para `purple.300` quando os pontos ganhos forem negativo e descer de nível em `LevelProgressBar` e `Progress`.
+- Corrige posição dos pontos ganhos no componente `LevelProgressBar` e `Progress`.
+- Corrige `navigate` para detalhes da partida na view `Connect` baseado no username.
+- Corrige hover em `MatchHistoryStatsLink` com base na prop `isLink`.
+- Corrige padrão de fin de linha no editor config.
 - Corrige home para dispositivos pequenos.
 - Corrige função que verifica se um amigo já está no seu grupo no componente `FriendGroupItem` [#672](https://github.com/3C-gg/reload-frontend/issues/672).
 - Corrige `clique` no input de `mudar email` na tela de `/conta` [#666](https://github.com/3C-gg/reload-frontend/issues/666).

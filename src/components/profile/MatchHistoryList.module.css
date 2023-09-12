@@ -1,7 +1,6 @@
 .container {
 	background-color: var(--chakra-colors-gray-1000);
-	border-radius: 8px;
-	min-height: 1052px;
+	border-radius: 4px;
 	padding: 24px;
 }
 
@@ -17,4 +16,16 @@
 
 .empty {
 	min-height: 287px;
+}
+
+@media (max-width: 1600px) {
+	.container {
+		min-height: 852px;
+		padding: 20px;
+	}
+	.matchesNumber {
+		height: 22px;
+		min-width: 22px;
+		padding: 6px 8px;
+	}
 }

@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { StorageService } from '@services'
 import MatchReducer from '@slices/MatchSlice'
+import UserReducer from '@slices/UserSlice'
 import { ConnectView } from '@views'
 
 jest.mock('@services', () => ({
@@ -29,12 +30,17 @@ let match = {
   server_ip: '999.999.999.999',
 }
 
+const user = {
+  id: 1,
+}
+
 const renderComponent = () => {
   const store = configureStore({
     reducer: {
       match: MatchReducer,
+      user: UserReducer,
     },
-    preloadedState: { match },
+    preloadedState: { match, user },
   })
 
   render(
@@ -115,7 +121,7 @@ describe('Connect View', () => {
     expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
   })
 
-  it('should redirect to /partidas/matchId if match status is running', async () => {
+  it('should redirect to /perfil/:user_id/partidas/:match_id if match status is running', async () => {
     match.status = 'running'
 
     renderComponent()
@@ -123,7 +129,7 @@ describe('Connect View', () => {
     await waitFor(() =>
       expect(StorageService.remove).toHaveBeenCalledWith('matchConnectTimer')
     )
-    expect(mockNavigate).toHaveBeenCalledWith('/partidas/1')
+    expect(mockNavigate).toHaveBeenCalledWith('/perfil/1/partidas/1')
     expect(screen.queryByTestId('gta')).not.toBeInTheDocument()
   })
 })
