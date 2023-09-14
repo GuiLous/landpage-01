@@ -71,6 +71,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Corrige bordas do componente `Progress`.
 - Corrige componente `Progress` para não pintar de vermelho quando os `pontos ganhos (earned_points)` forem 0 [#686](https://github.com/3C-gg/reload-frontend/issues/686).
+- Corrige `layout` dos `stats` da esquerda na pagina de `/profile` que estava esticando junto com o histórico de partidas [#689](https://github.com/3C-gg/reload-frontend/issues/689).
 - Corrige cor do background para `purple.300` quando os pontos ganhos forem negativo e descer de nível em `LevelProgressBar` e `Progress`.
 - Corrige posição dos pontos ganhos no componente `LevelProgressBar` e `Progress`.
 - Corrige `navigate` para detalhes da partida na view `Connect` baseado no username.
