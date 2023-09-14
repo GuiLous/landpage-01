@@ -49,7 +49,10 @@ export default function ProfileView() {
         <Container
           column
           gap={isLessThan2xl ? 16 : 18}
-          style={{ maxWidth: isLessThan2xl ? '300px' : '350px' }}
+          style={{
+            maxWidth: isLessThan2xl ? '300px' : '350px',
+            alignSelf: 'flex-start',
+          }}
         >
           <LevelStatsCard
             level={profile.level}
