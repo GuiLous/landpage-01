@@ -30,6 +30,11 @@ export default function LevelProgressBar({
     },
   })
 
+  const showRightRadius =
+    level_points_before + points_earned >= 100 || level_points_before >= 100
+  const showLeftRadius =
+    level_points_before + points_earned <= 0 || level_points_before <= 0
+
   return (
     <Container align="end" gap={4} className={style.container}>
       <Container
@@ -54,6 +59,8 @@ export default function LevelProgressBar({
                 : 0
             }
             changeInitialBg={levelUpdateReady}
+            rightRadius={showRightRadius}
+            leftRadius={showLeftRadius}
           />
         </Container>
 
