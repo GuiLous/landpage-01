@@ -14,7 +14,7 @@ export default function SignUpLayout({
   children: React.ReactNode
 }) {
   return (
-    <main className="bg-sign_up_bottom_left relative h-screen flex-col items-center bg-cover bg-repeat-round">
+    <main className="relative h-screen flex-col items-center bg-sign_up_bottom_left bg-cover bg-repeat-round">
       <LayoutHeader />
 
       <div className="absolute bottom-[85px] left-0 z-0 w-[26%]">
