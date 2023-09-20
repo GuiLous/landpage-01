@@ -18,7 +18,7 @@ export default function SignUpLayout({
       <LayoutHeader />
 
       <div className="absolute bottom-[85px] left-0 z-0 w-[26%]">
-        <Image src={liquidObject} alt="Liquid object" />
+        <Image src={liquidObject} alt="Liquid object" priority />
       </div>
 
       <Image
