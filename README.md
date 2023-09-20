@@ -8,11 +8,10 @@ Reload Club Webapp.
 
 ## Instructions
 
-Run `npm install` then `npm start`. Access the app on `localhost:3000`.
+Run `npm install` then `npm run dev`. Access the app on `localhost:3000`.
 
 ## Linting
 
-- All `js` and `html` files are linted using [Prettier](https://prettier.io/).
-- All `css` and `scss` files are linted using [Stylelint](https://stylelint.io/).
+- All `ts, tsx` and `html` files are linted using [Prettier and eslint](https://prettier.io/)(https://eslint.org/).
 
 Before any commit, run `npm run lint` to check any misslinted code and `npm run format` to autofix the errors. Some erros can't be automatically fixed, so you'll have to fix them manually before push your work.
