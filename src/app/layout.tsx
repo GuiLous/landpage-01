@@ -4,7 +4,6 @@ import { Poppins } from 'next/font/google'
 import { Providers } from '@/providers/Providers'
 
 import { PrivateRoute } from '@/components/shared'
-
 import '@/styles/globals.css'
 
 const poppins = Poppins({
