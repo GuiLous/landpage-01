@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona imagens otimizadas no projeto `next`.
+- Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
 - Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
 - Adiciona função `hasUrlOnText` no arquivo `Validators.js`.
@@ -92,7 +94,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Deletado todos os arquivos referente ao projeto antigo sem `Next` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
+- Deletado todos os arquivos referente ao projeto antigo sem `Next` [679](https://github.com/3C-gg/reload-frontend/issues/679).
 - Deleta `Avatar` componente.
 - Remove `useNavigate` desnecessários nos componente `DeleteAccountCard` e `InactivateAccountCard`.
 
