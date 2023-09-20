@@ -95,7 +95,7 @@ export default function SignUp() {
 
         <Input.Input
           value={email}
-          placeholder="Seu email aqui"
+          placeholder="Seu e-mail aqui"
           type="email"
           id="email"
           autoComplete="true"
