@@ -5,7 +5,7 @@ const content = tv({
   base: 'uppercase text-white',
   variants: {
     disabled: {
-      true: 'text-gray-400 font-semibold text-sm',
+      true: 'text-sm font-semibold text-gray-400',
     },
   },
   defaultVariants: {

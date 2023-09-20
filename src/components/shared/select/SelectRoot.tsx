@@ -6,7 +6,7 @@ import { VariantProps, tv } from 'tailwind-variants'
 import { useSelectContext } from '@/contexts/select'
 
 const select = tv({
-  base: 'flex-col relative',
+  base: 'relative flex-col',
 })
 
 type SelectRootProps = ComponentProps<'div'> &
