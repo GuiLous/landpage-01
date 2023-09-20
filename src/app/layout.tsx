@@ -1,0 +1,38 @@
+import type { Metadata } from 'next'
+import { Poppins } from 'next/font/google'
+
+import { Providers } from '@/providers/Providers'
+
+import { PrivateRoute } from '@/components/shared'
+
+import '@/styles/globals.css'
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  weight: ['400', '500', '600', '700'],
+  fallback: ['sans-serif'],
+})
+
+export const metadata: Metadata = {
+  title: 'ReloadClub: Beta',
+  description: 'Algo novo está surgindo. Reload.',
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <Providers>
+      <html lang="en">
+        <body
+          className={`${poppins.variable} bg-black/90 font-poppins font-normal`}
+        >
+          <PrivateRoute>{children}</PrivateRoute>
+        </body>
+      </html>
+    </Providers>
+  )
+}
