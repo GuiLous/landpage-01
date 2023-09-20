@@ -1,21 +1,28 @@
 import NextLink, { LinkProps as NextLinkProps } from 'next/link'
 import { ReactNode } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { VariantProps, tv } from 'tailwind-variants'
 
-interface LinkProps extends NextLinkProps {
-  children: ReactNode
-  className?: string
-}
+const link = tv({
+  base: 'text-gray-300 transition-colors duration-[0.2s] ease-in-out hover:text-white active:text-white',
+  variants: {
+    inline: {
+      true: 'underline',
+    },
+  },
+  defaultVariants: {
+    inline: false,
+  },
+})
 
-export function Link({ children, className, ...props }: LinkProps) {
+type LinkProps = NextLinkProps &
+  VariantProps<typeof link> & {
+    children: ReactNode
+    className?: string
+  }
+
+export function Link({ children, inline, className, ...props }: LinkProps) {
   return (
-    <NextLink
-      className={twMerge(
-        'text-gray-300 transition-colors duration-[0.2s] ease-in-out hover:text-white active:text-white',
-        className
-      )}
-      {...props}
-    >
+    <NextLink className={link({ inline, className })} {...props}>
       {children}
     </NextLink>
   )
