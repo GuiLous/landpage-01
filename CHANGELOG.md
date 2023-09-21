@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criar componente `LayoutHeader` para o `layout` de `signup` no projeto `next`.
+- Cria página `verificar` no projeto `next` [702](https://github.com/3C-gg/reload-frontend/issues/702).
+- Cria componente `Terms` no projeto `next`.
+- Cria página de loading no projeto `next`.
 - Adiciona imagens otimizadas no projeto `next`.
 - Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
