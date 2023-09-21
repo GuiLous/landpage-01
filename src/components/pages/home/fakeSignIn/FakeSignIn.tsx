@@ -109,7 +109,6 @@ export function FakeSignIn() {
                 <Input.Label htmlFor="email" label="Entrar sem Steam" />
 
                 <Input.Input
-                  value={email}
                   placeholder="exemplo@email.com"
                   type="email"
                   id="email"
