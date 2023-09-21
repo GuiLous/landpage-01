@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criar página `alterar-email` no projeto `next` [704](https://github.com/3C-gg/reload-frontend/issues/704).
 - Criar componente `LayoutHeader` para o `layout` de `signup` no projeto `next`.
 - Cria página `verificar` no projeto `next` [702](https://github.com/3C-gg/reload-frontend/issues/702).
 - Cria componente `Terms` no projeto `next`.
