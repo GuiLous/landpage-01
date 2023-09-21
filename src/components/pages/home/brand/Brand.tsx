@@ -8,7 +8,7 @@ import { LoginForm } from './LoginForm'
 export function Brand() {
   return (
     <div className="flex-col gap-7 xl:mt-3 xl:items-start xl:justify-center xl:gap-3 xl:pb-10">
-      <header className="relative max-w-[305px] xl:w-[75%] xl:flex-initial">
+      <header className="max-w-[305px] xl:w-[75%] xl:flex-initial">
         <Image src={logo} alt="Reload" />
       </header>
 
