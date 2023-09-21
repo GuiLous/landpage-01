@@ -1,10 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { FormEvent, KeyboardEvent, useState } from 'react'
+import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
-
-import { privacyPolicyLink, useTermsLink } from '@/utils'
 
 import { isEmailValid } from '@/functions'
 
@@ -14,7 +12,9 @@ import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
 import { updateUser } from '@/store/slices/userSlice'
 
-import { Button, Input, Link } from '@/components/shared'
+import { Terms } from '@/components/pages'
+
+import { Button, Input } from '@/components/shared'
 
 type FieldsErrors = {
   email: string
@@ -39,51 +39,55 @@ export default function SignUp() {
     setEmail(value)
   }
 
-  const handleKeyEnterDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+  const handleKeyEnterDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
       isEmailValid(email) && handleSubmit()
     }
   }
 
-  const handleSubmit = async (e?: FormEvent) => {
-    e?.preventDefault()
+  const handleSubmit = useCallback(
+    async (e?: FormEvent) => {
+      e?.preventDefault()
 
-    setFetching(true)
-    const token = storageService.get('token')
+      setFetching(true)
+      const token = storageService.get('token')
 
-    const payload = {
-      email,
-      policy: true,
-      terms: true,
-    }
+      const payload = {
+        email,
+        policy: true,
+        terms: true,
+      }
 
-    const response = await httpService.post('accounts/', token, payload)
-    if (response.fieldsErrors) {
-      setFieldsErrors(response.fieldsErrors)
+      const response = await httpService.post('accounts/', token, payload)
+      if (response.fieldsErrors) {
+        setFieldsErrors(response.fieldsErrors)
+        setFetching(false)
+        return
+      } else if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        setFetching(false)
+        return
+      }
+
       setFetching(false)
-      return
-    } else if (response.errorMsg) {
       dispatch(
         addToast({
-          content: response.errorMsg,
-          variant: 'error',
+          title: 'Que bom que você chegou!',
+          content:
+            'Agora falta pouco, verifique sua conta para começar a jogar!',
+          variant: 'success',
         })
       )
-      setFetching(false)
-      return
-    }
-
-    setFetching(false)
-    dispatch(
-      addToast({
-        title: 'Que bom que você chegou!',
-        content: 'Agora falta pouco, verifique sua conta para começar a jogar!',
-        variant: 'success',
-      })
-    )
-    dispatch(updateUser(response))
-    if (response.account) router.push('/verificar')
-  }
+      dispatch(updateUser(response))
+      if (response.account) router.push('/verificar')
+    },
+    [dispatch, email, router]
+  )
 
   return (
     <form
@@ -128,16 +132,7 @@ export default function SignUp() {
           </Button.Content>
         </Button.Root>
 
-        <p className="text-sm text-gray-300">
-          Ao se cadastrar, você concorda com os{' '}
-          <Link href={useTermsLink} inline>
-            Termos de Uso
-          </Link>{' '}
-          e a{' '}
-          <Link href={privacyPolicyLink} inline>
-            Política de Privacidade
-          </Link>
-        </p>
+        <Terms />
       </div>
     </form>
   )
