@@ -29,12 +29,14 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
   const isPublicPage = checkIsPublicRoute(pathname)
 
   const verifyUserToRedirect = useCallback(() => {
+    if (!user?.account?.is_verified && pathname === '/alterar-email') return
+
     if (!user?.is_active) return router.push('/conta-inativa')
     if (!user?.account) return router.push('/cadastrar')
     if (!user?.account?.is_verified) return router.push('/verificar')
 
     return router.push('/jogar')
-  }, [router, user])
+  }, [router, user, pathname])
 
   const redirectToPrivateRoutes = useCallback(
     (userToken: string | null) => {
