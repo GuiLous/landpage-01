@@ -32,7 +32,6 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     if (!user?.is_active) return router.push('/conta-inativa')
     if (!user?.account) return router.push('/cadastrar')
     if (!user?.account?.is_verified) return router.push('/verificar')
-    if (user?.account && user.match_id !== null) return router.push('/conectar')
 
     return router.push('/jogar')
   }, [router, user])
