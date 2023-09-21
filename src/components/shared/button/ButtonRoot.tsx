@@ -17,7 +17,11 @@ type ButtonRootProps = ComponentProps<'button'> & VariantProps<typeof button>
 
 export function ButtonRoot({ className, disabled, ...props }: ButtonRootProps) {
   return (
-    <button className={button({ disabled, className })} {...props}>
+    <button
+      disabled={disabled}
+      className={button({ disabled, className })}
+      {...props}
+    >
       {props.children}
     </button>
   )

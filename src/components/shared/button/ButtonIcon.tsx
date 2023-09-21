@@ -1,11 +1,28 @@
-import { ElementType } from 'react'
-import { twMerge } from 'tailwind-merge'
+import { ComponentProps, ElementType } from 'react'
+import { VariantProps, tv } from 'tailwind-variants'
 
-interface ButtonIconProps {
-  icon: ElementType
-  className?: string
-}
+const icon = tv({
+  base: 'text-white',
+  variants: {
+    disabled: {
+      true: 'text-gray-400',
+    },
+  },
+  defaultVariants: {
+    disabled: false,
+  },
+})
 
-export function ButtonIcon({ icon: Icon, className }: ButtonIconProps) {
-  return <Icon className={twMerge('text-white', className)} />
+type ButtonIconProps = ComponentProps<'button'> &
+  VariantProps<typeof icon> & {
+    icon: ElementType
+  }
+
+export function ButtonIcon({
+  icon: Icon,
+  className,
+  disabled,
+  ...props
+}: ButtonIconProps) {
+  return <Icon className={icon({ disabled, className })} {...props} />
 }
