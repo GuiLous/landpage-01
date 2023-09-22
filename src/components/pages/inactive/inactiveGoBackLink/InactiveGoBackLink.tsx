@@ -1,6 +1,5 @@
 'use client'
 
-import { accountsApi } from '@/api'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
@@ -8,6 +7,8 @@ import { storageService } from '@/services'
 
 import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
+
+import { accountsApi } from '@/api'
 
 import { Link } from '@/components/shared'
 
