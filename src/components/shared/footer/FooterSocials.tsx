@@ -19,23 +19,23 @@ import { Link } from '@/components/shared'
 export function FooterSocials() {
   return (
     <nav className="mb-auto flex w-full flex-1 justify-end gap-6 text-[1.375rem] xl:max-w-fit">
-      <Link href={instagramLink} data-testid="instagram">
+      <Link href={instagramLink} target="_blank" data-testid="instagram">
         <SiInstagram />
       </Link>
 
-      <Link href={twitterLink} data-testid="twitter">
+      <Link href={twitterLink} target="_blank" data-testid="twitter">
         <SiTwitter />
       </Link>
 
-      <Link href={discordLink} data-testid="discord">
+      <Link href={discordLink} target="_blank" data-testid="discord">
         <SiDiscord />
       </Link>
 
-      <Link href={youtubeLink} data-testid="youtube">
+      <Link href={youtubeLink} target="_blank" data-testid="youtube">
         <SiYoutube />
       </Link>
 
-      <Link href={facebookLink} data-testid="facebook">
+      <Link href={facebookLink} target="_blank" data-testid="facebook">
         <SiFacebook />
       </Link>
     </nav>
