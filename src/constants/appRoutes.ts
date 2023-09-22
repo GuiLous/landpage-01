@@ -4,6 +4,7 @@ export const APP_ROUTES = {
     verify: '/verificar',
     changeEmail: '/alterar-email',
     play: '/jogar',
+    inactive: '/conta-inativa',
   },
   public: {
     home: '/',
