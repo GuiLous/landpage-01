@@ -8,4 +8,5 @@ export * from './loading'
 export * from './pinInput/PinInput'
 export * from './privateRoute/PrivateRoute'
 export * from './select'
+export * from './sidebar/Sidebar'
 
