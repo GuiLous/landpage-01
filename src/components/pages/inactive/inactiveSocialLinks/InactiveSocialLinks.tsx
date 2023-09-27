@@ -6,7 +6,7 @@ import { Link } from '@/components/shared'
 
 export function InactiveSocialLinks() {
   return (
-    <section className="mt-5 flex-initial justify-center gap-7 text-2xl">
+    <nav className="mt-5 flex items-center justify-center gap-7 text-2xl">
       <Link href={instagramLink} target="_blank" data-testid="instagram">
         <SiInstagram />
       </Link>
@@ -22,6 +22,6 @@ export function InactiveSocialLinks() {
       <Link href={facebookLink} target="_blank" data-testid="facebook">
         <SiFacebook />
       </Link>
-    </section>
+    </nav>
   )
 }
