@@ -8,9 +8,17 @@ const button = tv({
     disabled: {
       true: 'cursor-not-allowed bg-gray-800 text-sm font-semibold text-gray-400 hover:bg-gray-800 active:bg-gray-800',
     },
+    queued: {
+      true: 'bg-purple-500 hover:bg-purple-500',
+    },
+    restricted: {
+      true: 'bg-red-500 hover:bg-red-500 active:bg-red-600',
+    },
   },
   defaultVariants: {
     disabled: false,
+    queued: false,
+    restricted: false,
   },
 })
 
@@ -23,6 +31,8 @@ export function ButtonRoot({
   className,
   disabled,
   asChild,
+  queued,
+  restricted,
   ...props
 }: ButtonRootProps) {
   const Component = asChild ? Slot : 'button'
@@ -30,7 +40,7 @@ export function ButtonRoot({
   return (
     <Component
       disabled={disabled}
-      className={button({ disabled, className })}
+      className={button({ disabled, queued, restricted, className })}
       {...props}
     >
       {props.children}
