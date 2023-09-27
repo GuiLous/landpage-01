@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `sidebar` no projeto next [#713](https://github.com/3C-gg/reload-frontend/issues/713).
+- Cria componente de `Timer` no projeto next.
+- Cria componente de `Tooltip` no projeto next.
+- Cria componente de `Badge` no projeto next.
 - Cria página `Maintenance` no projeto next [#710](https://github.com/3C-gg/reload-frontend/issues/710).
 - Cria componente `MaintenanceLogoutButton` no projeto next.
 - Cria `appApi` no projeto next.
