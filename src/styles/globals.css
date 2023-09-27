@@ -59,9 +59,12 @@ main, div, section, aside, header, footer, article {
   width: 100%;
 }
 
-
 ul, ol {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+div[data-radix-popper-content-wrapper]{
+	width: auto;
 }
