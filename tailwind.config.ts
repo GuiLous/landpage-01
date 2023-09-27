@@ -75,15 +75,65 @@ const config: Config = {
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',
+        shake: 'shake 3.5s ease infinite',
+        // Tooltip
+        'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-right-fade':
+          'slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down-fade': 'slide-down-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
         fade: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        shake: {
+          '0%, 20%, 40%': {
+            transform: 'rotate(0)',
+          },
+          '1.5%, 21.5%, 41.5%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '2.5%, 22.5%, 42.5%': {
+            transform: 'rotate(13deg) scale(1.2)',
+          },
+          '4%, 24%, 44%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '5%, 25%, 45%': {
+            transform: 'rotate(13deg) scale(1.2)',
+          },
+          '6.5%, 26.5%, 46.5%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '7.5%, 27.5%, 47.5%': {
+            transform: 'rotate(0deg) scale(1)',
+          },
+          '100%': {
+            transform: 'rotate(0)',
+          },
+        },
+        // Tooltip
+        'slide-up-fade': {
+          '0%': { opacity: '0', transform: 'translateY(2px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-right-fade': {
+          '0%': { opacity: '0', transform: 'translateX(-2px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'slide-down-fade': {
+          '0%': { opacity: '0', transform: 'translateY(-2px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-left-fade': {
+          '0%': { opacity: '0', transform: 'translateX(2px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-radix')],
 }
 export default config
