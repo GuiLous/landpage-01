@@ -1,6 +1,8 @@
+import { ReactNode } from 'react'
+
 import { Sidebar } from '@/components/shared'
 
-export default function layout({ children }: { children: React.ReactNode }) {
+export default function layout({ children }: { children: ReactNode }) {
   return (
     <main className="relative">
       <Sidebar />

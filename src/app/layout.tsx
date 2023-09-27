@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { ReactNode } from 'react'
 
 import { Providers } from '@/providers/Providers'
 
@@ -18,11 +19,7 @@ export const metadata: Metadata = {
   description: 'Algo novo está surgindo. Reload.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <html lang="en">
