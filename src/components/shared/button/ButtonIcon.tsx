@@ -1,4 +1,5 @@
 import { ComponentProps, ElementType } from 'react'
+import { IconBaseProps } from 'react-icons'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const icon = tv({
@@ -14,7 +15,8 @@ const icon = tv({
 })
 
 type ButtonIconProps = ComponentProps<'button'> &
-  VariantProps<typeof icon> & {
+  VariantProps<typeof icon> &
+  IconBaseProps & {
     icon: ElementType
   }
 
