@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+export * from './badge/Badge'
 export * from './button'
 export * from './divider/Divider'
 export * from './footer/Footer'
@@ -9,4 +10,6 @@ export * from './pinInput/PinInput'
 export * from './privateRoute/PrivateRoute'
 export * from './select'
 export * from './sidebar/Sidebar'
+export * from './timer/Timer'
+export * from './tooltip/Tooltip'
 
