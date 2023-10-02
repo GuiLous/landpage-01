@@ -13,7 +13,7 @@ import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
 import { useAppSelector } from '@/store'
 
-import { Badge, Link, ModalSupport } from '@/components/shared'
+import { Badge, Link, ModalLogout, ModalSupport } from '@/components/shared'
 
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
 
@@ -36,6 +36,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const notifications = useAppSelector((state) => state.notifications)
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
+  const [openModalLogout, setOpenModalLogout] = useState(false)
 
   const isSoon = SOON_ITEMS.includes(item)
 
@@ -64,7 +65,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         break
 
       case 'sair':
-        console.log(item)
+        setOpenModalLogout(true)
         break
 
       default:
@@ -145,6 +146,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
       </Link>
 
       <ModalSupport open={openModalSupport} setOpen={setOpenModalSupport} />
+      <ModalLogout open={openModalLogout} setOpen={setOpenModalLogout} />
     </div>
   )
 }
