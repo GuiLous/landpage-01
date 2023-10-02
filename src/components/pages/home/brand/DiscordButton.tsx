@@ -3,13 +3,13 @@
 import { useCallback } from 'react'
 import { SiDiscord } from 'react-icons/si'
 
-import { discordLink } from '@/utils/socials'
+import { DISCORD_LINK } from '@/constants'
 
 import { Button } from '@/components/shared'
 
 export function DiscordButton() {
   const handleRedirectToDiscord = useCallback(() => {
-    window.open(discordLink, '_blank')
+    window.open(DISCORD_LINK, '_blank')
   }, [])
 
   return (
