@@ -31,8 +31,8 @@ const icons = {
 
 export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const { user } = useAppSelector((state) => state.user)
-  const { invites } = useAppSelector((state) => state.invite)
-  const notifications = useAppSelector((state) => state.notification)
+  const { invites } = useAppSelector((state) => state.invites)
+  const notifications = useAppSelector((state) => state.notifications)
 
   const isSoon = SOONITEMS.includes(item)
 

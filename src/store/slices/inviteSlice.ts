@@ -11,7 +11,7 @@ export type InviteElement = {
 export type Invite = {
   id: string
   lobby_id: number
-  lobby: Lobby
+  lobby?: Lobby
   from_player: Player
   to_player: Player
   create_date: Date

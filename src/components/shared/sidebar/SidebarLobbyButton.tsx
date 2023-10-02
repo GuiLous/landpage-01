@@ -23,6 +23,8 @@ export function SidebarLobbyButton() {
   const isOnLobby =
     !lobby.queue && !user?.match_id && !lobby.restriction_countdown
 
+  const isIsMatch = user?.match_id
+
   const getButtonLabel = () => {
     if (user?.match_id) return 'Em partida'
 
@@ -37,7 +39,7 @@ export function SidebarLobbyButton() {
     <div className="px-7 3xl:px-6">
       <Button.Root
         asChild
-        queued={isInQueue}
+        queued={isInQueue || !!isIsMatch}
         restricted={isRestricted}
         className="max-h-10 w-full justify-start gap-3 px-3"
       >

@@ -3,11 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { InviteElement } from './inviteSlice'
 import { Avatar } from './userSlice'
 
-export enum LatestMatchesResult {
-  D = 'D',
-  NA = 'N/A',
-  V = 'V',
-}
+export type LatestMatchesResult = 'D' | 'N/A' | 'V'
 
 export type Player = {
   level: number
@@ -24,8 +20,8 @@ export type Lobby = {
   id: number
   owner_id: number
   players_ids: number[]
-  players: Player[]
-  invites: InviteElement[]
+  players?: Player[]
+  invites?: InviteElement[]
   invited_players_ids: number[]
   seats: number
   queue: Date | null
