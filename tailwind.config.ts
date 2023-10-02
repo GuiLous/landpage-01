@@ -131,6 +131,43 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(2px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        // Dialog
+        'dialog-overlay-show': {
+          from: {
+            opacity: '0',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
+        'dialog-overlay-hide': {
+          from: {
+            opacity: '1',
+          },
+          to: {
+            opacity: '0',
+          },
+        },
+        'dialog-content-show': {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, -50%) scale(0.95)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+        },
+        'dialog-content-hide': {
+          from: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, -50%) scale(0.95)',
+          },
+        },
       },
     },
   },
