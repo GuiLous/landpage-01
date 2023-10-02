@@ -18,12 +18,14 @@ export function SelectOptionSelected({
   return (
     <div
       className={twMerge(
-        'text-sm tracking-[0.02625rem] text-gray-300',
+        'text-sm tracking-[0.02625rem] text-gray-300 overflow-hidden ',
         itemSelected && 'text-white',
         className
       )}
     >
-      {itemSelected ? itemSelected.label : placeholder}
+      <p className="overflow-hidden text-ellipsis whitespace-nowrap">
+        {itemSelected ? itemSelected.label : placeholder}
+      </p>
     </div>
   )
 }
