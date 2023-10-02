@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
-import logoFull from '@/assets/images/logo_symbol_full.svg'
+import { Link } from '@/components/shared'
 
-import { Link } from '../link/Link'
+import logoFull from '@/assets/images/logo_symbol_full.svg'
 
 export function SidebarLogo() {
   return (

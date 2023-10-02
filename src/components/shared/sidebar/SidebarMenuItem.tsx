@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BiSolidMessage } from 'react-icons/bi'
 import { BsEnvelopeFill } from 'react-icons/bs'
@@ -8,12 +9,12 @@ import { IoExitOutline } from 'react-icons/io5'
 import { MdOutlineBarChart, MdShoppingCart } from 'react-icons/md'
 import { twMerge } from 'tailwind-merge'
 
-import { MENULINKS, SOONITEMS } from '@/constants'
+import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
 import { useAppSelector } from '@/store'
 
-import { Badge } from '../badge/Badge'
-import { Link } from '../link/Link'
+import { Badge, Link, ModalSupport } from '@/components/shared'
+
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
 
 interface SidebarMenuItemProps {
@@ -34,7 +35,9 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const { invites } = useAppSelector((state) => state.invite)
   const notifications = useAppSelector((state) => state.notification)
 
-  const isSoon = SOONITEMS.includes(item)
+  const [openModalSupport, setOpenModalSupport] = useState(false)
+
+  const isSoon = SOON_ITEMS.includes(item)
 
   const receivedInvites = invites.filter(
     (invite) => invite.to_player.user_id === user?.id
@@ -44,7 +47,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
     (notification) => notification.read_date === null
   ).length
 
-  const isLink = MENULINKS.includes(item)
+  const isLink = MENU_LINKS.includes(item)
 
   const onClickFunction = ({ item }: SidebarMenuItemProps) => {
     switch (item) {
@@ -57,7 +60,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         break
 
       case 'suporte':
-        console.log(item)
+        setOpenModalSupport(true)
         break
 
       case 'sair':
@@ -139,6 +142,8 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
           </div>
         </button>
       </Link>
+
+      <ModalSupport open={openModalSupport} setOpen={setOpenModalSupport} />
     </div>
   )
 }

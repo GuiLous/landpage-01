@@ -10,7 +10,7 @@ import { httpService, storageService } from '@/services'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { updateUser } from '@/store/slices/userSlice'
 
-import { Loading } from '../loading'
+import { Loading } from '@/components/shared'
 
 interface PrivateRouteProps {
   children?: ReactNode
