@@ -7,19 +7,19 @@ export type Avatar = {
 }
 
 export type Account = {
-  steamid: string
-  username: string
-  level: number
-  level_points: number
-  is_verified: boolean
-  avatar: Avatar
+  steamid?: string
+  username?: string
+  level?: number
+  level_points?: number
+  is_verified?: boolean
+  avatar?: Avatar
 }
 
 export type User = {
   id: number
   email: string
   is_active: boolean
-  account: Account
+  account?: Account
   is_online: boolean
   status: string
   lobby_id: number

@@ -32,8 +32,8 @@ const icons = {
 
 export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const { user } = useAppSelector((state) => state.user)
-  const { invites } = useAppSelector((state) => state.invite)
-  const notifications = useAppSelector((state) => state.notification)
+  const { invites } = useAppSelector((state) => state.invites)
+  const notifications = useAppSelector((state) => state.notifications)
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
 
@@ -83,8 +83,9 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         href={isLink ? '/' : ''}
         asChild
         className={twMerge(
-          'flex h-full flex-1 items-center gap-3 px-3 py-2 3xl:px-0',
-          isSoon && 'hover:text-gray-300 cursor-default active:text-gray-300'
+          'flex h-full flex-1 items-center gap-3 px-3 py-2',
+          isSoon &&
+            'hover:text-gray-300 cursor-default active:text-gray-300 pr-0'
         )}
         onClick={() => (isSoon ? null : onClickFunction({ item }))}
         data-testid={item}

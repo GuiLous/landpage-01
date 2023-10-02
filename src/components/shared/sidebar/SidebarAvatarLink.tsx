@@ -20,7 +20,7 @@ export function SidebarAvatarLink() {
             >
               <Avatar.Root className="relative inline-flex h-11 w-11 select-none items-center justify-center rounded-full 3xl:h-[38px] 3xl:w-[38px]">
                 <Avatar.Image
-                  src={user?.account.avatar.medium}
+                  src={user?.account?.avatar?.medium}
                   alt="Imagem de perfil"
                   className="h-full w-full rounded-[inherit] object-cover"
                 />
@@ -36,11 +36,11 @@ export function SidebarAvatarLink() {
 
               <div className="flex-col gap-0.5">
                 <span className="text-sm font-medium text-white 3xl:text-xs">
-                  {user?.account.username}
+                  {user?.account?.username}
                 </span>
 
                 <span className="text-xs font-medium text-purple-300">
-                  Level {user?.account.level}
+                  Level {user?.account?.level}
                 </span>
               </div>
             </Link>
