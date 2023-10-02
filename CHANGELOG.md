@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `ModalLogout` no projeto next [#728](https://github.com/3C-gg/reload-frontend/issues/728).
 - Cria componente de `ModalSupport` e todos seus componentes no projeto next [#731](https://github.com/3C-gg/reload-frontend/issues/731).
 - Cria componente de `sidebar` no projeto next [#713](https://github.com/3C-gg/reload-frontend/issues/713).
 - Cria componente de `Timer` no projeto next.
@@ -46,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Adiciona variant `neutral` em ` Button`.
 - Ajusta `imports` usando alias no projeto next.
 - Ajusta `httpService` no projeto next.
 - Altera tipagem de `httpService` no projeto next.
