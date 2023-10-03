@@ -13,7 +13,13 @@ import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
 import { useAppSelector } from '@/store'
 
-import { Badge, Link, ModalLogout, ModalSupport } from '@/components/shared'
+import {
+  Badge,
+  DrawerNotifications,
+  Link,
+  ModalLogout,
+  ModalSupport,
+} from '@/components/shared'
 
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
 
@@ -37,6 +43,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
   const [openModalLogout, setOpenModalLogout] = useState(false)
+  const [openDrawerNotifications, setOpenDrawerNotifications] = useState(false)
 
   const isSoon = SOON_ITEMS.includes(item)
 
@@ -57,7 +64,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         break
 
       case 'notificações':
-        console.log(item)
+        setOpenDrawerNotifications(true)
         break
 
       case 'suporte':
@@ -147,6 +154,11 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
 
       <ModalSupport open={openModalSupport} setOpen={setOpenModalSupport} />
       <ModalLogout open={openModalLogout} setOpen={setOpenModalLogout} />
+      <ModalLogout open={openModalLogout} setOpen={setOpenModalLogout} />
+      <DrawerNotifications
+        open={openDrawerNotifications}
+        setOpen={setOpenDrawerNotifications}
+      />
     </div>
   )
 }
