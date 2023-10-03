@@ -131,7 +131,7 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateX(2px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
-        // Dialog
+        // Modal
         'dialog-overlay-show': {
           from: {
             opacity: '0',
@@ -166,6 +166,27 @@ const config: Config = {
           to: {
             opacity: '0',
             transform: 'translate(-50%, -50%) scale(0.95)',
+          },
+        },
+        // Drawer
+        'drawer-content-show': {
+          from: {
+            opacity: '0',
+            transform: 'translate(50%, 0%)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+        },
+        'drawer-content-hide': {
+          from: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(50%, 0%)',
           },
         },
       },
