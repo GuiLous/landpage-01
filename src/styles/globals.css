@@ -53,7 +53,7 @@ th {
 	padding: 0;
 }
 
-main, div, section, aside, header, footer {
+main, div, section, aside, header, footer, article {
   display: flex;
   flex: 1 1;
   width: 100%;

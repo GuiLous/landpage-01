@@ -10,15 +10,26 @@ export class HttpException extends Error {
   }
 }
 
+export type Http = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE'
+
+type Request = {
+  method: Http
+  endpoint: string
+  token: string | null
+  payload: any
+  headers_content_type?: string
+  custom_unknown_error?: string
+}
+
 export const httpService = {
-  async request(
-    method: string,
-    endpoint: string,
-    token: string | null,
-    payload: any,
+  async request({
+    method,
+    endpoint,
+    token,
+    payload,
     headers_content_type = 'application/json',
-    custom_unknown_error?: string
-  ) {
+    custom_unknown_error,
+  }: Request) {
     if (endpoint[0] !== '/') endpoint = '/' + endpoint
 
     if (endpoint.slice(-1) === '/') endpoint = endpoint.slice(0, -1)
@@ -88,7 +99,12 @@ export const httpService = {
   },
 
   get(endpoint: string, token: string | null) {
-    return httpService.request('GET', endpoint, token, null)
+    return httpService.request({
+      method: 'GET',
+      endpoint,
+      token,
+      payload: null,
+    })
   },
 
   post(
@@ -97,13 +113,13 @@ export const httpService = {
     payload: any,
     headers_content_type?: string
   ) {
-    return httpService.request(
-      'POST',
+    return httpService.request({
+      method: 'POST',
       endpoint,
       token,
       payload,
-      headers_content_type
-    )
+      headers_content_type,
+    })
   },
 
   patch(
@@ -112,13 +128,13 @@ export const httpService = {
     payload: any,
     headers_content_type?: string
   ) {
-    return httpService.request(
-      'PATCH',
+    return httpService.request({
+      method: 'PATCH',
       endpoint,
       token,
       payload,
-      headers_content_type
-    )
+      headers_content_type,
+    })
   },
 
   put(
@@ -127,17 +143,17 @@ export const httpService = {
     payload: any,
     headers_content_type?: string
   ) {
-    return httpService.request(
-      'PUT',
+    return httpService.request({
+      method: 'PUT',
       endpoint,
       token,
       payload,
-      headers_content_type
-    )
+      headers_content_type,
+    })
   },
 
   delete(endpoint: string, token: string | null, payload: any) {
-    return httpService.request('DELETE', endpoint, token, payload)
+    return httpService.request({ method: 'DELETE', endpoint, token, payload })
   },
 }
 
