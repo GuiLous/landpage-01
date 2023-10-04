@@ -6,9 +6,7 @@ import { formatSecondsToMinutes } from '@/functions'
 
 import { useAppSelector } from '@/store'
 
-import { Button } from '../button'
-import { Link } from '../link/Link'
-import { Timer } from '../timer/Timer'
+import { Button, Link, Timer } from '@/components/shared'
 
 export function SidebarLobbyButton() {
   const lobby = useAppSelector((state) => state.lobby)

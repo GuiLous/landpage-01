@@ -12,6 +12,7 @@ import {
 export type Item = {
   value: string
   label: string
+  disabled?: boolean
 }
 
 interface ProviderProps {

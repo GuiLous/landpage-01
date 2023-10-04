@@ -45,41 +45,44 @@ export function MaintenanceLogoutButton() {
     router.push('/')
   }, [router, dispatch])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const userToken = storageService.get('token')
+  const checkMaintenance = useCallback(async () => {
+    const userToken = storageService.get('token')
 
-      if (!userToken) return
+    if (!userToken) return
 
-      const response = await appApi.healthCheck(userToken)
+    const response = await appApi.healthCheck(userToken)
 
-      if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+    if (response.errorMsg) {
+      dispatch(
+        addToast({
+          content: response.errorMsg,
+          variant: 'error',
+        })
+      )
 
-        return
-      }
-
-      if (!response.maintenance) {
-        storageService.set('maintenance', 'ended')
-        router.push('/jogar')
-      }
+      return
     }
 
-    if (maintenance) {
-      fetchData()
+    if (!response.maintenance) {
+      storageService.set('maintenance', 'ended')
+      router.push('/jogar')
+    }
+  }, [dispatch, router])
 
-      const interval = setInterval(fetchData, MAINTENANCE_TIME_TO_CHECK_AGAIN)
+  useEffect(() => {
+    if (maintenance) {
+      checkMaintenance()
+
+      const interval = setInterval(
+        checkMaintenance,
+        MAINTENANCE_TIME_TO_CHECK_AGAIN
+      )
 
       return () => {
         clearInterval(interval)
       }
     }
-  }, [maintenance, dispatch, router])
+  }, [maintenance, checkMaintenance])
 
   return (
     <Button.Root asChild disabled={isFetching} onClick={handleLogout}>

@@ -32,6 +32,7 @@
           "/^@/api/",
           "/^@/components/pages/",
           "/^@/components/shared/",
+          "/^@/hooks/",
           "/^@/assets/",
           "/^@/styles/",
           [

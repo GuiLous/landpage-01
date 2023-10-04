@@ -4,9 +4,7 @@ import * as Avatar from '@radix-ui/react-avatar'
 
 import { useAppSelector } from '@/store'
 
-import { Badge } from '../badge/Badge'
-import { Link } from '../link/Link'
-import { Tooltip } from '../tooltip/Tooltip'
+import { Badge, Link, Tooltip } from '@/components/shared'
 
 export function SidebarAvatarLink() {
   const { user } = useAppSelector((state) => state.user)

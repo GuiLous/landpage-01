@@ -12,6 +12,10 @@ const input = tv({
       true: 'outline outline-1 outline-red-500',
     },
   },
+  defaultVariants: {
+    success: false,
+    error: false,
+  },
 })
 
 type InputFormProps = ComponentProps<'input'> &
