@@ -2,7 +2,7 @@ import { ComponentProps, ElementType } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const icon = tv({
-  base: 'absolute right-2 top-1/4 text-[22px] text-white',
+  base: 'absolute right-2 top-1/4 text-[1.375rem] text-white',
   variants: {
     success: {
       true: 'text-green-400',

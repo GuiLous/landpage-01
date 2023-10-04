@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+.pin-button-none::-webkit-outer-spin-button,
+.pin-button-none::-webkit-inner-spin-button {
+	appearance: none;
+}
+
 * {
     &::-webkit-scrollbar {
       width: 0.6rem;
@@ -26,7 +31,6 @@ body {
   font-synthesis: none;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
-  box-sizing: border-box;
 }
 
 img,
@@ -49,7 +53,7 @@ th {
 	padding: 0;
 }
 
-main, div, section, aside, header, footer {
+main, div, section, aside, header, footer, article {
   display: flex;
   flex: 1 1;
   width: 100%;

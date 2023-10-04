@@ -4,7 +4,7 @@ import { FooterSocials } from './FooterSocials'
 
 export function Footer() {
   return (
-    <div className="relative flex-initial items-center justify-center bg-black px-0 py-[1.875rem]">
+    <footer className="z-10 flex-initial items-center justify-center bg-black px-0 py-[1.875rem]">
       <section className="max-w-[1320px] items-center justify-center xl:flex-col xl:gap-6">
         <FooterLogo />
 
@@ -12,6 +12,6 @@ export function Footer() {
 
         <FooterSocials />
       </section>
-    </div>
+    </footer>
   )
 }

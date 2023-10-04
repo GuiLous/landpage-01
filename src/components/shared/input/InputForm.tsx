@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const input = tv({
-  base: 'relative flex-initial bg-white rounded-[4px] focus-within:outline focus-within:outline-1 focus-within:outline-purple-400',
+  base: 'relative flex-initial rounded-[4px] bg-white focus-within:outline focus-within:outline-1 focus-within:outline-purple-400',
   variants: {
     success: {
       true: 'outline outline-1 outline-green-400',

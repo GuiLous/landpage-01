@@ -5,7 +5,8 @@
     "plugin:storybook/recommended"
   ],
   "plugins": [
-    "eslint-plugin-import-helpers"
+    "eslint-plugin-import-helpers",
+    "tailwindcss"
   ],
   "rules": {
     "prettier/prettier": [
@@ -28,6 +29,7 @@
           "/^@/providers/",
           "/^@/contexts/",
           "/^@/store/",
+          "/^@/api/",
           "/^@/components/pages/",
           "/^@/components/shared/",
           "/^@/assets/",
@@ -46,6 +48,9 @@
     ],
     "@typescript-eslint/no-explicit-any": [
       "off"
-    ]
+    ],
+    "tailwindcss/classnames-order": "warn",
+    "tailwindcss/no-custom-classname": "warn",
+    "tailwindcss/no-contradicting-classname": "error"
   }
 }
