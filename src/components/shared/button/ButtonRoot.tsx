@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'flex items-center justify-center gap-2 rounded-[4px] bg-purple-400 py-[0.6875rem] transition-colors duration-[0.2s] ease-in-out hover:bg-purple-300 active:bg-purple-700',
+  base: 'group flex items-center justify-center gap-2 rounded-[4px] bg-purple-400 py-[0.6875rem] transition-colors duration-[0.2s] ease-in-out hover:bg-purple-300 active:bg-purple-700',
   variants: {
     disabled: {
       true: 'cursor-not-allowed bg-gray-800 text-sm font-semibold text-gray-400 hover:bg-gray-800 active:bg-gray-800',
@@ -12,13 +12,17 @@ const button = tv({
       true: 'bg-purple-500 hover:bg-purple-500',
     },
     restricted: {
-      true: 'bg-red-500 hover:bg-red-500 active:bg-red-600',
+      true: 'bg-red-500 hover:bg-red-400 active:bg-red-600',
+    },
+    neutral: {
+      true: 'bg-gray-700 hover:bg-gray-600 active:bg-gray-800 disabled:hover:bg-gray-800',
     },
   },
   defaultVariants: {
     disabled: false,
     queued: false,
     restricted: false,
+    neutral: false,
   },
 })
 
@@ -33,6 +37,7 @@ export function ButtonRoot({
   asChild,
   queued,
   restricted,
+  neutral,
   ...props
 }: ButtonRootProps) {
   const Component = asChild ? Slot : 'button'
@@ -40,7 +45,7 @@ export function ButtonRoot({
   return (
     <Component
       disabled={disabled}
-      className={button({ disabled, queued, restricted, className })}
+      className={button({ disabled, queued, restricted, neutral, className })}
       {...props}
     >
       {props.children}
