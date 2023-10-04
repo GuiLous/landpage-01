@@ -14,10 +14,10 @@ export const store = configureStore({
   reducer: {
     app: appReducer,
     friend: friendReducer,
-    invite: inviteReducer,
+    invites: inviteReducer,
     lobby: lobbyReducer,
     match: matchReducer,
-    notification: notificationReducer,
+    notifications: notificationReducer,
     preMatch: preMatchReducer,
     user: userReducer,
   },

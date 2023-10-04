@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiArrowDownSLine, RiErrorWarningFill } from 'react-icons/ri'
 
-import { fakeAccoutnEmails } from '@/utils'
+import { fakeAccountEmails } from '@/utils'
 
 import { isEmailValid } from '@/functions'
 
@@ -143,10 +143,10 @@ export function FakeSignIn() {
                   </Select.Wrapper>
 
                   <Select.Options>
-                    {fakeAccoutnEmails.map((email, index) => (
+                    {fakeAccountEmails.map((email, index) => (
                       <Select.Option
                         key={email.value}
-                        items={fakeAccoutnEmails}
+                        items={fakeAccountEmails}
                         item={email}
                         index={index}
                       />

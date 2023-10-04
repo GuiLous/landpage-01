@@ -42,7 +42,6 @@ export const httpService = {
 
     let headers: Record<string, string> = {
       Accept: headers_content_type,
-      'Content-Type': headers_content_type,
     }
 
     if (token)

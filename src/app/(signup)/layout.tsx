@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { ReactNode } from 'react'
 
 import { LayoutHeader } from '@/components/pages'
 
@@ -8,11 +9,7 @@ import liquidObject from '@/assets/images/liquid_object.png'
 import logo from '@/assets/images/logo_type_white.svg'
 import rectangle from '@/assets/images/signup_bg_top_right.png'
 
-export default function SignUpLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function SignUpLayout({ children }: { children: ReactNode }) {
   return (
     <main className="relative h-screen flex-col items-center bg-sign_up_bottom_left bg-cover bg-repeat-round">
       <LayoutHeader />

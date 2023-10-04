@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import { ReactNode } from 'react'
 
 import { Providers } from '@/providers/Providers'
 
@@ -10,7 +11,6 @@ const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
   weight: ['400', '500', '600', '700'],
-  fallback: ['sans-serif'],
 })
 
 export const metadata: Metadata = {
@@ -18,11 +18,7 @@ export const metadata: Metadata = {
   description: 'Algo novo está surgindo. Reload.',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <html lang="en">

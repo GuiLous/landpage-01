@@ -7,9 +7,13 @@ const content = tv({
     disabled: {
       true: 'text-sm font-semibold text-gray-400',
     },
+    neutral: {
+      true: 'text-gray-300 transition-colors group-hover:text-white',
+    },
   },
   defaultVariants: {
     disabled: false,
+    neutral: false,
   },
 })
 
@@ -26,10 +30,11 @@ export function ButtonContent({
   disabled,
   loadingText = 'Enviando',
   isLoading = false,
+  neutral,
   ...props
 }: ButtonContentProps) {
   return (
-    <p className={content({ disabled, className })} {...props}>
+    <p className={content({ disabled, neutral, className })} {...props}>
       {isLoading ? loadingText : children}
     </p>
   )

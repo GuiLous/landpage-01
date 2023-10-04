@@ -1,4 +1,4 @@
-export const fakeAccoutnEmails = [
+export const fakeAccountEmails = [
   {
     value: 'player1@reloadclub.gg',
     label: 'player1@reloadclub.gg',
