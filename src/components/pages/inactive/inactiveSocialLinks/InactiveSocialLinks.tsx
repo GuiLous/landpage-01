@@ -1,24 +1,12 @@
-import {
-  SiDiscord,
-  SiFacebook,
-  SiInstagram,
-  SiTwitter,
-  SiYoutube,
-} from 'react-icons/si'
+import { SiDiscord, SiFacebook, SiInstagram, SiTwitter } from 'react-icons/si'
 
-import {
-  discordLink,
-  facebookLink,
-  instagramLink,
-  twitterLink,
-  youtubeLink,
-} from '@/utils'
+import { discordLink, facebookLink, instagramLink, twitterLink } from '@/utils'
 
 import { Link } from '@/components/shared'
 
-export function FooterSocials() {
+export function InactiveSocialLinks() {
   return (
-    <nav className="mb-auto flex w-full flex-1 justify-end gap-6 text-[1.375rem] xl:max-w-fit">
+    <section className="mt-5 flex-initial justify-center gap-7 text-2xl">
       <Link href={instagramLink} target="_blank" data-testid="instagram">
         <SiInstagram />
       </Link>
@@ -31,13 +19,9 @@ export function FooterSocials() {
         <SiDiscord />
       </Link>
 
-      <Link href={youtubeLink} target="_blank" data-testid="youtube">
-        <SiYoutube />
-      </Link>
-
       <Link href={facebookLink} target="_blank" data-testid="facebook">
         <SiFacebook />
       </Link>
-    </nav>
+    </section>
   )
 }

@@ -18,6 +18,7 @@ type LinkProps = NextLinkProps &
   VariantProps<typeof link> & {
     children: ReactNode
     className?: string
+    target?: string
   }
 
 export function Link({ children, inline, className, ...props }: LinkProps) {

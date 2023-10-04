@@ -12,7 +12,9 @@ import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
 import { updateUser } from '@/store/slices/userSlice'
 
-import { Button, Input, Link } from '@/components/shared'
+import { ChangeEmailGoBackLink } from '@/components/pages'
+
+import { Button, Input } from '@/components/shared'
 
 type FieldsErrors = {
   email: string
@@ -128,9 +130,7 @@ export default function ChangeEmail() {
           </Button.Content>
         </Button.Root>
 
-        <div className="items-center justify-center">
-          <Link href="/verificar">Cancelar e voltar</Link>
-        </div>
+        <ChangeEmailGoBackLink />
       </div>
     </form>
   )
