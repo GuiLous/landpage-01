@@ -22,7 +22,7 @@ export function SelectRightIcon({
   return (
     <Icon
       className={twMerge(
-        'text-gray-300 transition-colors transition-transform',
+        'text-gray-300 transition',
         isChecked && 'rotate-180 text-white',
         className
       )}

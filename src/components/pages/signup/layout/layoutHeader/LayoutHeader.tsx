@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 
 import { storageService } from '@/services'
@@ -7,9 +8,9 @@ import { storageService } from '@/services'
 import { Link } from '@/components/shared'
 
 export function LayoutHeader() {
-  const handleCancel = () => {
+  const handleCancel = useCallback(() => {
     storageService.remove('token')
-  }
+  }, [])
 
   return (
     <header className="absolute left-8 top-8 max-w-fit flex-initial">

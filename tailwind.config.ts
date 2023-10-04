@@ -70,6 +70,8 @@ const config: Config = {
           "url('~/src/assets/images/home_mobile_bg_top.png'), url('~/src/assets/images/home_mobile_bg_bottom.png')",
         sign_up_bottom_left:
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
+        not_found: "url('~/src/assets/images/bg_404.png')",
+        maintenance: "url('~/src/assets/images/bg_maintenance.png')",
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',

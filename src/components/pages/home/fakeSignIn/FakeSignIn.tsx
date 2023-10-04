@@ -1,6 +1,7 @@
 'use client'
 
-import { FormEvent, KeyboardEvent, useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiArrowDownSLine, RiErrorWarningFill } from 'react-icons/ri'
 
 import { fakeAccoutnEmails } from '@/utils'
@@ -25,6 +26,8 @@ type FieldsErrors = {
 export function FakeSignIn() {
   const dispatch = useAppDispatch()
 
+  const router = useRouter()
+
   const [email, setEmail] = useState('')
   const [fetching, setFetching] = useState(false)
   const [fieldsErrors, setFieldsErrors] = useState<FieldsErrors>(
@@ -39,52 +42,57 @@ export function FakeSignIn() {
     setEmail(value)
   }
 
-  const handleKeyEnterDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+  const handleKeyEnterDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
       isEmailValid(email) && handleSubmit()
     }
   }
 
-  const handleSubmit = async (event?: FormEvent) => {
-    event && event.preventDefault()
+  const handleSubmit = useCallback(
+    async (e?: FormEvent) => {
+      e && e.preventDefault()
 
-    setFetching(true)
+      setFetching(true)
 
-    const payload = { email }
+      const payload = { email }
 
-    const response = await httpService.post(
-      'accounts/fake-signup/',
-      null,
-      payload
-    )
-
-    if (response.fieldsErrors) {
-      setFieldsErrors(response.fieldsErrors)
-      setFetching(false)
-      return
-    } else if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
+      const response = await httpService.post(
+        'accounts/fake-signup/',
+        null,
+        payload
       )
-      setFetching(false)
-      return
-    }
 
-    setFetching(false)
-
-    storageService.set('token', response.token)
-
-    if (response.account) {
-      if (response.account.pre_match) {
-        dispatch(updatePreMatch(response.account.pre_match))
-      } else if (response.account.match) {
-        dispatch(updateMatch(response.account.match))
+      if (response.fieldsErrors) {
+        setFieldsErrors(response.fieldsErrors)
+        setFetching(false)
+        return
+      } else if (response.errorMsg) {
+        dispatch(
+          addToast({
+            content: response.errorMsg,
+            variant: 'error',
+          })
+        )
+        setFetching(false)
+        return
       }
-    }
-  }
+
+      setFetching(false)
+
+      storageService.set('token', response.token)
+
+      if (response.account) {
+        if (response.account.pre_match) {
+          dispatch(updatePreMatch(response.account.pre_match))
+        } else if (response.account.match) {
+          dispatch(updateMatch(response.account.match))
+        }
+      }
+
+      router.push('/verificar')
+    },
+    [dispatch, email, router]
+  )
 
   if (process.env.NEXT_PUBLIC_REACT_APP_SHOW_FAKE_SIGNIN === 'false')
     return null
@@ -101,7 +109,6 @@ export function FakeSignIn() {
                 <Input.Label htmlFor="email" label="Entrar sem Steam" />
 
                 <Input.Input
-                  value={email}
                   placeholder="exemplo@email.com"
                   type="email"
                   id="email"

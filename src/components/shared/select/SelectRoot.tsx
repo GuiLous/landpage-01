@@ -34,10 +34,10 @@ export function SelectRoot({ className, children, ...props }: SelectRootProps) {
   }, [isChecked, closeSelect])
 
   useEffect(() => {
-    function handleClickOutside(event: any) {
+    function handleClickOutside(e: any) {
       if (
         selectContainerRef.current &&
-        !selectContainerRef.current.contains(event.target)
+        !selectContainerRef.current.contains(e.target)
       ) {
         closeSelect()
       }
