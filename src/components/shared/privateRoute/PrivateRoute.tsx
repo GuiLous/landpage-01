@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from 'next/navigation'
 import { ReactNode, useCallback, useEffect, useState } from 'react'
 
-import { checkIsPublicRoute } from '@/functions'
+import { checkIfPathExists, checkIsPublicRoute } from '@/functions'
 
 import { httpService, storageService } from '@/services'
 
@@ -27,14 +27,17 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
   const [isVerifying, setIsVerifying] = useState(true)
 
   const isPublicPage = checkIsPublicRoute(pathname)
+  const pathExists = checkIfPathExists(pathname)
 
   const verifyUserToRedirect = useCallback(() => {
+    if (!user?.account?.is_verified && pathname === '/alterar-email') return
+
     if (!user?.is_active) return router.push('/conta-inativa')
     if (!user?.account) return router.push('/cadastrar')
     if (!user?.account?.is_verified) return router.push('/verificar')
 
     return router.push('/jogar')
-  }, [router, user])
+  }, [router, user, pathname])
 
   const redirectToPrivateRoutes = useCallback(
     (userToken: string | null) => {
@@ -71,6 +74,12 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
   )
 
   useEffect(() => {
+    if (pathname === '/not-found') {
+      return
+    }
+
+    if (!pathExists) return router.push('/not-found')
+
     const userToken = storageService.get('token')
 
     if (userToken && !user && pathname !== '/auth') {
@@ -90,6 +99,8 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     pathname,
     initializeUserSlice,
     user,
+    router,
+    pathExists,
   ])
 
   return (

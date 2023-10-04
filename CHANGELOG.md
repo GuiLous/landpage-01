@@ -9,6 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página `Maintenance` no projeto next [#710](https://github.com/3C-gg/reload-frontend/issues/710).
+- Cria componente `MaintenanceLogoutButton` no projeto next.
+- Cria `appApi` no projeto next.
+- Cria página `Inactive` no projeto next [#708](https://github.com/3C-gg/reload-frontend/issues/708).
+- Cria componentes `InactiveGoBackLink`, `InactiveHeroImage`, `InactiveMessage` e `InactiveSocialLinks` no projeto next.
+- Cria componente `ChangeEmailGoBackLink` no projeto next.
+- Adiciona prop `target` no component `Link` no projeto next.
+- Cria `accountsApi` e `baseApi` no projeto next.
+- Cria página `not-found` no projeto `next` [706](https://github.com/3C-gg/reload-frontend/issues/706).
+- Cria função `checkIfPathExists`no projeto `next`.
+- Adicionar `Slot` da lib `Radix` para transformar o botão em seu filho no projeto `next`.
+- Criar página `alterar-email` no projeto `next` [704](https://github.com/3C-gg/reload-frontend/issues/704).
 - Criar componente `LayoutHeader` para o `layout` de `signup` no projeto `next`.
 - Cria página `verificar` no projeto `next` [702](https://github.com/3C-gg/reload-frontend/issues/702).
 - Cria componente `Terms` no projeto `next`.
@@ -29,6 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera tipagem de `httpService` no projeto next.
+- Altera `PrivateRoute` para redirecionar para `not-found` no projeto `next`.
 - Altera componente `MatchHistoryList` para mostrar skeleton no lugar dos conteúdos da pagina [#684](https://github.com/3C-gg/reload-frontend/issues/684).
 - Altera componente `MatchHistoryList` para ocupar o tamanho mínimo igual os cards da esquerda [#684](https://github.com/3C-gg/reload-frontend/issues/684).
 - Altera componente `MatchHistoryList` para mostrar `nome do usuário` na mensagem de `partidas vazias` quando tiver visitando outro perfil [#682](https://github.com/3C-gg/reload-frontend/issues/682).
