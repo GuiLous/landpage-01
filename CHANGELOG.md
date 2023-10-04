@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página `Maintenance` no projeto next [#710](https://github.com/3C-gg/reload-frontend/issues/710).
+- Cria componente `MaintenanceLogoutButton` no projeto next.
+- Cria `appApi` no projeto next.
 - Cria página `Inactive` no projeto next [#708](https://github.com/3C-gg/reload-frontend/issues/708).
 - Cria componentes `InactiveGoBackLink`, `InactiveHeroImage`, `InactiveMessage` e `InactiveSocialLinks` no projeto next.
 - Cria componente `ChangeEmailGoBackLink` no projeto next.
