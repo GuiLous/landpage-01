@@ -5,9 +5,9 @@ export type Notification = {
   to_user_id: number
   content: string
   avatar: string
-  create_date: Date
+  create_date: Date | string
   from_user_id: number
-  read_date: Date | null
+  read_date: Date | null | string
 }
 
 export const notificationSlice = createSlice({
@@ -23,26 +23,18 @@ export const notificationSlice = createSlice({
     },
 
     readNotification: (state, action) => {
-      const notificationsUpdated = state
-
-      notificationsUpdated.map((item) =>
+      return state.map((item) =>
         item.id === action.payload.id
           ? { ...item, read_date: new Date().toISOString() }
           : item
       )
-
-      return [...notificationsUpdated]
     },
 
     readAllNotifications: (state) => {
-      const notificationsUpdated = state
-
-      notificationsUpdated.map((item) => ({
+      return state.map((item) => ({
         ...item,
         read_date: new Date().toISOString(),
       }))
-
-      return [...notificationsUpdated]
     },
   },
 })
