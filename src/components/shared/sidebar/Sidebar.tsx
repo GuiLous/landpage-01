@@ -16,7 +16,7 @@ type ItemMenu =
 
 export function Sidebar() {
   return (
-    <aside className="fixed h-full w-[300px] 3xl:w-[250px]">
+    <aside className="fixed z-10 h-full w-[300px] 3xl:w-[250px]">
       <main className="relative h-full flex-col justify-between gap-[4.875rem] overflow-hidden bg-gray-1100 3xl:gap-[3.625rem]">
         <SidebarLogo />
 
