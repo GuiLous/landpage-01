@@ -15,6 +15,7 @@ import { useAppSelector } from '@/store'
 
 import {
   Badge,
+  DrawerFriends,
   DrawerNotifications,
   Link,
   ModalLogout,
@@ -44,6 +45,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const [openModalSupport, setOpenModalSupport] = useState(false)
   const [openModalLogout, setOpenModalLogout] = useState(false)
   const [openDrawerNotifications, setOpenDrawerNotifications] = useState(false)
+  const [openDrawerFriends, setOpenDrawerFriends] = useState(false)
 
   const isSoon = SOON_ITEMS.includes(item)
 
@@ -60,7 +62,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const onClickFunction = ({ item }: SidebarMenuItemProps) => {
     switch (item) {
       case 'amigos':
-        console.log(item)
+        setOpenDrawerFriends(true)
         break
 
       case 'notificações':
@@ -159,6 +161,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         open={openDrawerNotifications}
         setOpen={setOpenDrawerNotifications}
       />
+      <DrawerFriends open={openDrawerFriends} setOpen={setOpenDrawerFriends} />
     </div>
   )
 }
