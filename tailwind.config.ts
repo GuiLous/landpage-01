@@ -169,7 +169,7 @@ const config: Config = {
           },
         },
         // Drawer
-        'drawer-content-show': {
+        'drawer-content-show-right': {
           from: {
             opacity: '0',
             transform: 'translate(50%, 0%)',
@@ -179,7 +179,7 @@ const config: Config = {
             transform: 'translate(0%, 0%)',
           },
         },
-        'drawer-content-hide': {
+        'drawer-content-hide-right': {
           from: {
             opacity: '1',
             transform: 'translate(0%, 0%)',
@@ -187,6 +187,26 @@ const config: Config = {
           to: {
             opacity: '0',
             transform: 'translate(50%, 0%)',
+          },
+        },
+        'drawer-content-show-left': {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+        },
+        'drawer-content-hide-left': {
+          from: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
           },
         },
       },
