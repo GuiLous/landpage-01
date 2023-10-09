@@ -60,7 +60,7 @@ export function DrawerNotifications({
           )}
         >
           {notifications.length > 0 ? (
-            <ScrollArea rootStyle="max-h-[calc(100vh_-_64px)]">
+            <ScrollArea className="max-h-[calc(100vh_-_64px)]">
               {notifications.map((notification) => (
                 <DrawerNotificationsItem
                   key={notification.id}
