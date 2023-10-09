@@ -50,7 +50,7 @@ export function DrawerContent({
         )}
       >
         <div className="flex-initial items-center justify-start">
-          <Dialog.Title className="px-6 font-semibold capitalize leading-none text-white">
+          <Dialog.Title className="px-5 font-semibold capitalize leading-none text-white">
             {title}
           </Dialog.Title>
         </div>
