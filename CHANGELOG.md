@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `DrawerFriends` e todos seus componentes no projeto next [#730](https://github.com/3C-gg/reload-frontend/issues/730).
+- Cria `lobbyApi` no projeto next.
 - Cria componente de `ScrollArea` no projeto next.
 - Cria componente de `DrawerNotification` e todos seus componentes no projeto next [#728](https://github.com/3C-gg/reload-frontend/issues/729).
 - Cria componente de `Drawer` no projeto next.
@@ -50,6 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera componente `Avatar` para adicionar `variants`.
 - Adiciona variant `neutral` em ` Button`.
 - Ajusta `imports` usando alias no projeto next.
 - Ajusta `httpService` no projeto next.
