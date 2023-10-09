@@ -5,7 +5,7 @@ import userSlice, { User } from '@/store/slices/userSlice'
 
 import { SidebarAvatarLink } from './SidebarAvatarLink'
 
-const status = ['online', 'offline', 'queued', 'in_game', 'teaming']
+const status = ['online', 'offline', 'queued', 'in_game', 'teaming', 'away']
 
 export default {
   title: 'Sidebar/SidebarAvatarLink',
