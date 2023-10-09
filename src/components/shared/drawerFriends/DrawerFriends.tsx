@@ -23,9 +23,9 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
   const [filter, setFilter] = useState('')
 
   const teamingFriends =
-    lobby.players?.filter((player) => player.user_id !== user?.id) || []
+    lobby?.players?.filter((player) => player.user_id !== user?.id) || []
 
-  const onlineFriends = friends.online.filter(
+  const onlineFriends = friends?.online?.filter(
     (friend) => friend.lobby_id !== user?.lobby_id
   )
 
@@ -35,13 +35,13 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const filteredOnlineFriends = onlineFriends.filter(
+  const filteredOnlineFriends = onlineFriends?.filter(
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const filteredOfflineFriends = friends.offline.filter(
+  const filteredOfflineFriends = friends?.offline?.filter(
     (friend) =>
       filter === '' ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
