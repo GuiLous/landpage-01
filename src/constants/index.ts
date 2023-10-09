@@ -55,3 +55,22 @@ export const FILE_TYPES = [
   'image/png',
   'application/pdf',
 ]
+
+// Drawer Friends
+export const CAN_RENDER_OPENED = ['No seu grupo', 'Online']
+export const COLOR_STATUS = {
+  online: 'text-green-600',
+  offline: 'text-gray-300',
+  away: 'text-salmon-500',
+  in_game: 'text-yellow-400',
+  teaming: 'text-yellow-400',
+  queued: 'text-yellow-400',
+}
+export const STATUS_MAP = {
+  online: 'Online',
+  offline: 'Offline',
+  away: 'Ausente',
+  in_game: 'Em jogo',
+  teaming: 'Em grupo',
+  queued: 'Na fila',
+}
