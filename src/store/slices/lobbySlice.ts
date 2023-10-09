@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { Friend } from './friendSlice'
 import { InviteElement } from './inviteSlice'
 import { Avatar, Status } from './userSlice'
 
@@ -20,7 +21,7 @@ export type Lobby = {
   id: number
   owner_id: number
   players_ids: number[]
-  players?: Player[]
+  players?: Friend[]
   invites?: InviteElement[]
   invited_players_ids: number[]
   seats: number
