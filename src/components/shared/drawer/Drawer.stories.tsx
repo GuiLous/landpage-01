@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { StoryObj } from '@storybook/react'
 
 import { Drawer } from './Drawer'
 
@@ -7,11 +7,13 @@ export default {
   component: Drawer,
   argTypes: {
     showOverlay: { control: 'boolean' },
+    position: { options: ['right', 'left'], type: 'select' },
   },
   args: {
     showOverlay: false,
+    position: 'right',
   },
-} as Meta
+}
 
 export const Default: StoryObj = {
   render: (props: any) => (
@@ -19,7 +21,7 @@ export const Default: StoryObj = {
       <Drawer.Button asChild>
         <button className="rounded-[4px] bg-purple-400 px-2 py-1">Abrir</button>
       </Drawer.Button>
-      <Drawer.Content showOverlay={props.showOverlay} title="Drawer">
+      <Drawer.Content {...props} title="Drawer">
         <div className="mt-4 text-white">Drawer</div>
       </Drawer.Content>
     </Drawer>

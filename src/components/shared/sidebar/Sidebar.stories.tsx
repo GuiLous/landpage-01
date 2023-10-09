@@ -108,7 +108,7 @@ export const Default = {
         user: { user },
         notifications,
         invites: { invites },
-        lobby: { ...lobby },
+        lobby,
       },
     })
 
