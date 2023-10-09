@@ -1,8 +1,9 @@
 import { ComponentProps, ElementType } from 'react'
+import { IconBaseProps } from 'react-icons'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const icon = tv({
-  base: 'absolute right-2 top-1/4 text-[1.375rem] text-white',
+  base: 'absolute right-2 top-1/2 -translate-y-2/4 text-[1.375rem] text-white group-focus-within:text-white',
   variants: {
     success: {
       true: 'text-green-400',
@@ -18,7 +19,8 @@ const icon = tv({
 })
 
 type InputRightIconProps = ComponentProps<'button'> &
-  VariantProps<typeof icon> & {
+  VariantProps<typeof icon> &
+  IconBaseProps & {
     icon: ElementType
   }
 
@@ -27,6 +29,7 @@ export function InputRightIcon({
   success,
   error,
   className,
+  ...props
 }: InputRightIconProps) {
-  return <Icon className={icon({ success, error, className })} />
+  return <Icon className={icon({ success, error, className })} {...props} />
 }
