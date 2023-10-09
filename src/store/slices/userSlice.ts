@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-export type Status = 'online' | 'offline' | 'queued' | 'in_game' | 'teaming'
+export type Status =
+  | 'online'
+  | 'offline'
+  | 'queued'
+  | 'in_game'
+  | 'teaming'
+  | 'away'
 
 export type Avatar = {
   small: string
