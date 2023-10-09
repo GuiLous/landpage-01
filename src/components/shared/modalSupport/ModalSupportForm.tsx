@@ -109,8 +109,16 @@ export function ModalSupportForm({
       return
     }
 
+    if (!user_id) {
+      const subjectsFiltered = response.filter(
+        (subject: string) => subject !== 'Reportar um usuário'
+      )
+      setSubjectOptions(formatSubjectOptions(subjectsFiltered))
+      return
+    }
+
     setSubjectOptions(formatSubjectOptions(response))
-  }, [dispatch])
+  }, [dispatch, user_id])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
