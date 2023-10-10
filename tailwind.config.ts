@@ -76,7 +76,7 @@ const config: Config = {
       animation: {
         fade: 'fade 0.2s ease-in-out',
         shake: 'shake 3.5s ease infinite',
-        // Tooltip
+        // Radix
         'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         'slide-right-fade':
           'slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -114,7 +114,7 @@ const config: Config = {
             transform: 'rotate(0)',
           },
         },
-        // Tooltip
+        // Radix
         'slide-up-fade': {
           '0%': { opacity: '0', transform: 'translateY(2px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
