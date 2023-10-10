@@ -25,7 +25,7 @@ export function Modal({ open, onOpenChange, children }: ModalProps) {
   )
 }
 
-export function ModalContent({ title, children, className }: ModalContent) {
+function ModalContent({ title, children, className }: ModalContent) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 bg-black/[.85] data-[state=closed]:animate-[dialog-overlay-hide_200ms] data-[state=open]:animate-[dialog-overlay-show_200ms]" />
