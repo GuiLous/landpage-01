@@ -51,7 +51,7 @@ export function DrawerNotifications({
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
         title="Notificações"
-        className="max-w-[350px] 3xl:max-w-[300px]"
+        className="z-20 max-w-[350px] select-none 3xl:max-w-[300px]"
       >
         <div
           className={twMerge(

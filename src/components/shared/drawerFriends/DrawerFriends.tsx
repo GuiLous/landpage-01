@@ -61,7 +61,7 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
         title="Amigos"
-        className="left-[300px] max-w-[320px] 3xl:left-[250px] 3xl:max-w-[300px]"
+        className="left-[300px] z-20 max-w-[320px] select-none 3xl:left-[250px] 3xl:max-w-[300px]"
         position="left"
       >
         <div className="mt-6 flex-col justify-start">
