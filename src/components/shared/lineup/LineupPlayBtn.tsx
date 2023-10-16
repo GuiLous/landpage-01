@@ -124,25 +124,25 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       queued={isInQueue || !!isIsMatch}
       restricted={isRestricted}
       className={twMerge(
-        'group max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
+        'group max-h-[73px] min-h-[73px] 3xl:max-h-[53px] 3xl:min-h-[53px]  w-full gap-3 rounded-lg p-0',
         isInQueue && 'hover:bg-red-500'
       )}
       onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
     >
       {!isRestricted && !isInQueue && (
-        <Button.Content className="text-[1.75rem] font-bold uppercase">
+        <Button.Content className="text-[1.75rem] font-bold uppercase 3xl:text-2xl">
           Jogar
         </Button.Content>
       )}
 
       {isRestricted && lobby.restriction_countdown && (
-        <Button.Content className="text-[1.75rem] font-bold uppercase">
+        <Button.Content className="text-[1.75rem] font-bold uppercase 3xl:text-2xl">
           <Timer initialTime={lobby.restriction_countdown} reverse />
         </Button.Content>
       )}
 
       {!isRestricted && isInQueue && (
-        <Button.Content className="flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase">
+        <Button.Content className="flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase 3xl:text-2xl">
           {lobby?.queue_time && (
             <div className="items-center justify-center transition-all group-hover:-mt-[73px] group-hover:opacity-0">
               {formatSecondsToMinutes(lobby.queue_time)}
