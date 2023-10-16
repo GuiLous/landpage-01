@@ -12,9 +12,15 @@ export default {
   component: LineupPlayBtn,
   argTypes: {
     isOwner: { control: 'boolean' },
+    isInQueue: { control: 'boolean' },
+    isRestricted: { control: 'boolean' },
+    isInMatch: { control: 'boolean' },
   },
   args: {
     isOwner: false,
+    isInQueue: false,
+    isRestricted: false,
+    isInMatch: false,
   },
 }
 
@@ -42,9 +48,9 @@ export const Default = (props: any) => {
     invited_players_ids: [],
     players_ids: [],
     owner_id: 1,
-    queue: null,
-    queue_time: null,
-    restriction_countdown: null,
+    queue: props.isInQueue ? new Date() : null,
+    queue_time: props.isInQueue ? 1 : null,
+    restriction_countdown: props.isRestricted ? 500 : null,
     seats: 4,
   }
 
@@ -55,7 +61,7 @@ export const Default = (props: any) => {
     is_active: true,
     is_online: true,
     lobby_id: 1,
-    match_id: null,
+    match_id: props.isInMatch ? 1 : null,
     pre_match_id: null,
     account: {
       avatar: {
