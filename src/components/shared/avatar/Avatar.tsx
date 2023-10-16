@@ -32,7 +32,7 @@ const avatar = tv({
       true: 'h-24 w-24 border-[4px]',
     },
     xxl: {
-      true: 'h-28 w-28 border-[4px]',
+      true: 'h-28 w-28 border-[4px] 3xl:h-24 3xl:w-24',
     },
   },
   defaultVariants: {
