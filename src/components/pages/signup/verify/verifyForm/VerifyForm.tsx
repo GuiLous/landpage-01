@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { PiArrowRight } from 'react-icons/pi'
 
@@ -10,13 +9,12 @@ import { httpService, storageService } from '@/services'
 
 import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
+import { updateUser } from '@/store/slices/userSlice'
 
 import { Button, PinInput } from '@/components/shared'
 
 export function VerifyForm() {
   const dispatch = useAppDispatch()
-
-  const router = useRouter()
 
   const [pin, setPin] = useState('')
 
@@ -68,10 +66,10 @@ export function VerifyForm() {
         return
       }
 
+      dispatch(updateUser(response))
       setFetching(false)
-      router.push('/jogar')
     },
-    [cannotSubmit, dispatch, pin, router]
+    [cannotSubmit, dispatch, pin]
   )
 
   return (
