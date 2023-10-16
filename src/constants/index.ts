@@ -74,3 +74,7 @@ export const STATUS_MAP = {
   teaming: 'Em grupo',
   queued: 'Na fila',
 }
+
+// Lobby
+export const GAME_TYPES = ['TDM 5X5', 'RANQUEADA 5X5', 'PERSONALIZADA']
+export const GAME_TYPES_AVAILABLE = ['RANQUEADA 5X5']

@@ -1,3 +1,5 @@
+import { MouseEvent, useState } from 'react'
+import { BsThreeDots } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
 import { COLOR_STATUS, STATUS_MAP } from '@/constants'
@@ -5,7 +7,7 @@ import { COLOR_STATUS, STATUS_MAP } from '@/constants'
 import { useAppSelector } from '@/store'
 import { Status } from '@/store/slices/userSlice'
 
-import { Avatar } from '@/components/shared'
+import { Avatar, MenuContext } from '@/components/shared'
 
 interface DrawerFriendsListGroupItemProps {
   user_id: number
@@ -18,16 +20,15 @@ interface DrawerFriendsListGroupItemProps {
 
 export function DrawerFriendsListGroupItem({
   avatar,
-  lobby_id,
   status,
   steam_url,
   user_id,
   username,
 }: DrawerFriendsListGroupItemProps) {
-  const { user } = useAppSelector((state) => state.user)
   const lobby = useAppSelector((state) => state.lobby)
-
   const { invites } = useAppSelector((state) => state.invites)
+
+  const [openMenu, setOpenMenu] = useState(false)
 
   let humanStatus = STATUS_MAP[status]
 
@@ -45,8 +46,17 @@ export function DrawerFriendsListGroupItem({
   const isAvailable =
     !alreadyOnTeam && availableStatuses.includes(status) && !lobby?.queue
 
+  const handleToggleMenu = (e: MouseEvent<HTMLDivElement>) => {
+    e.preventDefault()
+    setOpenMenu(!openMenu)
+  }
+
   return (
-    <div className="group animate-fade cursor-pointer gap-4 py-1.5 pl-0 pr-5 hover:bg-[linear-gradient(90deg,_#33333380_0%,_#33333300_100%,_#1e1e1e)]">
+    <div
+      className="group animate-fade cursor-pointer gap-4 py-1.5 pl-0 pr-5 hover:bg-[linear-gradient(90deg,_#33333380_0%,_#33333300_100%,_#1e1e1e)]"
+      onContextMenu={handleToggleMenu}
+      onClick={() => setOpenMenu(true)}
+    >
       <div className="min-h-full min-w-[4px] max-w-[4px] rounded-[0_4px_4px_0] bg-gray-400 opacity-0 group-hover:opacity-100" />
 
       <div className="items-center gap-3.5 px-0 py-1">
@@ -82,6 +92,24 @@ export function DrawerFriendsListGroupItem({
             {alreadyOnTeam ? 'Em grupo' : humanStatus}
           </span>
         </div>
+
+        <MenuContext open={openMenu} onOpenChange={setOpenMenu}>
+          <MenuContext.Trigger>
+            <BsThreeDots
+              className="text-gray-300 transition-colors hover:text-white"
+              size={18}
+            />
+          </MenuContext.Trigger>
+
+          <MenuContext.Content
+            alreadyInvited={alreadyInvited}
+            alreadyOnTeam={alreadyOnTeam}
+            isAvailable={isAvailable}
+            steam_url={steam_url}
+            user_id={user_id}
+            username={username}
+          />
+        </MenuContext>
       </div>
     </div>
   )

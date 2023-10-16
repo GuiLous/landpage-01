@@ -9,7 +9,7 @@ import { Status } from '@/store/slices/userSlice'
 
 import { lobbyApi } from '@/api'
 
-import { Avatar } from '../avatar/Avatar'
+import { Avatar } from '@/components/shared'
 
 interface DrawerFriendsInviteItemProps {
   invite_id: string
