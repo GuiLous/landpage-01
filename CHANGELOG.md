@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `Lineup` e todos seus componentes no projeto next [#745](https://github.com/3C-gg/reload-frontend/issues/745).
 - Cria componente de `MenuContext` e todos seus componentes no projeto next [#744](https://github.com/3C-gg/reload-frontend/issues/744).
 - Cria componente de `DrawerFriends` e todos seus componentes no projeto next [#730](https://github.com/3C-gg/reload-frontend/issues/730).
 - Cria `lobbyApi` no projeto next.
