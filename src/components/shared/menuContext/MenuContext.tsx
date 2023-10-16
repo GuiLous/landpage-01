@@ -3,7 +3,8 @@
 import * as PopoverPrimitive from '@radix-ui/react-popover'
 import { useState } from 'react'
 import { BsEnvelopeFill } from 'react-icons/bs'
-import { RiErrorWarningFill, RiUserFill } from 'react-icons/ri'
+import { FaUser } from 'react-icons/fa'
+import { RiErrorWarningFill } from 'react-icons/ri'
 import { SiSteam } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
@@ -45,7 +46,7 @@ export function MenuContext({
 
 export const menuItems = {
   invite: { icon: BsEnvelopeFill, label: 'Convidar para o grupo' },
-  profile: { icon: RiUserFill, label: 'Ver perfil' },
+  profile: { icon: FaUser, label: 'Ver perfil' },
   steam: { icon: SiSteam, label: 'Ver perfil na Steam' },
   report: { icon: RiErrorWarningFill, label: 'Reportar usuário' },
 }

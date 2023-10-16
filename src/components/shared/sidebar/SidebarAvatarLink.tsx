@@ -10,30 +10,28 @@ export function SidebarAvatarLink() {
   return (
     <div className="flex-initial flex-col items-center gap-6 px-7 3xl:px-6">
       <div className="flex-initial flex-col gap-4 rounded-[4px] bg-gray-700/50 px-3 py-4 3xl:px-2 3xl:py-3">
-        <Tooltip content="Meu perfil">
-          <div>
-            <Link
-              href={`/perfil/${user?.id}`}
-              className="flex w-full items-center justify-center gap-4 3xl:gap-3"
-            >
-              <Avatar
-                avatarUrl={user?.account?.avatar?.medium}
-                alt="Imagem de perfil"
-                status={user?.status}
-                md
-              />
+        <Tooltip content="Meu perfil" asChild={false}>
+          <Link
+            href={`/perfil/${user?.id}`}
+            className="flex w-full items-center justify-center gap-4 3xl:gap-3"
+          >
+            <Avatar
+              avatarUrl={user?.account?.avatar?.medium}
+              alt="Imagem de perfil"
+              status={user?.status}
+              md
+            />
 
-              <div className="flex-col gap-0.5">
-                <span className="text-sm font-medium text-white 3xl:text-xs">
-                  {user?.account?.username}
-                </span>
+            <div className="flex-col items-start gap-0.5">
+              <span className="text-sm font-medium text-white 3xl:text-xs">
+                {user?.account?.username}
+              </span>
 
-                <span className="text-xs font-medium text-purple-300">
-                  Level {user?.account?.level}
-                </span>
-              </div>
-            </Link>
-          </div>
+              <span className="text-xs font-medium text-purple-300">
+                Level {user?.account?.level}
+              </span>
+            </div>
+          </Link>
         </Tooltip>
       </div>
     </div>

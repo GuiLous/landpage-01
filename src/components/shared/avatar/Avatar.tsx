@@ -31,8 +31,8 @@ const avatar = tv({
     xl: {
       true: 'h-24 w-24 border-[4px]',
     },
-    '2xl': {
-      true: 'h-28 w-28  border-[4px]',
+    xxl: {
+      true: 'h-28 w-28 border-[4px] 3xl:h-24 3xl:w-24',
     },
   },
   defaultVariants: {
@@ -43,7 +43,7 @@ const avatar = tv({
     md: false,
     lg: false,
     xl: false,
-    '2xl': false,
+    xxl: false,
   },
 })
 

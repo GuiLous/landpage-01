@@ -33,6 +33,7 @@ const config: Config = {
           500: '#434343',
           600: '#3d3d3d',
           700: '#333333',
+          750: '#2f2f2f',
           800: '#282828',
           900: '#222222',
           1000: '#1E1E1E',
@@ -72,6 +73,7 @@ const config: Config = {
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
         not_found: "url('~/src/assets/images/bg_404.png')",
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
+        player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',

@@ -28,10 +28,10 @@ export function Modal({ open, onOpenChange, children }: ModalProps) {
 function ModalContent({ title, children, className }: ModalContent) {
   return (
     <Dialog.Portal>
-      <Dialog.Overlay className="fixed inset-0 bg-black/[.85] data-[state=closed]:animate-[dialog-overlay-hide_200ms] data-[state=open]:animate-[dialog-overlay-show_200ms]" />
+      <Dialog.Overlay className="fixed inset-0 z-40 bg-black/[.85] data-[state=closed]:animate-[dialog-overlay-hide_200ms] data-[state=open]:animate-[dialog-overlay-show_200ms]" />
       <Dialog.Content
         className={twMerge(
-          'fixed left-1/2 top-1/2 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-gray-1000 p-10 text-gray-900 shadow data-[state=closed]:animate-[dialog-content-hide_200ms] data-[state=open]:animate-[dialog-content-show_200ms] 3xl:p-8',
+          'z-50 fixed left-1/2 top-1/2 flex w-full max-w-md -translate-x-1/2 -translate-y-1/2 flex-col rounded-md bg-gray-1000 p-10 text-gray-900 shadow data-[state=closed]:animate-[dialog-content-hide_200ms] data-[state=open]:animate-[dialog-content-show_200ms] 3xl:p-8',
           className
         )}
       >
