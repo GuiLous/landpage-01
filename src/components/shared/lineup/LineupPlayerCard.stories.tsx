@@ -6,25 +6,30 @@ import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
 import { LineupPlayerCard } from './LineupPlayerCard'
 
 export default {
-  title: 'Friends/LineupPlayerCard',
+  title: 'Lineup/LineupPlayerCard',
   component: LineupPlayerCard,
   argTypes: {
     closeLabel: { control: 'text' },
+    onClose: { control: 'boolean' },
   },
   args: {
     closeLabel: 'Fechar',
+    onClose: false,
   },
 }
 
 const player = {
-  avatar:
-    'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+  avatar: {
+    large:
+      'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
+  },
   isLobbyOwner: false,
   username: 'User 1',
   steam_url: 'https://steamcommunity.com/profiles/76561198075990604',
   user_id: 1,
   latest_matches_results: ['V', 'D'],
   matches_played: 2,
+  level: 0,
 }
 
 export const Default = (props: any) => {
@@ -65,12 +70,14 @@ export const Default = (props: any) => {
   })
 
   return (
-    <Provider store={store}>
-      <LineupPlayerCard
-        player={player}
-        onClose={() => console.log('')}
-        {...props}
-      />
-    </Provider>
+    <div className="h-screen">
+      <Provider store={store}>
+        <LineupPlayerCard
+          player={player}
+          onClose={() => console.log('')}
+          {...props}
+        />
+      </Provider>
+    </div>
   )
 }

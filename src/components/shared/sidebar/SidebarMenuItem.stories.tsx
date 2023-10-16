@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Meta, StoryObj } from '@storybook/react'
 import { Provider } from 'react-redux'
 
+import appSlice, { AppState } from '@/store/slices/appSlice'
 import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
 import notificationSlice, {
   Notification,
@@ -98,16 +99,24 @@ export const Default: StoryObj = {
       to_user_id: 2,
     }))
 
+    const app: AppState = {
+      toasts: [],
+      friendListOpen: false,
+      maintenance: false,
+    }
+
     const store = configureStore({
       reducer: {
         user: userSlice,
         notifications: notificationSlice,
         invites: inviteSlice,
+        app: appSlice,
       },
       preloadedState: {
         user: { user },
         notifications,
         invites: { invites },
+        app,
       },
     })
 

@@ -1,7 +1,7 @@
 import { LineupPlayerCardCloseBtn } from './LineupPlayerCardCloseBtn'
 
 export default {
-  title: 'Friends/LineupPlayerCardCloseBtn',
+  title: 'Lineup/LineupPlayerCardCloseBtn',
   component: LineupPlayerCardCloseBtn,
   argTypes: {
     closeLabel: { control: 'text' },

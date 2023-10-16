@@ -1,7 +1,7 @@
 import { LineupPlayerCardLatestMatches } from './LineupPlayerCardLatestMatches'
 
 export default {
-  title: 'Friends/LineupPlayerCardLatestMatches',
+  title: 'Lineup/LineupPlayerCardLatestMatches',
   component: LineupPlayerCardLatestMatches,
   argTypes: {
     latest_matches_results: { control: 'array' },

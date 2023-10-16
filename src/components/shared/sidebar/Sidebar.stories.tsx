@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 
+import appSlice, { AppState } from '@/store/slices/appSlice'
 import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
 import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
 import notificationSlice, {
@@ -97,18 +98,26 @@ export const Default = {
       seats: 4,
     }
 
+    const app: AppState = {
+      toasts: [],
+      friendListOpen: false,
+      maintenance: false,
+    }
+
     const store = configureStore({
       reducer: {
         user: userSlice,
         notifications: notificationSlice,
         invites: inviteSlice,
         lobby: lobbySlice,
+        app: appSlice,
       },
       preloadedState: {
         user: { user },
         notifications,
         invites: { invites },
         lobby,
+        app,
       },
     })
 

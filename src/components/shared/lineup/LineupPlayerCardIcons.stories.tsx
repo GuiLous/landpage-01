@@ -1,7 +1,7 @@
 import { LineupPlayerCardIcons } from './LineupPlayerCardIcons'
 
 export default {
-  title: 'Friends/LineupPlayerCardIcons',
+  title: 'Lineup/LineupPlayerCardIcons',
   component: LineupPlayerCardIcons,
   argTypes: {
     steam_url: { control: 'text' },

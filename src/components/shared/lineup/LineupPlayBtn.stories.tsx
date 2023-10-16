@@ -8,7 +8,7 @@ import userSlice, { User } from '@/store/slices/userSlice'
 import { LineupPlayBtn } from './LineupPlayBtn'
 
 export default {
-  title: 'Friends/LineupPlayBtn',
+  title: 'Lineup/LineupPlayBtn',
   component: LineupPlayBtn,
   argTypes: {
     isOwner: { control: 'boolean' },

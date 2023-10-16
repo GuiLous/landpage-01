@@ -1,7 +1,7 @@
 import { LineupHiddenBox } from './LineupHiddenBox'
 
 export default {
-  title: 'Friends/LineupHiddenBox',
+  title: 'Lineup/LineupHiddenBox',
   component: LineupHiddenBox,
 }
 

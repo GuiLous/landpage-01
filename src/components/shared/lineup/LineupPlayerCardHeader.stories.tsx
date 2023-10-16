@@ -1,7 +1,7 @@
 import { LineupPlayerCardHeader } from './LineupPlayerCardHeader'
 
 export default {
-  title: 'Friends/LineupPlayerCardHeader',
+  title: 'Lineup/LineupPlayerCardHeader',
   component: LineupPlayerCardHeader,
   argTypes: {
     avatar: { control: 'text' },

@@ -2,12 +2,13 @@ import { configureStore } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 
 import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
+import preMatchSlice, { PreMatch } from '@/store/slices/preMatchSlice'
 import userSlice, { User } from '@/store/slices/userSlice'
 
 import { Lineup } from './Lineup'
 
 export default {
-  title: 'Friends/Lineup',
+  title: 'Lineup/Lineup',
   component: Lineup,
   argTypes: {
     isOwner: { control: 'number' },
@@ -26,10 +27,10 @@ export const Default = (props: any) => {
         status: 'online',
         username: 'Amigo 2',
         avatar: {
-          medium:
-            'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
+          medium: '',
           small: '',
-          large: '',
+          large:
+            'https://avatars.cloudflare.steamstatic.com/f7bbf6788b270061e4017e082691e3728a3eecc3_full.jpg',
         },
         level: 0,
         level_points: 0,
@@ -66,17 +67,22 @@ export const Default = (props: any) => {
     },
   }
 
+  const preMatch: PreMatch | null = null
+
   const store = configureStore({
     reducer: {
       lobby: lobbySlice,
       user: userSlice,
+      preMatch: preMatchSlice,
     },
-    preloadedState: { lobby, user: { user } },
+    preloadedState: { lobby, user: { user }, preMatch: { preMatch } },
   })
 
   return (
-    <Provider store={store}>
-      <Lineup {...props} />
-    </Provider>
+    <div className="h-screen">
+      <Provider store={store}>
+        <Lineup {...props} />
+      </Provider>
+    </div>
   )
 }

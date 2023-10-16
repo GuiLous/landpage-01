@@ -21,7 +21,7 @@ export default {
     xs: false,
     sm: false,
     smd: false,
-    md: false,
+    md: true,
     lg: false,
     xl: false,
   },
