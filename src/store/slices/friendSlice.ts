@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Avatar } from './userSlice'
+import { LatestMatchesResult } from './lobbySlice'
+import { Avatar, Status } from './userSlice'
 
 export type Friend = {
   steamid: string
@@ -9,9 +10,11 @@ export type Friend = {
   level_points: number
   user_id: number
   avatar: Avatar
-  status: string
+  status: Status
   steam_url: string
   lobby_id: number | null
+  matches_played?: number
+  latest_matches_results?: LatestMatchesResult[]
 }
 
 type FriendState = {

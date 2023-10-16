@@ -33,6 +33,7 @@ const config: Config = {
           500: '#434343',
           600: '#3d3d3d',
           700: '#333333',
+          750: '#2f2f2f',
           800: '#282828',
           900: '#222222',
           1000: '#1E1E1E',
@@ -72,11 +73,12 @@ const config: Config = {
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
         not_found: "url('~/src/assets/images/bg_404.png')",
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
+        player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',
         shake: 'shake 3.5s ease infinite',
-        // Tooltip
+        // Radix
         'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         'slide-right-fade':
           'slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
@@ -114,7 +116,7 @@ const config: Config = {
             transform: 'rotate(0)',
           },
         },
-        // Tooltip
+        // Radix
         'slide-up-fade': {
           '0%': { opacity: '0', transform: 'translateY(2px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -169,7 +171,7 @@ const config: Config = {
           },
         },
         // Drawer
-        'drawer-content-show': {
+        'drawer-content-show-right': {
           from: {
             opacity: '0',
             transform: 'translate(50%, 0%)',
@@ -179,7 +181,7 @@ const config: Config = {
             transform: 'translate(0%, 0%)',
           },
         },
-        'drawer-content-hide': {
+        'drawer-content-hide-right': {
           from: {
             opacity: '1',
             transform: 'translate(0%, 0%)',
@@ -187,6 +189,26 @@ const config: Config = {
           to: {
             opacity: '0',
             transform: 'translate(50%, 0%)',
+          },
+        },
+        'drawer-content-show-left': {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+        },
+        'drawer-content-hide-left': {
+          from: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
           },
         },
       },

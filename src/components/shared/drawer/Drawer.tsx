@@ -5,6 +5,8 @@ import { ReactNode } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
+type Position = 'left' | 'right'
+
 interface DrawerProps {
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -16,6 +18,7 @@ interface DrawerContent {
   children: ReactNode
   className?: string
   showOverlay?: boolean
+  position?: Position
 }
 
 export function Drawer({ open, onOpenChange, children }: DrawerProps) {
@@ -31,6 +34,7 @@ export function DrawerContent({
   children,
   className,
   showOverlay,
+  position = 'right',
 }: DrawerContent) {
   return (
     <Dialog.Portal>
@@ -39,12 +43,14 @@ export function DrawerContent({
       )}
       <Dialog.Content
         className={twMerge(
-          'fixed right-0 top-0 flex w-full h-screen max-w-md flex-col bg-gray-900 py-6 shadow data-[state=closed]:animate-[drawer-content-hide_200ms] data-[state=open]:animate-[drawer-content-show_200ms]',
+          'fixed right-0 top-0 flex w-full h-screen flex-col bg-gray-900 py-6 shadow data-[state=closed]:animate-[drawer-content-hide-right_200ms] data-[state=open]:animate-[drawer-content-show-right_200ms]',
+          position === 'left' &&
+            'data-[state=closed]:animate-[drawer-content-hide-left_200ms] data-[state=open]:animate-[drawer-content-show-left_200ms] left-0',
           className
         )}
       >
         <div className="flex-initial items-center justify-start">
-          <Dialog.Title className="px-6 font-semibold capitalize leading-none text-white">
+          <Dialog.Title className="px-5 font-semibold capitalize leading-none text-white">
             {title}
           </Dialog.Title>
         </div>

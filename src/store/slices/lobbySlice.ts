@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+import { Friend } from './friendSlice'
 import { InviteElement } from './inviteSlice'
-import { Avatar } from './userSlice'
+import { Avatar, Status } from './userSlice'
 
 export type LatestMatchesResult = 'D' | 'N/A' | 'V'
 
@@ -13,14 +14,14 @@ export type Player = {
   matches_played: number
   latest_matches_results: LatestMatchesResult[]
   steam_url: string
-  status: string
+  status: Status
 }
 
 export type Lobby = {
   id: number
   owner_id: number
   players_ids: number[]
-  players?: Player[]
+  players?: Friend[]
   invites?: InviteElement[]
   invited_players_ids: number[]
   seats: number

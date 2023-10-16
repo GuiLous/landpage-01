@@ -1,7 +1,8 @@
-import * as Avatar from '@radix-ui/react-avatar'
 import { DateTime } from 'luxon'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
+
+import { Avatar } from '@/components/shared'
 
 interface DrawerNotificationsItemProps extends ComponentProps<'div'> {
   content: string
@@ -41,13 +42,12 @@ export function DrawerNotificationsItem({
       </div>
 
       <div className="max-w-fit flex-initial justify-end">
-        <Avatar.Root className="relative inline-flex h-8 w-8 select-none items-center justify-center rounded-full border-2 border-purple-400">
-          <Avatar.Image
-            src={avatar}
-            alt="Imagem de perfil"
-            className="h-full w-full rounded-[inherit] object-cover"
-          />
-        </Avatar.Root>
+        <Avatar
+          avatarUrl={avatar}
+          alt="Imagem de perfil"
+          sm
+          className="border-2 border-purple-400"
+        />
       </div>
     </div>
   )

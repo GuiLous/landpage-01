@@ -12,9 +12,16 @@ import { ModalSupportForm } from './ModalSupportForm'
 interface ModalSupportProps {
   open: boolean
   setOpen: (state: boolean) => void
+  user_id?: number
+  username?: string
 }
 
-export function ModalSupport({ open, setOpen }: ModalSupportProps) {
+export function ModalSupport({
+  open,
+  setOpen,
+  user_id,
+  username,
+}: ModalSupportProps) {
   const [formSent, setFormSent] = useState(false)
 
   useEffect(() => {
@@ -38,7 +45,12 @@ export function ModalSupport({ open, setOpen }: ModalSupportProps) {
           <div className="mt-6 flex-col items-center justify-center gap-8 3xl:mt-5 3xl:gap-5">
             <ModalSupportDescription />
 
-            <ModalSupportForm open={open} setFormSent={setFormSent} />
+            <ModalSupportForm
+              open={open}
+              setFormSent={setFormSent}
+              user_id={user_id}
+              username={username}
+            />
           </div>
         )}
       </Modal.Content>

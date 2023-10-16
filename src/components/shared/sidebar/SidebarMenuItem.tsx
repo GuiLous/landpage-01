@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BiSolidMessage } from 'react-icons/bi'
 import { BsEnvelopeFill } from 'react-icons/bs'
@@ -11,10 +11,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
-import { useAppSelector } from '@/store'
+import { useAppDispatch, useAppSelector } from '@/store'
+import { toggleFriendList } from '@/store/slices/appSlice'
 
 import {
   Badge,
+  DrawerFriends,
   DrawerNotifications,
   Link,
   ModalLogout,
@@ -40,10 +42,16 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   const { user } = useAppSelector((state) => state.user)
   const { invites } = useAppSelector((state) => state.invites)
   const notifications = useAppSelector((state) => state.notifications)
+  const friendListOpenByApp = useAppSelector(
+    (state) => state.app.friendListOpen
+  )
+
+  const dispatch = useAppDispatch()
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
   const [openModalLogout, setOpenModalLogout] = useState(false)
   const [openDrawerNotifications, setOpenDrawerNotifications] = useState(false)
+  const [openDrawerFriends, setOpenDrawerFriends] = useState(false)
 
   const isSoon = SOON_ITEMS.includes(item)
 
@@ -57,10 +65,25 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
 
   const isLink = MENU_LINKS.includes(item)
 
+  const handleCloseFriendListDrawer = () => {
+    setOpenDrawerFriends(false)
+    dispatch(toggleFriendList(false))
+  }
+
+  const handleToggleFriendListDrawer = () => {
+    if (openDrawerFriends) {
+      dispatch(toggleFriendList(false))
+      setOpenDrawerFriends(false)
+    } else {
+      dispatch(toggleFriendList(true))
+      setOpenDrawerFriends(true)
+    }
+  }
+
   const onClickFunction = ({ item }: SidebarMenuItemProps) => {
     switch (item) {
       case 'amigos':
-        console.log(item)
+        handleToggleFriendListDrawer()
         break
 
       case 'notificações':
@@ -79,6 +102,10 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
         return null
     }
   }
+
+  useEffect(() => {
+    setOpenDrawerFriends(friendListOpenByApp)
+  }, [friendListOpenByApp])
 
   return (
     <div
@@ -158,6 +185,10 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
       <DrawerNotifications
         open={openDrawerNotifications}
         setOpen={setOpenDrawerNotifications}
+      />
+      <DrawerFriends
+        open={openDrawerFriends}
+        setOpen={handleCloseFriendListDrawer}
       />
     </div>
   )

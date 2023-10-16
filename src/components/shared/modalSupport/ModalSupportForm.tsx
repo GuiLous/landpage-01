@@ -52,9 +52,7 @@ export function ModalSupportForm({
 
   const [subject, setSubject] = useState('')
   const [description, setDescription] = useState('')
-
   const [files, setFiles] = useState<File[]>([])
-
   const [subjectOptions, setSubjectOptions] = useState<SubjectOptions[]>([
     { value: '', label: 'Carregando opções...', disabled: true },
   ])
@@ -109,8 +107,16 @@ export function ModalSupportForm({
       return
     }
 
+    if (!user_id) {
+      const subjectsFiltered = response.filter(
+        (subject: string) => subject !== 'Reportar um usuário'
+      )
+      setSubjectOptions(formatSubjectOptions(subjectsFiltered))
+      return
+    }
+
     setSubjectOptions(formatSubjectOptions(response))
-  }, [dispatch])
+  }, [dispatch, user_id])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
@@ -126,7 +132,7 @@ export function ModalSupportForm({
 
       formData.append('description', description)
       formData.append('subject', subject)
-      formData.append('report_user_id', user_id ?? null)
+      user_id && formData.append('report_user_id', user_id)
 
       for (const file of files) {
         formData.append('files', file)
@@ -163,7 +169,7 @@ export function ModalSupportForm({
   }, [open, getTickets])
 
   useEffect(() => {
-    if (username && subjectOptions.length > 1) {
+    if (username && subjectOptions.length > 2) {
       setSubject('Reportar um usuário')
       setDescription(`Quero reportar o usuário "${username}"`)
     }
@@ -192,6 +198,7 @@ export function ModalSupportForm({
                     <Select.OptionSelected
                       placeholder="Assunto"
                       className="text-xs"
+                      value={subject}
                     />
                     <Select.RightIcon icon={RiArrowDownSLine} size={22} />
                   </Select.OptionSelectedWrapper>
@@ -217,6 +224,7 @@ export function ModalSupportForm({
 
           <div className="flex-col">
             <TextArea
+              value={description}
               placeholder="Descrição"
               error={!!fieldsErrors.description}
               onChange={(e) => handleChangeDescription(e.target.value)}

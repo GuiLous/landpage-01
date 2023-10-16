@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit'
 
+export type Status =
+  | 'online'
+  | 'offline'
+  | 'queued'
+  | 'in_game'
+  | 'teaming'
+  | 'away'
+
 export type Avatar = {
   small: string
   medium: string
@@ -21,7 +29,7 @@ export type User = {
   is_active: boolean
   account?: Account
   is_online: boolean
-  status: string
+  status: Status
   lobby_id: number
   match_id: number | null
   pre_match_id: number | null

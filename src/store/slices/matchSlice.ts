@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { Avatar } from './userSlice'
+import { Avatar, Status } from './userSlice'
 
 const stats = {
   kills: 0,
@@ -65,7 +65,7 @@ export type Player = {
   stats: typeof stats
   progress: Progress
   level: number
-  status: string
+  status: Status
   steam_url: string
 }
 
