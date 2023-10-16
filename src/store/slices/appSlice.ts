@@ -10,7 +10,7 @@ export type Toast = {
   variant: string
 }
 
-type AppState = {
+export type AppState = {
   toasts: Toast[]
   friendListOpen: boolean
   maintenance: boolean

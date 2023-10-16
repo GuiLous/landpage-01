@@ -8,8 +8,6 @@ import { useSelectContext } from '@/contexts/select'
 
 interface SelectRightIconProps extends IconBaseProps {
   icon: ElementType
-  className?: string
-  size?: number
 }
 
 export function SelectRightIcon({

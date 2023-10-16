@@ -33,6 +33,7 @@ const config: Config = {
           500: '#434343',
           600: '#3d3d3d',
           700: '#333333',
+          750: '#2f2f2f',
           800: '#282828',
           900: '#222222',
           1000: '#1E1E1E',
@@ -72,18 +73,147 @@ const config: Config = {
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
         not_found: "url('~/src/assets/images/bg_404.png')",
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
+        player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',
+        shake: 'shake 3.5s ease infinite',
+        // Radix
+        'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-right-fade':
+          'slide-right-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-down-fade': 'slide-down-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+        'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
         fade: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
         },
+        shake: {
+          '0%, 20%, 40%': {
+            transform: 'rotate(0)',
+          },
+          '1.5%, 21.5%, 41.5%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '2.5%, 22.5%, 42.5%': {
+            transform: 'rotate(13deg) scale(1.2)',
+          },
+          '4%, 24%, 44%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '5%, 25%, 45%': {
+            transform: 'rotate(13deg) scale(1.2)',
+          },
+          '6.5%, 26.5%, 46.5%': {
+            transform: 'rotate(-13deg) scale(1.2)',
+          },
+          '7.5%, 27.5%, 47.5%': {
+            transform: 'rotate(0deg) scale(1)',
+          },
+          '100%': {
+            transform: 'rotate(0)',
+          },
+        },
+        // Radix
+        'slide-up-fade': {
+          '0%': { opacity: '0', transform: 'translateY(2px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-right-fade': {
+          '0%': { opacity: '0', transform: 'translateX(-2px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        'slide-down-fade': {
+          '0%': { opacity: '0', transform: 'translateY(-2px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        'slide-left-fade': {
+          '0%': { opacity: '0', transform: 'translateX(2px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        // Modal
+        'dialog-overlay-show': {
+          from: {
+            opacity: '0',
+          },
+          to: {
+            opacity: '1',
+          },
+        },
+        'dialog-overlay-hide': {
+          from: {
+            opacity: '1',
+          },
+          to: {
+            opacity: '0',
+          },
+        },
+        'dialog-content-show': {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, -50%) scale(0.95)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+        },
+        'dialog-content-hide': {
+          from: {
+            opacity: '1',
+            transform: 'translate(-50%, -50%) scale(1)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, -50%) scale(0.95)',
+          },
+        },
+        // Drawer
+        'drawer-content-show-right': {
+          from: {
+            opacity: '0',
+            transform: 'translate(50%, 0%)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+        },
+        'drawer-content-hide-right': {
+          from: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(50%, 0%)',
+          },
+        },
+        'drawer-content-show-left': {
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
+          },
+          to: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+        },
+        'drawer-content-hide-left': {
+          from: {
+            opacity: '1',
+            transform: 'translate(0%, 0%)',
+          },
+          to: {
+            opacity: '0',
+            transform: 'translate(-50%, 0%)',
+          },
+        },
       },
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('tailwindcss-radix')],
 }
 export default config

@@ -13,11 +13,11 @@ import userReducer from './slices/userSlice'
 export const store = configureStore({
   reducer: {
     app: appReducer,
-    friend: friendReducer,
-    invite: inviteReducer,
+    friends: friendReducer,
+    invites: inviteReducer,
     lobby: lobbyReducer,
     match: matchReducer,
-    notification: notificationReducer,
+    notifications: notificationReducer,
     preMatch: preMatchReducer,
     user: userReducer,
   },
