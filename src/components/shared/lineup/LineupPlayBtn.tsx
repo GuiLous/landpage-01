@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
@@ -41,7 +42,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const isRestricted = !!(lobby.restriction_countdown && !user?.match_id)
 
-  const isIsMatch = user?.match_id
+  const isInMatch = !!user?.match_id
 
   const handleQueue = useCallback(
     async (action: 'start' | 'cancel') => {
@@ -121,10 +122,11 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   return (
     <Button.Root
-      queued={isInQueue || !!isIsMatch}
+      queued={isInQueue}
       restricted={isRestricted}
+      disabled={(!isOwner && !lobby.queue) || !!preMatch || isInMatch}
       className={twMerge(
-        'group max-h-[73px] min-h-[73px] 3xl:max-h-[53px] 3xl:min-h-[53px]  w-full gap-3 rounded-lg p-0',
+        'group max-h-[73px] min-h-[73px] 3xl:min-h-[53px]  w-full gap-3 rounded-lg p-0 3xl:p-1',
         isInQueue && 'hover:bg-red-500'
       )}
       onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
@@ -136,8 +138,15 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       )}
 
       {isRestricted && lobby.restriction_countdown && (
-        <Button.Content className="text-[1.75rem] font-bold uppercase 3xl:text-2xl">
-          <Timer initialTime={lobby.restriction_countdown} reverse />
+        <Button.Content>
+          <span className="text-sm font-semibold uppercase 3xl:text-xs 3xl:leading-none">
+            Grupo com restrição
+          </span>
+
+          <div className="items-center justify-center gap-1 text-lg font-bold uppercase">
+            <MdBlock className="text-white" />
+            <Timer initialTime={lobby.restriction_countdown} reverse />
+          </div>
         </Button.Content>
       )}
 
