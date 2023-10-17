@@ -4,11 +4,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { useAppSelector } from '@/store'
 import { Friend } from '@/store/slices/friendSlice'
 
 import { lobbyApi } from '@/api'
+
+import { useShowErrorToast } from '@/hooks'
 
 import { LineupHiddenBox } from './LineupHiddenBox'
 import { LineupPlayBtn } from './LineupPlayBtn'
@@ -23,7 +24,7 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
   const { user } = useAppSelector((state) => state.user)
   const lobby = useAppSelector((state) => state.lobby)
 
-  const dispatch = useAppDispatch()
+  const showErrorToast = useShowErrorToast()
 
   const [lineup, setLineup] = useState<Friend[]>([])
 
@@ -50,10 +51,10 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
       )
 
       if (response.errorMsg) {
-        dispatch(addToast({ variant: 'error', content: response.errorMsg }))
+        showErrorToast(response.errorMsg)
       }
     },
-    [dispatch, lobby]
+    [lobby, showErrorToast]
   )
 
   const renderCloseLabel = useCallback(

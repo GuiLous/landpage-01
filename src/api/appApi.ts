@@ -1,8 +1,8 @@
 import { baseApi } from './baseApi'
 
 export const appApi = {
-  async healthCheck(token: string) {
-    return await baseApi.list('/', token)
+  async healthCheck(token: string, options?: RequestInit) {
+    return await baseApi.list({ endpoint: '/', token, options })
   },
 }
 

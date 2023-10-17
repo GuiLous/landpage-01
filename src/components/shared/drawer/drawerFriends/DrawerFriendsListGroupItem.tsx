@@ -16,6 +16,7 @@ interface DrawerFriendsListGroupItemProps {
   username: string
   lobby_id: number | null
   steam_url: string
+  title: string
 }
 
 export function DrawerFriendsListGroupItem({
@@ -24,6 +25,7 @@ export function DrawerFriendsListGroupItem({
   steam_url,
   user_id,
   username,
+  title,
 }: DrawerFriendsListGroupItemProps) {
   const lobby = useAppSelector((state) => state.lobby)
   const { invites } = useAppSelector((state) => state.invites)
@@ -63,7 +65,7 @@ export function DrawerFriendsListGroupItem({
         <div
           className={twMerge(
             'flex-initial max-w-fit',
-            status === 'offline' && 'opacity-50'
+            title === 'Offline' && 'opacity-50'
           )}
         >
           <Avatar
@@ -77,7 +79,7 @@ export function DrawerFriendsListGroupItem({
         <div
           className={twMerge(
             'flex-col gap-0.5',
-            status === 'offline' && 'opacity-50'
+            title === 'Offline' && 'opacity-50'
           )}
         >
           <span className="text-sm font-medium text-white 3xl:text-xs">
@@ -96,7 +98,7 @@ export function DrawerFriendsListGroupItem({
         <MenuContext open={openMenu} onOpenChange={setOpenMenu}>
           <MenuContext.Trigger>
             <BsThreeDots
-              className="text-gray-300 transition-colors hover:text-white"
+              className="text-gray-300 opacity-0 transition-all hover:text-white group-hover:opacity-100"
               size={18}
             />
           </MenuContext.Trigger>

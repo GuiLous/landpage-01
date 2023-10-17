@@ -5,12 +5,11 @@ import { twMerge } from 'tailwind-merge'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-
 import { accountsApi } from '@/api'
 
 import { Button, Modal } from '@/components/shared'
+
+import { useShowErrorToast } from '@/hooks'
 
 interface ModalLogoutProps {
   open: boolean
@@ -18,9 +17,8 @@ interface ModalLogoutProps {
 }
 
 export function ModalLogout({ open, setOpen }: ModalLogoutProps) {
-  const dispatch = useAppDispatch()
-
   const router = useRouter()
+  const showErrorToast = useShowErrorToast()
 
   const [fetching, setFetching] = useState(false)
 
@@ -37,19 +35,15 @@ export function ModalLogout({ open, setOpen }: ModalLogoutProps) {
     const response = await accountsApi.logout(token)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
+
       setFetching(false)
       return
     }
 
     storageService.remove('token')
     router.push('/')
-  }, [dispatch, router])
+  }, [showErrorToast, router])
 
   return (
     <Modal open={open} onOpenChange={setOpen}>

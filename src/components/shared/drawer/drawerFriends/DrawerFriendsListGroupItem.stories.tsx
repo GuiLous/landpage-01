@@ -23,6 +23,10 @@ export default {
     steam_url: { control: 'text' },
     user_id: { control: 'number' },
     username: { control: 'text' },
+    title: {
+      options: ['Online', 'Offline', 'No seu grupo'],
+      type: 'select',
+    },
   },
   args: {
     avatar:
@@ -32,6 +36,7 @@ export default {
     steam_url: '',
     user_id: 1,
     username: 'User 1',
+    title: 'Online',
   },
 }
 

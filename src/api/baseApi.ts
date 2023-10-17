@@ -9,6 +9,15 @@ type BaseAPI = {
   method: 'get' | 'post' | 'put' | 'delete' | 'patch'
   payload?: any
   headers_content_type?: string
+  options?: RequestInit
+}
+
+type request = {
+  endpoint: string
+  token: string
+  payload?: any
+  headers_content_type?: string
+  options?: RequestInit
 }
 
 export const baseApi = {
@@ -18,6 +27,7 @@ export const baseApi = {
     method,
     payload,
     headers_content_type,
+    options,
   }: BaseAPI) {
     let response
 
@@ -26,7 +36,8 @@ export const baseApi = {
         endpoint,
         token,
         payload,
-        headers_content_type
+        headers_content_type,
+        options
       )
     } catch (error) {
       store.dispatch(
@@ -41,60 +52,72 @@ export const baseApi = {
     return response
   },
 
-  async list(endpoint: string, token: string) {
-    return await this.call({ endpoint, token, method: 'get' })
+  async list({ endpoint, token, options }: request) {
+    return await this.call({ endpoint, token, method: 'get', options })
   },
 
-  async detail(endpoint: string, token: string) {
-    return await this.call({ endpoint, token, method: 'get' })
+  async detail({ endpoint, token, options }: request) {
+    return await this.call({ endpoint, token, method: 'get', options })
   },
 
-  async replace(
-    endpoint: string,
-    token: string,
-    payload?: any,
-    headers_content_type?: string
-  ) {
+  async replace({
+    endpoint,
+    token,
+    options,
+    payload,
+    headers_content_type,
+  }: request) {
     return await this.call({
       endpoint,
       token,
       method: 'put',
       payload,
       headers_content_type,
+      options,
     })
   },
 
-  async update(
-    endpoint: string,
-    token: string,
-    payload?: any,
-    headers_content_type?: string
-  ) {
+  async update({
+    endpoint,
+    token,
+    options,
+    payload,
+    headers_content_type,
+  }: request) {
     return await this.call({
       endpoint,
       token,
       method: 'patch',
       payload,
       headers_content_type,
+      options,
     })
   },
 
-  async create(
-    endpoint: string,
-    token: string,
-    payload?: any,
-    headers_content_type?: string
-  ) {
+  async create({
+    endpoint,
+    token,
+    options,
+    payload,
+    headers_content_type,
+  }: request) {
     return await this.call({
       endpoint,
       token,
       method: 'post',
       payload,
       headers_content_type,
+      options,
     })
   },
 
-  async delete(endpoint: string, token: string, payload?: any) {
-    return await this.call({ endpoint, token, method: 'delete', payload })
+  async delete({ endpoint, token, options, payload }: request) {
+    return await this.call({
+      endpoint,
+      token,
+      method: 'delete',
+      payload,
+      options,
+    })
   },
 }

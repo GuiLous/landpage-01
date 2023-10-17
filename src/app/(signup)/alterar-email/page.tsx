@@ -9,12 +9,13 @@ import { isEmailValid } from '@/functions'
 import { httpService, storageService } from '@/services'
 
 import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
 import { updateUser } from '@/store/slices/userSlice'
 
 import { ChangeEmailGoBackLink } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
+
+import { useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
@@ -24,6 +25,7 @@ export default function ChangeEmail() {
   const dispatch = useAppDispatch()
 
   const router = useRouter()
+  const showErrorToast = useShowErrorToast()
 
   const [email, setEmail] = useState('')
   const [fetching, setFetching] = useState(false)
@@ -66,12 +68,8 @@ export default function ChangeEmail() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
@@ -84,7 +82,7 @@ export default function ChangeEmail() {
 
       router.push('/verificar')
     },
-    [dispatch, email, router]
+    [dispatch, email, router, showErrorToast]
   )
 
   return (

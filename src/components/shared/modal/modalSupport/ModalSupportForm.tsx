@@ -9,9 +9,6 @@ import { storageService } from '@/services'
 
 import { SelectProvider } from '@/providers'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-
 import { supportApi } from '@/api'
 
 import {
@@ -22,6 +19,8 @@ import {
   Select,
   TextArea,
 } from '@/components/shared'
+
+import { useShowErrorToast } from '@/hooks'
 
 type SubjectOptions = {
   value: string
@@ -48,7 +47,7 @@ export function ModalSupportForm({
   username,
   setFormSent,
 }: ModalSupportFormProps) {
-  const dispatch = useAppDispatch()
+  const showErrorToast = useShowErrorToast()
 
   const [subject, setSubject] = useState('')
   const [description, setDescription] = useState('')
@@ -98,12 +97,8 @@ export function ModalSupportForm({
     const response = await supportApi.listTickets(userToken)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
+
       return
     }
 
@@ -116,7 +111,7 @@ export function ModalSupportForm({
     }
 
     setSubjectOptions(formatSubjectOptions(response))
-  }, [dispatch, user_id])
+  }, [showErrorToast, user_id])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
@@ -145,12 +140,8 @@ export function ModalSupportForm({
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
@@ -159,7 +150,7 @@ export function ModalSupportForm({
       reset()
       setFetching(false)
     },
-    [description, files, subject, dispatch, user_id, setFormSent]
+    [description, files, subject, showErrorToast, user_id, setFormSent]
   )
 
   useEffect(() => {

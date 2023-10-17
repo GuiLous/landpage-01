@@ -10,6 +10,8 @@ import { addInvite } from '@/store/slices/inviteSlice'
 
 import { lobbyApi } from '@/api'
 
+import { useShowErrorToast } from '@/hooks'
+
 import { menuItems } from './MenuContext'
 import { MenuItemIcon } from './MenuItemIcon'
 
@@ -38,6 +40,7 @@ export function MenuItem({
 
   const dispatch = useAppDispatch()
   const router = useRouter()
+  const showErrorToast = useShowErrorToast()
 
   const userToken = storageService.get('token')
 
@@ -64,13 +67,7 @@ export function MenuItem({
       user_id
     )
 
-    if (response.errorMsg)
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+    if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) {
       dispatch(addInvite(response))
       dispatch(

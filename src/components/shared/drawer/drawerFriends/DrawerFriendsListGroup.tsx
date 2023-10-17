@@ -136,6 +136,7 @@ export function DrawerFriendsListGroup({
               key={index}
               {...friend}
               avatar={friend.avatar.medium}
+              title={title}
             />
           ))}
         </div>

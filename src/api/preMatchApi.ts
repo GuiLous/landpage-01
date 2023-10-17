@@ -1,15 +1,23 @@
 import { baseApi } from './baseApi'
 
 export const preMatchApi = {
-  async playerLockIn(token: string) {
-    return await baseApi.create('pre-matches/lock-in/', token)
+  async playerLockIn(token: string, options?: RequestInit) {
+    return await baseApi.create({
+      endpoint: 'pre-matches/lock-in/',
+      token,
+      options,
+    })
   },
 
-  async playerReady(token: string) {
-    return await baseApi.create('pre-matches/ready/', token)
+  async playerReady(token: string, options?: RequestInit) {
+    return await baseApi.create({
+      endpoint: 'pre-matches/ready/',
+      token,
+      options,
+    })
   },
 
-  async detail(token: string) {
-    return await baseApi.detail('pre-matches/', token)
+  async detail(token: string, options?: RequestInit) {
+    return await baseApi.detail({ endpoint: 'pre-matches/', token, options })
   },
 }

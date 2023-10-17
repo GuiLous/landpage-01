@@ -7,17 +7,18 @@ import { MAINTENANCE_TIME_TO_CHECK_AGAIN } from '@/constants'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { useAppSelector } from '@/store'
 
 import { accountsApi, appApi } from '@/api'
 
 import { Button, Link } from '@/components/shared'
 
+import { useShowErrorToast } from '@/hooks'
+
 export function MaintenanceLogoutButton() {
   const maintenance = useAppSelector((state) => state.app.maintenance)
-  const dispatch = useAppDispatch()
 
+  const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const [isFetching, setIsFetching] = useState(false)
@@ -31,19 +32,15 @@ export function MaintenanceLogoutButton() {
     const response = await accountsApi.logout(token)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
+
       setIsFetching(false)
       return
     }
 
     storageService.remove('token')
     router.push('/')
-  }, [router, dispatch])
+  }, [router, showErrorToast])
 
   const checkMaintenance = useCallback(async () => {
     const userToken = storageService.get('token')
@@ -53,12 +50,7 @@ export function MaintenanceLogoutButton() {
     const response = await appApi.healthCheck(userToken)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
 
       return
     }
@@ -67,7 +59,7 @@ export function MaintenanceLogoutButton() {
       storageService.set('maintenance', 'ended')
       router.push('/jogar')
     }
-  }, [dispatch, router])
+  }, [router, showErrorToast])
 
   useEffect(() => {
     if (maintenance) {

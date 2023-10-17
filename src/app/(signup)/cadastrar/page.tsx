@@ -16,6 +16,8 @@ import { Terms } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
 
+import { useShowErrorToast } from '@/hooks'
+
 type FieldsErrors = {
   email: string
 }
@@ -23,6 +25,7 @@ type FieldsErrors = {
 export default function SignUp() {
   const dispatch = useAppDispatch()
 
+  const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const [email, setEmail] = useState('')
@@ -64,12 +67,8 @@ export default function SignUp() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
@@ -86,7 +85,7 @@ export default function SignUp() {
       dispatch(updateUser(response))
       if (response.account) router.push('/verificar')
     },
-    [dispatch, email, router]
+    [dispatch, email, router, showErrorToast]
   )
 
   return (

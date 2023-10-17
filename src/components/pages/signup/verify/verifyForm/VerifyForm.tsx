@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { PiArrowRight } from 'react-icons/pi'
 
@@ -8,15 +7,14 @@ import { TOTAL_SIGNUP_PINS } from '@/constants'
 
 import { httpService, storageService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-
 import { Button, PinInput } from '@/components/shared'
 
-export function VerifyForm() {
-  const dispatch = useAppDispatch()
+import { useInitializeReducers, useShowErrorToast } from '@/hooks'
 
-  const router = useRouter()
+export function VerifyForm() {
+  const { initializeReducers } = useInitializeReducers()
+
+  const showErrorToast = useShowErrorToast()
 
   const [pin, setPin] = useState('')
 
@@ -58,20 +56,16 @@ export function VerifyForm() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
 
+      initializeReducers(token)
       setFetching(false)
-      router.push('/jogar')
     },
-    [cannotSubmit, dispatch, pin, router]
+    [cannotSubmit, pin, showErrorToast, initializeReducers]
   )
 
   return (

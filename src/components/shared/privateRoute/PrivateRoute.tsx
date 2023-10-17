@@ -5,12 +5,16 @@ import { ReactNode, useCallback, useEffect, useState } from 'react'
 
 import { checkIfPathExists, checkIsPublicRoute } from '@/functions'
 
-import { httpService, storageService } from '@/services'
+import { storageService } from '@/services'
 
 import { useAppDispatch, useAppSelector } from '@/store'
-import { updateUser } from '@/store/slices/userSlice'
+import { addToast, updateMaintenance } from '@/store/slices/appSlice'
+
+import { appApi } from '@/api'
 
 import { Loading } from '@/components/shared'
+
+import { useInitializeReducers, useShowErrorToast } from '@/hooks'
 
 interface PrivateRouteProps {
   children?: ReactNode
@@ -18,10 +22,13 @@ interface PrivateRouteProps {
 
 export function PrivateRoute({ children }: PrivateRouteProps) {
   const { user } = useAppSelector((state) => state.user)
-  const dispatch = useAppDispatch()
+  const { match } = useAppSelector((state) => state.match)
 
+  const dispatch = useAppDispatch()
   const router = useRouter()
   const pathname = usePathname()
+  const showErrorToast = useShowErrorToast()
+  const { initializeReducers, isLoading } = useInitializeReducers()
 
   const [isAuth, setIsAuth] = useState(false)
   const [isVerifying, setIsVerifying] = useState(true)
@@ -29,6 +36,24 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
   const isPublicPage = checkIsPublicRoute(pathname)
   const pathExists = checkIfPathExists(pathname)
 
+  const checkMaintenance = useCallback(
+    async (userToken: string) => {
+      if (!userToken) return
+
+      const response = await appApi.healthCheck(userToken)
+
+      if (response.errorMsg) {
+        showErrorToast(response.errorMsg)
+
+        return
+      }
+
+      dispatch(updateMaintenance(response.maintenance))
+    },
+    [dispatch, showErrorToast]
+  )
+
+  // Redirect user to correct page
   const verifyUserToRedirect = useCallback(() => {
     if (!user?.account?.is_verified && pathname === '/alterar-email') return
 
@@ -63,16 +88,7 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     [verifyUserToRedirect, router]
   )
 
-  const initializeUserSlice = useCallback(
-    async (userToken: string) => {
-      const response = await httpService.get('accounts/auth/', userToken)
-
-      dispatch(updateUser(response))
-      setIsVerifying(false)
-    },
-    [dispatch]
-  )
-
+  // Redirect user to correct page
   useEffect(() => {
     if (pathname === '/not-found') {
       return
@@ -83,7 +99,7 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     const userToken = storageService.get('token')
 
     if (userToken && !user && pathname !== '/auth') {
-      initializeUserSlice(userToken)
+      initializeReducers(userToken)
       return
     }
 
@@ -97,23 +113,55 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
     redirectToPrivateRoutes,
     redirectToPublicRoutes,
     pathname,
-    initializeUserSlice,
+    initializeReducers,
     user,
     router,
     pathExists,
   ])
 
+  // Remove matchConnectTimer from storage
+  useEffect(() => {
+    if (match) {
+      const connectPagePath = `/partidas/${match.id}/conectar`
+      if (match && pathname !== connectPagePath) {
+        storageService.remove('matchConnectTimer')
+      }
+    }
+  }, [match, pathname])
+
+  // check maintenance
+  useEffect(() => {
+    const userToken = storageService.get('token')
+
+    user && userToken && checkMaintenance(userToken)
+  }, [user, checkMaintenance])
+
+  useEffect(() => {
+    const maintenance = storageService.get('maintenance')
+    if (maintenance && maintenance === 'ended') {
+      storageService.remove('maintenance')
+      dispatch(
+        addToast({
+          title: 'A manutenção foi finalizada',
+          content:
+            'Filas e convites de lobby estão habilitados novamente. GLHF!',
+          variant: 'warning',
+        })
+      )
+    }
+  }, [dispatch])
+
   return (
     <>
       {!isAuth && isPublicPage
         ? children
-        : ((!isAuth && !isPublicPage) || isVerifying) && (
+        : ((!isAuth && !isPublicPage) || isVerifying || isLoading) && (
             <Loading.Overlay>
               <Loading.Gif />
             </Loading.Overlay>
           )}
 
-      {isAuth && !isVerifying && children}
+      {isAuth && !isVerifying && !isLoading && children}
     </>
   )
 }

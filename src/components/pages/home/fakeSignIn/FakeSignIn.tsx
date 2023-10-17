@@ -8,24 +8,21 @@ import { fakeAccountEmails } from '@/utils'
 
 import { isEmailValid } from '@/functions'
 
-import { httpService, storageService } from '@/services'
+import { httpService } from '@/services'
 
 import { SelectProvider } from '@/providers'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-import { updateMatch } from '@/store/slices/matchSlice'
-import { updatePreMatch } from '@/store/slices/preMatchSlice'
-
 import { Button, Divider, Input, Select } from '@/components/shared'
+
+import { useInitializeReducers, useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
 }
 
 export function FakeSignIn() {
-  const dispatch = useAppDispatch()
-
+  const { initializeReducers } = useInitializeReducers()
+  const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const [email, setEmail] = useState('')
@@ -67,31 +64,19 @@ export function FakeSignIn() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
 
       setFetching(false)
 
-      storageService.set('token', response.token)
-
-      if (response.account) {
-        if (response.account.pre_match) {
-          dispatch(updatePreMatch(response.account.pre_match))
-        } else if (response.account.match) {
-          dispatch(updateMatch(response.account.match))
-        }
-      }
+      initializeReducers(response.token)
 
       router.push('/verificar')
     },
-    [dispatch, email, router]
+    [email, router, showErrorToast, initializeReducers]
   )
 
   if (process.env.NEXT_PUBLIC_REACT_APP_SHOW_FAKE_SIGNIN === 'false')
