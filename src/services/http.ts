@@ -19,6 +19,7 @@ type Request = {
   payload: any
   headers_content_type?: string
   custom_unknown_error?: string
+  options?: RequestInit
 }
 
 export const httpService = {
@@ -29,6 +30,7 @@ export const httpService = {
     payload,
     headers_content_type = 'application/json',
     custom_unknown_error,
+    options,
   }: Request) {
     if (endpoint[0] !== '/') endpoint = '/' + endpoint
 
@@ -53,6 +55,7 @@ export const httpService = {
     let request: RequestInit = {
       method,
       headers,
+      ...options,
     }
 
     if (payload) {
@@ -97,12 +100,13 @@ export const httpService = {
     }
   },
 
-  get(endpoint: string, token: string | null) {
+  get(endpoint: string, token: string | null, options?: RequestInit) {
     return httpService.request({
       method: 'GET',
       endpoint,
       token,
       payload: null,
+      options,
     })
   },
 
@@ -110,7 +114,8 @@ export const httpService = {
     endpoint: string,
     token: string | null,
     payload: any,
-    headers_content_type?: string
+    headers_content_type?: string,
+    options?: RequestInit
   ) {
     return httpService.request({
       method: 'POST',
@@ -118,6 +123,7 @@ export const httpService = {
       token,
       payload,
       headers_content_type,
+      options,
     })
   },
 
@@ -125,7 +131,8 @@ export const httpService = {
     endpoint: string,
     token: string | null,
     payload: any,
-    headers_content_type?: string
+    headers_content_type?: string,
+    options?: RequestInit
   ) {
     return httpService.request({
       method: 'PATCH',
@@ -133,6 +140,7 @@ export const httpService = {
       token,
       payload,
       headers_content_type,
+      options,
     })
   },
 
@@ -140,7 +148,8 @@ export const httpService = {
     endpoint: string,
     token: string | null,
     payload: any,
-    headers_content_type?: string
+    headers_content_type?: string,
+    options?: RequestInit
   ) {
     return httpService.request({
       method: 'PUT',
@@ -148,11 +157,23 @@ export const httpService = {
       token,
       payload,
       headers_content_type,
+      options,
     })
   },
 
-  delete(endpoint: string, token: string | null, payload: any) {
-    return httpService.request({ method: 'DELETE', endpoint, token, payload })
+  delete(
+    endpoint: string,
+    token: string | null,
+    payload: any,
+    options?: RequestInit
+  ) {
+    return httpService.request({
+      method: 'DELETE',
+      endpoint,
+      token,
+      payload,
+      options,
+    })
   },
 }
 
