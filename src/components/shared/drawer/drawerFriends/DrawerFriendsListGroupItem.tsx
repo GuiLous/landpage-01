@@ -27,10 +27,6 @@ export function DrawerFriendsListGroupItem({
   username,
   title,
 }: DrawerFriendsListGroupItemProps) {
-  console.log('🚀 - username:', username)
-
-  console.log('🚀 - status:', status)
-
   const lobby = useAppSelector((state) => state.lobby)
   const { invites } = useAppSelector((state) => state.invites)
 
