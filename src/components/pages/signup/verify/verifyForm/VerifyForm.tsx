@@ -7,15 +7,12 @@ import { TOTAL_SIGNUP_PINS } from '@/constants'
 
 import { httpService, storageService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { updateUser } from '@/store/slices/userSlice'
-
 import { Button, PinInput } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useInitializeReducers, useShowErrorToast } from '@/hooks'
 
 export function VerifyForm() {
-  const dispatch = useAppDispatch()
+  const { initializeReducers } = useInitializeReducers()
 
   const showErrorToast = useShowErrorToast()
 
@@ -65,10 +62,10 @@ export function VerifyForm() {
         return
       }
 
-      dispatch(updateUser(response))
+      initializeReducers(token)
       setFetching(false)
     },
-    [cannotSubmit, dispatch, pin, showErrorToast]
+    [cannotSubmit, pin, showErrorToast, initializeReducers]
   )
 
   return (
