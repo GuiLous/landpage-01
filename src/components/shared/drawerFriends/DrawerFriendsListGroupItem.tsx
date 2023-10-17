@@ -96,7 +96,7 @@ export function DrawerFriendsListGroupItem({
         <MenuContext open={openMenu} onOpenChange={setOpenMenu}>
           <MenuContext.Trigger>
             <BsThreeDots
-              className="text-gray-300 transition-colors hover:text-white"
+              className="text-gray-300 opacity-0 transition-all hover:text-white group-hover:opacity-100"
               size={18}
             />
           </MenuContext.Trigger>
