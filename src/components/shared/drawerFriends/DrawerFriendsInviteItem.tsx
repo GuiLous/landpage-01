@@ -1,15 +1,16 @@
+import { useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
 import { Status } from '@/store/slices/userSlice'
 
 import { lobbyApi } from '@/api'
 
 import { Avatar } from '@/components/shared'
+
+import { useShowErrorToast } from '@/hooks'
 
 interface DrawerFriendsInviteItemProps {
   invite_id: string
@@ -24,38 +25,29 @@ export function DrawerFriendsInviteItem({
   status,
   username,
 }: DrawerFriendsInviteItemProps) {
-  const dispatch = useAppDispatch()
+  const showErrorToast = useShowErrorToast()
+
   const userToken = storageService.get('token')
 
-  const handleAccept = async () => {
+  const handleAccept = useCallback(async () => {
     if (!userToken) return
 
     const response = await lobbyApi.acceptInvite(userToken, invite_id)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
     }
-  }
+  }, [invite_id, showErrorToast, userToken])
 
-  const handleRefuse = async () => {
+  const handleRefuse = useCallback(async () => {
     if (!userToken) return
 
     const response = await lobbyApi.refuseInvite(userToken, invite_id)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
     }
-  }
+  }, [showErrorToast, invite_id, userToken])
 
   return (
     <div className="items-stretch bg-[linear-gradient(90deg,_#6847ff80_0%,_#33333300_100%,_#1e1e1e)] py-2.5 pl-5 pr-4">

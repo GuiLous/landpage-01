@@ -13,11 +13,12 @@ import { httpService, storageService } from '@/services'
 import { SelectProvider } from '@/providers'
 
 import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
 import { updateMatch } from '@/store/slices/matchSlice'
 import { updatePreMatch } from '@/store/slices/preMatchSlice'
 
 import { Button, Divider, Input, Select } from '@/components/shared'
+
+import { useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
@@ -26,6 +27,7 @@ type FieldsErrors = {
 export function FakeSignIn() {
   const dispatch = useAppDispatch()
 
+  const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const [email, setEmail] = useState('')
@@ -67,12 +69,8 @@ export function FakeSignIn() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
@@ -91,7 +89,7 @@ export function FakeSignIn() {
 
       router.push('/verificar')
     },
-    [dispatch, email, router]
+    [dispatch, email, router, showErrorToast]
   )
 
   if (process.env.NEXT_PUBLIC_REACT_APP_SHOW_FAKE_SIGNIN === 'false')

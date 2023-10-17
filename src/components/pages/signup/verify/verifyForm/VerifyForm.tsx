@@ -8,13 +8,16 @@ import { TOTAL_SIGNUP_PINS } from '@/constants'
 import { httpService, storageService } from '@/services'
 
 import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
 import { updateUser } from '@/store/slices/userSlice'
 
 import { Button, PinInput } from '@/components/shared'
 
+import { useShowErrorToast } from '@/hooks'
+
 export function VerifyForm() {
   const dispatch = useAppDispatch()
+
+  const showErrorToast = useShowErrorToast()
 
   const [pin, setPin] = useState('')
 
@@ -56,12 +59,8 @@ export function VerifyForm() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
+
         setFetching(false)
         return
       }
@@ -69,7 +68,7 @@ export function VerifyForm() {
       dispatch(updateUser(response))
       setFetching(false)
     },
-    [cannotSubmit, dispatch, pin]
+    [cannotSubmit, dispatch, pin, showErrorToast]
   )
 
   return (

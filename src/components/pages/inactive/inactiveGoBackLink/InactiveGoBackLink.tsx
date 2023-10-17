@@ -5,16 +5,14 @@ import { useCallback } from 'react'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-
 import { accountsApi } from '@/api'
 
 import { Link } from '@/components/shared'
 
-export function InactiveGoBackLink() {
-  const dispatch = useAppDispatch()
+import { useShowErrorToast } from '@/hooks'
 
+export function InactiveGoBackLink() {
+  const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const handleLogout = useCallback(async () => {
@@ -25,18 +23,14 @@ export function InactiveGoBackLink() {
     const response = await accountsApi.logout(token)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
+
       return
     }
 
     storageService.remove('token')
     router.push('/')
-  }, [dispatch, router])
+  }, [router, showErrorToast])
 
   return (
     <div className="mt-4 flex-initial justify-center">

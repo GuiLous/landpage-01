@@ -7,14 +7,13 @@ import { formatSecondsToMinutes } from '@/functions'
 
 import { storageService } from '@/services'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { useAppSelector } from '@/store'
 
 import { lobbyApi, preMatchApi } from '@/api'
 
 import { Button, Timer } from '@/components/shared'
 
-import { useAudio } from '@/hooks'
+import { useAudio, useShowErrorToast } from '@/hooks'
 
 import matchFoundAudio from '@/assets/audios/match_found.ogg'
 
@@ -27,7 +26,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const { user } = useAppSelector((state) => state.user)
   const { preMatch } = useAppSelector((state) => state.preMatch)
 
-  const dispatch = useAppDispatch()
+  const showErrorToast = useShowErrorToast()
 
   const [toggle] = useAudio(matchFoundAudio)
 
@@ -62,15 +61,10 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       }
 
       if (response.errorMsg) {
-        dispatch(
-          addToast({
-            content: response.errorMsg,
-            variant: 'error',
-          })
-        )
+        showErrorToast(response.errorMsg)
       }
     },
-    [dispatch, isOwner, lobby, preMatch, user, userToken]
+    [isOwner, lobby, preMatch, user, userToken, showErrorToast]
   )
 
   const handleCancelQueue = useCallback(() => {
@@ -93,14 +87,9 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
     response = await preMatchApi.playerLockIn(userToken)
 
     if (response.errorMsg) {
-      dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      showErrorToast(response.errorMsg)
     }
-  }, [dispatch])
+  }, [showErrorToast])
 
   const onMatchFound = useCallback(() => {
     if (preMatch && preMatch.state === 'lock_in') {
