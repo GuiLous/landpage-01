@@ -27,5 +27,6 @@ export * from './sidebar/Sidebar'
 export * from './textArea/TextArea'
 export * from './timer/Timer'
 export * from './tooltip/Tooltip'
+export * from './websocket/RenderWSS'
 
 
