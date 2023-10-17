@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `Websocket` no projeto next [#754](https://github.com/3C-gg/reload-frontend/issues/754).
+- Adiciona inicialização das api`s no projeto next.
 - Cria componente de `Lineup` e todos seus componentes no projeto next [#745](https://github.com/3C-gg/reload-frontend/issues/745).
 - Cria componente de `MenuContext` e todos seus componentes no projeto next [#744](https://github.com/3C-gg/reload-frontend/issues/744).
 - Cria componente de `DrawerFriends` e todos seus componentes no projeto next [#730](https://github.com/3C-gg/reload-frontend/issues/730).
@@ -109,6 +111,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige fluxo de cadastrar no projeto next.
+- Corrige botões de `lobby` que quando tem valor zero buga o contador no projeto next.
 - Corrige slice de `notifications` no projeto next.
 - Corrige bordas do componente `Progress`.
 - Corrige componente `Progress` para não pintar de vermelho quando os `pontos ganhos (earned_points)` forem 0 [#686](https://github.com/3C-gg/reload-frontend/issues/686).
