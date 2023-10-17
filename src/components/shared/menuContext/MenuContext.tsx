@@ -8,7 +8,7 @@ import { RiErrorWarningFill } from 'react-icons/ri'
 import { SiSteam } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
-import { ModalSupport } from '../modalSupport/ModalSupport'
+import { ModalSupport } from '../modal/modalSupport/ModalSupport'
 import { MenuItem, keysMenuType } from './MenuItem'
 
 type PopoverContentPrimitiveProps = React.ComponentProps<
