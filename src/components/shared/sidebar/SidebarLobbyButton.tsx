@@ -57,6 +57,7 @@ export function SidebarLobbyButton() {
           <div className="justify-end">
             <Button.Content className="text-sm font-semibold capitalize">
               {isInQueue &&
+                lobby.queue_time !== 0 &&
                 lobby.queue_time &&
                 formatSecondsToMinutes(lobby.queue_time)}
 
