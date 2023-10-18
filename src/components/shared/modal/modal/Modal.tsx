@@ -15,6 +15,7 @@ interface ModalContent {
   title: string
   children: ReactNode
   className?: string
+  showCloseButton?: boolean
 }
 
 export function Modal({ open, onOpenChange, children }: ModalProps) {
@@ -25,7 +26,12 @@ export function Modal({ open, onOpenChange, children }: ModalProps) {
   )
 }
 
-function ModalContent({ title, children, className }: ModalContent) {
+function ModalContent({
+  title,
+  children,
+  className,
+  showCloseButton = true,
+}: ModalContent) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay className="fixed inset-0 z-40 bg-black/[.85] data-[state=closed]:animate-[dialog-overlay-hide_200ms] data-[state=open]:animate-[dialog-overlay-show_200ms]" />
@@ -40,9 +46,12 @@ function ModalContent({ title, children, className }: ModalContent) {
             {title}
           </Dialog.Title>
         </div>
-        <Dialog.Close className="absolute right-3 top-3 text-base text-white transition-colors hover:text-gray-300">
-          <RxCross1 className="" />
-        </Dialog.Close>
+
+        {showCloseButton && (
+          <Dialog.Close className="absolute right-3 top-3 text-base text-white transition-colors hover:text-gray-300">
+            <RxCross1 className="" />
+          </Dialog.Close>
+        )}
 
         {children}
       </Dialog.Content>
