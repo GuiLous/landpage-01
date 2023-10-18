@@ -15,12 +15,12 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { toggleFriendList } from '@/store/slices/appSlice'
 
 import {
-    Badge,
-    DrawerFriends,
-    DrawerNotifications,
-    Link,
-    ModalLogout,
-    ModalSupport,
+  Badge,
+  DrawerFriends,
+  DrawerNotifications,
+  Link,
+  ModalLogout,
+  ModalSupport,
 } from '@/components/shared'
 
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
