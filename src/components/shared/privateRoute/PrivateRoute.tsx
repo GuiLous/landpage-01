@@ -55,11 +55,21 @@ export function PrivateRoute({ children }: PrivateRouteProps) {
 
   // Redirect user to correct page
   const verifyUserToRedirect = useCallback(() => {
+    const pathsToAvoid = [
+      '/alterar-email',
+      '/conta-inativa',
+      '/cadastrar',
+      '/verificar',
+      '/',
+    ]
+
     if (!user?.account?.is_verified && pathname === '/alterar-email') return
 
     if (!user?.is_active) return router.push('/conta-inativa')
     if (!user?.account) return router.push('/cadastrar')
     if (!user?.account?.is_verified) return router.push('/verificar')
+
+    if (!pathsToAvoid.includes(pathname)) return
 
     return router.push('/jogar')
   }, [router, user, pathname])
