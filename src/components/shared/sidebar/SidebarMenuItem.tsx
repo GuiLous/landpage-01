@@ -15,12 +15,12 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { toggleFriendList } from '@/store/slices/appSlice'
 
 import {
-  Badge,
-  DrawerFriends,
-  DrawerNotifications,
-  Link,
-  ModalLogout,
-  ModalSupport,
+    Badge,
+    DrawerFriends,
+    DrawerNotifications,
+    Link,
+    ModalLogout,
+    ModalSupport,
 } from '@/components/shared'
 
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
@@ -110,7 +110,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   return (
     <div
       className={twMerge(
-        'min-h-[40px] flex-initial rounded-[4px] transition-colors hover:bg-purple-400/30 group',
+        'min-h-[40px] flex-initial rounded transition-colors hover:bg-purple-400/30 group',
         isSoon && 'opacity-70 hover:bg-transparent'
       )}
     >

@@ -39,7 +39,7 @@ export function FileCard({ file, onRemoveFiles }: FileCardProps) {
   }
 
   return (
-    <div className="max-w-[50%] flex-[0_0_48.5%] items-center justify-between rounded-[4px] border border-gray-700 bg-gray-1200 py-3 pl-3.5 pr-4 3xl:py-2 3xl:pl-2.5 3xl:pr-3">
+    <div className="max-w-[50%] flex-[0_0_48.5%] items-center justify-between rounded border border-gray-700 bg-gray-1200 py-3 pl-3.5 pr-4 3xl:py-2 3xl:pl-2.5 3xl:pr-3">
       <div className="items-center gap-3 3xl:gap-2">
         <div className="h-[37px] w-[28px] max-w-[28px] 3xl:h-[30px] 3xl:w-[21px] 3xl:max-w-[21px]">
           <Image

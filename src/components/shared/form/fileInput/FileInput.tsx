@@ -88,7 +88,7 @@ export function FileInput({
   return (
     <div
       className={twMerge(
-        'relative w-full cursor-pointer items-center justify-center rounded-[4px] border border-dashed border-gray-700 bg-gray-1200 hover:border-purple-400',
+        'relative w-full cursor-pointer items-center justify-center rounded border border-dashed border-gray-700 bg-gray-1200 hover:border-purple-400',
         isDragging && 'border-purple-400',
         error && 'border-red-500'
       )}

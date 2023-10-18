@@ -69,7 +69,7 @@ function MenuContextContent({
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
         className={twMerge(
-          'rounded-[4px] z-40 overflow-hidden flex flex-col border-none bg-gray-700 will-change-[transform,opacity] data-[state=open]:data-[side=bottom]:animate-slide-up-fade data-[state=open]:data-[side=left]:animate-slide-right-fade data-[state=open]:data-[side=right]:animate-slide-left-fade data-[state=open]:data-[side=top]:animate-slide-down-fade',
+          'rounded z-40 overflow-hidden flex flex-col border-none bg-gray-700 will-change-[transform,opacity] data-[state=open]:data-[side=bottom]:animate-slide-up-fade data-[state=open]:data-[side=left]:animate-slide-right-fade data-[state=open]:data-[side=right]:animate-slide-left-fade data-[state=open]:data-[side=top]:animate-slide-down-fade',
           className
         )}
         sideOffset={sideOffset}
