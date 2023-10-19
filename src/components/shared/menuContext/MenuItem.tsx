@@ -106,11 +106,10 @@ export function MenuItem({
   return (
     <div
       className={twMerge(
-        'min-w-[224px] group items-center cursor-pointer gap-[1.125rem] px-[1.125rem] py-3 hover:bg-[linear-gradient(0deg,_#6847ff4c_0%,_#6847ff4c_100%,_#333)] transition-colors',
+        'min-w-[224px] group items-center cursor-pointer gap-[1.125rem] px-[1.125rem] py-3 hover:bg-gradient_menu_item transition-colors',
         isOnTeam && 'hover:bg-gray-700',
         isDisabled && 'bg-gray-800 cursor-default hover:bg-gray-800',
-        isInvited &&
-          'bg-[linear-gradient(0deg,_#6847ff4d_0%,_#6847ff4d_100%,_#333)] cursor-default'
+        isInvited && 'bg-gradient_menu_invited cursor-default'
       )}
       onClick={onClickFunction}
     >

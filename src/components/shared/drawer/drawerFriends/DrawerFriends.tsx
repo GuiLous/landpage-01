@@ -67,7 +67,7 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
         <div className="mt-6 flex-col justify-start">
           <DrawerFriendsFilter setFilter={setFilter} />
 
-          <div className="relative flex-col after:absolute after:bottom-0 after:left-0 after:h-[30px] after:w-full after:bg-[linear-gradient(360deg,_#1e1e1e_0%,_#1e1e1e00_100%)] after:content-['']">
+          <div className="relative flex-col after:absolute after:bottom-0 after:left-0 after:h-[30px] after:w-full after:bg-gradient_drawer_friends after:content-['']">
             <ScrollArea className="max-h-[calc(100vh_-_120px)] min-h-[calc(100vh_-_120px)] first:border-t first:border-t-gray-700">
               <div>
                 <DrawerFriendsListGroup

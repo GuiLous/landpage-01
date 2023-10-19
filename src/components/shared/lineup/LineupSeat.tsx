@@ -21,7 +21,7 @@ export function LineupSeat() {
           size={34}
         />
       </div>
-      <div className="absolute bottom-full left-0 right-0 top-0 z-0 rounded-lg bg-[linear-gradient(to_bottom,_#6847FF_0%,_#2f2f2f_80%)] transition-all group-hover:bottom-0" />
+      <div className="absolute bottom-full left-0 right-0 top-0 z-0 rounded-lg bg-gradient_seat transition-all group-hover:bottom-0" />
     </div>
   )
 }

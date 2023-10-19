@@ -22,8 +22,7 @@ export function DrawerNotificationsItem({
     <div
       className={twMerge(
         'items-center flex-initial gap-4 bg-gray-900 px-5 py-4 3xl:py-3.5 3xl:pr-6 3xl:pl-4',
-        !isRead &&
-          'bg-[linear-gradient(90deg,_#6847ff80_0%,_#33333300_100%,_#1e1e1e)]'
+        !isRead && 'bg-gradient_notification'
       )}
       {...props}
     >

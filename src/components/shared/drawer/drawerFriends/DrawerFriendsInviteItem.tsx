@@ -50,7 +50,7 @@ export function DrawerFriendsInviteItem({
   }, [showErrorToast, invite_id, userToken])
 
   return (
-    <div className="items-stretch bg-[linear-gradient(90deg,_#6847ff80_0%,_#33333300_100%,_#1e1e1e)] py-2.5 pl-5 pr-4">
+    <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">
       <div className="items-center gap-3.5 ">
         <div className="max-w-fit flex-initial">
           <Avatar
