@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `Toast` no projeto next [#763](https://github.com/3C-gg/reload-frontend/issues/763).
 - Cria componente de `ModalMatchFound` no projeto next [#757](https://github.com/3C-gg/reload-frontend/issues/757).
 - Cria componente de `Websocket` no projeto next [#754](https://github.com/3C-gg/reload-frontend/issues/754).
 - Adiciona inicialização das api`s no projeto next.
