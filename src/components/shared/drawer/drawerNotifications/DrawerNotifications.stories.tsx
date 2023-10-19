@@ -4,7 +4,7 @@ import { Meta } from '@storybook/react'
 import { Provider } from 'react-redux'
 
 import notificationSlice, {
-    Notification,
+  Notification,
 } from '@/store/slices/notificationSlice'
 
 import { DrawerNotifications } from './DrawerNotifications'
