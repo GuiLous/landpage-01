@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useArgs } from '@storybook/client-api'
+import { useArgs } from '@storybook/preview-api'
 import { Meta } from '@storybook/react'
 import { Provider } from 'react-redux'
 
 import notificationSlice, {
-  Notification,
+    Notification,
 } from '@/store/slices/notificationSlice'
 
 import { DrawerNotifications } from './DrawerNotifications'
