@@ -44,7 +44,7 @@ const levelText = tv({
       true: '-mt-[5px] text-[7px]',
     },
     sm: {
-      true: '-ml-[1px] -mt-2 text-[11px]',
+      true: '-ml-px -mt-2 text-[11px]',
     },
     smd: {
       true: '-mt-2 ml-0 text-[15px]',

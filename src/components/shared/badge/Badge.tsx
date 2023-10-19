@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const badge = tv({
-  base: 'absolute -bottom-[1px] -right-[1px] h-3 w-3 rounded-full border-2 border-gray-1100',
+  base: 'absolute -bottom-px -right-px h-3 w-3 rounded-full border-2 border-gray-1100',
   variants: {
     online: {
       true: 'bg-green-600',
