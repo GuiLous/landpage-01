@@ -74,6 +74,19 @@ const config: Config = {
         not_found: "url('~/src/assets/images/bg_404.png')",
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
         player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
+        gradient_drawer_friends:
+          'linear-gradient(360deg, #1e1e1e 0%, #1e1e1e00 100%)',
+        gradient_friends_invite:
+          'linear-gradient(90deg, #6847ff80 0%, #33333300 100%, #1e1e1e)',
+        gradient_friend:
+          'linear-gradient(90deg, #33333380 0%, #33333300 100%, #1e1e1e)',
+        gradient_notification:
+          'linear-gradient(90deg, #6847ff80 0%, #33333300 100%, #1e1e1e)',
+        gradient_seat: 'linear-gradient(to bottom, #6847FF 0%, #2f2f2f 80%)',
+        gradient_menu_item:
+          'linear-gradient(0deg, #6847ff4c 0%, #6847ff4c 100%, #333)',
+        gradient_menu_invited:
+          'linear-gradient(0deg, #6847ff4d 0%, #6847ff4d 100%, #333)',
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',

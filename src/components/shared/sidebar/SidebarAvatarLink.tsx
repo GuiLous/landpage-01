@@ -9,7 +9,7 @@ export function SidebarAvatarLink() {
 
   return (
     <div className="flex-initial flex-col items-center gap-6 px-7 3xl:px-6">
-      <div className="flex-initial flex-col gap-4 rounded-[4px] bg-gray-700/50 px-3 py-4 3xl:px-2 3xl:py-3">
+      <div className="flex-initial flex-col gap-4 rounded bg-gray-700/50 px-3 py-4 3xl:px-2 3xl:py-3">
         <Tooltip content="Meu perfil" asChild={false}>
           <Link
             href={`/perfil/${user?.id}`}

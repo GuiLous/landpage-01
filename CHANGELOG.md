@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria componente de `ModalMatchFound` no projeto next [#757](https://github.com/3C-gg/reload-frontend/issues/757).
 - Cria componente de `Websocket` no projeto next [#754](https://github.com/3C-gg/reload-frontend/issues/754).
 - Adiciona inicialização das api`s no projeto next.
 - Cria componente de `Lineup` e todos seus componentes no projeto next [#745](https://github.com/3C-gg/reload-frontend/issues/745).
@@ -56,6 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Cria estilos de `linear gradiente` no tema do projeto text.
 - Passa prop `value` para refletir o state no componente `Select`.
 - Passa novas props `user_id, username` para o `ModalSupport` para preencher automaticamente o formulário.
 - Altera componente `Avatar` para adicionar `variants`.

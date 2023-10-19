@@ -3,7 +3,7 @@ import { ButtonHTMLAttributes } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const button = tv({
-  base: 'group flex items-center justify-center gap-2 rounded-[4px] bg-purple-400 py-[0.6875rem] transition-colors duration-[0.2s] ease-in-out hover:bg-purple-300 active:bg-purple-700',
+  base: 'group flex items-center justify-center gap-2 rounded bg-purple-400 py-[0.6875rem] transition-colors duration-[0.2s] ease-in-out hover:bg-purple-300 active:bg-purple-700',
   variants: {
     disabled: {
       true: 'cursor-not-allowed bg-gray-800 text-sm font-semibold text-gray-400 hover:bg-gray-800 active:bg-gray-800',

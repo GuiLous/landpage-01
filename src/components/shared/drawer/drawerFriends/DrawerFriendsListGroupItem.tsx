@@ -55,7 +55,7 @@ export function DrawerFriendsListGroupItem({
 
   return (
     <div
-      className="group animate-fade cursor-pointer gap-4 py-1.5 pl-0 pr-5 hover:bg-[linear-gradient(90deg,_#33333380_0%,_#33333300_100%,_#1e1e1e)]"
+      className="group animate-fade cursor-pointer gap-4 py-1.5 pl-0 pr-5 hover:bg-gradient_friend"
       onContextMenu={handleToggleMenu}
       onClick={() => setOpenMenu(true)}
     >

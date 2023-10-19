@@ -194,7 +194,7 @@ export function Websocket() {
         // Matches
         case 'matches/create':
           dispatch(updateMatch(data.payload))
-          router.push(`/partidas/${data.payload.id}/conectar/`)
+          router.push(`/partidas/${data.payload.id}/conectar`)
           break
 
         case 'matches/update':

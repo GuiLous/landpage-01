@@ -7,6 +7,11 @@ export const checkIsPublicRoute = (asPath: string) => {
 }
 
 export const checkIfPathExists = (asPath: string) => {
+  const pathSplitted = asPath.split('/')
+
+  if (pathSplitted.includes('partidas') && pathSplitted.includes('conectar'))
+    asPath = '/conectar'
+
   const appPublicRoutes = Object.values(APP_ROUTES.public)
   const appPrivateRoutes = Object.values(APP_ROUTES.private)
 

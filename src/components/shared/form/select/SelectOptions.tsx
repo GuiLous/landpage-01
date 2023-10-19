@@ -17,7 +17,7 @@ export function SelectOptions({ className, children }: SelectOptionsProps) {
   return (
     <ul
       className={twMerge(
-        'absolute top-16 z-10 -mt-[1.35rem] max-h-72 w-[inherit] animate-fade overflow-hidden overflow-y-auto rounded-[4px] border-0 bg-gray-800',
+        'absolute top-16 z-10 -mt-[1.35rem] max-h-72 w-[inherit] animate-fade overflow-hidden overflow-y-auto rounded border-0 bg-gray-800',
         className
       )}
     >

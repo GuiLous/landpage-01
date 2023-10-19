@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { useArgs } from '@storybook/client-api'
+import { useArgs } from '@storybook/preview-api'
 import { Provider } from 'react-redux'
 
 import userSlice, { User } from '@/store/slices/userSlice'
