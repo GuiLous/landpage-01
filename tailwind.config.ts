@@ -87,10 +87,19 @@ const config: Config = {
           'linear-gradient(0deg, #6847ff4c 0%, #6847ff4c 100%, #333)',
         gradient_menu_invited:
           'linear-gradient(0deg, #6847ff4d 0%, #6847ff4d 100%, #333)',
+        gradient_toast_info:
+          'linear-gradient(to right, #6847ff1a, #6847ff00 50%)',
+        gradient_toast_success:
+          'linear-gradient(to right, #6be4001a, #6be40000 50%)',
+        gradient_toast_warning:
+          'linear-gradient(to right, #ffd4261a, #ffd42600 50%)',
+        gradient_toast_error:
+          'linear-gradient(to right, #f635351a, #f6353500 50%)',
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',
         shake: 'shake 3.5s ease infinite',
+        progress: 'progress linear',
         // Radix
         'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         'slide-right-fade':
@@ -99,6 +108,14 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        progress: {
+          '0%': {
+            'max-width': '100%',
+          },
+          '100%': {
+            'max-width': '0',
+          },
+        },
         fade: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
