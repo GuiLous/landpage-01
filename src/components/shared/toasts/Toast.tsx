@@ -18,8 +18,8 @@ import { useShowErrorToast } from '@/hooks'
 
 interface ToastProps {
   id: number
-  content?: string
-  variant: Variant
+  content: string
+  variant?: Variant
   duration?: number
   title?: string
   avatar?: string

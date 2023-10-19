@@ -12,10 +12,12 @@ export type Variant =
 
 export type Toast = {
   id: number
-  title: string
+  title?: string
   content: string
-  duration: number
-  variant: Variant
+  duration?: number
+  variant?: Variant
+  avatar?: string
+  invite_id?: string
 }
 
 export type AppState = {
