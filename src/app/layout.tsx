@@ -4,7 +4,7 @@ import { ReactNode } from 'react'
 
 import { Providers } from '@/providers/Providers'
 
-import { PrivateRoute, RenderWSS } from '@/components/shared'
+import { PrivateRoute, RenderToasts, RenderWSS } from '@/components/shared'
 import '@/styles/globals.css'
 
 const poppins = Poppins({
@@ -28,6 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           <PrivateRoute>{children}</PrivateRoute>
           <RenderWSS />
+          <RenderToasts />
         </body>
       </html>
     </Providers>

@@ -2,12 +2,22 @@ import { createSlice } from '@reduxjs/toolkit'
 
 import { uuid4 } from '@/functions'
 
+export type Variant =
+  | 'error'
+  | 'warning'
+  | 'success'
+  | 'invite'
+  | 'notification'
+  | 'info'
+
 export type Toast = {
   id: number
-  title: string
+  title?: string
   content: string
-  duration: number
-  variant: string
+  duration?: number
+  variant?: Variant
+  avatar?: string
+  invite_id?: string
 }
 
 export type AppState = {

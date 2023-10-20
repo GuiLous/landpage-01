@@ -27,6 +27,7 @@ export * from './privateRoute/PrivateRoute'
 export * from './scrollArea/ScrollArea'
 export * from './sidebar/Sidebar'
 export * from './timer/Timer'
+export * from './toasts/RenderToasts'
 export * from './tooltip/Tooltip'
 export * from './websocket/RenderWSS'
 
