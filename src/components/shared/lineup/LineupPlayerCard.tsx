@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { useAppSelector } from '@/store'
 import { Friend } from '@/store/slices/friendSlice'
 
@@ -23,7 +25,13 @@ export function LineupPlayerCard({
   const isLobbyOwner = player.user_id === lobby.id
 
   return (
-    <div className="relative h-full min-w-[200px] flex-col justify-between rounded-lg bg-player_card bg-cover px-5 py-[3.375rem] 3xl:px-2.5 3xl:py-8">
+    <div
+      className={twMerge(
+        'relative h-full min-w-[200px] flex-col justify-between rounded-lg px-5 py-[3.375rem]',
+        '3xl:px-2.5 3xl:py-8',
+        'bg-player_card bg-cover'
+      )}
+    >
       {onClose && (
         <LineupPlayerCardCloseBtn closeLabel={closeLabel} onClose={onClose} />
       )}

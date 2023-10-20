@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { ReactNode } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { LayoutHeader } from '@/components/pages'
 
@@ -11,7 +12,12 @@ import rectangle from '@/assets/images/signup_bg_top_right.png'
 
 export default function SignUpLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="relative h-screen flex-col items-center bg-sign_up_bottom_left bg-cover bg-repeat-round">
+    <main
+      className={twMerge(
+        'relative h-screen flex-col items-center',
+        'bg-sign_up_bottom_left bg-cover bg-repeat-round'
+      )}
+    >
       <LayoutHeader />
 
       <div className="absolute bottom-[85px] left-0 z-0 w-[26%]">

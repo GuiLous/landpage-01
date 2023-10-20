@@ -116,20 +116,32 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
         restricted={isRestricted}
         disabled={(!isOwner && !lobby.queue) || !!preMatch || isInMatch}
         className={twMerge(
-          'group max-h-[73px] min-h-[73px] 3xl:min-h-[53px] w-full gap-3 rounded-lg p-0 3xl:p-1',
+          'max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
+          'group',
+          '3xl:min-h-[53px] 3xl:p-1',
           isInQueue && 'hover:bg-red-500'
         )}
         onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
       >
         {!isRestricted && !isInQueue && (
-          <Button.Content className="text-[1.75rem] font-bold uppercase 3xl:text-2xl">
+          <Button.Content
+            className={twMerge(
+              'text-[1.75rem] font-bold uppercase',
+              '3xl:text-2xl'
+            )}
+          >
             Jogar
           </Button.Content>
         )}
 
         {isRestricted && lobby.restriction_countdown && (
           <Button.Content>
-            <span className="text-sm font-semibold uppercase 3xl:text-xs 3xl:leading-none">
+            <span
+              className={twMerge(
+                'text-sm font-semibold uppercase',
+                '3xl:text-xs 3xl:leading-none'
+              )}
+            >
               Grupo com restrição
             </span>
 
@@ -141,8 +153,19 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
         )}
 
         {!isRestricted && isInQueue && (
-          <Button.Content className="flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase 3xl:text-2xl">
-            <span className="flex w-full flex-1 items-center justify-center transition-all group-hover:-mt-[73px] group-hover:opacity-0 3xl:group-hover:-mt-[13px] 3xl:group-hover:max-h-[13px]">
+          <Button.Content
+            className={twMerge(
+              'flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase',
+              '3xl:text-2xl'
+            )}
+          >
+            <span
+              className={twMerge(
+                'flex w-full flex-1 items-center justify-center transition-all',
+                'group-hover:-mt-[73px] group-hover:opacity-0',
+                '3xl:group-hover:-mt-[13px] 3xl:group-hover:max-h-[13px]'
+              )}
+            >
               {lobby?.queue_time !== 0 &&
                 lobby.queue_time &&
                 formatSecondsToMinutes(lobby.queue_time)}
@@ -150,7 +173,13 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
               {lobby?.queue_time === 0 && '00:00'}
             </span>
 
-            <span className="hidden w-full flex-1 items-center justify-center gap-1.5 opacity-0 group-hover:flex group-hover:opacity-100 3xl:max-h-[53px]">
+            <span
+              className={twMerge(
+                'hidden w-full flex-1 items-center justify-center gap-1.5 opacity-0',
+                'group-hover:flex group-hover:opacity-100',
+                '3xl:max-h-[53px]'
+              )}
+            >
               <Button.Icon icon={RiCloseFill} size={28} />
               <span className="text-[1.375rem] font-bold uppercase">
                 Cancelar

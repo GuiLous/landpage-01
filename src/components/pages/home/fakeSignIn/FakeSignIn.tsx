@@ -2,15 +2,13 @@
 
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
-import { RiArrowDownSLine, RiErrorWarningFill } from 'react-icons/ri'
+import { RiErrorWarningFill } from 'react-icons/ri'
 
 import { fakeAccountEmails } from '@/utils'
 
 import { isEmailValid } from '@/functions'
 
 import { httpService } from '@/services'
-
-import { SelectProvider } from '@/providers'
 
 import { Button, Divider, Input, Select } from '@/components/shared'
 
@@ -116,29 +114,24 @@ export function FakeSignIn() {
                 <span className="font-medium">ou</span>
               </div>
 
-              <SelectProvider>
-                <Select.Root>
-                  <Select.Wrapper>
-                    <Select.Input onChange={handleChange} />
+              <Select.Root name="Assunto" onValueChange={handleChange}>
+                <Select.Trigger
+                  className="text-sm"
+                  error={!!fieldsErrors.email}
+                >
+                  <Select.Value placeholder="Selecione um email" />
+                </Select.Trigger>
 
-                    <Select.OptionSelectedWrapper>
-                      <Select.OptionSelected placeholder="Selecione um email" />
-                      <Select.RightIcon icon={RiArrowDownSLine} size={22} />
-                    </Select.OptionSelectedWrapper>
-                  </Select.Wrapper>
-
-                  <Select.Options>
-                    {fakeAccountEmails.map((email, index) => (
-                      <Select.Option
-                        key={email.value}
-                        items={fakeAccountEmails}
-                        item={email}
-                        index={index}
-                      />
-                    ))}
-                  </Select.Options>
-                </Select.Root>
-              </SelectProvider>
+                <Select.Content>
+                  {fakeAccountEmails.map((email) => (
+                    <Select.Item key={email.value} value={email.value}>
+                      <Select.ItemText className="text-sm">
+                        {email.label}
+                      </Select.ItemText>
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
 
               <div>
                 <Button.Root disabled={isButtonDisabled} className="w-full">

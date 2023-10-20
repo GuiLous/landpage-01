@@ -51,7 +51,10 @@ export function DrawerNotifications({
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
         title="Notificações"
-        className="z-20 max-w-[350px] select-none 3xl:max-w-[300px]"
+        className={twMerge(
+          'z-20 max-w-[350px] select-none',
+          '3xl:max-w-[300px]'
+        )}
       >
         <div
           className={twMerge(
@@ -60,7 +63,7 @@ export function DrawerNotifications({
           )}
         >
           {notifications.length > 0 ? (
-            <ScrollArea className="max-h-[calc(100vh_-_64px)]">
+            <ScrollArea className="max-h-notifications">
               {notifications.map((notification) => (
                 <DrawerNotificationsItem
                   key={notification.id}

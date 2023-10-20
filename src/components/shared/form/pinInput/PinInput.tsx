@@ -115,7 +115,9 @@ export function PinInput({
           ref={index === activeOTPIndex ? inputRef : null}
           type="text"
           className={twMerge(
-            'pin-button-none h-14 w-14 rounded-md border-none bg-white text-center text-[1.625rem] font-medium text-gray-700 outline-none transition focus:ring-1 focus:ring-purple-400',
+            'h-14 w-14 rounded-md border-none bg-white text-center text-[1.625rem] font-medium text-gray-700 outline-none transition',
+            'pin-button-none',
+            'focus:ring-1 focus:ring-purple-400',
             className
           )}
           onChange={handleChange}

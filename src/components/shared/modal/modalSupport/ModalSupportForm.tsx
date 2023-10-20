@@ -1,13 +1,11 @@
 'use client'
 
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 
 import { formatSubjectOptions } from '@/functions'
 
 import { storageService } from '@/services'
-
-import { SelectProvider } from '@/providers'
 
 import { supportApi } from '@/api'
 
@@ -175,38 +173,28 @@ export function ModalSupportForm({
   return (
     <form
       onSubmit={submitForm}
-      className="flex w-full flex-col gap-3 3xl:gap-2.5"
+      className={twMerge('flex w-full flex-col gap-3', '3xl:gap-2.5')}
     >
-      <div className="flex-col gap-10 3xl:gap-7">
-        <div className="flex-col gap-4 3xl:gap-2">
-          <div className="flex-col">
-            <SelectProvider>
-              <Select.Root>
-                <Select.Wrapper>
-                  <Select.Input onChange={handleChangeSelect} />
+      <div className={twMerge('flex-col gap-10', '3xl:gap-7')}>
+        <div className={twMerge('flex-col gap-4', '3xl:gap-2')}>
+          <div className="flex-col gap-3">
+            <Select.Root
+              name="Assunto"
+              value={subject}
+              onValueChange={handleChangeSelect}
+            >
+              <Select.Trigger error={!!fieldsErrors.subject}>
+                <Select.Value placeholder="Assunto" />
+              </Select.Trigger>
 
-                  <Select.OptionSelectedWrapper error={!!fieldsErrors.subject}>
-                    <Select.OptionSelected
-                      placeholder="Assunto"
-                      className="text-xs"
-                      value={subject}
-                    />
-                    <Select.RightIcon icon={RiArrowDownSLine} size={22} />
-                  </Select.OptionSelectedWrapper>
-                </Select.Wrapper>
-
-                <Select.Options>
-                  {subjectOptions.map((subject, index) => (
-                    <Select.Option
-                      key={subject.value}
-                      items={subjectOptions}
-                      item={subject}
-                      index={index}
-                    />
-                  ))}
-                </Select.Options>
-              </Select.Root>
-            </SelectProvider>
+              <Select.Content>
+                {subjectOptions.map((subject) => (
+                  <Select.Item key={subject.value} value={subject.label}>
+                    <Select.ItemText>{subject.label}</Select.ItemText>
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
 
             {fieldsErrors?.subject && (
               <ErrorMessage>{fieldsErrors?.subject}</ErrorMessage>
@@ -240,7 +228,12 @@ export function ModalSupportForm({
           </div>
 
           {files.length > 0 && (
-            <div className="flex-wrap items-center justify-between gap-3 3xl:gap-1.5">
+            <div
+              className={twMerge(
+                'flex-wrap items-center justify-between gap-3',
+                '3xl:gap-1.5'
+              )}
+            >
               {files.map((file, index) => (
                 <FileCard
                   key={index}

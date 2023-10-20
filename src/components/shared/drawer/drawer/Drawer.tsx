@@ -39,11 +39,19 @@ export function DrawerContent({
   return (
     <Dialog.Portal>
       {showOverlay && (
-        <Dialog.Overlay className="fixed inset-0 bg-black/[.85] data-[state=closed]:animate-[dialog-overlay-hide_200ms] data-[state=open]:animate-[dialog-overlay-show_200ms]" />
+        <Dialog.Overlay
+          className={twMerge(
+            'fixed inset-0 bg-black/[.85]',
+            'data-[state=closed]:animate-[dialog-overlay-hide_200ms]',
+            'data-[state=open]:animate-[dialog-overlay-show_200ms]'
+          )}
+        />
       )}
       <Dialog.Content
         className={twMerge(
-          'fixed right-0 top-0 flex w-full h-screen flex-col bg-gray-900 py-6 shadow data-[state=closed]:animate-[drawer-content-hide-right_200ms] data-[state=open]:animate-[drawer-content-show-right_200ms]',
+          'fixed right-0 top-0 flex w-full h-screen flex-col bg-gray-900 py-6 shadow',
+          'data-[state=closed]:animate-[drawer-content-hide-right_200ms]',
+          'data-[state=open]:animate-[drawer-content-show-right_200ms]',
           position === 'left' &&
             'data-[state=closed]:animate-[drawer-content-hide-left_200ms] data-[state=open]:animate-[drawer-content-show-left_200ms] left-0',
           className
@@ -54,7 +62,12 @@ export function DrawerContent({
             {title}
           </Dialog.Title>
         </div>
-        <Dialog.Close className="absolute right-3 top-3 text-base text-white transition-colors hover:text-gray-300">
+        <Dialog.Close
+          className={twMerge(
+            'absolute right-3 top-3 text-base text-white transition-colors',
+            'hover:text-gray-300'
+          )}
+        >
           <RxCross1 className="" />
         </Dialog.Close>
 

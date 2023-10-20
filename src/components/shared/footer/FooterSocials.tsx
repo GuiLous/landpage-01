@@ -5,6 +5,7 @@ import {
   SiTwitter,
   SiYoutube,
 } from 'react-icons/si'
+import { twMerge } from 'tailwind-merge'
 
 import {
   DISCORD_LINK,
@@ -18,7 +19,12 @@ import { Link } from '@/components/shared'
 
 export function FooterSocials() {
   return (
-    <nav className="mb-auto flex w-full flex-1 justify-end gap-6 text-[1.375rem] xl:max-w-fit">
+    <nav
+      className={twMerge(
+        'mb-auto flex w-full flex-1 justify-end gap-6 text-[1.375rem]',
+        'xl:max-w-fit'
+      )}
+    >
       <Link href={INSTAGRAM_LINK} target="_blank" data-testid="instagram">
         <SiInstagram />
       </Link>

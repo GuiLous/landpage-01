@@ -112,12 +112,15 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
   }, [fillSeats])
 
   return (
-    <div className="h-full items-center gap-[1.125rem] 3xl:gap-3.5">
+    <div
+      className={twMerge('h-full items-center gap-[1.125rem]', '3xl:gap-3.5')}
+    >
       {lineup.map((player, index) => (
         <div
           key={player ? player.user_id : `seat-${index}`}
           className={twMerge(
-            'flex-col items-center gap-10 3xl:gap-7 h-[95%]',
+            'flex-col items-center gap-10 h-[95%]',
+            '3xl:gap-7',
             index === 2 && 'h-full'
           )}
         >

@@ -1,5 +1,6 @@
 import Image from 'next/image'
 import { RxCross1 } from 'react-icons/rx'
+import { twMerge } from 'tailwind-merge'
 
 import gifFileImg from '@/assets/images/gif_file.png'
 import jpgFileImg from '@/assets/images/jpg_file.png'
@@ -39,21 +40,49 @@ export function FileCard({ file, onRemoveFiles }: FileCardProps) {
   }
 
   return (
-    <div className="max-w-[50%] flex-[0_0_48.5%] items-center justify-between rounded border border-gray-700 bg-gray-1200 py-3 pl-3.5 pr-4 3xl:py-2 3xl:pl-2.5 3xl:pr-3">
-      <div className="items-center gap-3 3xl:gap-2">
-        <div className="h-[37px] w-[28px] max-w-[28px] 3xl:h-[30px] 3xl:w-[21px] 3xl:max-w-[21px]">
+    <div
+      className={twMerge(
+        'max-w-[50%] flex-file_card items-center justify-between rounded border border-gray-700 bg-gray-1200 py-3 pl-3.5 pr-4',
+        '3xl:py-2 3xl:pl-2.5 3xl:pr-3'
+      )}
+    >
+      <div className={twMerge('items-center gap-3', '3xl:gap-2')}>
+        <div
+          className={twMerge(
+            'h-[37px] w-[28px] max-w-[28px]',
+            '3xl:h-[30px] 3xl:w-[21px] 3xl:max-w-[21px]'
+          )}
+        >
           <Image
             src={images[getFileType()]}
             alt={getFileType() + ' image'}
-            className="h-[37px] w-[28px] max-w-[28px] 3xl:h-[30px] 3xl:w-[21px] 3xl:max-w-[21px]"
+            className={twMerge(
+              'h-[37px] w-[28px] max-w-[28px]',
+              '3xl:h-[30px] 3xl:w-[21px] 3xl:max-w-[21px]'
+            )}
           />
         </div>
 
-        <div className="max-w-[157.5px] flex-col gap-2 3xl:max-w-[130.91px] 3xl:gap-1.5">
-          <span className="overflow-hidden text-ellipsis whitespace-nowrap text-xs leading-none text-white 3xl:text-[0.625rem]">
+        <div
+          className={twMerge(
+            'max-w-[157.5px] flex-col gap-2',
+            '3xl:max-w-[130.91px] 3xl:gap-1.5'
+          )}
+        >
+          <span
+            className={twMerge(
+              'truncate text-xs leading-none text-white',
+              '3xl:text-[0.625rem]'
+            )}
+          >
             {file.name}
           </span>
-          <span className="text-[0.625rem] leading-none text-gray-300 3xl:text-[0.5rem]">
+          <span
+            className={twMerge(
+              'text-[0.625rem] leading-none text-gray-300',
+              '3xl:text-[0.5rem]'
+            )}
+          >
             {Number(fileSizeInKB) > 1024
               ? `${fileSizeInMB} MB`
               : `${fileSizeInKB} KB`}{' '}
@@ -65,7 +94,10 @@ export function FileCard({ file, onRemoveFiles }: FileCardProps) {
       <div className="max-w-fit flex-initial">
         <RxCross1
           size={13}
-          className="cursor-pointer text-white transition-colors hover:text-gray-300"
+          className={twMerge(
+            'cursor-pointer text-white transition-colors',
+            'hover:text-gray-300'
+          )}
           data-testid="close"
           onClick={() => onRemoveFiles(file.name)}
         />

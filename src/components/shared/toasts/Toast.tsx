@@ -134,10 +134,16 @@ export function Toast({
   }, [invite, invite_id])
 
   return (
-    <div className="relative flex-col overflow-hidden rounded bg-gray-1100 opacity-90 transition-opacity hover:opacity-100">
+    <div
+      className={twMerge(
+        'relative flex-col overflow-hidden rounded bg-gray-1100 opacity-90 transition-opacity',
+        'hover:opacity-100'
+      )}
+    >
       <div
         className={twMerge(
-          'gap-4 rounded p-3.5 bg-gradient_toast_info',
+          'gap-4 rounded p-3.5',
+          'bg-gradient_toast_info',
           variant === 'success' && 'bg-gradient_toast_success',
           variant === 'error' && 'bg-gradient_toast_error',
           variant === 'warning' && 'bg-gradient_toast_warning'
@@ -188,13 +194,19 @@ export function Toast({
           className="min-h-full max-w-fit flex-initial cursor-pointer"
           onClick={handleClose}
         >
-          <RxCross1 className="text-xs text-white transition-colors hover:text-gray-300" />
+          <RxCross1
+            className={twMerge(
+              'text-xs text-white transition-colors',
+              'hover:text-gray-300'
+            )}
+          />
         </div>
       </div>
 
       <div
         className={twMerge(
-          'max-h-[5px] max-w-0 min-h-[5px] animate-progress bg-purple-400',
+          'max-h-[5px] max-w-0 min-h-[5px] bg-purple-400',
+          'animate-progress',
           variant === 'success' && 'bg-green-400',
           variant === 'error' && 'bg-red-500',
           variant === 'warning' && 'bg-yellow-400'

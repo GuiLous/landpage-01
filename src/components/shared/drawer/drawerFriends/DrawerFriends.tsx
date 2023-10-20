@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { useAppSelector } from '@/store'
 
@@ -61,14 +62,27 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
         title="Amigos"
-        className="left-[300px] z-20 max-w-[320px] select-none 3xl:left-[250px] 3xl:max-w-[300px]"
+        className={twMerge(
+          'left-[300px] z-20 max-w-[320px] select-none',
+          '3xl:left-[250px] 3xl:max-w-[300px]'
+        )}
         position="left"
       >
         <div className="mt-6 flex-col justify-start">
           <DrawerFriendsFilter setFilter={setFilter} />
 
-          <div className="relative flex-col after:absolute after:bottom-0 after:left-0 after:h-[30px] after:w-full after:bg-gradient_drawer_friends after:content-['']">
-            <ScrollArea className="max-h-[calc(100vh_-_120px)] min-h-[calc(100vh_-_120px)] first:border-t first:border-t-gray-700">
+          <div
+            className={twMerge(
+              'relative flex-col',
+              "after:absolute after:bottom-0 after:left-0 after:h-[30px] after:w-full after:bg-gradient_drawer_friends after:content-['']"
+            )}
+          >
+            <ScrollArea
+              className={twMerge(
+                'max-h-friends min-h-friends',
+                'first:border-t first:border-t-gray-700'
+              )}
+            >
               <div>
                 <DrawerFriendsListGroup
                   title="No seu grupo"

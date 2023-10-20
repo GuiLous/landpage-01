@@ -110,7 +110,9 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   return (
     <div
       className={twMerge(
-        'min-h-[40px] flex-initial rounded transition-colors hover:bg-purple-400/30 group',
+        'min-h-[40px] flex-initial rounded transition-colors',
+        'hover:bg-purple-400/30',
+        'group',
         isSoon && 'opacity-70 hover:bg-transparent'
       )}
     >
@@ -133,7 +135,8 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
               icon={icons[item]}
               size={22}
               className={twMerge(
-                'text-gray-300 transition-colors group-hover:text-white',
+                'text-gray-300 transition-colors',
+                'group-hover:text-white',
                 isSoon && 'group-hover:text-gray-30'
               )}
             />
@@ -154,7 +157,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
                 <SidebarMenuItemIcon
                   icon={BsEnvelopeFill}
                   size={14}
-                  className="animate-shake text-white"
+                  className={twMerge('text-white', 'animate-shake')}
                 />
 
                 <span className="capitalize">{receivedInvites}</span>

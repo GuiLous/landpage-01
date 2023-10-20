@@ -5,6 +5,7 @@ import {
   SiTwitter,
   SiYoutube,
 } from 'react-icons/si'
+import { twMerge } from 'tailwind-merge'
 
 import {
   DISCORD_LINK,
@@ -18,8 +19,10 @@ import { Link } from '@/components/shared'
 
 export function SidebarFooter() {
   return (
-    <footer className="items-end px-10 pb-10 3xl:px-8 3xl:pb-8">
-      <nav className="flex items-center gap-6 text-lg 3xl:text-base">
+    <footer className={twMerge('items-end px-10 pb-10', '3xl:px-8 3xl:pb-8')}>
+      <nav
+        className={twMerge('flex items-center gap-6 text-lg', '3xl:text-base')}
+      >
         <Link href={INSTAGRAM_LINK} target="_blank" data-testid="instagram">
           <SiInstagram />
         </Link>

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import { Button, Footer, Link } from '@/components/shared'
 
@@ -8,7 +9,12 @@ import logo from '@/assets/images/logo_type_white.svg'
 
 export default function NotFound() {
   return (
-    <main className="relative h-screen w-screen flex-col bg-not_found bg-cover bg-no-repeat">
+    <main
+      className={twMerge(
+        'relative h-screen w-screen flex-col',
+        'bg-not_found bg-cover bg-no-repeat'
+      )}
+    >
       <section className="flex-col items-center justify-center gap-[5.625rem]">
         <div className="flex-initial justify-center">
           <Image src={logo} alt="Reload logo" width={200} />

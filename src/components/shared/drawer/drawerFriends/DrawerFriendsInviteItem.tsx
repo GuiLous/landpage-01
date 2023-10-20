@@ -1,6 +1,7 @@
 import { useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 
 import { storageService } from '@/services'
 
@@ -62,10 +63,17 @@ export function DrawerFriendsInviteItem({
         </div>
 
         <div className="flex-col gap-1">
-          <span className="text-sm font-medium text-white 3xl:text-xs">
+          <span
+            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+          >
             {username}
           </span>
-          <span className="min-w-[95px] text-xs font-medium text-purple-300 3xl:text-[0.625rem]">
+          <span
+            className={twMerge(
+              'min-w-[95px] text-xs font-medium text-purple-300',
+              '3xl:text-[0.625rem]'
+            )}
+          >
             Convidou você
           </span>
         </div>
@@ -77,7 +85,10 @@ export function DrawerFriendsInviteItem({
           onClick={handleAccept}
         >
           <BsCheckCircleFill
-            className="text-green-600 transition-all hover:scale-110 hover:text-green-500"
+            className={twMerge(
+              'text-green-600 transition-al',
+              'hover:scale-110 hover:text-green-500'
+            )}
             size={20}
           />
         </div>
@@ -87,7 +98,10 @@ export function DrawerFriendsInviteItem({
           onClick={handleRefuse}
         >
           <RiCloseFill
-            className="text-gray-300 transition-all hover:text-white"
+            className={twMerge(
+              'text-gray-300 transition-all',
+              'hover:text-white'
+            )}
             size={22}
           />
         </div>
