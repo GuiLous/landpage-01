@@ -86,7 +86,7 @@ export function FakeSignIn() {
     <div className="max-w-[310px] flex-col">
       <Divider />
 
-      <div className="mt-[0.625rem] flex-col ">
+      <div className="mt-2.5 flex-col ">
         <form onSubmit={handleSubmit} className="w-full" method="POST">
           <div className="flex-col">
             <div className="flex-col gap-2">
@@ -156,9 +156,7 @@ export function FakeSignIn() {
             </div>
           </div>
 
-          <p className="p-[0.625rem] text-xs">
-            *Disponível somente para testes.
-          </p>
+          <p className="p-2.5 text-xs">*Disponível somente para testes.</p>
         </form>
       </div>
     </div>
