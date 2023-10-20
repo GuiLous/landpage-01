@@ -9,7 +9,7 @@ export function ModalSupportConfirmation() {
         <Image
           src={checkCircle}
           alt="Check image"
-          className="h-[66px] w-[66px] drop-shadow-[0_0_80px_rgba(104,71,255,0.25)] 3xl:h-[56px] 3xl:w-[56px]"
+          className="h-[66px] w-[66px] drop-shadow-support_confirmation 3xl:h-[56px] 3xl:w-[56px]"
         />
       </div>
 

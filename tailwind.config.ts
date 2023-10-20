@@ -62,6 +62,9 @@ const config: Config = {
           500: '#F0A87B',
         },
       },
+      dropShadow: {
+        support_confirmation: 'drop-shadow(0 0 80px rgba(104,71,255,0.25))',
+      },
       fontFamily: {
         poppins: 'var(--font-poppins)',
       },
