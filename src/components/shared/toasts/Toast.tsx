@@ -77,7 +77,7 @@ export function Toast({
 
       case 'invite':
       case 'notification':
-        return <Avatar avatarUrl={avatar} sm />
+        return <Avatar avatarUrl={avatar} size="sm" />
 
       default:
         return <AiFillBell className="text-purple-400" size={16} />

@@ -18,7 +18,7 @@ export function LineupPlayerCardHeader({
     <header className="flex-initial flex-col items-center gap-[1.125rem]">
       <Avatar
         avatarUrl={avatar}
-        xxl
+        size="xxl"
         alt="Imagem de perfil"
         className="border-white"
       />

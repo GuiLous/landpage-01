@@ -47,7 +47,7 @@ export function DrawerNotificationsItem({
         <Avatar
           avatarUrl={avatar}
           alt="Imagem de perfil"
-          sm
+          size="sm"
           className="border-2 border-purple-400"
         />
       </div>

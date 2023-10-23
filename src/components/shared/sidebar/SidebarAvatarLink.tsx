@@ -34,7 +34,6 @@ export function SidebarAvatarLink() {
               avatarUrl={user?.account?.avatar?.medium}
               alt="Imagem de perfil"
               status={user?.status}
-              md
             />
 
             <div className="flex-col items-start gap-0.5">

@@ -78,12 +78,7 @@ export function DrawerFriendsListGroupItem({
             title === 'Offline' && 'opacity-50'
           )}
         >
-          <Avatar
-            avatarUrl={avatar}
-            status={status}
-            alt="Perfil do usuário"
-            md
-          />
+          <Avatar avatarUrl={avatar} status={status} alt="Perfil do usuário" />
         </div>
 
         <div

@@ -54,12 +54,7 @@ export function DrawerFriendsInviteItem({
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">
       <div className="items-center gap-3.5 ">
         <div className="max-w-fit flex-initial">
-          <Avatar
-            avatarUrl={avatar}
-            status={status}
-            md
-            alt="Perfil do usuário"
-          />
+          <Avatar avatarUrl={avatar} status={status} alt="Perfil do usuário" />
         </div>
 
         <div className="flex-col gap-1">

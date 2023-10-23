@@ -42,7 +42,7 @@ export function LobbyGameType({
           </h3>
 
           {!GAME_TYPES_AVAILABLE.includes(gameType) && (
-            <Badge highlight className="uppercase">
+            <Badge variant="highlight" className="uppercase">
               Em breve
             </Badge>
           )}

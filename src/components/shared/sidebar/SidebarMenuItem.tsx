@@ -147,7 +147,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
           <div className="justify-end">
             {item === 'amigos' && (
               <Badge
-                highlight
+                variant="highlight"
                 className={
                   receivedInvites > 0
                     ? 'gap-2 text-xs opacity-100'
@@ -166,7 +166,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
 
             {item === 'notificações' && (
               <Badge
-                highlight
+                variant="highlight"
                 className={
                   unreadNotifications > 0
                     ? 'min-h-[22px] min-w-[22px] text-xs opacity-100'
@@ -177,7 +177,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
               </Badge>
             )}
 
-            {isSoon && <Badge highlight>Em breve</Badge>}
+            {isSoon && <Badge variant="highlight">Em breve</Badge>}
           </div>
         </button>
       </Link>
