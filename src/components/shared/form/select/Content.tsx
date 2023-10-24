@@ -23,8 +23,8 @@ export function Content({ children, ...props }: ContentProps) {
           'w-[var(--radix-select-trigger-width)]'
         )}
       >
-        <ScrollArea.Root className="h-full w-full" type="auto">
-          <Select.Viewport className="max-h-[300px]" asChild>
+        <ScrollArea.Root className="h-full w-full">
+          <Select.Viewport className="max-h-[300px]">
             <ScrollArea.Viewport className="h-full w-full overflow-y-scroll">
               {children}
             </ScrollArea.Viewport>
