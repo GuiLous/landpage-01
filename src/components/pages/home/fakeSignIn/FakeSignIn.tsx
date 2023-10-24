@@ -1,25 +1,25 @@
 'use client'
 
+import { SignJWT } from 'jose'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { fakeAccountEmails } from '@/utils'
+import { fakeAccountEmails, isEmailValid } from '@/utils'
 
-import { isEmailValid } from '@/functions'
-
-import { httpService } from '@/services'
+import { getJwtSecretKey, httpService } from '@/services'
 
 import { Button, Divider, Input, Select } from '@/components/shared'
 
-import { useInitializeReducers, useShowErrorToast } from '@/hooks'
+import { useInitializeSlices, useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
 }
 
 export function FakeSignIn() {
-  const { initializeReducers } = useInitializeReducers()
+  const { initializeSlices } = useInitializeSlices()
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -68,13 +68,32 @@ export function FakeSignIn() {
         return
       }
 
-      setFetching(false)
+      const jwtToken = await new SignJWT({
+        id: response.id,
+        email: response.email,
+        username: response?.account?.username || null,
+        is_active: response.is_active,
+        is_verified: response?.account?.is_verified || false,
+        token: response.token,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(getJwtSecretKey())
 
-      initializeReducers(response.token)
+      Cookies.set('token', jwtToken)
 
-      router.push('/verificar')
+      initializeSlices()
+
+      if (!response.is_active) return router.push('/conta-inativa')
+
+      if (!response?.account?.username) return router.push('/cadastrar')
+
+      if (!response?.account?.is_verified) return router.push('/verificar')
+
+      router.push('/jogar')
     },
-    [email, router, showErrorToast, initializeReducers]
+    [email, router, showErrorToast, initializeSlices]
   )
 
   if (process.env.NEXT_PUBLIC_REACT_APP_SHOW_FAKE_SIGNIN === 'false')
