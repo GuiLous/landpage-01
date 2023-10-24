@@ -62,7 +62,9 @@ export default function ChangeEmail() {
       const response = await httpService.patch(
         'accounts/update-email/',
         auth.token,
-        payload
+        payload,
+        undefined,
+        { cache: 'no-cache' }
       )
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
@@ -77,18 +79,18 @@ export default function ChangeEmail() {
 
       const jwtToken = await new SignJWT({
         ...auth,
-        email: response.email,
+        email,
       })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
         .setExpirationTime('1h')
         .sign(getJwtSecretKey())
 
-      Cookies.set('token', jwtToken, { path: '/' })
+      Cookies.set('token', jwtToken)
 
       setFetching(false)
 
-      if (response.account.is_verified) router.push('/jogar')
+      if (response.account.is_verified) return router.push('/jogar')
 
       router.push('/verificar')
     },
