@@ -13,7 +13,9 @@ export async function GET(req: NextRequest) {
 
   if (!token) redirect('/not-found')
 
-  const userResponse = await httpService.get('accounts/auth/', token)
+  const userResponse = await httpService.get('accounts/auth/', token, {
+    cache: 'no-cache',
+  })
 
   if (userResponse.errorMsg) redirect('/not-found')
 
@@ -36,11 +38,11 @@ export async function GET(req: NextRequest) {
     path: '/',
   })
 
-  if (!userResponse.is_active) redirect('/conta-inativa')
+  if (!userResponse.is_active) return redirect('/conta-inativa')
 
-  if (!userResponse?.account?.username) redirect('/cadastrar')
+  if (!userResponse?.account?.username) return redirect('/cadastrar')
 
-  if (!userResponse?.account?.is_verified) redirect('/verificar')
+  if (!userResponse?.account?.is_verified) return redirect('/verificar')
 
   redirect('/jogar')
 }
