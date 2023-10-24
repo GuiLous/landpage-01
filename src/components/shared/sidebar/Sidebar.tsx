@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { SIDEBAR_BOTTOM_MENU_ITEMS, SIDEBAR_TOP_MENU_ITEMS } from '@/constants'
 
 import { SidebarAvatarLink } from './SidebarAvatarLink'
@@ -16,16 +18,31 @@ type ItemMenu =
 
 export function Sidebar() {
   return (
-    <aside className="fixed z-30 h-full w-[300px] select-none 3xl:w-[250px]">
-      <main className="relative h-full flex-col justify-between gap-[4.875rem] overflow-hidden bg-gray-1100 3xl:gap-[3.625rem]">
+    <aside
+      className={twMerge(
+        'fixed z-30 h-full w-[300px] select-none',
+        '3xl:w-[250px]'
+      )}
+    >
+      <main
+        className={twMerge(
+          'relative h-full flex-col justify-between gap-[4.875rem] overflow-hidden bg-gray-1100',
+          '3xl:gap-[3.625rem]'
+        )}
+      >
         <SidebarLogo />
 
-        <section className="flex-col gap-10 3xl:gap-9">
+        <section className={twMerge('flex-col gap-10', '3xl:gap-9')}>
           <SidebarAvatarLink />
 
           <SidebarLobbyButton />
 
-          <div className="flex-initial flex-col gap-7 px-7 3xl:gap-6 3xl:px-6">
+          <div
+            className={twMerge(
+              'flex-initial flex-col gap-7 px-7',
+              '3xl:gap-6 3xl:px-6'
+            )}
+          >
             <div className="flex-initial flex-col ">
               {SIDEBAR_TOP_MENU_ITEMS.map((item) => (
                 <SidebarMenuItem key={item} item={item as ItemMenu} />

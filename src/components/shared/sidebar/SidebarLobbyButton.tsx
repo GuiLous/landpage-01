@@ -1,8 +1,9 @@
 'use client'
 
 import { PiHouseFill } from 'react-icons/pi'
+import { twMerge } from 'tailwind-merge'
 
-import { formatSecondsToMinutes } from '@/functions'
+import { formatSecondsToMinutes } from '@/utils'
 
 import { useAppSelector } from '@/store'
 
@@ -34,7 +35,7 @@ export function SidebarLobbyButton() {
   }
 
   return (
-    <div className="px-7 3xl:px-6">
+    <div className={twMerge('px-7', '3xl:px-6')}>
       <Button.Root
         asChild
         queued={isInQueue || !!isIsMatch}

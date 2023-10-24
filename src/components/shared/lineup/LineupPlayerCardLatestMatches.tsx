@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { LatestMatchesResult } from '@/store/slices/lobbySlice'
 
 import { Divider } from '@/components/shared'
@@ -29,7 +31,12 @@ export function LineupPlayerCardLatestMatches({
   return (
     <div className="flex-initial flex-col items-center gap-2">
       <div className="justify-center">
-        <span className="text-xs font-medium uppercase 3xl:text-[0.625rem]">
+        <span
+          className={twMerge(
+            'text-xs font-medium uppercase',
+            '3xl:text-[0.625rem]'
+          )}
+        >
           últimas partidas
         </span>
       </div>
@@ -41,7 +48,12 @@ export function LineupPlayerCardLatestMatches({
       <Divider className="max-w-[70%] bg-white/[0.24] opacity-100" />
 
       <div className="justify-center">
-        <span className="text-xs font-medium uppercase 3xl:text-[0.625rem]">
+        <span
+          className={twMerge(
+            'text-xs font-medium uppercase',
+            '3xl:text-[0.625rem]'
+          )}
+        >
           {matches_played} Partidas jogadas
         </span>
       </div>

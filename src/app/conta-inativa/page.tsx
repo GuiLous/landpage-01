@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import {
   InactiveGoBackLink,
   InactiveHeroImage,
@@ -9,7 +11,12 @@ import { Footer } from '@/components/shared'
 
 export default function Inactive() {
   return (
-    <main className="relative h-screen flex-col items-center justify-center bg-home bg-cover bg-no-repeat">
+    <main
+      className={twMerge(
+        'relative h-screen flex-col items-center justify-center',
+        'bg-home bg-cover bg-no-repeat'
+      )}
+    >
       <section className="flex-col items-center justify-center">
         <InactiveHeroImage />
 

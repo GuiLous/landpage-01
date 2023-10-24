@@ -1,11 +1,22 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { BiSolidLock } from 'react-icons/bi'
 
-import { useAppSelector } from '@/store'
+import { useAuth } from '@/hooks'
+
+import { userAuthToken } from '@/middleware'
 
 export function VerifyHeader() {
-  const { user } = useAppSelector((state) => state.user)
+  const [auth, setAuth] = useState<userAuthToken | null>(null)
+
+  const getAuth = useAuth()
+
+  useEffect(() => {
+    const auth = getAuth()
+
+    setAuth(auth)
+  }, [getAuth])
 
   return (
     <header className="flex-col items-center justify-center gap-7">
@@ -16,7 +27,7 @@ export function VerifyHeader() {
 
         <span className="text-center text-sm font-normal">
           Insira o código enviado para o email{' '}
-          <span className="text-sm text-purple-300">{user?.email}</span>
+          <span className="text-sm text-purple-300">{auth?.email}</span>
         </span>
       </div>
     </header>

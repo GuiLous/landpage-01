@@ -1,3 +1,4 @@
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import useWebSocket from 'react-use-websocket'
@@ -16,7 +17,7 @@ import { updateUser } from '@/store/slices/userSlice'
 
 import { lobbyApi } from '@/api'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function Websocket() {
   const { user } = useAppSelector((state) => state.user)
@@ -24,7 +25,8 @@ export function Websocket() {
   const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
-  const token = storageService.get('token')
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const router = useRouter()
 
@@ -34,9 +36,9 @@ export function Websocket() {
       onMessage: (event) => handleMessageReceived(event),
       share: true,
       shouldReconnect: () => false,
-      queryParams: token ? { token } : {},
+      queryParams: auth?.token ? { token: auth.token } : {},
     },
-    !!token && !!user && user.account && user.account.is_verified
+    !!auth?.token && !!user && user.account && user.account.is_verified
   )
 
   const showInviteRefusedToast = useCallback(
@@ -75,19 +77,19 @@ export function Websocket() {
   )
 
   const logout = useCallback(async () => {
-    storageService.remove('token')
+    Cookies.remove('token')
     router.push('/')
   }, [router])
 
   const start_queue = useCallback(async () => {
-    if (!token || !user?.lobby_id) return
+    if (!auth?.token || !user?.lobby_id) return
 
-    const response = await lobbyApi.startQueue(token, user.lobby_id)
+    const response = await lobbyApi.startQueue(auth.token, user.lobby_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, token, user])
+  }, [showErrorToast, auth, user])
 
   const handleMessageReceived = useCallback(
     (event: any) => {

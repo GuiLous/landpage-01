@@ -106,7 +106,8 @@ export function DrawerFriendsListGroup({
           <div className="justify-end">
             <RiArrowDownSLine
               className={twMerge(
-                'opacity-70 text-white transition-all group-hover:opacity-100',
+                'opacity-70 text-white transition-all',
+                'group-hover:opacity-100',
                 isOpen && 'opacity-100 rotate-180'
               )}
               size={24}

@@ -1,21 +1,15 @@
-import { SelectInput } from './SelectInput'
-import { SelectLabel } from './SelectLabel'
-import { SelectOption } from './SelectOption'
-import { SelectOptions } from './SelectOptions'
-import { SelectOptionSelected } from './SelectOptionSelected'
-import { SelectOptionSelectedWrapper } from './SelectOptionSelectedWrapper'
-import { SelectRightIcon } from './SelectRightIcon'
-import { SelectRoot } from './SelectRoot'
-import { SelectWrapper } from './SelectWrapper'
+import { Content } from './Content'
+import { Item } from './Item'
+import { ItemText } from './ItemText'
+import { Root } from './Root'
+import { Trigger } from './Trigger'
+import { Value } from './Value'
 
 export const Select = {
-  Root: SelectRoot,
-  Wrapper: SelectWrapper,
-  OptionSelected: SelectOptionSelected,
-  Options: SelectOptions,
-  Option: SelectOption,
-  OptionSelectedWrapper: SelectOptionSelectedWrapper,
-  Label: SelectLabel,
-  Input: SelectInput,
-  RightIcon: SelectRightIcon,
+  Content,
+  Item,
+  ItemText,
+  Root,
+  Trigger,
+  Value,
 }

@@ -1,15 +1,14 @@
 'use client'
 
+import Cookies from 'js-cookie'
 import { useCallback } from 'react'
 import { IoIosArrowRoundBack } from 'react-icons/io'
-
-import { storageService } from '@/services'
 
 import { Link } from '@/components/shared'
 
 export function LayoutHeader() {
   const handleCancel = useCallback(() => {
-    storageService.remove('token')
+    Cookies.remove('token')
   }, [])
 
   return (

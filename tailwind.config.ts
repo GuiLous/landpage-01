@@ -17,6 +17,16 @@ const config: Config = {
         sm: { max: '639px' },
         'range-md-xl': { min: '913px', max: '1279px' },
       },
+      flex: {
+        file_card: '0 0 48.5%',
+      },
+      minHeight: {
+        friends: 'calc(100vh - 120px)',
+      },
+      maxHeight: {
+        friends: 'calc(100vh - 120px)',
+        notifications: 'calc(100vh - 64px)',
+      },
       colors: {
         purple: {
           300: '#9882FF',
@@ -61,6 +71,9 @@ const config: Config = {
         salmon: {
           500: '#F0A87B',
         },
+      },
+      dropShadow: {
+        support_confirmation: 'drop-shadow(0 0 80px rgba(104,71,255,0.25))',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
@@ -218,7 +231,7 @@ const config: Config = {
           },
           to: {
             opacity: '0',
-            transform: 'translate(50%, 0%)',
+            transform: 'translate(100%, 0%)',
           },
         },
         'drawer-content-show-left': {
@@ -238,7 +251,7 @@ const config: Config = {
           },
           to: {
             opacity: '0',
-            transform: 'translate(-50%, 0%)',
+            transform: 'translate(-100%, 0%)',
           },
         },
       },

@@ -1,13 +1,9 @@
 'use client'
 
 import { FormEvent, useCallback, useEffect, useState } from 'react'
-import { RiArrowDownSLine } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 
-import { formatSubjectOptions } from '@/functions'
-
-import { storageService } from '@/services'
-
-import { SelectProvider } from '@/providers'
+import { formatSubjectOptions } from '@/utils'
 
 import { supportApi } from '@/api'
 
@@ -20,7 +16,7 @@ import {
   TextArea,
 } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 type SubjectOptions = {
   value: string
@@ -47,6 +43,9 @@ export function ModalSupportForm({
   username,
   setFormSent,
 }: ModalSupportFormProps) {
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const showErrorToast = useShowErrorToast()
 
   const [subject, setSubject] = useState('')
@@ -90,11 +89,9 @@ export function ModalSupportForm({
   }, [setFormSent])
 
   const getTickets = useCallback(async () => {
-    const userToken = storageService.get('token')
+    if (!auth?.token) return
 
-    if (!userToken) return
-
-    const response = await supportApi.listTickets(userToken)
+    const response = await supportApi.listTickets(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -111,15 +108,13 @@ export function ModalSupportForm({
     }
 
     setSubjectOptions(formatSubjectOptions(response))
-  }, [showErrorToast, user_id])
+  }, [showErrorToast, user_id, auth])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
       e.preventDefault()
 
-      const userToken = storageService.get('token')
-
-      if (!userToken) return
+      if (!auth?.token) return
 
       setFetching(true)
 
@@ -133,7 +128,7 @@ export function ModalSupportForm({
         formData.append('files', file)
       }
 
-      const response = await supportApi.createTicket(userToken, formData)
+      const response = await supportApi.createTicket(auth.token, formData)
 
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
@@ -150,7 +145,7 @@ export function ModalSupportForm({
       reset()
       setFetching(false)
     },
-    [description, files, subject, showErrorToast, user_id, setFormSent]
+    [description, files, subject, showErrorToast, user_id, setFormSent, auth]
   )
 
   useEffect(() => {
@@ -175,38 +170,28 @@ export function ModalSupportForm({
   return (
     <form
       onSubmit={submitForm}
-      className="flex w-full flex-col gap-3 3xl:gap-2.5"
+      className={twMerge('flex w-full flex-col gap-3', '3xl:gap-2.5')}
     >
-      <div className="flex-col gap-10 3xl:gap-7">
-        <div className="flex-col gap-4 3xl:gap-2">
-          <div className="flex-col">
-            <SelectProvider>
-              <Select.Root>
-                <Select.Wrapper>
-                  <Select.Input onChange={handleChangeSelect} />
+      <div className={twMerge('flex-col gap-10', '3xl:gap-7')}>
+        <div className={twMerge('flex-col gap-4', '3xl:gap-2')}>
+          <div className="flex-col gap-3">
+            <Select.Root
+              name="Assunto"
+              value={subject}
+              onValueChange={handleChangeSelect}
+            >
+              <Select.Trigger error={!!fieldsErrors.subject}>
+                <Select.Value placeholder="Assunto" />
+              </Select.Trigger>
 
-                  <Select.OptionSelectedWrapper error={!!fieldsErrors.subject}>
-                    <Select.OptionSelected
-                      placeholder="Assunto"
-                      className="text-xs"
-                      value={subject}
-                    />
-                    <Select.RightIcon icon={RiArrowDownSLine} size={22} />
-                  </Select.OptionSelectedWrapper>
-                </Select.Wrapper>
-
-                <Select.Options>
-                  {subjectOptions.map((subject, index) => (
-                    <Select.Option
-                      key={subject.value}
-                      items={subjectOptions}
-                      item={subject}
-                      index={index}
-                    />
-                  ))}
-                </Select.Options>
-              </Select.Root>
-            </SelectProvider>
+              <Select.Content>
+                {subjectOptions.map((subject) => (
+                  <Select.Item key={subject.value} value={subject.label}>
+                    <Select.ItemText>{subject.label}</Select.ItemText>
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
 
             {fieldsErrors?.subject && (
               <ErrorMessage>{fieldsErrors?.subject}</ErrorMessage>
@@ -240,7 +225,12 @@ export function ModalSupportForm({
           </div>
 
           {files.length > 0 && (
-            <div className="flex-wrap items-center justify-between gap-3 3xl:gap-1.5">
+            <div
+              className={twMerge(
+                'flex-wrap items-center justify-between gap-3',
+                '3xl:gap-1.5'
+              )}
+            >
               {files.map((file, index) => (
                 <FileCard
                   key={index}

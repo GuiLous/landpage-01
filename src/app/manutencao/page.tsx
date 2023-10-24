@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import { MaintenanceLogoutButton } from '@/components/pages'
 
@@ -9,7 +10,12 @@ import logo from '@/assets/images/logo_type_white.svg'
 
 export default function Maintenance() {
   return (
-    <main className="relative h-screen w-screen flex-col bg-maintenance bg-cover bg-no-repeat">
+    <main
+      className={twMerge(
+        'relative h-screen w-screen flex-col',
+        'bg-maintenance bg-cover bg-no-repeat'
+      )}
+    >
       <section className="flex-col items-center justify-center gap-40 pb-10">
         <div className="flex-initial justify-center">
           <Image src={logo} alt="Reload logo" width={200} />

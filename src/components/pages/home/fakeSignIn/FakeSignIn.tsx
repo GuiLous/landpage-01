@@ -1,27 +1,25 @@
 'use client'
 
+import { SignJWT } from 'jose'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
-import { RiArrowDownSLine, RiErrorWarningFill } from 'react-icons/ri'
+import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { fakeAccountEmails } from '@/utils'
+import { fakeAccountEmails, isEmailValid } from '@/utils'
 
-import { isEmailValid } from '@/functions'
-
-import { httpService } from '@/services'
-
-import { SelectProvider } from '@/providers'
+import { getJwtSecretKey, httpService } from '@/services'
 
 import { Button, Divider, Input, Select } from '@/components/shared'
 
-import { useInitializeReducers, useShowErrorToast } from '@/hooks'
+import { useInitializeSlices, useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
 }
 
 export function FakeSignIn() {
-  const { initializeReducers } = useInitializeReducers()
+  const { initializeSlices } = useInitializeSlices()
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -70,13 +68,32 @@ export function FakeSignIn() {
         return
       }
 
-      setFetching(false)
+      const jwtToken = await new SignJWT({
+        id: response.id,
+        email: response.email,
+        username: response?.account?.username || null,
+        is_active: response.is_active,
+        is_verified: response?.account?.is_verified || false,
+        token: response.token,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(getJwtSecretKey())
 
-      initializeReducers(response.token)
+      Cookies.set('token', jwtToken)
 
-      router.push('/verificar')
+      initializeSlices()
+
+      if (!response.is_active) return router.push('/conta-inativa')
+
+      if (!response?.account?.username) return router.push('/cadastrar')
+
+      if (!response?.account?.is_verified) return router.push('/verificar')
+
+      router.push('/jogar')
     },
-    [email, router, showErrorToast, initializeReducers]
+    [email, router, showErrorToast, initializeSlices]
   )
 
   if (process.env.NEXT_PUBLIC_REACT_APP_SHOW_FAKE_SIGNIN === 'false')
@@ -86,7 +103,7 @@ export function FakeSignIn() {
     <div className="max-w-[310px] flex-col">
       <Divider />
 
-      <div className="mt-[0.625rem] flex-col ">
+      <div className="mt-2.5 flex-col ">
         <form onSubmit={handleSubmit} className="w-full" method="POST">
           <div className="flex-col">
             <div className="flex-col gap-2">
@@ -116,29 +133,24 @@ export function FakeSignIn() {
                 <span className="font-medium">ou</span>
               </div>
 
-              <SelectProvider>
-                <Select.Root>
-                  <Select.Wrapper>
-                    <Select.Input onChange={handleChange} />
+              <Select.Root name="Assunto" onValueChange={handleChange}>
+                <Select.Trigger
+                  className="text-sm"
+                  error={!!fieldsErrors.email}
+                >
+                  <Select.Value placeholder="Selecione um email" />
+                </Select.Trigger>
 
-                    <Select.OptionSelectedWrapper>
-                      <Select.OptionSelected placeholder="Selecione um email" />
-                      <Select.RightIcon icon={RiArrowDownSLine} size={22} />
-                    </Select.OptionSelectedWrapper>
-                  </Select.Wrapper>
-
-                  <Select.Options>
-                    {fakeAccountEmails.map((email, index) => (
-                      <Select.Option
-                        key={email.value}
-                        items={fakeAccountEmails}
-                        item={email}
-                        index={index}
-                      />
-                    ))}
-                  </Select.Options>
-                </Select.Root>
-              </SelectProvider>
+                <Select.Content>
+                  {fakeAccountEmails.map((email) => (
+                    <Select.Item key={email.value} value={email.value}>
+                      <Select.ItemText className="text-sm">
+                        {email.label}
+                      </Select.ItemText>
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
 
               <div>
                 <Button.Root disabled={isButtonDisabled} className="w-full">
@@ -156,9 +168,7 @@ export function FakeSignIn() {
             </div>
           </div>
 
-          <p className="p-[0.625rem] text-xs">
-            *Disponível somente para testes.
-          </p>
+          <p className="p-2.5 text-xs">*Disponível somente para testes.</p>
         </form>
       </div>
     </div>

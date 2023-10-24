@@ -1,31 +1,31 @@
 'use client'
 
+import { SignJWT } from 'jose'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid } from '@/functions'
+import { isEmailValid } from '@/utils'
 
-import { httpService, storageService } from '@/services'
-
-import { useAppDispatch } from '@/store'
-import { updateUser } from '@/store/slices/userSlice'
+import { getJwtSecretKey, httpService } from '@/services'
 
 import { ChangeEmailGoBackLink } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
 }
 
 export default function ChangeEmail() {
-  const dispatch = useAppDispatch()
-
   const router = useRouter()
   const showErrorToast = useShowErrorToast()
+
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const [email, setEmail] = useState('')
   const [fetching, setFetching] = useState(false)
@@ -49,10 +49,11 @@ export default function ChangeEmail() {
 
   const handleSubmit = useCallback(
     async (e?: FormEvent) => {
+      if (!auth?.token) return
+
       e?.preventDefault()
 
       setFetching(true)
-      const token = storageService.get('token')
 
       const payload = {
         email,
@@ -60,8 +61,10 @@ export default function ChangeEmail() {
 
       const response = await httpService.patch(
         'accounts/update-email/',
-        token,
-        payload
+        auth.token,
+        payload,
+        undefined,
+        { cache: 'no-cache' }
       )
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
@@ -74,15 +77,24 @@ export default function ChangeEmail() {
         return
       }
 
+      const jwtToken = await new SignJWT({
+        ...auth,
+        email,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(getJwtSecretKey())
+
+      Cookies.set('token', jwtToken)
+
       setFetching(false)
 
-      dispatch(updateUser(response))
-
-      if (response.account.is_verified) router.push('/jogar')
+      if (response.account.is_verified) return router.push('/jogar')
 
       router.push('/verificar')
     },
-    [dispatch, email, router, showErrorToast]
+    [email, router, showErrorToast, auth]
   )
 
   return (

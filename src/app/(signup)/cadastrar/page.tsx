@@ -1,22 +1,23 @@
 'use client'
 
+import { SignJWT } from 'jose'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid } from '@/functions'
+import { isEmailValid } from '@/utils'
 
-import { httpService, storageService } from '@/services'
+import { getJwtSecretKey, httpService } from '@/services'
 
 import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
-import { updateUser } from '@/store/slices/userSlice'
 
 import { Terms } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 type FieldsErrors = {
   email: string
@@ -34,6 +35,9 @@ export default function SignUp() {
     {} as FieldsErrors
   )
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const cannotSubmit = email !== '' && !isEmailValid(email)
 
   const isButtonDisabled = fetching || cannotSubmit || email === ''
@@ -50,10 +54,11 @@ export default function SignUp() {
 
   const handleSubmit = useCallback(
     async (e?: FormEvent) => {
+      if (!auth?.token) return
+
       e?.preventDefault()
 
       setFetching(true)
-      const token = storageService.get('token')
 
       const payload = {
         email,
@@ -61,7 +66,14 @@ export default function SignUp() {
         terms: true,
       }
 
-      const response = await httpService.post('accounts/', token, payload)
+      const response = await httpService.post(
+        'accounts/',
+        auth.token,
+        payload,
+        undefined,
+        { cache: 'no-cache' }
+      )
+
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
         setFetching(false)
@@ -73,7 +85,6 @@ export default function SignUp() {
         return
       }
 
-      setFetching(false)
       dispatch(
         addToast({
           title: 'Que bom que você chegou!',
@@ -82,10 +93,24 @@ export default function SignUp() {
           variant: 'success',
         })
       )
-      dispatch(updateUser(response))
-      if (response.account) router.push('/verificar')
+
+      const jwtToken = await new SignJWT({
+        ...auth,
+        email: response.email,
+        username: response.account.username,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(getJwtSecretKey())
+
+      Cookies.set('token', jwtToken)
+
+      setFetching(false)
+
+      router.push('/verificar')
     },
-    [dispatch, email, router, showErrorToast]
+    [dispatch, email, router, showErrorToast, auth]
   )
 
   return (

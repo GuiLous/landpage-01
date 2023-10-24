@@ -5,8 +5,6 @@ import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { Variant, removeToast } from '@/store/slices/appSlice'
 
@@ -14,7 +12,7 @@ import { lobbyApi } from '@/api'
 
 import { Avatar, Button } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface ToastProps {
   id: number
@@ -40,6 +38,9 @@ export function Toast({
   const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const dynamicDuration = content.length <= 67 ? duration : 10
 
   const [timer, setTimer] = useState(dynamicDuration - 1)
@@ -52,10 +53,9 @@ export function Toast({
   }
 
   const handleAccept = async () => {
-    const userToken = storageService.get('token')
-    if (!userToken || !invite_id) return
+    if (!auth?.token || !invite_id) return
 
-    const response = await lobbyApi.acceptInvite(userToken, invite_id)
+    const response = await lobbyApi.acceptInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -77,7 +77,7 @@ export function Toast({
 
       case 'invite':
       case 'notification':
-        return <Avatar avatarUrl={avatar} sm />
+        return <Avatar avatarUrl={avatar} size="sm" />
 
       default:
         return <AiFillBell className="text-purple-400" size={16} />
@@ -134,10 +134,16 @@ export function Toast({
   }, [invite, invite_id])
 
   return (
-    <div className="relative flex-col overflow-hidden rounded bg-gray-1100 opacity-90 transition-opacity hover:opacity-100">
+    <div
+      className={twMerge(
+        'relative flex-col overflow-hidden rounded bg-gray-1100 opacity-90 transition-opacity',
+        'hover:opacity-100'
+      )}
+    >
       <div
         className={twMerge(
-          'gap-4 rounded p-3.5 bg-gradient_toast_info',
+          'gap-4 rounded p-3.5',
+          'bg-gradient_toast_info',
           variant === 'success' && 'bg-gradient_toast_success',
           variant === 'error' && 'bg-gradient_toast_error',
           variant === 'warning' && 'bg-gradient_toast_warning'
@@ -188,13 +194,19 @@ export function Toast({
           className="min-h-full max-w-fit flex-initial cursor-pointer"
           onClick={handleClose}
         >
-          <RxCross1 className="text-xs text-white transition-colors hover:text-gray-300" />
+          <RxCross1
+            className={twMerge(
+              'text-xs text-white transition-colors',
+              'hover:text-gray-300'
+            )}
+          />
         </div>
       </div>
 
       <div
         className={twMerge(
-          'max-h-[5px] max-w-0 min-h-[5px] animate-progress bg-purple-400',
+          'max-h-[5px] max-w-0 min-h-[5px] bg-purple-400',
+          'animate-progress',
           variant === 'success' && 'bg-green-400',
           variant === 'error' && 'bg-red-500',
           variant === 'warning' && 'bg-yellow-400'

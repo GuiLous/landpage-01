@@ -4,7 +4,12 @@ import { ReactNode } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const link = tv({
-  base: 'text-gray-300 transition-colors duration-[0.2s] ease-in-out hover:text-white active:text-white',
+  base: [
+    'text-gray-300',
+    'transition-colors duration-[0.2s] ease-in-out',
+    'active:text-white',
+    'hover:text-white',
+  ],
   variants: {
     inline: {
       true: 'underline',

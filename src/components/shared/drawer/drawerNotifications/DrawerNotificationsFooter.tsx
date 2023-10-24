@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { readAllNotifications } from '@/store/slices/notificationSlice'
 
@@ -9,12 +7,15 @@ import { notificationsApi } from '@/api'
 
 import { Button } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function DrawerNotificationsFooter() {
   const notifications = useAppSelector((state) => state.notifications)
 
   const dispatch = useAppDispatch()
+
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -25,13 +26,11 @@ export function DrawerNotificationsFooter() {
     notifications.length === 0 || totalNotificationsNotRead === 0
 
   const readAll = async () => {
-    const userToken = storageService.get('token')
-
-    if (notifications.length <= 0 || !userToken) return
+    if (notifications.length <= 0 || !auth?.token) return
 
     setFetching(true)
 
-    const response = await notificationsApi.readAll(userToken)
+    const response = await notificationsApi.readAll(auth.token)
 
     if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) dispatch(readAllNotifications())

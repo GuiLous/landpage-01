@@ -9,7 +9,9 @@ export function ButtonSpinner({ bgStyle, circleStyle }: ButtonSpinnerProps) {
   return (
     <div
       className={twMerge(
-        'h-4 w-4 flex-initial animate-spin items-center justify-center rounded-full bg-gradient-to-tr from-transparent to-gray-300',
+        'h-4 w-4 flex-initial items-center justify-center rounded-full',
+        'bg-gradient-to-tr from-transparent to-gray-300',
+        'animate-spin',
         circleStyle
       )}
     >

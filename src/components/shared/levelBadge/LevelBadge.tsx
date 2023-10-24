@@ -6,75 +6,55 @@ import { twMerge } from 'tailwind-merge'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const badge = tv({
-  base: 'relative items-center justify-center',
+  slots: {
+    container: 'relative items-center justify-center',
+    levelText: 'relative -ml-0.5 -mt-[15px] text-xl font-bold text-white',
+  },
   variants: {
-    xs: {
-      true: 'min-w-[25px] max-w-[25px]',
-    },
-    sm: {
-      true: 'min-w-[41px] max-w-[41px]',
-    },
-    smd: {
-      true: 'min-w-[55px] max-w-[55px]',
-    },
-    md: {
-      true: 'min-w-[75px] max-w-[75px] 3xl:min-w-[55px] 3xl:max-w-[55px]',
-    },
-    lg: {
-      true: 'min-w-[90px] max-w-[90px]',
-    },
-    xl: {
-      true: 'min-w-[120px] max-w-[120px]',
+    variant: {
+      xs: {
+        container: 'min-w-[25px] max-w-[25px]',
+        levelText: '-mt-[5px] text-[7px]',
+      },
+
+      sm: {
+        container: 'min-w-[41px] max-w-[41px]',
+        levelText: '-ml-px -mt-2 text-[11px]',
+      },
+
+      smd: {
+        container: 'min-w-[55px] max-w-[55px]',
+        levelText: '-mt-2 ml-0 text-[15px]',
+      },
+
+      md: {
+        container:
+          'min-w-[75px] max-w-[75px] 3xl:min-w-[55px] 3xl:max-w-[55px]',
+        levelText:
+          '-ml-0.5 -mt-[15px] text-xl 3xl:-mt-2 3xl:ml-0 3xl:text-[15px]',
+      },
+
+      lg: {
+        container: 'min-w-[90px] max-w-[90px]',
+        levelText: '-ml-0.5 -mt-[18px] text-2xl',
+      },
+
+      xl: {
+        container: 'min-w-[120px] max-w-[120px]',
+        levelText: '-ml-0.5 -mt-[22px] text-[32px]',
+      },
     },
   },
   defaultVariants: {
-    xs: false,
-    sm: false,
-    smd: false,
-    md: false,
-    lg: false,
-    xl: false,
+    variant: 'md',
   },
 })
 
-const levelText = tv({
-  base: 'relative -ml-0.5 -mt-[15px] text-xl font-bold text-white',
-  variants: {
-    xs: {
-      true: '-mt-[5px] text-[7px]',
-    },
-    sm: {
-      true: '-ml-px -mt-2 text-[11px]',
-    },
-    smd: {
-      true: '-mt-2 ml-0 text-[15px]',
-    },
-    md: {
-      true: '-ml-0.5 -mt-[15px] text-xl 3xl:-mt-2 3xl:ml-0 3xl:text-[15px]',
-    },
-    lg: {
-      true: '-ml-0.5 -mt-[18px] text-2xl',
-    },
-    xl: {
-      true: '-ml-0.5 -mt-[22px] text-[32px]',
-    },
-  },
-  defaultVariants: {
-    xs: false,
-    sm: false,
-    smd: false,
-    md: false,
-    lg: false,
-    xl: false,
-  },
-})
-
-type LevelBadgeProps = VariantProps<typeof badge> &
-  VariantProps<typeof levelText> & {
-    fitParent?: boolean
-    level: number
-    className?: string
-  }
+type LevelBadgeProps = VariantProps<typeof badge> & {
+  fitParent?: boolean
+  level: number
+  className?: string
+}
 
 const BADGE_SIZES = {
   xs: 25,
@@ -88,14 +68,11 @@ const BADGE_SIZES = {
 export function LevelBadge({
   fitParent = false,
   level,
-  xs,
-  sm,
-  smd,
-  md,
-  lg,
-  xl,
+  variant,
   className,
 }: LevelBadgeProps) {
+  const { container, levelText } = badge({ variant })
+
   const calcLvlRange = useCallback(() => {
     let range = '0-9'
     if (level >= 10) range = '10-19'
@@ -108,30 +85,33 @@ export function LevelBadge({
   }, [level])
 
   const getVariant = useCallback(() => {
-    if (xs) return 'xs'
-    if (sm) return 'sm'
-    if (smd) return 'smd'
-    if (md) return 'md'
-    if (lg) return 'lg'
-    if (xl) return 'xl'
-
-    return 'md'
-  }, [xs, sm, smd, md, lg, xl])
+    switch (variant) {
+      case 'xs':
+        return 'xs'
+      case 'sm':
+        return 'sm'
+      case 'smd':
+        return 'smd'
+      case 'md':
+        return 'md'
+      case 'lg':
+        return 'lg'
+      case 'xl':
+        return 'xl'
+      default:
+        return 'md'
+    }
+  }, [variant])
 
   return (
     <div
-      className={badge({
-        xs,
-        sm,
-        smd,
-        md,
-        lg,
-        xl,
+      className={container({
+        variant,
         className: twMerge(className, fitParent && 'max-w-full min-w-full'),
       })}
     >
       <div className="absolute h-full w-full items-center justify-center">
-        <span className={levelText({ xs, sm, smd, md, lg, xl })}>{level}</span>
+        <span className={levelText({ variant })}>{level}</span>
       </div>
 
       <Image

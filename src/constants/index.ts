@@ -1,20 +1,23 @@
 // Routes
-export const APP_ROUTES = {
-  private: {
-    register: '/cadastrar',
-    verify: '/verificar',
-    changeEmail: '/alterar-email',
-    play: '/jogar',
-    inactive: '/conta-inativa',
-    connect: '/conectar',
-  },
-  public: {
-    home: '/',
-    auth: '/auth',
-    notFound: '/not-found',
-    maintenance: '/manutencao',
-  },
-}
+export const PRIVATE_ROUTES = [
+  '/cadastrar',
+  '/verificar',
+  '/alterar-email',
+  '/jogar',
+  '/conta-inativa',
+  '/partidas',
+  '/perfil',
+  '/conta',
+]
+export const PUBLIC_ROUTES = ['/', '/not-found', '/manutencao']
+export const ROUTES_TO_INITIALIZE_SLICES = [
+  '/jogar',
+  '/partidas',
+  '/conta',
+  '/perfil',
+  '/manutencao',
+]
+export const ROUTES_SIGNUP = ['/cadastrar', '/verificar', '/alterar-email']
 
 // Pins input
 export const TOTAL_SIGNUP_PINS = 6

@@ -1,23 +1,27 @@
 'use client'
 
+import { SignJWT } from 'jose'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { PiArrowRight } from 'react-icons/pi'
 
 import { TOTAL_SIGNUP_PINS } from '@/constants'
 
-import { httpService, storageService } from '@/services'
+import { getJwtSecretKey, httpService } from '@/services'
 
 import { Button, PinInput } from '@/components/shared'
 
-import { useInitializeReducers, useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function VerifyForm() {
-  const { initializeReducers } = useInitializeReducers()
-
   const showErrorToast = useShowErrorToast()
+  const router = useRouter()
+
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const [pin, setPin] = useState('')
-
   const [fetching, setFetching] = useState(false)
 
   const cannotSubmit = pin === '' || pin.length < TOTAL_SIGNUP_PINS
@@ -37,19 +41,20 @@ export function VerifyForm() {
 
   const handleSubmit = useCallback(
     async (e?: FormEvent) => {
-      if (cannotSubmit) return
+      if (cannotSubmit || !auth?.token) return
 
       e?.preventDefault()
 
       setFetching(true)
-      const token = storageService.get('token')
 
       const payload = { verification_token: pin }
 
       const response = await httpService.post(
         'accounts/verify/',
-        token,
-        payload
+        auth.token,
+        payload,
+        undefined,
+        { cache: 'no-cache' }
       )
 
       if (response.fieldsErrors) {
@@ -62,10 +67,22 @@ export function VerifyForm() {
         return
       }
 
-      initializeReducers(token)
-      setFetching(false)
+      const jwtToken = await new SignJWT({
+        ...auth,
+        is_verified: true,
+      })
+        .setProtectedHeader({ alg: 'HS256' })
+        .setIssuedAt()
+        .setExpirationTime('1h')
+        .sign(getJwtSecretKey())
+
+      if (jwtToken) {
+        Cookies.set('token', jwtToken)
+      }
+
+      router.push('/jogar')
     },
-    [cannotSubmit, pin, showErrorToast, initializeReducers]
+    [cannotSubmit, pin, showErrorToast, auth, router]
   )
 
   return (

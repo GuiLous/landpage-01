@@ -2,8 +2,6 @@
 
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { readNotification } from '@/store/slices/notificationSlice'
 
@@ -11,7 +9,7 @@ import { notificationsApi } from '@/api'
 
 import { Drawer, ScrollArea } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 import { DrawerNotificationsFooter } from './DrawerNotificationsFooter'
 import { DrawerNotificationsItem } from './DrawerNotificationsItem'
@@ -29,19 +27,20 @@ export function DrawerNotifications({
 
   const dispatch = useAppDispatch()
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const showErrorToast = useShowErrorToast()
 
   const read = async (id: number) => {
-    const userToken = storageService.get('token')
-
-    if (!userToken) return
+    if (!auth?.token) return
 
     const isAlreadyRead =
       notifications.find((notification) => notification.id === id)
         ?.read_date !== null
 
     if (!isAlreadyRead) {
-      const response = await notificationsApi.read(userToken, id)
+      const response = await notificationsApi.read(auth.token, id)
       if (response.errorMsg) showErrorToast(response.errorMsg)
       else if (response) dispatch(readNotification({ id }))
     }
@@ -51,7 +50,10 @@ export function DrawerNotifications({
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
         title="Notificações"
-        className="z-20 max-w-[350px] select-none 3xl:max-w-[300px]"
+        className={twMerge(
+          'z-20 max-w-[350px] select-none',
+          '3xl:max-w-[300px]'
+        )}
       >
         <div
           className={twMerge(
@@ -60,7 +62,7 @@ export function DrawerNotifications({
           )}
         >
           {notifications.length > 0 ? (
-            <ScrollArea className="max-h-[calc(100vh_-_64px)]">
+            <ScrollArea className="max-h-notifications">
               {notifications.map((notification) => (
                 <DrawerNotificationsItem
                   key={notification.id}

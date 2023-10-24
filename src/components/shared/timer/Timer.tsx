@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
-import { formatSecondsToMinutes } from '@/functions'
+import { formatSecondsToMinutes } from '@/utils'
 
 interface TimerProps {
   initialTime: number

@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import logo from '@/assets/images/logo_type_white.svg'
 
@@ -7,8 +8,15 @@ import { LoginForm } from './LoginForm'
 
 export function Brand() {
   return (
-    <div className="flex-col gap-7 xl:mt-3 xl:items-start xl:justify-center xl:gap-3 xl:pb-10">
-      <header className="max-w-[305px] xl:w-[75%] xl:flex-initial">
+    <div
+      className={twMerge(
+        'flex-col gap-7 ',
+        'xl:mt-3 xl:items-start xl:justify-center xl:gap-3 xl:pb-10'
+      )}
+    >
+      <header
+        className={twMerge('max-w-[305px]', 'xl:w-[75%] xl:flex-initial')}
+      >
         <Image src={logo} alt="Reload" />
       </header>
 
@@ -17,11 +25,11 @@ export function Brand() {
         prove seu valor. Reload.
       </p>
 
-      <footer className="max-w-[305px] xl:hidden">
+      <footer className={twMerge('max-w-[305px]', 'xl:hidden')}>
         <LoginForm />
       </footer>
 
-      <footer className="hidden max-h-[4rem] xl:flex xl:max-h-12">
+      <footer className={twMerge('hidden max-h-[4rem]', 'xl:flex xl:max-h-12')}>
         <DiscordButton />
       </footer>
     </div>

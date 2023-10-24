@@ -4,15 +4,13 @@ import { MouseEvent, useCallback, useEffect, useState } from 'react'
 
 import { MATCH_FOUND_GAP_TIMEOUT, TIME_OUT_MULTIPLIER } from '@/constants'
 
-import { storageService } from '@/services'
-
 import { useAppSelector } from '@/store'
 
 import { preMatchApi } from '@/api'
 
 import { Button, Modal, Timer } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 import { ModalMatchFoundPlayersIcon } from './ModalMatchFoundPlayersIcon'
 
@@ -26,24 +24,26 @@ export function ModalMatchFound({ open, setOpen }: ModalLogoutProps) {
 
   const showErrorToast = useShowErrorToast()
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const [timeExpired, setTimeExpired] = useState(false)
 
   const handleAccept = useCallback(
     async (e: MouseEvent<HTMLButtonElement>) => {
       e.preventDefault()
-      const userToken = storageService.get('token')
 
-      if (timeExpired || !userToken) return
+      if (timeExpired || !auth?.token) return
 
       let response = null
 
-      response = await preMatchApi.playerReady(userToken)
+      response = await preMatchApi.playerReady(auth.token)
 
       if (response.errorMsg) {
         showErrorToast(response.errorMsg)
       }
     },
-    [timeExpired, showErrorToast]
+    [timeExpired, showErrorToast, auth]
   )
 
   useEffect(() => {

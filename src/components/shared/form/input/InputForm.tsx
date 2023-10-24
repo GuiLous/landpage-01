@@ -2,16 +2,36 @@ import { ComponentProps, ReactNode } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const inputWrapper = tv({
-  base: 'group relative flex-initial rounded bg-white focus-within:outline focus-within:outline-1 focus-within:outline-purple-400',
+  slots: {
+    container: [
+      'relative flex-initial rounded bg-white',
+      'group',
+      'focus-within:outline focus-within:outline-1 focus-within:outline-purple-400',
+    ],
+    input: [
+      'h-full min-h-[42px] w-full rounded border-none bg-transparent px-4 text-gray-500',
+      'placeholder:text-gray-300',
+      'focus:ring-0',
+    ],
+  },
   variants: {
     success: {
-      true: 'outline outline-1 outline-green-400',
+      true: {
+        container: 'outline outline-1 outline-green-400',
+        input: '',
+      },
     },
     error: {
-      true: 'outline outline-1 outline-red-500',
+      true: {
+        container: 'outline outline-1 outline-red-500',
+        input: '',
+      },
     },
     neutral: {
-      true: 'bg-gray-700',
+      true: {
+        container: 'bg-gray-700',
+        input: 'text-xs text-white',
+      },
     },
   },
   defaultVariants: {
@@ -21,21 +41,8 @@ const inputWrapper = tv({
   },
 })
 
-const input = tv({
-  base: 'h-full min-h-[42px] w-full rounded border-none bg-transparent px-4 text-gray-500 placeholder:text-gray-300 focus:ring-0',
-  variants: {
-    neutral: {
-      true: 'text-xs text-white',
-    },
-  },
-  defaultVariants: {
-    neutral: false,
-  },
-})
-
 type InputFormProps = ComponentProps<'input'> &
-  VariantProps<typeof inputWrapper> &
-  VariantProps<typeof input> & {
+  VariantProps<typeof inputWrapper> & {
     children: ReactNode
   }
 
@@ -47,8 +54,10 @@ export function InputForm({
   neutral,
   ...props
 }: InputFormProps) {
+  const { container, input } = inputWrapper({ error, neutral, success })
+
   return (
-    <div className={inputWrapper({ success, error, neutral })}>
+    <div className={container({ success, error, neutral })}>
       <input type="text" className={input({ neutral, className })} {...props} />
 
       {children}

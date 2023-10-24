@@ -55,11 +55,21 @@ export function DrawerFriendsListGroupItem({
 
   return (
     <div
-      className="group animate-fade cursor-pointer gap-4 py-1.5 pl-0 pr-5 hover:bg-gradient_friend"
+      className={twMerge(
+        'cursor-pointer gap-4 py-1.5 pl-0 pr-5',
+        'animate-fade',
+        'group',
+        'hover:bg-gradient_friend'
+      )}
       onContextMenu={handleToggleMenu}
       onClick={() => setOpenMenu(true)}
     >
-      <div className="min-h-full min-w-[4px] max-w-[4px] rounded-[0_4px_4px_0] bg-gray-400 opacity-0 group-hover:opacity-100" />
+      <div
+        className={twMerge(
+          'min-h-full min-w-[4px] max-w-[4px] rounded-[0_4px_4px_0] bg-gray-400 opacity-0',
+          'group-hover:opacity-100'
+        )}
+      />
 
       <div className="items-center gap-3.5 px-0 py-1">
         <div
@@ -68,12 +78,7 @@ export function DrawerFriendsListGroupItem({
             title === 'Offline' && 'opacity-50'
           )}
         >
-          <Avatar
-            avatarUrl={avatar}
-            status={status}
-            alt="Perfil do usuário"
-            md
-          />
+          <Avatar avatarUrl={avatar} status={status} alt="Perfil do usuário" />
         </div>
 
         <div
@@ -82,12 +87,15 @@ export function DrawerFriendsListGroupItem({
             title === 'Offline' && 'opacity-50'
           )}
         >
-          <span className="text-sm font-medium text-white 3xl:text-xs">
+          <span
+            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+          >
             {username}
           </span>
           <span
             className={twMerge(
-              'text-xs 3xl:text-[0.625rem]',
+              'text-xs',
+              '3xl:text-[0.625rem]',
               COLOR_STATUS[status]
             )}
           >
@@ -98,7 +106,11 @@ export function DrawerFriendsListGroupItem({
         <MenuContext open={openMenu} onOpenChange={setOpenMenu}>
           <MenuContext.Trigger>
             <BsThreeDots
-              className="text-gray-300 opacity-0 transition-all hover:text-white group-hover:opacity-100"
+              className={twMerge(
+                'text-gray-300 opacity-0 transition-all',
+                'hover:text-white',
+                'group-hover:opacity-100'
+              )}
               size={18}
             />
           </MenuContext.Trigger>

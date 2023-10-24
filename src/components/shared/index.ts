@@ -1,4 +1,6 @@
 /* eslint-disable prettier/prettier */
+export * from './app/initializeSlices/InitializeSlices'
+export * from './app/websocket/RenderWSS'
 export * from './avatar/Avatar'
 export * from './badge/Badge'
 export * from './divider/Divider'
@@ -23,12 +25,10 @@ export * from './modal/modal/Modal'
 export * from './modal/modalLogout/ModalLogout'
 export * from './modal/modalMatchFound/ModalMatchFound'
 export * from './modal/modalSupport/ModalSupport'
-export * from './privateRoute/PrivateRoute'
 export * from './scrollArea/ScrollArea'
 export * from './sidebar/Sidebar'
 export * from './timer/Timer'
 export * from './toasts/RenderToasts'
 export * from './tooltip/Tooltip'
-export * from './websocket/RenderWSS'
 
 

@@ -21,7 +21,8 @@ export function DrawerNotificationsItem({
   return (
     <div
       className={twMerge(
-        'items-center flex-initial gap-4 bg-gray-900 px-5 py-4 3xl:py-3.5 3xl:pr-6 3xl:pl-4',
+        'items-center flex-initial gap-4 bg-gray-900 px-5 py-4',
+        '3xl:py-3.5 3xl:pr-6 3xl:pl-4',
         !isRead && 'bg-gradient_notification'
       )}
       {...props}
@@ -29,7 +30,9 @@ export function DrawerNotificationsItem({
       <div className="items-center gap-4">
         <div className="flex-col gap-3">
           <div>
-            <span className="text-sm text-white 3xl:text-xs">{content}</span>
+            <span className={twMerge('text-sm text-white', '3xl:text-xs')}>
+              {content}
+            </span>
           </div>
 
           <div>
@@ -44,7 +47,7 @@ export function DrawerNotificationsItem({
         <Avatar
           avatarUrl={avatar}
           alt="Imagem de perfil"
-          sm
+          size="sm"
           className="border-2 border-purple-400"
         />
       </div>

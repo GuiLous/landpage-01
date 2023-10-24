@@ -35,14 +35,20 @@ export function ModalSupport({
       <Modal.Content
         title="SUPORTE RELOAD CLUB"
         className={twMerge(
-          'min-w-[580px] max-w-[580px] 3xl:min-w-[470px] 3xl:max-w-[470px]',
+          'min-w-[580px] max-w-[580px]',
+          '3xl:min-w-[470px] 3xl:max-w-[470px]',
           formSent && 'min-w-fit max-w-fit 3xl:min-w-fit 3xl:max-w-fit'
         )}
       >
         {formSent ? (
           <ModalSupportConfirmation />
         ) : (
-          <div className="mt-6 flex-col items-center justify-center gap-8 3xl:mt-5 3xl:gap-5">
+          <div
+            className={twMerge(
+              'mt-6 flex-col items-center justify-center gap-8',
+              '3xl:mt-5 3xl:gap-5'
+            )}
+          >
             <ModalSupportDescription />
 
             <ModalSupportForm

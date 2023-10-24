@@ -1,8 +1,7 @@
 import { useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
-
-import { storageService } from '@/services'
+import { twMerge } from 'tailwind-merge'
 
 import { Status } from '@/store/slices/userSlice'
 
@@ -10,7 +9,7 @@ import { lobbyApi } from '@/api'
 
 import { Avatar } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface DrawerFriendsInviteItemProps {
   invite_id: string
@@ -27,45 +26,48 @@ export function DrawerFriendsInviteItem({
 }: DrawerFriendsInviteItemProps) {
   const showErrorToast = useShowErrorToast()
 
-  const userToken = storageService.get('token')
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const handleAccept = useCallback(async () => {
-    if (!userToken) return
+    if (!auth?.token) return
 
-    const response = await lobbyApi.acceptInvite(userToken, invite_id)
+    const response = await lobbyApi.acceptInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [invite_id, showErrorToast, userToken])
+  }, [invite_id, showErrorToast, auth])
 
   const handleRefuse = useCallback(async () => {
-    if (!userToken) return
+    if (!auth?.token) return
 
-    const response = await lobbyApi.refuseInvite(userToken, invite_id)
+    const response = await lobbyApi.refuseInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, invite_id, userToken])
+  }, [showErrorToast, invite_id, auth])
 
   return (
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">
       <div className="items-center gap-3.5 ">
         <div className="max-w-fit flex-initial">
-          <Avatar
-            avatarUrl={avatar}
-            status={status}
-            md
-            alt="Perfil do usuário"
-          />
+          <Avatar avatarUrl={avatar} status={status} alt="Perfil do usuário" />
         </div>
 
         <div className="flex-col gap-1">
-          <span className="text-sm font-medium text-white 3xl:text-xs">
+          <span
+            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+          >
             {username}
           </span>
-          <span className="min-w-[95px] text-xs font-medium text-purple-300 3xl:text-[0.625rem]">
+          <span
+            className={twMerge(
+              'min-w-[95px] text-xs font-medium text-purple-300',
+              '3xl:text-[0.625rem]'
+            )}
+          >
             Convidou você
           </span>
         </div>
@@ -77,7 +79,10 @@ export function DrawerFriendsInviteItem({
           onClick={handleAccept}
         >
           <BsCheckCircleFill
-            className="text-green-600 transition-all hover:scale-110 hover:text-green-500"
+            className={twMerge(
+              'text-green-600 transition-al',
+              'hover:scale-110 hover:text-green-500'
+            )}
             size={20}
           />
         </div>
@@ -87,7 +92,10 @@ export function DrawerFriendsInviteItem({
           onClick={handleRefuse}
         >
           <RiCloseFill
-            className="text-gray-300 transition-all hover:text-white"
+            className={twMerge(
+              'text-gray-300 transition-all',
+              'hover:text-white'
+            )}
             size={22}
           />
         </div>
