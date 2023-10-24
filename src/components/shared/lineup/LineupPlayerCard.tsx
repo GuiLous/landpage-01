@@ -48,7 +48,7 @@ export function LineupPlayerCard({
       />
 
       <div className="flex-initial justify-center">
-        <LevelBadge level={player.level} md />
+        <LevelBadge level={player.level} />
       </div>
 
       <LineupPlayerCardIcons
