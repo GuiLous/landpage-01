@@ -17,6 +17,7 @@ export const ROUTES_TO_INITIALIZE_SLICES = [
   '/perfil',
   '/manutencao',
 ]
+export const ROUTES_SIGNUP = ['/cadastrar', '/verificar', '/alterar-email']
 
 // Pins input
 export const TOTAL_SIGNUP_PINS = 6
