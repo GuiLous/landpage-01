@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-import { uuid4 } from '@/functions'
+import { uuid4 } from '@/utils'
 
 export type Variant =
   | 'error'
