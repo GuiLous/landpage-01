@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import { Providers } from '@/providers/Providers'
+import { Providers } from '@/providers'
 
 import { InitializeSlices, RenderToasts, RenderWSS } from '@/components/shared'
 
