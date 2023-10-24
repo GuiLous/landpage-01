@@ -3,7 +3,7 @@
 import { FormEvent, useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { formatSubjectOptions } from '@/functions'
+import { formatSubjectOptions } from '@/utils'
 
 import { storageService } from '@/services'
 

@@ -3,7 +3,7 @@ import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { formatSecondsToMinutes } from '@/functions'
+import { formatSecondsToMinutes } from '@/utils'
 
 import { storageService } from '@/services'
 

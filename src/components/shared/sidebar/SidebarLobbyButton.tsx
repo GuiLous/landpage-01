@@ -3,7 +3,7 @@
 import { PiHouseFill } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
 
-import { formatSecondsToMinutes } from '@/functions'
+import { formatSecondsToMinutes } from '@/utils'
 
 import { useAppSelector } from '@/store'
 
