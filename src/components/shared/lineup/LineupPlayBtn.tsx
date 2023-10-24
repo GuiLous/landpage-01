@@ -89,7 +89,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   }, [showErrorToast, auth])
 
   const onMatchFound = useCallback(() => {
-    if (preMatch && preMatch.state === 'lock_in') {
+    if (preMatch && preMatch.status === 'ready_in') {
       if (playAudio) {
         toggle()
         setPlayAudio(false)
@@ -99,8 +99,8 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   }, [playAudio, preMatch, toggle])
 
   useEffect(() => {
-    if (preMatch && preMatch.state === 'pre_start') lockIn()
-  }, [preMatch?.state, lockIn, preMatch])
+    if (preMatch && preMatch.status === 'lock_in') lockIn()
+  }, [preMatch?.status, lockIn, preMatch])
 
   useEffect(() => {
     onMatchFound()
