@@ -137,16 +137,5 @@ export function useInitializeSlices() {
     setIsLoading(false)
   }, [auth?.token, dispatch, router, showErrorToast])
 
-  // useEffect(() => {
-  //   if (
-  //     ROUTES_TO_INITIALIZE_SLICES.some((route) => route.startsWith(pathname)) &&
-  //     auth?.is_active &&
-  //     auth.is_verified &&
-  //     auth.username
-  //   ) {
-  //     initializeSlices()
-  //   }
-  // }, [])
-
   return { isLoading, initializeSlices }
 }
