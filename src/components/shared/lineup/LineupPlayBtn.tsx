@@ -5,15 +5,13 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSecondsToMinutes } from '@/utils'
 
-import { storageService } from '@/services'
-
 import { useAppSelector } from '@/store'
 
 import { lobbyApi, preMatchApi } from '@/api'
 
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
-import { useAudio, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import matchFoundAudio from '@/assets/audios/match_found.ogg'
 
@@ -26,14 +24,15 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const { user } = useAppSelector((state) => state.user)
   const { preMatch } = useAppSelector((state) => state.preMatch)
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const showErrorToast = useShowErrorToast()
 
   const [toggle] = useAudio(matchFoundAudio)
 
   const [playAudio, setPlayAudio] = useState(false)
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
-
-  const userToken = storageService.get('token')
 
   const isInQueue = lobby.queue
     ? !user?.match_id && !lobby.restriction_countdown
@@ -48,23 +47,23 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       if (lobby.restriction_countdown || lobby.restriction_countdown === 0)
         return
 
-      if (preMatch || user?.match_id || !userToken) return
+      if (preMatch || user?.match_id || !auth?.token) return
 
       if (action === 'start' && !isOwner) return
 
       let response = null
 
       if (action === 'start') {
-        response = await lobbyApi.startQueue(userToken, lobby.id)
+        response = await lobbyApi.startQueue(auth.token, lobby.id)
       } else {
-        response = await lobbyApi.cancelQueue(userToken, lobby.id)
+        response = await lobbyApi.cancelQueue(auth.token, lobby.id)
       }
 
       if (response.errorMsg) {
         showErrorToast(response.errorMsg)
       }
     },
-    [isOwner, lobby, preMatch, user, userToken, showErrorToast]
+    [isOwner, lobby, preMatch, user, auth, showErrorToast]
   )
 
   const handleCancelQueue = useCallback(() => {
@@ -78,18 +77,16 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   }, [handleQueue])
 
   const lockIn = useCallback(async () => {
-    const userToken = storageService.get('token')
-
-    if (!userToken) return
+    if (!auth?.token) return
 
     let response = null
 
-    response = await preMatchApi.playerLockIn(userToken)
+    response = await preMatchApi.playerLockIn(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast])
+  }, [showErrorToast, auth])
 
   const onMatchFound = useCallback(() => {
     if (preMatch && preMatch.state === 'lock_in') {

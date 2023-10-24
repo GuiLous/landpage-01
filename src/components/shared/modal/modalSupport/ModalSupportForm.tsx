@@ -5,8 +5,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSubjectOptions } from '@/utils'
 
-import { storageService } from '@/services'
-
 import { supportApi } from '@/api'
 
 import {
@@ -18,7 +16,7 @@ import {
   TextArea,
 } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 type SubjectOptions = {
   value: string
@@ -45,6 +43,9 @@ export function ModalSupportForm({
   username,
   setFormSent,
 }: ModalSupportFormProps) {
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const showErrorToast = useShowErrorToast()
 
   const [subject, setSubject] = useState('')
@@ -88,11 +89,9 @@ export function ModalSupportForm({
   }, [setFormSent])
 
   const getTickets = useCallback(async () => {
-    const userToken = storageService.get('token')
+    if (!auth?.token) return
 
-    if (!userToken) return
-
-    const response = await supportApi.listTickets(userToken)
+    const response = await supportApi.listTickets(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -109,15 +108,13 @@ export function ModalSupportForm({
     }
 
     setSubjectOptions(formatSubjectOptions(response))
-  }, [showErrorToast, user_id])
+  }, [showErrorToast, user_id, auth])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
       e.preventDefault()
 
-      const userToken = storageService.get('token')
-
-      if (!userToken) return
+      if (!auth?.token) return
 
       setFetching(true)
 
@@ -131,7 +128,7 @@ export function ModalSupportForm({
         formData.append('files', file)
       }
 
-      const response = await supportApi.createTicket(userToken, formData)
+      const response = await supportApi.createTicket(auth.token, formData)
 
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
@@ -148,7 +145,7 @@ export function ModalSupportForm({
       reset()
       setFetching(false)
     },
-    [description, files, subject, showErrorToast, user_id, setFormSent]
+    [description, files, subject, showErrorToast, user_id, setFormSent, auth]
   )
 
   useEffect(() => {

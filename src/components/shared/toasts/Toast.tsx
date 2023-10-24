@@ -5,8 +5,6 @@ import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { Variant, removeToast } from '@/store/slices/appSlice'
 
@@ -14,7 +12,7 @@ import { lobbyApi } from '@/api'
 
 import { Avatar, Button } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface ToastProps {
   id: number
@@ -40,6 +38,9 @@ export function Toast({
   const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const dynamicDuration = content.length <= 67 ? duration : 10
 
   const [timer, setTimer] = useState(dynamicDuration - 1)
@@ -52,10 +53,9 @@ export function Toast({
   }
 
   const handleAccept = async () => {
-    const userToken = storageService.get('token')
-    if (!userToken || !invite_id) return
+    if (!auth?.token || !invite_id) return
 
-    const response = await lobbyApi.acceptInvite(userToken, invite_id)
+    const response = await lobbyApi.acceptInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)

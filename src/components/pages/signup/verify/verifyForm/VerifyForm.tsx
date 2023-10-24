@@ -1,7 +1,7 @@
 'use client'
 
 import { SignJWT } from 'jose'
-import cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { PiArrowRight } from 'react-icons/pi'
@@ -52,7 +52,9 @@ export function VerifyForm() {
       const response = await httpService.post(
         'accounts/verify/',
         auth.token,
-        payload
+        payload,
+        undefined,
+        { cache: 'no-cache' }
       )
 
       if (response.fieldsErrors) {
@@ -67,16 +69,16 @@ export function VerifyForm() {
 
       const jwtToken = await new SignJWT({
         ...auth,
-        is_verified: response.account.is_verified,
+        is_verified: true,
       })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
         .setExpirationTime('1h')
         .sign(getJwtSecretKey())
 
-      cookies.set('token', jwtToken, { path: '/' })
-
-      setFetching(false)
+      if (jwtToken) {
+        Cookies.set('token', jwtToken)
+      }
 
       router.push('/jogar')
     },

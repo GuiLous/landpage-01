@@ -1,5 +1,6 @@
 'use client'
 
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -13,10 +14,13 @@ import { accountsApi, appApi } from '@/api'
 
 import { Button, Link } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function MaintenanceLogoutButton() {
   const maintenance = useAppSelector((state) => state.app.maintenance)
+
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -25,11 +29,10 @@ export function MaintenanceLogoutButton() {
 
   const handleLogout = useCallback(async () => {
     setIsFetching(true)
-    const token = storageService.get('token')
 
-    if (!token) return
+    if (!auth?.token) return
 
-    const response = await accountsApi.logout(token)
+    const response = await accountsApi.logout(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -38,16 +41,15 @@ export function MaintenanceLogoutButton() {
       return
     }
 
-    storageService.remove('token')
+    Cookies.remove('token')
+
     router.push('/')
-  }, [router, showErrorToast])
+  }, [router, showErrorToast, auth])
 
   const checkMaintenance = useCallback(async () => {
-    const userToken = storageService.get('token')
+    if (!auth?.token) return
 
-    if (!userToken) return
-
-    const response = await appApi.healthCheck(userToken)
+    const response = await appApi.healthCheck(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -59,7 +61,7 @@ export function MaintenanceLogoutButton() {
       storageService.set('maintenance', 'ended')
       router.push('/jogar')
     }
-  }, [router, showErrorToast])
+  }, [router, showErrorToast, auth])
 
   useEffect(() => {
     if (maintenance) {

@@ -1,15 +1,14 @@
 'use client'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-
-import { storageService } from '@/services'
 
 import { accountsApi } from '@/api'
 
 import { Button, Modal } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface ModalLogoutProps {
   open: boolean
@@ -20,6 +19,9 @@ export function ModalLogout({ open, setOpen }: ModalLogoutProps) {
   const router = useRouter()
   const showErrorToast = useShowErrorToast()
 
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const [fetching, setFetching] = useState(false)
 
   const handleCloseModal = () => {
@@ -27,12 +29,10 @@ export function ModalLogout({ open, setOpen }: ModalLogoutProps) {
   }
 
   const handleLogout = useCallback(async () => {
-    const token = storageService.get('token')
-
-    if (!token) return
+    if (!auth?.token) return
 
     setFetching(true)
-    const response = await accountsApi.logout(token)
+    const response = await accountsApi.logout(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -41,9 +41,10 @@ export function ModalLogout({ open, setOpen }: ModalLogoutProps) {
       return
     }
 
-    storageService.remove('token')
-    router.push('/')
-  }, [showErrorToast, router])
+    Cookies.remove('token')
+
+    return router.push('/')
+  }, [showErrorToast, router, auth])
 
   return (
     <Modal open={open} onOpenChange={setOpen}>

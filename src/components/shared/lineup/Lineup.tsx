@@ -2,14 +2,12 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { useAppSelector } from '@/store'
 import { Friend } from '@/store/slices/friendSlice'
 
 import { lobbyApi } from '@/api'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 import { LineupHiddenBox } from './LineupHiddenBox'
 import { LineupPlayBtn } from './LineupPlayBtn'
@@ -23,6 +21,9 @@ interface LineupProps {
 export function Lineup({ maxPlayers = 5 }: LineupProps) {
   const { user } = useAppSelector((state) => state.user)
   const lobby = useAppSelector((state) => state.lobby)
+
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -40,12 +41,10 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
 
   const handleRemove = useCallback(
     async (player: Friend) => {
-      const userToken = storageService.get('token')
-
-      if (lobby.queue || !userToken) return
+      if (lobby.queue || !auth?.token) return
 
       const response = await lobbyApi.removePlayer(
-        userToken,
+        auth.token,
         lobby.id,
         player.user_id
       )
@@ -54,7 +53,7 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
         showErrorToast(response.errorMsg)
       }
     },
-    [lobby, showErrorToast]
+    [lobby, showErrorToast, auth]
   )
 
   const renderCloseLabel = useCallback(

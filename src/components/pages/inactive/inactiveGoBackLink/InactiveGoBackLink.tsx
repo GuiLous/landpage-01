@@ -1,26 +1,26 @@
 'use client'
 
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
-
-import { storageService } from '@/services'
 
 import { accountsApi } from '@/api'
 
 import { Link } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function InactiveGoBackLink() {
+  const getAuth = useAuth()
+  const auth = getAuth()
+
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
   const handleLogout = useCallback(async () => {
-    const token = storageService.get('token')
+    if (!auth?.token) return
 
-    if (!token) return
-
-    const response = await accountsApi.logout(token)
+    const response = await accountsApi.logout(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -28,9 +28,10 @@ export function InactiveGoBackLink() {
       return
     }
 
-    storageService.remove('token')
+    Cookies.remove('token')
+
     router.push('/')
-  }, [router, showErrorToast])
+  }, [router, showErrorToast, auth])
 
   return (
     <div className="mt-4 flex-initial justify-center">

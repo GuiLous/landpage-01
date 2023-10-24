@@ -3,15 +3,13 @@ import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { Status } from '@/store/slices/userSlice'
 
 import { lobbyApi } from '@/api'
 
 import { Avatar } from '@/components/shared'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface DrawerFriendsInviteItemProps {
   invite_id: string
@@ -28,27 +26,28 @@ export function DrawerFriendsInviteItem({
 }: DrawerFriendsInviteItemProps) {
   const showErrorToast = useShowErrorToast()
 
-  const userToken = storageService.get('token')
+  const getAuth = useAuth()
+  const auth = getAuth()
 
   const handleAccept = useCallback(async () => {
-    if (!userToken) return
+    if (!auth?.token) return
 
-    const response = await lobbyApi.acceptInvite(userToken, invite_id)
+    const response = await lobbyApi.acceptInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [invite_id, showErrorToast, userToken])
+  }, [invite_id, showErrorToast, auth])
 
   const handleRefuse = useCallback(async () => {
-    if (!userToken) return
+    if (!auth?.token) return
 
-    const response = await lobbyApi.refuseInvite(userToken, invite_id)
+    const response = await lobbyApi.refuseInvite(auth.token, invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, invite_id, userToken])
+  }, [showErrorToast, invite_id, auth])
 
   return (
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">

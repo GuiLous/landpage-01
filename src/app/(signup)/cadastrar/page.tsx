@@ -1,7 +1,7 @@
 'use client'
 
 import { SignJWT } from 'jose'
-import cookies from 'js-cookie'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
@@ -66,7 +66,13 @@ export default function SignUp() {
         terms: true,
       }
 
-      const response = await httpService.post('accounts/', auth.token, payload)
+      const response = await httpService.post(
+        'accounts/',
+        auth.token,
+        payload,
+        undefined,
+        { cache: 'no-cache' }
+      )
 
       if (response.fieldsErrors) {
         setFieldsErrors(response.fieldsErrors)
@@ -98,7 +104,7 @@ export default function SignUp() {
         .setExpirationTime('1h')
         .sign(getJwtSecretKey())
 
-      cookies.set('token', jwtToken, { path: '/' })
+      Cookies.set('token', jwtToken)
 
       setFetching(false)
 

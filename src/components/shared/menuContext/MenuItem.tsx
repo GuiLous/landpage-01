@@ -2,15 +2,13 @@ import { useRouter } from 'next/navigation'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { addToast, toggleFriendList } from '@/store/slices/appSlice'
 import { addInvite } from '@/store/slices/inviteSlice'
 
 import { lobbyApi } from '@/api'
 
-import { useShowErrorToast } from '@/hooks'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 import { menuItems } from './MenuContext'
 import { MenuItemIcon } from './MenuItemIcon'
@@ -39,10 +37,13 @@ export function MenuItem({
   const { user } = useAppSelector((state) => state.user)
 
   const dispatch = useAppDispatch()
-  const router = useRouter()
-  const showErrorToast = useShowErrorToast()
 
-  const userToken = storageService.get('token')
+  const router = useRouter()
+
+  const getAuth = useAuth()
+  const auth = getAuth()
+
+  const showErrorToast = useShowErrorToast()
 
   const isDisabled = keyMenu === 'invite' && !isAvailable
   const isInvited = keyMenu === 'invite' && alreadyInvited
@@ -53,7 +54,7 @@ export function MenuItem({
       !isAvailable ||
       alreadyInvited ||
       alreadyOnTeam ||
-      !userToken ||
+      !auth?.token ||
       !user?.lobby_id ||
       !user?.id
     ) {
@@ -61,7 +62,7 @@ export function MenuItem({
     }
 
     const response = await lobbyApi.createInvite(
-      userToken,
+      auth.token,
       user?.lobby_id,
       user?.id,
       user_id
