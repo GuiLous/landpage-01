@@ -4,7 +4,7 @@ import loadingGif from '@/assets/images/loading.gif'
 
 export function LoadingGif() {
   return (
-    <div className="flex-initial items-center justify-center">
+    <div className="z-50 flex-initial items-center justify-center">
       <Image
         src={loadingGif}
         alt="Carregando..."

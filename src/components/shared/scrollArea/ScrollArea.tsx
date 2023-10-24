@@ -21,7 +21,8 @@ export function ScrollArea({ children, className }: ScrollAreaProps) {
         className={twMerge(
           'flex min-w-[10px] touch-none select-none rounded bg-black/10',
           'transition-colors duration-[160ms] ease-out',
-          'data-[orientation=horizontal]:h-2.5 data-[orientation=vertical]:w-2.5',
+          'data-[orientation=horizontal]:h-2.5',
+          'data-[orientation=vertical]:w-2.5',
           'data-[orientation=horizontal]:flex-col'
         )}
         orientation="vertical"
@@ -37,7 +38,8 @@ export function ScrollArea({ children, className }: ScrollAreaProps) {
         className={twMerge(
           'flex min-w-[10px] touch-none select-none rounded bg-black/10',
           'transition-colors duration-[160ms] ease-out',
-          'data-[orientation=horizontal]:h-2.5 data-[orientation=vertical]:w-2.5',
+          'data-[orientation=horizontal]:h-2.5',
+          'data-[orientation=vertical]:w-2.5',
           'data-[orientation=horizontal]:flex-col'
         )}
         orientation="horizontal"
