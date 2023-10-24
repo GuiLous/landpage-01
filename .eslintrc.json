@@ -33,6 +33,7 @@
           "/^@/components/pages/",
           "/^@/components/shared/",
           "/^@/hooks/",
+          "/^@/middleware/",
           "/^@/assets/",
           "/^@/styles/",
           [
