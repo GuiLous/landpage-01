@@ -84,3 +84,17 @@ export const GAME_TYPES = ['TDM 5X5', 'RANQUEADA 5X5', 'PERSONALIZADA']
 export const GAME_TYPES_AVAILABLE = ['RANQUEADA 5X5']
 export const MATCH_FOUND_GAP_TIMEOUT = 3000
 export const TIME_OUT_MULTIPLIER = 1000
+
+// Connect
+export const COUNTDOWN_TIME = 5 * 60 // 5 minutes in seconds
+export const TIMER_NAME = 'matchConnectTimer'
+export const CONNECT_TEXTS_ARRAY = [
+  `Ligando as luzes`,
+  `Limpando os bombsites`,
+  `Calibrando as armas da loja`,
+  `Testando a c4`,
+  `Checando a validade dos coletes`,
+  `Distribuindo os créditos`,
+  `Sorteando os lados iniciais`,
+  `Distribuindo os trajes`,
+]
