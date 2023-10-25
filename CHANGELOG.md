@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Criar page `Connect` e todos seus componentes no projeto next [#767](https://github.com/3C-gg/reload-frontend/issues/767). 
 - Cria componente de `Toast` no projeto next [#763](https://github.com/3C-gg/reload-frontend/issues/763).
 - Cria componente de `ModalMatchFound` no projeto next [#757](https://github.com/3C-gg/reload-frontend/issues/757).
 - Cria componente de `Websocket` no projeto next [#754](https://github.com/3C-gg/reload-frontend/issues/754).
@@ -60,10 +61,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Muda estratégia de `login` e `redirect` usando o middleware server side do next [#775](https://github.com/3C-gg/reload-frontend/issues/775).
 - Cria estilos de `linear gradiente` no tema do projeto text.
-- Passa prop `value` para refletir o state no componente `Select`.
+- Passa prop `value` para refletir o state no componente `Select` no projeto next.
 - Passa novas props `user_id, username` para o `ModalSupport` para preencher automaticamente o formulário.
-- Altera componente `Avatar` para adicionar `variants`.
-- Adiciona variant `neutral` em ` Button`.
+- Altera componente `Avatar` para adicionar `variants` no projeto next.
+- Adiciona variant `neutral` em ` Button` no projeto next.
 - Ajusta `imports` usando alias no projeto next.
 - Ajusta `httpService` no projeto next.
 - Altera tipagem de `httpService` no projeto next.
