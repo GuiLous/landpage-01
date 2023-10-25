@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type PreMatch = {
   id: number
-  state: string
+  status: string
   countdown: number | null
   players_ready_count: number
   players_total: number

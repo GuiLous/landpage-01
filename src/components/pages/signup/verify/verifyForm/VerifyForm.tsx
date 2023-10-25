@@ -76,9 +76,7 @@ export function VerifyForm() {
         .setExpirationTime('1h')
         .sign(getJwtSecretKey())
 
-      if (jwtToken) {
-        Cookies.set('token', jwtToken)
-      }
+      Cookies.set('token', jwtToken)
 
       router.push('/jogar')
     },

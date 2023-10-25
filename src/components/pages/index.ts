@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+export * from './connect';
 export * from './home';
 export * from './inactive';
 export * from './lobby';

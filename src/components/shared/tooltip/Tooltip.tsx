@@ -12,6 +12,7 @@ interface TooltipProps {
   delay?: number
   side?: Position
   asChild?: boolean
+  open?: boolean
 }
 
 export function Tooltip({
@@ -20,10 +21,11 @@ export function Tooltip({
   delay = 300,
   side = 'top',
   asChild = true,
+  open,
 }: TooltipProps) {
   return (
     <PrimitiveTooltip.Provider>
-      <PrimitiveTooltip.Root delayDuration={delay}>
+      <PrimitiveTooltip.Root delayDuration={delay} open={open}>
         <PrimitiveTooltip.Trigger asChild={asChild}>
           {children}
         </PrimitiveTooltip.Trigger>

@@ -1,20 +1,10 @@
 import { twMerge } from 'tailwind-merge'
 
-import { SIDEBAR_BOTTOM_MENU_ITEMS, SIDEBAR_TOP_MENU_ITEMS } from '@/constants'
-
 import { SidebarAvatarLink } from './SidebarAvatarLink'
 import { SidebarFooter } from './SidebarFooter'
 import { SidebarLobbyButton } from './SidebarLobbyButton'
 import { SidebarLogo } from './SidebarLogo'
-import { SidebarMenuItem } from './SidebarMenuItem'
-
-type ItemMenu =
-  | 'amigos'
-  | 'notificações'
-  | 'ranking'
-  | 'loja'
-  | 'suporte'
-  | 'sair'
+import { SidebarMenuItemList } from './SidebarMenuItemList'
 
 export function Sidebar() {
   return (
@@ -37,24 +27,7 @@ export function Sidebar() {
 
           <SidebarLobbyButton />
 
-          <div
-            className={twMerge(
-              'flex-initial flex-col gap-7 px-7',
-              '3xl:gap-6 3xl:px-6'
-            )}
-          >
-            <div className="flex-initial flex-col ">
-              {SIDEBAR_TOP_MENU_ITEMS.map((item) => (
-                <SidebarMenuItem key={item} item={item as ItemMenu} />
-              ))}
-            </div>
-
-            <div className="flex-initial flex-col">
-              {SIDEBAR_BOTTOM_MENU_ITEMS.map((item) => (
-                <SidebarMenuItem key={item} item={item as ItemMenu} />
-              ))}
-            </div>
-          </div>
+          <SidebarMenuItemList />
         </section>
 
         <SidebarFooter />

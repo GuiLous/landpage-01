@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BiSolidMessage } from 'react-icons/bi'
 import { BsEnvelopeFill } from 'react-icons/bs'
@@ -11,22 +10,23 @@ import { twMerge } from 'tailwind-merge'
 
 import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { toggleFriendList } from '@/store/slices/appSlice'
+import { useAppSelector } from '@/store'
 
-import {
-  Badge,
-  DrawerFriends,
-  DrawerNotifications,
-  Link,
-  ModalLogout,
-  ModalSupport,
-} from '@/components/shared'
+import { Badge, Link } from '@/components/shared'
 
 import { SidebarMenuItemIcon } from './SidebarMenuItemIcon'
 
+export type ItemMenu =
+  | 'amigos'
+  | 'notificações'
+  | 'ranking'
+  | 'loja'
+  | 'suporte'
+  | 'sair'
+
 interface SidebarMenuItemProps {
-  item: 'amigos' | 'notificações' | 'ranking' | 'loja' | 'suporte' | 'sair'
+  item: ItemMenu
+  onClickFunction: (item: ItemMenu) => void
 }
 
 const icons = {
@@ -38,20 +38,13 @@ const icons = {
   sair: IoExitOutline,
 }
 
-export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
+export function SidebarMenuItem({
+  item,
+  onClickFunction,
+}: SidebarMenuItemProps) {
   const { user } = useAppSelector((state) => state.user)
   const { invites } = useAppSelector((state) => state.invites)
   const notifications = useAppSelector((state) => state.notifications)
-  const friendListOpenByApp = useAppSelector(
-    (state) => state.app.friendListOpen
-  )
-
-  const dispatch = useAppDispatch()
-
-  const [openModalSupport, setOpenModalSupport] = useState(false)
-  const [openModalLogout, setOpenModalLogout] = useState(false)
-  const [openDrawerNotifications, setOpenDrawerNotifications] = useState(false)
-  const [openDrawerFriends, setOpenDrawerFriends] = useState(false)
 
   const isSoon = SOON_ITEMS.includes(item)
 
@@ -64,48 +57,6 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
   ).length
 
   const isLink = MENU_LINKS.includes(item)
-
-  const handleCloseFriendListDrawer = () => {
-    setOpenDrawerFriends(false)
-    dispatch(toggleFriendList(false))
-  }
-
-  const handleToggleFriendListDrawer = () => {
-    if (openDrawerFriends) {
-      dispatch(toggleFriendList(false))
-      setOpenDrawerFriends(false)
-    } else {
-      dispatch(toggleFriendList(true))
-      setOpenDrawerFriends(true)
-    }
-  }
-
-  const onClickFunction = ({ item }: SidebarMenuItemProps) => {
-    switch (item) {
-      case 'amigos':
-        handleToggleFriendListDrawer()
-        break
-
-      case 'notificações':
-        setOpenDrawerNotifications(true)
-        break
-
-      case 'suporte':
-        setOpenModalSupport(true)
-        break
-
-      case 'sair':
-        setOpenModalLogout(true)
-        break
-
-      default:
-        return null
-    }
-  }
-
-  useEffect(() => {
-    setOpenDrawerFriends(friendListOpenByApp)
-  }, [friendListOpenByApp])
 
   return (
     <div
@@ -124,7 +75,7 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
           isSoon &&
             'hover:text-gray-300 cursor-default active:text-gray-300 pr-0'
         )}
-        onClick={() => (isSoon ? null : onClickFunction({ item }))}
+        onClick={() => (isSoon ? null : onClickFunction(item))}
         data-testid={item}
       >
         <button
@@ -181,18 +132,6 @@ export function SidebarMenuItem({ item }: SidebarMenuItemProps) {
           </div>
         </button>
       </Link>
-
-      <ModalSupport open={openModalSupport} setOpen={setOpenModalSupport} />
-      <ModalLogout open={openModalLogout} setOpen={setOpenModalLogout} />
-      <ModalLogout open={openModalLogout} setOpen={setOpenModalLogout} />
-      <DrawerNotifications
-        open={openDrawerNotifications}
-        setOpen={setOpenDrawerNotifications}
-      />
-      <DrawerFriends
-        open={openDrawerFriends}
-        setOpen={handleCloseFriendListDrawer}
-      />
     </div>
   )
 }
