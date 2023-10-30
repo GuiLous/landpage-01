@@ -11,9 +11,7 @@ import { lobbyApi, preMatchApi } from '@/api'
 
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
-import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
-
-import matchFoundAudio from '@/assets/audios/match_found.ogg'
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
@@ -29,9 +27,6 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const showErrorToast = useShowErrorToast()
 
-  const [toggle] = useAudio(matchFoundAudio)
-
-  const [playAudio, setPlayAudio] = useState(false)
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
   const isInQueue = lobby.queue
@@ -67,13 +62,11 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   )
 
   const handleCancelQueue = useCallback(() => {
-    setPlayAudio(false)
     handleQueue('cancel')
   }, [handleQueue])
 
   const handleStartQueue = useCallback(() => {
     handleQueue('start')
-    setPlayAudio(true)
   }, [handleQueue])
 
   const lockIn = useCallback(async () => {
@@ -90,13 +83,9 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const onMatchFound = useCallback(() => {
     if (preMatch && preMatch.status === 'ready_in') {
-      if (playAudio) {
-        toggle()
-        setPlayAudio(false)
-      }
       setOpenMatchFoundModal(true)
     } else setOpenMatchFoundModal(false)
-  }, [playAudio, preMatch, toggle])
+  }, [preMatch])
 
   useEffect(() => {
     if (preMatch && preMatch.status === 'lock_in') lockIn()
