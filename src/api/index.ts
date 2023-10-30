@@ -6,5 +6,6 @@ export * from './lobbyApi';
 export * from './matchesApi';
 export * from './notificationsApi';
 export * from './preMatchApi';
+export * from './profilesApi';
 export * from './supportApi';
 
