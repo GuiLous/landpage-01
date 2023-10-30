@@ -23,11 +23,11 @@ export function InitializeSlices({ children }: InitializeSlicesRoutesProps) {
   const showLoading =
     isLoading &&
     pathname !== '/' &&
-    ROUTES_TO_INITIALIZE_SLICES.some((route) => route.startsWith(pathname))
+    ROUTES_TO_INITIALIZE_SLICES.some((route) => pathname.startsWith(route))
 
   useEffect(() => {
     if (
-      ROUTES_TO_INITIALIZE_SLICES.some((route) => route.startsWith(pathname)) &&
+      ROUTES_TO_INITIALIZE_SLICES.some((route) => pathname.startsWith(route)) &&
       pathname !== '/' &&
       auth?.is_active &&
       auth.is_verified &&
