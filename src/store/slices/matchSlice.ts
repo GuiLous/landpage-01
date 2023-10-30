@@ -40,6 +40,8 @@ const stats = {
   others_accuracy: 0,
 }
 
+export type Stats = typeof stats
+
 export type Map = {
   id: number
   name: string
@@ -62,7 +64,7 @@ export type Player = {
   user_id: number
   username: string
   avatar: Avatar
-  stats: typeof stats
+  stats: Stats
   progress: Progress
   level: number
   status: Status
