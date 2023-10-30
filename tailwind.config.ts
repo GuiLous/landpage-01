@@ -36,6 +36,7 @@ const config: Config = {
           700: '#1A1240',
         },
         gray: {
+          50: '#d9d9d9',
           100: '#c8c5c5',
           200: '#B7B7B7',
           300: '#999999',
@@ -88,6 +89,7 @@ const config: Config = {
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
         player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
         connect: "url('~/src/assets/images/connect_bg.png')",
+        profile_header: "url('~/src/assets/images/profile_header_bg.jpg')",
         gradient_drawer_friends:
           'linear-gradient(360deg, #1e1e1e 0%, #1e1e1e00 100%)',
         gradient_friends_invite:
