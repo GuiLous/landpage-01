@@ -98,3 +98,11 @@ export const CONNECT_TEXTS_ARRAY = [
   `Sorteando os lados iniciais`,
   `Distribuindo os trajes`,
 ]
+
+// Profile
+export const USER_LOGGED_BUTTONS = ['config', 'profile', 'inventory']
+export const LINK_PATHS = {
+  perfil: 'profile',
+  conta: 'config',
+  inventario: 'inventory',
+}
