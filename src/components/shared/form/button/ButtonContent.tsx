@@ -10,10 +10,14 @@ const content = tv({
     neutral: {
       true: 'text-gray-300 transition-colors group-hover:text-white',
     },
+    profile: {
+      true: 'text-sm normal-case text-gray-300 transition-colors group-hover:text-white 3xl:text-xs',
+    },
   },
   defaultVariants: {
     disabled: false,
     neutral: false,
+    profile: false,
   },
 })
 
@@ -31,10 +35,14 @@ export function ButtonContent({
   loadingText = 'Enviando',
   isLoading = false,
   neutral,
+  profile,
   ...props
 }: ButtonContentProps) {
   return (
-    <p className={content({ disabled, neutral, className })} {...props}>
+    <p
+      className={content({ disabled, neutral, profile, className })}
+      {...props}
+    >
       {isLoading ? loadingText : children}
     </p>
   )

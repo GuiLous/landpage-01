@@ -23,12 +23,20 @@ const button = tv({
     neutral: {
       true: 'bg-gray-700 hover:bg-gray-600 active:bg-gray-800 disabled:hover:bg-gray-800',
     },
+    profile: {
+      true: 'gap-3.5 border border-gray-700 bg-gray-1100/50 p-3 hover:border-gray-300/50 hover:bg-gray-1100/80 active:bg-gray-1100/80',
+    },
+    ghost: {
+      true: 'max-w-fit gap-0 border border-white bg-transparent p-0 hover:bg-transparent active:bg-transparent',
+    },
   },
   defaultVariants: {
     disabled: false,
     queued: false,
     restricted: false,
     neutral: false,
+    profile: false,
+    ghost: false,
   },
 })
 
@@ -44,6 +52,8 @@ export function ButtonRoot({
   queued,
   restricted,
   neutral,
+  profile,
+  ghost,
   ...props
 }: ButtonRootProps) {
   const Component = asChild ? Slot : 'button'
@@ -51,7 +61,15 @@ export function ButtonRoot({
   return (
     <Component
       disabled={disabled}
-      className={button({ disabled, queued, restricted, neutral, className })}
+      className={button({
+        disabled,
+        queued,
+        restricted,
+        neutral,
+        profile,
+        ghost,
+        className,
+      })}
       {...props}
     >
       {props.children}
