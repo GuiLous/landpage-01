@@ -1,14 +1,21 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
 import { SiDiscord, SiSteam, SiTwitch, SiYoutube } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
-import { Button, Tooltip } from '@/components/shared'
+import { SocialHandles } from '@/contexts'
 
-import { SocialHandles } from '@/hooks'
+import {
+  Button,
+  CustomIcon,
+  ModalAddSocial,
+  ModalAddSocialList,
+  Tooltip,
+} from '@/components/shared'
 
-import { ProfileHeaderIcon } from './ProfileHeaderIcon'
-
-type Socials = 'steam' | 'twitch' | 'youtube' | 'discord'
+export type Socials = 'steam' | 'twitch' | 'youtube' | 'discord'
 
 interface ProfileHeaderSocialButtonsProps {
   socials: SocialHandles
@@ -19,9 +26,11 @@ export function ProfileHeaderSocialButtons({
   isUserLogged,
   socials,
 }: ProfileHeaderSocialButtonsProps) {
+  const [openModalAddSocial, setOpenModalAddSocial] = useState(false)
+
   const socialLinkedKeys = Object.keys(socials).filter(
     (key) => socials[key as Socials] !== null
-  )
+  ) as Socials[]
 
   const socialIcons = {
     steam: SiSteam,
@@ -46,13 +55,8 @@ export function ProfileHeaderSocialButtons({
           side="bottom"
           className="px-2 py-2 text-xs"
         >
-          <Link
-            href={
-              socialsLinksPrefix[item as Socials] + socials[item as Socials]
-            }
-            target="_blank"
-          >
-            <ProfileHeaderIcon icon={socialIcons[item as Socials]} />
+          <Link href={socialsLinksPrefix[item] + socials[item]} target="_blank">
+            <CustomIcon icon={socialIcons[item]} />
           </Link>
         </Tooltip>
       ))}
@@ -64,7 +68,13 @@ export function ProfileHeaderSocialButtons({
           className="px-2 py-2 text-xs"
         >
           <div className="max-w-fit flex-initial">
-            <Button.Root ghost className="min-h-[16px] min-w-[16px]">
+            <Button.Root
+              ghost
+              className="min-h-[16px] min-w-[16px]"
+              onClick={() => {
+                setOpenModalAddSocial(true)
+              }}
+            >
               <Button.Content className="text-sm leading-none">
                 +
               </Button.Content>
@@ -72,6 +82,13 @@ export function ProfileHeaderSocialButtons({
           </div>
         </Tooltip>
       )}
+
+      <ModalAddSocial open={openModalAddSocial} setOpen={setOpenModalAddSocial}>
+        <ModalAddSocialList
+          socials={socials}
+          socialsLinked={socialLinkedKeys}
+        />
+      </ModalAddSocial>
     </div>
   )
 }
