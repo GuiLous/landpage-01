@@ -1,7 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { useCallback, useState } from 'react'
+import {
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useCallback,
+  useContext,
+  useState,
+} from 'react'
 
 import { LatestMatchesResult } from '@/store/slices/lobbySlice'
 import { Stats } from '@/store/slices/matchSlice'
@@ -9,13 +16,13 @@ import { Avatar, Status } from '@/store/slices/userSlice'
 
 import { profilesApi } from '@/api'
 
-import { useAuth } from './useAuth'
+import { useAuth } from '@/hooks'
 
 export type SocialHandles = {
-  steam: string
-  twitch?: string
-  discord?: string
-  youtube?: string
+  steam: string | null
+  twitch?: string | null
+  discord?: string | null
+  youtube?: string | null
 }
 
 export type Profile = {
@@ -37,7 +44,20 @@ export type Profile = {
   status: Status
 }
 
-export const useProfileDetails = () => {
+interface ProviderProps {
+  children?: ReactNode
+}
+
+interface ProfileDetailsContextProps {
+  profile: Profile
+  fetching: boolean
+  setProfile: (state: SetStateAction<Profile>) => void
+  getProfileDetails: (userId: number, showProfile?: boolean) => void
+}
+
+const ProfileDetailsContext = createContext({} as ProfileDetailsContextProps)
+
+export const ProfileDetailsProvider = ({ children }: ProviderProps) => {
   const router = useRouter()
 
   const getAuth = useAuth()
@@ -53,6 +73,7 @@ export const useProfileDetails = () => {
       showLoading && setFetching(true)
 
       const response = await profilesApi.detail(auth.token, userId)
+
       if (response.errorMsg) {
         router.push('/404')
       }
@@ -63,5 +84,13 @@ export const useProfileDetails = () => {
     [auth, router]
   )
 
-  return { fetching, profile, getProfileDetails }
+  return (
+    <ProfileDetailsContext.Provider
+      value={{ profile, setProfile, fetching, getProfileDetails }}
+    >
+      {children}
+    </ProfileDetailsContext.Provider>
+  )
 }
+
+export const useProfileDetails = () => useContext(ProfileDetailsContext)
