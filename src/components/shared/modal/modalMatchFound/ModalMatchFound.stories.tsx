@@ -24,7 +24,7 @@ export const Default = (props: any) => {
 
   const preMatch: PreMatch | null = {
     id: 1,
-    state: 'string',
+    status: 'warmup',
     countdown: 30,
     players_ready_count: 3,
     players_total: 2,
