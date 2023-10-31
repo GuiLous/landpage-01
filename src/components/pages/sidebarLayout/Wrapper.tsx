@@ -11,8 +11,9 @@ export function Wrapper({ children }: { children: ReactNode }) {
     <section
       className={twMerge(
         'ml-[300px] select-none',
-        '3xl:ml-[250px] 3xl:px-[1.6%] 3xl:py-8',
-        pathname === '/jogar' && 'px-[3.4%] py-10'
+        '3xl:ml-[250px]',
+        pathname === '/jogar' && 'px-[3.4%] py-10',
+        pathname === '/jogar' && '3xl:py-8 3xl:px-[1.6%]'
       )}
     >
       {children}
