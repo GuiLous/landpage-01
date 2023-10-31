@@ -24,6 +24,14 @@ interface ProfileHeaderTabsButtonsProps {
   username: string
 }
 
+const profileButtons = {
+  profile: { icon: FaUser, label: 'Meu perfil' },
+  inventory: { icon: BagPackIcon, label: 'Inventário' },
+  config: { icon: TbSettingsFilled, label: 'Configurações' },
+  steam_chat: { icon: BiSolidMessage, label: 'Abrir bate-papo' },
+  report: { icon: RiErrorWarningFill, label: 'Reportar usuário' },
+}
+
 export function ProfileHeaderTabsButtons({
   userId,
   isUserLogged,
@@ -37,14 +45,6 @@ export function ProfileHeaderTabsButtons({
 
   const lastPath = pathname.split('/')[3]
   const path = (lastPath || pathname.split('/')[1]) as LinkType
-
-  const profileButtons = {
-    profile: { icon: FaUser, label: 'Meu perfil' },
-    inventory: { icon: BagPackIcon, label: 'Inventário' },
-    config: { icon: TbSettingsFilled, label: 'Configurações' },
-    steam_chat: { icon: BiSolidMessage, label: 'Abrir bate-papo' },
-    report: { icon: RiErrorWarningFill, label: 'Reportar usuário' },
-  }
 
   const keys = Object.keys(profileButtons) as ButtonType[]
 
@@ -80,7 +80,7 @@ export function ProfileHeaderTabsButtons({
 
   return (
     <div className={twMerge('gap-3 max-w-fit', '3xl:gap-2.5')}>
-      {keys.map((key: ButtonType) =>
+      {keys.map((key) =>
         isUserLogged
           ? USER_LOGGED_BUTTONS.includes(key) && (
               <Button.Root

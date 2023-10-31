@@ -1,8 +1,8 @@
 /* eslint-disable prettier/prettier */
-export * from './animatedBg/AnimatedBg'
+export * from './AnimatedBg'
+export * from './FakeSignIn'
+export * from './HeroImage'
+export * from './HeroMobileImage'
+export * from './MobileHeader'
 export * from './brand/Brand'
-export * from './fakeSignIn/FakeSignIn'
-export * from './heroImage/HeroImage'
-export * from './heroMobileImage/HeroMobileImage'
-export * from './mobileHeader/MobileHeader'
 

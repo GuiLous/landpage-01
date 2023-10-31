@@ -1,3 +1,3 @@
 /* eslint-disable prettier/prettier */
-export * from './terms/Terms';
+export * from './Terms';
 

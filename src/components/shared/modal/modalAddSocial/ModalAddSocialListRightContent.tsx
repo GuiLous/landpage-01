@@ -8,7 +8,7 @@ import { SocialHandles, useProfileDetails } from '@/contexts'
 
 import { profilesApi } from '@/api'
 
-import { Socials } from '@/components/shared/profileHeader/ProfileHeaderSocialButtons'
+import { Socials } from '@/components/shared/profile/profileHeader/ProfileHeaderSocialButtons'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 

@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 import { SocialHandles } from '@/contexts'
 
 import { CustomIcon } from '@/components/shared'
-import { Socials } from '@/components/shared/profileHeader/ProfileHeaderSocialButtons'
+import { Socials } from '@/components/shared/profile/profileHeader/ProfileHeaderSocialButtons'
 
 import { ModalAddSocialListRightContent } from './ModalAddSocialListRightContent'
 

@@ -12,7 +12,7 @@ export function LobbyHeader() {
         <h2
           className={twMerge(
             'text-xl font-light uppercase text-white',
-            ' 3xl:text-lg'
+            '3xl:text-lg'
           )}
         >
           Suba de nível e

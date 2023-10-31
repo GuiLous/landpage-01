@@ -1,3 +1,3 @@
 /* eslint-disable prettier/prettier */
-export * from './layoutHeader/LayoutHeader';
+export * from './LayoutHeader';
 
