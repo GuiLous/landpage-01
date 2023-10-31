@@ -3,6 +3,8 @@
 import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { useProfileDetails } from '@/contexts'
+
 import { useAppSelector } from '@/store'
 
 import {
@@ -10,8 +12,6 @@ import {
   ProfileHeader,
   ProfileHeaderTabsButtons,
 } from '@/components/shared'
-
-import { useProfileDetails } from '@/hooks'
 
 interface ProfileProps {
   params: { userId: string }
