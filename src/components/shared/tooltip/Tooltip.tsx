@@ -36,7 +36,7 @@ export function Tooltip({
           <PrimitiveTooltip.Content
             sideOffset={0}
             className={twMerge(
-              'z-50 inline-flex w-full rounded-sm items-center bg-gray-1000 px-2 py-1.5',
+              'z-50 inline-flex w-full rounded-sm items-center bg-gray-700/50 px-2 py-1.5',
               'radix-side-bottom:animate-slide-up-fade',
               'radix-side-left:animate-slide-right-fade',
               'radix-side-right:animate-slide-left-fade',
