@@ -1,9 +1,9 @@
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Avatar } from '@/components/shared'
+import { Profile } from '@/contexts'
 
-import { Profile } from '@/hooks'
+import { Avatar } from '@/components/shared'
 
 import { ProfileHeaderLevel } from './ProfileHeaderLevel'
 import { ProfileHeaderSocialButtons } from './ProfileHeaderSocialButtons'
