@@ -75,7 +75,7 @@ export const ProfileDetailsProvider = ({ children }: ProviderProps) => {
       const response = await profilesApi.detail(auth.token, userId)
 
       if (response.errorMsg) {
-        router.push('/404')
+        router.push('/not-found')
       }
 
       setProfile(response)
