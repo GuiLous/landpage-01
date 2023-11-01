@@ -1,3 +1,5 @@
+'use client'
+
 import { animated as a, easings, useTransition } from '@react-spring/web'
 
 import { useAppSelector } from '@/store'

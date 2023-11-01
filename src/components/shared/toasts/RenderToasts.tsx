@@ -1,5 +1,3 @@
-'use client'
-
 import { ToastList } from './ToastList'
 
 export function RenderToasts() {

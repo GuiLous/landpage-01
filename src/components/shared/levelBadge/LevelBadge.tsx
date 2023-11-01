@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'

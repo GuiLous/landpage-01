@@ -1,5 +1,3 @@
-'use client'
-
 import { LatestMatchesResult } from '@/store/slices/lobbySlice'
 import { Stats } from '@/store/slices/matchSlice'
 
