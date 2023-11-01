@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { readNotification } from '@/store/slices/notificationSlice'
 
-import { notificationsApi } from '@/api'
+import { notificationsApi } from '@/modelsApi'
 
 import { Drawer, ScrollArea } from '@/components/shared'
 

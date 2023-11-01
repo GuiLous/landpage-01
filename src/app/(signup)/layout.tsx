@@ -14,7 +14,7 @@ export default function SignUpLayout({ children }: { children: ReactNode }) {
   return (
     <main
       className={twMerge(
-        'relative h-screen flex-col items-center',
+        'select-none relative h-screen flex-col items-center',
         'bg-sign_up_bottom_left bg-cover bg-repeat-round'
       )}
     >

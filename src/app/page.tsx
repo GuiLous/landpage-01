@@ -12,7 +12,7 @@ import { Footer } from '@/components/shared'
 export default function Home() {
   return (
     <>
-      <main className="relative h-screen flex-col items-center justify-center bg-black bg-home bg-cover bg-no-repeat xl:bg-home_mobile xl:bg-contain xl:bg-[position:top_right,_bottom_left]">
+      <main className="relative h-screen select-none flex-col items-center justify-center bg-black bg-home bg-cover bg-no-repeat xl:bg-home_mobile xl:bg-contain xl:bg-[position:top_right,_bottom_left]">
         <section className="items-center xl:hidden">
           <AnimatedBg />
 

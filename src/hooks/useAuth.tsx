@@ -1,5 +1,3 @@
-'use client'
-
 import { decodeJwt } from 'jose'
 import Cookies from 'js-cookie'
 import { useCallback } from 'react'

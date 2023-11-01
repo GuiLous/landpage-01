@@ -1,7 +1,7 @@
 import { SiDiscord, SiTwitch, SiYoutube } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
-import { SocialHandles } from '@/contexts'
+import { SocialHandles } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
 import { Socials } from '@/components/shared/profile/profileHeader/ProfileHeaderSocialButtons'

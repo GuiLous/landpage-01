@@ -1,42 +1,27 @@
-'use client'
-
-import { useEffect } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useProfileDetails } from '@/contexts'
+import { getAuthServer } from '@/utils'
 
-import { useAppSelector } from '@/store'
+import { getUserProfile } from '@/functions'
 
 import { ProfileLevelStatsCard } from '@/components/pages'
 
-import {
-  Loading,
-  ProfileHeader,
-  ProfileHeaderTabsButtons,
-} from '@/components/shared'
+import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
 
 interface ProfileProps {
   params: { userId: string }
 }
 
-export default function Profile({ params }: ProfileProps) {
-  const { user } = useAppSelector((state) => state.user)
+export default async function Profile({ params }: ProfileProps) {
+  const auth = getAuthServer()
+
   const { userId } = params
 
-  const { fetching, profile, getProfileDetails } = useProfileDetails()
+  const profile = await getUserProfile(Number(userId), auth)
 
-  const isUserLogged = Number(userId) === user?.id
+  const isUserLogged = Number(userId) === auth?.id
 
-  useEffect(() => {
-    getProfileDetails(Number(userId))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userId])
-
-  return fetching ? (
-    <Loading.Overlay>
-      <Loading.Gif />
-    </Loading.Overlay>
-  ) : (
+  return (
     <main className={twMerge('flex-col gap-10', '3xl:gap-[1.875rem]')}>
       <ProfileHeader isUserLogged={isUserLogged} profile={profile}>
         <ProfileHeaderTabsButtons

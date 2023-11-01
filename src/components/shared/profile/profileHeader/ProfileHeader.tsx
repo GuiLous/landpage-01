@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { Profile } from '@/contexts'
+import { Profile } from '@/functions'
 
 import { Avatar } from '@/components/shared'
 

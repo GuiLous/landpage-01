@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { SiDiscord, SiSteam, SiTwitch, SiYoutube } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
-import { SocialHandles } from '@/contexts'
+import { SocialHandles } from '@/functions'
 
 import {
   Button,

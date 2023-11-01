@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 
-import { hasUrlOnText } from '@/utils'
+import { hasUrlOnText, revalidate } from '@/utils'
 
-import { SocialHandles, useProfileDetails } from '@/contexts'
+import { SocialHandles } from '@/functions'
 
-import { profilesApi } from '@/api'
+import { profilesApi } from '@/modelsApi'
 
 import { Socials } from '@/components/shared/profile/profileHeader/ProfileHeaderSocialButtons'
 
@@ -28,8 +28,6 @@ export function ModalAddSocialListRightContent({
   socialsLinked,
   socials,
 }: ModalAddSocialListRightContentProps) {
-  const { setProfile } = useProfileDetails()
-
   const getAuth = useAuth()
   const auth = getAuth()
 
@@ -81,7 +79,7 @@ export function ModalAddSocialListRightContent({
       return
     }
 
-    setProfile(response)
+    revalidate('profile')
     setIsFetching(false)
     setActiveSocialItem('')
     setSocialName('')

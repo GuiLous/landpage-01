@@ -8,7 +8,7 @@ import { twMerge } from 'tailwind-merge'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { Variant, removeToast } from '@/store/slices/appSlice'
 
-import { lobbyApi } from '@/api'
+import { lobbyApi } from '@/modelsApi'
 
 import { Avatar, Button } from '@/components/shared'
 

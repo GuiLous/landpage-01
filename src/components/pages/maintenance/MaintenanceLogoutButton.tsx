@@ -10,7 +10,7 @@ import { storageService } from '@/services'
 
 import { useAppSelector } from '@/store'
 
-import { accountsApi, appApi } from '@/api'
+import { accountsApi, appApi } from '@/modelsApi'
 
 import { Button, Link } from '@/components/shared'
 

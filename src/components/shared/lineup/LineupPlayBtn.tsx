@@ -7,7 +7,7 @@ import { formatSecondsToMinutes } from '@/utils'
 
 import { useAppSelector } from '@/store'
 
-import { lobbyApi, preMatchApi } from '@/api'
+import { lobbyApi, preMatchApi } from '@/modelsApi'
 
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 

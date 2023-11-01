@@ -4,7 +4,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
-import { accountsApi } from '@/api'
+import { accountsApi } from '@/modelsApi'
 
 import { Link } from '@/components/shared'
 

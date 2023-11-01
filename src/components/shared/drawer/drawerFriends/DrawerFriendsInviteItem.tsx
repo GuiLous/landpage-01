@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Status } from '@/store/slices/userSlice'
 
-import { lobbyApi } from '@/api'
+import { lobbyApi } from '@/modelsApi'
 
 import { Avatar } from '@/components/shared'
 

@@ -6,7 +6,7 @@ import { MATCH_FOUND_GAP_TIMEOUT, TIME_OUT_MULTIPLIER } from '@/constants'
 
 import { useAppSelector } from '@/store'
 
-import { preMatchApi } from '@/api'
+import { preMatchApi } from '@/modelsApi'
 
 import { Button, Modal, Timer } from '@/components/shared'
 

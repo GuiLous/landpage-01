@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/store'
 import { readAllNotifications } from '@/store/slices/notificationSlice'
 
-import { notificationsApi } from '@/api'
+import { notificationsApi } from '@/modelsApi'
 
 import { Button } from '@/components/shared'
 

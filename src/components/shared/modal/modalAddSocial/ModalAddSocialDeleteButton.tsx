@@ -3,7 +3,7 @@
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { SocialHandles } from '@/contexts'
+import { SocialHandles } from '@/functions'
 
 import { CustomIcon, SocialHashType } from '@/components/shared'
 
