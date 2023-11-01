@@ -106,3 +106,6 @@ export const LINK_PATHS = {
   conta: 'config',
   inventario: 'inventory',
 }
+
+// Pagination
+export const SIBLINGS_COUNT = 1

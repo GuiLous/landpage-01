@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { getAuthServer } from '@/utils'
@@ -7,18 +8,21 @@ import { getUserProfile } from '@/functions'
 import {
   ProfileHeatmapStatsCard,
   ProfileLevelStatsCard,
+  ProfileMatchHistoryList,
 } from '@/components/pages'
 
 import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
 
 interface ProfileProps {
   params: { userId: string }
+  searchParams: { page: string }
 }
 
-export default async function Profile({ params }: ProfileProps) {
+export default async function Profile({ params, searchParams }: ProfileProps) {
   const auth = getAuthServer()
 
   const { userId } = params
+  const { page } = searchParams
 
   const profile = await getUserProfile(Number(userId), auth)
 
@@ -64,7 +68,13 @@ export default async function Profile({ params }: ProfileProps) {
           />
         </div>
 
-        <div>MatchHistory</div>
+        <Suspense fallback={<div>loading...</div>}>
+          <ProfileMatchHistoryList
+            userId={Number(userId)}
+            username={profile.username}
+            page={page ? Number(page) : 1}
+          />
+        </Suspense>
       </aside>
     </main>
   )

@@ -13,6 +13,9 @@ const content = tv({
     profile: {
       true: 'text-sm normal-case text-gray-300 transition-colors group-hover:text-white 3xl:text-xs',
     },
+    pagination: {
+      true: 'text-base font-semibold normal-case text-gray-300 transition-colors group-hover:text-white',
+    },
   },
   defaultVariants: {
     disabled: false,
@@ -36,11 +39,12 @@ export function ButtonContent({
   isLoading = false,
   neutral,
   profile,
+  pagination,
   ...props
 }: ButtonContentProps) {
   return (
     <p
-      className={content({ disabled, neutral, profile, className })}
+      className={content({ disabled, neutral, profile, pagination, className })}
       {...props}
     >
       {isLoading ? loadingText : children}

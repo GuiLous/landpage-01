@@ -29,6 +29,9 @@ const button = tv({
     ghost: {
       true: 'max-w-fit gap-0 border border-white bg-transparent p-0 hover:bg-transparent active:bg-transparent',
     },
+    pagination: {
+      true: 'h-8 w-8 cursor-pointer rounded-lg bg-gray-700 hover:bg-gray-400 active:bg-gray-700 disabled:cursor-default disabled:bg-gray-400 disabled:hover:bg-gray-400',
+    },
   },
   defaultVariants: {
     disabled: false,
@@ -37,6 +40,7 @@ const button = tv({
     neutral: false,
     profile: false,
     ghost: false,
+    pagination: false,
   },
 })
 
@@ -54,6 +58,7 @@ export function ButtonRoot({
   neutral,
   profile,
   ghost,
+  pagination,
   ...props
 }: ButtonRootProps) {
   const Component = asChild ? Slot : 'button'
@@ -68,6 +73,7 @@ export function ButtonRoot({
         neutral,
         profile,
         ghost,
+        pagination,
         className,
       })}
       {...props}

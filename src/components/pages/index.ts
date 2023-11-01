@@ -6,6 +6,7 @@ export * from './lobby';
 export * from './maintenance';
 export * from './profile/profileHeatmapStatsCard/ProfileHeatmapStatsCard';
 export * from './profile/profileLevelStatsCard/ProfileLevelStatsCard';
+export * from './profile/profileMatchHistoryList/ProfileMatchHistoryList';
 export * from './sidebarLayout';
 export * from './signup/change-email';
 export * from './signup/layout';
