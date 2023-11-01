@@ -4,7 +4,10 @@ import { getAuthServer } from '@/utils'
 
 import { getUserProfile } from '@/functions'
 
-import { ProfileLevelStatsCard } from '@/components/pages'
+import {
+  ProfileHeatmapStatsCard,
+  ProfileLevelStatsCard,
+} from '@/components/pages'
 
 import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
 
@@ -53,7 +56,12 @@ export default async function Profile({ params }: ProfileProps) {
             most_damage_in_a_match={profile.most_damage_in_a_match}
             stats={profile.stats}
           />
-          <div>HeatMap</div>
+
+          <ProfileHeatmapStatsCard
+            head_shots={profile.stats.head_shots || 0}
+            chest_shots={profile.stats.chest_shots || 0}
+            other_shots={profile.stats.other_shots || 0}
+          />
         </div>
 
         <div>MatchHistory</div>
