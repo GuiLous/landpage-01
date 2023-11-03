@@ -38,7 +38,7 @@ function ModalContent({
     <Dialog.Portal>
       <Dialog.Overlay
         className={twMerge(
-          'fixed inset-0 z-40 bg-black/[.85]',
+          'fixed backdrop-blur-sm inset-0 z-40 bg-black/[.85]',
           'data-[state=closed]:animate-[dialog-overlay-hide_200ms]',
           'data-[state=open]:animate-[dialog-overlay-show_200ms]'
         )}

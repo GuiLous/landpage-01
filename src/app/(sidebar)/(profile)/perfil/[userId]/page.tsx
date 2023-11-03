@@ -11,7 +11,11 @@ import {
   ProfileMatchHistoryList,
 } from '@/components/pages'
 
-import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
+import {
+  ProfileHeader,
+  ProfileHeaderTabsButtons,
+  SkeletonMatchHistoryList,
+} from '@/components/shared'
 
 interface ProfileProps {
   params: { userId: string }
@@ -29,7 +33,7 @@ export default async function Profile({ params, searchParams }: ProfileProps) {
   const isUserLogged = Number(userId) === auth?.id
 
   return (
-    <main className={twMerge('flex-col gap-10', '3xl:gap-7')}>
+    <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>
       <ProfileHeader isUserLogged={isUserLogged} profile={profile}>
         <ProfileHeaderTabsButtons
           isUserLogged={isUserLogged}
@@ -38,11 +42,8 @@ export default async function Profile({ params, searchParams }: ProfileProps) {
         />
       </ProfileHeader>
 
-      <aside
-        className={twMerge(
-          'flex-initial gap-4 px-[3.750rem]',
-          '3xl:px-[1.875rem]'
-        )}
+      <section
+        className={twMerge('flex-initial gap-4 px-[3.750rem]', '3xl:px-7')}
       >
         <div
           className={twMerge(
@@ -68,14 +69,14 @@ export default async function Profile({ params, searchParams }: ProfileProps) {
           />
         </div>
 
-        <Suspense fallback={<div>loading...</div>}>
+        <Suspense fallback={<SkeletonMatchHistoryList />}>
           <ProfileMatchHistoryList
             userId={Number(userId)}
             username={profile.username}
             page={page ? Number(page) : 1}
           />
         </Suspense>
-      </aside>
+      </section>
     </main>
   )
 }

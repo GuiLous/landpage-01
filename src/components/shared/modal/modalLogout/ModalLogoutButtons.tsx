@@ -49,7 +49,6 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
       <Button.Root
         disabled={fetching}
         className="w-full max-w-[102px]"
-        type="submit"
         neutral
         onClick={handleCloseModal}
       >
@@ -64,20 +63,21 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
 
       <Button.Root
         disabled={fetching}
-        className="w-full max-w-[102px]"
+        className="min-h-[42px] w-full max-w-[102px]"
         type="submit"
-        restricted
+        restricted={!fetching}
         onClick={handleLogout}
       >
-        {fetching && <Button.Spinner bgStyle="bg-red-500" />}
+        {fetching && <Button.Spinner />}
 
-        <Button.Content
-          isLoading={fetching}
-          className="text-sm font-semibold"
-          loadingText="Saindo"
-        >
-          Sair
-        </Button.Content>
+        {!fetching && (
+          <Button.Content
+            isLoading={fetching}
+            className="text-sm font-semibold"
+          >
+            Sair
+          </Button.Content>
+        )}
       </Button.Root>
     </div>
   )

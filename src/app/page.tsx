@@ -25,7 +25,7 @@ export default function Home() {
           </section>
         </section>
 
-        <section className="hidden flex-col items-center xl:flex xl:px-[1.875rem]">
+        <section className="hidden flex-col items-center xl:flex xl:px-7">
           <MobileHeader />
 
           <HeroMobileImage />

@@ -6,7 +6,7 @@ import { FooterSocials } from './FooterSocials'
 
 export function Footer() {
   return (
-    <footer className="z-10 flex-initial items-center justify-center bg-black px-0 py-[1.875rem]">
+    <footer className="z-10 flex-initial items-center justify-center bg-black px-0 py-7">
       <section
         className={twMerge(
           'max-w-[1320px] items-center justify-center',
