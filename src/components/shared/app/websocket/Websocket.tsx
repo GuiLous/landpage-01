@@ -15,7 +15,7 @@ import { addNotification } from '@/store/slices/notificationSlice'
 import { updatePreMatch } from '@/store/slices/preMatchSlice'
 import { updateUser } from '@/store/slices/userSlice'
 
-import { lobbyApi } from '@/api'
+import { lobbyApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 

@@ -1,3 +1,3 @@
 /* eslint-disable prettier/prettier */
-export * from './maintenanceLogoutButton/MaintenanceLogoutButton';
+export * from './MaintenanceLogoutButton';
 

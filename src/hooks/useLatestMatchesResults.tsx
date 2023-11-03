@@ -15,7 +15,7 @@ export const useLatestMatchesResults = ({
     <div className="max-w-fit flex-initial" key={index}>
       <span
         className={twMerge(
-          'text-white 3xl:text-sm font-semibold',
+          'text-white',
           colorize &&
             (matchResultItem === 'V' ? 'text-cyan-400' : 'text-gray-300')
         )}
@@ -23,10 +23,7 @@ export const useLatestMatchesResults = ({
         {matchResultItem}
       </span>
       <span
-        className={twMerge(
-          '3xl:text-sm text-white font-semibold',
-          colorize && 'text-gray-300'
-        )}
+        className={twMerge(colorize && 'text-gray-300')}
         style={{ marginLeft: '3px', marginRight: '3px' }}
       >
         {latestMatchesResults.length !== index + 1 && ' - '}

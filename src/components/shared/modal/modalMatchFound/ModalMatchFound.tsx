@@ -1,17 +1,6 @@
-'use client'
+import { Modal } from '@/components/shared'
 
-import { MouseEvent, useCallback, useEffect, useState } from 'react'
-
-import { MATCH_FOUND_GAP_TIMEOUT, TIME_OUT_MULTIPLIER } from '@/constants'
-
-import { useAppSelector } from '@/store'
-
-import { preMatchApi } from '@/api'
-
-import { Button, Modal, Timer } from '@/components/shared'
-
-import { useAuth, useShowErrorToast } from '@/hooks'
-
+import { ModalMatchFoundButtons } from './ModalMatchFoundButtons'
 import { ModalMatchFoundPlayersIcon } from './ModalMatchFoundPlayersIcon'
 
 interface ModalLogoutProps {
@@ -20,55 +9,6 @@ interface ModalLogoutProps {
 }
 
 export function ModalMatchFound({ open, setOpen }: ModalLogoutProps) {
-  const { preMatch } = useAppSelector((state) => state.preMatch)
-
-  const showErrorToast = useShowErrorToast()
-
-  const getAuth = useAuth()
-  const auth = getAuth()
-
-  const [timeExpired, setTimeExpired] = useState(false)
-
-  const handleAccept = useCallback(
-    async (e: MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault()
-
-      if (timeExpired || !auth?.token) return
-
-      let response = null
-
-      response = await preMatchApi.playerReady(auth.token)
-
-      if (response.errorMsg) {
-        showErrorToast(response.errorMsg)
-      }
-    },
-    [timeExpired, showErrorToast, auth]
-  )
-
-  useEffect(() => {
-    let timeoutId: NodeJS.Timeout
-
-    if (preMatch?.countdown) {
-      timeoutId = setTimeout(
-        () => {
-          setTimeExpired(true)
-        },
-        preMatch.countdown * TIME_OUT_MULTIPLIER + MATCH_FOUND_GAP_TIMEOUT
-      )
-    }
-
-    return () => {
-      clearTimeout(timeoutId)
-    }
-  }, [preMatch?.countdown])
-
-  useEffect(() => {
-    if (!open) {
-      setTimeExpired(false)
-    }
-  }, [open])
-
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Content
@@ -81,32 +21,7 @@ export function ModalMatchFound({ open, setOpen }: ModalLogoutProps) {
 
           <ModalMatchFoundPlayersIcon />
 
-          <div className="flex-col items-center justify-center">
-            <Button.Root
-              className="w-full max-w-fit px-3"
-              disabled={(preMatch && preMatch.user_ready) || timeExpired}
-              onClick={handleAccept}
-            >
-              <Button.Content className="text-sm font-semibold">
-                {preMatch && preMatch.user_ready
-                  ? 'Você está pronto!'
-                  : 'Aceitar partida'}
-              </Button.Content>
-            </Button.Root>
-
-            <div className="mt-3.5 justify-center text-white">
-              {preMatch && preMatch.countdown && preMatch.countdown <= 0
-                ? '00:00'
-                : preMatch &&
-                  preMatch.countdown && (
-                    <Timer
-                      reverse
-                      formatted={true}
-                      initialTime={preMatch.countdown}
-                    />
-                  )}
-            </div>
-          </div>
+          <ModalMatchFoundButtons open={open} />
         </div>
       </Modal.Content>
     </Modal>

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página de `Perfil` no projeto next [#810](https://github.com/3C-gg/reload-frontend/issues/810).
 - Criar page `Connect` e todos seus componentes no projeto next [#767](https://github.com/3C-gg/reload-frontend/issues/767). 
 - Cria componente de `Toast` no projeto next [#763](https://github.com/3C-gg/reload-frontend/issues/763).
 - Cria componente de `ModalMatchFound` no projeto next [#757](https://github.com/3C-gg/reload-frontend/issues/757).

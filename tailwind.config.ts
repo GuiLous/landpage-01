@@ -11,6 +11,7 @@ const config: Config = {
       screens: {
         '3xl': { max: '1600px' },
         '2xl': { max: '1536px' },
+        img_link: { max: '1400px' },
         xl: { max: '1279px' },
         lg: { max: '1023px' },
         md: { max: '767px' },
@@ -36,6 +37,7 @@ const config: Config = {
           700: '#1A1240',
         },
         gray: {
+          50: '#d9d9d9',
           100: '#c8c5c5',
           200: '#B7B7B7',
           300: '#999999',
@@ -88,6 +90,7 @@ const config: Config = {
         maintenance: "url('~/src/assets/images/bg_maintenance.png')",
         player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
         connect: "url('~/src/assets/images/connect_bg.png')",
+        profile_header: "url('~/src/assets/images/profile_header_bg.jpg')",
         gradient_drawer_friends:
           'linear-gradient(360deg, #1e1e1e 0%, #1e1e1e00 100%)',
         gradient_friends_invite:
@@ -109,6 +112,16 @@ const config: Config = {
           'linear-gradient(to right, #ffd4261a, #ffd42600 50%)',
         gradient_toast_error:
           'linear-gradient(to right, #f635351a, #f6353500 50%)',
+        gradient_match_link_base:
+          'linear-gradient(90deg, #6847ff33 0%, #282828 9.27%)',
+        gradient_match_link_won:
+          'linear-gradient(90deg, rgba(38, 189, 57, 0.2) 0%, #282828 9.27%)',
+        gradient_match_link_won_hover:
+          'linear-gradient(90deg, rgba(38, 189, 57, 0.2) 0%, #282828 58.56%)',
+        gradient_match_link_defeated:
+          'linear-gradient(90deg, rgba(246, 53, 53, 0.2) 0%, #282828 9.27%)',
+        gradient_match_link_defeated_hover:
+          'linear-gradient(90deg, rgba(246, 53, 53, 0.2) 0%, #282828 58.56%)',
       },
       animation: {
         fade: 'fade 0.2s ease-in-out',

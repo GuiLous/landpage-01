@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
@@ -18,7 +20,7 @@ import {
   matchesApi,
   notificationsApi,
   preMatchApi,
-} from '@/api'
+} from '@/modelsApi'
 
 import { useAuth } from './useAuth'
 import { useShowErrorToast } from './useShowErrorToast'

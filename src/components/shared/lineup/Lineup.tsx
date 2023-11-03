@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { useAppSelector } from '@/store'
 import { Friend } from '@/store/slices/friendSlice'
 
-import { lobbyApi } from '@/api'
+import { lobbyApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 

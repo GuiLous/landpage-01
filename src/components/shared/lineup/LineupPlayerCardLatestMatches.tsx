@@ -41,7 +41,7 @@ export function LineupPlayerCardLatestMatches({
         </span>
       </div>
 
-      <div className="justify-center 3xl:text-sm">
+      <div className={twMerge('justify-center font-semibold', '3xl:text-sm')}>
         {renderLatestMatchesResults()}
       </div>
 

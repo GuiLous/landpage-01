@@ -40,6 +40,8 @@ const stats = {
   others_accuracy: 0,
 }
 
+export type Stats = typeof stats
+
 export type Map = {
   id: number
   name: string
@@ -62,7 +64,7 @@ export type Player = {
   user_id: number
   username: string
   avatar: Avatar
-  stats: typeof stats
+  stats: Stats
   progress: Progress
   level: number
   status: Status
@@ -77,12 +79,14 @@ export type Team = {
   match_id: number
 }
 
+export type MatchStatus = 'warmup' | 'running' | 'cancelled' | 'loading'
+
 export type Match = {
   id: number
   map: Map
   create_date: Date
-  start_date: Date
-  end_date: Date | null
+  start_date: string
+  end_date: string | null
   status: string
   game_type: string
   game_mode: number

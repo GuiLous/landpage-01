@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-export * from './connectAvatarImage/ConnectAvatarImage';
+export * from './ConnectAvatarImage';
+export * from './ConnectLogo';
+export * from './ConnectTimer';
 export * from './connectIpMessage/ConnectIpMessage';
-export * from './connectLogo/ConnectLogo';
-export * from './connectTimer/ConnectTimer';
 

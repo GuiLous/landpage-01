@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSubjectOptions } from '@/utils'
 
-import { supportApi } from '@/api'
+import { supportApi } from '@/modelsApi'
 
 import {
   Button,

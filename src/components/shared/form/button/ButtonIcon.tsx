@@ -8,9 +8,16 @@ const icon = tv({
     disabled: {
       true: 'text-gray-400',
     },
+    profile: {
+      true: 'text-gray-300 transition-colors group-hover:text-white',
+    },
+    pagination: {
+      true: 'text-gray-300 transition-colors group-hover:text-white',
+    },
   },
   defaultVariants: {
     disabled: false,
+    profile: false,
   },
 })
 
@@ -24,7 +31,14 @@ export function ButtonIcon({
   icon: Icon,
   className,
   disabled,
+  profile,
+  pagination,
   ...props
 }: ButtonIconProps) {
-  return <Icon className={icon({ disabled, className })} {...props} />
+  return (
+    <Icon
+      className={icon({ disabled, profile, pagination, className })}
+      {...props}
+    />
+  )
 }

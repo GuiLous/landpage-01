@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '@/store'
 import { addToast, toggleFriendList } from '@/store/slices/appSlice'
 import { addInvite } from '@/store/slices/inviteSlice'
 
-import { lobbyApi } from '@/api'
+import { lobbyApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 

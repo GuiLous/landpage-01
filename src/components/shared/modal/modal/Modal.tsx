@@ -16,6 +16,7 @@ interface ModalContent {
   children: ReactNode
   className?: string
   showCloseButton?: boolean
+  justifyTitle?: 'start' | 'center' | 'end'
 }
 
 export function Modal({ open, onOpenChange, children }: ModalProps) {
@@ -30,13 +31,14 @@ function ModalContent({
   title,
   children,
   className,
+  justifyTitle = 'center',
   showCloseButton = true,
 }: ModalContent) {
   return (
     <Dialog.Portal>
       <Dialog.Overlay
         className={twMerge(
-          'fixed inset-0 z-40 bg-black/[.85]',
+          'fixed backdrop-blur-sm inset-0 z-40 bg-black/[.85]',
           'data-[state=closed]:animate-[dialog-overlay-hide_200ms]',
           'data-[state=open]:animate-[dialog-overlay-show_200ms]'
         )}
@@ -50,7 +52,13 @@ function ModalContent({
           className
         )}
       >
-        <div className="items-center justify-center">
+        <div
+          className={twMerge(
+            'items-center justify-center',
+            justifyTitle === 'start' && 'justify-start',
+            justifyTitle === 'end' && 'justify-end'
+          )}
+        >
           <Dialog.Title
             className={twMerge(
               'text-xl font-bold leading-none text-white',

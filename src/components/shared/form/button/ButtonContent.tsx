@@ -10,10 +10,17 @@ const content = tv({
     neutral: {
       true: 'text-gray-300 transition-colors group-hover:text-white',
     },
+    profile: {
+      true: 'text-sm normal-case text-gray-300 transition-colors group-hover:text-white 3xl:text-xs',
+    },
+    pagination: {
+      true: 'text-base font-semibold normal-case text-gray-300 transition-colors group-hover:text-white',
+    },
   },
   defaultVariants: {
     disabled: false,
     neutral: false,
+    profile: false,
   },
 })
 
@@ -31,10 +38,15 @@ export function ButtonContent({
   loadingText = 'Enviando',
   isLoading = false,
   neutral,
+  profile,
+  pagination,
   ...props
 }: ButtonContentProps) {
   return (
-    <p className={content({ disabled, neutral, className })} {...props}>
+    <p
+      className={content({ disabled, neutral, profile, pagination, className })}
+      {...props}
+    >
       {isLoading ? loadingText : children}
     </p>
   )
