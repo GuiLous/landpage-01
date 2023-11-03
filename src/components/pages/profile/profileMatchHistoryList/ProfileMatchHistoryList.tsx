@@ -45,6 +45,7 @@ export async function ProfileMatchHistoryList({
       <ProfileMatchHistoryListByDate
         groupedMatches={groupedMatches}
         sortedDates={sortedDates}
+        userId={userId}
       />
 
       {sortedDates.length === 0 ? (

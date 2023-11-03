@@ -1,6 +1,6 @@
 import { Slot } from '@radix-ui/react-slot'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
-import { ReactNode } from 'react'
+import NextLink from 'next/link'
+import { ComponentProps, ReactNode, Ref } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const link = tv({
@@ -20,12 +20,13 @@ const link = tv({
   },
 })
 
-type LinkProps = NextLinkProps &
-  VariantProps<typeof link> & {
+type LinkProps = VariantProps<typeof link> &
+  ComponentProps<typeof NextLink> & {
     children: ReactNode
     className?: string
     target?: string
     asChild?: boolean
+    forwardRef?: Ref<HTMLAnchorElement>
   }
 
 export function Link({
@@ -33,12 +34,17 @@ export function Link({
   inline,
   className,
   asChild,
+  forwardRef,
   ...props
 }: LinkProps) {
   const Component = asChild ? Slot : NextLink
 
   return (
-    <Component className={link({ inline, className })} {...props}>
+    <Component
+      ref={forwardRef}
+      className={link({ inline, className })}
+      {...props}
+    >
       {children}
     </Component>
   )

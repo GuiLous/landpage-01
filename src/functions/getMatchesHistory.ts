@@ -1,3 +1,5 @@
+import { MatchStatus } from '@/store/slices/matchSlice'
+
 import { matchesApi } from '@/modelsApi'
 
 import { userAuthToken } from '@/middleware'
@@ -10,16 +12,19 @@ export type StatsMatchProfileType = {
   firstkills: number
 }
 
+export type GameType = 'custom' | 'competitive'
+
 export type MatchProfileType = {
   id: number
   map_name: string
   map_image: any
-  game_type: string
+  game_type: GameType
   start_date: string
   end_date: string
   won: boolean
   score: string
   stats: StatsMatchProfileType
+  status?: MatchStatus
 }
 
 export interface MatchHistoryResponse {

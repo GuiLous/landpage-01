@@ -44,3 +44,18 @@ export const formatDateToPtFormat = (date: string) => {
     }`
   }
 }
+
+export function formatSecondsToHour(seconds: number) {
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.floor((seconds % 3600) / 60)
+  const remainingSeconds = seconds % 60
+
+  if (hours === 0)
+    return `${minutes.toString().padStart(2, '0')}m${remainingSeconds
+      .toString()
+      .padStart(2, '0')}s`
+
+  return `${hours.toString().padStart(2, '0')}h${minutes
+    .toString()
+    .padStart(2, '0')}m${remainingSeconds.toString().padStart(2, '0')}s`
+}

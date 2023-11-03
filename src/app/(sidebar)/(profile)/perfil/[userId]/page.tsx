@@ -29,7 +29,7 @@ export default async function Profile({ params, searchParams }: ProfileProps) {
   const isUserLogged = Number(userId) === auth?.id
 
   return (
-    <main className={twMerge('flex-col gap-10', '3xl:gap-[1.875rem]')}>
+    <main className={twMerge('flex-col gap-10', '3xl:gap-7')}>
       <ProfileHeader isUserLogged={isUserLogged} profile={profile}>
         <ProfileHeaderTabsButtons
           isUserLogged={isUserLogged}

@@ -79,12 +79,14 @@ export type Team = {
   match_id: number
 }
 
+export type MatchStatus = 'warmup' | 'running' | 'cancelled' | 'loading'
+
 export type Match = {
   id: number
   map: Map
   create_date: Date
-  start_date: Date
-  end_date: Date | null
+  start_date: string
+  end_date: string | null
   status: string
   game_type: string
   game_mode: number
