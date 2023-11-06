@@ -15,6 +15,8 @@ import { useAppSelector } from '@/store'
 
 import { BagPackIcon, Button, ModalSupport } from '@/components/shared'
 
+import { ProfileHeaderSyncSteamButton } from './ProfileHeaderSyncSteamButton'
+
 type ButtonType = 'profile' | 'inventory' | 'config' | 'steam_chat' | 'report'
 type LinkType = 'perfil' | 'conta' | 'inventario'
 
@@ -129,6 +131,8 @@ export function ProfileHeaderTabsButtons({
               </Button.Root>
             )
       )}
+
+      {isUserLogged && <ProfileHeaderSyncSteamButton />}
 
       <ModalSupport
         open={openModalSupport}

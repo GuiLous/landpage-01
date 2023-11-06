@@ -124,9 +124,10 @@ const config: Config = {
           'linear-gradient(90deg, rgba(246, 53, 53, 0.2) 0%, #282828 58.56%)',
       },
       animation: {
+        spin: 'spin 2s linear infinite',
+        progress: 'progress linear',
         fade: 'fade 0.2s ease-in-out',
         shake: 'shake 3.5s ease infinite',
-        progress: 'progress linear',
         // Radix
         'slide-up-fade': 'slide-up-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
         'slide-right-fade':
@@ -135,6 +136,14 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        spin: {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(-360deg)',
+          },
+        },
         progress: {
           '0%': {
             'max-width': '100%',

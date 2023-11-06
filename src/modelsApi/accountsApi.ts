@@ -32,4 +32,12 @@ export const accountsApi = {
   async delete(token: string, options?: RequestInit) {
     return await baseApi.delete({ endpoint: 'accounts/', token, options })
   },
+
+  async syncUser(token: string, options?: RequestInit) {
+    return await baseApi.create({
+      endpoint: 'accounts/steam-sync/',
+      token,
+      options,
+    })
+  },
 }
