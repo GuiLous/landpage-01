@@ -9,10 +9,10 @@ const icon = tv({
   ],
   variants: {
     success: {
-      true: 'text-green-400',
+      true: 'text-green-400 group-focus-within:text-green-400',
     },
     error: {
-      true: 'text-red-500',
+      true: 'text-red-500 group-focus-within:text-red-500',
     },
   },
   defaultVariants: {

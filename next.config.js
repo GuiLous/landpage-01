@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['reloadclub-api-staging.s3.amazonaws.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'reloadclub-api-staging.s3.amazonaws.com',
+      },
+    ],
   },
   webpack(config) {
     config.module.rules.push({
