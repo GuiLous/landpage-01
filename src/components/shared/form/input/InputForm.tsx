@@ -1,4 +1,4 @@
-import { ComponentProps, ReactNode } from 'react'
+import { ComponentProps, ReactNode, Ref } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const inputWrapper = tv({
@@ -17,13 +17,15 @@ const inputWrapper = tv({
   variants: {
     success: {
       true: {
-        container: 'outline outline-1 outline-green-400',
+        container:
+          'outline outline-1 outline-green-400 focus-within:outline-green-400',
         input: '',
       },
     },
     error: {
       true: {
-        container: 'outline outline-1 outline-red-500',
+        container:
+          'outline outline-1 outline-red-500 focus-within:outline-red-500',
         input: '',
       },
     },
@@ -51,6 +53,7 @@ const inputWrapper = tv({
 type InputFormProps = ComponentProps<'input'> &
   VariantProps<typeof inputWrapper> & {
     children?: ReactNode
+    forwardRef?: Ref<HTMLInputElement>
   }
 
 export function InputForm({
@@ -60,6 +63,7 @@ export function InputForm({
   error,
   neutral,
   secondary,
+  forwardRef,
   ...props
 }: InputFormProps) {
   const { container, input } = inputWrapper({
@@ -74,6 +78,7 @@ export function InputForm({
       <input
         type="text"
         className={input({ neutral, secondary, className })}
+        ref={forwardRef}
         {...props}
       />
 

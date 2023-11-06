@@ -1,7 +1,6 @@
 'use client'
 
 import Cookies from 'js-cookie'
-import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 
 import { accountsApi } from '@/modelsApi'
@@ -15,23 +14,18 @@ export function InactiveGoBackLink() {
   const auth = getAuth()
 
   const showErrorToast = useShowErrorToast()
-  const router = useRouter()
 
   const handleLogout = useCallback(async () => {
     if (!auth?.token) return
+
+    Cookies.remove('token')
 
     const response = await accountsApi.logout(auth.token)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
-
-      return
     }
-
-    Cookies.remove('token')
-
-    router.push('/')
-  }, [router, showErrorToast, auth])
+  }, [showErrorToast, auth])
 
   return (
     <div className="mt-4 flex-initial justify-center">
