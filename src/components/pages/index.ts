@@ -8,6 +8,8 @@ export * from './home';
 export * from './inactive';
 export * from './lobby';
 export * from './maintenance';
+export * from './matchDetails/MatchDetailsHeader/MatchDetailsHeader';
+export * from './matchDetails/MatchDetailsHeader/MatchDetailsHeaderStatus';
 export * from './profile/profileHeatmapStatsCard/ProfileHeatmapStatsCard';
 export * from './profile/profileLevelStatsCard/ProfileLevelStatsCard';
 export * from './profile/profileMatchHistoryList/ProfileMatchHistoryList';

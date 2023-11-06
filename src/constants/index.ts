@@ -109,3 +109,7 @@ export const LINK_PATHS = {
 
 // Pagination
 export const SIBLINGS_COUNT = 1
+
+// ProgressBar
+export const MIN_PROGRESS = 0
+export const MAX_PROGRESS = 100

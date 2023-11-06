@@ -17,18 +17,18 @@ import {
   SkeletonMatchHistoryList,
 } from '@/components/shared'
 
-interface ProfileProps {
+interface RouteProps {
   params: { userId: string }
   searchParams: { page: string }
 }
 
-export default async function Profile({ params, searchParams }: ProfileProps) {
+export default async function Profile({ params, searchParams }: RouteProps) {
   const auth = getAuthServer()
 
   const { userId } = params
   const { page } = searchParams
 
-  const profile = await getUserProfile(Number(userId), auth)
+  const profile = await getUserProfile(Number(userId))
 
   const isUserLogged = Number(userId) === auth?.id
 

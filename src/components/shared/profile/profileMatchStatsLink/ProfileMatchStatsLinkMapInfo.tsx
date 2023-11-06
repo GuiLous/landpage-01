@@ -4,9 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSecondsToHour } from '@/utils'
 
-import { GameType } from '@/functions'
-
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { GameType, MatchStatus } from '@/store/slices/matchSlice'
 
 import { Timer, Tooltip } from '@/components/shared'
 
@@ -17,7 +15,7 @@ interface ProfileMatchStatsLinkMapInfoProps {
   game_type: GameType
   status?: MatchStatus
   start_date?: string
-  end_date?: string
+  end_date: string | null
 }
 
 const type_map = {
@@ -50,12 +48,16 @@ export function ProfileMatchStatsLinkMapInfo({
   return (
     <div className="gap-4">
       <Image
-        src={map_image || ''}
+        src={
+          map_image ||
+          'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png'
+        }
         alt={`imagem do mapa ${map_name}`}
         width={54}
         height={54}
         className={twMerge(
-          isLink && 'rounded h-auto object-cover img_link:hidden'
+          'rounded h-auto object-cover ',
+          isLink && 'img_link:hidden'
         )}
       />
 
@@ -70,7 +72,7 @@ export function ProfileMatchStatsLinkMapInfo({
           </span>
 
           <Tooltip content="Duração da partida">
-            <span className="text-xs leading-none text-gray-300">
+            <span className="whitespace-nowrap text-xs leading-none text-gray-300">
               {status !== 'warmup' && (
                 <>
                   {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}
