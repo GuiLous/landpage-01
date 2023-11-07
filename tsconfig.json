@@ -34,7 +34,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "src/components/shared/link/goBackLink"
   ],
   "exclude": [
     "node_modules"

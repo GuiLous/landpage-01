@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { PiHouseFill } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
 
@@ -7,7 +8,7 @@ import { formatSecondsToMinutes } from '@/utils'
 
 import { useAppSelector } from '@/store'
 
-import { Button, Link, Timer } from '@/components/shared'
+import { Button, Timer } from '@/components/shared'
 
 export function SidebarLobbyButton() {
   const lobby = useAppSelector((state) => state.lobby)

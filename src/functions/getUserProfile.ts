@@ -1,12 +1,12 @@
 import { redirect } from 'next/navigation'
 
+import { getAuthServer } from '@/utils'
+
 import { LatestMatchesResult } from '@/store/slices/lobbySlice'
 import { Stats } from '@/store/slices/matchSlice'
 import { Avatar, Status } from '@/store/slices/userSlice'
 
 import { profilesApi } from '@/modelsApi'
-
-import { userAuthToken } from '@/middleware'
 
 export type SocialHandles = {
   steam: string | null
@@ -34,11 +34,10 @@ export type Profile = {
   status: Status
 }
 
-export async function getUserProfile(
-  userId: number,
-  userAuth: userAuthToken
-): Promise<Profile> {
-  const response = await profilesApi.detail(userAuth.token, userId, {
+export async function getUserProfile(userId: number): Promise<Profile> {
+  const auth = getAuthServer()
+
+  const response = await profilesApi.detail(auth.token, userId, {
     next: { tags: ['profile'] },
   })
 

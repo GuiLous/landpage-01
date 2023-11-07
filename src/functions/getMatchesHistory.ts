@@ -1,8 +1,8 @@
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { getAuthServer } from '@/utils'
+
+import { GameType, MatchStatus } from '@/store/slices/matchSlice'
 
 import { matchesApi } from '@/modelsApi'
-
-import { userAuthToken } from '@/middleware'
 
 export type StatsMatchProfileType = {
   adr: number
@@ -12,22 +12,20 @@ export type StatsMatchProfileType = {
   firstkills: number
 }
 
-export type GameType = 'custom' | 'competitive'
-
 export type MatchProfileType = {
   id: number
   map_name: string
   map_image: any
   game_type: GameType
   start_date: string
-  end_date: string
+  end_date: string | null
   won: boolean
   score: string
   stats: StatsMatchProfileType
   status?: MatchStatus
 }
 
-export interface MatchHistoryResponse {
+export interface MatchHistory {
   results: MatchProfileType[]
   count: number
   page_size: number
@@ -38,11 +36,12 @@ export interface MatchHistoryResponse {
 }
 
 export async function getMatchesHistory(
-  userAuth: userAuthToken,
   userId: number,
   page: number
-): Promise<MatchHistoryResponse> {
-  const response = await matchesApi.list(userAuth.token, userId, page, {
+): Promise<MatchHistory> {
+  const auth = getAuthServer()
+
+  const response = await matchesApi.list(auth.token, userId, page, {
     next: { revalidate: 600 },
   })
 

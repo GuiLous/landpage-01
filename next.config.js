@@ -6,6 +6,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'reloadclub-api-staging.s3.amazonaws.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'static.wikia.nocookie.net',
+      },
+      // https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png
     ],
   },
   webpack(config) {

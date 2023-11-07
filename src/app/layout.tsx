@@ -12,7 +12,6 @@ const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
   weight: ['300', '400', '500', '600', '700'],
-  fallback: ['arial'],
 })
 
 export const metadata: Metadata = {
@@ -25,7 +24,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <Providers>
       <html lang="en">
         <body
-          className={`${poppins.variable} bg-black/90 font-poppins font-normal`}
+          className={`${poppins.variable} bg-gray-1200 font-poppins font-normal`}
         >
           <InitializeSlices>{children}</InitializeSlices>
 

@@ -13,14 +13,15 @@ interface ProfileMatchStatsLinkStatsProps {
   status?: MatchStatus
   showGameStatus: boolean
   stats: StatsMatchProfileType
+  isLink?: boolean
 }
 
 const statsFields = [
   {
     field: 'kda',
     title: 'kda',
-    label: 'Abates e assistências por morte',
-    minWidth: '101',
+    label: 'Mortes, Abates e Assistências',
+    minWidth: '66px',
   },
   {
     field: 'kdr',
@@ -52,6 +53,7 @@ export function ProfileMatchStatsLinkStats({
   showGameStatus,
   status,
   stats,
+  isLink = true,
 }: ProfileMatchStatsLinkStatsProps) {
   return (
     <div className={twMerge('items-center justify-center gap-10', '3xl:gap-7')}>
@@ -80,14 +82,16 @@ export function ProfileMatchStatsLinkStats({
         </div>
       ))}
 
-      <CustomIcon
-        icon={RiArrowRightSLine}
-        size={24}
-        className={twMerge(
-          'text-gray-300 transition-colors',
-          'group-hover:text-white'
-        )}
-      />
+      {isLink && (
+        <CustomIcon
+          icon={RiArrowRightSLine}
+          size={24}
+          className={twMerge(
+            'text-gray-300 transition-colors',
+            'group-hover:text-white'
+          )}
+        />
+      )}
     </div>
   )
 }

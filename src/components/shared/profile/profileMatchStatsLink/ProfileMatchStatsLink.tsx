@@ -59,21 +59,27 @@ export function ProfileMatchStatsLink({
       asChild={!isLink}
       forwardRef={linkRef}
     >
-      <ProfileMatchStatsLinkBorder
-        showGameStatus={showGameStatus}
-        won={match.won}
-      />
+      <div>
+        <ProfileMatchStatsLinkBorder
+          showGameStatus={showGameStatus}
+          won={match.won}
+        />
 
-      <ProfileMatchStatsLinkMapInfo isLink={isLink} {...match} />
+        <ProfileMatchStatsLinkMapInfo isLink={isLink} {...match} />
 
-      <ProfileMatchStatsLinkStatus
-        isLink={isLink}
-        linkWidth={linkWidth}
-        showGameStatus={showGameStatus}
-        {...match}
-      />
+        <ProfileMatchStatsLinkStatus
+          isLink={isLink}
+          linkWidth={linkWidth}
+          showGameStatus={showGameStatus}
+          {...match}
+        />
 
-      <ProfileMatchStatsLinkStats showGameStatus={showGameStatus} {...match} />
+        <ProfileMatchStatsLinkStats
+          isLink={isLink}
+          showGameStatus={showGameStatus}
+          {...match}
+        />
+      </div>
     </Link>
   )
 }

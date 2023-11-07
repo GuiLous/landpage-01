@@ -30,7 +30,7 @@ const stats = {
   shots_hit: 0,
   adr: 0,
   kdr: 0,
-  kda: 0,
+  kda: '0',
   ahk: 0,
   ahr: 0,
   hsk: 0,
@@ -41,6 +41,8 @@ const stats = {
 }
 
 export type Stats = typeof stats
+
+export type GameType = 'custom' | 'competitive'
 
 export type Map = {
   id: number
@@ -54,7 +56,7 @@ export type Progress = {
   level_after: number
   level_points_before: number
   level_points_after: number
-  points_earned: number | null
+  points_earned: number
 }
 
 export type Player = {
@@ -79,7 +81,12 @@ export type Team = {
   match_id: number
 }
 
-export type MatchStatus = 'warmup' | 'running' | 'cancelled' | 'loading'
+export type MatchStatus =
+  | 'warmup'
+  | 'running'
+  | 'cancelled'
+  | 'loading'
+  | 'finished'
 
 export type Match = {
   id: number
@@ -87,8 +94,8 @@ export type Match = {
   create_date: Date
   start_date: string
   end_date: string | null
-  status: string
-  game_type: string
+  status: MatchStatus
+  game_type: GameType
   game_mode: number
   server_ip: string
   teams: Team[]
