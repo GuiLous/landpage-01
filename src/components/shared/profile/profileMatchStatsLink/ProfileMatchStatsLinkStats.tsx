@@ -20,8 +20,8 @@ const statsFields = [
   {
     field: 'kda',
     title: 'kda',
-    label: 'Abates e assistências por morte',
-    minWidth: '101',
+    label: 'Mortes, Abates e Assistências',
+    minWidth: '66px',
   },
   {
     field: 'kdr',

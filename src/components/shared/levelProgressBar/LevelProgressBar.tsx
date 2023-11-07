@@ -56,7 +56,7 @@ export function LevelProgressBar({
         />
       </a.div>
 
-      <div className="flex-col gap-1">
+      <div className="flex-col gap-1.5">
         <div>
           <Progress
             initial={level_points_before}

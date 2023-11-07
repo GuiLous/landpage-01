@@ -122,6 +122,16 @@ const config: Config = {
           'linear-gradient(90deg, rgba(246, 53, 53, 0.2) 0%, #282828 9.27%)',
         gradient_match_link_defeated_hover:
           'linear-gradient(90deg, rgba(246, 53, 53, 0.2) 0%, #282828 58.56%)',
+        gradient_match_table:
+          'linear-gradient(90deg, rgba(104, 71, 255, 0.3) 0%, rgba(104, 71, 255, 0.3) 100%, #333)',
+        gradient_match_table_hover:
+          'linear-gradient(0deg, rgba(51, 51, 51, 0.80) 0%, rgba(51, 51, 51, 0.80) 100%, rgba(40, 40, 40, 0.80))',
+        gradient_match_table_highlight:
+          'linear-gradient(90deg, rgba(104, 71, 255, 0.5) 0%, rgba(104, 71, 255, 0.19) 4.94%, rgba(104, 71, 255, 0) 13.92%, rgba(51, 51, 51, 0.8))',
+        gradient_match_table_winner:
+          'linear-gradient(90deg, rgba(38, 189, 57, 0.5) 0%, rgba(38, 189, 57, 0.2) 100%)',
+        gradient_match_table_loser:
+          'linear-gradient(90deg, rgba(246, 53, 53, 0.5) 0%, rgba(246, 53, 53, 0.2) 100%, #333)',
       },
       animation: {
         spin: 'spin 2s linear infinite',

@@ -6,9 +6,14 @@ import { getMatchDetails } from '@/functions/getMatchDetails'
 import {
   MatchDetailsHeader,
   MatchDetailsHeaderStatus,
+  MatchDetailsRedirect,
 } from '@/components/pages'
 
-import { LevelProgressBar, ProfileMatchStatsLink } from '@/components/shared'
+import {
+  LevelProgressBar,
+  MatchStatsTable,
+  ProfileMatchStatsLink,
+} from '@/components/shared'
 
 type Params = {
   matchId: string
@@ -48,7 +53,7 @@ export default async function MatchDetails({ params }: RouteProps) {
   if (playerOnMatch) {
     matchStats = {
       stats: {
-        kda: playerOnMatch.stats.kda,
+        kda: `${playerOnMatch.stats.kills}/${playerOnMatch.stats.deaths}/${playerOnMatch.stats.assists}`,
         kdr: playerOnMatch.stats.kdr,
         head_accuracy: playerOnMatch.stats.head_accuracy,
         adr: playerOnMatch.stats.adr,
@@ -94,12 +99,34 @@ export default async function MatchDetails({ params }: RouteProps) {
           )}
 
           {playerOnMatch && (
-            <div className="min-h-[82px] min-w-[38%] max-w-fit flex-initial items-center rounded bg-gray-800/80 px-3.5">
+            <div
+              className={twMerge(
+                'min-h-[82px] min-w-[38%] max-w-fit items-center rounded bg-gray-800/80 px-3.5',
+                '3xl:max-w-full'
+              )}
+            >
               <LevelProgressBar {...playerOnMatch.progress} />
             </div>
           )}
         </section>
+
+        {matchDetails?.teams.map((team) => (
+          <MatchStatsTable.Root key={team.id}>
+            <MatchStatsTable.Header
+              isSameScore={isSameScore}
+              isWinning={winningTeam.id === team.id}
+              teamName={team.name}
+            />
+
+            <MatchStatsTable.Body
+              players={team.players}
+              userId={Number(userId)}
+            />
+          </MatchStatsTable.Root>
+        ))}
       </div>
+
+      <MatchDetailsRedirect playerOnMatch={playerOnMatch} />
     </main>
   )
 }

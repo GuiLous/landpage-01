@@ -34,8 +34,10 @@ export function MatchDetailsHeaderStatus({
         )}
 
         <div className="gap-1">
-          <h2 className="leading-none">Partida</h2>
-          <span className="font-bold leading-none">{statusMap[status]}</span>
+          <h2 className="text-lg uppercase leading-none">Partida</h2>
+          <span className="text-lg font-bold uppercase leading-none">
+            {statusMap[status]}
+          </span>
         </div>
       </div>
 

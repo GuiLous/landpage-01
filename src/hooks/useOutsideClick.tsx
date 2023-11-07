@@ -10,8 +10,10 @@ interface useOutsideClickProps {
 export function useOutsideClick({ handler, ref }: useOutsideClickProps) {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
-        handler()
+      if (ref.current) {
+        if (!ref.current.contains(event.target as Node)) {
+          handler()
+        }
       }
     }
 

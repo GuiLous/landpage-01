@@ -93,8 +93,8 @@ export function Progress({
           <a.div
             className={twMerge(
               'absolute flex-col',
-              isPositive && 'left-0',
-              !isPositive && 'right-0'
+              isPositive && 'left-[0%]',
+              !isPositive && 'right-[0%]'
             )}
             style={{
               gap: labelGap + 'px',
@@ -105,10 +105,13 @@ export function Progress({
               <div
                 className={twMerge(
                   'justify-start relative whitespace-nowrap',
-                  isPositive && 'justify-end',
-                  (value === null || !hideNonOverflowedLabel) && 'invisible'
+                  isPositive && 'justify-end'
                 )}
                 style={{
+                  visibility:
+                    value === null || !hideNonOverflowedLabel
+                      ? 'hidden'
+                      : undefined,
                   right:
                     !isPositive && Math.abs(value) - initial < 3
                       ? 32 + horizontalPadding
@@ -149,10 +152,13 @@ export function Progress({
             <div
               className={twMerge(
                 'justify-start relative whitespace-nowrap',
-                isPositive && 'justify-end',
-                (value === null || !hideNonOverflowedLabel) && 'invisible'
+                isPositive && 'justify-end'
               )}
               style={{
+                visibility:
+                  value === null || hideNonOverflowedLabel
+                    ? 'hidden'
+                    : undefined,
                 paddingLeft:
                   initial + value === MIN_PROGRESS ||
                   initial + value === MAX_PROGRESS
@@ -219,7 +225,7 @@ export function Progress({
           />
         </div>
 
-        <div className="flex-col" style={{ gap: labelGap }}>
+        <div className="absolute flex-col" style={{ gap: labelGap + 'px' }}>
           {showLabel && (
             <div className="whitespace-nowrap">
               <span
@@ -234,7 +240,7 @@ export function Progress({
           <div
             className={twMerge(
               'bg-white z-0 rounded-lg max-h-1.5 min-h-[6px] overflow-hidden relative',
-              initial + value < 0 && changeInitialBg && 'bg-purple-300 z-0'
+              initial + value < 0 && changeInitialBg && 'bg-purple-300'
             )}
             style={{ borderRadius: radius ? 8 : undefined }}
           ></div>
