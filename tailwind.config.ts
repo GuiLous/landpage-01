@@ -27,6 +27,8 @@ const config: Config = {
       maxHeight: {
         friends: 'calc(100vh - 120px)',
         notifications: 'calc(100vh - 64px)',
+        imagePreview: `calc(100vh - 383px)`,
+        imagePreviewLaptop: `calc(100vh - 290px)`,
       },
       colors: {
         purple: {
@@ -73,12 +75,18 @@ const config: Config = {
         salmon: {
           500: '#F0A87B',
         },
+        blue: {
+          500: '#23A2FE',
+        },
       },
       dropShadow: {
         support_confirmation: 'drop-shadow(0 0 80px rgba(104,71,255,0.25))',
       },
       fontFamily: {
         poppins: 'var(--font-poppins)',
+      },
+      backgroundSize: {
+        300: '300%',
       },
       backgroundImage: {
         home: "url('~/src/assets/images/home_bg.png')",
@@ -134,6 +142,7 @@ const config: Config = {
           'linear-gradient(90deg, rgba(246, 53, 53, 0.5) 0%, rgba(246, 53, 53, 0.2) 100%, #333)',
       },
       animation: {
+        'scale-up': 'scale-up 0.2s forwards',
         spin: 'spin 2s linear infinite',
         progress: 'progress linear',
         fade: 'fade 0.2s ease-in-out',
@@ -146,6 +155,17 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        'scale-up': {
+          '0%': {
+            transform: 'scale(0)',
+          },
+          '90%': {
+            transform: 'scale(1.1)',
+          },
+          '100%': {
+            transform: 'scale(1)',
+          },
+        },
         spin: {
           '0%': {
             transform: 'rotate(0deg)',

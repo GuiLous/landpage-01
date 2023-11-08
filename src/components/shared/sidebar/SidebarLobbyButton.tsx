@@ -46,7 +46,7 @@ export function SidebarLobbyButton() {
         <Link
           href={
             user?.match_id
-              ? `perfil/${user?.id}/partidas/${user?.match_id}`
+              ? `/perfil/${user?.id}/partidas/${user?.match_id}`
               : '/jogar'
           }
         >

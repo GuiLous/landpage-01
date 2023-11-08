@@ -1,17 +1,18 @@
 import Image from 'next/image'
+import { useCallback } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
-import gifFileImg from '@/assets/images/gif_file.png'
-import jpgFileImg from '@/assets/images/jpg_file.png'
+import { IMAGE_TYPES, VIDEO_TYPES } from '@/constants'
+
+import imgFileImg from '@/assets/images/img_file.png'
 import pdfFileImg from '@/assets/images/pdf_file.png'
-import pngFileImg from '@/assets/images/png_file.png'
+import vidFileImg from '@/assets/images/vid_file.png'
 
 const images = {
-  jpg: jpgFileImg,
-  png: pngFileImg,
+  img: imgFileImg,
+  vid: vidFileImg,
   pdf: pdfFileImg,
-  gif: gifFileImg,
 }
 
 interface FileCardProps {
@@ -24,20 +25,12 @@ export function FileCard({ file, onRemoveFiles }: FileCardProps) {
   const fileSizeInKB = Number(fileSizeInBytes / 1024).toFixed(1)
   const fileSizeInMB = Number(fileSizeInBytes / (1024 * 1024)).toFixed(1)
 
-  const getFileType = () => {
-    switch (file.type) {
-      case 'image/jpg':
-        return 'jpg'
-      case 'image/gif':
-        return 'gif'
-      case 'image/png':
-        return 'png'
-      case 'application/pdf':
-        return 'pdf'
-      default:
-        return 'jpg'
-    }
-  }
+  const getFileType = useCallback(() => {
+    if (IMAGE_TYPES.includes(file.type)) return 'img'
+    if (VIDEO_TYPES.includes(file.type)) return 'vid'
+
+    return 'pdf'
+  }, [file])
 
   return (
     <div

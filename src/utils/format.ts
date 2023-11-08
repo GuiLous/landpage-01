@@ -59,3 +59,11 @@ export function formatSecondsToHour(seconds: number) {
     .toString()
     .padStart(2, '0')}m${remainingSeconds.toString().padStart(2, '0')}s`
 }
+
+export function removeSFromEnd(text: string) {
+  if (text.endsWith('s')) {
+    text = text.slice(0, -1)
+  }
+
+  return text
+}

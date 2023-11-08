@@ -1,7 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import { MatchProfileType } from '@/functions'
-import { getMatchDetails } from '@/functions/getMatchDetails'
+import { MatchProfileType, getMatchDetails } from '@/functions'
 
 import {
   MatchDetailsHeader,
