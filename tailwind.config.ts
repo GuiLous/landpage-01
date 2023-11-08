@@ -90,8 +90,7 @@ const config: Config = {
       },
       backgroundImage: {
         home: "url('~/src/assets/images/home_bg.png')",
-        home_mobile:
-          "url('~/src/assets/images/home_mobile_bg_top.png'), url('~/src/assets/images/home_mobile_bg_bottom.png')",
+        home_mobile: "url('~/src/assets/images/home_mobile_bg.png')",
         sign_up_bottom_left:
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
         not_found: "url('~/src/assets/images/bg_404.png')",

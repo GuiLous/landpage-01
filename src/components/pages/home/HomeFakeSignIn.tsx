@@ -18,7 +18,7 @@ type FieldsErrors = {
   email: string
 }
 
-export function FakeSignIn() {
+export function HomeFakeSignIn() {
   const { initializeSlices } = useInitializeSlices()
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -100,7 +100,7 @@ export function FakeSignIn() {
     return null
 
   return (
-    <div className="max-w-[310px] flex-col">
+    <div className="max-w-[452px] flex-initial flex-col">
       <Divider />
 
       <div className="mt-2.5 flex-col ">
