@@ -29,7 +29,7 @@ export function InventoryItemsTabBarCt({
       />
       <span
         className={twMerge(
-          'm-0 cursor-pointer text-gray-300',
+          'm-0 transition-colors cursor-pointer text-gray-300',
           isChecked && !disableSideSelect && 'text-blue-500'
         )}
       >

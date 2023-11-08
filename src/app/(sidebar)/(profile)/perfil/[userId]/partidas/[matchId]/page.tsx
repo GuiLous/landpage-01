@@ -73,7 +73,7 @@ export default async function MatchDetails({ params }: RouteProps) {
 
   return (
     <main className={twMerge('flex-col gap-7 py-10 px-[4%]', '3xl:gap-6')}>
-      <MatchDetailsHeader>
+      <MatchDetailsHeader user_id={Number(userId)}>
         <MatchDetailsHeaderStatus
           status={matchDetails.status}
           server_ip={matchDetails.server_ip}

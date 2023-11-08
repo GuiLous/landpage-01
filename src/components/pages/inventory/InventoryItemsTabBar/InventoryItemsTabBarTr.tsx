@@ -21,7 +21,7 @@ export function InventoryItemsTabBarTr({
     >
       <span
         className={twMerge(
-          'm-0 cursor-pointer text-red-500',
+          'm-0 transition-colors cursor-pointer text-red-500',
           (isChecked || disableSideSelect) && 'text-gray-300'
         )}
       >
