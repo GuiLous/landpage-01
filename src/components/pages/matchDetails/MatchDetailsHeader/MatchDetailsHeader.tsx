@@ -1,21 +1,21 @@
 import { ReactNode } from 'react'
 import { IoIosArrowRoundBack } from 'react-icons/io'
 
-import { getAuthServer } from '@/utils'
-
 import { GoBackLink } from '@/components/shared'
 
 interface MatchDetailsHeaderProps {
   children: ReactNode
+  user_id: number
 }
 
-export function MatchDetailsHeader({ children }: MatchDetailsHeaderProps) {
-  const auth = getAuthServer()
-
+export function MatchDetailsHeader({
+  children,
+  user_id,
+}: MatchDetailsHeaderProps) {
   return (
     <header className="flex-initial items-center justify-between">
       <GoBackLink.Root
-        href={`/perfil/${auth.id}`}
+        href={`/perfil/${user_id}`}
         className="relative left-0 top-0"
       >
         <GoBackLink.Icon icon={IoIosArrowRoundBack} size={31} />

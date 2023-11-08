@@ -42,7 +42,9 @@ export function useInitializeSlices() {
     }
 
     // users
-    const userResponse = await httpService.get('accounts/auth/', auth.token)
+    const userResponse = await httpService.get('accounts/auth/', auth.token, {
+      cache: 'no-cache',
+    })
 
     if (userResponse.errorMsg) {
       showErrorToast(userResponse.errorMsg)
@@ -62,7 +64,10 @@ export function useInitializeSlices() {
       // lobby
       const lobbyResponse = await lobbyApi.detail(
         auth.token,
-        userResponse.lobby_id
+        userResponse.lobby_id,
+        {
+          cache: 'no-cache',
+        }
       )
 
       if (lobbyResponse.errorMsg) {
@@ -74,7 +79,9 @@ export function useInitializeSlices() {
       dispatch(updateLobby(lobbyResponse))
 
       // friends
-      const friendsResponse = await friendsApi.list(auth.token)
+      const friendsResponse = await friendsApi.list(auth.token, {
+        cache: 'no-cache',
+      })
 
       if (friendsResponse.errorMsg) {
         showErrorToast(userResponse.errorMsg)
@@ -85,7 +92,9 @@ export function useInitializeSlices() {
       dispatch(initFriends(friendsResponse))
 
       // invites
-      const invitesResponse = await lobbyApi.listInvites(auth.token)
+      const invitesResponse = await lobbyApi.listInvites(auth.token, {
+        cache: 'no-cache',
+      })
 
       if (invitesResponse.errorMsg) {
         showErrorToast(userResponse.errorMsg)
@@ -96,7 +105,9 @@ export function useInitializeSlices() {
       dispatch(initInvites(invitesResponse))
 
       // notifications
-      const notificationsResponse = await notificationsApi.list(auth.token)
+      const notificationsResponse = await notificationsApi.list(auth.token, {
+        cache: 'no-cache',
+      })
 
       if (notificationsResponse.errorMsg) {
         showErrorToast(userResponse.errorMsg)
@@ -110,7 +121,10 @@ export function useInitializeSlices() {
       if (userResponse.match_id) {
         const matchResponse = await matchesApi.detail(
           auth.token,
-          userResponse.match_id
+          userResponse.match_id,
+          {
+            cache: 'no-cache',
+          }
         )
 
         if (matchResponse.errorMsg) {
@@ -124,7 +138,9 @@ export function useInitializeSlices() {
 
       // preMatch
       if (userResponse.pre_match_id) {
-        const preMatchResponse = await preMatchApi.detail(auth.token)
+        const preMatchResponse = await preMatchApi.detail(auth.token, {
+          cache: 'no-cache',
+        })
 
         if (preMatchResponse.errorMsg) {
           showErrorToast(userResponse.errorMsg)

@@ -10,13 +10,14 @@ import { supportApi } from '@/modelsApi'
 import {
   Button,
   ErrorMessage,
-  FileCard,
   FileInput,
   Select,
   TextArea,
 } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
+
+import { FileCard } from './FileCard'
 
 type SubjectOptions = {
   value: string

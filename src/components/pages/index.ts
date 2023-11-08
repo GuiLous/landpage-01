@@ -6,6 +6,8 @@ export * from './account/AccountTitle';
 export * from './connect';
 export * from './home';
 export * from './inactive';
+export * from './inventory/InventoryItemsTabBar/InventoryItemsTabBar';
+export * from './inventory/InventoryWrapper';
 export * from './lobby';
 export * from './maintenance';
 export * from './matchDetails/MatchDetailsHeader/MatchDetailsHeader';

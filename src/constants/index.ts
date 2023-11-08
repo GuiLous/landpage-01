@@ -52,12 +52,23 @@ export const SUPPORT_LINK = 'https://reloadclub.freshdesk.com/support/home'
 
 // Support
 export const MAX_FILES = 4
-export const MAX_FILE_SIZE = 3 * 1024 * 1024 // 3MB
+export const MAX_FILE_SIZE = 10 * 1024 * 1024 // 10MB
 export const FILE_TYPES = [
-  'image/jpg',
   'image/gif',
+  'image/jpeg',
   'image/png',
   'application/pdf',
+  'video/mp4',
+  'video/avi',
+  'video/x-matroska',
+  'video/quicktime',
+]
+export const IMAGE_TYPES = ['image/png', 'image/jpg', 'image/jpeg', 'image/gif']
+export const VIDEO_TYPES = [
+  'video/mp4',
+  'video/avi',
+  'video/x-matroska',
+  'video/quicktime',
 ]
 
 // Drawer Friends
@@ -114,3 +125,7 @@ export const SIBLINGS_COUNT = 1
 // ProgressBar
 export const MIN_PROGRESS = 0
 export const MAX_PROGRESS = 100
+
+// Inventory
+export const TABS = ['personagem', 'sprays']
+export const TABS_NO_SWITCH = ['avatar', 'sprays']

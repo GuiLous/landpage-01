@@ -10,7 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'static.wikia.nocookie.net',
       },
-      // https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png
+      {
+        protocol: 'http',
+        hostname: 'localhost',
+      },
     ],
   },
   webpack(config) {

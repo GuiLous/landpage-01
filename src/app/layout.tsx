@@ -12,6 +12,7 @@ const poppins = Poppins({
   subsets: ['latin'],
   variable: '--font-poppins',
   weight: ['300', '400', '500', '600', '700'],
+  fallback: ['arial'],
 })
 
 export const metadata: Metadata = {

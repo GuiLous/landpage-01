@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { ChangeEvent, DragEvent, useState } from 'react'
+import { ChangeEvent, DragEvent, useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { FILE_TYPES, MAX_FILES, MAX_FILE_SIZE } from '@/constants'
@@ -25,22 +25,25 @@ export function FileInput({
   const [isDragging, setIsDragging] = useState(false)
   const [isFocused, setIsFocused] = useState(false)
 
-  const filterFileFormatAndSize = (newFiles: FileList) => {
-    const filteredFiles = [] as File[]
+  const filterFileFormatAndSize = useCallback(
+    (newFiles: FileList) => {
+      const filteredFiles = [] as File[]
 
-    Array.from(newFiles).forEach((file) => {
-      if (FILE_TYPES.includes(file.type) && file.size <= MAX_FILE_SIZE) {
-        filteredFiles.push(file)
-        setFieldsErrors({ files: null })
-      } else if (newFiles.length === 1) {
-        setFieldsErrors({
-          files: 'Formato ou tamanho do arquivo ' + file.name + ' inválido.',
-        })
-      }
-    })
+      Array.from(newFiles).forEach((file) => {
+        if (FILE_TYPES.includes(file.type) && file.size <= MAX_FILE_SIZE) {
+          filteredFiles.push(file)
+          setFieldsErrors({ files: null })
+        } else if (newFiles.length === 1) {
+          setFieldsErrors({
+            files: 'Formato ou tamanho do arquivo ' + file.name + ' inválido.',
+          })
+        }
+      })
 
-    return filteredFiles
-  }
+      return filteredFiles
+    },
+    [setFieldsErrors]
+  )
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const newFiles = e.target.files
@@ -76,15 +79,15 @@ export function FileInput({
     }
   }
 
-  const handleDragEnter = (e: DragEvent<HTMLInputElement>) => {
+  const handleDragEnter = useCallback((e: DragEvent<HTMLInputElement>) => {
     e.preventDefault()
     setIsDragging(true)
-  }
+  }, [])
 
-  const handleDragLeave = (e: DragEvent<HTMLInputElement>) => {
+  const handleDragLeave = useCallback((e: DragEvent<HTMLInputElement>) => {
     e.preventDefault()
     setIsDragging(false)
-  }
+  }, [])
 
   return (
     <div
@@ -147,7 +150,9 @@ export function FileInput({
                 )}
               >
                 Arquivos suportados:{' '}
-                <span className="font-medium">JPG, PNG, GIF, PDF</span>
+                <span className="font-medium">
+                  JPG, PNG, GIF, PDF, MP4, MKV, AVI, MOV
+                </span>
               </p>
 
               <p
@@ -156,7 +161,7 @@ export function FileInput({
                   '3xl:text-[0.5rem]'
                 )}
               >
-                Tamanho máximo: <span className="font-medium">3MB</span>
+                Tamanho máximo: <span className="font-medium">10MB</span>
               </p>
             </div>
           </div>
