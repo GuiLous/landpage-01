@@ -82,7 +82,7 @@ export default async function MatchDetails({ params }: RouteProps) {
 
       <div
         className={twMerge(
-          'flex-col gap-6 bg-gray-1100 rounded-lg p-6',
+          'flex-col gap-6 flex-initial bg-gray-1100 rounded-lg p-6',
           '3xl:gap-5'
         )}
       >

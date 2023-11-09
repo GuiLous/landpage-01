@@ -59,6 +59,7 @@ export function ProfileMatchStatsLinkMapInfo({
           'rounded h-auto object-cover ',
           isLink && 'img_link:hidden'
         )}
+        sizes="100vw"
       />
 
       <div className="flex-col justify-between gap-2">

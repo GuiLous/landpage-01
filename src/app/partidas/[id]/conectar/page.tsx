@@ -28,7 +28,7 @@ export default function Connect() {
 
   const router = useRouter()
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
 
   const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 
@@ -39,7 +39,6 @@ export default function Connect() {
     } else {
       switch (match.status) {
         case 'warmup':
-          console.log('aqui')
           setIsLoading(false)
           break
         case 'running':
@@ -68,23 +67,22 @@ export default function Connect() {
   ) : (
     <main
       className={twMerge(
-        'items-end bg-black h-screen px-[10%] relative',
-        'bg-no-repeat bg-connect bg-cover bg-[position:right_bottom]',
-        '3xl:px-[8%]'
+        'items-end bg-black h-screen  relative',
+        'bg-no-repeat bg-connect bg-cover'
       )}
     >
       <ConnectAvatarImage />
 
       <section
         className={twMerge(
-          'flex-col items-end justify-center mb-28',
-          '3xl:mb-[90px]'
+          'flex-col bottom-[90px] right-40 absolute items-end justify-center',
+          '3xl:bottom-14 3xl:right-28'
         )}
       >
         <div
           className={twMerge(
             'flex-col items-end justify-center gap-20',
-            '3xl:gap-14'
+            '3xl:gap-10'
           )}
         >
           <ConnectLogo />

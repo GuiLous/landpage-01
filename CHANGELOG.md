@@ -63,6 +63,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera página `Conectar` para ficar igual ao novo design [#840](https://github.com/3C-gg/reload-frontend/issues/840).
 - Altera página `Home` para ficar igual ao novo design [#838](https://github.com/3C-gg/reload-frontend/issues/838).
 - Muda estratégia de `login` e `redirect` usando o middleware server side do next [#775](https://github.com/3C-gg/reload-frontend/issues/775).
 - Cria estilos de `linear gradiente` no tema do projeto text.
