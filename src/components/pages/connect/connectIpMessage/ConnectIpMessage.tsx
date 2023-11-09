@@ -16,13 +16,13 @@ export function ConnectIpMessage() {
 
       <p
         className={twMerge(
-          'font-medium text-end max-w-[600px] text-white',
+          'font-medium text-end max-w-[455px] text-white',
           '3xl:text-sm'
         )}
       >
-        Para se conectar, abra o FiveM e insira o IP abaixo na lista <br /> de
-        servidores.{' '}
-        <span className="font-medium text-cyan-400">
+        Para jogar, abra o FiveM e clique no botão abaixo. Ou se preferir,
+        insira o IP abaixo na lista de servidores.{' '}
+        <span className="block font-medium text-cyan-400">
           Você tem até 5 minutos para se conectar.
         </span>
       </p>

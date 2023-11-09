@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { AiOutlinePaperClip } from 'react-icons/ai'
+import { HiOutlineClipboardDocument } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
 
 import { MatchStatus } from '@/store/slices/matchSlice'
@@ -50,7 +50,7 @@ export function MatchDetailsHeaderIp({
           className="max-w-fit flex-initial cursor-pointer items-center gap-3.5"
         >
           <CustomIcon
-            icon={AiOutlinePaperClip}
+            icon={HiOutlineClipboardDocument}
             color={copied ? 'purple.400' : 'white'}
           />
 

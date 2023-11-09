@@ -113,10 +113,11 @@ export function LevelBadge({
       </div>
 
       <Image
-        src={`/assets/images/level_badges/badge_${calcLvlRange()}.png`}
+        src={`/level_badges/badge_${calcLvlRange()}.png`}
         alt={`Level ${level}`}
         width={BADGE_SIZES[getVariant()]}
         height={BADGE_SIZES[getVariant()]}
+        sizes="100vw"
       />
     </div>
   )

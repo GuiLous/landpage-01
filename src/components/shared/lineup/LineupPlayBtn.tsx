@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
@@ -12,6 +12,8 @@ import { lobbyApi, preMatchApi } from '@/modelsApi'
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
+
+import matchFoundAudioUrl from '@/assets/audios/match_found.ogg'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
@@ -36,6 +38,14 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const isRestricted = !!(lobby.restriction_countdown && !user?.match_id)
 
   const isInMatch = !!user?.match_id
+
+  const audio = useMemo(() => {
+    return new Audio(matchFoundAudioUrl)
+  }, [])
+
+  const playSound = useCallback(() => {
+    audio.play()
+  }, [audio])
 
   const handleQueue = useCallback(
     async (action: 'start' | 'cancel') => {
@@ -83,9 +93,10 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const onMatchFound = useCallback(() => {
     if (preMatch && preMatch.status === 'ready_in') {
+      playSound()
       setOpenMatchFoundModal(true)
     } else setOpenMatchFoundModal(false)
-  }, [preMatch])
+  }, [preMatch, playSound])
 
   useEffect(() => {
     if (preMatch && preMatch.status === 'lock_in') lockIn()
