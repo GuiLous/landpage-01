@@ -55,17 +55,21 @@ export async function middleware(req: NextRequest) {
 
     return NextResponse.next()
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
   matcher: [
     '/',
-    '/manutencao',
-    '/cadastrar',
-    '/verificar',
-    '/alterar-email',
-    '/jogar',
-    '/conta-inativa',
-    '/conectar',
+    '/manutencao/:path*',
+    '/cadastrar/:path*',
+    '/verificar/:path*',
+    '/alterar-email/:path*',
+    '/jogar/:path*',
+    '/conta-inativa/:path*',
+    '/conectar/:path*',
+    '/perfil/:path*',
+    '/conta/:path*',
   ],
 }

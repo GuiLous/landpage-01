@@ -5,5 +5,8 @@ export const isAuthPages = (url: string) => {
     return false
   }
 
-  return PRIVATE_ROUTES.some((page) => page.startsWith(url))
+  const urlSplitted = url.split('/')
+
+  const isAuth = PRIVATE_ROUTES.some((page) => page === `/${urlSplitted[1]}`)
+  return isAuth
 }

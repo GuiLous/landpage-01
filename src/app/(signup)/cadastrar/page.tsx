@@ -108,7 +108,7 @@ export default function SignUp() {
 
       setFetching(false)
 
-      router.push('/verificar')
+      return router.push('/verificar')
     },
     [dispatch, email, router, showErrorToast, auth]
   )

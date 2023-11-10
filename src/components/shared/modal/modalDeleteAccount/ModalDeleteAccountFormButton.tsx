@@ -54,7 +54,7 @@ export function ModalDeleteAccountFormButton() {
 
       Cookies.remove('token')
 
-      router.push('/')
+      return router.push('/')
     },
     [auth, dispatch, isFetching, router, showErrorToast]
   )

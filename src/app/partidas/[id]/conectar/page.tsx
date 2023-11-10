@@ -35,7 +35,7 @@ export default function Connect() {
   const verifyMatchStatus = useCallback(() => {
     if (!match || match.status === 'cancelled') {
       storageService.remove('matchConnectTimer')
-      router.push('/jogar')
+      return router.push('/jogar')
     } else {
       switch (match.status) {
         case 'warmup':
@@ -56,7 +56,8 @@ export default function Connect() {
   }, [match, verifyMatchStatus])
 
   useEffect(() => {
-    if (timeLeft === 0) router.push(`/perfil/${user?.id}/partidas/${match?.id}`)
+    if (timeLeft === 0)
+      return router.push(`/perfil/${user?.id}/partidas/${match?.id}`)
   }, [timeLeft, match?.id, user?.id, router])
 
   return isLoading ? (

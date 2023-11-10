@@ -3,12 +3,12 @@ import { Modal } from '@/components/shared'
 import { ModalMatchFoundButtons } from './ModalMatchFoundButtons'
 import { ModalMatchFoundPlayersIcon } from './ModalMatchFoundPlayersIcon'
 
-interface ModalLogoutProps {
+interface ModalMatchFoundProps {
   open: boolean
   setOpen: (state: boolean) => void
 }
 
-export function ModalMatchFound({ open, setOpen }: ModalLogoutProps) {
+export function ModalMatchFound({ open, setOpen }: ModalMatchFoundProps) {
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Content

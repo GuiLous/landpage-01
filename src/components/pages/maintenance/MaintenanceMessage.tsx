@@ -1,8 +1,7 @@
 'use client'
 
-import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 
 import { MAINTENANCE_TIME_TO_CHECK_AGAIN } from '@/constants'
 
@@ -10,13 +9,11 @@ import { storageService } from '@/services'
 
 import { useAppSelector } from '@/store'
 
-import { accountsApi, appApi } from '@/modelsApi'
-
-import { Button, Link } from '@/components/shared'
+import { appApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-export function MaintenanceLogoutButton() {
+export function MaintenanceMessage() {
   const maintenance = useAppSelector((state) => state.app.maintenance)
 
   const getAuth = useAuth()
@@ -24,27 +21,6 @@ export function MaintenanceLogoutButton() {
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
-
-  const [isFetching, setIsFetching] = useState(false)
-
-  const handleLogout = useCallback(async () => {
-    setIsFetching(true)
-
-    if (!auth?.token) return
-
-    const response = await accountsApi.logout(auth.token)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-
-      setIsFetching(false)
-      return
-    }
-
-    Cookies.remove('token')
-
-    router.push('/')
-  }, [router, showErrorToast, auth])
 
   const checkMaintenance = useCallback(async () => {
     if (!auth?.token) return
@@ -59,7 +35,7 @@ export function MaintenanceLogoutButton() {
 
     if (!response.maintenance) {
       storageService.set('maintenance', 'ended')
-      router.push('/jogar')
+      return router.push('/jogar')
     }
   }, [router, showErrorToast, auth])
 
@@ -79,19 +55,10 @@ export function MaintenanceLogoutButton() {
   }, [maintenance, checkMaintenance])
 
   return (
-    <Button.Root asChild disabled={isFetching} onClick={handleLogout}>
-      <Link href="/">
-        {isFetching && <Button.Spinner />}
-
-        <Button.Content
-          isLoading={isFetching}
-          disabled={isFetching}
-          className="w-60 text-center text-sm font-bold"
-          loadingText="Aguarde"
-        >
-          Voltar para o início
-        </Button.Content>
-      </Link>
-    </Button.Root>
+    <p className="max-w-[600px] text-center">
+      Calmô meu cria, a gente deu um pause pra ajustar umas coisas, mas já
+      voltamos. Fica tranquilo que assim que terminar por aqui, a gente te
+      libera no automático.
+    </p>
   )
 }

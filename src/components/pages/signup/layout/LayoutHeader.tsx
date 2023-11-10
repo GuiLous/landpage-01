@@ -12,7 +12,7 @@ export function LayoutHeader() {
   }, [])
 
   return (
-    <GoBackLink.Root onClick={handleCancel} href="/">
+    <GoBackLink.Root onClick={handleCancel} href="/" prefetch={false}>
       <GoBackLink.Icon icon={IoIosArrowRoundBack} size={31} />
       <GoBackLink.Content>Cancelar e sair</GoBackLink.Content>
     </GoBackLink.Root>

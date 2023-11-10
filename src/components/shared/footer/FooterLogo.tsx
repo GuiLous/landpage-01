@@ -6,7 +6,7 @@ import logo from '@/assets/images/logo_type_white.svg'
 export function FooterLogo() {
   return (
     <div className="xl:max-w-fit">
-      <Link href="/">
+      <Link href="/" prefetch={false}>
         <Image
           src={logo}
           alt="Reload"

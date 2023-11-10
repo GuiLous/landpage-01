@@ -19,7 +19,7 @@ export function MatchDetailsRedirect({
 
   const verifyStatusToRedirect = useCallback(() => {
     if (playerOnMatch && match && match?.status === 'cancelled') {
-      router.push('/jogar')
+      return router.push('/jogar')
     }
   }, [match, router, playerOnMatch])
 

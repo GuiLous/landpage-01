@@ -78,7 +78,7 @@ export function Websocket() {
 
   const logout = useCallback(async () => {
     Cookies.remove('token')
-    router.push('/')
+    return router.push('/')
   }, [router])
 
   const start_queue = useCallback(async () => {

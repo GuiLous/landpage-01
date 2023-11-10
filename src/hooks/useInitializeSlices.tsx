@@ -48,8 +48,8 @@ export function useInitializeSlices() {
 
     if (userResponse.errorMsg) {
       showErrorToast(userResponse.errorMsg)
-      router.push('/')
       setIsLoading(false)
+      router.push('/')
       return
     }
 

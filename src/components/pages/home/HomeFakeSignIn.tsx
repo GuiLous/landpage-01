@@ -91,7 +91,7 @@ export function HomeFakeSignIn() {
 
       if (!response?.account?.is_verified) return router.push('/verificar')
 
-      router.push('/jogar')
+      return router.push('/jogar')
     },
     [email, router, showErrorToast, initializeSlices]
   )
