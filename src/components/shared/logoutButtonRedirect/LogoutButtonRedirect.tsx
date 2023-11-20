@@ -19,24 +19,30 @@ export function LogoutButtonRedirect() {
 
   const [isFetching, setIsFetching] = useState(false)
 
-  const handleLogout = useCallback(async () => {
-    setIsFetching(true)
+  const handleLogout = useCallback(
+    async (e: any) => {
+      e.preventDefault()
 
-    if (!auth?.token) return
+      setIsFetching(true)
 
-    const response = await accountsApi.logout(auth.token)
+      if (!auth?.token) return
 
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
+      const response = await accountsApi.logout(auth.token)
 
-      setIsFetching(false)
-      return
-    }
+      if (response.errorMsg) {
+        showErrorToast(response.errorMsg)
 
-    Cookies.remove('token')
+        setIsFetching(false)
+        return
+      }
 
-    router.push('/')
-  }, [showErrorToast, auth, router])
+      Cookies.remove('token')
+      Cookies.remove('tried_login')
+
+      return router.push('/')
+    },
+    [showErrorToast, auth, router]
+  )
 
   return (
     <Button.Root className="w-60 " disabled={isFetching} onClick={handleLogout}>

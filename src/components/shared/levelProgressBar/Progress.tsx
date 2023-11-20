@@ -51,8 +51,8 @@ export function Progress({
         value === 0
           ? '0%'
           : animationWidthFrom === progress
-          ? `${Math.abs(progress + 1)}%`
-          : `${Math.abs(progress)}%`,
+            ? `${Math.abs(progress + 1)}%`
+            : `${Math.abs(progress)}%`,
     },
     config: { duration: 600 },
     onRest: () => {

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import { InviteRequiredMessage } from '@/components/pages'
+import { InviteRequiredCheck, InviteRequiredMessage } from '@/components/pages'
 
 import { Footer, LogoutButtonRedirect } from '@/components/shared'
 
@@ -46,6 +46,8 @@ export default function InviteRequired() {
           </div>
         </section>
       </section>
+
+      <InviteRequiredCheck />
 
       <Footer />
     </main>

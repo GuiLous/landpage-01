@@ -17,7 +17,21 @@ export async function GET(req: NextRequest) {
     cache: 'no-cache',
   })
 
-  if (userResponse.errorMsg) return redirect('/not-found')
+  if (userResponse.errorMsg) {
+    if (userResponse.errorMsg === 'Usuário deve ser convidado.') {
+      cookieStore.set({
+        name: 'tried_login',
+        value: '',
+        path: '/',
+      })
+
+      return redirect('/em-breve')
+    }
+
+    if (userResponse.errorMsg === 'Não autorizado.') {
+      return redirect('/not-found')
+    }
+  }
 
   const jwtToken = await new SignJWT({
     id: userResponse.id,

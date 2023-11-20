@@ -3,7 +3,11 @@ import { twMerge } from 'tailwind-merge'
 
 import { MaintenanceMessage } from '@/components/pages'
 
-import { Footer, LogoutButtonRedirect } from '@/components/shared'
+import {
+  Footer,
+  LogoutButtonRedirect,
+  VerifyMaintenance,
+} from '@/components/shared'
 
 import alert from '@/assets/images/alert.png'
 import logo from '@/assets/images/logo_type_white.svg'
@@ -31,6 +35,8 @@ export default function Maintenance() {
       </section>
 
       <Footer />
+
+      <VerifyMaintenance />
     </main>
   )
 }

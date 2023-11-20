@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
 export * from './app/initializeSlices/InitializeSlices'
+export * from './app/verifyMaintenance/VerifyMaintenance'
 export * from './app/websocket/RenderWSS'
 export * from './avatar/Avatar'
 export * from './badge/Badge'

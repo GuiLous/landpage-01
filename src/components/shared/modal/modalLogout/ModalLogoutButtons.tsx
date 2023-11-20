@@ -40,6 +40,7 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
     }
 
     Cookies.remove('token')
+    Cookies.remove('tried_login')
 
     return router.push('/')
   }, [showErrorToast, router, auth])

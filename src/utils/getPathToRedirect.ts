@@ -18,6 +18,7 @@ export const getPathToRedirect = ({
   pathname,
 }: verifyUser): URL | undefined => {
   const userData = decodeJwt(token) as userAuthToken
+  if (pathname === '/manutencao') return
 
   if (
     userData.is_active &&

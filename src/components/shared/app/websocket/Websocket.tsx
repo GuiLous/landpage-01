@@ -3,8 +3,6 @@ import { useRouter } from 'next/navigation'
 import { useCallback } from 'react'
 import useWebSocket from 'react-use-websocket'
 
-import { storageService } from '@/services'
-
 import { useAppDispatch, useAppSelector } from '@/store'
 import { addToast, updateMaintenance } from '@/store/slices/appSlice'
 import { addFriend, updateFriend } from '@/store/slices/friendSlice'
@@ -227,13 +225,21 @@ export function Websocket() {
 
         // Maintenance
         case 'maintenance/start':
-          storageService.set('maintenance', true)
           dispatch(updateMaintenance(true))
           router.push('/manutencao')
           break
 
         case 'maintenance/end':
-          router.refresh()
+          dispatch(updateMaintenance(false))
+          router.push('/jogar')
+          dispatch(
+            addToast({
+              title: 'A manutenção foi finalizada',
+              content:
+                'Filas e convites de lobby estão habilitados novamente. GLHF!',
+              variant: 'warning',
+            })
+          )
           break
 
         default:

@@ -19,6 +19,7 @@ export function InactiveGoBackLink() {
     if (!auth?.token) return
 
     Cookies.remove('token')
+    Cookies.remove('tried_login')
 
     const response = await accountsApi.logout(auth.token)
 

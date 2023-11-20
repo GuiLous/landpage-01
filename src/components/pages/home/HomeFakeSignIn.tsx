@@ -62,6 +62,10 @@ export function HomeFakeSignIn() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
+        if (response.errorMsg === 'Usuário deve ser convidado.') {
+          return router.push('/em-breve')
+        }
+
         showErrorToast(response.errorMsg)
 
         setFetching(false)
