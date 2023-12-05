@@ -1,7 +1,8 @@
 import { useArgs } from '@storybook/preview-api'
 import { Meta, StoryObj } from '@storybook/react'
 import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+
+import { store } from '@/store'
 
 import { ModalSupportForm } from './ModalSupportForm'
 
@@ -22,14 +23,12 @@ export default {
 
 type Story = StoryObj<typeof ModalSupportForm>
 
-const mockStore = configureStore()({})
-
 export const Default = (props: Story) => {
   const [{ open }, updateArgs] = useArgs()
   const setFormSent = () => updateArgs({ open: !open })
 
   return (
-    <Provider store={mockStore}>
+    <Provider store={store}>
       <ModalSupportForm open={true} setFormSent={setFormSent} {...props} />
     </Provider>
   )

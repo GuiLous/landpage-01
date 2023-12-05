@@ -42,6 +42,8 @@ export const Default = {
         username: 'User1',
         level: 2,
       },
+      invites_available_count: 0,
+      invites: [],
     }
 
     const store = configureStore({

@@ -142,6 +142,8 @@ const config: Config = {
           'linear-gradient(90deg, rgba(246, 53, 53, 0.5) 0%, rgba(246, 53, 53, 0.2) 100%, #333)',
       },
       animation: {
+        'show-invite-message': 'show-invite-message 5s linear',
+        'show-invite-bar': 'show-invite-bar 0.2s forwards',
         'scale-up': 'scale-up 0.2s forwards',
         spin: 'spin 2s linear infinite',
         progress: 'progress linear',
@@ -155,6 +157,22 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        'show-invite-message': {
+          '0%': {
+            opacity: '1',
+          },
+          '100%': {
+            opacity: '0',
+          },
+        },
+        'show-invite-bar': {
+          '0%': {
+            'margin-top': '-48px',
+          },
+          '100%': {
+            'margin-top': '0',
+          },
+        },
         'scale-up': {
           '0%': {
             transform: 'scale(0)',

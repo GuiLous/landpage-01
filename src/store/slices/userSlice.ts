@@ -8,6 +8,11 @@ export type Status =
   | 'teaming'
   | 'away'
 
+export type UserInvites = {
+  email: string
+  accepted: boolean
+}
+
 export type Avatar = {
   small: string
   medium: string
@@ -33,6 +38,8 @@ export type User = {
   lobby_id: number
   match_id: number | null
   pre_match_id: number | null
+  invites_available_count: number
+  invites: UserInvites[]
 }
 
 type UserState = {
@@ -57,9 +64,24 @@ export const userSlice = createSlice({
 
       return { user: { ...state.user, lobby_id: action.payload } }
     },
+
+    addUserInvite: (state, action) => {
+      if (!state.user) return
+
+      return {
+        user: {
+          ...state.user,
+          invites: [
+            ...state.user.invites,
+            { email: action.payload, accepted: false },
+          ],
+          invites_available_count: state.user.invites_available_count - 1,
+        },
+      }
+    },
   },
 })
 
-export const { updateUser, updateLobbyId } = userSlice.actions
+export const { updateUser, updateLobbyId, addUserInvite } = userSlice.actions
 
 export default userSlice.reducer

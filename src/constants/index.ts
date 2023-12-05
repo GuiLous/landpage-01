@@ -101,6 +101,7 @@ export const GAME_TYPES = ['TDM 5X5', 'RANQUEADA 5X5', 'PERSONALIZADA']
 export const GAME_TYPES_AVAILABLE = ['RANQUEADA 5X5']
 export const MATCH_FOUND_GAP_TIMEOUT = 3000
 export const TIME_OUT_MULTIPLIER = 1000
+export const NOT_FIRST_ACCESS_KEY = 'NOT_FIRST_ACCESS'
 
 // Connect
 export const COUNTDOWN_TIME = 5 * 60 // 5 minutes in seconds

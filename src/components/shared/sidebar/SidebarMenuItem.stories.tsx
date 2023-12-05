@@ -49,6 +49,8 @@ export const Default: StoryObj = {
       lobby_id: 1,
       match_id: null,
       pre_match_id: null,
+      invites_available_count: 0,
+      invites: [],
     }
 
     const invites: Invite[] = Array.from(Array(props.unreadInvites).keys()).map(

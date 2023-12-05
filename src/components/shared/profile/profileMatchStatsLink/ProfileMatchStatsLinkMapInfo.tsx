@@ -32,7 +32,7 @@ export function ProfileMatchStatsLinkMapInfo({
   start_date,
   end_date,
 }: ProfileMatchStatsLinkMapInfoProps) {
-  let startDate = DateTime.now()
+  let startDate: DateTime<true> | DateTime<false> = DateTime.now()
 
   startDate = start_date ? DateTime.fromISO(start_date) : startDate
   const endDate = end_date && DateTime.fromISO(end_date)

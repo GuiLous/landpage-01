@@ -45,6 +45,8 @@ export const Default = (props: any) => {
         large: '',
       },
     },
+    invites_available_count: 0,
+    invites: [],
   }
 
   const invites: Invite[] = [
