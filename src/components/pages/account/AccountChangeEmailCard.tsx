@@ -133,7 +133,7 @@ export function AccountChangeEmailCard() {
         })
       )
 
-      router.push('/verificar')
+      return router.push('/verificar')
     },
     [auth, dispatch, email, showErrorToast, router]
   )

@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 import { getPathToRedirect, isAuthPages } from '@/utils'
 
+import { verifyAppHealth } from '@/functions'
+
 import { verifyJwtToken } from '@/services'
+
+import { ROUTES_SIGNUP } from './constants'
 
 export type userAuthToken = {
   id: number
@@ -15,6 +19,15 @@ export type userAuthToken = {
 
 export async function middleware(req: NextRequest) {
   const { nextUrl, cookies } = req
+
+  if (nextUrl.pathname !== '/' && !ROUTES_SIGNUP.includes(nextUrl.pathname)) {
+    const appHealth = await verifyAppHealth()
+
+    if (appHealth.maintenance) {
+      const maintenanceUrl = new URL('/manutencao', nextUrl.origin)
+      return NextResponse.redirect(maintenanceUrl)
+    }
+  }
 
   const { value: token } = cookies.get('token') ?? { value: null }
 
@@ -55,17 +68,20 @@ export async function middleware(req: NextRequest) {
 
     return NextResponse.next()
   }
+
+  return NextResponse.next()
 }
 
 export const config = {
   matcher: [
     '/',
-    '/manutencao',
-    '/cadastrar',
-    '/verificar',
-    '/alterar-email',
-    '/jogar',
-    '/conta-inativa',
-    '/conectar',
+    '/cadastrar/:path*',
+    '/verificar/:path*',
+    '/alterar-email/:path*',
+    '/jogar/:path*',
+    '/conta-inativa/:path*',
+    '/conectar/:path*',
+    '/perfil/:path*',
+    '/conta/:path*',
   ],
 }

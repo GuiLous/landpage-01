@@ -5,5 +5,6 @@ export const isAuthPages = (url: string) => {
     return false
   }
 
-  return PRIVATE_ROUTES.some((page) => page.startsWith(url))
+  const isAuth = PRIVATE_ROUTES.some((page) => url.startsWith(page))
+  return isAuth
 }

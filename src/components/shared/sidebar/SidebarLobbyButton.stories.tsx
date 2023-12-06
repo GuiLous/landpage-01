@@ -32,6 +32,8 @@ export const Default = {
       lobby_id: 1,
       match_id: props.isInMatch ? 1 : null,
       pre_match_id: null,
+      invites_available_count: 0,
+      invites: [],
     }
 
     const lobby: Lobby = {

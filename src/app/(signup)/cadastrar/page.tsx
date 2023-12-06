@@ -79,6 +79,10 @@ export default function SignUp() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
+        if (response.errorMsg === 'Usuário deve ser convidado.') {
+          return router.push('/em-breve')
+        }
+
         showErrorToast(response.errorMsg)
 
         setFetching(false)
@@ -108,7 +112,7 @@ export default function SignUp() {
 
       setFetching(false)
 
-      router.push('/verificar')
+      return router.push('/verificar')
     },
     [dispatch, email, router, showErrorToast, auth]
   )

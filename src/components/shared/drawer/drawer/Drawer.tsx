@@ -13,7 +13,7 @@ interface DrawerProps {
   children: ReactNode
 }
 
-interface DrawerContent {
+interface DrawerContent extends Dialog.DialogContentProps {
   title: string
   children: ReactNode
   className?: string
@@ -35,6 +35,7 @@ export function DrawerContent({
   className,
   showOverlay,
   position = 'right',
+  ...props
 }: DrawerContent) {
   return (
     <Dialog.Portal>
@@ -56,6 +57,7 @@ export function DrawerContent({
             'data-[state=closed]:animate-[drawer-content-hide-left_200ms] data-[state=open]:animate-[drawer-content-show-left_200ms] left-0',
           className
         )}
+        {...props}
       >
         <div className="flex-initial items-center justify-start">
           <Dialog.Title className="px-5 font-semibold capitalize leading-none text-white">

@@ -1,6 +1,10 @@
 import { twMerge } from 'tailwind-merge'
 
-import { LobbyGameType, LobbyHeader } from '@/components/pages'
+import {
+  LobbyGameType,
+  LobbyHeader,
+  LobbyRenderModalWelcome,
+} from '@/components/pages'
 
 import { Lineup } from '@/components/shared'
 
@@ -17,6 +21,8 @@ export default function Play() {
       <LobbyGameType />
 
       <Lineup />
+
+      <LobbyRenderModalWelcome />
     </main>
   )
 }

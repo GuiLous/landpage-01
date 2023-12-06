@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -20,6 +21,8 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
   const lobby = useAppSelector((state) => state.lobby)
   const friends = useAppSelector((state) => state.friends)
   const { invites } = useAppSelector((state) => state.invites)
+
+  const pathname = usePathname()
 
   const [filter, setFilter] = useState('')
 
@@ -58,6 +61,12 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
+  const showInviteBar =
+    pathname === '/jogar' &&
+    user?.invites_available_count &&
+    user.invites_available_count > 0 &&
+    process.env.NEXT_PUBLIC_USE_INVITES
+
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <Drawer.Content
@@ -67,6 +76,10 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
           '3xl:left-[250px] 3xl:max-w-[300px]'
         )}
         position="left"
+        style={{
+          height: `calc(100vh - ${showInviteBar ? 48 : 0}px)`,
+          top: showInviteBar ? '48px' : 0,
+        }}
       >
         <div className="mt-6 flex-col justify-start">
           <DrawerFriendsFilter setFilter={setFilter} />

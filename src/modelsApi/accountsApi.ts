@@ -40,4 +40,14 @@ export const accountsApi = {
       options,
     })
   },
+
+  async createInvite(token: string, email: string, options?: RequestInit) {
+    const payload = { email }
+    return await baseApi.create({
+      endpoint: 'accounts/invites/',
+      token,
+      payload,
+      options,
+    })
+  },
 }

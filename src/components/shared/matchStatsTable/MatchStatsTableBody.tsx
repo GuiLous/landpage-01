@@ -26,7 +26,7 @@ export function MatchStatsTableBody({
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
 
   const handleRedirectToProfile = useCallback(() => {
-    router.push(`/perfil/${auth?.id}`)
+    return router.push(`/perfil/${auth?.id}`)
   }, [auth, router])
 
   const handleOpenMenu = useCallback((player: Player) => {

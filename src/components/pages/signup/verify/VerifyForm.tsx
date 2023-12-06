@@ -78,7 +78,7 @@ export function VerifyForm() {
 
       Cookies.set('token', jwtToken)
 
-      router.push('/jogar')
+      return router.push('/jogar')
     },
     [cannotSubmit, pin, showErrorToast, auth, router]
   )

@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria sistema de `Convites` no projeto next [#844](https://github.com/3C-gg/reload-frontend/issues/844).
 - Cria página de `Inventário` no projeto next [#833](https://github.com/3C-gg/reload-frontend/issues/833).
 - Cria página de `Detalhes da partida` no projeto next [#828](https://github.com/3C-gg/reload-frontend/issues/828).
 - Cria página de `Conta` no projeto next [#826](https://github.com/3C-gg/reload-frontend/issues/826).

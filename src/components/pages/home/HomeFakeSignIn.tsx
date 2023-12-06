@@ -62,6 +62,10 @@ export function HomeFakeSignIn() {
         setFetching(false)
         return
       } else if (response.errorMsg) {
+        if (response.errorMsg === 'Usuário deve ser convidado.') {
+          return router.push('/em-breve')
+        }
+
         showErrorToast(response.errorMsg)
 
         setFetching(false)
@@ -91,7 +95,7 @@ export function HomeFakeSignIn() {
 
       if (!response?.account?.is_verified) return router.push('/verificar')
 
-      router.push('/jogar')
+      return router.push('/jogar')
     },
     [email, router, showErrorToast, initializeSlices]
   )

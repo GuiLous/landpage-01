@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+
+import { store } from '@/store'
 
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 
@@ -25,10 +26,8 @@ export default {
 }
 
 export const Default = (props: any) => {
-  const mockStore = configureStore()({})
-
   return (
-    <Provider store={mockStore}>
+    <Provider store={store}>
       <DrawerFriendsInviteItem {...props} />
     </Provider>
   )

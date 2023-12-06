@@ -12,7 +12,7 @@ interface ModalProps {
 }
 
 interface ModalContent {
-  title: string
+  title?: string
   children: ReactNode
   className?: string
   showCloseButton?: boolean
@@ -52,22 +52,24 @@ function ModalContent({
           className
         )}
       >
-        <div
-          className={twMerge(
-            'items-center justify-center',
-            justifyTitle === 'start' && 'justify-start',
-            justifyTitle === 'end' && 'justify-end'
-          )}
-        >
-          <Dialog.Title
+        {title && (
+          <div
             className={twMerge(
-              'text-xl font-bold leading-none text-white',
-              '3xl:text-lg'
+              'items-center justify-center',
+              justifyTitle === 'start' && 'justify-start',
+              justifyTitle === 'end' && 'justify-end'
             )}
           >
-            {title}
-          </Dialog.Title>
-        </div>
+            <Dialog.Title
+              className={twMerge(
+                'text-xl font-bold leading-none text-white',
+                '3xl:text-lg'
+              )}
+            >
+              {title}
+            </Dialog.Title>
+          </div>
+        )}
 
         {showCloseButton && (
           <Dialog.Close

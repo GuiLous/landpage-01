@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux'
-import configureStore from 'redux-mock-store'
+
+import { store } from '@/store'
 
 import { LineupSeat } from './LineupSeat'
 
@@ -9,11 +10,9 @@ export default {
 }
 
 export const Default = (props: any) => {
-  const mockStore = configureStore()({})
-
   return (
     <div className="h-screen">
-      <Provider store={mockStore}>
+      <Provider store={store}>
         <LineupSeat {...props} />
       </Provider>
     </div>

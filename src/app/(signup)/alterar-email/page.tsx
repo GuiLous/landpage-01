@@ -92,7 +92,7 @@ export default function ChangeEmail() {
 
       if (response.account.is_verified) return router.push('/jogar')
 
-      router.push('/verificar')
+      return router.push('/verificar')
     },
     [email, router, showErrorToast, auth]
   )

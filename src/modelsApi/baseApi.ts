@@ -5,7 +5,7 @@ import { addToast } from '@/store/slices/appSlice'
 
 type BaseAPI = {
   endpoint: string
-  token: string
+  token: string | null
   method: 'get' | 'post' | 'put' | 'delete' | 'patch'
   payload?: any
   headers_content_type?: string
@@ -14,7 +14,7 @@ type BaseAPI = {
 
 type request = {
   endpoint: string
-  token: string
+  token: string | null
   payload?: any
   headers_content_type?: string
   options?: RequestInit

@@ -1,9 +1,13 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import { MaintenanceLogoutButton } from '@/components/pages'
+import { MaintenanceMessage } from '@/components/pages'
 
-import { Footer } from '@/components/shared'
+import {
+  Footer,
+  LogoutButtonRedirect,
+  VerifyMaintenance,
+} from '@/components/shared'
 
 import alert from '@/assets/images/alert.png'
 import logo from '@/assets/images/logo_type_white.svg'
@@ -24,17 +28,15 @@ export default function Maintenance() {
         <section className="flex-initial flex-col items-center justify-center gap-[2.75rem]">
           <Image src={alert} alt="Alert" />
 
-          <p className="max-w-[600px] text-center">
-            Calmô meu cria, a gente deu um pause pra ajustar umas coisas, mas já
-            voltamos. Fica tranquilo que assim que terminar por aqui, a gente te
-            libera no automático.
-          </p>
+          <MaintenanceMessage />
 
-          <MaintenanceLogoutButton />
+          <LogoutButtonRedirect />
         </section>
       </section>
 
       <Footer />
+
+      <VerifyMaintenance />
     </main>
   )
 }

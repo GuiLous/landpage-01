@@ -19,6 +19,7 @@ export function InactiveGoBackLink() {
     if (!auth?.token) return
 
     Cookies.remove('token')
+    Cookies.remove('tried_login')
 
     const response = await accountsApi.logout(auth.token)
 
@@ -29,7 +30,7 @@ export function InactiveGoBackLink() {
 
   return (
     <div className="mt-4 flex-initial justify-center">
-      <Link onClick={handleLogout} href="/" className="text-sm">
+      <Link onClick={handleLogout} href="" prefetch={false} className="text-sm">
         Sair e voltar para página inicial
       </Link>
     </div>

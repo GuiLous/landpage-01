@@ -1,5 +1,6 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
 import { useAppDispatch, useAppSelector } from '@/store'
@@ -23,14 +24,22 @@ export function DrawerNotifications({
   open,
   setOpen,
 }: DrawerNotificationsProps) {
+  const { user } = useAppSelector((state) => state.user)
   const notifications = useAppSelector((state) => state.notifications)
 
   const dispatch = useAppDispatch()
+  const pathname = usePathname()
 
   const getAuth = useAuth()
   const auth = getAuth()
 
   const showErrorToast = useShowErrorToast()
+
+  const showInviteBar =
+    pathname === '/jogar' &&
+    user?.invites_available_count &&
+    user.invites_available_count > 0 &&
+    process.env.NEXT_PUBLIC_USE_INVITES
 
   const read = async (id: number) => {
     if (!auth?.token) return
@@ -54,6 +63,10 @@ export function DrawerNotifications({
           'z-20 max-w-[350px] select-none',
           '3xl:max-w-[300px]'
         )}
+        style={{
+          height: `calc(100vh - ${showInviteBar ? 48 : 0}px)`,
+          top: showInviteBar ? '48px' : 0,
+        }}
       >
         <div
           className={twMerge(
