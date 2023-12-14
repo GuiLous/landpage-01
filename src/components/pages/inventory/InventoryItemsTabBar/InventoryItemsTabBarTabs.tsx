@@ -26,6 +26,18 @@ export function InventoryItemsTabBarTabs({
       return
     }
 
+    if (tab === 'arsenal') {
+      setActiveItemType('pistolas')
+      setActiveSubTab('pistolas')
+      return
+    }
+
+    if (tab === 'perfil') {
+      setActiveItemType('capas de perfil')
+      setActiveSubTab('capas de perfil')
+      return
+    }
+
     setActiveItemType(tab)
   }
 

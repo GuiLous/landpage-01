@@ -24,17 +24,47 @@ import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
-export type TabTypes = 'personagem' | 'sprays'
-export type SubTabTypes = 'avatar' | 'roupas' | 'sprays'
+export type TabTypes = 'personagem' | 'sprays' | 'arsenal' | 'caixas' | 'perfil'
+export type SubTabTypes =
+  | 'avatar'
+  | 'roupas'
+  | 'sprays'
+  | 'pistolas'
+  | 'submetralhadoras'
+  | 'escopetas'
+  | 'metralhadoras'
+  | 'fuzis'
+  | 'caixas'
+  | 'capas de perfil'
+  | 'cards de jogador'
+  | 'perfil'
 
 const tabs = {
+  arsenal: {
+    tabs: ['pistol', 'submachineguns', 'shotguns', 'machineguns', 'rifles'],
+    subTabs: [
+      'pistolas',
+      'submetralhadoras',
+      'escopetas',
+      'metralhadoras',
+      'fuzis',
+    ],
+  },
   personagem: {
-    tabs: ['persona', 'wear'],
-    subTabs: ['avatar', 'roupas'],
+    tabs: ['persona', 'wear', 'poses'],
+    subTabs: ['avatar', 'roupas', 'poses'],
   },
   sprays: {
     tabs: ['spray'],
     subTabs: [],
+  },
+  caixas: {
+    tabs: ['boxes'],
+    subTabs: [],
+  },
+  perfil: {
+    tabs: ['profile', 'card'],
+    subTabs: ['capas de perfil', 'cards de jogador'],
   },
 }
 
@@ -42,6 +72,15 @@ const sub_tabs = {
   avatar: 'persona',
   roupas: 'wear',
   sprays: 'spray',
+  pistolas: 'pistol',
+  submetralhadoras: 'submachineguns',
+  escopetas: 'shotguns',
+  metralhadoras: 'machineguns',
+  fuzis: 'rifles',
+  caixas: 'boxes',
+  'capas de perfil': 'profile',
+  'cards de jogador': 'card',
+  perfil: 'profile',
 }
 
 interface InventoryWrapperContentProps {
@@ -56,8 +95,8 @@ export function InventoryWrapperContent({
 
   const showErrorToast = useShowErrorToast()
 
-  const [activeTab, setActiveTab] = useState<TabTypes>('personagem')
-  const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>('avatar')
+  const [activeTab, setActiveTab] = useState<TabTypes>('arsenal')
+  const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>('pistolas')
   const [itemsByType, setItemsByType] = useState<StoreItem[]>([
     {
       id: 0,
@@ -92,6 +131,15 @@ export function InventoryWrapperContent({
     if (activeTab === 'sprays') {
       const itemsFiltered = inventory.items.filter(
         (item) => item.item_type === sub_tabs[activeTab]
+      )
+
+      setItemsByType((prevState) => [{ ...prevState[0] }, ...itemsFiltered])
+      return
+    }
+
+    if (activeTab === 'perfil') {
+      const itemsFiltered = inventory.items.filter(
+        (item) => item.subtype === sub_tabs[activeSubTab]
       )
 
       setItemsByType((prevState) => [{ ...prevState[0] }, ...itemsFiltered])
@@ -146,10 +194,12 @@ export function InventoryWrapperContent({
           setNewItemSelected(newItemSelected)
         }
 
-        revalidate('inventory')
+        if (activeTab === 'perfil' && activeSubTab === 'capas de perfil') {
+          revalidate('inventory')
+        }
       }
     },
-    [auth, itemsByType, showErrorToast]
+    [auth, itemsByType, activeTab, activeSubTab, showErrorToast]
   )
 
   useEffect(() => {

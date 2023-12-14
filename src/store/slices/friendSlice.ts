@@ -15,6 +15,7 @@ export type Friend = {
   lobby_id: number | null
   matches_played?: number
   latest_matches_results?: LatestMatchesResult[]
+  card: string | null
 }
 
 type FriendState = {

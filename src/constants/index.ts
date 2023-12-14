@@ -134,7 +134,7 @@ export const MIN_PROGRESS = 0
 export const MAX_PROGRESS = 100
 
 // Inventory
-export const TABS = ['personagem', 'sprays']
+export const TABS = ['arsenal', 'personagem', 'sprays', 'caixas', 'perfil']
 export const TABS_NO_SWITCH = ['avatar', 'sprays']
 
 // Websocket

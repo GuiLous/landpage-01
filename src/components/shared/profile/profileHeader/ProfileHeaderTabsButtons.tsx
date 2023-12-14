@@ -13,7 +13,7 @@ import { LINK_PATHS, USER_LOGGED_BUTTONS } from '@/constants'
 
 import { useAppSelector } from '@/store'
 
-import { BagPackIcon, Button, ModalSupport } from '@/components/shared'
+import { BagPackIcon, Button, ModalSupport, Tooltip } from '@/components/shared'
 
 import { ProfileHeaderSyncSteamButton } from './ProfileHeaderSyncSteamButton'
 
@@ -85,50 +85,56 @@ export function ProfileHeaderTabsButtons({
       {keys.map((key) =>
         isUserLogged
           ? USER_LOGGED_BUTTONS.includes(key) && (
-              <Button.Root
-                key={key}
-                profile
-                className={twMerge(
-                  LINK_PATHS[path] === key &&
-                    'bg-gray-1100/80 border-gray-300/50'
-                )}
-                asChild
+              <Tooltip
+                content={profileButtons[key].label}
+                side="bottom"
+                className="px-2 py-2 text-xs"
               >
-                <Link href={getLink(key)}>
-                  <Button.Icon
-                    icon={profileButtons[key].icon}
+                <div>
+                  <Button.Root
+                    key={key}
                     profile
                     className={twMerge(
-                      key === 'config' && 'text-lg',
-                      LINK_PATHS[path] === key && 'text-white'
+                      LINK_PATHS[path] === key &&
+                        'bg-gray-1100/80 border-gray-300/50'
                     )}
-                  />
-                  <Button.Content
-                    profile
-                    className={twMerge(
-                      LINK_PATHS[path] === key && 'text-white'
-                    )}
+                    asChild
                   >
-                    {profileButtons[key].label}
-                  </Button.Content>
-                </Link>
-              </Button.Root>
+                    <Link href={getLink(key)} className="min-w-[46px]">
+                      <Button.Icon
+                        icon={profileButtons[key].icon}
+                        profile
+                        className={twMerge(
+                          key === 'config' && 'text-lg',
+                          LINK_PATHS[path] === key && 'text-white'
+                        )}
+                      />
+                    </Link>
+                  </Button.Root>
+                </div>
+              </Tooltip>
             )
           : !USER_LOGGED_BUTTONS.includes(key) && (
-              <Button.Root
-                key={key}
-                profile
-                onClick={() => onClickFunction(key)}
+              <Tooltip
+                content={profileButtons[key].label}
+                side="bottom"
+                className="px-2 py-2 text-xs"
               >
-                <Button.Icon
-                  icon={profileButtons[key].icon}
-                  profile
-                  className="text-lg"
-                />
-                <Button.Content profile>
-                  {profileButtons[key].label}
-                </Button.Content>
-              </Button.Root>
+                <div>
+                  <Button.Root
+                    key={key}
+                    profile
+                    onClick={() => onClickFunction(key)}
+                    className="min-w-[46px]"
+                  >
+                    <Button.Icon
+                      icon={profileButtons[key].icon}
+                      profile
+                      className="text-lg"
+                    />
+                  </Button.Root>
+                </div>
+              </Tooltip>
             )
       )}
 

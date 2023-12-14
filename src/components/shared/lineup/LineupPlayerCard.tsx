@@ -29,8 +29,10 @@ export function LineupPlayerCard({
       className={twMerge(
         'relative h-full min-w-[200px] flex-col justify-between rounded-lg px-5 py-[3.375rem]',
         '3xl:px-2.5 3xl:py-8',
-        'bg-player_card bg-cover'
+        'bg-cover',
+        !player.card && 'bg-player_card'
       )}
+      style={{ backgroundImage: player.card ? `url(${player.card})` : '' }}
     >
       {onClose && (
         <LineupPlayerCardCloseBtn closeLabel={closeLabel} onClose={onClose} />

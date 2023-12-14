@@ -24,9 +24,13 @@ export function ProfileHeader({
     <header
       className={twMerge(
         'flex-initial flex-col p-[3.750rem]',
-        'bg-no-repeat bg-cover bg-profile_header',
-        '3xl:p-7'
+        'bg-no-repeat bg-cover',
+        '3xl:p-7',
+        !profile.header && 'bg-profile_header'
       )}
+      style={{
+        backgroundImage: profile.header ? `url(${profile.header})` : '',
+      }}
     >
       <div
         className={twMerge(

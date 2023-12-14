@@ -32,6 +32,7 @@ export type Profile = {
   stats: Stats
   date_joined: string
   status: Status
+  header: string | null
 }
 
 export async function getUserProfile(userId: number): Promise<Profile> {

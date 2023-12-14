@@ -37,6 +37,7 @@ export const Default = (props: any) => {
         steam_url: '',
         steamid: '',
         lobby_id: 1,
+        card: null,
       },
     ],
     invited_players_ids: [],
