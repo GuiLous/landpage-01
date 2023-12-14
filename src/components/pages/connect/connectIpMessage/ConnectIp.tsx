@@ -73,7 +73,7 @@ export function ConnectIp() {
         )}
         type="submit"
       >
-        <Link href={`fivem://connect/${match?.server_ip}`}>
+        <Link href={`fivem://connect/${match?.server_ip}`} target="_blank">
           <Button.Icon icon={SiFivem} size={20} />
 
           <Button.Content className="text-sm font-normal">

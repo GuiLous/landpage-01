@@ -72,7 +72,7 @@ export function ProfileHeaderTabsButtons({
   const getLink = useCallback(
     (key: ButtonType) => {
       if (key === 'profile') return `/perfil/${user?.id}`
-      if (key === 'inventory') return `/perfil/${user?.id}/inventario`
+      if (key === 'inventory') return `/inventario`
       if (key === 'config') return `/conta`
 
       return ''

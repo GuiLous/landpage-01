@@ -19,6 +19,7 @@ export const Default = (props: any) => {
     players_ready_count: 3,
     players_total: 2,
     user_ready: false,
+    ready: false,
   }
 
   const store = configureStore({

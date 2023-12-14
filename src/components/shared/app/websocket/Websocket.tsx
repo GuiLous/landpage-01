@@ -1,7 +1,9 @@
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { useCallback } from 'react'
+import { useCallback, useEffect } from 'react'
 import useWebSocket from 'react-use-websocket'
+
+import { SEND_KEEP_ALIVE_TIME } from '@/constants'
 
 import { useAppDispatch, useAppSelector } from '@/store'
 import { addToast, updateMaintenance } from '@/store/slices/appSlice'
@@ -28,12 +30,12 @@ export function Websocket() {
 
   const router = useRouter()
 
-  useWebSocket(
+  const { sendJsonMessage } = useWebSocket(
     process.env.NEXT_PUBLIC_REACT_APP_WS_URL || '',
     {
       onMessage: (event) => handleMessageReceived(event),
       share: true,
-      shouldReconnect: () => false,
+      shouldReconnect: () => true,
       queryParams: auth?.token ? { token: auth.token } : {},
     },
     !!auth?.token && !!user && user.account && user.account.is_verified
@@ -188,7 +190,7 @@ export function Websocket() {
 
         case 'pre_matches/create':
           dispatch(updatePreMatch(data.payload))
-          if (data.payload.state === 'pre_start') router.push('/jogar')
+          router.push('/jogar')
           break
 
         // Matches
@@ -255,6 +257,16 @@ export function Websocket() {
       showInviteRefusedToast,
     ]
   )
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      sendJsonMessage({ keep_alive: 'keep_alive' })
+    }, SEND_KEEP_ALIVE_TIME)
+
+    return () => {
+      clearInterval(interval)
+    }
+  }, [sendJsonMessage])
 
   return null
 }

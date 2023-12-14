@@ -18,6 +18,8 @@ import {
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
+import notSelected from '@/assets/images/not_selected.png'
+
 import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
@@ -56,7 +58,26 @@ export function InventoryWrapperContent({
 
   const [activeTab, setActiveTab] = useState<TabTypes>('personagem')
   const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>('avatar')
-  const [itemsByType, setItemsByType] = useState<StoreItem[]>([])
+  const [itemsByType, setItemsByType] = useState<StoreItem[]>([
+    {
+      id: 0,
+      foreground_image: notSelected.src,
+      in_use: false,
+      item_type: 'persona',
+      name: '',
+      handle: '',
+      price: '',
+      release_date: '',
+      description: '',
+      discount: 0,
+      background_image: '',
+      box: '',
+      box_draw_chance: '',
+      collection: '',
+      featured: false,
+      can_use: true,
+    },
+  ])
   const [itemSelected, setItemSelected] = useState<StoreItem | null>(null)
   const [newItemSelected, setNewItemSelected] = useState<StoreItem | null>(null)
   const [activeItemType, setActiveItemType] = useState<SubTabTypes>('avatar')
@@ -73,27 +94,33 @@ export function InventoryWrapperContent({
         (item) => item.item_type === sub_tabs[activeTab]
       )
 
-      setItemsByType(itemsFiltered)
+      setItemsByType((prevState) => [{ ...prevState[0] }, ...itemsFiltered])
       return
     }
 
-    let itemsFiltered = inventory.items.filter(
+    const itemsFiltered = inventory.items.filter(
       (item) => item.item_type === sub_tabs[activeSubTab]
     )
 
-    if (!disableSwitch) {
-      if (isChecked) {
-        itemsFiltered = itemsFiltered.filter((item) => item.subtype === 'def')
-      } else {
-        itemsFiltered = itemsFiltered.filter((item) => item.subtype !== 'def')
-      }
-    }
+    // if (!disableSwitch) {
+    //   if (isChecked) {
+    //     itemsFiltered = itemsFiltered.filter((item) => item.subtype === 'def')
+    //   } else {
+    //     itemsFiltered = itemsFiltered.filter((item) => item.subtype !== 'def')
+    //   }
+    // }
 
-    setItemsByType(itemsFiltered)
-  }, [activeTab, activeSubTab, inventory, disableSwitch, isChecked])
+    setItemsByType((prevState) => [{ ...prevState[0] }, ...itemsFiltered])
+  }, [activeTab, activeSubTab, inventory])
 
   const handleUpdateItemInUse = useCallback(
-    async (item_id: number) => {
+    async ({
+      item_id,
+      updateSelected = true,
+    }: {
+      item_id: number
+      updateSelected?: boolean
+    }) => {
       if (!auth?.token) return
 
       const itemById = itemsByType.find((item) => item.id === item_id)
@@ -112,12 +139,14 @@ export function InventoryWrapperContent({
           return
         }
 
-        const newItemSelected = response.items.find(
-          (item: StoreItem) => item.id === item_id
-        )
+        if (updateSelected) {
+          const newItemSelected = response.items.find(
+            (item: StoreItem) => item.id === item_id
+          )
+          setNewItemSelected(newItemSelected)
+        }
 
         revalidate('inventory')
-        setNewItemSelected(newItemSelected)
       }
     },
     [auth, itemsByType, showErrorToast]
@@ -171,7 +200,6 @@ export function InventoryWrapperContent({
 
             <CustomScrollBar height={312}>
               <ItemsSelectList
-                handleUpdateItemInUse={handleUpdateItemInUse}
                 hasItemInUse={hasItemInUse}
                 itemSelectedId={itemSelected?.id}
                 items={itemsByType}
@@ -186,6 +214,7 @@ export function InventoryWrapperContent({
               handleUpdateItemInUse={handleUpdateItemInUse}
               item={itemSelected}
               itemType={activeItemType}
+              itemInUse={itemInUse}
             />
           )}
         </aside>

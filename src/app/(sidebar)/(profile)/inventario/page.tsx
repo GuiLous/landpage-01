@@ -8,25 +8,17 @@ import { InventoryWrapper } from '@/components/pages/inventory/InventoryWrapper'
 
 import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
 
-interface RouteProps {
-  params: { userId: string }
-}
-
-export default async function Inventory({ params }: RouteProps) {
+export default async function Inventory() {
   const auth = getAuthServer()
 
-  const { userId } = params
-
-  const profile = await getUserProfile(Number(userId))
-
-  const isUserLogged = Number(userId) === auth?.id
+  const profile = await getUserProfile(auth?.id)
 
   return (
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>
-      <ProfileHeader isUserLogged={isUserLogged} profile={profile}>
+      <ProfileHeader isUserLogged profile={profile}>
         <ProfileHeaderTabsButtons
-          isUserLogged={isUserLogged}
-          userId={Number(userId)}
+          isUserLogged
+          userId={auth?.id}
           username={profile.username}
         />
       </ProfileHeader>

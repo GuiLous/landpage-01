@@ -23,12 +23,14 @@ export function InitializeSlices({ children }: InitializeSlicesRoutesProps) {
   const showLoading =
     isLoading &&
     pathname !== '/' &&
+    pathname !== '/conta-inativa' &&
     ROUTES_TO_INITIALIZE_SLICES.some((route) => pathname.startsWith(route))
 
   useEffect(() => {
     if (
       ROUTES_TO_INITIALIZE_SLICES.some((route) => pathname.startsWith(route)) &&
       pathname !== '/' &&
+      pathname !== '/conta-inativa' &&
       auth?.is_active &&
       auth.is_verified &&
       auth.username

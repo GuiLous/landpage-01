@@ -8,6 +8,7 @@ export const PRIVATE_ROUTES = [
   '/partidas',
   '/perfil',
   '/conta',
+  '/inventario',
 ]
 export const PUBLIC_ROUTES = ['/', '/not-found', '/manutencao']
 export const ROUTES_TO_INITIALIZE_SLICES = [
@@ -135,3 +136,6 @@ export const MAX_PROGRESS = 100
 // Inventory
 export const TABS = ['personagem', 'sprays']
 export const TABS_NO_SWITCH = ['avatar', 'sprays']
+
+// Websocket
+export const SEND_KEEP_ALIVE_TIME = 7000 // 7 seconds

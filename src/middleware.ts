@@ -83,5 +83,6 @@ export const config = {
     '/conectar/:path*',
     '/perfil/:path*',
     '/conta/:path*',
+    '/inventario/:path*',
   ],
 }

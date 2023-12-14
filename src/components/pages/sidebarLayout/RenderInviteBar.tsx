@@ -18,7 +18,7 @@ export function RenderInviteBar() {
     pathname === '/jogar' &&
     user?.invites_available_count &&
     user.invites_available_count > 0 &&
-    process.env.NEXT_PUBLIC_USE_INVITES
+    process.env.NEXT_PUBLIC_USE_INVITES === 'true'
 
   if (!showInviteBar) return null
 

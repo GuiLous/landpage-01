@@ -7,7 +7,7 @@ import { formatSecondsToMinutes } from '@/utils'
 
 import { useAppSelector } from '@/store'
 
-import { lobbyApi, preMatchApi } from '@/modelsApi'
+import { lobbyApi } from '@/modelsApi'
 
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
@@ -79,28 +79,14 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
     handleQueue('start')
   }, [handleQueue])
 
-  const lockIn = useCallback(async () => {
-    if (!auth?.token) return
-
-    let response = null
-
-    response = await preMatchApi.playerLockIn(auth.token)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-  }, [showErrorToast, auth])
-
   const onMatchFound = useCallback(() => {
-    if (preMatch && preMatch.status === 'ready_in') {
+    if (preMatch && !openMatchFoundModal) {
       playSound()
       setOpenMatchFoundModal(true)
-    } else setOpenMatchFoundModal(false)
+    } else if ((preMatch && preMatch.ready && openMatchFoundModal) || !preMatch)
+      setOpenMatchFoundModal(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch, playSound])
-
-  useEffect(() => {
-    if (preMatch && preMatch.status === 'lock_in') lockIn()
-  }, [preMatch?.status, lockIn, preMatch])
 
   useEffect(() => {
     onMatchFound()

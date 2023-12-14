@@ -24,7 +24,7 @@ export function InviteRequiredCheck() {
   }, [auth, router])
 
   const healthCheck = useCallback(async () => {
-    const response = await appApi.healthCheck()
+    const response = await appApi.healthCheck({ cache: 'no-cache' })
 
     if (response?.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -32,7 +32,7 @@ export function InviteRequiredCheck() {
       return
     }
 
-    if (!response.beta_required) {
+    if (!response.beta_required && !response.invite_required) {
       router.push('/not-found')
     }
   }, [router, showErrorToast])

@@ -17,7 +17,7 @@ export function LobbyRenderModalWelcome() {
   const [openModalSendInvites, setOpenModalSendInvites] = useState(false)
 
   useEffect(() => {
-    if (process.env.NEXT_PUBLIC_USE_INVITES) {
+    if (process.env.NEXT_PUBLIC_USE_INVITES === 'true') {
       const firstAccess = storageService.get(NOT_FIRST_ACCESS_KEY)
 
       if (

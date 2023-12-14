@@ -1,11 +1,11 @@
-import { twMerge } from 'tailwind-merge'
+// import { twMerge } from 'tailwind-merge'
 
-import { Switch } from '@/components/shared'
+// import { Switch } from '@/components/shared'
 
 import { SubTabTypes, TabTypes } from '../InventoryWrapperContent'
-import { InventoryItemsTabBarCt } from './InventoryItemsTabBarCt'
+// import { InventoryItemsTabBarCt } from './InventoryItemsTabBarCt'
 import { InventoryItemsTabBarTabs } from './InventoryItemsTabBarTabs'
-import { InventoryItemsTabBarTr } from './InventoryItemsTabBarTr'
+// import { InventoryItemsTabBarTr } from './InventoryItemsTabBarTr'
 
 interface InventoryItemsTabBarProps {
   activeTab: string
@@ -19,12 +19,9 @@ interface InventoryItemsTabBarProps {
 
 export function InventoryItemsTabBar({
   activeTab,
-  disableSideSelect = false,
-  isChecked,
   setActiveItemType,
   setActiveSubTab,
   setActiveTab,
-  setIsChecked,
 }: InventoryItemsTabBarProps) {
   return (
     <div className="flex-initial items-center justify-between">
@@ -35,7 +32,7 @@ export function InventoryItemsTabBar({
         setActiveTab={setActiveTab}
       />
 
-      <div
+      {/* <div
         className={twMerge(
           'max-w-fit flex-initial items-center gap-2.5',
           disableSideSelect && 'opacity-30'
@@ -60,7 +57,7 @@ export function InventoryItemsTabBar({
           isChecked={isChecked}
           setIsChecked={setIsChecked}
         />
-      </div>
+      </div> */}
     </div>
   )
 }

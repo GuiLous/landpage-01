@@ -7,6 +7,7 @@ export type PreMatch = {
   players_ready_count: number
   players_total: number
   user_ready: boolean
+  ready: boolean
 }
 
 type PreMatchState = {

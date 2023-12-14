@@ -69,19 +69,20 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
       onMouseLeave={handleMouseLeave}
       className={twMerge(
         'relative max-h-imagePreview items-center overflow-hidden bg-cover bg-no-repeat p-3 justify-start',
-        itemSelected && 'justify-center',
+        itemSelected?.id !== 0 && 'justify-center',
         `3xl:max-h-imagePreviewLaptop`
       )}
       style={{
-        backgroundImage: itemSelected
-          ? `url(${itemSelected.background_image})`
-          : '',
+        backgroundImage:
+          itemSelected?.id !== 0
+            ? `url(${itemSelected?.background_image})`
+            : '',
       }}
     >
-      {itemSelected ? (
+      {itemSelected?.id !== 0 ? (
         <>
           <Image
-            src={itemSelected.foreground_image}
+            src={itemSelected?.foreground_image || ''}
             alt="Imagem do item"
             draggable={false}
             onMouseEnter={() => setIsZoomed(true)}
@@ -102,14 +103,14 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
                 'animate-scale-up'
               )}
               style={{
-                backgroundImage: `url(${itemSelected.foreground_image})`,
+                backgroundImage: `url(${itemSelected?.foreground_image})`,
                 ...magnifyStyle,
               }}
             />
           )}
         </>
       ) : (
-        <span className="ml-[20%] text-gray-300">
+        <span className={twMerge('ml-[20%] text-gray-300', '3xl:ml-0')}>
           Ops, nenhum item selecionado.
         </span>
       )}

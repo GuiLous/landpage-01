@@ -7,27 +7,21 @@ import { StoreItem } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
 
-import notSelected from '@/assets/images/not_selected.png'
-
 type ItemsSelectListCardProps = ComponentProps<'div'> & {
   item?: StoreItem
   index: number
-  isEmpty?: boolean
   itemSelectedId?: number
   hasItemInUse?: boolean
 }
 
 export function ItemsSelectListCard({
-  hasItemInUse = false,
-  index,
-  isEmpty = false,
   item,
+  index,
   itemSelectedId,
+  hasItemInUse,
   ...props
 }: ItemsSelectListCardProps) {
-  const isItemSelected = !isEmpty && item?.id === itemSelectedId
-
-  const hasNotItemSelected = isEmpty && !hasItemInUse
+  const isItemSelected = item?.id === itemSelectedId
 
   return (
     <div
@@ -39,11 +33,11 @@ export function ItemsSelectListCard({
       {...props}
     >
       <Image
-        src={isEmpty ? notSelected : item?.foreground_image || ''}
+        src={item?.foreground_image || ''}
         alt=""
         className={twMerge(
           'object-contain w-full h-full',
-          isEmpty && 'w-auto h-auto'
+          index === 0 && 'w-auto h-auto'
         )}
         sizes="100vw"
         width={80}
@@ -61,7 +55,7 @@ export function ItemsSelectListCard({
         </span>
       )}
 
-      {(item?.in_use || hasNotItemSelected) && (
+      {(item?.in_use || (!hasItemInUse && index === 0)) && (
         <CustomIcon
           icon={BsCheckCircleFill}
           className="absolute -bottom-1.5 -right-1 text-white"

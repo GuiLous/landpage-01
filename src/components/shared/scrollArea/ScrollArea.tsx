@@ -11,9 +11,7 @@ interface ScrollAreaProps {
 
 export function ScrollArea({ children, className }: ScrollAreaProps) {
   return (
-    <PrimitiveScrollArea.Root
-      className={twMerge('max-h-screen overflow-hidden', className)}
-    >
+    <PrimitiveScrollArea.Root className={twMerge('overflow-hidden', className)}>
       <PrimitiveScrollArea.Viewport className="h-full w-full">
         {children}
       </PrimitiveScrollArea.Viewport>
