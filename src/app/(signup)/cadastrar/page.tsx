@@ -13,7 +13,7 @@ import { getJwtSecretKey, httpService } from '@/services'
 import { useAppDispatch } from '@/store'
 import { addToast } from '@/store/slices/appSlice'
 
-import { Terms } from '@/components/pages'
+import { SignupRegisterTerms } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
 
@@ -160,7 +160,7 @@ export default function SignUp() {
           </Button.Content>
         </Button.Root>
 
-        <Terms />
+        <SignupRegisterTerms />
       </div>
     </form>
   )

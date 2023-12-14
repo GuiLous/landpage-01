@@ -2,7 +2,7 @@ import { PRIVACY_POLICY_LINK, USETERMS_LINK } from '@/constants'
 
 import { Link } from '@/components/shared'
 
-export function Terms() {
+export function SignupRegisterTerms() {
   return (
     <p className="text-sm text-gray-300">
       Ao se cadastrar, você concorda com os{' '}

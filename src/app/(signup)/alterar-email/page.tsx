@@ -10,7 +10,7 @@ import { isEmailValid } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
-import { ChangeEmailGoBackLink } from '@/components/pages'
+import { SignupChangeEmailGoBackLink } from '@/components/pages'
 
 import { Button, Input } from '@/components/shared'
 
@@ -140,7 +140,7 @@ export default function ChangeEmail() {
           </Button.Content>
         </Button.Root>
 
-        <ChangeEmailGoBackLink />
+        <SignupChangeEmailGoBackLink />
       </div>
     </form>
   )

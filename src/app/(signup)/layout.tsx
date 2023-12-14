@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { LayoutHeader } from '@/components/pages'
+import { SignupLayoutHeader } from '@/components/pages'
 
 import { Footer } from '@/components/shared'
 
@@ -18,7 +18,7 @@ export default function SignUpLayout({ children }: { children: ReactNode }) {
         'bg-sign_up_bottom_left bg-cover bg-repeat-round'
       )}
     >
-      <LayoutHeader />
+      <SignupLayoutHeader />
 
       <div className="absolute bottom-[85px] left-0 z-0 w-[26%]">
         <Image src={liquidObject} alt="Liquid object" priority />

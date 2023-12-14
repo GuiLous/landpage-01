@@ -6,7 +6,7 @@ import { IoIosArrowRoundBack } from 'react-icons/io'
 
 import { GoBackLink } from '@/components/shared'
 
-export function LayoutHeader() {
+export function SignupLayoutHeader() {
   const handleCancel = useCallback(() => {
     Cookies.remove('token')
   }, [])
