@@ -3,8 +3,10 @@
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { readNotification } from '@/store/slices/notificationSlice'
+import { revalidatePath } from '@/utils'
+
+import { useNotificationStore } from '@/store/notificationStore'
+import { useUserStore } from '@/store/userStore'
 
 import { notificationsApi } from '@/modelsApi'
 
@@ -24,10 +26,9 @@ export function DrawerNotifications({
   open,
   setOpen,
 }: DrawerNotificationsProps) {
-  const { user } = useAppSelector((state) => state.user)
-  const notifications = useAppSelector((state) => state.notifications)
+  const user = useUserStore.getState().user
+  const notifications = useNotificationStore.getState().notifications
 
-  const dispatch = useAppDispatch()
   const pathname = usePathname()
 
   const getAuth = useAuth()
@@ -51,7 +52,10 @@ export function DrawerNotifications({
     if (!isAlreadyRead) {
       const response = await notificationsApi.read(auth.token, id)
       if (response.errorMsg) showErrorToast(response.errorMsg)
-      else if (response) dispatch(readNotification({ id }))
+      else if (response) {
+        useNotificationStore.getState().readNotification(id)
+        revalidatePath({ path: '/' })
+      }
     }
   }
 

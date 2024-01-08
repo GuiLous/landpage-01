@@ -3,12 +3,12 @@
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { InviteBar, ModalSendInvites } from '@/components/shared'
 
 export function RenderInviteBar() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const [openModalSendInvites, setOpenModalSendInvites] = useState(false)
 

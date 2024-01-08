@@ -1,8 +1,5 @@
 import { useArgs } from '@storybook/preview-api'
 import { Meta, StoryObj } from '@storybook/react'
-import { Provider } from 'react-redux'
-
-import { store } from '@/store'
 
 import { ModalSupportForm } from './ModalSupportForm'
 
@@ -27,9 +24,5 @@ export const Default = (props: Story) => {
   const [{ open }, updateArgs] = useArgs()
   const setFormSent = () => updateArgs({ open: !open })
 
-  return (
-    <Provider store={store}>
-      <ModalSupportForm open={true} setFormSent={setFormSent} {...props} />
-    </Provider>
-  )
+  return <ModalSupportForm open={true} setFormSent={setFormSent} {...props} />
 }

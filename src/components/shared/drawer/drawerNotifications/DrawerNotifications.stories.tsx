@@ -1,11 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { useArgs } from '@storybook/preview-api'
 import { Meta } from '@storybook/react'
-import { Provider } from 'react-redux'
 
-import notificationSlice, {
-  Notification,
-} from '@/store/slices/notificationSlice'
+import { Notification } from '@/store/notificationStore'
 
 import { DrawerNotifications } from './DrawerNotifications'
 
@@ -41,18 +37,5 @@ export const Default = (props: any) => {
     }
   })
 
-  const store = configureStore({
-    reducer: {
-      notifications: notificationSlice,
-    },
-    preloadedState: {
-      notifications,
-    },
-  })
-
-  return (
-    <Provider store={store}>
-      <DrawerNotifications open={false} setOpen={changeOpen} {...props} />
-    </Provider>
-  )
+  return <DrawerNotifications open={false} setOpen={changeOpen} {...props} />
 }

@@ -1,8 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { useArgs } from '@storybook/preview-api'
-import { Provider } from 'react-redux'
 
-import userSlice, { User } from '@/store/slices/userSlice'
+import { User } from '@/store/userStore'
 
 import { MenuContext } from './MenuContext'
 
@@ -54,24 +52,13 @@ export const Default = (props: any) => {
     invites: [],
   }
 
-  const store = configureStore({
-    reducer: {
-      user: userSlice,
-    },
-    preloadedState: {
-      user: { user },
-    },
-  })
-
   return (
-    <Provider store={store}>
-      <MenuContext open={open} onOpenChange={changeOpen}>
-        <MenuContext.Trigger>
-          <button>open</button>
-        </MenuContext.Trigger>
+    <MenuContext open={open} onOpenChange={changeOpen}>
+      <MenuContext.Trigger>
+        <button>open</button>
+      </MenuContext.Trigger>
 
-        <MenuContext.Content {...props} />
-      </MenuContext>
-    </Provider>
+      <MenuContext.Content {...props} />
+    </MenuContext>
   )
 }

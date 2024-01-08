@@ -2,9 +2,11 @@ import { useRouter } from 'next/navigation'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { addToast, toggleFriendList } from '@/store/slices/appSlice'
-import { addInvite } from '@/store/slices/inviteSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore } from '@/store/appStore'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
@@ -34,9 +36,7 @@ export function MenuItem({
   keyMenu,
   setOpenModalSupport,
 }: MenuItemProps) {
-  const { user } = useAppSelector((state) => state.user)
-
-  const dispatch = useAppDispatch()
+  const user = useUserStore.getState().user
 
   const router = useRouter()
 
@@ -70,13 +70,14 @@ export function MenuItem({
 
     if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) {
-      dispatch(addInvite(response))
-      dispatch(
-        addToast({
-          title: 'Convite enviado',
-          variant: 'success',
-        })
-      )
+      useInvitesStore.getState().addInvite(response)
+
+      useAppStore.getState().addToast({
+        title: 'Convite enviado',
+        variant: 'success',
+      })
+
+      revalidatePath({ path: '/' })
     }
   }
 
@@ -87,7 +88,8 @@ export function MenuItem({
         break
 
       case 'profile':
-        dispatch(toggleFriendList(false))
+        useAppStore.getState().toggleFriendList(false)
+        revalidatePath({ path: `/perfil/${user_id}` })
         router.push(`/perfil/${user_id}`)
         break
 

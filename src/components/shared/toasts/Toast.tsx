@@ -5,8 +5,10 @@ import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { Variant, removeToast } from '@/store/slices/appSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore, Variant } from '@/store/appStore'
+import { useInvitesStore } from '@/store/invitesStore'
 
 import { lobbyApi } from '@/modelsApi'
 
@@ -15,8 +17,8 @@ import { Avatar, Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface ToastProps {
-  id: number
-  content: string
+  id?: string
+  content?: string
   variant?: Variant
   duration?: number
   title?: string
@@ -33,9 +35,8 @@ export function Toast({
   avatar,
   invite_id,
 }: ToastProps) {
-  const { invites } = useAppSelector((state) => state.invites)
+  const invites = useInvitesStore.getState().invites
 
-  const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
   const getAuth = useAuth()
@@ -93,7 +94,10 @@ export function Toast({
       }, 1000)
     } else {
       clearInterval(interval)
-      dispatch(removeToast(id))
+      if (id) {
+        useAppStore.getState().removeToast(id)
+      }
+      revalidatePath({ path: '/' })
     }
 
     return () => {
@@ -101,7 +105,7 @@ export function Toast({
         clearInterval(interval)
       }
     }
-  }, [timer, dispatch, id])
+  }, [timer, id])
 
   useEffect(() => {
     if (title) return

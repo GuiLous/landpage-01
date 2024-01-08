@@ -1,7 +1,7 @@
 import { BsFillFlagFill } from 'react-icons/bs'
 import { FiClock } from 'react-icons/fi'
 
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { MatchStatus } from '@/store/matchStore'
 
 import { CustomIcon } from '@/components/shared'
 

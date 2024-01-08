@@ -1,5 +1,5 @@
-import { LatestMatchesResult } from '@/store/slices/lobbySlice'
-import { Stats } from '@/store/slices/matchSlice'
+import { LatestMatchesResult } from '@/store/lobbyStore'
+import { Stats } from '@/store/matchStore'
 
 import { ProfileCard } from '@/components/shared'
 

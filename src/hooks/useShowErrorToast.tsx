@@ -2,23 +2,18 @@
 
 import { useCallback } from 'react'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore } from '@/store/appStore'
 
 export function useShowErrorToast() {
-  const dispatch = useAppDispatch()
-
-  const showErrorToast = useCallback(
-    (error: string) => {
-      dispatch(
-        addToast({
-          content: error,
-          variant: 'error',
-        })
-      )
-    },
-    [dispatch]
-  )
+  const showErrorToast = useCallback((error: string) => {
+    useAppStore.getState().addToast({
+      content: error,
+      variant: 'error',
+    })
+    revalidatePath({ path: '/' })
+  }, [])
 
   return showErrorToast
 }

@@ -1,7 +1,8 @@
+import { revalidatePath } from '@/utils'
+
 import { httpService } from '@/services'
 
-import { store } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { useAppStore } from '@/store/appStore'
 
 type BaseAPI = {
   endpoint: string
@@ -40,12 +41,12 @@ export const baseApi = {
         options
       )
     } catch (error) {
-      store.dispatch(
-        addToast({
-          content: response.errorMsg,
-          variant: 'error',
-        })
-      )
+      useAppStore.getState().addToast({
+        content: response.errorMsg,
+        variant: 'error',
+      })
+
+      revalidatePath({ path: '/' })
       return null
     }
 

@@ -1,8 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { Meta } from '@storybook/react'
-import { Provider } from 'react-redux'
 
-import preMatchSlice, { PreMatch } from '@/store/slices/preMatchSlice'
+import { PreMatch } from '@/store/preMatchStore'
 
 import { ModalMatchFoundPlayersIcon } from './ModalMatchFoundPlayersIcon'
 
@@ -22,16 +20,5 @@ export const Default = (props: any) => {
     ready: false,
   }
 
-  const store = configureStore({
-    reducer: {
-      preMatch: preMatchSlice,
-    },
-    preloadedState: { preMatch: { preMatch } },
-  })
-
-  return (
-    <Provider store={store}>
-      <ModalMatchFoundPlayersIcon {...props} />
-    </Provider>
-  )
+  return <ModalMatchFoundPlayersIcon {...props} />
 }

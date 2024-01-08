@@ -1,10 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import friendSlice from '@/store/slices/friendSlice'
-import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
-import userSlice, { User } from '@/store/slices/userSlice'
+import { Invite } from '@/store/invitesStore'
+import { Lobby } from '@/store/lobbyStore'
+import { User } from '@/store/userStore'
 
 import { DrawerFriendsListGroup } from './DrawerFriendsListGroup'
 
@@ -99,20 +95,6 @@ export const Default = (props: any) => {
     seats: 4,
   }
 
-  const store = configureStore({
-    reducer: {
-      user: userSlice,
-      friends: friendSlice,
-      invites: inviteSlice,
-      lobby: lobbySlice,
-    },
-    preloadedState: {
-      user: { user },
-      invites: { invites },
-      lobby,
-    },
-  })
-
   const genFriends = Array.from(Array(props.friendsCount).keys()).map(
     (_, index) => ({
       user_id: index + 2,
@@ -125,9 +107,5 @@ export const Default = (props: any) => {
       },
     })
   )
-  return (
-    <Provider store={store}>
-      <DrawerFriendsListGroup {...props} friends={genFriends} />
-    </Provider>
-  )
+  return <DrawerFriendsListGroup {...props} friends={genFriends} />
 }

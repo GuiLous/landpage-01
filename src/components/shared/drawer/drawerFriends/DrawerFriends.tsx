@@ -4,7 +4,10 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
+import { useFriendsStore } from '@/store/friendStore'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { useUserStore } from '@/store/userStore'
 
 import { Drawer, ScrollArea } from '@/components/shared'
 
@@ -17,10 +20,10 @@ interface DrawerFriends {
 }
 
 export function DrawerFriends({ open, setOpen }: DrawerFriends) {
-  const { user } = useAppSelector((state) => state.user)
-  const lobby = useAppSelector((state) => state.lobby)
-  const friends = useAppSelector((state) => state.friends)
-  const { invites } = useAppSelector((state) => state.invites)
+  const user = useUserStore.getState().user
+  const lobby = useLobbyStore.getState().lobby
+  const friends = useFriendsStore.getState().friends
+  const invites = useInvitesStore.getState().invites
 
   const pathname = usePathname()
 
@@ -29,9 +32,9 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
   const teamingFriends =
     lobby?.players?.filter((player) => player.user_id !== user?.id) || []
 
-  const onlineFriends = friends?.online?.filter(
-    (friend) => friend.lobby_id !== user?.lobby_id
-  )
+  const onlineFriends =
+    friends?.online?.filter((friend) => friend.lobby_id !== user?.lobby_id) ||
+    []
 
   const filteredTeamingFriends = teamingFriends?.filter(
     (friend) =>
@@ -45,11 +48,12 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const filteredOfflineFriends = friends?.offline?.filter(
-    (friend) =>
-      filter === '' ||
-      friend.username.toLowerCase().includes(filter.toLowerCase())
-  )
+  const filteredOfflineFriends =
+    friends?.offline?.filter(
+      (friend) =>
+        filter === '' ||
+        friend.username.toLowerCase().includes(filter.toLowerCase())
+    ) || []
 
   const receivedInvites = invites.filter(
     (invite) => invite.to_player.user_id === user?.id

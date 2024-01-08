@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { MatchStatus } from '@/store/matchStore'
 
 interface ProfileMatchStatsLinkStatusProps {
   linkWidth: number

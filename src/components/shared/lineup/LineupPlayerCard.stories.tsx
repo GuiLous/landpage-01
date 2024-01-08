@@ -1,7 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
+import { Lobby } from '@/store/lobbyStore'
 
 import { LineupPlayerCard } from './LineupPlayerCard'
 
@@ -63,22 +60,13 @@ export const Default = (props: any) => {
     seats: 4,
   }
 
-  const store = configureStore({
-    reducer: {
-      lobby: lobbySlice,
-    },
-    preloadedState: { lobby },
-  })
-
   return (
     <div className="h-screen">
-      <Provider store={store}>
-        <LineupPlayerCard
-          player={player}
-          onClose={() => console.log('')}
-          {...props}
-        />
-      </Provider>
+      <LineupPlayerCard
+        player={player}
+        onClose={() => console.log('')}
+        {...props}
+      />
     </div>
   )
 }

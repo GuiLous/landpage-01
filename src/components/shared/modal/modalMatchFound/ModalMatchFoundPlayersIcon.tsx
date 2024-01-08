@@ -1,10 +1,10 @@
 import { FaUser } from 'react-icons/fa'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
+import { usePreMatchStore } from '@/store/preMatchStore'
 
 export function ModalMatchFoundPlayersIcon() {
-  const { preMatch } = useAppSelector((state) => state.preMatch)
+  const preMatch = usePreMatchStore.getState().preMatch
 
   const playersLeft = preMatch
     ? preMatch.players_total - preMatch.players_ready_count

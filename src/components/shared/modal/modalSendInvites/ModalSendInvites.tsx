@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { Modal } from '@/components/shared'
 
@@ -17,7 +17,7 @@ interface ModalSendInvitesProps {
 }
 
 export function ModalSendInvites({ open, setOpen }: ModalSendInvitesProps) {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const [changeView, setChangeView] = useState(false)
 

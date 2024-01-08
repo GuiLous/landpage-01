@@ -1,14 +1,14 @@
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppDispatch } from '@/store'
-import { toggleFriendList } from '@/store/slices/appSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore } from '@/store/appStore'
 
 export function LineupSeat() {
-  const dispatch = useAppDispatch()
-
   const handleSeatClick = () => {
-    dispatch(toggleFriendList(true))
+    useAppStore.getState().toggleFriendList(true)
+    revalidatePath({ path: '/' })
   }
 
   return (

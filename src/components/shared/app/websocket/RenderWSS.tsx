@@ -1,11 +1,10 @@
 'use client'
-
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { Websocket } from './Websocket'
 
 export function RenderWSS() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   return (
     <>{user && user.account && user.account.is_verified && <Websocket />}</>

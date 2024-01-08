@@ -1,28 +1,28 @@
+'use client'
+
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { useCallback, useEffect } from 'react'
+import { useCallback } from 'react'
 import useWebSocket from 'react-use-websocket'
 
-import { SEND_KEEP_ALIVE_TIME } from '@/constants'
+import { revalidatePath } from '@/utils'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { addToast, updateMaintenance } from '@/store/slices/appSlice'
-import { addFriend, updateFriend } from '@/store/slices/friendSlice'
-import { addInvite, deleteInvite } from '@/store/slices/inviteSlice'
-import { updateLobby, updateQueueTime } from '@/store/slices/lobbySlice'
-import { cancelMatch, updateMatch } from '@/store/slices/matchSlice'
-import { addNotification } from '@/store/slices/notificationSlice'
-import { updatePreMatch } from '@/store/slices/preMatchSlice'
-import { updateUser } from '@/store/slices/userSlice'
+import { useAppStore } from '@/store/appStore'
+import { useFriendsStore } from '@/store/friendStore'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { useMatchStore } from '@/store/matchStore'
+import { useNotificationStore } from '@/store/notificationStore'
+import { usePreMatchStore } from '@/store/preMatchStore'
+import { useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function Websocket() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
-  const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
   const getAuth = useAuth()
@@ -47,14 +47,12 @@ export function Websocket() {
       const refused = payload.status === 'refused'
 
       if (refused && invite.to_player.user_id !== user?.id) {
-        dispatch(
-          addToast({
-            content: `${invite.to_player.username} recusou seu convite.`,
-          })
-        )
+        useAppStore.getState().addToast({
+          content: `${invite.to_player.username} recusou seu convite.`,
+        })
       }
     },
-    [dispatch, user]
+    [user]
   )
 
   const showInviteExpiredToast = useCallback(
@@ -67,17 +65,16 @@ export function Websocket() {
           : 'de ' + invite.from_player.username
       } expirou.`
 
-      dispatch(
-        addToast({
-          content,
-        })
-      )
+      useAppStore.getState().addToast({
+        content,
+      })
     },
-    [dispatch, user]
+    [user]
   )
 
   const logout = useCallback(async () => {
     Cookies.remove('token')
+    revalidatePath({ path: '/' })
     return router.push('/')
   }, [router])
 
@@ -102,67 +99,63 @@ export function Websocket() {
           break
 
         case 'user/update':
-          dispatch(updateUser(data.payload))
+          useUserStore.getState().updateUser(data.payload)
           break
 
         // Invites
         case 'invites/create':
-          dispatch(
-            addToast({
-              variant: 'invite',
-              title: data.payload.from_player.username,
-              content: 'Convidou você para um grupo.',
-              avatar: data.payload.from_player.avatar.small,
-              invite_id: data.payload.id,
-            })
-          )
-          dispatch(addInvite(data.payload))
+          useAppStore.getState().addToast({
+            variant: 'invite',
+            title: data.payload.from_player.username,
+            content: 'Convidou você para um grupo.',
+            avatar: data.payload.from_player.avatar.small,
+            invite_id: data.payload.id,
+          })
+
+          useInvitesStore.getState().addInvite(data.payload)
           break
 
         case 'invites/delete':
-          dispatch(deleteInvite(data.payload.invite))
+          useInvitesStore.getState().deleteInvite(data.payload.invite.id)
           showInviteRefusedToast(data.payload)
+          revalidatePath({ path: '/' })
           break
 
         case 'invites/expire':
-          dispatch(deleteInvite(data.payload))
+          useInvitesStore.getState().deleteInvite(data.payload.invite)
           showInviteExpiredToast(data.payload)
           break
 
         // Friends
         case 'friends/update':
-          dispatch(updateFriend(data.payload))
+          useFriendsStore.getState().updateFriend(data.payload)
           break
 
         case 'friends/create':
-          dispatch(addFriend(data.payload))
+          useFriendsStore.getState().addFriend(data.payload)
           break
 
         // Lobbies
         case 'lobbies/player_join':
-          dispatch(updateLobby(data.payload.lobby))
-          dispatch(
-            addToast({
-              content: `${data.payload.player.username} entrou para o seu grupo.`,
-            })
-          )
+          useLobbyStore.getState().updateLobby(data.payload.lobby)
+          useAppStore.getState().addToast({
+            content: `${data.payload.player.username} entrou para o seu grupo.`,
+          })
           break
 
         case 'lobbies/player_leave':
-          dispatch(updateLobby(data.payload.lobby))
-          dispatch(
-            addToast({
-              content: `${data.payload.player.username} deixou o seu grupo.`,
-            })
-          )
+          useLobbyStore.getState().updateLobby(data.payload.lobby)
+          useAppStore.getState().addToast({
+            content: `${data.payload.player.username} deixou o seu grupo.`,
+          })
           break
 
         case 'lobbies/update':
-          dispatch(updateLobby(data.payload))
+          useLobbyStore.getState().updateLobby(data.payload)
           break
 
         case 'lobbies/queue_tick':
-          dispatch(updateQueueTime(data.payload))
+          useLobbyStore.getState().updateQueueTime(data.payload)
           break
 
         case 'lobbies/queue_start':
@@ -171,85 +164,82 @@ export function Websocket() {
 
         // Notifications
         case 'notifications/add':
-          dispatch(addNotification(data.payload))
-          dispatch(
-            addToast({
-              variant: 'notification',
-              title: 'Nova notificação',
-              content: data.payload.content,
-              avatar: data.payload.avatar,
-            })
-          )
+          useNotificationStore.getState().addNotification(data.payload)
+          useAppStore.getState().addToast({
+            variant: 'notification',
+            title: 'Nova notificação',
+            content: data.payload.content,
+            avatar: data.payload.avatar,
+          })
           break
 
         // PreMatches
         case 'pre_matches/update':
         case 'pre_matches/delete':
-          dispatch(updatePreMatch(data.payload))
+          usePreMatchStore.getState().updatePreMatch(data.payload)
           break
 
         case 'pre_matches/create':
-          dispatch(updatePreMatch(data.payload))
+          usePreMatchStore.getState().updatePreMatch(data.payload)
+          revalidatePath({ path: '/jogar' })
           router.push('/jogar')
           break
 
         // Matches
         case 'matches/create':
-          dispatch(updateMatch(data.payload))
+          useMatchStore.getState().updateMatch(data.payload)
+          revalidatePath({ path: `/partidas/${data.payload.id}/conectar` })
           router.push(`/partidas/${data.payload.id}/conectar`)
           break
 
         case 'matches/update':
-          dispatch(updateMatch(data.payload))
+          useMatchStore.getState().updateMatch(data.payload)
           break
 
         case 'matches/delete':
-          dispatch(cancelMatch())
-          dispatch(
-            addToast({
-              variant: 'warning',
-              title: 'Partida cancelada',
-              content:
-                'Todos os jogadores não se conectaram a tempo ou algum fator desconhecido aconteceu e a sua partida foi cancelada.',
-            })
-          )
+          useMatchStore.getState().cancelMatch()
+          useAppStore.getState().addToast({
+            variant: 'warning',
+            title: 'Partida cancelada',
+            content:
+              'Todos os jogadores não se conectaram a tempo ou algum fator desconhecido aconteceu e a sua partida foi cancelada.',
+          })
           break
 
         // Toasts
         case `toasts/create`:
-          dispatch(
-            addToast({
-              content: data.payload.content,
-              variant: data.payload.variant,
-            })
-          )
+          useAppStore.getState().addToast({
+            content: data.payload.content,
+            variant: data.payload.variant,
+          })
           break
 
         // Maintenance
         case 'maintenance/start':
-          dispatch(updateMaintenance(true))
+          useAppStore.getState().updateMaintenance(true)
+          revalidatePath({ path: '/manutencao' })
           router.push('/manutencao')
           break
 
         case 'maintenance/end':
-          dispatch(updateMaintenance(false))
+          useAppStore.getState().updateMaintenance(false)
+          useAppStore.getState().addToast({
+            title: 'A manutenção foi finalizada',
+            content:
+              'Filas e convites de lobby estão habilitados novamente. GLHF!',
+            variant: 'warning',
+          })
+          revalidatePath({ path: '/jogar' })
           router.push('/jogar')
-          dispatch(
-            addToast({
-              title: 'A manutenção foi finalizada',
-              content:
-                'Filas e convites de lobby estão habilitados novamente. GLHF!',
-              variant: 'warning',
-            })
-          )
           break
 
         default:
           break
       }
+
+      revalidatePath({ path: '/' })
     },
     [
-      dispatch,
       logout,
       router,
       start_queue,
@@ -258,15 +248,15 @@ export function Websocket() {
     ]
   )
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      sendJsonMessage({ keep_alive: 'keep_alive' })
-    }, SEND_KEEP_ALIVE_TIME)
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     sendJsonMessage({ keep_alive: 'keep_alive' })
+  //   }, SEND_KEEP_ALIVE_TIME)
 
-    return () => {
-      clearInterval(interval)
-    }
-  }, [sendJsonMessage])
+  //   return () => {
+  //     clearInterval(interval)
+  //   }
+  // }, [sendJsonMessage])
 
   return null
 }

@@ -6,9 +6,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { CONNECT_TEXTS_ARRAY, COUNTDOWN_TIME, TIMER_NAME } from '@/constants'
 
+import { revalidatePath } from '@/utils'
+
 import { storageService } from '@/services'
 
-import { useAppSelector } from '@/store'
+import { useMatchStore } from '@/store/matchStore'
+import { useUserStore } from '@/store/userStore'
 
 import {
   ConnectAvatarImage,
@@ -22,9 +25,8 @@ import { Loading } from '@/components/shared'
 import { usePersistentTimer } from '@/hooks'
 
 export default function Connect() {
-  const { match } = useAppSelector((state) => state.match)
-
-  const { user } = useAppSelector((state) => state.user)
+  const match = useMatchStore.getState().match
+  const user = useUserStore.getState().user
 
   const router = useRouter()
 
@@ -35,6 +37,7 @@ export default function Connect() {
   const verifyMatchStatus = useCallback(() => {
     if (!match || match.status === 'cancelled') {
       storageService.remove('matchConnectTimer')
+      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     } else {
       switch (match.status) {
@@ -43,6 +46,7 @@ export default function Connect() {
           break
         case 'running':
           storageService.remove('matchConnectTimer')
+          revalidatePath({ path: `/perfil/${user?.id}/partidas/${match.id}` })
           router.push(`/perfil/${user?.id}/partidas/${match.id}`)
           break
         default:
@@ -56,8 +60,10 @@ export default function Connect() {
   }, [match, verifyMatchStatus])
 
   useEffect(() => {
-    if (timeLeft === 0)
+    if (timeLeft === 0) {
+      revalidatePath({ path: `/perfil/${user?.id}/partidas/${match?.id}` })
       return router.push(`/perfil/${user?.id}/partidas/${match?.id}`)
+    }
   }, [timeLeft, match?.id, user?.id, router])
 
   return isLoading ? (

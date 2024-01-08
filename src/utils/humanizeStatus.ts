@@ -1,4 +1,4 @@
-import { Status } from '@/store/slices/userSlice'
+import { Status } from '@/store/userStore'
 
 const statusMap = {
   online: 'Online',

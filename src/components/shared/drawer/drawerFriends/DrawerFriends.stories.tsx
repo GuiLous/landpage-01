@@ -1,12 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { useArgs } from '@storybook/preview-api'
 import { Meta } from '@storybook/react'
-import { Provider } from 'react-redux'
 
-import friendSlice, { Friend } from '@/store/slices/friendSlice'
-import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
-import userSlice, { User } from '@/store/slices/userSlice'
+import { Friend } from '@/store/friendStore'
+import { Invite } from '@/store/invitesStore'
+import { Lobby } from '@/store/lobbyStore'
+import { User } from '@/store/userStore'
 
 import { DrawerFriends } from './DrawerFriends'
 
@@ -302,24 +300,5 @@ export const Default = (props: any) => {
     seats: 4,
   }
 
-  const store = configureStore({
-    reducer: {
-      user: userSlice,
-      friends: friendSlice,
-      invites: inviteSlice,
-      lobby: lobbySlice,
-    },
-    preloadedState: {
-      user: { user },
-      friends,
-      invites: { invites },
-      lobby,
-    },
-  })
-
-  return (
-    <Provider store={store}>
-      <DrawerFriends open={false} setOpen={changeOpen} {...props} />
-    </Provider>
-  )
+  return <DrawerFriends open={false} setOpen={changeOpen} {...props} />
 }

@@ -2,8 +2,6 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import { Providers } from '@/providers'
-
 import { InitializeSlices, RenderToasts, RenderWSS } from '@/components/shared'
 
 import '@/styles/globals.css'
@@ -22,17 +20,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <Providers>
-      <html lang="en">
-        <body
-          className={`${poppins.variable} bg-gray-1200 font-poppins font-normal`}
-        >
-          <InitializeSlices>{children}</InitializeSlices>
+    <html lang="en">
+      <body
+        className={`${poppins.variable} bg-gray-1200 font-poppins font-normal`}
+      >
+        <InitializeSlices>{children}</InitializeSlices>
 
-          <RenderWSS />
-          <RenderToasts />
-        </body>
-      </html>
-    </Providers>
+        <RenderWSS />
+        <RenderToasts />
+      </body>
+    </html>
   )
 }

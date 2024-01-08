@@ -6,12 +6,11 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid } from '@/utils'
+import { isEmailValid, revalidatePath } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
+import { useAppStore } from '@/store/appStore'
 
 import { SignupRegisterTerms } from '@/components/pages'
 
@@ -24,8 +23,6 @@ type FieldsErrors = {
 }
 
 export default function SignUp() {
-  const dispatch = useAppDispatch()
-
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -80,6 +77,7 @@ export default function SignUp() {
         return
       } else if (response.errorMsg) {
         if (response.errorMsg === 'Usuário deve ser convidado.') {
+          revalidatePath({ path: '/em-breve' })
           return router.push('/em-breve')
         }
 
@@ -89,14 +87,11 @@ export default function SignUp() {
         return
       }
 
-      dispatch(
-        addToast({
-          title: 'Que bom que você chegou!',
-          content:
-            'Agora falta pouco, verifique sua conta para começar a jogar!',
-          variant: 'success',
-        })
-      )
+      useAppStore.getState().addToast({
+        title: 'Que bom que você chegou!',
+        content: 'Agora falta pouco, verifique sua conta para começar a jogar!',
+        variant: 'success',
+      })
 
       const jwtToken = await new SignJWT({
         ...auth,
@@ -110,11 +105,13 @@ export default function SignUp() {
 
       Cookies.set('token', jwtToken)
 
+      revalidatePath({ path: '/verificar' })
+
       setFetching(false)
 
       return router.push('/verificar')
     },
-    [dispatch, email, router, showErrorToast, auth]
+    [email, router, showErrorToast, auth]
   )
 
   return (

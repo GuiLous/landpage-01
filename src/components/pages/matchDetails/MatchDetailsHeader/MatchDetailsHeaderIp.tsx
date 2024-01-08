@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { HiOutlineClipboardDocument } from 'react-icons/hi2'
 import { twMerge } from 'tailwind-merge'
 
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { MatchStatus } from '@/store/matchStore'
 
 import { CustomIcon, Tooltip } from '@/components/shared'
 

@@ -2,8 +2,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
-import { Friend } from '@/store/slices/friendSlice'
+import { Friend } from '@/store/friendStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
@@ -19,8 +20,8 @@ interface LineupProps {
 }
 
 export function Lineup({ maxPlayers = 5 }: LineupProps) {
-  const { user } = useAppSelector((state) => state.user)
-  const lobby = useAppSelector((state) => state.lobby)
+  const user = useUserStore.getState().user
+  const lobby = useLobbyStore.getState().lobby
 
   const getAuth = useAuth()
   const auth = getAuth()
@@ -29,19 +30,19 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
 
   const [lineup, setLineup] = useState<Friend[]>([])
 
-  const userPlayer = lobby.players?.find(
+  const userPlayer = lobby?.players?.find(
     (player) => player.user_id === user?.id
   )
 
   const otherPlayers = useMemo<Friend[]>(() => {
-    return lobby.players?.filter((player) => player.user_id !== user?.id) || []
+    return lobby?.players?.filter((player) => player.user_id !== user?.id) || []
   }, [lobby, user])
 
-  const isOwner = lobby.owner_id === userPlayer?.user_id
+  const isOwner = lobby?.owner_id === userPlayer?.user_id
 
   const handleRemove = useCallback(
     async (player: Friend) => {
-      if (lobby.queue || !auth?.token) return
+      if (lobby?.queue || !auth?.token || !lobby) return
 
       const response = await lobbyApi.removePlayer(
         auth.token,
@@ -84,7 +85,7 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
         <LineupPlayerCard
           closeLabel={closeLabel}
           player={player}
-          onClose={!lobby.queue && closeButton}
+          onClose={!lobby?.queue && closeButton}
         />
       )
     },

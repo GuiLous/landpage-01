@@ -4,9 +4,10 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, useCallback, useState } from 'react'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-import { updateUser } from '@/store/slices/userSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore } from '@/store/appStore'
+import { useUserStore } from '@/store/userStore'
 
 import { accountsApi } from '@/modelsApi'
 
@@ -15,8 +16,6 @@ import { Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function ModalInactiveAccountFormButton() {
-  const dispatch = useAppDispatch()
-
   const router = useRouter()
 
   const getAuth = useAuth()
@@ -43,20 +42,20 @@ export function ModalInactiveAccountFormButton() {
         return
       }
 
-      dispatch(updateUser(null))
+      useUserStore.getState().updateUser(null)
 
-      dispatch(
-        addToast({
-          title: 'Conta inativada com sucesso!',
-          variant: 'success',
-        })
-      )
+      useAppStore.getState().addToast({
+        title: 'Conta inativada com sucesso!',
+        variant: 'success',
+      })
 
       Cookies.remove('token')
 
+      revalidatePath({ path: '/' })
+
       return router.push('/')
     },
-    [auth, dispatch, isFetching, router, showErrorToast]
+    [auth, isFetching, router, showErrorToast]
   )
 
   return (

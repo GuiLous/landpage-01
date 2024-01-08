@@ -1,7 +1,7 @@
 import { BsEnvelopeFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
-import { UserInvites } from '@/store/slices/userSlice'
+import { UserInvites } from '@/store/userStore'
 
 import { CustomIcon } from '../../icons/CustomIcon'
 import { ModalSendInvitesChangeViewButton } from './ModalSendInvitesChangeViewButton'

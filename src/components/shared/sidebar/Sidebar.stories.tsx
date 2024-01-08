@@ -1,13 +1,8 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import appSlice, { AppState } from '@/store/slices/appSlice'
-import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
-import notificationSlice, {
-  Notification,
-} from '@/store/slices/notificationSlice'
-import userSlice, { User } from '@/store/slices/userSlice'
+import { App } from '@/store/appStore'
+import { Invite } from '@/store/invitesStore'
+import { Lobby } from '@/store/lobbyStore'
+import { Notification } from '@/store/notificationStore'
+import { User } from '@/store/userStore'
 
 import { Sidebar } from './Sidebar'
 
@@ -100,33 +95,12 @@ export const Default = {
       seats: 4,
     }
 
-    const app: AppState = {
+    const app: App = {
       toasts: [],
       friendListOpen: false,
       maintenance: false,
     }
 
-    const store = configureStore({
-      reducer: {
-        user: userSlice,
-        notifications: notificationSlice,
-        invites: inviteSlice,
-        lobby: lobbySlice,
-        app: appSlice,
-      },
-      preloadedState: {
-        user: { user },
-        notifications,
-        invites: { invites },
-        lobby,
-        app,
-      },
-    })
-
-    return (
-      <Provider store={store}>
-        <Sidebar {...props} />
-      </Provider>
-    )
+    return <Sidebar {...props} />
   },
 }

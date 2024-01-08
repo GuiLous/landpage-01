@@ -4,7 +4,7 @@ import { MouseEvent, useCallback, useEffect, useState } from 'react'
 
 import { MATCH_FOUND_GAP_TIMEOUT, TIME_OUT_MULTIPLIER } from '@/constants'
 
-import { useAppSelector } from '@/store'
+import { usePreMatchStore } from '@/store/preMatchStore'
 
 import { preMatchApi } from '@/modelsApi'
 
@@ -17,7 +17,7 @@ interface ModalMatchFoundButtonsProps {
 }
 
 export function ModalMatchFoundButtons({ open }: ModalMatchFoundButtonsProps) {
-  const { preMatch } = useAppSelector((state) => state.preMatch)
+  const preMatch = usePreMatchStore.getState().preMatch
 
   const showErrorToast = useShowErrorToast()
 

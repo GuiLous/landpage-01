@@ -6,7 +6,7 @@ import { NOT_FIRST_ACCESS_KEY } from '@/constants'
 
 import { storageService } from '@/services'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { Button } from '@/components/shared'
 
@@ -21,7 +21,7 @@ export function ModalWelcomeButton({
   setOpen,
   setOpenModalSendInvites,
 }: ModalWelcomeButtonProps) {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const handleOpenModalSendInvites = () => {
     setOpenModalSendInvites(true)

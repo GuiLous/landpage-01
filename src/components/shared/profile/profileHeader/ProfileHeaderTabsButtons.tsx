@@ -11,7 +11,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { LINK_PATHS, USER_LOGGED_BUTTONS } from '@/constants'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { BagPackIcon, Button, ModalSupport, Tooltip } from '@/components/shared'
 
@@ -39,7 +39,7 @@ export function ProfileHeaderTabsButtons({
   isUserLogged,
   username,
 }: ProfileHeaderTabsButtonsProps) {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const pathname = usePathname()
 

@@ -6,12 +6,12 @@ import { HiOutlineClipboardDocument } from 'react-icons/hi2'
 import { SiFivem } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
+import { useMatchStore } from '@/store/matchStore'
 
 import { Button, Tooltip } from '@/components/shared'
 
 export function ConnectIp() {
-  const { match } = useAppSelector((state) => state.match)
+  const match = useMatchStore.getState().match
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)

@@ -6,8 +6,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { revalidate } from '@/utils'
 
-import { useAppDispatch } from '@/store'
-import { updateUser } from '@/store/slices/userSlice'
+import { useUserStore } from '@/store/userStore'
 
 import { accountsApi } from '@/modelsApi'
 
@@ -16,8 +15,6 @@ import { Button, Tooltip } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function ProfileHeaderSyncSteamButton() {
-  const dispatch = useAppDispatch()
-
   const showErrorToast = useShowErrorToast()
 
   const getAuth = useAuth()
@@ -39,11 +36,11 @@ export function ProfileHeaderSyncSteamButton() {
       return
     }
 
-    dispatch(updateUser(response))
+    useUserStore.getState().updateUser(response)
 
     revalidate('profile')
     setIsFetching(false)
-  }, [auth, dispatch, showErrorToast])
+  }, [auth, showErrorToast])
 
   return (
     <Tooltip

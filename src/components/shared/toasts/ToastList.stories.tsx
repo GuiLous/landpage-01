@@ -1,8 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import appSlice, { AppState } from '@/store/slices/appSlice'
-import inviteSlice, { Invite } from '@/store/slices/inviteSlice'
+import { App } from '@/store/appStore'
+import { Invite } from '@/store/invitesStore'
 
 import { ToastList } from './ToastList'
 
@@ -11,17 +8,17 @@ export default {
   component: ToastList,
 }
 
-const app: AppState = {
+const app: App = {
   toasts: [
     {
-      id: 1,
+      id: '1',
       title: 'Feedback!',
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
       duration: 6,
       variant: 'success',
     },
     {
-      id: 2,
+      id: '2',
       title: 'Outro Feedback!',
       content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
       duration: 6,
@@ -34,16 +31,6 @@ const app: AppState = {
 
 const invites: Invite[] = []
 
-const store = configureStore({
-  reducer: { app: appSlice, invites: inviteSlice },
-  devTools: true,
-  preloadedState: { app, invites: { invites } },
-})
-
 export const Default = {
-  render: (props: any) => (
-    <Provider store={store}>
-      <ToastList {...props} />
-    </Provider>
-  ),
+  render: (props: any) => <ToastList {...props} />,
 }

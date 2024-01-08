@@ -1,27 +1,26 @@
-'use client'
-
 import Link from 'next/link'
 import { PiHouseFill } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
 
 import { formatSecondsToMinutes } from '@/utils'
 
-import { useAppSelector } from '@/store'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { useUserStore } from '@/store/userStore'
 
 import { Button, Timer } from '@/components/shared'
 
 export function SidebarLobbyButton() {
-  const lobby = useAppSelector((state) => state.lobby)
-  const { user } = useAppSelector((state) => state.user)
+  const lobby = useLobbyStore.getState().lobby
+  const user = useUserStore.getState().user
 
-  const isInQueue = lobby.queue
+  const isInQueue = lobby?.queue
     ? !user?.match_id && !lobby.restriction_countdown
     : false
 
-  const isRestricted = !!(lobby.restriction_countdown && !user?.match_id)
+  const isRestricted = !!(lobby?.restriction_countdown && !user?.match_id)
 
   const isOnLobby =
-    !lobby.queue && !user?.match_id && !lobby.restriction_countdown
+    !lobby?.queue && !user?.match_id && !lobby?.restriction_countdown
 
   const isIsMatch = user?.match_id
 
@@ -59,8 +58,8 @@ export function SidebarLobbyButton() {
           <div className="justify-end">
             <Button.Content className="text-sm font-semibold capitalize">
               {isInQueue &&
-                lobby.queue_time !== 0 &&
-                lobby.queue_time &&
+                lobby?.queue_time !== 0 &&
+                lobby?.queue_time &&
                 formatSecondsToMinutes(lobby.queue_time)}
 
               {isRestricted && lobby.restriction_countdown && (

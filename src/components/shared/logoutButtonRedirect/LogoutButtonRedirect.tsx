@@ -4,6 +4,8 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
+import { revalidatePath } from '@/utils'
+
 import { accountsApi } from '@/modelsApi'
 
 import { Button } from '@/components/shared'
@@ -39,6 +41,7 @@ export function LogoutButtonRedirect() {
       Cookies.remove('token')
       Cookies.remove('tried_login')
 
+      revalidatePath({ path: '/' })
       return router.push('/')
     },
     [showErrorToast, auth, router]

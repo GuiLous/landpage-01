@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import { LatestMatchesResult } from '@/store/slices/lobbySlice'
+import { LatestMatchesResult } from '@/store/lobbyStore'
 
 interface useLatestMatchesResultsProps {
   latestMatchesResults: LatestMatchesResult[]

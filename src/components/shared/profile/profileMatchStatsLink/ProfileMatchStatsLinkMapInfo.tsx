@@ -4,7 +4,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSecondsToHour } from '@/utils'
 
-import { GameType, MatchStatus } from '@/store/slices/matchSlice'
+import { GameType, MatchStatus } from '@/store/matchStore'
 
 import { Timer, Tooltip } from '@/components/shared'
 

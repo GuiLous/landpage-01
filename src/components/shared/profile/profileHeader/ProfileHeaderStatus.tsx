@@ -2,7 +2,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { humanizeStatus } from '@/utils'
 
-import { Status } from '@/store/slices/userSlice'
+import { Status } from '@/store/userStore'
 
 import { Badge } from '@/components/shared'
 

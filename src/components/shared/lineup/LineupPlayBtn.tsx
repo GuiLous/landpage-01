@@ -5,7 +5,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { formatSecondsToMinutes } from '@/utils'
 
-import { useAppSelector } from '@/store'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { usePreMatchStore } from '@/store/preMatchStore'
+import { useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
@@ -20,9 +22,9 @@ interface LineupPlayBtnProps {
 }
 
 export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
-  const lobby = useAppSelector((state) => state.lobby)
-  const { user } = useAppSelector((state) => state.user)
-  const { preMatch } = useAppSelector((state) => state.preMatch)
+  const user = useUserStore.getState().user
+  const lobby = useLobbyStore.getState().lobby
+  const preMatch = usePreMatchStore.getState().preMatch
 
   const getAuth = useAuth()
   const auth = getAuth()
@@ -31,11 +33,11 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const [openMatchFoundModal, setOpenMatchFoundModal] = useState(false)
 
-  const isInQueue = lobby.queue
+  const isInQueue = lobby?.queue
     ? !user?.match_id && !lobby.restriction_countdown
     : false
 
-  const isRestricted = !!(lobby.restriction_countdown && !user?.match_id)
+  const isRestricted = !!(lobby?.restriction_countdown && !user?.match_id)
 
   const isInMatch = !!user?.match_id
 
@@ -49,7 +51,11 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   const handleQueue = useCallback(
     async (action: 'start' | 'cancel') => {
-      if (lobby.restriction_countdown || lobby.restriction_countdown === 0)
+      if (
+        lobby?.restriction_countdown ||
+        lobby?.restriction_countdown === 0 ||
+        !lobby
+      )
         return
 
       if (preMatch || user?.match_id || !auth?.token) return
@@ -97,7 +103,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       <Button.Root
         queued={isInQueue}
         restricted={isRestricted}
-        disabled={(!isOwner && !lobby.queue) || !!preMatch || isInMatch}
+        disabled={(!isOwner && !lobby?.queue) || !!preMatch || isInMatch}
         className={twMerge(
           'max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
           'group',
@@ -150,7 +156,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
               )}
             >
               {lobby?.queue_time !== 0 &&
-                lobby.queue_time &&
+                lobby?.queue_time &&
                 formatSecondsToMinutes(lobby.queue_time)}
 
               {lobby?.queue_time === 0 && '00:00'}

@@ -1,8 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
-import userSlice, { User } from '@/store/slices/userSlice'
+import { Lobby } from '@/store/lobbyStore'
+import { User } from '@/store/userStore'
 
 import { SidebarLobbyButton } from './SidebarLobbyButton'
 
@@ -47,21 +44,6 @@ export const Default = {
       seats: 4,
     }
 
-    const store = configureStore({
-      reducer: {
-        user: userSlice,
-        lobby: lobbySlice,
-      },
-      preloadedState: {
-        user: { user },
-        lobby: { ...lobby },
-      },
-    })
-
-    return (
-      <Provider store={store}>
-        <SidebarLobbyButton {...props} />
-      </Provider>
-    )
+    return <SidebarLobbyButton {...props} />
   },
 }

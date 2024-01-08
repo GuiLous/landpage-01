@@ -1,7 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import userSlice, { User } from '@/store/slices/userSlice'
+import { User } from '@/store/userStore'
 
 import { SidebarAvatarLink } from './SidebarAvatarLink'
 
@@ -46,19 +43,6 @@ export const Default = {
       invites: [],
     }
 
-    const store = configureStore({
-      reducer: {
-        user: userSlice,
-      },
-      preloadedState: {
-        user: { user },
-      },
-    })
-
-    return (
-      <Provider store={store}>
-        <SidebarAvatarLink {...props} />
-      </Provider>
-    )
+    return <SidebarAvatarLink {...props} />
   },
 }

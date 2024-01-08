@@ -10,7 +10,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { MENU_LINKS, SOON_ITEMS } from '@/constants'
 
-import { useAppSelector } from '@/store'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useNotificationStore } from '@/store/notificationStore'
+import { useUserStore } from '@/store/userStore'
 
 import { Badge, Link } from '@/components/shared'
 
@@ -42,9 +44,10 @@ export function SidebarMenuItem({
   item,
   onClickFunction,
 }: SidebarMenuItemProps) {
-  const { user } = useAppSelector((state) => state.user)
-  const { invites } = useAppSelector((state) => state.invites)
-  const notifications = useAppSelector((state) => state.notifications)
+  const user = useUserStore.getState().user
+  const invites = useInvitesStore.getState().invites
+
+  const notifications = useNotificationStore.getState().notifications
 
   const isSoon = SOON_ITEMS.includes(item)
 

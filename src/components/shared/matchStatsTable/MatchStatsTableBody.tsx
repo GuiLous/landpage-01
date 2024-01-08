@@ -3,7 +3,9 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
-import { Player } from '@/store/slices/matchSlice'
+import { revalidatePath } from '@/utils'
+
+import { Player } from '@/store/matchStore'
 
 import { useAuth } from '@/hooks'
 
@@ -26,6 +28,7 @@ export function MatchStatsTableBody({
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
 
   const handleRedirectToProfile = useCallback(() => {
+    revalidatePath({ path: `/perfil/${auth?.id}` })
     return router.push(`/perfil/${auth?.id}`)
   }, [auth, router])
 

@@ -1,10 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
 import { Meta, StoryObj } from '@storybook/react'
-import { Provider } from 'react-redux'
 
-import notificationSlice, {
-  Notification,
-} from '@/store/slices/notificationSlice'
+import { Notification } from '@/store/notificationStore'
 
 import { DrawerNotificationsFooter } from './DrawerNotificationsFooter'
 
@@ -35,19 +31,6 @@ export const Default: StoryObj = {
       }
     })
 
-    const store = configureStore({
-      reducer: {
-        notifications: notificationSlice,
-      },
-      preloadedState: {
-        notifications,
-      },
-    })
-
-    return (
-      <Provider store={store}>
-        <DrawerNotificationsFooter {...props} />
-      </Provider>
-    )
+    return <DrawerNotificationsFooter {...props} />
   },
 }

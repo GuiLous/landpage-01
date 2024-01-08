@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { StatsMatchProfileType } from '@/functions'
 
-import { MatchStatus } from '@/store/slices/matchSlice'
+import { MatchStatus } from '@/store/matchStore'
 
 import { CustomIcon, Tooltip } from '@/components/shared'
 

@@ -4,8 +4,8 @@ import { twMerge } from 'tailwind-merge'
 
 import { CAN_RENDER_OPENED } from '@/constants'
 
-import { Friend } from '@/store/slices/friendSlice'
-import { Invite } from '@/store/slices/inviteSlice'
+import { Friend } from '@/store/friendStore'
+import { Invite } from '@/store/invitesStore'
 
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 import { DrawerFriendsListGroupItem } from './DrawerFriendsListGroupItem'

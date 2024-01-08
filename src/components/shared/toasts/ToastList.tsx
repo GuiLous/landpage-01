@@ -2,12 +2,12 @@
 
 import { animated as a, easings, useTransition } from '@react-spring/web'
 
-import { useAppSelector } from '@/store'
+import { useAppStore } from '@/store/appStore'
 
 import { Toast } from './Toast'
 
 export function ToastList() {
-  const toasts = useAppSelector((state) => state.app.toasts)
+  const toasts = useAppStore.getState().app.toasts
 
   const transitions = useTransition(toasts, {
     from: { opacity: 0, right: -40 },

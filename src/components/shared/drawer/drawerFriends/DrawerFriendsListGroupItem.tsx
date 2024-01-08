@@ -4,8 +4,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { AVAILABLE_STATUS, COLOR_STATUS, STATUS_MAP } from '@/constants'
 
-import { useAppSelector } from '@/store'
-import { Status } from '@/store/slices/userSlice'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { Status } from '@/store/userStore'
 
 import { Avatar, MenuContext } from '@/components/shared'
 
@@ -27,8 +28,8 @@ export function DrawerFriendsListGroupItem({
   username,
   title,
 }: DrawerFriendsListGroupItemProps) {
-  const lobby = useAppSelector((state) => state.lobby)
-  const { invites } = useAppSelector((state) => state.invites)
+  const lobby = useLobbyStore.getState().lobby
+  const invites = useInvitesStore.getState().invites
 
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -36,13 +37,13 @@ export function DrawerFriendsListGroupItem({
 
   humanStatus += status === 'in_game' ? ' (RANKED 5X5)' : ''
 
-  const alreadyInvitedByFriend = lobby?.invited_players_ids?.some(
+  const alreadyInvitedByFriend = !!lobby?.invited_players_ids?.some(
     (id) => id === user_id
   )
   const alreadyInvited =
     invites.filter((invite) => invite.to_player.user_id === user_id).length >
       0 || alreadyInvitedByFriend
-  const alreadyOnTeam = lobby?.players_ids?.includes(user_id)
+  const alreadyOnTeam = !!lobby?.players_ids?.includes(user_id)
 
   const isAvailable =
     !alreadyOnTeam && AVAILABLE_STATUS.includes(status) && !lobby?.queue

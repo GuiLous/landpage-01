@@ -3,7 +3,7 @@
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { SidebarAvatarLink } from './SidebarAvatarLink'
 import { SidebarFooter } from './SidebarFooter'
@@ -12,7 +12,7 @@ import { SidebarLogo } from './SidebarLogo'
 import { SidebarMenuItemList } from './SidebarMenuItemList'
 
 export function Sidebar() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const pathname = usePathname()
 

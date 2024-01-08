@@ -1,9 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import lobbySlice, { Lobby } from '@/store/slices/lobbySlice'
-import preMatchSlice, { PreMatch } from '@/store/slices/preMatchSlice'
-import userSlice, { User } from '@/store/slices/userSlice'
+import { Lobby } from '@/store/lobbyStore'
+import { PreMatch } from '@/store/preMatchStore'
+import { User } from '@/store/userStore'
 
 import { Lineup } from './Lineup'
 
@@ -72,20 +69,9 @@ export const Default = (props: any) => {
 
   const preMatch: PreMatch | null = null
 
-  const store = configureStore({
-    reducer: {
-      lobby: lobbySlice,
-      user: userSlice,
-      preMatch: preMatchSlice,
-    },
-    preloadedState: { lobby, user: { user }, preMatch: { preMatch } },
-  })
-
   return (
     <div className="h-screen">
-      <Provider store={store}>
-        <Lineup {...props} />
-      </Provider>
+      <Lineup {...props} />
     </div>
   )
 }

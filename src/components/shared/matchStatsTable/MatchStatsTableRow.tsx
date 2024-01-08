@@ -5,8 +5,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { AVAILABLE_STATUS } from '@/constants'
 
-import { useAppSelector } from '@/store'
-import { Player } from '@/store/slices/matchSlice'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { Player } from '@/store/matchStore'
 
 import { Avatar, MenuContext } from '@/components/shared'
 
@@ -57,12 +58,12 @@ export function MatchStatsTableRow({
   setSelectedPlayer,
   ...props
 }: MatchStatsTableRowProps) {
-  const lobby = useAppSelector((state) => state.lobby)
-  const { invites } = useAppSelector((state) => state.invites)
+  const lobby = useLobbyStore.getState().lobby
+  const invites = useInvitesStore.getState().invites
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const alreadyInvitedByFriend = lobby.invited_players_ids.some(
+  const alreadyInvitedByFriend = !!lobby?.invited_players_ids.some(
     (id) => id === selectedPlayer?.user_id
   )
 
@@ -72,13 +73,13 @@ export function MatchStatsTableRow({
     ).length > 0 || alreadyInvitedByFriend
 
   const alreadyOnTeam = selectedPlayer
-    ? lobby.players_ids.includes(selectedPlayer.user_id)
+    ? !!lobby?.players_ids.includes(selectedPlayer.user_id)
     : false
 
   const isAvailable = selectedPlayer
     ? !alreadyOnTeam &&
       AVAILABLE_STATUS.includes(selectedPlayer.status) &&
-      !lobby.queue
+      !lobby?.queue
     : false
 
   const onCloseMenu = () => {

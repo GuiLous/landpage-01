@@ -8,13 +8,12 @@ import { BiSolidLock } from 'react-icons/bi'
 import { RiCheckboxCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { isEmailValid } from '@/utils'
+import { isEmailValid, revalidatePath } from '@/utils'
 
 import { getJwtSecretKey } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { addToast } from '@/store/slices/appSlice'
-import { updateUser } from '@/store/slices/userSlice'
+import { useAppStore } from '@/store/appStore'
+import { useUserStore } from '@/store/userStore'
 
 import { accountsApi } from '@/modelsApi'
 
@@ -32,7 +31,6 @@ export function AccountChangeEmailCard() {
   const getAuth = useAuth()
   const auth = getAuth()
 
-  const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
 
   const [email, setEmail] = useState(auth?.email || '')
@@ -124,18 +122,18 @@ export function AccountChangeEmailCard() {
 
       Cookies.set('token', jwtToken)
 
-      dispatch(updateUser(response))
+      useUserStore.getState().updateUser(response)
 
-      dispatch(
-        addToast({
-          title: 'E-mail atualizado com sucesso!',
-          variant: 'success',
-        })
-      )
+      useAppStore.getState().addToast({
+        title: 'E-mail atualizado com sucesso!',
+        variant: 'success',
+      })
+
+      revalidatePath({ path: '/verificar' })
 
       return router.push('/verificar')
     },
-    [auth, dispatch, email, showErrorToast, router]
+    [auth, email, showErrorToast, router]
   )
 
   useOutsideClick({ ref: inputRef, handler: handleOutsideClick })

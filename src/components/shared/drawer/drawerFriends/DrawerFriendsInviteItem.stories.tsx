@@ -1,7 +1,3 @@
-import { Provider } from 'react-redux'
-
-import { store } from '@/store'
-
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 
 const status = ['online', 'offline', 'queued', 'in_game', 'teaming', 'away']
@@ -26,9 +22,5 @@ export default {
 }
 
 export const Default = (props: any) => {
-  return (
-    <Provider store={store}>
-      <DrawerFriendsInviteItem {...props} />
-    </Provider>
-  )
+  return <DrawerFriendsInviteItem {...props} />
 }

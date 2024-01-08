@@ -1,7 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { Provider } from 'react-redux'
-
-import userSlice, { User } from '@/store/slices/userSlice'
+import { User } from '@/store/userStore'
 
 import { MenuItem } from './MenuItem'
 
@@ -53,18 +50,5 @@ export const Default = (props: any) => {
     invites: [],
   }
 
-  const store = configureStore({
-    reducer: {
-      user: userSlice,
-    },
-    preloadedState: {
-      user: { user },
-    },
-  })
-
-  return (
-    <Provider store={store}>
-      <MenuItem setOpenModalSupport={() => console.log('')} {...props} />
-    </Provider>
-  )
+  return <MenuItem setOpenModalSupport={() => console.log('')} {...props} />
 }

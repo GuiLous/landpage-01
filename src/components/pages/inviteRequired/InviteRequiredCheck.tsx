@@ -4,6 +4,8 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 
+import { revalidatePath } from '@/utils'
+
 import { appApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
@@ -20,6 +22,7 @@ export function InviteRequiredCheck() {
 
     if (auth?.token || tried_login) return
 
+    revalidatePath({ path: '/' })
     router.push('/')
   }, [auth, router])
 
@@ -33,6 +36,7 @@ export function InviteRequiredCheck() {
     }
 
     if (!response.beta_required && !response.invite_required) {
+      revalidatePath({ path: '/not-found' })
       router.push('/not-found')
     }
   }, [router, showErrorToast])

@@ -2,7 +2,7 @@ import { redirect } from 'next/navigation'
 
 import { getAuthServer } from '@/utils'
 
-import { Match } from '@/store/slices/matchSlice'
+import { Match } from '@/store/matchStore'
 
 import { matchesApi } from '@/modelsApi'
 

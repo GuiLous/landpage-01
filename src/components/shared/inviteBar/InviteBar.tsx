@@ -1,6 +1,4 @@
-'use client'
-
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { Button } from '@/components/shared'
 
@@ -9,7 +7,7 @@ interface InviteBarProps {
 }
 
 export function InviteBar({ setOpenModalSendInvites }: InviteBarProps) {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   return (
     <header className="mt-12 max-h-12 animate-show-invite-bar items-center justify-center gap-6 bg-purple-400 py-2">

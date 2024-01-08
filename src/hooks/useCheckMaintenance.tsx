@@ -5,16 +5,16 @@ import { useCallback, useEffect } from 'react'
 
 import { MAINTENANCE_TIME_TO_CHECK_AGAIN } from '@/constants'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { updateMaintenance } from '@/store/slices/appSlice'
+import { revalidatePath } from '@/utils'
+
+import { useAppStore } from '@/store/appStore'
 
 import { appApi } from '@/modelsApi'
 
 import { useShowErrorToast } from './useShowErrorToast'
 
 export function useCheckMaintenance() {
-  const maintenance = useAppSelector((state) => state.app.maintenance)
-  const dispatch = useAppDispatch()
+  const maintenance = useAppStore.getState().app.maintenance
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -29,14 +29,16 @@ export function useCheckMaintenance() {
     }
 
     if (!response.maintenance) {
-      dispatch(updateMaintenance(false))
+      useAppStore.getState().updateMaintenance(false)
+      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     }
 
     if (response.maintenance) {
-      dispatch(updateMaintenance(true))
+      useAppStore.getState().updateMaintenance(true)
+      revalidatePath({ path: '/' })
     }
-  }, [router, showErrorToast, dispatch])
+  }, [router, showErrorToast])
 
   useEffect(() => {
     if (!maintenance) {

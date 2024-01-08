@@ -6,12 +6,12 @@ import { NOT_FIRST_ACCESS_KEY } from '@/constants'
 
 import { storageService } from '@/services'
 
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 import { ModalSendInvites, ModalWelcome } from '@/components/shared'
 
 export function LobbyRenderModalWelcome() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   const [openModalWelcome, setOpenModalWelcome] = useState(false)
   const [openModalSendInvites, setOpenModalSendInvites] = useState(false)

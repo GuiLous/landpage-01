@@ -3,16 +3,17 @@
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
+import { revalidatePath } from '@/utils'
+
 import { httpService } from '@/services'
 
-import { useAppDispatch } from '@/store'
-import { initFriends } from '@/store/slices/friendSlice'
-import { initInvites } from '@/store/slices/inviteSlice'
-import { updateLobby } from '@/store/slices/lobbySlice'
-import { updateMatch } from '@/store/slices/matchSlice'
-import { initNotifications } from '@/store/slices/notificationSlice'
-import { updatePreMatch } from '@/store/slices/preMatchSlice'
-import { updateUser } from '@/store/slices/userSlice'
+import { useFriendsStore } from '@/store/friendStore'
+import { useInvitesStore } from '@/store/invitesStore'
+import { useLobbyStore } from '@/store/lobbyStore'
+import { useMatchStore } from '@/store/matchStore'
+import { useNotificationStore } from '@/store/notificationStore'
+import { usePreMatchStore } from '@/store/preMatchStore'
+import { useUserStore } from '@/store/userStore'
 
 import {
   friendsApi,
@@ -26,7 +27,6 @@ import { useAuth } from './useAuth'
 import { useShowErrorToast } from './useShowErrorToast'
 
 export function useInitializeSlices() {
-  const dispatch = useAppDispatch()
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -37,6 +37,7 @@ export function useInitializeSlices() {
 
   const initializeSlices = useCallback(async () => {
     if (!auth?.token) {
+      revalidatePath({ path: '/' })
       router.push('/')
       return
     }
@@ -49,11 +50,12 @@ export function useInitializeSlices() {
     if (userResponse.errorMsg) {
       showErrorToast(userResponse.errorMsg)
       setIsLoading(false)
+      revalidatePath({ path: '/' })
       router.push('/')
       return
     }
 
-    dispatch(updateUser(userResponse))
+    useUserStore.getState().updateUser(userResponse)
 
     if (
       userResponse.is_active &&
@@ -76,7 +78,7 @@ export function useInitializeSlices() {
         return
       }
 
-      dispatch(updateLobby(lobbyResponse))
+      useLobbyStore.getState().updateLobby(lobbyResponse)
 
       // friends
       const friendsResponse = await friendsApi.list(auth.token, {
@@ -89,7 +91,7 @@ export function useInitializeSlices() {
         return
       }
 
-      dispatch(initFriends(friendsResponse))
+      useFriendsStore.getState().initFriends(friendsResponse)
 
       // invites
       const invitesResponse = await lobbyApi.listInvites(auth.token, {
@@ -102,7 +104,7 @@ export function useInitializeSlices() {
         return
       }
 
-      dispatch(initInvites(invitesResponse))
+      useInvitesStore.getState().initInvites(invitesResponse)
 
       // notifications
       const notificationsResponse = await notificationsApi.list(auth.token, {
@@ -115,7 +117,7 @@ export function useInitializeSlices() {
         return
       }
 
-      dispatch(initNotifications(notificationsResponse))
+      useNotificationStore.getState().initNotifications(notificationsResponse)
 
       // match
       if (userResponse.match_id) {
@@ -133,7 +135,7 @@ export function useInitializeSlices() {
           return
         }
 
-        dispatch(updateMatch(matchResponse))
+        useMatchStore.getState().updateMatch(matchResponse)
       }
 
       // preMatch
@@ -148,12 +150,13 @@ export function useInitializeSlices() {
           return
         }
 
-        dispatch(updatePreMatch(preMatchResponse))
+        usePreMatchStore.getState().updatePreMatch(preMatchResponse)
       }
     }
 
+    revalidatePath({ path: '/' })
     setIsLoading(false)
-  }, [auth?.token, dispatch, router, showErrorToast])
+  }, [auth?.token, router, showErrorToast])
 
   return { isLoading, initializeSlices }
 }

@@ -3,7 +3,7 @@
 import * as PrimitiveAvatar from '@radix-ui/react-avatar'
 import { VariantProps, tv } from 'tailwind-variants'
 
-import { Status } from '@/store/slices/userSlice'
+import { Status } from '@/store/userStore'
 
 import { Badge } from '@/components/shared'
 

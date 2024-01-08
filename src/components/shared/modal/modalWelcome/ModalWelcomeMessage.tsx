@@ -1,9 +1,7 @@
-'use client'
-
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 export function ModalWelcomeMessage() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   return (
     <p className=" text-center text-sm text-white">

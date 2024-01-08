@@ -1,6 +1,6 @@
 import { getAuthServer } from '@/utils'
 
-import { GameType, MatchStatus } from '@/store/slices/matchSlice'
+import { GameType, MatchStatus } from '@/store/matchStore'
 
 import { matchesApi } from '@/modelsApi'
 

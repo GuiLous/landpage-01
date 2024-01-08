@@ -1,9 +1,7 @@
-'use client'
-
-import { useAppSelector } from '@/store'
+import { useUserStore } from '@/store/userStore'
 
 export function ModalSendInvitesInitialMessage() {
-  const { user } = useAppSelector((state) => state.user)
+  const user = useUserStore.getState().user
 
   return (
     <div className="max-w-fit flex-initial flex-col items-center justify-center gap-9">

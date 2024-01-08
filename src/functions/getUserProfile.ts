@@ -2,9 +2,9 @@ import { redirect } from 'next/navigation'
 
 import { getAuthServer } from '@/utils'
 
-import { LatestMatchesResult } from '@/store/slices/lobbySlice'
-import { Stats } from '@/store/slices/matchSlice'
-import { Avatar, Status } from '@/store/slices/userSlice'
+import { LatestMatchesResult } from '@/store/lobbyStore'
+import { Stats } from '@/store/matchStore'
+import { Avatar, Status } from '@/store/userStore'
 
 import { profilesApi } from '@/modelsApi'
 

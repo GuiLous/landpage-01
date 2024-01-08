@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 
-import { useAppSelector } from '@/store'
-import { Friend } from '@/store/slices/friendSlice'
+import { Friend } from '@/store/friendStore'
+import { useLobbyStore } from '@/store/lobbyStore'
 
 import { LevelBadge } from '@/components/shared'
 
@@ -21,8 +21,8 @@ export function LineupPlayerCard({
   player,
   onClose,
 }: LineupPlayerCardProps) {
-  const lobby = useAppSelector((state) => state.lobby)
-  const isLobbyOwner = player.user_id === lobby.id
+  const lobby = useLobbyStore.getState().lobby
+  const isLobbyOwner = player.user_id === lobby?.id
 
   return (
     <div

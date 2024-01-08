@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import { useAppDispatch, useAppSelector } from '@/store'
-import { readAllNotifications } from '@/store/slices/notificationSlice'
+import { revalidatePath } from '@/utils'
+
+import { useNotificationStore } from '@/store/notificationStore'
 
 import { notificationsApi } from '@/modelsApi'
 
@@ -10,9 +11,7 @@ import { Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function DrawerNotificationsFooter() {
-  const notifications = useAppSelector((state) => state.notifications)
-
-  const dispatch = useAppDispatch()
+  const notifications = useNotificationStore.getState().notifications
 
   const getAuth = useAuth()
   const auth = getAuth()
@@ -33,7 +32,10 @@ export function DrawerNotificationsFooter() {
     const response = await notificationsApi.readAll(auth.token)
 
     if (response.errorMsg) showErrorToast(response.errorMsg)
-    else if (response) dispatch(readAllNotifications())
+    else if (response) {
+      useNotificationStore.getState().readAllNotifications()
+      revalidatePath({ path: '/' })
+    }
 
     setFetching(false)
   }

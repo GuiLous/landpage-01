@@ -3,7 +3,7 @@ import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { Status } from '@/store/slices/userSlice'
+import { Status } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 

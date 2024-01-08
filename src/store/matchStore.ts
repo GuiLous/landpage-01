@@ -1,6 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { create } from 'zustand'
 
-import { Avatar, Status } from './userSlice'
+import { Avatar, Status } from './userStore'
 
 const stats = {
   kills: 0,
@@ -103,33 +103,20 @@ export type Match = {
   winner_id: number
 }
 
-type MatchState = {
+type MatchStore = {
   match: Match | null
+  updateMatch: (match: Match | null) => void
+  cancelMatch: () => void
 }
 
-const initialState: MatchState = {
+export const useMatchStore = create<MatchStore>()((set) => ({
   match: null,
-}
-
-export const matchSlice = createSlice({
-  name: 'match',
-  initialState,
-  reducers: {
-    updateMatch: (state, action) => {
-      state.match = action.payload
-      return state
-    },
-
-    cancelMatch: (state) => {
-      if (!state.match) return
-
-      return {
-        match: { ...state.match, status: 'cancelled' },
-      }
-    },
-  },
-})
-
-export const { updateMatch, cancelMatch } = matchSlice.actions
-
-export default matchSlice.reducer
+  updateMatch: (match: Match | null) =>
+    set(() => ({
+      match,
+    })),
+  cancelMatch: () =>
+    set((state) => ({
+      match: state.match && { ...state.match, status: 'cancelled' },
+    })),
+}))
