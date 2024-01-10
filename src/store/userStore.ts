@@ -26,6 +26,7 @@ export type Account = {
   level_points?: number
   is_verified?: boolean
   avatar?: Avatar
+  coins: number
 }
 
 export type User = {
