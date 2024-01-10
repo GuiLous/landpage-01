@@ -26,6 +26,8 @@ export type ItemMenu =
   | 'suporte'
   | 'sair'
 
+type LinkUrlType = 'loja' | 'ranking'
+
 interface SidebarMenuItemProps {
   item: ItemMenu
   onClickFunction: (item: ItemMenu) => void
@@ -61,6 +63,11 @@ export function SidebarMenuItem({
 
   const isLink = MENU_LINKS.includes(item)
 
+  const constLinksUrl = {
+    loja: '/loja',
+    ranking: '/ranking',
+  }
+
   return (
     <div
       className={twMerge(
@@ -71,13 +78,13 @@ export function SidebarMenuItem({
       )}
     >
       <Link
-        href={isLink ? '/' : ''}
-        asChild
+        href={isLink && !isSoon ? constLinksUrl[item as LinkUrlType] : ''}
+        asChild={!isLink || isSoon}
         className={twMerge(
           'flex h-full flex-1 items-center gap-3 px-3 py-2',
           isSoon && 'hover:text-gray-300 cursor-default active:text-gray-300'
         )}
-        onClick={() => (isSoon ? null : onClickFunction(item))}
+        onClick={() => (isSoon || isLink ? null : onClickFunction(item))}
         data-testid={item}
       >
         <button
