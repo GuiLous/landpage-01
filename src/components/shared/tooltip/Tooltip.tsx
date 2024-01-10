@@ -44,7 +44,7 @@ export function Tooltip({
             )}
             side={side}
           >
-            <PrimitiveTooltip.Arrow className="fill-gray-1000" />
+            <PrimitiveTooltip.Arrow className="fill-gray-700/50" />
 
             <span
               className={twMerge(
