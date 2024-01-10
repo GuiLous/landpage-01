@@ -39,6 +39,8 @@ export type SubTabTypes =
   | 'cards de jogador'
   | 'perfil'
 
+type Item = Partial<StoreItem>
+
 const tabs = {
   arsenal: {
     tabs: ['pistol', 'submachineguns', 'shotguns', 'machineguns', 'rifles'],
@@ -97,24 +99,11 @@ export function InventoryWrapperContent({
 
   const [activeTab, setActiveTab] = useState<TabTypes>('arsenal')
   const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>('pistolas')
-  const [itemsByType, setItemsByType] = useState<StoreItem[]>([
+  const [itemsByType, setItemsByType] = useState<Partial<Item[]>>([
     {
       id: 0,
       foreground_image: notSelected.src,
       in_use: false,
-      item_type: 'persona',
-      name: '',
-      handle: '',
-      price: '',
-      release_date: '',
-      description: '',
-      discount: 0,
-      background_image: '',
-      box: '',
-      box_draw_chance: '',
-      collection: '',
-      featured: false,
-      can_use: true,
     },
   ])
   const [itemSelected, setItemSelected] = useState<StoreItem | null>(null)
@@ -124,7 +113,7 @@ export function InventoryWrapperContent({
 
   const disableSwitch = TABS_NO_SWITCH.includes(activeItemType)
 
-  const itemInUse = itemsByType.find((item) => item.in_use)
+  const itemInUse = itemsByType.find((item) => item?.in_use)
   const hasItemInUse = !!itemInUse
 
   const filterItemsByType = useCallback(() => {
@@ -171,7 +160,7 @@ export function InventoryWrapperContent({
     }) => {
       if (!auth?.token) return
 
-      const itemById = itemsByType.find((item) => item.id === item_id)
+      const itemById = itemsByType.find((item) => item?.id === item_id)
 
       if (itemById) {
         const payload = { in_use: !itemById.in_use }
@@ -210,7 +199,7 @@ export function InventoryWrapperContent({
 
   useEffect(() => {
     if (itemsByType.length > 0) {
-      setItemSelected(itemsByType[0])
+      setItemSelected(itemsByType[0] as StoreItem)
     } else {
       setItemSelected(null)
     }
@@ -252,7 +241,7 @@ export function InventoryWrapperContent({
               <ItemsSelectList
                 hasItemInUse={hasItemInUse}
                 itemSelectedId={itemSelected?.id}
-                items={itemsByType}
+                items={itemsByType as StoreItem[]}
                 setItemSelected={setItemSelected}
                 setNewItemSelected={setNewItemSelected}
               />
@@ -264,7 +253,7 @@ export function InventoryWrapperContent({
               handleUpdateItemInUse={handleUpdateItemInUse}
               item={itemSelected}
               itemType={activeItemType}
-              itemInUse={itemInUse}
+              itemInUse={itemInUse as StoreItem}
             />
           )}
         </aside>
