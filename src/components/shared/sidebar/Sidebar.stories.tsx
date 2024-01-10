@@ -29,6 +29,7 @@ export const Default = {
           small: '',
           large: ' ',
         },
+        coins: 0,
         username: 'User1',
         level: 2,
       },

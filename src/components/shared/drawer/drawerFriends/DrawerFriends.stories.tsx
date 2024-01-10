@@ -41,6 +41,7 @@ export const Default = (props: any) => {
         small: '',
         large: '',
       },
+      coins: 0,
     },
     invites_available_count: 0,
     invites: [],
