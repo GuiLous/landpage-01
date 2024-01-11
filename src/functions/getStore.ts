@@ -10,17 +10,24 @@ export type ItemType =
   | 'weapon'
   | 'decorative'
 
+export type Media = {
+  id: number
+  file: string
+  media_type: string
+}
+
 export interface StoreItem {
   id: number
   name: string
   item_type: ItemType
-  subtype?: string
+  subtype?: 'ata' | 'def'
   handle: string
   price: number
   release_date: string
   description: string
   discount: number
-  background_image: string
+  background_image?: string
+  decorative_image?: string
   foreground_image: string
   box: any
   box_draw_chance: any
@@ -33,6 +40,8 @@ export interface StoreItem {
   items?: StoreItem[]
   is_purchased?: boolean
   item_id: number
+  media: Media[]
+  is_starter: boolean
 }
 
 export interface Store {
@@ -45,7 +54,7 @@ export async function getStore(): Promise<Store> {
   const auth = getAuthServer()
 
   const response = await storeApi.listStore(auth.token, {
-    next: { revalidate: 300, tags: ['inventory'] },
+    next: { revalidate: 300, tags: ['store'] },
   })
 
   return response

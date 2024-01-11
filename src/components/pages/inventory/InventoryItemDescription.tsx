@@ -60,12 +60,12 @@ export function InventoryItemDescription({
           </div>
 
           <div className="flex-col gap-3">
-            <p className="text-sm leading-none text-white">
+            <p className={twMerge('text-sm text-white', 'leading-none')}>
               {item.description}
             </p>
 
             {!isProfileItem && (
-              <span className="text-sm leading-none text-white">
+              <span className={twMerge('text-sm text-white', 'leading-none')}>
                 No jogo desde -{' '}
                 <span className="font-semibold leading-none">
                   {formatDateToPtFormat(item.release_date)}

@@ -1,22 +1,11 @@
 'use client'
 
-import { useEffect, useState } from 'react'
 import { BiSolidLock } from 'react-icons/bi'
 
 import { useAuth } from '@/hooks'
 
-import { userAuthToken } from '@/middleware'
-
 export function VerifyHeader() {
-  const [auth, setAuth] = useState<userAuthToken | null>(null)
-
-  const getAuth = useAuth()
-
-  useEffect(() => {
-    const auth = getAuth()
-
-    setAuth(auth)
-  }, [getAuth])
+  const auth = useAuth()
 
   return (
     <header className="flex-col items-center justify-center gap-7">

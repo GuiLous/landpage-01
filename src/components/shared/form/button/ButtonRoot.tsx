@@ -32,6 +32,9 @@ const button = tv({
     pagination: {
       true: 'h-8 w-8 cursor-pointer rounded-lg bg-gray-700 hover:bg-gray-400 active:bg-gray-700 disabled:cursor-default disabled:bg-gray-400 disabled:hover:bg-gray-400',
     },
+    light: {
+      true: 'bg-purple-300 hover:bg-purple-300 active:bg-purple-300 disabled:bg-purple-300',
+    },
   },
   defaultVariants: {
     disabled: false,
@@ -41,6 +44,7 @@ const button = tv({
     profile: false,
     ghost: false,
     pagination: false,
+    light: false,
   },
 })
 
@@ -59,6 +63,7 @@ export function ButtonRoot({
   profile,
   ghost,
   pagination,
+  light,
   ...props
 }: ButtonRootProps) {
   const Component = asChild ? Slot : 'button'
@@ -74,6 +79,7 @@ export function ButtonRoot({
         profile,
         ghost,
         pagination,
+        light,
         className,
       })}
       {...props}

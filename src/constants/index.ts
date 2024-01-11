@@ -10,6 +10,7 @@ export const PRIVATE_ROUTES = [
   '/conta',
   '/inventario',
   '/loja',
+  '/checkout',
 ]
 export const PUBLIC_ROUTES = ['/', '/not-found', '/manutencao']
 export const ROUTES_TO_INITIALIZE_SLICES = [
@@ -19,6 +20,7 @@ export const ROUTES_TO_INITIALIZE_SLICES = [
   '/perfil',
   '/manutencao',
   '/loja',
+  '/inventario',
 ]
 export const ROUTES_SIGNUP = [
   '/api',

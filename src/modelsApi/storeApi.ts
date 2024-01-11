@@ -4,9 +4,11 @@ export const storeApi = {
   async listStore(token: string, options?: RequestInit) {
     return await baseApi.list({ endpoint: '/store/', token, options })
   },
+
   async listProducts(token: string, options?: RequestInit) {
     return await baseApi.list({ endpoint: '/store/products/', token, options })
   },
+
   async buyProduct(token: string, payload: any, options?: RequestInit) {
     return await baseApi.create({
       endpoint: '/store/products/',
@@ -15,6 +17,7 @@ export const storeApi = {
       options,
     })
   },
+
   async buyItem(token: string, item_id: number, options?: RequestInit) {
     return await baseApi.create({
       endpoint: `/store/items/${item_id}`,
@@ -22,6 +25,7 @@ export const storeApi = {
       options,
     })
   },
+
   async buyBox(token: string, box_id: number, options?: RequestInit) {
     return await baseApi.create({
       endpoint: `/store/boxes/${box_id}`,
@@ -29,6 +33,7 @@ export const storeApi = {
       options,
     })
   },
+
   async buyCollection(
     token: string,
     collection_id: number,
@@ -40,9 +45,11 @@ export const storeApi = {
       options,
     })
   },
+
   async listInventory(token: string, options?: RequestInit) {
     return await baseApi.list({ endpoint: '/store/inventory/', token, options })
   },
+
   async updateInUse(
     token: string,
     item_id: number,

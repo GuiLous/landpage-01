@@ -92,8 +92,7 @@ interface InventoryWrapperContentProps {
 export function InventoryWrapperContent({
   inventory,
 }: InventoryWrapperContentProps) {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -188,7 +187,7 @@ export function InventoryWrapperContent({
         }
       }
     },
-    [auth, itemsByType, activeTab, activeSubTab, showErrorToast]
+    [auth?.token, itemsByType, activeTab, activeSubTab, showErrorToast]
   )
 
   useEffect(() => {

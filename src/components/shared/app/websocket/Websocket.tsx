@@ -25,12 +25,11 @@ export function Websocket() {
 
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const router = useRouter()
 
-  const { sendJsonMessage } = useWebSocket(
+  useWebSocket(
     process.env.NEXT_PUBLIC_REACT_APP_WS_URL || '',
     {
       onMessage: (event) => handleMessageReceived(event),
@@ -86,7 +85,7 @@ export function Websocket() {
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, auth, user])
+  }, [showErrorToast, auth?.token, user])
 
   const handleMessageReceived = useCallback(
     (event: any) => {
@@ -237,7 +236,9 @@ export function Websocket() {
           break
       }
 
-      revalidatePath({ path: '/' })
+      if (data.meta.action !== 'keep_alive/ping') {
+        revalidatePath({ path: '/' })
+      }
     },
     [
       logout,

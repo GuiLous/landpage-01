@@ -23,7 +23,8 @@ export function ProfileMatchHistoryListHeader({
 
         <span
           className={twMerge(
-            'text-gray-300 leading-none text-sm',
+            'text-gray-300 text-sm',
+            'leading-none',
             '3xl:text-xs'
           )}
         >

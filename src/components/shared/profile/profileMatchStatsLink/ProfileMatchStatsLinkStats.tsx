@@ -64,7 +64,12 @@ export function ProfileMatchStatsLinkStats({
           style={{ minWidth: `${stat.minWidth}px` }}
         >
           <Tooltip content={stat.label}>
-            <span className="items-start text-xs font-medium uppercase leading-none text-gray-300">
+            <span
+              className={twMerge(
+                'items-start text-xs font-medium uppercase text-gray-300',
+                'leading-none'
+              )}
+            >
               {stat.title}
             </span>
           </Tooltip>

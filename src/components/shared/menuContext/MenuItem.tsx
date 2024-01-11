@@ -40,9 +40,7 @@ export function MenuItem({
 
   const router = useRouter()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
-
+  const auth = useAuth()
   const showErrorToast = useShowErrorToast()
 
   const isDisabled = keyMenu === 'invite' && !isAvailable

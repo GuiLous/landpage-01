@@ -84,7 +84,8 @@ export function InventorySubItemTab({
         >
           <span
             className={twMerge(
-              'text-sm transition-colors leading-none text-gray-300',
+              'text-sm transition-colors text-gray-300',
+              'leading-none',
               'hover:text-white',
               activeSubTab === tab && 'text-white'
             )}

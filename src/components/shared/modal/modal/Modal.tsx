@@ -17,6 +17,7 @@ interface ModalContent {
   className?: string
   showCloseButton?: boolean
   justifyTitle?: 'start' | 'center' | 'end'
+  isOver?: boolean
 }
 
 export function Modal({ open, onOpenChange, children }: ModalProps) {
@@ -33,6 +34,7 @@ function ModalContent({
   className,
   justifyTitle = 'center',
   showCloseButton = true,
+  isOver = false,
 }: ModalContent) {
   return (
     <Dialog.Portal>
@@ -40,7 +42,8 @@ function ModalContent({
         className={twMerge(
           'fixed backdrop-blur-sm inset-0 z-40 bg-black/[.85]',
           'data-[state=closed]:animate-[dialog-overlay-hide_200ms]',
-          'data-[state=open]:animate-[dialog-overlay-show_200ms]'
+          'data-[state=open]:animate-[dialog-overlay-show_200ms]',
+          isOver && 'z-50'
         )}
       />
       <Dialog.Content
@@ -62,7 +65,8 @@ function ModalContent({
           >
             <Dialog.Title
               className={twMerge(
-                'text-xl font-bold leading-none text-white',
+                'text-xl font-bold text-white',
+                'leading-none',
                 '3xl:text-lg'
               )}
             >

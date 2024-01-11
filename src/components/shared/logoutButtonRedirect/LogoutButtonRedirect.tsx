@@ -13,8 +13,7 @@ import { Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function LogoutButtonRedirect() {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -44,7 +43,7 @@ export function LogoutButtonRedirect() {
       revalidatePath({ path: '/' })
       return router.push('/')
     },
-    [showErrorToast, auth, router]
+    [showErrorToast, auth?.token, router]
   )
 
   return (

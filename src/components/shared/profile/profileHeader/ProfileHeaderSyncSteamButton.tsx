@@ -17,8 +17,7 @@ import { useAuth, useShowErrorToast } from '@/hooks'
 export function ProfileHeaderSyncSteamButton() {
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const [isFetching, setIsFetching] = useState(false)
 
@@ -40,7 +39,7 @@ export function ProfileHeaderSyncSteamButton() {
 
     revalidate('profile')
     setIsFetching(false)
-  }, [auth, showErrorToast])
+  }, [auth?.token, showErrorToast])
 
   return (
     <Tooltip

@@ -68,3 +68,9 @@ ul, ol {
 div[data-radix-popper-content-wrapper]{
 	width: auto;
 }
+
+//SWIPER
+.swiper-button-disabled {
+	opacity: 0.5;
+	pointer-events: none;
+}

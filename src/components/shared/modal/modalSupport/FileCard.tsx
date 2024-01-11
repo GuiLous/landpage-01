@@ -64,7 +64,8 @@ export function FileCard({ file, onRemoveFiles }: FileCardProps) {
         >
           <span
             className={twMerge(
-              'truncate text-xs leading-none text-white',
+              'truncate text-xs text-white',
+              'leading-none',
               '3xl:text-[0.625rem]'
             )}
           >

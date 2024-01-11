@@ -1,5 +1,3 @@
-import { User } from '@/store/userStore'
-
 import { MenuItem } from './MenuItem'
 
 const items = ['invite', 'profile', 'steam', 'report']
@@ -29,27 +27,5 @@ export default {
 }
 
 export const Default = (props: any) => {
-  const user: User = {
-    id: 1,
-    status: 'online',
-    email: 'user@gmail.com',
-    is_active: true,
-    is_online: true,
-    lobby_id: 1,
-    match_id: null,
-    pre_match_id: null,
-    account: {
-      avatar: {
-        medium:
-          'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-        small: '',
-        large: '',
-      },
-      coins: 0,
-    },
-    invites_available_count: 0,
-    invites: [],
-  }
-
   return <MenuItem setOpenModalSupport={() => console.log('')} {...props} />
 }

@@ -39,8 +39,7 @@ export function Toast({
 
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const dynamicDuration = content.length <= 67 ? duration : 10
 

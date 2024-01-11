@@ -30,14 +30,19 @@ export function StoreItemCardHeader({
         alt={item.name}
         fill
         sizes="100%"
-        className="object-scale-down"
+        className="object-scale-down p-2"
         draggable={false}
         priority
       />
 
       {item.discount > 0 && (
         <div className="absolute bottom-3 left-3 max-w-fit flex-initial items-center justify-center rounded-sm bg-red-500 p-1.5">
-          <span className="text-sm font-medium leading-none text-white">
+          <span
+            className={twMerge(
+              'text-sm font-medium text-white',
+              'leading-none'
+            )}
+          >
             {Number(item.discount).toFixed(0)}% OFF
           </span>
         </div>

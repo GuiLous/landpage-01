@@ -147,6 +147,8 @@ const config: Config = {
         gradient_match_table_loser:
           'linear-gradient(90deg, rgba(246, 53, 53, 0.5) 0%, rgba(246, 53, 53, 0.2) 100%, #333)',
         gradient_store_item: 'linear-gradient(to top, #6847FF 0, #1B1B1B 90%)',
+        gradient_rc_card:
+          'linear-gradient(to top, rgba(104, 71, 255, 0.5) 0, #1b1b1b 73%)',
       },
       animation: {
         carousel: 'carousel 1s ease-in-out',

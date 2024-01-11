@@ -10,8 +10,7 @@ import { Link } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function InactiveGoBackLink() {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -26,7 +25,7 @@ export function InactiveGoBackLink() {
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, auth])
+  }, [showErrorToast, auth?.token])
 
   return (
     <div className="mt-4 flex-initial justify-center">

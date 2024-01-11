@@ -48,7 +48,8 @@ export function Tooltip({
 
             <span
               className={twMerge(
-                'block text-sm font-semibold leading-none text-white',
+                'block text-sm font-semibold text-white',
+                'leading-none',
                 className
               )}
             >

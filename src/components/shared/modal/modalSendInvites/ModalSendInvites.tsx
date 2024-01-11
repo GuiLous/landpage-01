@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
 
@@ -41,7 +42,12 @@ export function ModalSendInvites({ open, setOpen }: ModalSendInvitesProps) {
             {hasInvites ? (
               <ModalSendInvitesInitialMessage />
             ) : (
-              <p className="min-w-[542px] text-center text-sm leading-none text-white">
+              <p
+                className={twMerge(
+                  'min-w-[542px] text-center text-sm text-white',
+                  'leading-none'
+                )}
+              >
                 Você não tem mais convites disponíveis.
               </p>
             )}

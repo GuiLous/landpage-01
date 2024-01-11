@@ -129,7 +129,8 @@ export function FileInput({
           >
             <p
               className={twMerge(
-                'text-xs leading-none text-gray-300',
+                'text-xs text-gray-300',
+                'leading-none',
                 '3xl:text-[0.625rem]'
               )}
             >

@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { useUserStore } from '@/store/userStore'
 
 export function ModalSendInvitesInitialMessage() {
@@ -7,7 +9,12 @@ export function ModalSendInvitesInitialMessage() {
     <div className="max-w-fit flex-initial flex-col items-center justify-center gap-9">
       <p className="text-center text-sm text-white">
         Você ainda tem{' '}
-        <span className="text-sm font-semibold leading-none text-white">
+        <span
+          className={twMerge(
+            'text-sm font-semibold text-white',
+            'leading-none'
+          )}
+        >
           {String(user?.invites_available_count).padStart(2, '0')} convites
         </span>{' '}
         . Chama sua tropa e jogue agora!

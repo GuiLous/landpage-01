@@ -21,8 +21,7 @@ export function ModalMatchFoundButtons({ open }: ModalMatchFoundButtonsProps) {
 
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const [timeExpired, setTimeExpired] = useState(false)
 
@@ -40,7 +39,7 @@ export function ModalMatchFoundButtons({ open }: ModalMatchFoundButtonsProps) {
         showErrorToast(response.errorMsg)
       }
     },
-    [timeExpired, showErrorToast, auth]
+    [timeExpired, showErrorToast, auth?.token]
   )
 
   useEffect(() => {

@@ -22,8 +22,7 @@ interface ModalSendInvitesFormProps {
 export function ModalSendInvitesForm({
   hasInvites,
 }: ModalSendInvitesFormProps) {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 

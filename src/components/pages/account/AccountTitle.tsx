@@ -7,7 +7,8 @@ export function AccountTitle() {
     >
       <h1
         className={twMerge(
-          'font-semibold leading-none text-white text-xl',
+          'font-semibold text-white text-xl',
+          'leading-none',
           '3xl:text-lg'
         )}
       >

@@ -35,7 +35,8 @@ export function ProfileHeaderStatus({
           />
           <span
             className={twMerge(
-              'leading-none text-white text-sm',
+              'text-white text-sm',
+              'leading-none',
               '3xl:text-xs'
             )}
           >

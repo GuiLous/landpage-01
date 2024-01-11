@@ -14,7 +14,12 @@ export function ProfileHeatmapStatsCardStatItem({
   return (
     <div className="flex-initial items-center justify-between">
       <div className="max-w-fit flex-initial flex-col justify-between gap-1.5">
-        <span className="text-xs font-medium uppercase leading-none text-gray-300">
+        <span
+          className={twMerge(
+            'text-xs font-medium uppercase text-gray-300',
+            'leading-none'
+          )}
+        >
           {name}
         </span>
 
@@ -38,7 +43,12 @@ export function ProfileHeatmapStatsCardStatItem({
           {stat}
         </span>
 
-        <span className="text-xs font-medium leading-none text-gray-300">
+        <span
+          className={twMerge(
+            'text-xs font-medium text-gray-300',
+            'leading-none'
+          )}
+        >
           ACERTOS
         </span>
       </div>

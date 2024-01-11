@@ -36,7 +36,7 @@ export function DrawerNotificationsItem({
           </div>
 
           <div>
-            <span className="text-xs leading-none text-gray-200">
+            <span className={twMerge('text-xs text-gray-200', 'leading-none')}>
               {DateTime.fromISO(String(create_date)).toRelative()}
             </span>
           </div>

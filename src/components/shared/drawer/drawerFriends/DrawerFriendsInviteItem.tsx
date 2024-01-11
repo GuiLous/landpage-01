@@ -26,8 +26,7 @@ export function DrawerFriendsInviteItem({
 }: DrawerFriendsInviteItemProps) {
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const handleAccept = useCallback(async () => {
     if (!auth?.token) return
@@ -37,7 +36,7 @@ export function DrawerFriendsInviteItem({
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [invite_id, showErrorToast, auth])
+  }, [invite_id, showErrorToast, auth?.token])
 
   const handleRefuse = useCallback(async () => {
     if (!auth?.token) return
@@ -47,7 +46,7 @@ export function DrawerFriendsInviteItem({
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, invite_id, auth])
+  }, [showErrorToast, invite_id, auth?.token])
 
   return (
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">

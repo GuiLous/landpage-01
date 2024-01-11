@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
 
@@ -10,7 +11,7 @@ export function SidebarRC() {
   const user = useUserStore.getState().user
 
   return (
-    <section className="items-center justify-between overflow-hidden rounded border border-purple-400 bg-purple-400/15 pl-3">
+    <section className="items-center justify-between overflow-hidden rounded border-none bg-purple-400/15 pl-3 outline outline-1 outline-purple-400">
       <div className="items-center gap-3">
         <Image
           width={20}
@@ -19,7 +20,9 @@ export function SidebarRC() {
           alt="Reload Credits"
         />
 
-        <span className="text-sm font-medium leading-none text-white">
+        <span
+          className={twMerge('text-sm font-medium text-white', 'leading-none')}
+        >
           {user?.account?.coins}
         </span>
       </div>
