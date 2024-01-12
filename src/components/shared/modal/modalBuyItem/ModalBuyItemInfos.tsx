@@ -45,8 +45,8 @@ export function ModalBuyItemInfos({
             <p
               className={twMerge(
                 'font-semibold text-white text-xl',
-                'leading-none',
-                '3xl:text-lg'
+                '3xl:text-lg 3xl:leading-none',
+                'leading-none'
               )}
             >
               {item.name}
@@ -69,7 +69,9 @@ export function ModalBuyItemInfos({
       </div>
 
       <div className={twMerge('flex-col flex-initial gap-3', '3xl:gap-2.5')}>
-        <ModalBuyItemInfosInsufficientFound price={itemObject.price} />
+        {!itemObject.is_purchased && (
+          <ModalBuyItemInfosInsufficientFound price={itemObject.price} />
+        )}
 
         <ModalBuyItemInfosBuyButton
           price={itemObject.price}

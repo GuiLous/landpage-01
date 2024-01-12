@@ -25,7 +25,7 @@ export function LobbyGameType({
           )}
         >
           {activeTab === gameType && (
-            <div className="absolute -bottom-[12px] justify-center">
+            <div className="absolute -bottom-[12px] max-w-fit justify-center">
               <RxTriangleUp className="text-purple-400" size={32} />
             </div>
           )}

@@ -21,7 +21,7 @@ const badge = tv({
       },
 
       smd: {
-        container: 'min-w-[55px] max-w-[55px]',
+        container: 'min-w-[52px] max-w-[52px]',
         levelText: '-mt-2 ml-0 text-[15px]',
       },
 

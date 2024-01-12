@@ -182,12 +182,10 @@ export function InventoryWrapperContent({
           setNewItemSelected(newItemSelected)
         }
 
-        if (activeTab === 'perfil' && activeSubTab === 'capas de perfil') {
-          revalidate('inventory')
-        }
+        revalidate('inventory')
       }
     },
-    [auth?.token, itemsByType, activeTab, activeSubTab, showErrorToast]
+    [auth?.token, itemsByType, showErrorToast]
   )
 
   useEffect(() => {
@@ -198,11 +196,17 @@ export function InventoryWrapperContent({
 
   useEffect(() => {
     if (itemsByType.length > 0) {
+      if (hasItemInUse) {
+        setItemSelected(itemInUse as StoreItem)
+        return
+      }
+
       setItemSelected(itemsByType[0] as StoreItem)
-    } else {
-      setItemSelected(null)
+      return
     }
-  }, [itemsByType])
+
+    setItemSelected(null)
+  }, [itemsByType, hasItemInUse, itemInUse])
 
   useEffect(() => {
     if (newItemSelected) {

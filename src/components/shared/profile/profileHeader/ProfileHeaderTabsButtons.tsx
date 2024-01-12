@@ -15,8 +15,6 @@ import { useUserStore } from '@/store/userStore'
 
 import { BagPackIcon, Button, ModalSupport, Tooltip } from '@/components/shared'
 
-import { ProfileHeaderSyncSteamButton } from './ProfileHeaderSyncSteamButton'
-
 type ButtonType = 'profile' | 'inventory' | 'config' | 'steam_chat' | 'report'
 type LinkType = 'perfil' | 'conta' | 'inventario'
 
@@ -89,10 +87,10 @@ export function ProfileHeaderTabsButtons({
                 content={profileButtons[key].label}
                 side="bottom"
                 className="px-2 py-2 text-xs"
+                key={key}
               >
                 <div>
                   <Button.Root
-                    key={key}
                     profile
                     className={twMerge(
                       LINK_PATHS[path] === key &&
@@ -119,10 +117,10 @@ export function ProfileHeaderTabsButtons({
                 content={profileButtons[key].label}
                 side="bottom"
                 className="px-2 py-2 text-xs"
+                key={key}
               >
                 <div>
                   <Button.Root
-                    key={key}
                     profile
                     onClick={() => onClickFunction(key)}
                     className="min-w-[46px]"
@@ -137,8 +135,6 @@ export function ProfileHeaderTabsButtons({
               </Tooltip>
             )
       )}
-
-      {isUserLogged && <ProfileHeaderSyncSteamButton />}
 
       <ModalSupport
         open={openModalSupport}

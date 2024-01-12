@@ -152,6 +152,8 @@ const config: Config = {
         gradient_store_item: 'linear-gradient(to top, #6847FF 0, #1B1B1B 90%)',
         gradient_rc_card:
           'linear-gradient(to top, rgba(104, 71, 255, 0.5) 0, #1b1b1b 73%)',
+        gradient_player_card:
+          'linear-gradient(360deg, #111 0%, rgba(17, 17, 17, 0) 100%)',
       },
       animation: {
         carousel: 'carousel 1s ease-in-out',

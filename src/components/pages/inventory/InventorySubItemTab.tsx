@@ -71,7 +71,7 @@ export function InventorySubItemTab({
         <div
           key={tab}
           className={twMerge(
-            'max-w-fit flex-initial bg-gray-1100 rounded cursor-pointer py-3.5 px-2.5'
+            'max-w-fit flex-initial bg-gray-700/30 rounded cursor-pointer py-3.5 px-2.5'
           )}
           style={{
             background:

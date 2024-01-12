@@ -1,4 +1,4 @@
-import { BiSolidUpArrow } from 'react-icons/bi'
+import { RxTriangleUp } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -30,10 +30,10 @@ export function ModalBuyItemCarousel({
       />
 
       <CustomIcon
-        icon={BiSolidUpArrow}
+        icon={RxTriangleUp}
         className={twMerge(
-          'absolute text-purple-400 text-xl -top-4',
-          '3xl:text-lg 3xl:-top-[0.85rem]'
+          'absolute text-purple-400 text-3xl -top-[1.1rem]',
+          '3xl:text-2xl 3xl:-top-[0.88rem]'
         )}
       />
 
