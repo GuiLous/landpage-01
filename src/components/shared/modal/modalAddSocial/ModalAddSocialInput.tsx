@@ -62,7 +62,8 @@ export function ModalAddSocialInput({
 
       <span
         className={twMerge(
-          'leading-none text-gray-300 text-xs font-medium transition-colors',
+          'text-gray-300 text-xs font-medium transition-colors',
+          'leading-none',
           !disableSend && 'hover:text-white',
           !disableSend && 'cursor-pointer'
         )}

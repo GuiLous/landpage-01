@@ -11,8 +11,7 @@ import { appApi } from '@/modelsApi'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function InviteRequiredCheck() {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -24,7 +23,7 @@ export function InviteRequiredCheck() {
 
     revalidatePath({ path: '/' })
     router.push('/')
-  }, [auth, router])
+  }, [auth?.token, router])
 
   const healthCheck = useCallback(async () => {
     const response = await appApi.healthCheck({ cache: 'no-cache' })

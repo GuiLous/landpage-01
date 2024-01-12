@@ -20,8 +20,7 @@ export function VerifyForm() {
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const [pin, setPin] = useState('')
   const [fetching, setFetching] = useState(false)

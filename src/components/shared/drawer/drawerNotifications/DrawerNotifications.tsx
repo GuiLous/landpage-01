@@ -31,8 +31,7 @@ export function DrawerNotifications({
 
   const pathname = usePathname()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 

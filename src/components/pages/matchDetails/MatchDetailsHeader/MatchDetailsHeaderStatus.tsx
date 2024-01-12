@@ -1,5 +1,6 @@
 import { BsFillFlagFill } from 'react-icons/bs'
 import { FiClock } from 'react-icons/fi'
+import { twMerge } from 'tailwind-merge'
 
 import { MatchStatus } from '@/store/matchStore'
 
@@ -34,8 +35,12 @@ export function MatchDetailsHeaderStatus({
         )}
 
         <div className="gap-1">
-          <h2 className="text-lg uppercase leading-none">Partida</h2>
-          <span className="text-lg font-bold uppercase leading-none">
+          <h2 className={twMerge('text-lg uppercase', 'leading-none')}>
+            Partida
+          </h2>
+          <span
+            className={twMerge('text-lg font-bold uppercase', 'leading-none')}
+          >
             {statusMap[status]}
           </span>
         </div>

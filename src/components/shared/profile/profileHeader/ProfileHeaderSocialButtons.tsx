@@ -75,7 +75,7 @@ export function ProfileHeaderSocialButtons({
                 setOpenModalAddSocial(true)
               }}
             >
-              <Button.Content className="text-sm leading-none">
+              <Button.Content className={twMerge('text-sm', 'leading-none')}>
                 +
               </Button.Content>
             </Button.Root>

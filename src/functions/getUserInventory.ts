@@ -2,25 +2,7 @@ import { getAuthServer } from '@/utils'
 
 import { storeApi } from '@/modelsApi'
 
-export interface StoreItem {
-  id: number
-  name: string
-  item_type: string
-  subtype?: string
-  handle: string
-  price: string
-  release_date: string
-  description: string
-  discount: number
-  background_image: string
-  foreground_image: string
-  box: any
-  box_draw_chance: any
-  collection: any
-  featured: boolean
-  in_use: boolean
-  can_use: boolean
-}
+import { StoreItem } from './getStore'
 
 export interface Inventory {
   id: string

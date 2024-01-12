@@ -20,8 +20,7 @@ export function MatchStatsTableBody({
   players,
   userId,
 }: MatchStatsTableBodyProps) {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const router = useRouter()
 
@@ -30,7 +29,7 @@ export function MatchStatsTableBody({
   const handleRedirectToProfile = useCallback(() => {
     revalidatePath({ path: `/perfil/${auth?.id}` })
     return router.push(`/perfil/${auth?.id}`)
-  }, [auth, router])
+  }, [auth?.id, router])
 
   const handleOpenMenu = useCallback((player: Player) => {
     setSelectedPlayer(player)

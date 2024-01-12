@@ -68,12 +68,17 @@ export function ProfileMatchStatsLinkMapInfo({
         </span>
 
         <div className="max-w-fit flex-initial flex-col gap-1">
-          <span className="text-xs leading-none text-gray-300">
+          <span className={twMerge('text-xs text-gray-300', 'leading-none')}>
             {type_map[game_type]}
           </span>
 
           <Tooltip content="Duração da partida">
-            <span className="whitespace-nowrap text-xs leading-none text-gray-300">
+            <span
+              className={twMerge(
+                'whitespace-nowrap text-xs text-gray-300',
+                'leading-none'
+              )}
+            >
               {status !== 'warmup' && (
                 <>
                   {!isLink && `${startDate.toFormat('dd/MM/yyyy')} - `}

@@ -1,7 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import { Notification } from '@/store/notificationStore'
-
 import { DrawerNotificationsFooter } from './DrawerNotificationsFooter'
 
 export default {
@@ -17,20 +15,6 @@ export default {
 
 export const Default: StoryObj = {
   render: (props: any) => {
-    const notifications: Notification[] = Array.from(
-      Array(props.totalNotifications)
-    ).map((_, index) => {
-      return {
-        id: index + 1,
-        read_date: null,
-        avatar: '',
-        content: '',
-        create_date: new Date().toISOString(),
-        from_user_id: 1,
-        to_user_id: 2,
-      }
-    })
-
     return <DrawerNotificationsFooter {...props} />
   },
 }

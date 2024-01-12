@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-import { getPathToRedirect, isAuthPages } from '@/utils'
+import { getPathToRedirect, isAuthPages, isCheckoutPage } from '@/utils'
 
 import { verifyAppHealth } from '@/functions'
 
@@ -30,14 +30,28 @@ export async function middleware(req: NextRequest) {
   }
 
   const { value: token } = cookies.get('token') ?? { value: null }
+  const { value: checkoutInitiated } = cookies.get('checkout_initiated') ?? {
+    value: null,
+  }
 
   const hasVerifiedToken = token && (await verifyJwtToken(token))
   const isAuthPageRequested = isAuthPages(nextUrl.pathname)
 
+  const homeUrl = new URL('/', nextUrl.origin)
+
   if (isAuthPageRequested) {
     if (!hasVerifiedToken) {
-      const homeUrl = new URL('/', nextUrl.origin)
+      return NextResponse.redirect(homeUrl)
+    }
 
+    if (isCheckoutPage(nextUrl.pathname) && !checkoutInitiated) {
+      return NextResponse.redirect(homeUrl)
+    }
+
+    if (
+      process.env.NEXT_PUBLIC_REACT_APP_STORE_ENABLED !== 'true' &&
+      nextUrl.pathname === '/loja'
+    ) {
       return NextResponse.redirect(homeUrl)
     }
 
@@ -84,5 +98,8 @@ export const config = {
     '/perfil/:path*',
     '/conta/:path*',
     '/inventario/:path*',
+    '/checkout/:path*',
+    '/inventario/:path*',
+    '/loja/:path*',
   ],
 }

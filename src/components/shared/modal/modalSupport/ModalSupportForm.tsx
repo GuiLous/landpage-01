@@ -44,8 +44,7 @@ export function ModalSupportForm({
   username,
   setFormSent,
 }: ModalSupportFormProps) {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -109,7 +108,7 @@ export function ModalSupportForm({
     }
 
     setSubjectOptions(formatSubjectOptions(response))
-  }, [showErrorToast, user_id, auth])
+  }, [showErrorToast, user_id, auth?.token])
 
   const submitForm = useCallback(
     async (e: FormEvent) => {
@@ -146,7 +145,15 @@ export function ModalSupportForm({
       reset()
       setFetching(false)
     },
-    [description, files, subject, showErrorToast, user_id, setFormSent, auth]
+    [
+      description,
+      files,
+      subject,
+      showErrorToast,
+      user_id,
+      setFormSent,
+      auth?.token,
+    ]
   )
 
   useEffect(() => {

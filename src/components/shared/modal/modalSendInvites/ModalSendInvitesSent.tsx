@@ -3,7 +3,8 @@ import { twMerge } from 'tailwind-merge'
 
 import { UserInvites } from '@/store/userStore'
 
-import { CustomIcon } from '../../icons/CustomIcon'
+import { CustomIcon } from '@/components/shared'
+
 import { ModalSendInvitesChangeViewButton } from './ModalSendInvitesChangeViewButton'
 
 interface ModalSendInvitesSentProps {
@@ -29,7 +30,7 @@ export function ModalSendInvitesSent({
       </div>
 
       <div>
-        <h2 className="text-xl font-bold leading-none text-white">
+        <h2 className={twMerge('text-xl font-bold text-white', 'leading-none')}>
           CONVITES ENVIADOS
         </h2>
       </div>
@@ -61,7 +62,8 @@ export function ModalSendInvitesSent({
 
               <span
                 className={twMerge(
-                  'bg-purple-400 rounded-[67px] text-white text-xs font-medium leading-none py-2 px-3.5 capitalize',
+                  'bg-purple-400 rounded-[67px] text-white text-xs font-medium py-2 px-3.5 capitalize',
+                  'leading-none',
                   invite.accepted && 'bg-green-600'
                 )}
               >

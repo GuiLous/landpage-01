@@ -44,11 +44,12 @@ export function Tooltip({
             )}
             side={side}
           >
-            <PrimitiveTooltip.Arrow className="fill-gray-1000" />
+            <PrimitiveTooltip.Arrow className="fill-gray-700/50" />
 
             <span
               className={twMerge(
-                'block text-sm font-semibold leading-none text-white',
+                'block text-sm font-semibold text-white',
+                'leading-none',
                 className
               )}
             >

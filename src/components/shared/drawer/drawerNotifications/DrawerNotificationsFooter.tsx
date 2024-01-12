@@ -13,8 +13,7 @@ import { useAuth, useShowErrorToast } from '@/hooks'
 export function DrawerNotificationsFooter() {
   const notifications = useNotificationStore.getState().notifications
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 

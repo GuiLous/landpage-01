@@ -28,8 +28,7 @@ export function ModalAddSocialListRightContent({
   socialsLinked,
   socials,
 }: ModalAddSocialListRightContentProps) {
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 

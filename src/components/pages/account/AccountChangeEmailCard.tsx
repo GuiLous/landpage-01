@@ -28,8 +28,7 @@ type FieldsErrors = {
 export function AccountChangeEmailCard() {
   const router = useRouter()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -51,7 +50,7 @@ export function AccountChangeEmailCard() {
   const changeEmailIfHasNotChanged = useCallback(() => {
     email === auth?.email && setEmail('')
     setIsEditing(true)
-  }, [auth, email])
+  }, [auth?.email, email])
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -87,7 +86,7 @@ export function AccountChangeEmailCard() {
         inputRef.current.focus()
       }
     }
-  }, [auth, changeEmailIfHasNotChanged, email])
+  }, [auth?.email, changeEmailIfHasNotChanged, email])
 
   const handleSubmit = useCallback(
     async (e?: FormEvent) => {

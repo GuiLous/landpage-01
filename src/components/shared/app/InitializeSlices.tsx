@@ -17,8 +17,7 @@ export function InitializeSlices({ children }: InitializeSlicesRoutesProps) {
   const { isLoading, initializeSlices } = useInitializeSlices()
   const pathname = usePathname()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showLoading =
     isLoading &&

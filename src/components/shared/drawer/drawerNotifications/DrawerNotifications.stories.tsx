@@ -1,8 +1,6 @@
 import { useArgs } from '@storybook/preview-api'
 import { Meta } from '@storybook/react'
 
-import { Notification } from '@/store/notificationStore'
-
 import { DrawerNotifications } from './DrawerNotifications'
 
 export default {
@@ -21,21 +19,6 @@ export default {
 export const Default = (props: any) => {
   const [{ open }, updateArgs] = useArgs()
   const changeOpen = () => updateArgs({ open: !open })
-
-  const notifications: Notification[] = Array.from(
-    Array(props.totalNotifications)
-  ).map((_, index) => {
-    return {
-      id: index + 1,
-      read_date: null,
-      avatar:
-        'https://avatars.akamai.steamstatic.com/fba2f7ffa02a5501d1fdee81221d87b4504a6159_full.jpg',
-      content: 'Teste notificação',
-      create_date: new Date().toISOString(),
-      from_user_id: 1,
-      to_user_id: 2,
-    }
-  })
 
   return <DrawerNotifications open={false} setOpen={changeOpen} {...props} />
 }

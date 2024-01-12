@@ -24,8 +24,7 @@ export default function ChangeEmail() {
   const router = useRouter()
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const [email, setEmail] = useState('')
   const [fetching, setFetching] = useState(false)

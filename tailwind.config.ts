@@ -2,9 +2,12 @@ import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
-    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/pages/**/*.{ts,tsx}',
+    './src/components/**/*.{ts,tsx}',
+    './src/app/**/*.{ts,tsx}',
+    '!node_modules/**/*',
+    '!**/.next/**/*',
+    '!**/.storybook/**/*',
   ],
   theme: {
     extend: {
@@ -17,9 +20,15 @@ const config: Config = {
         md: { max: '767px' },
         sm: { max: '639px' },
         'range-md-xl': { min: '913px', max: '1279px' },
+        'store-md': { max: '1634px' },
+        'store-sm': { max: '1560px' },
       },
       flex: {
         file_card: '0 0 48.5%',
+      },
+      gridTemplateColumns: {
+        'store-md': 'repeat(auto-fill, minmax(250px, 1fr))',
+        'store-sm': 'repeat(auto-fill, minmax(220px, 1fr))',
       },
       minHeight: {
         friends: 'calc(100vh - 120px)',
@@ -140,8 +149,12 @@ const config: Config = {
           'linear-gradient(90deg, rgba(38, 189, 57, 0.5) 0%, rgba(38, 189, 57, 0.2) 100%)',
         gradient_match_table_loser:
           'linear-gradient(90deg, rgba(246, 53, 53, 0.5) 0%, rgba(246, 53, 53, 0.2) 100%, #333)',
+        gradient_store_item: 'linear-gradient(to top, #6847FF 0, #1B1B1B 90%)',
+        gradient_rc_card:
+          'linear-gradient(to top, rgba(104, 71, 255, 0.5) 0, #1b1b1b 73%)',
       },
       animation: {
+        carousel: 'carousel 1s ease-in-out',
         'show-invite-message': 'show-invite-message 5s linear',
         'show-invite-bar': 'show-invite-bar 0.2s forwards',
         'scale-up': 'scale-up 0.2s forwards',
@@ -157,6 +170,16 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        carousel: {
+          '0%': {
+            'margin-left': '-10px',
+            opacity: '0',
+          },
+          '100%': {
+            'margin-left': '0',
+            opacity: '1',
+          },
+        },
         'show-invite-message': {
           '0%': {
             opacity: '1',

@@ -5,7 +5,7 @@ import { useCallback } from 'react'
 import { userAuthToken } from '@/middleware'
 
 export function useAuth() {
-  const getAuth = useCallback(() => {
+  const getAuth = useCallback((): userAuthToken | null => {
     const token = Cookies.get('token')
     let userAuth: userAuthToken | null = null
 
@@ -16,5 +16,7 @@ export function useAuth() {
     return userAuth
   }, [])
 
-  return getAuth
+  const auth = getAuth()
+
+  return auth
 }

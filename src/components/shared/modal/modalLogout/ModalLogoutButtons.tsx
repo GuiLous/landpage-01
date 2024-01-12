@@ -19,8 +19,7 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
   const router = useRouter()
   const showErrorToast = useShowErrorToast()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const [fetching, setFetching] = useState(false)
 
@@ -47,7 +46,7 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
     revalidatePath({ path: '/' })
 
     return router.push('/')
-  }, [showErrorToast, router, auth])
+  }, [showErrorToast, router, auth?.token])
 
   return (
     <div className="flex-initial items-center justify-center gap-3.5">

@@ -18,8 +18,7 @@ import { useAuth, useShowErrorToast } from '@/hooks'
 export function ModalInactiveAccountFormButton() {
   const router = useRouter()
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -55,7 +54,7 @@ export function ModalInactiveAccountFormButton() {
 
       return router.push('/')
     },
-    [auth, isFetching, router, showErrorToast]
+    [auth?.token, isFetching, router, showErrorToast]
   )
 
   return (

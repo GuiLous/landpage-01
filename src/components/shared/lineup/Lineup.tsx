@@ -23,8 +23,7 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
   const user = useUserStore.getState().user
   const lobby = useLobbyStore.getState().lobby
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -54,7 +53,7 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
         showErrorToast(response.errorMsg)
       }
     },
-    [lobby, showErrorToast, auth]
+    [lobby, showErrorToast, auth?.token]
   )
 
   const renderCloseLabel = useCallback(

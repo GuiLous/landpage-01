@@ -2,7 +2,12 @@ import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import { InitializeSlices, RenderToasts, RenderWSS } from '@/components/shared'
+import {
+  InitializeSlices,
+  RenderModalReloadCoinsConfirmation,
+  RenderToasts,
+  RenderWSS,
+} from '@/components/shared'
 
 import '@/styles/globals.css'
 
@@ -28,6 +33,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
         <RenderWSS />
         <RenderToasts />
+
+        <RenderModalReloadCoinsConfirmation />
       </body>
     </html>
   )

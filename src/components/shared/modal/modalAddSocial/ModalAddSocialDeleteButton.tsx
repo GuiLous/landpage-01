@@ -20,7 +20,9 @@ export function ModalAddSocialDeleteButton({
 }: ModalAddSocialDeleteButtonProps) {
   return (
     <div className="max-w-fit flex-initial items-center gap-3">
-      <span className="text-sm font-medium leading-none text-white">
+      <span
+        className={twMerge('text-sm font-medium text-white', 'leading-none')}
+      >
         {socials[item]}
       </span>
 

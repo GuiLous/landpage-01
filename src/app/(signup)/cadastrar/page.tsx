@@ -32,9 +32,7 @@ export default function SignUp() {
     {} as FieldsErrors
   )
 
-  const getAuth = useAuth()
-  const auth = getAuth()
-
+  const auth = useAuth()
   const cannotSubmit = email !== '' && !isEmailValid(email)
 
   const isButtonDisabled = fetching || cannotSubmit || email === ''

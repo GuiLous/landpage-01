@@ -1,6 +1,3 @@
-import { App } from '@/store/appStore'
-import { Invite } from '@/store/invitesStore'
-
 import { Toast } from './Toast'
 
 export default {
@@ -35,24 +32,6 @@ export default {
     variant: 'info',
   },
 }
-
-const app: App = {
-  toasts: [
-    {
-      id: '1',
-      title: 'Feedback!',
-      content: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit.',
-      duration: 6,
-      variant: 'info',
-      avatar:
-        'https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/fe/fef49e7fa7e1997310d705b2a6158ff8dc1cdfeb_medium.jpg',
-    },
-  ],
-  friendListOpen: false,
-  maintenance: false,
-}
-
-const invites: Invite[] = []
 
 export const Default = {
   render: (props: any) => <Toast {...props} />,

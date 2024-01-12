@@ -26,8 +26,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const lobby = useLobbyStore.getState().lobby
   const preMatch = usePreMatchStore.getState().preMatch
 
-  const getAuth = useAuth()
-  const auth = getAuth()
+  const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
 
@@ -74,7 +73,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
         showErrorToast(response.errorMsg)
       }
     },
-    [isOwner, lobby, preMatch, user, auth, showErrorToast]
+    [isOwner, lobby, preMatch, user, auth?.token, showErrorToast]
   )
 
   const handleCancelQueue = useCallback(() => {
