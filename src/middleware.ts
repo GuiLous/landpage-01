@@ -37,16 +37,21 @@ export async function middleware(req: NextRequest) {
   const hasVerifiedToken = token && (await verifyJwtToken(token))
   const isAuthPageRequested = isAuthPages(nextUrl.pathname)
 
+  const homeUrl = new URL('/', nextUrl.origin)
+
   if (isAuthPageRequested) {
     if (!hasVerifiedToken) {
-      const homeUrl = new URL('/', nextUrl.origin)
-
       return NextResponse.redirect(homeUrl)
     }
 
     if (isCheckoutPage(nextUrl.pathname) && !checkoutInitiated) {
-      const homeUrl = new URL('/', nextUrl.origin)
+      return NextResponse.redirect(homeUrl)
+    }
 
+    if (
+      process.env.NEXT_PUBLIC_REACT_APP_STORE_ENABLED !== 'true' &&
+      nextUrl.pathname === '/loja'
+    ) {
       return NextResponse.redirect(homeUrl)
     }
 
