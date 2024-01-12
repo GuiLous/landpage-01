@@ -14,7 +14,7 @@ export function SkeletonModalReloadCoinsListCards() {
         <Skeleton
           key={index}
           className={twMerge(
-            'min-w-[344px] min-h-[300px]',
+            'min-w-[344px] min-h-[292px] max-h-[292px]',
             '3xl:min-w-[246px] 3xl:min-h-[205px]'
           )}
         />

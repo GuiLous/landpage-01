@@ -6,8 +6,6 @@ import { useEffect } from 'react'
 
 import { revalidatePath } from '@/utils'
 
-import { storageService } from '@/services'
-
 import { useAppStore } from '@/store/appStore'
 
 export default function CheckoutError() {
@@ -15,10 +13,10 @@ export default function CheckoutError() {
 
   Cookies.remove('checkout_initiated')
 
-  useEffect(() => {
-    const itemObject = storageService.get('itemObject')
-    const itemId = storageService.get('itemId')
+  const itemObject = Cookies.get('itemObject')
+  const itemId = Cookies.get('itemId')
 
+  useEffect(() => {
     useAppStore.getState().addToast({
       content: 'Não foi possível processar sua compra.',
       variant: 'warning',
@@ -29,7 +27,7 @@ export default function CheckoutError() {
     if (!itemObject || !itemId) return router.push('/jogar')
 
     router.push(`/loja`)
-  }, [router])
+  }, [itemId, itemObject, router])
 
   return null
 }

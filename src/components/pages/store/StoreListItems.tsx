@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -16,7 +16,7 @@ interface StoreListItemsProps {
 }
 
 export function StoreListItems({ products }: StoreListItemsProps) {
-  const [openModal, setOpenModal] = useState(false)
+  const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
   const [modalBuyItems, setModalBuyItems] = useState<StoreItem[]>([])
   const [itemObject, setItemObject] = useState<StoreItem | null>(null)
@@ -27,7 +27,7 @@ export function StoreListItems({ products }: StoreListItemsProps) {
     setOpenModalConfirmation(true)
   }
 
-  const openBuyModal = ({
+  const handleOpenBuyModal = ({
     item,
     purchased = false,
   }: {
@@ -39,10 +39,10 @@ export function StoreListItems({ products }: StoreListItemsProps) {
     setItemObject(item)
     getModalBuyItems(item)
 
-    setOpenModal(true)
+    setOpenModalBuyItem(true)
   }
 
-  const getModalBuyItems = useCallback((item: StoreItem) => {
+  const getModalBuyItems = (item: StoreItem) => {
     const isBox = item?.object === 'box'
     const isCollection = item?.object === 'collection'
 
@@ -56,7 +56,7 @@ export function StoreListItems({ products }: StoreListItemsProps) {
     }
 
     setModalBuyItems(modalBuyItems)
-  }, [])
+  }
 
   return (
     <section
@@ -70,7 +70,9 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         <StoreItemCard.Root
           key={`${item.object}-${item.id}`}
           purchased={item.is_purchased}
-          onClick={() => openBuyModal({ item, purchased: item.is_purchased })}
+          onClick={() =>
+            handleOpenBuyModal({ item, purchased: item.is_purchased })
+          }
         >
           <StoreItemCard.Wrapper purchased={item.is_purchased}>
             <StoreItemCard.Header item={item} purchased={item.is_purchased} />
@@ -88,12 +90,12 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         />
       )}
 
-      {!!itemObject && modalBuyItems.length > 0 && (
+      {!!itemObject && modalBuyItems.length > 0 && openModalBuyItem && (
         <ModalBuyItem
           itemObject={itemObject}
           items={modalBuyItems}
-          open={openModal}
-          setOpen={setOpenModal}
+          open={openModalBuyItem}
+          setOpen={setOpenModalBuyItem}
           handleOpenModalConfirmation={handleOpenModalConfirmation}
         />
       )}

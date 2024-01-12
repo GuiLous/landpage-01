@@ -1,6 +1,10 @@
 import { StoreItem, getStore, getUserInventory } from '@/functions'
 
-import { StoreListItems, StoreRotationTimer } from '@/components/pages'
+import {
+  StoreListItems,
+  StoreOpenBuyModalCheck,
+  StoreRotationTimer,
+} from '@/components/pages'
 
 import { Carousel } from '@/components/shared'
 
@@ -9,22 +13,6 @@ export default async function page() {
   const store = await getStore()
 
   const nextRotation = new Date(store.next_rotation).getTime()
-
-  // const getModalBuyItems = (item: StoreItem) => {
-  //   const isBox = item?.object === 'box'
-  //   const isCollection = item?.object === 'collection'
-
-  //   let modalBuyItems: StoreItem[] = []
-
-  //   modalBuyItems =
-  //     (isBox || isCollection) && item?.items ? [...item.items] : []
-
-  //   if (!isBox && !isCollection) {
-  //     modalBuyItems = [item]
-  //   }
-
-  //   return modalBuyItems
-  // }
 
   const updateItemsWithPurchaseFlag = ({
     isProducts = true,
@@ -77,6 +65,8 @@ export default async function page() {
 
   return (
     <main className="flex-col gap-[7.5rem]">
+      <StoreOpenBuyModalCheck featured={featured} products={products} />
+
       <Carousel featured={featured} />
 
       <section className="flex-col gap-10 px-[7.5rem] pb-20">

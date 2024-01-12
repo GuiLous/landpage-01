@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -43,20 +43,18 @@ export function ModalBuyItem({
   const isBoxOrCollection =
     itemObject.object === 'box' || itemObject.object === 'collection'
 
-  const imagesPreview = useMemo(() => {
-    return [
-      {
-        file: isBoxOrCollection
-          ? items[activeItemIndex].foreground_image
-          : itemObject.foreground_image,
-        media_type: 'image',
-      },
-      ...items[activeItemIndex]?.media,
-    ]
-  }, [activeItemIndex, isBoxOrCollection, itemObject, items])
+  const imagesPreview = [
+    {
+      file: isBoxOrCollection
+        ? items[activeItemIndex].foreground_image
+        : itemObject.foreground_image,
+      media_type: 'image',
+    },
+    ...items[activeItemIndex]?.media,
+  ]
 
-  const currentFile = useMemo(() => {
-    return previewSelected === 0
+  const currentFile =
+    previewSelected === 0
       ? {
           file: isBoxOrCollection
             ? items[activeItemIndex].foreground_image
@@ -65,7 +63,6 @@ export function ModalBuyItem({
           id: new Date().getTime(),
         }
       : items[activeItemIndex]?.media[previewSelected - 1]
-  }, [activeItemIndex, isBoxOrCollection, itemObject, items, previewSelected])
 
   return (
     <Modal open={open} onOpenChange={handleCloseModal}>

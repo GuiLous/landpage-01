@@ -6,25 +6,22 @@ import { useEffect } from 'react'
 
 import { revalidatePath } from '@/utils'
 
-import { storageService } from '@/services'
-
 export default function CheckoutSuccess() {
   const router = useRouter()
 
+  const itemObject = Cookies.get('itemObject')
+  const itemId = Cookies.get('itemId')
+
   Cookies.remove('checkout_initiated')
+  Cookies.set('show_checkout_success', 'true')
 
   useEffect(() => {
-    const itemObject = storageService.get('itemObject')
-    const itemId = storageService.get('itemId')
-
-    Cookies.set('show_checkout_success', 'true')
-
-    revalidatePath({ path: '/' })
-
     if (!itemObject || !itemId) return router.push('/jogar')
 
+    revalidatePath({ path: '/loja' })
+
     router.push(`/loja`)
-  }, [router])
+  }, [itemId, itemObject, router])
 
   return null
 }

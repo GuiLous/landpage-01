@@ -42,7 +42,7 @@ export function CarouselItemContentButton({
         </Button.Content>
       </Button.Root>
 
-      {!!item && modalBuyItems.length > 0 && (
+      {!!item && modalBuyItems.length > 0 && openModalBuyItem && (
         <ModalBuyItem
           itemObject={item}
           items={modalBuyItems}

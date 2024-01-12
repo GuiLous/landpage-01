@@ -6,25 +6,22 @@ import { useEffect } from 'react'
 
 import { revalidatePath } from '@/utils'
 
-import { storageService } from '@/services'
-
 export default function CheckoutError() {
   const router = useRouter()
 
   Cookies.remove('checkout_initiated')
+  Cookies.set('checkout_cancelled', 'true')
+
+  const itemObject = Cookies.get('itemObject')
+  const itemId = Cookies.get('itemId')
 
   useEffect(() => {
-    storageService.set('checkout_cancelled', true)
-
-    const itemObject = storageService.get('itemObject')
-    const itemId = storageService.get('itemId')
-
-    revalidatePath({ path: '/' })
-
     if (!itemObject || !itemId) return router.push('/jogar')
 
+    revalidatePath({ path: '/loja' })
+
     router.push(`/loja`)
-  }, [router])
+  }, [router, itemObject, itemId])
 
   return null
 }
