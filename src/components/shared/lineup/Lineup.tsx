@@ -56,16 +56,6 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
     [lobby, showErrorToast, auth?.token]
   )
 
-  const renderCloseLabel = useCallback(
-    (player: Friend) => {
-      if (otherPlayers && otherPlayers.length < 1) return null
-      else if (player?.user_id === userPlayer?.user_id) return 'Sair'
-      else if (isOwner) return 'Expulsar'
-      else return null
-    },
-    [isOwner, otherPlayers, userPlayer]
-  )
-
   const renderCloseButton = useCallback(
     (player: Friend) => {
       if (otherPlayers && otherPlayers.length < 1) return false
@@ -79,16 +69,14 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
   const renderPlayerCard = useCallback(
     (player: Friend) => {
       const closeButton = renderCloseButton(player)
-      const closeLabel = renderCloseLabel(player)
       return (
         <LineupPlayerCard
-          closeLabel={closeLabel}
           player={player}
           onClose={!lobby?.queue && closeButton}
         />
       )
     },
-    [renderCloseButton, renderCloseLabel, lobby]
+    [renderCloseButton, lobby]
   )
 
   const fillSeats = useCallback(() => {

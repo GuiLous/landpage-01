@@ -16,6 +16,7 @@ export const useLatestMatchesResults = ({
       <span
         className={twMerge(
           'text-white',
+          matchResultItem === 'N/A' && 'min-w-6',
           colorize &&
             (matchResultItem === 'V' ? 'text-cyan-400' : 'text-gray-300')
         )}

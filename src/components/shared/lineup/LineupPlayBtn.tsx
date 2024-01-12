@@ -16,6 +16,7 @@ import { Button, ModalMatchFound, Timer } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 import matchFoundAudioUrl from '@/assets/audios/match_found.ogg'
+import attentionFavicon from '@/assets/images/attentionFavicon.ico'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
@@ -25,6 +26,8 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const user = useUserStore.getState().user
   const lobby = useLobbyStore.getState().lobby
   const preMatch = usePreMatchStore.getState().preMatch
+
+  const [notificationClicked, setNotificationClicked] = useState(false)
 
   const auth = useAuth()
 
@@ -90,12 +93,103 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       setOpenMatchFoundModal(true)
     } else if ((preMatch && preMatch.ready && openMatchFoundModal) || !preMatch)
       setOpenMatchFoundModal(false)
+    setNotificationClicked(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [preMatch, playSound])
 
   useEffect(() => {
     onMatchFound()
   }, [onMatchFound])
+
+  useEffect(() => {
+    const defaultFavicon = '/favicon.ico'
+    let isDefaultFavicon = true
+    let interval: NodeJS.Timeout
+
+    const blinkFavicon = () => {
+      const link = (document.querySelector("link[rel*='icon']") ||
+        document.createElement('link')) as HTMLLinkElement
+
+      if (link) {
+        link.rel = 'icon'
+        link.href = isDefaultFavicon ? defaultFavicon : attentionFavicon.src
+        const head = document.head || document.getElementsByTagName('head')[0]
+        head
+          .querySelectorAll("link[rel*='icon']")
+          .forEach((el) => head.removeChild(el))
+        head.appendChild(link)
+        isDefaultFavicon = !isDefaultFavicon
+      }
+    }
+
+    const startBlinking = () => {
+      interval = setInterval(() => {
+        blinkFavicon()
+        document.title = isDefaultFavicon
+          ? 'Partida Encontrada!'
+          : 'ReloadClub: Beta'
+      }, 1000)
+    }
+
+    const stopBlinking = () => {
+      clearInterval(interval)
+      const link = document.querySelector(
+        "link[rel*='icon']"
+      ) as HTMLLinkElement
+
+      if (link) {
+        link.href = defaultFavicon
+        document.title = 'ReloadClub: Beta'
+      }
+    }
+
+    if (openMatchFoundModal) {
+      startBlinking()
+      return stopBlinking
+    } else {
+      stopBlinking()
+    }
+  }, [openMatchFoundModal])
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'hidden' && openMatchFoundModal) {
+        const showNotification = () => {
+          if (notificationClicked && openMatchFoundModal) return
+
+          const notification = new Notification(
+            'Partida encontrada! Volte para a ReloadClub para aceitar.'
+          )
+
+          notification.onclick = () => {
+            window.focus()
+            notification.close()
+            setNotificationClicked(true)
+          }
+        }
+
+        if (Notification.permission === 'granted') {
+          showNotification()
+        } else if (Notification.permission !== 'denied') {
+          Notification.requestPermission().then((permission) => {
+            if (permission === 'granted') {
+              showNotification()
+            }
+          })
+        }
+      }
+    }
+
+    const addVisibilityChangeListener = () => {
+      document.addEventListener('visibilitychange', handleVisibilityChange)
+    }
+
+    addVisibilityChangeListener()
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+    }
+  }, [openMatchFoundModal, notificationClicked])
 
   return (
     <>

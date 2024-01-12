@@ -42,7 +42,9 @@ export function ModalReloadCoinsListCards({
 
     setIsFetching(true)
 
-    const response = await storeApi.listProducts(auth.token)
+    const response = await storeApi.listProducts(auth.token, {
+      cache: 'force-cache',
+    })
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)

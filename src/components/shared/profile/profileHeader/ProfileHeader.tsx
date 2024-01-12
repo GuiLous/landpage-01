@@ -3,8 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Profile } from '@/functions'
 
-import { Avatar } from '@/components/shared'
-
+import { ProfileHeaderAvatar } from './ProfileHeaderAvatar'
 import { ProfileHeaderLevel } from './ProfileHeaderLevel'
 import { ProfileHeaderSocialButtons } from './ProfileHeaderSocialButtons'
 import { ProfileHeaderStatus } from './ProfileHeaderStatus'
@@ -44,11 +43,9 @@ export function ProfileHeader({
             '3xl:gap-3.5 3xl:max-w-[520px]'
           )}
         >
-          <Avatar
+          <ProfileHeaderAvatar
             avatarUrl={profile.avatar.large}
-            alt="Foto do usuário"
-            size="xxl"
-            className="border-white"
+            isUserLogged={isUserLogged}
           />
 
           <div className={twMerge('flex-col gap-2.5', '3xl:gap-2')}>

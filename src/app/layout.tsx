@@ -7,6 +7,7 @@ import {
   RenderModalReloadCoinsConfirmation,
   RenderToasts,
   RenderWSS,
+  RequestNotificationPermission,
 } from '@/components/shared'
 
 import '@/styles/globals.css'
@@ -16,6 +17,7 @@ const poppins = Poppins({
   variable: '--font-poppins',
   weight: ['300', '400', '500', '600', '700'],
   fallback: ['arial'],
+  style: ['italic', 'normal'],
 })
 
 export const metadata: Metadata = {
@@ -35,6 +37,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <RenderToasts />
 
         <RenderModalReloadCoinsConfirmation />
+
+        <RequestNotificationPermission />
       </body>
     </html>
   )

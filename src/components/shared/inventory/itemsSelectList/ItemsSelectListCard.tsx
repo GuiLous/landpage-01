@@ -26,7 +26,7 @@ export function ItemsSelectListCard({
   return (
     <div
       className={twMerge(
-        'items-center justify-center bg-gray-1100 border border-transparent rounded cursor-pointer h-20 p-2 relative transition-colors w-20',
+        'items-center flex-col gap-1.5 justify-center bg-gray-700/30 border border-transparent rounded cursor-pointer h-20 p-2 relative transition-colors w-20',
         'hover:border-purple-400',
         isItemSelected && 'border-purple-400'
       )}
@@ -44,14 +44,9 @@ export function ItemsSelectListCard({
         height={80}
       />
 
-      {index > 0 && (
-        <span
-          className={twMerge(
-            'absolute right-1 top-1 text-[0.625rem] transition-colors text-gray-300',
-            isItemSelected && 'text-white'
-          )}
-        >
-          #{String(index).padStart(2, '0')}
+      {item?.id === 0 && (
+        <span className="text-[0.625rem] leading-none text-gray-300">
+          Nenhum
         </span>
       )}
 

@@ -10,7 +10,7 @@ export function ProfileHeaderLevel({
   level_points,
 }: ProfileHeaderLevelProps) {
   return (
-    <div className={twMerge('flex-col gap-2', '3xl:gap-1.5')}>
+    <div className={twMerge('flex-col gap-2 max-w-[318px]', '3xl:gap-1.5')}>
       <div
         className={twMerge(
           'min-h-[9px] overflow-hidden border-0 rounded-lg bg-gray-50',

@@ -5,58 +5,41 @@ import { useLobbyStore } from '@/store/lobbyStore'
 
 import { LevelBadge } from '@/components/shared'
 
-import { LineupPlayerCardCloseBtn } from './LineupPlayerCardCloseBtn'
-import { LineupPlayerCardHeader } from './LineupPlayerCardHeader'
-import { LineupPlayerCardIcons } from './LineupPlayerCardIcons'
-import { LineupPlayerCardLatestMatches } from './LineupPlayerCardLatestMatches'
+import { LineupPlayerCardPlayerInfo } from './LineupPlayerCardPlayerInfo'
+import { LineupPlayerCardProfile } from './LineupPlayerCardProfile'
 
 interface LineupPlayerCardProps {
   player: Friend
   onClose?: false | (() => Promise<void>)
-  closeLabel: string | null
 }
 
-export function LineupPlayerCard({
-  closeLabel,
-  player,
-  onClose,
-}: LineupPlayerCardProps) {
+export function LineupPlayerCard({ player }: LineupPlayerCardProps) {
   const lobby = useLobbyStore.getState().lobby
   const isLobbyOwner = player.user_id === lobby?.id
 
   return (
     <div
       className={twMerge(
-        'relative h-full min-w-[200px] flex-col justify-between rounded-lg px-5 py-[3.375rem]',
-        '3xl:px-2.5 3xl:py-8',
-        'bg-cover',
-        !player.card && 'bg-player_card'
+        'bg-cover relative cursor-pointer h-full min-w-[200px] flex-col justify-between rounded-lg p-5',
+        'after:bg-gradient_player_card after:bottom-0 after:h-24 after:left-0 after:opacity-80 after:absolute after:w-full',
+        '3xl:p-2.5'
       )}
       style={{ backgroundImage: player.card ? `url(${player.card})` : '' }}
     >
-      {onClose && (
-        <LineupPlayerCardCloseBtn closeLabel={closeLabel} onClose={onClose} />
-      )}
-
-      <LineupPlayerCardHeader
-        isLobbyOwner={isLobbyOwner}
-        avatar={player.avatar.large}
-        username={player.username}
-      />
-
-      <LineupPlayerCardLatestMatches
-        matches_played={player.matches_played}
-        latest_matches_results={player.latest_matches_results}
-      />
-
-      <div className="flex-initial justify-center">
-        <LevelBadge level={player.level} />
+      <div className="absolute right-1.5 top-2 max-w-fit flex-initial">
+        <LevelBadge level={player.level} variant="smd" />
       </div>
 
-      <LineupPlayerCardIcons
-        steam_url={player.steam_url}
-        user_id={player.user_id}
-      />
+      <div className="items-end">
+        <div className="z-10 items-center justify-between">
+          <LineupPlayerCardPlayerInfo
+            isLobbyOwner={isLobbyOwner}
+            matches_played={player.matches_played || 0}
+            username={player.username}
+          />
+          <LineupPlayerCardProfile avatar={player.avatar.large} />
+        </div>
+      </div>
     </div>
   )
 }
