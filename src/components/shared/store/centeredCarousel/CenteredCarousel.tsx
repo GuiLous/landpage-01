@@ -4,7 +4,7 @@
 import { useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useMediaQuery } from 'react-responsive'
-import { Navigation } from 'swiper'
+import { Navigation } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { twMerge } from 'tailwind-merge'
 
@@ -14,7 +14,7 @@ import { CustomIcon } from '@/components/shared'
 
 import { CenteredCarouselItem } from './CenteredCarouselItem'
 
-import 'swiper/swiper.min.css'
+import 'swiper/css'
 
 interface CenteredCarouselProps {
   data: StoreItem[]
