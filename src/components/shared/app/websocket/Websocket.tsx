@@ -126,12 +126,21 @@ export function Websocket() {
           break
 
         // Friends
+        case 'friends/create':
+          useFriendsStore.getState().removeFriendRequest(data.payload.user_id)
+          useFriendsStore.getState().addFriend(data.payload)
+          break
+
+        case 'friends/delete':
+          useFriendsStore.getState().removeFriend(data.payload)
+          break
+
         case 'friends/update':
           useFriendsStore.getState().updateFriend(data.payload)
           break
 
-        case 'friends/create':
-          useFriendsStore.getState().addFriend(data.payload)
+        case 'friends/request':
+          useFriendsStore.getState().addFriendRequest(data.payload)
           break
 
         // Lobbies
