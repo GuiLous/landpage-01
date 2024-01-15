@@ -1,52 +1,90 @@
+import { DateTime } from 'luxon'
 import { useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
+import { revalidatePath } from '@/utils'
+
+import { useFriendsStore } from '@/store/friendStore'
 import { Status } from '@/store/userStore'
 
-import { lobbyApi } from '@/modelsApi'
+import { friendsApi, lobbyApi } from '@/modelsApi'
 
 import { Avatar } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 interface DrawerFriendsInviteItemProps {
-  invite_id: string
+  lobby_invite_id?: string
+  request_id?: number
+  create_date?: string
   avatar: string
   status: Status
   username: string
+  user_id?: number
+  isFriendInvite?: boolean
 }
 
 export function DrawerFriendsInviteItem({
   avatar,
-  invite_id,
+  lobby_invite_id,
   status,
   username,
+  create_date,
+  request_id,
+  user_id,
+  isFriendInvite = false,
 }: DrawerFriendsInviteItemProps) {
   const showErrorToast = useShowErrorToast()
 
   const auth = useAuth()
 
-  const handleAccept = useCallback(async () => {
-    if (!auth?.token) return
+  const createDate = create_date && DateTime.fromISO(create_date)
 
-    const response = await lobbyApi.acceptInvite(auth.token, invite_id)
+  const handleAcceptLobbyInvite = useCallback(async () => {
+    if (!auth?.token || !lobby_invite_id) return
 
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-  }, [invite_id, showErrorToast, auth?.token])
-
-  const handleRefuse = useCallback(async () => {
-    if (!auth?.token) return
-
-    const response = await lobbyApi.refuseInvite(auth.token, invite_id)
+    const response = await lobbyApi.acceptInvite(auth.token, lobby_invite_id)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
     }
-  }, [showErrorToast, invite_id, auth?.token])
+  }, [lobby_invite_id, showErrorToast, auth?.token])
+
+  const handleRefuseLobbyInvite = useCallback(async () => {
+    if (!auth?.token || !lobby_invite_id) return
+
+    const response = await lobbyApi.refuseInvite(auth.token, lobby_invite_id)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+    }
+  }, [showErrorToast, lobby_invite_id, auth?.token])
+
+  const handleAcceptFriendInvite = useCallback(async () => {
+    if (!auth?.token || !request_id) return
+
+    const response = await friendsApi.accept(auth.token, request_id)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+    }
+  }, [auth?.token, request_id, showErrorToast])
+
+  const handleRefuseFriendInvite = useCallback(async () => {
+    if (!auth?.token || !request_id || !user_id) return
+
+    const response = await friendsApi.refuse(auth.token, request_id)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+    }
+
+    useFriendsStore.getState().removeFriendRequest(user_id)
+
+    revalidatePath({ path: '/' })
+  }, [auth?.token, request_id, showErrorToast, user_id])
 
   return (
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">
@@ -67,7 +105,9 @@ export function DrawerFriendsInviteItem({
               '3xl:text-[0.625rem]'
             )}
           >
-            Convidou você
+            {isFriendInvite
+              ? createDate && createDate.toFormat('D', { locale: 'pt' })
+              : 'Convidou você'}
           </span>
         </div>
       </div>
@@ -75,7 +115,9 @@ export function DrawerFriendsInviteItem({
       <div className="items-center justify-end gap-2.5">
         <div
           className="max-w-fit flex-initial cursor-pointer items-center"
-          onClick={handleAccept}
+          onClick={
+            isFriendInvite ? handleAcceptFriendInvite : handleAcceptLobbyInvite
+          }
         >
           <BsCheckCircleFill
             className={twMerge(
@@ -88,7 +130,9 @@ export function DrawerFriendsInviteItem({
 
         <div
           className="max-w-fit flex-initial cursor-pointer items-center"
-          onClick={handleRefuse}
+          onClick={
+            isFriendInvite ? handleRefuseFriendInvite : handleRefuseLobbyInvite
+          }
         >
           <RiCloseFill
             className={twMerge(

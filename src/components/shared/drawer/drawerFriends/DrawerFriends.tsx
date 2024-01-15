@@ -29,12 +29,26 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
   const [filter, setFilter] = useState('')
 
+  const showInviteBar =
+    pathname === '/jogar' &&
+    user?.invites_available_count &&
+    user.invites_available_count > 0 &&
+    process.env.NEXT_PUBLIC_USE_INVITES === 'true'
+
   const teamingFriends =
     lobby?.players?.filter((player) => player.user_id !== user?.id) || []
 
   const onlineFriends =
     friends?.online?.filter((friend) => friend.lobby_id !== user?.lobby_id) ||
     []
+
+  const friendRequests = friends?.requests.received || []
+
+  const filteredRequests = friendRequests.filter(
+    (request) =>
+      filter === '' ||
+      request.user_to.username.toLowerCase().includes(filter.toLowerCase())
+  )
 
   const filteredTeamingFriends = teamingFriends?.filter(
     (friend) =>
@@ -65,11 +79,11 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const showInviteBar =
-    pathname === '/jogar' &&
-    user?.invites_available_count &&
-    user.invites_available_count > 0 &&
-    process.env.NEXT_PUBLIC_USE_INVITES === 'true'
+  const showFriendsBtn =
+    !!filter &&
+    filteredOfflineFriends.length <= 0 &&
+    filteredOnlineFriends.length <= 0 &&
+    filteredTeamingFriends.length <= 0
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -86,7 +100,11 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
         }}
       >
         <div className="mt-6 flex-col justify-start">
-          <DrawerFriendsFilter setFilter={setFilter} />
+          <DrawerFriendsFilter
+            setFilter={setFilter}
+            filter={filter}
+            showFriendsBtn={showFriendsBtn}
+          />
 
           <div
             className={twMerge(
@@ -100,32 +118,34 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
                 'first:border-t first:border-t-gray-700'
               )}
             >
-              <div>
-                <DrawerFriendsListGroup
-                  title="No seu grupo"
-                  friends={filteredTeamingFriends}
-                  open
-                  showHeader={filter === ''}
-                />
-              </div>
+              <DrawerFriendsListGroup
+                title="No seu grupo"
+                friends={filteredTeamingFriends}
+                open
+                showHeader={filter === ''}
+              />
 
-              <div>
-                <DrawerFriendsListGroup
-                  title="Online"
-                  friends={filteredOnlineFriends}
-                  invites={filteredInvites}
-                  showHeader={filter === ''}
-                  open
-                />
-              </div>
+              <DrawerFriendsListGroup
+                title="Solicitações de amizade"
+                requests={filteredRequests}
+                showHeader={filter === ''}
+                isFriendInvite
+                open
+              />
 
-              <div>
-                <DrawerFriendsListGroup
-                  title="Offline"
-                  friends={filteredOfflineFriends}
-                  showHeader={filter === ''}
-                />
-              </div>
+              <DrawerFriendsListGroup
+                title="Online"
+                friends={filteredOnlineFriends}
+                invites={filteredInvites}
+                showHeader={filter === ''}
+                open
+              />
+
+              <DrawerFriendsListGroup
+                title="Offline"
+                friends={filteredOfflineFriends}
+                showHeader={filter === ''}
+              />
             </ScrollArea>
           </div>
         </div>
