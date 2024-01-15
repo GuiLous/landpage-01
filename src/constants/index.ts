@@ -86,7 +86,11 @@ export const VIDEO_TYPES = [
 
 // Drawer Friends
 export const AVAILABLE_STATUS = ['online', 'away', 'teaming']
-export const CAN_RENDER_OPENED = ['No seu grupo', 'Online']
+export const CAN_RENDER_OPENED = [
+  'No seu grupo',
+  'Online',
+  'Solicitações de amizade',
+]
 export const COLOR_STATUS = {
   online: 'text-green-600',
   offline: 'text-gray-300',
