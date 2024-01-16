@@ -107,7 +107,7 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
     setSearchFriends([...response.online, ...response.offline])
     setIsSearching(false)
-  }, [auth.token, filter, showErrorToast])
+  }, [auth?.token, filter, showErrorToast])
 
   useEffect(() => {
     if (!isFilterEmpty && filter.length > 3) {
