@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+import { ROUTES_SIGNUP } from '@/constants'
+
 import { getPathToRedirect, isAuthPages, isCheckoutPage } from '@/utils'
 
 import { verifyAppHealth } from '@/functions'
 
 import { verifyJwtToken } from '@/services'
-
-import { ROUTES_SIGNUP } from './constants'
 
 export type userAuthToken = {
   id: number
@@ -21,7 +21,7 @@ export async function middleware(req: NextRequest) {
   const { nextUrl, cookies } = req
 
   if (nextUrl.pathname !== '/' && !ROUTES_SIGNUP.includes(nextUrl.pathname)) {
-    const appHealth = await verifyAppHealth()
+    const appHealth = await verifyAppHealth(req)
 
     if (appHealth.maintenance) {
       const maintenanceUrl = new URL('/manutencao', nextUrl.origin)

@@ -31,6 +31,10 @@ export async function GET(req: NextRequest) {
     if (userResponse.errorMsg === 'Não autorizado.') {
       return redirect('/not-found')
     }
+
+    if (userResponse.detail === 'Não autorizado.') {
+      return redirect('/not-found')
+    }
   }
 
   const jwtToken = await new SignJWT({
