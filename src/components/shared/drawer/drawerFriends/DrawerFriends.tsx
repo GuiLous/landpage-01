@@ -44,28 +44,30 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
   const friendRequests = friends?.requests.received || []
 
+  const isFilterEmpty = filter === '' || !filter
+
   const filteredRequests = friendRequests.filter(
     (request) =>
-      filter === '' ||
+      isFilterEmpty ||
       request.user_to.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const filteredTeamingFriends = teamingFriends?.filter(
     (friend) =>
-      filter === '' ||
+      isFilterEmpty ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const filteredOnlineFriends = onlineFriends?.filter(
     (friend) =>
-      filter === '' ||
+      isFilterEmpty ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const filteredOfflineFriends =
     friends?.offline?.filter(
       (friend) =>
-        filter === '' ||
+        isFilterEmpty ||
         friend.username.toLowerCase().includes(filter.toLowerCase())
     ) || []
 
@@ -75,12 +77,12 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
   const filteredInvites = receivedInvites.filter(
     (invite) =>
-      filter === '' ||
+      isFilterEmpty ||
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const showFriendsBtn =
-    !!filter &&
+    !isFilterEmpty &&
     filteredOfflineFriends.length <= 0 &&
     filteredOnlineFriends.length <= 0 &&
     filteredTeamingFriends.length <= 0
@@ -122,13 +124,13 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
                 title="No seu grupo"
                 friends={filteredTeamingFriends}
                 open
-                showHeader={filter === ''}
+                showHeader={isFilterEmpty}
               />
 
               <DrawerFriendsListGroup
                 title="Solicitações de amizade"
                 requests={filteredRequests}
-                showHeader={filter === ''}
+                showHeader={isFilterEmpty}
                 isFriendInvite
                 open
               />
@@ -137,14 +139,14 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
                 title="Online"
                 friends={filteredOnlineFriends}
                 invites={filteredInvites}
-                showHeader={filter === ''}
+                showHeader={isFilterEmpty}
                 open
               />
 
               <DrawerFriendsListGroup
                 title="Offline"
                 friends={filteredOfflineFriends}
-                showHeader={filter === ''}
+                showHeader={isFilterEmpty}
               />
             </ScrollArea>
           </div>
