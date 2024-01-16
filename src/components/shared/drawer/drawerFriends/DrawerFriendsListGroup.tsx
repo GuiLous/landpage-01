@@ -9,31 +9,44 @@ import { CAN_RENDER_OPENED } from '@/constants'
 import { Friend, RequestInfo } from '@/store/friendStore'
 import { Invite } from '@/store/invitesStore'
 
+import { Spinner } from '@/components/shared'
+
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 import { DrawerFriendsListGroupItem } from './DrawerFriendsListGroupItem'
 
 interface DrawerFriendsListGroupProps {
-  title: 'No seu grupo' | 'Online' | 'Offline' | 'Solicitações de amizade'
+  title:
+    | 'No seu grupo'
+    | 'Online'
+    | 'Offline'
+    | 'Solicitações de amizade'
+    | 'Lista de amigos'
+    | 'Resultados da busca'
   friends?: Friend[]
   requests?: RequestInfo[]
+  searchFriends?: Friend[]
   invites?: Invite[]
   collapse?: boolean
   open?: boolean
   showHeader?: boolean
-  isFriendInvite?: boolean
+  isSearching?: boolean
 }
 
 export function DrawerFriendsListGroup({
-  friends = [],
-  invites = [],
-  requests = [],
   title,
+  friends = [],
+  requests = [],
+  searchFriends = [],
+  invites = [],
   collapse = true,
   open = false,
   showHeader = true,
-  isFriendInvite = false,
+  isSearching = false,
 }: DrawerFriendsListGroupProps) {
   const [isOpen, setIsOpen] = useState(false)
+
+  const isFriendInvite = title === 'Solicitações de amizade'
+  const isSearchResult = title === 'Resultados da busca'
 
   const handleCollapse = () => {
     if (
@@ -59,6 +72,12 @@ export function DrawerFriendsListGroup({
       return `(0${requests.length})`
     else return `(${requests.length})`
   }, [requests.length])
+
+  const renderSearchLength = useCallback(() => {
+    if (searchFriends.length < 10 && searchFriends.length > 0)
+      return `(0${searchFriends.length})`
+    else return `(${searchFriends.length})`
+  }, [searchFriends.length])
 
   const friendsWithoutLobbyInvite = friends.filter(
     (item) =>
@@ -108,8 +127,9 @@ export function DrawerFriendsListGroup({
   return (
     <div
       className={twMerge(
-        'h-full flex-col',
-        showHeader && 'border-b border-gray-700'
+        'flex-col flex-initial',
+        showHeader && 'border-b border-gray-700',
+        isSearchResult && 'flex-1'
       )}
     >
       <div
@@ -125,11 +145,13 @@ export function DrawerFriendsListGroup({
           <h2
             className={twMerge(
               'text-xs text-gray-200',
-              isOpen && 'text-white font-medium'
+              (isOpen || isSearchResult) && 'text-white'
             )}
           >
             {title}{' '}
-            {isFriendInvite ? renderRequestsLength() : renderFriendsLength()}
+            {!isSearchResult && !isFriendInvite && renderFriendsLength()}
+            {!isSearchResult && isFriendInvite && renderRequestsLength()}
+            {isSearchResult && renderSearchLength()}
           </h2>
         </div>
 
@@ -160,48 +182,71 @@ export function DrawerFriendsListGroup({
         )}
       </div>
 
-      {invites.length > 0 && isOpen && (
-        <div className="flex-col">
-          {invites.map((invite) => (
-            <DrawerFriendsInviteItem
-              key={invite.id}
-              lobby_invite_id={invite.id}
-              avatar={invite.from_player.avatar.medium}
-              status={invite.from_player.status}
-              username={invite.from_player.username}
-            />
-          ))}
+      {isSearchResult ? (
+        <div className="h-full items-center justify-center">
+          {isSearching ? (
+            <Spinner />
+          ) : (
+            searchFriends.length > 0 && (
+              <div className="flex-col">
+                {searchFriends.map((friend, index) => (
+                  <DrawerFriendsListGroupItem
+                    key={index}
+                    {...friend}
+                    avatar={friend.avatar.medium}
+                    title={title}
+                  />
+                ))}
+              </div>
+            )
+          )}
         </div>
-      )}
+      ) : (
+        <>
+          {invites.length > 0 && isOpen && (
+            <div className="flex-col">
+              {invites.map((invite) => (
+                <DrawerFriendsInviteItem
+                  key={invite.id}
+                  lobby_invite_id={invite.id}
+                  avatar={invite.from_player.avatar.medium}
+                  status={invite.from_player.status}
+                  username={invite.from_player.username}
+                />
+              ))}
+            </div>
+          )}
 
-      {requests.length > 0 && isOpen && (
-        <div className="flex-col">
-          {requests.map((request) => (
-            <DrawerFriendsInviteItem
-              key={request.id}
-              status={request.user_from.status}
-              username={request.user_from.username}
-              user_id={request.user_from.user_id}
-              request_id={request.id}
-              create_date={request.create_date}
-              avatar={request.user_from.avatar.medium}
-              isFriendInvite
-            />
-          ))}
-        </div>
-      )}
+          {requests.length > 0 && isOpen && (
+            <div className="flex-col">
+              {requests.map((request) => (
+                <DrawerFriendsInviteItem
+                  key={request.id}
+                  status={request.user_from.status}
+                  username={request.user_from.username}
+                  user_id={request.user_from.user_id}
+                  request_id={request.id}
+                  create_date={request.create_date}
+                  avatar={request.user_from.avatar.medium}
+                  isFriendInvite
+                />
+              ))}
+            </div>
+          )}
 
-      {friendsWithoutLobbyInvite.length > 0 && isOpen && (
-        <div className="flex-col">
-          {friendsWithoutLobbyInvite.map((friend, index) => (
-            <DrawerFriendsListGroupItem
-              key={index}
-              {...friend}
-              avatar={friend.avatar.medium}
-              title={title}
-            />
-          ))}
-        </div>
+          {friendsWithoutLobbyInvite.length > 0 && isOpen && (
+            <div className="flex-col">
+              {friendsWithoutLobbyInvite.map((friend, index) => (
+                <DrawerFriendsListGroupItem
+                  key={index}
+                  {...friend}
+                  avatar={friend.avatar.medium}
+                  title={title}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )
