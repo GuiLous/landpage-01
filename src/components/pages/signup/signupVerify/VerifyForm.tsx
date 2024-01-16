@@ -74,7 +74,7 @@ export function VerifyForm() {
       })
         .setProtectedHeader({ alg: 'HS256' })
         .setIssuedAt()
-        .setExpirationTime('1h')
+        .setExpirationTime('24h')
         .sign(getJwtSecretKey())
 
       Cookies.set('token', jwtToken)

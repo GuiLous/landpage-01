@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
   })
     .setProtectedHeader({ alg: 'HS256' })
     .setIssuedAt()
-    .setExpirationTime('1h')
+    .setExpirationTime('24h')
     .sign(getJwtSecretKey())
 
   cookieStore.set({
