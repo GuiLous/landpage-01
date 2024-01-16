@@ -204,8 +204,9 @@ export function ProfileHeaderTabsButtons({
                         icon={profileButtons[key].icon}
                         profile
                         className={twMerge(
+                          'fill-gray-300',
                           key === 'config' && 'text-lg',
-                          LINK_PATHS[path] === key && 'text-white'
+                          LINK_PATHS[path] === key && 'text-white fill-white'
                         )}
                       />
                     </Link>
@@ -272,7 +273,7 @@ export function ProfileHeaderTabsButtons({
                         <Button.Icon
                           icon={profileButtons[key].icon}
                           profile
-                          className="text-xl"
+                          className="text-2xl"
                         />
                       </Button.Root>
                     </div>
