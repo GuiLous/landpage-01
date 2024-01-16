@@ -71,9 +71,9 @@ export function DrawerFriendsListGroup({
   }, [open, collapse])
 
   useEffect(() => {
-    if (!showHeader) {
-      setIsOpen(true)
-    }
+    if (!showHeader) return setIsOpen(true)
+
+    setIsOpen(false)
   }, [showHeader])
 
   useEffect(() => {
