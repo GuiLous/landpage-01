@@ -90,6 +90,8 @@ export const CAN_RENDER_OPENED = [
   'No seu grupo',
   'Online',
   'Solicitações de amizade',
+  'Lista de amigos',
+  'Resultados da busca',
 ]
 export const COLOR_STATUS = {
   online: 'text-green-600',
@@ -107,6 +109,7 @@ export const STATUS_MAP = {
   teaming: 'Em grupo',
   queued: 'Na fila',
 }
+export const DEBOUNCE_SEARCH_TIME = 500
 
 // Lobby
 export const GAME_TYPES = ['TDM 5X5', 'RANQUEADA 5X5', 'PERSONALIZADA']
