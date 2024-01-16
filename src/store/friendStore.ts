@@ -42,7 +42,7 @@ type FriendsStore = {
   initFriends: (friends: Friends) => void
   addFriend: (friend: Friend) => void
   updateFriend: (friend: Friend) => void
-  removeFriend: (friend: Friend) => void
+  removeFriend: (status: string, user_id: number) => void
   addFriendRequest: (request: RequestInfo) => void
   addFriendSentRequest: (request: RequestInfo) => void
   removeFriendSentRequest: (user_id: number) => void
@@ -117,10 +117,8 @@ export const useFriendsStore = create<FriendsStore>((set) => ({
       }
     }),
 
-  removeFriend: (friend: Friend) =>
+  removeFriend: (status: string, user_id: number) =>
     set((state) => {
-      const { status, user_id } = friend
-
       return {
         friends: state.friends && {
           ...state.friends,
