@@ -132,7 +132,9 @@ export function Websocket() {
           break
 
         case 'friends/delete':
-          useFriendsStore.getState().removeFriend(data.payload)
+          useFriendsStore
+            .getState()
+            .removeFriend(data.payload.status, data.payload.user_id)
           break
 
         case 'friends/update':
