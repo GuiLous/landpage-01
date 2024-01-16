@@ -36,4 +36,12 @@ export const friendsApi = {
       options,
     })
   },
+
+  async searchFriends(token: string, username: string, options?: RequestInit) {
+    return await baseApi.delete({
+      endpoint: `friends/search/${username}/`,
+      token,
+      options,
+    })
+  },
 }
