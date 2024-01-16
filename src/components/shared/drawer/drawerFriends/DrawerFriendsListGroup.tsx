@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
@@ -32,33 +34,36 @@ export function DrawerFriendsListGroup({
   isFriendInvite = false,
 }: DrawerFriendsListGroupProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [friendsWithoutLobbyInvite, setFriendsWithoutLobbyInvite] = useState<
-    Friend[]
-  >([])
 
   const handleCollapse = () => {
-    if (isFriendInvite && (!collapse || requests.length <= 0)) return
-    if (!isFriendInvite && (!collapse || friends.length <= 0)) return
+    if (
+      (isFriendInvite && !collapse) ||
+      (isFriendInvite && requests.length <= 0)
+    )
+      return
+    if (
+      (!isFriendInvite && !collapse) ||
+      (!isFriendInvite && friends.length <= 0)
+    )
+      return
     setIsOpen(!isOpen)
   }
 
   const renderFriendsLength = useCallback(() => {
     if (friends.length < 10 && friends.length > 0) return `(0${friends.length})`
     else return `(${friends.length})`
-  }, [friends])
+  }, [friends.length])
 
   const renderRequestsLength = useCallback(() => {
     if (requests.length < 10 && requests.length > 0)
       return `(0${requests.length})`
     else return `(${requests.length})`
-  }, [requests])
+  }, [requests.length])
 
-  const filterFriendsNotInvitedToLobby = useCallback(() => {
-    return friends.filter(
-      (item) =>
-        !invites.some((invite) => item.user_id === invite.from_player.user_id)
-    )
-  }, [friends, invites])
+  const friendsWithoutLobbyInvite = friends.filter(
+    (item) =>
+      !invites.some((invite) => item.user_id === invite.from_player.user_id)
+  )
 
   useEffect(() => {
     if (collapse) setIsOpen(open)
@@ -79,14 +84,7 @@ export function DrawerFriendsListGroup({
     if (!isFriendInvite && friends.length === 0) {
       setIsOpen(false)
     }
-  }, [friends, isFriendInvite, requests])
-
-  useEffect(() => {
-    if (friends.length > 0) {
-      const friendsWithoutLobbyInvite = filterFriendsNotInvitedToLobby()
-      setFriendsWithoutLobbyInvite(friendsWithoutLobbyInvite)
-    }
-  }, [filterFriendsNotInvitedToLobby, friends])
+  }, [friends.length, isFriendInvite, requests.length])
 
   useEffect(() => {
     if (
@@ -105,7 +103,7 @@ export function DrawerFriendsListGroup({
     ) {
       setIsOpen(true)
     }
-  }, [title, friends, isFriendInvite, requests])
+  }, [title, friends.length, isFriendInvite, requests.length])
 
   return (
     <div
