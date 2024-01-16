@@ -1,5 +1,6 @@
 'use client'
 
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
@@ -46,9 +47,11 @@ export function useInitializeSlices() {
       cache: 'no-cache',
     })
 
-    if (userResponse.errorMsg) {
-      showErrorToast(userResponse.errorMsg)
+    if (userResponse.errorMsg || userResponse.detail) {
+      if (userResponse.errorMsg) showErrorToast(userResponse.errorMsg)
+      if (userResponse.detail) showErrorToast(userResponse.detail)
       setIsLoading(false)
+      Cookies.remove('token')
       revalidatePath({ path: '/' })
       router.push('/')
       return
