@@ -191,6 +191,7 @@ export function ProfileHeaderTabsButtons({
                     profile
                     className={twMerge(
                       'min-w-11 max-w-11 min-h-11 max-h-11 p-0',
+                      '3xl:min-w-10 3xl:max-w-10 3xl:max-h-10 3xl:min-h-10',
                       LINK_PATHS[path] === key &&
                         'bg-gray-1100/80 outline outline-1 outline-gray-300/50'
                     )}
