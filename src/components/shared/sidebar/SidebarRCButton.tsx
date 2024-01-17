@@ -2,6 +2,7 @@
 
 import { MouseEvent, useState } from 'react'
 import { BiPlus } from 'react-icons/bi'
+import { twMerge } from 'tailwind-merge'
 
 import { Button, ModalReloadCoins, Tooltip } from '@/components/shared'
 
@@ -19,7 +20,10 @@ export default function SidebarRCButton() {
         <span>
           <Button.Root
             onClick={handleOpenModal}
-            className="max-h-9 min-h-9 min-w-9 rounded-e-none"
+            className={twMerge(
+              'max-h-9 min-h-9 min-w-9 rounded-e-none',
+              '3xl:max-h-8 3xl:min-h-8 3xl:min-w-8'
+            )}
           >
             <Button.Icon icon={BiPlus} size={24} />
           </Button.Root>
