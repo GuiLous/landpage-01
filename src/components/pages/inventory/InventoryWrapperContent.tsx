@@ -1,6 +1,7 @@
 'use client'
 
 import { useCallback, useEffect, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { TABS_NO_SWITCH } from '@/constants'
 
@@ -230,17 +231,24 @@ export function InventoryWrapperContent({
         setActiveSubTab={setActiveSubTab}
       />
 
-      <div className="gap-20">
-        <aside className="max-w-[364px] flex-col justify-between">
+      <div className={twMerge('gap-20', '3xl:gap-16')}>
+        <aside
+          className={twMerge(
+            'max-w-[364px] flex-col justify-between',
+            '3xl:max-w-[355px]'
+          )}
+        >
           <div className="flex-initial flex-col gap-4">
-            <InventorySubItemTab
-              activeSubTab={activeSubTab}
-              setActiveItemType={setActiveItemType}
-              setActiveSubTab={setActiveSubTab}
-              subTabs={tabs[activeTab].subTabs}
-            />
+            {tabs[activeTab].subTabs.length > 0 && (
+              <InventorySubItemTab
+                activeSubTab={activeSubTab}
+                setActiveItemType={setActiveItemType}
+                setActiveSubTab={setActiveSubTab}
+                subTabs={tabs[activeTab].subTabs}
+              />
+            )}
 
-            <CustomScrollBar height={312}>
+            <CustomScrollBar height={312} className="max-w-fit">
               <ItemsSelectList
                 hasItemInUse={hasItemInUse}
                 itemSelectedId={itemSelected?.id}

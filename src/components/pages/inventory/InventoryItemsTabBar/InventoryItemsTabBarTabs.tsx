@@ -42,17 +42,21 @@ export function InventoryItemsTabBarTabs({
   }
 
   return (
-    <div className="max-w-fit gap-6">
+    <div className={twMerge('max-w-fit gap-6', '3xl:gap-5')}>
       {TABS.map((tab) => (
         <div
           key={tab}
-          className="max-w-fit cursor-pointer flex-col gap-1"
+          className={twMerge(
+            'max-w-fit cursor-pointer flex-col gap-1',
+            '3xl:gap-0.5'
+          )}
           onClick={() => handleChangeTab(tab as TabTypes)}
         >
           <span
             className={twMerge(
               'font-medium transition-colors uppercase text-gray-300',
               'hover:text-white',
+              '3xl:text-sm',
               activeTab === tab && 'text-white'
             )}
           >

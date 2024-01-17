@@ -47,7 +47,7 @@ export function InventorySubItemTab({
           ? selectedTabRect.right - wrapperRect.right + wrapper.scrollLeft
           : selectedTabRect.left - wrapperRect.left
 
-        const gapToShowAllTabs = 50
+        const gapToShowAllTabs = 60
 
         wrapper.scrollTo({
           left: scrollAmount + gapToShowAllTabs,
@@ -64,14 +64,18 @@ export function InventorySubItemTab({
 
   return (
     <div
-      className="min-h-[42px] w-full max-w-[364px] flex-initial items-center gap-2 overflow-x-hidden"
+      className={twMerge(
+        'min-h-[42px] w-full max-w-[364px] flex-initial items-center gap-2 overflow-x-hidden',
+        '3xl:min-h-[38px] 3xl:max-w-[355px] 3xl:gap-1.5'
+      )}
       ref={wrapperRef}
     >
       {subTabs.map((tab, index) => (
         <div
           key={tab}
           className={twMerge(
-            'max-w-fit flex-initial bg-gray-700/30 rounded cursor-pointer py-3.5 px-2.5'
+            'max-w-fit flex-initial bg-gray-700/30 rounded cursor-pointer py-3.5 px-2.5',
+            '3xl:py-3'
           )}
           style={{
             background:

@@ -95,7 +95,9 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
           )}
         </div>
       ) : (
-        <span className={twMerge('ml-[20%] text-gray-300', '3xl:ml-0')}>
+        <span
+          className={twMerge('ml-[20%] text-gray-300', '3xl:ml-0 3xl:text-sm')}
+        >
           Ops, nenhum item selecionado.
         </span>
       )}
