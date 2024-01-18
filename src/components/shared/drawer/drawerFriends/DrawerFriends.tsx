@@ -11,7 +11,7 @@ import { useInvitesStore } from '@/store/invitesStore'
 import { useLobbyStore } from '@/store/lobbyStore'
 import { useUserStore } from '@/store/userStore'
 
-import { friendsApi } from '@/modelsApi'
+import { profilesApi } from '@/modelsApi'
 
 import { Drawer, ScrollArea } from '@/components/shared'
 
@@ -97,7 +97,7 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
     if (!auth?.token) return
     setIsSearching(true)
 
-    const response = await friendsApi.searchFriends(auth.token, filter)
+    const response = await profilesApi.searchProfile(auth.token, filter)
 
     if (response.errorMsg) {
       showErrorToast(response.errorMsg)
@@ -105,9 +105,13 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
       return
     }
 
-    setSearchFriends([...response.online, ...response.offline])
+    const filteredWithoutUser = response.filter(
+      (profile: Friend) => profile.username !== user?.account?.username
+    )
+
+    setSearchFriends(filteredWithoutUser)
     setIsSearching(false)
-  }, [auth?.token, filter, showErrorToast])
+  }, [auth?.token, filter, showErrorToast, user?.account?.username])
 
   useEffect(() => {
     if (!isFilterEmpty && filter.length > 3) {
