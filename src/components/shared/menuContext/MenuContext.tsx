@@ -1,12 +1,16 @@
 'use client'
 
 import * as PopoverPrimitive from '@radix-ui/react-popover'
-import { useState } from 'react'
+import { Fragment, useCallback, useState } from 'react'
 import { BsEnvelopeFill } from 'react-icons/bs'
 import { FaUser } from 'react-icons/fa'
-import { RiErrorWarningFill } from 'react-icons/ri'
+import { MdPersonAddAlt1, MdPersonRemoveAlt1 } from 'react-icons/md'
+import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
+import { RxExit } from 'react-icons/rx'
 import { SiSteam } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
+
+import { useFriendsStore } from '@/store/friendStore'
 
 import { ModalSupport } from '@/components/shared'
 
@@ -27,6 +31,10 @@ type MenuContextContentProps = PopoverContentPrimitiveProps & {
   user_id: number
   username: string
   steam_url: string
+  isUser?: boolean
+  isOnLobby?: boolean
+  isLobbyOwner?: boolean
+  onClose?: false | (() => Promise<void>)
 }
 
 type MenuContextRootProps = PopoverRootPrimitiveProps
@@ -45,14 +53,21 @@ export function MenuContext({
   )
 }
 
-export const menuItems = {
+export const menuItems: Record<
+  keysMenuType,
+  { icon: React.ElementType; label: string }
+> = {
   invite: { icon: BsEnvelopeFill, label: 'Convidar para o grupo' },
   profile: { icon: FaUser, label: 'Ver perfil' },
   steam: { icon: SiSteam, label: 'Ver perfil na Steam' },
+  remove: { icon: RiCloseCircleFill, label: 'Expulsar do grupo' },
+  exit: { icon: RxExit, label: 'Sair do grupo' },
   report: { icon: RiErrorWarningFill, label: 'Reportar usuário' },
+  friendRemove: { icon: MdPersonRemoveAlt1, label: 'Remover amigo' },
+  friendAdd: { icon: MdPersonAddAlt1, label: 'Adicionar amigo' },
 }
 
-const keys = Object.keys(menuItems) as keysMenuType[]
+type OptionalMenuItems = Partial<typeof menuItems>
 
 function MenuContextContent({
   className,
@@ -64,8 +79,54 @@ function MenuContextContent({
   steam_url,
   user_id,
   username,
+  isUser = false,
+  isOnLobby = false,
+  isLobbyOwner = false,
+  onClose,
 }: MenuContextContentProps) {
+  const friends = useFriendsStore.getState().friends
+
   const [openModalSupport, setOpenModalSupport] = useState(false)
+
+  const filteredMenuItems: OptionalMenuItems = { ...menuItems }
+
+  if (isUser) {
+    delete filteredMenuItems.remove
+    delete filteredMenuItems.report
+    delete filteredMenuItems.friendAdd
+    delete filteredMenuItems.friendRemove
+  }
+
+  if (!isUser) delete filteredMenuItems.exit
+
+  if (!isOnLobby) {
+    delete filteredMenuItems.remove
+    delete filteredMenuItems.exit
+  }
+
+  if (!isLobbyOwner) delete filteredMenuItems.remove
+
+  if (!onClose) delete filteredMenuItems.exit
+
+  const keys = Object.keys(filteredMenuItems) as keysMenuType[]
+
+  const isFriend = useCallback(() => {
+    if (friends) {
+      const allFriends = [...friends.online, ...friends.offline]
+
+      const allFriendsIds = [...allFriends.map((friend) => friend.user_id)]
+
+      const isFriend = allFriendsIds.includes(user_id)
+      return isFriend
+    }
+
+    return false
+  }, [friends, user_id])
+
+  const isNotFriendMenu = (keyMenu: keysMenuType) => {
+    return keyMenu !== 'friendAdd' && keyMenu !== 'friendRemove'
+  }
+
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
@@ -82,16 +143,51 @@ function MenuContextContent({
         side={side}
       >
         {keys.map((key) => (
-          <MenuItem
-            key={key}
-            keyMenu={key}
-            alreadyInvited={alreadyInvited}
-            alreadyOnTeam={alreadyOnTeam}
-            isAvailable={isAvailable}
-            steam_url={steam_url}
-            user_id={user_id}
-            setOpenModalSupport={setOpenModalSupport}
-          />
+          <Fragment key={key}>
+            {isFriend() && key === 'friendRemove' && (
+              <MenuItem
+                keyMenu={key}
+                alreadyInvited={alreadyInvited}
+                alreadyOnTeam={alreadyOnTeam}
+                isAvailable={isAvailable}
+                steam_url={steam_url}
+                user_id={user_id}
+                setOpenModalSupport={setOpenModalSupport}
+                username={username}
+                onClose={onClose}
+                isFriendRemove
+              />
+            )}
+
+            {!isFriend() && key === 'friendAdd' && (
+              <MenuItem
+                keyMenu={key}
+                alreadyInvited={alreadyInvited}
+                alreadyOnTeam={alreadyOnTeam}
+                isAvailable={isAvailable}
+                steam_url={steam_url}
+                user_id={user_id}
+                setOpenModalSupport={setOpenModalSupport}
+                username={username}
+                onClose={onClose}
+                isFriendAdd
+              />
+            )}
+
+            {isNotFriendMenu(key) && (
+              <MenuItem
+                keyMenu={key}
+                alreadyInvited={alreadyInvited}
+                alreadyOnTeam={alreadyOnTeam}
+                isAvailable={isAvailable}
+                steam_url={steam_url}
+                user_id={user_id}
+                setOpenModalSupport={setOpenModalSupport}
+                username={username}
+                onClose={onClose}
+              />
+            )}
+          </Fragment>
         ))}
 
         <ModalSupport

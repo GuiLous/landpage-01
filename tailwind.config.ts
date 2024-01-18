@@ -32,9 +32,11 @@ const config: Config = {
       },
       minHeight: {
         friends: 'calc(100vh - 120px)',
+        friendsSearch: 'calc(100vh - 121px)',
       },
       maxHeight: {
         friends: 'calc(100vh - 120px)',
+        friendsSearch: 'calc(100vh - 121px)',
         notifications: 'calc(100vh - 64px)',
         imagePreview: `calc(100vh - 383px)`,
         imagePreviewLaptop: `calc(100vh - 290px)`,
@@ -214,7 +216,7 @@ const config: Config = {
             transform: 'rotate(0deg)',
           },
           '100%': {
-            transform: 'rotate(-360deg)',
+            transform: 'rotate(360deg)',
           },
         },
         progress: {

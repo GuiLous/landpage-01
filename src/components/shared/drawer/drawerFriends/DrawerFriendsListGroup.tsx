@@ -1,51 +1,92 @@
+'use client'
+
 import { useCallback, useEffect, useState } from 'react'
 import { RiArrowDownSLine } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
 import { CAN_RENDER_OPENED } from '@/constants'
 
-import { Friend } from '@/store/friendStore'
+import { Friend, RequestInfo } from '@/store/friendStore'
 import { Invite } from '@/store/invitesStore'
+
+import { Spinner } from '@/components/shared'
 
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 import { DrawerFriendsListGroupItem } from './DrawerFriendsListGroupItem'
 
 interface DrawerFriendsListGroupProps {
-  title: 'No seu grupo' | 'Online' | 'Offline'
-  friends: Friend[]
+  title:
+    | 'No seu grupo'
+    | 'Online'
+    | 'Offline'
+    | 'Solicitações de amizade'
+    | 'Lista de amigos'
+    | 'Resultados da busca'
+  friends?: Friend[]
+  requests?: RequestInfo[]
+  searchFriends?: Friend[]
   invites?: Invite[]
   collapse?: boolean
   open?: boolean
   showHeader?: boolean
+  isSearching?: boolean
 }
 
 export function DrawerFriendsListGroup({
-  friends = [],
-  invites = [],
   title,
+  friends = [],
+  requests = [],
+  searchFriends = [],
+  invites = [],
   collapse = true,
   open = false,
   showHeader = true,
+  isSearching = false,
 }: DrawerFriendsListGroupProps) {
   const [isOpen, setIsOpen] = useState(false)
-  const [filteredFriends, setFilteredFriends] = useState<Friend[]>([])
+
+  const isFriendInvite = title === 'Solicitações de amizade'
+  const isSearchResult = title === 'Resultados da busca'
 
   const handleCollapse = () => {
-    if (!collapse || friends.length <= 0) return
+    if (
+      (isFriendInvite && !collapse) ||
+      (isFriendInvite && requests.length <= 0)
+    )
+      return
+    if (
+      (!isFriendInvite && !collapse) ||
+      (!isFriendInvite && friends.length <= 0 && invites.length <= 0)
+    )
+      return
     setIsOpen(!isOpen)
   }
 
-  const renderItemsLength = useCallback(() => {
-    if (friends.length < 10 && friends.length > 0) return `(0${friends.length})`
-    else return `(${friends.length})`
-  }, [friends])
-
-  const filterItems = useCallback(() => {
-    return friends.filter(
-      (item) =>
-        !invites.some((invite) => item.user_id === invite.from_player.user_id)
+  const renderFriendsLength = useCallback(() => {
+    if (
+      friends.length + invites.length < 10 &&
+      friends.length + invites.length > 0
     )
-  }, [friends, invites])
+      return `(0${friends.length + invites.length})`
+    return `(${friends.length + invites.length})`
+  }, [friends.length, invites.length])
+
+  const renderRequestsLength = useCallback(() => {
+    if (requests.length < 10 && requests.length > 0)
+      return `(0${requests.length})`
+    return `(${requests.length})`
+  }, [requests.length])
+
+  const renderSearchLength = useCallback(() => {
+    if (searchFriends.length < 10 && searchFriends.length > 0)
+      return `(0${searchFriends.length})`
+    return `(${searchFriends.length})`
+  }, [searchFriends.length])
+
+  const friendsWithoutLobbyInvite = friends.filter(
+    (item) =>
+      !invites.some((invite) => item.user_id === invite.from_player.user_id)
+  )
 
   useEffect(() => {
     if (collapse) setIsOpen(open)
@@ -53,56 +94,90 @@ export function DrawerFriendsListGroup({
   }, [open, collapse])
 
   useEffect(() => {
-    if (!showHeader) {
-      setIsOpen(true)
-    }
+    if (!showHeader) return setIsOpen(true)
+
+    setIsOpen(false)
   }, [showHeader])
 
   useEffect(() => {
-    if (friends.length === 0) {
+    if (isFriendInvite && requests.length === 0) {
       setIsOpen(false)
     }
-  }, [friends])
+
+    if (!isFriendInvite && friends.length === 0 && invites.length === 0) {
+      setIsOpen(false)
+    }
+  }, [friends.length, isFriendInvite, requests.length, invites.length])
 
   useEffect(() => {
-    const friendsWithoutInvite = filterItems()
-    setFilteredFriends(friendsWithoutInvite)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [friends])
+    if (
+      isFriendInvite &&
+      CAN_RENDER_OPENED.includes(title) &&
+      requests.length > 0
+    ) {
+      setIsOpen(true)
+      return
+    }
 
-  useEffect(() => {
-    if (CAN_RENDER_OPENED.includes(title) && friends.length > 0) {
+    if (
+      !isFriendInvite &&
+      CAN_RENDER_OPENED.includes(title) &&
+      (friends.length > 0 || invites.length > 0)
+    ) {
       setIsOpen(true)
     }
-  }, [title, friends])
+  }, [title, friends.length, isFriendInvite, requests.length, invites.length])
 
   return (
     <div
       className={twMerge(
-        'h-full flex-col',
-        showHeader && 'border-b border-gray-700'
+        'flex-col flex-initial',
+        showHeader && 'border-b border-gray-700',
+        isSearchResult && 'flex-1'
       )}
     >
       <div
         className={twMerge(
           'group flex-initial cursor-pointer items-center pl-5 pr-4 py-4',
-          friends.length <= 0 && 'cursor-default',
+          !isFriendInvite &&
+            friends.length <= 0 &&
+            invites.length <= 0 &&
+            'cursor-default',
+          isFriendInvite && requests.length <= 0 && 'cursor-default',
           !showHeader && 'hidden'
         )}
         onClick={handleCollapse}
       >
-        <div>
+        <div className="min-w-fit">
           <h2
             className={twMerge(
               'text-xs text-gray-200',
-              isOpen && 'text-white font-medium'
+              (isOpen || isSearchResult) && 'text-white'
             )}
           >
-            {title} {renderItemsLength()}
+            {title}{' '}
+            {!isSearchResult && !isFriendInvite && renderFriendsLength()}
+            {!isSearchResult && isFriendInvite && renderRequestsLength()}
+            {isSearchResult && renderSearchLength()}
           </h2>
         </div>
 
-        {collapse && friends.length > 0 && (
+        {collapse &&
+          !isFriendInvite &&
+          (friends.length > 0 || invites.length > 0) && (
+            <div className="justify-end">
+              <RiArrowDownSLine
+                className={twMerge(
+                  'opacity-70 text-white transition-all',
+                  'group-hover:opacity-100',
+                  isOpen && 'opacity-100 rotate-180'
+                )}
+                size={24}
+              />
+            </div>
+          )}
+
+        {collapse && isFriendInvite && requests.length > 0 && (
           <div className="justify-end">
             <RiArrowDownSLine
               className={twMerge(
@@ -116,31 +191,76 @@ export function DrawerFriendsListGroup({
         )}
       </div>
 
-      {invites.length > 0 && isOpen && (
-        <div className="flex-col">
-          {invites.map((invite) => (
-            <DrawerFriendsInviteItem
-              key={invite.id}
-              invite_id={invite.id}
-              avatar={invite.from_player.avatar.medium}
-              status={invite.from_player.status}
-              username={invite.from_player.username}
-            />
-          ))}
+      {isSearchResult ? (
+        <div
+          className={twMerge(
+            'flex-initial',
+            isSearching && 'flex-1 h-full items-center justify-center'
+          )}
+        >
+          {isSearching ? (
+            <Spinner />
+          ) : (
+            searchFriends.length > 0 && (
+              <div className="flex-col">
+                {searchFriends.map((friend, index) => (
+                  <DrawerFriendsListGroupItem
+                    key={index}
+                    {...friend}
+                    avatar={friend.avatar.medium}
+                    title={title}
+                  />
+                ))}
+              </div>
+            )
+          )}
         </div>
-      )}
+      ) : (
+        <>
+          {invites.length > 0 && isOpen && (
+            <div className="flex-col">
+              {invites.map((invite) => (
+                <DrawerFriendsInviteItem
+                  key={invite.id}
+                  lobby_invite_id={invite.id}
+                  avatar={invite.from_player.avatar.medium}
+                  status={invite.from_player.status}
+                  username={invite.from_player.username}
+                />
+              ))}
+            </div>
+          )}
 
-      {filteredFriends.length > 0 && isOpen && (
-        <div className="flex-col">
-          {filteredFriends.map((friend, index) => (
-            <DrawerFriendsListGroupItem
-              key={index}
-              {...friend}
-              avatar={friend.avatar.medium}
-              title={title}
-            />
-          ))}
-        </div>
+          {requests.length > 0 && isOpen && (
+            <div className="flex-col">
+              {requests.map((request) => (
+                <DrawerFriendsInviteItem
+                  key={request.id}
+                  status={request.user_from.status}
+                  username={request.user_from.username}
+                  user_id={request.user_from.user_id}
+                  request_id={request.id}
+                  create_date={request.create_date}
+                  avatar={request.user_from.avatar.medium}
+                  isFriendInvite
+                />
+              ))}
+            </div>
+          )}
+
+          {friendsWithoutLobbyInvite.length > 0 && isOpen && (
+            <div className="flex-col">
+              {friendsWithoutLobbyInvite.map((friend, index) => (
+                <DrawerFriendsListGroupItem
+                  key={index}
+                  {...friend}
+                  avatar={friend.avatar.medium}
+                  title={title}
+                />
+              ))}
+            </div>
+          )}
+        </>
       )}
     </div>
   )

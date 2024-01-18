@@ -24,7 +24,7 @@ const button = tv({
       true: 'bg-gray-700 hover:bg-gray-600 active:bg-gray-800 disabled:hover:bg-gray-800',
     },
     profile: {
-      true: 'gap-3.5 border border-gray-700 bg-gray-1100/50 p-3 hover:border-gray-300/50 hover:bg-gray-1100/80 active:bg-gray-1100/80',
+      true: 'gap-3.5 bg-gray-1100/50 p-3 hover:bg-gray-1100/80 hover:outline hover:outline-1 hover:outline-gray-300/50 active:bg-gray-1100/80',
     },
     ghost: {
       true: 'max-w-fit gap-0 border border-white bg-transparent p-0 hover:bg-transparent active:bg-transparent',

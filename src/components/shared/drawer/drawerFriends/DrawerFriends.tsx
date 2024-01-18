@@ -1,15 +1,21 @@
 'use client'
 
 import { usePathname } from 'next/navigation'
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useFriendsStore } from '@/store/friendStore'
+import { DEBOUNCE_SEARCH_TIME } from '@/constants'
+
+import { Friend, useFriendsStore } from '@/store/friendStore'
 import { useInvitesStore } from '@/store/invitesStore'
 import { useLobbyStore } from '@/store/lobbyStore'
 import { useUserStore } from '@/store/userStore'
 
+import { profilesApi } from '@/modelsApi'
+
 import { Drawer, ScrollArea } from '@/components/shared'
+
+import { useAuth, useShowErrorToast } from '@/hooks'
 
 import { DrawerFriendsFilter } from './DrawerFriendsFilter'
 import { DrawerFriendsListGroup } from './DrawerFriendsListGroup'
@@ -20,6 +26,10 @@ interface DrawerFriends {
 }
 
 export function DrawerFriends({ open, setOpen }: DrawerFriends) {
+  const auth = useAuth()
+
+  const showErrorToast = useShowErrorToast()
+
   const user = useUserStore.getState().user
   const lobby = useLobbyStore.getState().lobby
   const friends = useFriendsStore.getState().friends
@@ -28,6 +38,14 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
   const pathname = usePathname()
 
   const [filter, setFilter] = useState('')
+  const [isSearching, setIsSearching] = useState(false)
+  const [searchFriends, setSearchFriends] = useState<Friend[]>([])
+
+  const showInviteBar =
+    pathname === '/jogar' &&
+    user?.invites_available_count &&
+    user.invites_available_count > 0 &&
+    process.env.NEXT_PUBLIC_USE_INVITES === 'true'
 
   const teamingFriends =
     lobby?.players?.filter((player) => player.user_id !== user?.id) || []
@@ -36,22 +54,32 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
     friends?.online?.filter((friend) => friend.lobby_id !== user?.lobby_id) ||
     []
 
+  const friendRequests = friends?.requests.received || []
+
+  const isFilterEmpty = filter === '' || !filter
+
+  const filteredRequests = friendRequests.filter(
+    (request) =>
+      isFilterEmpty ||
+      request.user_to.username.toLowerCase().includes(filter.toLowerCase())
+  )
+
   const filteredTeamingFriends = teamingFriends?.filter(
     (friend) =>
-      filter === '' ||
+      isFilterEmpty ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const filteredOnlineFriends = onlineFriends?.filter(
     (friend) =>
-      filter === '' ||
+      isFilterEmpty ||
       friend.username.toLowerCase().includes(filter.toLowerCase())
   )
 
   const filteredOfflineFriends =
     friends?.offline?.filter(
       (friend) =>
-        filter === '' ||
+        isFilterEmpty ||
         friend.username.toLowerCase().includes(filter.toLowerCase())
     ) || []
 
@@ -61,15 +89,45 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
   const filteredInvites = receivedInvites.filter(
     (invite) =>
-      filter === '' ||
+      isFilterEmpty ||
       invite.from_player.username.toLowerCase().includes(filter.toLowerCase())
   )
 
-  const showInviteBar =
-    pathname === '/jogar' &&
-    user?.invites_available_count &&
-    user.invites_available_count > 0 &&
-    process.env.NEXT_PUBLIC_USE_INVITES === 'true'
+  const handleSearchFriends = useCallback(async () => {
+    if (!auth?.token) return
+    setIsSearching(true)
+
+    const response = await profilesApi.searchProfile(auth.token, filter)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+      setIsSearching(false)
+      return
+    }
+
+    const filteredWithoutUser = response.filter(
+      (profile: Friend) => profile.username !== user?.account?.username
+    )
+
+    setSearchFriends(filteredWithoutUser)
+    setIsSearching(false)
+  }, [auth?.token, filter, showErrorToast, user?.account?.username])
+
+  useEffect(() => {
+    if (!isFilterEmpty && filter.length > 3) {
+      setIsSearching(true)
+
+      const delaySearch = setTimeout(() => {
+        handleSearchFriends()
+      }, DEBOUNCE_SEARCH_TIME)
+
+      return () => clearTimeout(delaySearch)
+    }
+  }, [filter, isFilterEmpty, handleSearchFriends])
+
+  useEffect(() => {
+    if (filter.length <= 3) setIsSearching(false)
+  }, [filter])
 
   return (
     <Drawer open={open} onOpenChange={setOpen}>
@@ -86,7 +144,11 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
         }}
       >
         <div className="mt-6 flex-col justify-start">
-          <DrawerFriendsFilter setFilter={setFilter} />
+          <DrawerFriendsFilter
+            setFilter={setFilter}
+            filter={filter}
+            setSearchFriends={setSearchFriends}
+          />
 
           <div
             className={twMerge(
@@ -100,32 +162,60 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
                 'first:border-t first:border-t-gray-700'
               )}
             >
-              <div>
-                <DrawerFriendsListGroup
-                  title="No seu grupo"
-                  friends={filteredTeamingFriends}
-                  open
-                  showHeader={filter === ''}
-                />
-              </div>
+              {!isFilterEmpty && (
+                <div className="max-h-friendsSearch min-h-friendsSearch flex-col">
+                  <DrawerFriendsListGroup
+                    title="Lista de amigos"
+                    friends={[
+                      ...filteredTeamingFriends,
+                      ...filteredOnlineFriends,
+                      ...filteredOfflineFriends,
+                    ]}
+                    open
+                    showHeader={!isFilterEmpty}
+                  />
 
-              <div>
-                <DrawerFriendsListGroup
-                  title="Online"
-                  friends={filteredOnlineFriends}
-                  invites={filteredInvites}
-                  showHeader={filter === ''}
-                  open
-                />
-              </div>
+                  <DrawerFriendsListGroup
+                    title="Resultados da busca"
+                    searchFriends={searchFriends}
+                    showHeader={!isFilterEmpty}
+                    isSearching={isSearching}
+                    open
+                  />
+                </div>
+              )}
 
-              <div>
-                <DrawerFriendsListGroup
-                  title="Offline"
-                  friends={filteredOfflineFriends}
-                  showHeader={filter === ''}
-                />
-              </div>
+              {isFilterEmpty && (
+                <>
+                  <DrawerFriendsListGroup
+                    title="No seu grupo"
+                    friends={filteredTeamingFriends}
+                    open
+                    showHeader={isFilterEmpty}
+                  />
+
+                  <DrawerFriendsListGroup
+                    title="Solicitações de amizade"
+                    requests={filteredRequests}
+                    showHeader={isFilterEmpty}
+                    open
+                  />
+
+                  <DrawerFriendsListGroup
+                    title="Online"
+                    friends={filteredOnlineFriends}
+                    invites={filteredInvites}
+                    showHeader={isFilterEmpty}
+                    open
+                  />
+
+                  <DrawerFriendsListGroup
+                    title="Offline"
+                    friends={filteredOfflineFriends}
+                    showHeader={isFilterEmpty}
+                  />
+                </>
+              )}
             </ScrollArea>
           </div>
         </div>
