@@ -23,32 +23,6 @@ export function DrawerFriendsFilter({
     setFilter(value)
   }
 
-  // const addFriend = async () => {
-  //   if (isFetching || !auth?.token) return
-
-  //   setIsFetching(true)
-
-  //   const response = await friendsApi.add(auth.token, filter)
-
-  //   if (response.errorMsg) {
-  //     showErrorToast(response.errorMsg)
-
-  //     setIsFetching(false)
-  //     return
-  //   }
-
-  //   setFilter('')
-
-  //   useAppStore.getState().addToast({
-  //     content: `Solicitação enviada para ${filter}`,
-  //     variant: 'success',
-  //   })
-
-  //   setIsFetching(false)
-
-  //   revalidatePath({ path: '/' })
-  // }
-
   return (
     <div className="flex-initial flex-col items-center gap-6 px-5 pb-4">
       <div className="items-center">
