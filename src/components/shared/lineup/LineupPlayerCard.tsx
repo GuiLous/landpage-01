@@ -31,7 +31,7 @@ export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
   return (
     <div
       className={twMerge(
-        'bg-cover relative cursor-pointer h-full min-w-[200px] flex-col justify-between rounded-lg p-5',
+        'bg-cover bg-center relative cursor-pointer h-full min-w-[200px] flex-col justify-between rounded-lg p-5',
         'after:bg-gradient_player_card after:bottom-0 after:h-24 after:left-0 after:opacity-80 after:absolute after:w-full',
         '3xl:p-2.5'
       )}
