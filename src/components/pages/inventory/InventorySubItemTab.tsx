@@ -1,15 +1,16 @@
 import { createRef, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { capitalizeFirstLetter } from '@/utils'
+import { WeaponNameType, capitalizeFirstLetter } from '@/utils'
 
 import { SubTabTypes } from './InventoryWrapperContent'
 
 interface InventorySubItemTabProps {
-  activeSubTab: string
+  activeSubTab: SubTabTypes
+  subTabs: SubTabTypes[]
   setActiveSubTab: (state: SubTabTypes) => void
-  subTabs: string[]
   setActiveItemType: (state: SubTabTypes) => void
+  setWeaponSelected: (state: WeaponNameType) => void
 }
 
 export function InventorySubItemTab({
@@ -17,6 +18,7 @@ export function InventorySubItemTab({
   setActiveItemType,
   setActiveSubTab,
   subTabs,
+  setWeaponSelected,
 }: InventorySubItemTabProps) {
   const [selectedTabsRef, setSelectedTabsRef] = useState<any>([])
 
@@ -25,6 +27,12 @@ export function InventorySubItemTab({
   const handleSubItemTabChange = (tab: SubTabTypes) => {
     setActiveItemType(tab)
     setActiveSubTab(tab)
+
+    if (tab === 'pistolas') setWeaponSelected('Pistola')
+    if (tab === 'submetralhadoras') setWeaponSelected('Micro')
+    if (tab === 'escopetas') setWeaponSelected('Doze')
+    if (tab === 'metralhadoras') setWeaponSelected('Rambinho')
+    if (tab === 'fuzis') setWeaponSelected('AK')
 
     if (wrapperRef.current && selectedTabsRef.length === 0) {
       return
@@ -65,8 +73,8 @@ export function InventorySubItemTab({
   return (
     <div
       className={twMerge(
-        'min-h-[42px] w-full max-w-[364px] flex-initial items-center gap-2 overflow-x-hidden',
-        '3xl:min-h-[38px] 3xl:max-w-[355px] 3xl:gap-1.5'
+        'min-h-[38px] w-full max-w-[364px] flex-initial items-center gap-2 overflow-hidden',
+        '3xl:max-w-[355px] 3xl:gap-1.5'
       )}
       ref={wrapperRef}
     >
@@ -74,8 +82,7 @@ export function InventorySubItemTab({
         <div
           key={tab}
           className={twMerge(
-            'max-w-fit flex-initial bg-gray-700/30 rounded cursor-pointer py-3.5 px-2.5',
-            '3xl:py-3'
+            'max-w-fit max-h-[38px] min-h-[38px] px-2.5 flex-initial bg-gray-700/30 rounded cursor-pointer items-center justify-center'
           )}
           style={{
             background:
