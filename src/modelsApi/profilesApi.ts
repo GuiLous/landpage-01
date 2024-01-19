@@ -17,4 +17,12 @@ export const profilesApi = {
       options,
     })
   },
+
+  async searchProfile(token: string, filter: string, options?: RequestInit) {
+    return await baseApi.list({
+      endpoint: `profiles/search?query=${filter}/`,
+      token,
+      options,
+    })
+  },
 }
