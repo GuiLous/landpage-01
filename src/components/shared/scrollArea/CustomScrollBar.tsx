@@ -3,18 +3,20 @@ import { twMerge } from 'tailwind-merge'
 
 interface CustomScrollBarProps extends ComponentProps<'div'> {
   children: ReactNode
-  height: number
+  wrapperClassName?: string
 }
 
 export function CustomScrollBar({
   children,
-  height,
   className,
+  wrapperClassName,
 }: CustomScrollBarProps) {
   return (
     <div
-      className="relative overflow-hidden"
-      style={{ maxHeight: `${height}px`, minHeight: '106%' }}
+      className={twMerge(
+        'relative overflow-hidden min-h-[106%]',
+        wrapperClassName
+      )}
     >
       <div
         className={twMerge(
