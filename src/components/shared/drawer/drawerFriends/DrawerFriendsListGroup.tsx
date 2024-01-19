@@ -56,27 +56,31 @@ export function DrawerFriendsListGroup({
       return
     if (
       (!isFriendInvite && !collapse) ||
-      (!isFriendInvite && friends.length <= 0)
+      (!isFriendInvite && friends.length <= 0 && invites.length <= 0)
     )
       return
     setIsOpen(!isOpen)
   }
 
   const renderFriendsLength = useCallback(() => {
-    if (friends.length < 10 && friends.length > 0) return `(0${friends.length})`
-    else return `(${friends.length})`
-  }, [friends.length])
+    if (
+      friends.length + invites.length < 10 &&
+      friends.length + invites.length > 0
+    )
+      return `(0${friends.length + invites.length})`
+    return `(${friends.length + invites.length})`
+  }, [friends.length, invites.length])
 
   const renderRequestsLength = useCallback(() => {
     if (requests.length < 10 && requests.length > 0)
       return `(0${requests.length})`
-    else return `(${requests.length})`
+    return `(${requests.length})`
   }, [requests.length])
 
   const renderSearchLength = useCallback(() => {
     if (searchFriends.length < 10 && searchFriends.length > 0)
       return `(0${searchFriends.length})`
-    else return `(${searchFriends.length})`
+    return `(${searchFriends.length})`
   }, [searchFriends.length])
 
   const friendsWithoutLobbyInvite = friends.filter(
@@ -100,10 +104,10 @@ export function DrawerFriendsListGroup({
       setIsOpen(false)
     }
 
-    if (!isFriendInvite && friends.length === 0) {
+    if (!isFriendInvite && friends.length === 0 && invites.length === 0) {
       setIsOpen(false)
     }
-  }, [friends.length, isFriendInvite, requests.length])
+  }, [friends.length, isFriendInvite, requests.length, invites.length])
 
   useEffect(() => {
     if (
@@ -118,11 +122,11 @@ export function DrawerFriendsListGroup({
     if (
       !isFriendInvite &&
       CAN_RENDER_OPENED.includes(title) &&
-      friends.length > 0
+      (friends.length > 0 || invites.length > 0)
     ) {
       setIsOpen(true)
     }
-  }, [title, friends.length, isFriendInvite, requests.length])
+  }, [title, friends.length, isFriendInvite, requests.length, invites.length])
 
   return (
     <div
@@ -135,7 +139,10 @@ export function DrawerFriendsListGroup({
       <div
         className={twMerge(
           'group flex-initial cursor-pointer items-center pl-5 pr-4 py-4',
-          !isFriendInvite && friends.length <= 0 && 'cursor-default',
+          !isFriendInvite &&
+            friends.length <= 0 &&
+            invites.length <= 0 &&
+            'cursor-default',
           isFriendInvite && requests.length <= 0 && 'cursor-default',
           !showHeader && 'hidden'
         )}
@@ -155,18 +162,20 @@ export function DrawerFriendsListGroup({
           </h2>
         </div>
 
-        {collapse && !isFriendInvite && friends.length > 0 && (
-          <div className="justify-end">
-            <RiArrowDownSLine
-              className={twMerge(
-                'opacity-70 text-white transition-all',
-                'group-hover:opacity-100',
-                isOpen && 'opacity-100 rotate-180'
-              )}
-              size={24}
-            />
-          </div>
-        )}
+        {collapse &&
+          !isFriendInvite &&
+          (friends.length > 0 || invites.length > 0) && (
+            <div className="justify-end">
+              <RiArrowDownSLine
+                className={twMerge(
+                  'opacity-70 text-white transition-all',
+                  'group-hover:opacity-100',
+                  isOpen && 'opacity-100 rotate-180'
+                )}
+                size={24}
+              />
+            </div>
+          )}
 
         {collapse && isFriendInvite && requests.length > 0 && (
           <div className="justify-end">
@@ -183,7 +192,12 @@ export function DrawerFriendsListGroup({
       </div>
 
       {isSearchResult ? (
-        <div className="h-full items-center justify-center">
+        <div
+          className={twMerge(
+            'flex-initial',
+            isSearching && 'flex-1 h-full items-center justify-center'
+          )}
+        >
           {isSearching ? (
             <Spinner />
           ) : (
