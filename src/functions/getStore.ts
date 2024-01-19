@@ -1,4 +1,4 @@
-import { getAuthServer } from '@/utils'
+import { WeaponNameType, getAuthServer } from '@/utils'
 
 import { storeApi } from '@/modelsApi'
 
@@ -42,6 +42,7 @@ export interface StoreItem {
   item_id: number
   media: Media[]
   is_starter: boolean
+  weapon?: WeaponNameType
 }
 
 export interface Store {
