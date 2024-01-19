@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria menu de arsenal no inventário [#961](https://github.com/3C-gg/reload-frontend/issues/961).
 - Cria pesquisa por amigo na lista de amigos no projeto next [#961](https://github.com/3C-gg/reload-frontend/issues/961).
 - Cria página de `/loja` no projeto next [#912](https://github.com/3C-gg/reload-frontend/issues/912).
 - Cria sistema de `Convites` no projeto next [#844](https://github.com/3C-gg/reload-frontend/issues/844).
@@ -53,17 +54,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona imagens otimizadas no projeto `next`.
 - Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
-- Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
-- Adiciona função `hasUrlOnText` no arquivo `Validators.js`.
-- Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
-- Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
-- Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
-- Cria novo método `updateSocials` em `ProfilesApi`.
-- Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
-- Cria novo componente `ProfileHeaderSocialButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
-- Cria novo componente `ProfileHeaderButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
-- Adiciona novar variantes para `Badge` (`online, offline, teaming, queue, in_game`).
-
+  
 ### Changed
 
 - Altera projeto `Next` para ficar igual ao projeto antigo [#971](https://github.com/3C-gg/reload-frontend/issues/971).
@@ -79,6 +70,244 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ajusta `httpService` no projeto next.
 - Altera tipagem de `httpService` no projeto next.
 - Altera `PrivateRoute` para redirecionar para `not-found` no projeto `next`.
+  
+### Fixed
+
+- Corrige fluxo de cadastrar no projeto next.
+- Corrige botões de `lobby` que quando tem valor zero buga o contador no projeto next.
+- Corrige slice de `notifications` no projeto next.
+
+### Removed
+
+- Deletado todos os arquivos referente ao projeto antigo sem `next` [679](https://github.com/3C-gg/reload-frontend/issues/679).
+
+## [303fec9 - 15/1/2024]
+
+### Added
+
+- Ao logar na aplicação o usuário pode permitir ou negar notificações de sistema [#958](https://github.com/3C-gg/reload-frontend/issues/958).
+- Altera title da página ao encontrar uma partida e envia uma notificação de sistema caso o usuário esteja em outra aba [#958](https://github.com/3C-gg/reload-frontend/issues/958).
+- Adiciona botão de atualizar perfil no avatar do usuário em no seu perfil [#947](https://github.com/3C-gg/reload-frontend/issues/947).
+- Adiciona botão de adicionar e remover amigo no perfil do usuário [#949](https://github.com/3C-gg/reload-frontend/issues/949).
+- Cria componente `PlayerInventoryItems` para listar os cards e capas de perfil na página `/conta` [#933](https://github.com/3C-gg/reload-frontend/issues/933).
+
+### Changed
+
+- Remove botão de atualizar perfil do perfil do usuário [#947](https://github.com/3C-gg/reload-frontend/issues/947).
+- Seleciona o item em `uso` no `inventário` ao mudar de `aba` [#945](https://github.com/3C-gg/reload-frontend/issues/945).
+- Altera `background_image` para `featured_image` no `Carousel` [#948](https://github.com/3C-gg/reload-frontend/issues/948).
+
+### Removed
+
+- Remove `background` dos items da loja para ficar igual ao design [#936](https://github.com/3C-gg/reload-frontend/issues/936).
+- Remove o número identificador do componente `ItemCard` no inventário [#934](https://github.com/3C-gg/reload-frontend/issues/934).
+
+### Fixed
+
+- Corrige os reducers `addFriend` e `removeFriend` [#937](https://github.com/3C-gg/reload-frontend/issues/937).
+- Corrige modal de compra não abrindo após comprar rc [#905](https://github.com/3C-gg/reload-frontend/issues/905).
+- Corrige redirecionamento para indevido para a página de `/conta-inativa` [#938](https://github.com/3C-gg/reload-frontend/issues/938).
+- Corrige menu de convites de amizade para aparecer as opções corretas [#937](https://github.com/3C-gg/reload-frontend/issues/937).
+- Corrige todos os testes [#942](https://github.com/3C-gg/reload-frontend/issues/942).
+
+## [ea8095b - 1/1/2024]
+
+### Changed
+
+- Altera efeito de `parallax` nas previews das imagens do `inventário` e `loja` [#925](https://github.com/3C-gg/reload-frontend/issues/925).
+- Adiciona min-width nas `ultimas partidas jogadas` quando o valor for `N/A` para evitar do layout quebrar [#922](https://github.com/3C-gg/reload-frontend/issues/922).
+- Altera tamanho máximo da barra de progresso no perfil [#920](https://github.com/3C-gg/reload-frontend/issues/920).
+- Altera loja para que ao abrir `modal de compra de item` e clicar em `comprar rc` e voltar do stripe volte com o modal de compra aberto com o item [#905](https://github.com/3C-gg/reload-frontend/issues/905).
+- Altera botão do `modal de compra de item` para `Item adquirido` e `Comprar rc` [#904](https://github.com/3C-gg/reload-frontend/issues/904).
+- Altera card de jogar para ficar igual ao novo design [#898](https://github.com/3C-gg/reload-frontend/issues/898).
+
+### Added
+
+- Adiciona e altera websockets, actions de slices e componentes para lidar com novo sistema de amigos que não usa mais a Steam.
+
+## [a8a7d3a - 11/12/2023]
+
+### Added
+
+- Cria função `updateItemsWithPurchaseFlag` para marcar o item, box ou collection como `Já adquirido` [#910](https://github.com/3C-gg/reload-frontend/issues/910).
+- Adiciona novo tipo de item `decorative` na função `getItemName`.
+- Adiciona nova tab de `peril` para ativar e desativar customizáveis dentro do site [#895](https://github.com/3C-gg/reload-frontend/issues/895).
+- Adiciona novas tabs no inventário [#889](https://github.com/3C-gg/reload-frontend/issues/889).
+
+### Changed
+
+- Altera template de PR do Github [#892](https://github.com/3C-gg/reload-frontend/issues/892).
+
+### Fixed
+
+- Corrige carousel de items dentro do `Modal de compra de items` para mostrar apenas quando o item for uma `Box` ou `Collection` [#901](https://github.com/3C-gg/reload-frontend/issues/901).
+- Corrige testes da view `NotInvited` [#883](https://github.com/3C-gg/reload-frontend/issues/883).
+
+## [17335fd - 3/12/2023]
+
+### Added
+
+- Variável de ambiente para exibir ou esconder funcionalidades de Loja [#879](https://github.com/3C-gg/reload-frontend/issues/879).
+- Cria views `CheckoutError, CheckoutSuccess` para tratar o retorno do checkout [#581](https://github.com/3C-gg/reload-frontend/issues/581).
+- Cria integração com a `stripe` para comprar `ReloadCoins` [#581](https://github.com/3C-gg/reload-frontend/issues/581).
+- Cria component `ReloadCoinsCard` [#581](https://github.com/3C-gg/reload-frontend/issues/581).
+- Cria component `ReloadCoinsModal` [#581](https://github.com/3C-gg/reload-frontend/issues/581).
+- Cria novas funções `calcOriginalValueByPercentage` e `getItemName` em `utils`.
+- Cria novo componente `StoreItemCard` [#577](https://github.com/3C-gg/reload-frontend/issues/577).
+- Cria nova cor `blue.500` no tema.
+- Cria novo componente `BuyConfirmationModal`.
+- Adiciona nova cor `gray.750` no tema.
+- Cria componente `BuyItemDescription`.
+- Cria componente `ItemPreviewFull`.
+- Cria componente `ItemPreview`.
+- Cria componente `BuyItemModal`.
+- Adiciona nova lib `react-zoom-pan-pinch` para fazer efeito de zoom em imagens.
+- Cria novas funções `calcOriginalValueByPercentage` e `getItemName` em `utils`.
+- Cria nova cor `blue.500` no tema.
+- Cria componente `CarouselPreview` [#556](https://github.com/3C-gg/reload-frontend/issues/556).
+- Cria componente `CarouselContent` [#556](https://github.com/3C-gg/reload-frontend/issues/556).
+- Cria componente `Carousel`[#556](https://github.com/3C-gg/reload-frontend/issues/556).
+- Cria view `Store`.
+- Adiciona rota `/loja` em `Router`.
+
+### Changed
+
+- Altera a prop `shouldReconnect` na configuração do `websocket` para `true` [#868](https://github.com/3C-gg/reload-frontend/issues/868).
+- Altera inventário para remover o filtro de seleção de lado [#847](https://github.com/3C-gg/reload-frontend/issues/847).
+- Altera links do modal de compra de RC e adiciona loading ao clicar em um item.
+- Altera `BuyItemModal` para integrar com o BE.
+- Altera `Carousel` para integrar com o BE.
+- Altera `StoreItemCard` para integrar com o BE.
+
+### Fixed
+
+- Corrige erro de redirecionamento para `/404` quando usuário é redirecionado para `/em-breve` vindo de uma tentativa de se cadastrar sem os direitos necessários (`invite_required`, `beta_required` ou `alpha_required`) [#882](https://github.com/3C-gg/reload-frontend/issues/882)
+- Corrige erro de redirecionamento para `/404` quando o token não é mais válido [#866](https://github.com/3C-gg/reload-frontend/issues/866).
+- Corrige cor do background do componente de `Modal`.
+
+### Removed
+
+- Teste em `SidebarMenuItem.spec.jsx` foi removido enquanto não conseguimos alterar variáveis de ambiente em tempo real de teste.
+- Requisição de `lock-in` para API ao receber partida encontrada [#877](https://github.com/3C-gg/reload-frontend/issues/877).
+
+## [13f29b4 - 24/11/2023]
+
+### Added
+
+- Adiciona useEffect no `WebSocket` para mandar um socket de `keep_alive` a cada 7 segundos [#852](https://github.com/3C-gg/reload-frontend/issues/852).
+
+### Changed
+
+- Altera rota da página de inventario para `/inventario` [#862](https://github.com/3C-gg/reload-frontend/issues/862).
+- Altera inventário para que o item de `vazio` nào tenha ação clicando diretamente nele e sim apenas no botão de `ativar/remover` [#848](https://github.com/3C-gg/reload-frontend/issues/848).
+
+### Fixed
+
+- Usuário não pode acessar a página de `em-breve` se estiver na lista de `beta` [#820](https://github.com/3C-gg/reload-frontend/issues/820).
+- Ao clicar no botão de conectar no fiveM na tela de `conectar` o prompt é aberto eu outra janela evitando o websocket de fechar [#857](https://github.com/3C-gg/reload-frontend/issues/857).
+- Na página de `404` ao clicar no botão o usuário não é mais deslogado [#854](https://github.com/3C-gg/reload-frontend/issues/854).
+
+## [c77b6d8 - 9/11/2023]
+
+### Added
+
+- Criar `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Adiciona `max-width` de `300px` no nome do jogador na tabela de detalhes da partida [#823](https://github.com/3C-gg/reload-frontend/issues/823).
+
+### Changed
+
+- Altera componentes `FileInput` e `FileCard` para aceitar formatos de videos e mudar os ícones [#816](https://github.com/3C-gg/reload-frontend/issues/816).
+- Altera `min-width` e `tooltip` do campo `kda` no componente de `MatchHistoryStatsLink`[#823](https://github.com/3C-gg/reload-frontend/issues/823).
+- Altera campo `kda` na página de detalhes da partida sendo agora `kills/deaths/assists`[#823](https://github.com/3C-gg/reload-frontend/issues/823).
+- Verifica agora beta-required na tela de `/em-breve` para redirecionar o usuário caso seja `false` [#829](https://github.com/3C-gg/reload-frontend/issues/829).
+
+## [fef7480 - 7/11/2023]
+
+### Changed
+
+- Altera ícone do botão de fiveM [#821](https://github.com/3C-gg/reload-frontend/issues/821).
+
+## [349237f - 2/11/2023]
+
+### Added
+
+- Cria botão para `sincronizar` o perfil com a steam do usuário [#812](https://github.com/3C-gg/reload-frontend/issues/812)
+- Cria componente `VideoPlayer` [#808](https://github.com/3C-gg/reload-frontend/issues/808).
+
+### Changed
+
+- Altera botão de `assistir intro` para abrir um `iframe` [#808](https://github.com/3C-gg/reload-frontend/issues/808).
+
+### Fixed
+
+- Corrige tela de `/em-breve` onde qualquer usuário poderia acessar [#820](https://github.com/3C-gg/reload-frontend/issues/820).
+
+## [adaef8c - 28/10/2023]
+
+### Changed
+
+- Altera página de `conectar` para ficar igual ao novo design [#787](https://github.com/3C-gg/reload-frontend/issues/787).
+- Carrega audio de partida encontrada da api ao invés da aplicação local.
+- Faz com que scripts e inicialização de GA e TagManager estejam presentes somente no ambiente de produção [#801](https://github.com/3C-gg/reload-frontend/issues/801).
+
+### Fixed
+
+- Ajusta redirect para `/404` quando `auth` retorna `Não autorizado` [#793](https://github.com/3C-gg/reload-frontend/issues/793).
+
+## [407d763 - 26/10/2023]
+
+### Changed
+
+- Altera tela `Detalhes de partida` para quando o status for `warmup` [#788](https://github.com/3C-gg/reload-frontend/issues/788).
+- Altera campo `state` de `preMatch` para `status` [#774](https://github.com/3C-gg/reload-frontend/issues/774).
+- Altera sistema de invites para funcionar apenas se a env `REACT_APP_USE_INVITES` for `true` [#777](https://github.com/3C-gg/reload-frontend/issues/777).
+
+### Fixed
+
+- Corrige redirects da aplicação.
+- Corrige redirect após o `sign in` da steam e fake sign in que deve levar para `/em-breve` caso a api retorne o erro de `Usuário deve ser convidado` [#786](https://github.com/3C-gg/reload-frontend/issues/786).
+- Corrige refresh após o login da steam.
+- Ajusta texto `3 minutos` para `5 minutos` [#781](https://github.com/3C-gg/reload-frontend/issues/781).
+- Ajusta `status` da `preMatch`.
+- Corrige mecanismo de load de variável de ambiente `REACT_APP_USE_INVITES` e `REACT_APP_DEBUG` para o padrão ser `true`.
+
+## [04/10/2023 - 9720d79]
+
+### Added
+
+- Implementa Google Analytics (GA) [#769](https://github.com/3C-gg/reload-frontend/issues/769).
+- Cria componente `SendInvitesModal` e todos seus componentes para o usuário poder convidar outros jogadores [#749](https://github.com/3C-gg/reload-frontend/issues/749).
+- Cria view `NotInvited` [#752](https://github.com/3C-gg/reload-frontend/issues/752).
+- Cria componente `InviteBar` [#748](https://github.com/3C-gg/reload-frontend/issues/748).
+- Cria componente `WelcomeModal` [#746](https://github.com/3C-gg/reload-frontend/issues/746).
+- Cria componentes `ImagePreview, ItemCard, ItemDescription, ItemsSelectBox, itemsTabBar e SubItemTab`.
+- Cria view `Inventory` [#725](725-página-de-inventário).
+- Cria hook `useAudio`.
+- Adicionado audio de `partida encontrada` [#716](https://github.com/3C-gg/reload-frontend/issues/716).
+- Cria tests de `views` que estavam faltando [#217](https://github.com/3C-gg/reload-frontend/issues/217).
+- Adiciona função `hasUrlOnText` no arquivo `Validators.js`.
+- Adiciona `useEffect` na view `Match` para interceptar alterações no slice de partidas e exibir essas alterações para o usuário na tela de detalhe de partida [#654](https://github.com/3C-gg/reload-frontend/issues/654).
+- Cria `hook` `useProfileDetails` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria `contexto` `ProfileDetailsContext` [#636](https://github.com/3C-gg/reload-frontend/issues/636).
+- Cria novo método `updateSocials` em `ProfilesApi`.
+- Cria novo componente `AddSocialModal` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderSocialButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Cria novo componente `ProfileHeaderButtons` [#616](https://github.com/3C-gg/reload-frontend/issues/616).
+- Adiciona novar variantes para `Badge` (`online, offline, teaming, queue, in_game`).
+
+### Changed
+
+- Adiciona novas props para o componente `Modal`.
+- URL de vídeo teaser da home.
+- Altera view `Home` para ficar igual ao novo design [#765](https://github.com/3C-gg/reload-frontend/issues/765).
+- Altera view `Signup` para redirecionar para `/em-breve` caso o usuário não tenha sido convidado [#752](https://github.com/3C-gg/reload-frontend/issues/752).
+- Altera `SidebarLayout` para mostrar o componente `InviteBar` quando necessário [#748](https://github.com/3C-gg/reload-frontend/issues/748).
+- Atualiza libs do projeto.
+- Adiciona try catch no hook `useAudio`.
+- Adiciona nova prop `setPlayAudio` no componente `LobbyLineup` para controlar o audio de partida encontrada [#716](https://github.com/3C-gg/reload-frontend/issues/716).
+- Altera página de detalhes da partida para mostrar o ip da partida enquanto estiver em andamento [#715](https://github.com/3C-gg/reload-frontend/issues/715).
+- Adiciona um timer automático com o componente `Timer` quando a partida estiver com status `running` no componente `MatchHistoryStatsLink` [#693](https://github.com/3C-gg/reload-frontend/issues/693).
+- Altera tempo para `conectar` na partida para `5 minutos` [#691](https://github.com/3C-gg/reload-frontend/issues/691).
 - Altera componente `MatchHistoryList` para mostrar skeleton no lugar dos conteúdos da pagina [#684](https://github.com/3C-gg/reload-frontend/issues/684).
 - Altera componente `MatchHistoryList` para ocupar o tamanho mínimo igual os cards da esquerda [#684](https://github.com/3C-gg/reload-frontend/issues/684).
 - Altera componente `MatchHistoryList` para mostrar `nome do usuário` na mensagem de `partidas vazias` quando tiver visitando outro perfil [#682](https://github.com/3C-gg/reload-frontend/issues/682).
@@ -126,9 +355,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Corrige fluxo de cadastrar no projeto next.
-- Corrige botões de `lobby` que quando tem valor zero buga o contador no projeto next.
-- Corrige slice de `notifications` no projeto next.
+- Corrige algumas cores de texto do componente `Button` que estavam escura ao invés de `branca` na variant `base` após atualizar as libs.
+- Ajusta `modal de suporte` para nào deixar selecionar a opção de reportar usuário caso não exista `user_id` [#735](https://github.com/3C-gg/reload-frontend/issues/735).
+- Ajustado audio de partida encontrada que não funciona em produção [#716](https://github.com/3C-gg/reload-frontend/issues/716).
+- Altera componente `Progress` para não mostrar o progresso quando for `0 pts`.
 - Corrige bordas do componente `Progress`.
 - Corrige componente `Progress` para não pintar de vermelho quando os `pontos ganhos (earned_points)` forem 0 [#686](https://github.com/3C-gg/reload-frontend/issues/686).
 - Corrige `layout` dos `stats` da esquerda na pagina de `/profile` que estava esticando junto com o histórico de partidas [#689](https://github.com/3C-gg/reload-frontend/issues/689).
@@ -151,7 +381,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Deletado todos os arquivos referente ao projeto antigo sem `Next` [679](https://github.com/3C-gg/reload-frontend/issues/679).
 - Deleta `Avatar` componente.
 - Remove `useNavigate` desnecessários nos componente `DeleteAccountCard` e `InactivateAccountCard`.
 
