@@ -145,6 +145,10 @@ export function Websocket() {
           useFriendsStore.getState().addFriendRequest(data.payload)
           break
 
+        case 'friends/request/refuse':
+          useFriendsStore.getState().removeFriendSentRequest(data.payload.to_id)
+          break
+
         // Lobbies
         case 'lobbies/player_join':
           useLobbyStore.getState().updateLobby(data.payload.lobby)
