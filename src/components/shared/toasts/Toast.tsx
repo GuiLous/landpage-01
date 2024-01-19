@@ -76,8 +76,10 @@ export function Toast({
         return <RiCloseCircleFill className="text-red-500" />
 
       case 'invite':
-      case 'notification':
         return <Avatar avatarUrl={avatar} size="sm" />
+
+      case 'notification':
+        return <Avatar avatarUrl={avatar} size="md" />
 
       default:
         return <AiFillBell className="text-purple-400" size={16} />
