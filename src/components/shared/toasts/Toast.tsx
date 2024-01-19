@@ -30,7 +30,7 @@ export function Toast({
   id,
   content = '',
   variant,
-  duration = 6,
+  duration = 622222,
   title,
   avatar,
   invite_id,
@@ -76,10 +76,8 @@ export function Toast({
         return <RiCloseCircleFill className="text-red-500" />
 
       case 'invite':
-        return <Avatar avatarUrl={avatar} size="sm" />
-
       case 'notification':
-        return <Avatar avatarUrl={avatar} size="md" />
+        return <Avatar avatarUrl={avatar} size="sm" />
 
       default:
         return <AiFillBell className="text-purple-400" size={16} />
@@ -157,7 +155,7 @@ export function Toast({
         <div className="items-center gap-4">
           <div
             className={twMerge(
-              'items-center justify-center border-[5px] border-gray-900 rounded-[50%] text-xl min-h-[32px] max-w-[32px] min-w-[32px] max-h-[32px] overflow-hidden',
+              'items-center justify-center border-[5px] border-gray-900 rounded-[50%] text-xl min-h-[32px] max-w-[32px] min-w-[32px] max-h-[32px]',
               invite_id && 'border-0'
             )}
           >
