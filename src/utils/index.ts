@@ -12,6 +12,6 @@ export * from './humanizeStatus';
 export * from './revalidate';
 export * from './uuid4';
 export * from './validators';
-
+export * from './weaponsList';
 
 
