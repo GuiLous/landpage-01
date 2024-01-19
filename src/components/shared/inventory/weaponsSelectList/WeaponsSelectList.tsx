@@ -20,7 +20,7 @@ export function WeaponsSelectList({
   }
 
   return (
-    <div className={twMerge('flex-col gap-4')}>
+    <div className={twMerge('flex-col gap-4', '3xl:gap-2.5')}>
       {weapons[activeSubTab].map((item, index) => (
         <WeaponsSelectListCard
           key={index}

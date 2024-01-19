@@ -274,7 +274,12 @@ export function InventoryWrapperContent({
             )}
 
             {isArsenal && (
-              <CustomScrollBar className="max-h-[375px] max-w-fit">
+              <CustomScrollBar
+                className={twMerge(
+                  'max-h-[375px] max-w-fit',
+                  '3xl:max-h-[285px]'
+                )}
+              >
                 <WeaponsSelectList
                   weaponSelected={weaponSelected}
                   setWeaponSelected={setWeaponSelected}
