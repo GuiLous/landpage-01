@@ -30,7 +30,7 @@ export function Toast({
   id,
   content = '',
   variant,
-  duration = 622222,
+  duration = 6,
   title,
   avatar,
   invite_id,
