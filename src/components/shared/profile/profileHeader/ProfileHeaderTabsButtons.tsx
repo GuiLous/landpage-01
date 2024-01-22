@@ -133,6 +133,13 @@ export function ProfileHeaderTabsButtons({
     [user]
   )
 
+  const getId = useCallback((key: ButtonType) => {
+    if (key === 'inventory') return 'step03'
+    if (key === 'config') return 'step04'
+
+    return ''
+  }, [])
+
   const handleFriendAdd = useCallback(async () => {
     if (userAlreadyInvitedToFriend || !auth?.token) return
 
@@ -186,7 +193,7 @@ export function ProfileHeaderTabsButtons({
                 className="px-2 py-2 text-xs"
                 key={key}
               >
-                <div>
+                <div id={getId(key)}>
                   <Button.Root
                     profile
                     className={twMerge(

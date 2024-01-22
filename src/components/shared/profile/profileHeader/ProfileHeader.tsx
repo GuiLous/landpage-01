@@ -30,6 +30,7 @@ export function ProfileHeader({
       style={{
         backgroundImage: profile.header ? `url(${profile.header})` : '',
       }}
+      id="header"
     >
       <div
         className={twMerge(
