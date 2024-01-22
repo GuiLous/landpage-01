@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -19,23 +20,35 @@ export function CarouselItemContentButton({
   setOpenModalBuyItem,
   handleOpenModalConfirmation,
 }: CarouselItemContentButtonProps) {
-  const isBox = item?.object === 'box'
+  const [modalBuyItems, setModalBuyItems] = useState<StoreItem[]>([])
 
-  const isCollection = item?.object === 'collection'
+  const handleOpenBuyModal = () => {
+    getModalBuyItems(item)
 
-  let modalBuyItems: StoreItem[] = []
+    setOpenModalBuyItem(true)
+  }
 
-  modalBuyItems = (isBox || isCollection) && item?.items ? [...item.items] : []
+  const getModalBuyItems = (item: StoreItem) => {
+    const isBox = item?.object === 'box'
+    const isCollection = item?.object === 'collection'
 
-  if (!isBox && !isCollection) {
-    modalBuyItems = [item]
+    let modalBuyItems: StoreItem[] = []
+
+    modalBuyItems =
+      (isBox || isCollection) && item?.items ? [...item.items] : []
+
+    if (!isBox && !isCollection) {
+      modalBuyItems = [item]
+    }
+
+    setModalBuyItems(modalBuyItems)
   }
 
   return (
     <>
       <Button.Root
         className={twMerge('max-h-[42px] w-[180px]', '3xl:max-h-[38px]')}
-        onClick={() => setOpenModalBuyItem(true)}
+        onClick={handleOpenBuyModal}
       >
         <Button.Content className={twMerge('text-lg', '3xl:text-base')}>
           RC {item.price}
