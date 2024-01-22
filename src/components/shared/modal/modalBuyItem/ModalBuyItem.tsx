@@ -46,7 +46,7 @@ export function ModalBuyItem({
     {
       id: new Date().getTime(),
       file: isBoxOrCollection
-        ? items[activeItemIndex].foreground_image
+        ? items[activeItemIndex]?.foreground_image
         : itemObject.foreground_image,
       media_type: 'image',
     },
@@ -58,7 +58,7 @@ export function ModalBuyItem({
       ? {
           id: new Date().getTime(),
           file: isBoxOrCollection
-            ? items[activeItemIndex].foreground_image
+            ? items[activeItemIndex]?.foreground_image
             : itemObject.foreground_image,
           media_type: 'image',
         }
