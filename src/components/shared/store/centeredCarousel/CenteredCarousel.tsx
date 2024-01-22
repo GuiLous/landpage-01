@@ -54,13 +54,15 @@ export function CenteredCarousel({
   }
 
   useEffect(() => {
-    if (hasItemInUse) {
-      setAtiveSlide(itemInUseIndex)
-      return
-    }
+    if (isInventory) {
+      if (hasItemInUse) {
+        setAtiveSlide(itemInUseIndex)
+        return
+      }
 
-    setAtiveSlide(0)
-  }, [hasItemInUse, itemInUseIndex])
+      setAtiveSlide(0)
+    }
+  }, [hasItemInUse, itemInUseIndex, isInventory])
 
   return (
     <div
@@ -144,6 +146,7 @@ export function CenteredCarousel({
                 isInventory={isInventory}
                 in_use={item.in_use}
                 hasItemInUse={hasItemInUse}
+                itemId={item.id}
               />
             </SwiperSlide>
           ))}
@@ -186,6 +189,7 @@ export function CenteredCarousel({
                 isInventory={isInventory}
                 in_use={item.in_use}
                 hasItemInUse={hasItemInUse}
+                itemId={item.id}
               />
             </SwiperSlide>
           ))}
