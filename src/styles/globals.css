@@ -68,3 +68,29 @@ ul, ol {
 div[data-radix-popper-content-wrapper]{
 	width: auto;
 }
+
+.__floater, .__floater__body, .react-joyride__tooltip, .__floater div {
+	display: block;
+	width: auto;
+	flex: initial;
+}
+
+.react-joyride__tooltip button {
+	transition: all 0.2s ease-in-out !important;
+}
+
+.react-joyride__tooltip button[aria-label="Próximo"]:hover, .react-joyride__tooltip button[aria-label="Próximo"]:focus {
+	background-color: #9882FF !important;
+}
+
+.react-joyride__tooltip button[aria-label="Entendi!"]:hover, .react-joyride__tooltip button[aria-label="Entendi!"]:focus {
+	background-color: #9882FF !important;
+}
+
+.react-joyride__tooltip button[aria-label="Anterior"]:hover {
+	color: #999999 !important;
+}
+
+.react-joyride__tooltip button[aria-label="Pular"]:hover {
+	color: #999999 !important;
+}

@@ -67,7 +67,7 @@ export function ProfileHeaderSocialButtons({
           side="bottom"
           className="px-2 py-2 text-xs"
         >
-          <div className="max-w-fit flex-initial">
+          <div className="max-w-fit flex-initial" id="step02">
             <Button.Root
               ghost
               className="min-h-[16px] min-w-[16px]"
