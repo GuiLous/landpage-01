@@ -1,6 +1,6 @@
-type placement = 'center' | 'auto'
+import { Step } from 'react-joyride'
 
-const profileSteps = [
+const profileSteps: Step[] = [
   {
     target: '#step-header',
     content: `Vamos conhecer o seu perfil?`,
@@ -8,7 +8,7 @@ const profileSteps = [
     floaterProps: {
       hideArrow: true,
     },
-    placement: 'center' as placement,
+    placement: 'center',
   },
   {
     target: '#step-header01',
@@ -69,11 +69,11 @@ const profileSteps = [
     floaterProps: {
       hideArrow: true,
     },
-    placement: 'center' as placement,
+    placement: 'center',
   },
 ]
 
-const lobbySteps = [
+const lobbySteps: Step[] = [
   {
     target: '#sidebar',
     content: `Vamos conhecer o menu?`,
@@ -81,7 +81,7 @@ const lobbySteps = [
     floaterProps: {
       hideArrow: true,
     },
-    placement: 'center' as placement,
+    placement: 'center',
   },
   {
     target: '#step-sidebar01',
@@ -168,7 +168,7 @@ const lobbySteps = [
     floaterProps: {
       hideArrow: true,
     },
-    placement: 'center' as placement,
+    placement: 'center',
   },
 ]
 
