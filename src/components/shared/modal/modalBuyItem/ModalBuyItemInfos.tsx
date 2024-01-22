@@ -49,7 +49,7 @@ export function ModalBuyItemInfos({
                 'leading-none'
               )}
             >
-              {item.name}
+              {item?.name}
             </p>
 
             <ModalBuyItemInfosDiscount discount={itemObject.discount} />
@@ -57,8 +57,8 @@ export function ModalBuyItemInfos({
 
           <ModalBuyItemInfosDescription
             isBox={isBox}
-            description={item.description}
-            release_date={item.release_date}
+            description={item?.description}
+            release_date={item?.release_date}
           />
         </div>
 

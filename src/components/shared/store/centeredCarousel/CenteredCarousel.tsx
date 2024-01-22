@@ -39,30 +39,34 @@ export function CenteredCarousel({
     query: '(max-width: 1600px)',
   })
 
-  const [activeSlide, setAtiveSlide] = useState(
-    isInventory ? 0 : Math.ceil(data.length / 2) - 1
-  )
+  const [activeSlide, setActiveSlide] = useState(0)
 
   const isFirstSlide = activeSlide === 0
   const isLastSlide = activeSlide === data.length - 1
+
+  const disableFirstSlide = isFirstSlide && data.length <= 10
+  const disableLastSlide = isLastSlide && data.length <= 10
 
   const onChangeSlide = (index: number) => {
     if (setPreviewSelected) {
       setPreviewSelected(0)
     }
+    setActiveSlide(index)
     setActiveItemIndex(index)
   }
 
   useEffect(() => {
     if (isInventory) {
       if (hasItemInUse) {
-        setAtiveSlide(itemInUseIndex)
+        setActiveSlide(itemInUseIndex)
+        setActiveItemIndex(itemInUseIndex)
         return
       }
 
-      setAtiveSlide(0)
+      setActiveSlide(0)
+      setActiveItemIndex(itemInUseIndex)
     }
-  }, [hasItemInUse, itemInUseIndex, isInventory])
+  }, [hasItemInUse, itemInUseIndex, isInventory, setActiveItemIndex])
 
   return (
     <div
@@ -77,7 +81,7 @@ export function CenteredCarousel({
             className={twMerge(
               'image-swiper-button-next right-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
               'group',
-              isLastSlide && 'opacity-50 pointer-events-none'
+              disableLastSlide && 'opacity-50 pointer-events-none'
             )}
           >
             <CustomIcon
@@ -93,7 +97,7 @@ export function CenteredCarousel({
             className={twMerge(
               'image-swiper-button-prev left-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
               'group',
-              isFirstSlide && 'opacity-50 pointer-events-none'
+              disableFirstSlide && 'opacity-50 pointer-events-none'
             )}
           >
             <CustomIcon
@@ -109,12 +113,12 @@ export function CenteredCarousel({
 
       {isInventory ? (
         <Swiper
-          key={activeSlide}
+          key={new Date().getTime()}
+          slidesPerView="auto"
           spaceBetween={isLessThan3xl ? 10 : 14}
-          slidesPerView={isLessThan3xl ? 11.367 : 10.119}
           centeredSlides={true}
+          updateOnWindowResize
           slideToClickedSlide
-          speed={100}
           className={twMerge(
             'block h-full max-w-[998px] flex-initial',
             '3xl:max-w-[854px]'
@@ -126,9 +130,8 @@ export function CenteredCarousel({
             prevEl: '.image-swiper-button-prev',
             disabledClass: '.swiper-button-disabled',
           }}
+          onSlideChange={(slide) => onChangeSlide(slide.realIndex)}
           modules={[Navigation]}
-          onActiveIndexChange={(slide) => setAtiveSlide(slide.activeIndex)}
-          onSlideChange={(slide) => onChangeSlide(slide.activeIndex)}
         >
           {data.map((item, index) => (
             <SwiperSlide
@@ -137,7 +140,6 @@ export function CenteredCarousel({
                 '3xl:max-w-[66px] 3xl:min-w-[66px]'
               )}
               key={item.id}
-              onClick={() => onChangeSlide(index)}
             >
               <CenteredCarouselItem
                 activeSlide={activeSlide}
@@ -154,24 +156,26 @@ export function CenteredCarousel({
       ) : (
         <Swiper
           spaceBetween={isLessThan3xl ? 10 : 14}
-          slidesPerView={isLessThan3xl ? 11.367 : 10.119}
+          slidesPerView="auto"
           centeredSlides={true}
+          loopPreventsSliding
+          updateOnWindowResize
           slideToClickedSlide
+          roundLengths
+          loop={data.length > 10}
           speed={100}
           className={twMerge(
             'block h-full max-w-[998px] flex-initial',
             '3xl:max-w-[854px]'
           )}
           allowTouchMove={false}
-          initialSlide={Math.ceil(data.length / 2) - 1}
           navigation={{
             nextEl: '.image-swiper-button-next',
             prevEl: '.image-swiper-button-prev',
             disabledClass: '.swiper-button-disabled',
           }}
+          onSlideChange={(slide) => onChangeSlide(slide.realIndex)}
           modules={[Navigation]}
-          onActiveIndexChange={(slide) => setAtiveSlide(slide.activeIndex)}
-          onSlideChange={(slide) => onChangeSlide(slide.activeIndex)}
         >
           {data.map((item, index) => (
             <SwiperSlide
@@ -180,7 +184,6 @@ export function CenteredCarousel({
                 '3xl:max-w-[66px] 3xl:min-w-[66px]'
               )}
               key={item.id}
-              onClick={() => onChangeSlide(index)}
             >
               <CenteredCarouselItem
                 activeSlide={activeSlide}

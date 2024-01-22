@@ -1,9 +1,9 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { StoreItem } from '@/functions'
+import { Media, StoreItem } from '@/functions'
 
 import { CenteredCarouselWrapper, Modal } from '@/components/shared'
 
@@ -30,6 +30,7 @@ export function ModalBuyItem({
 }: ModalBuyItemProps) {
   const [previewSelected, setPreviewSelected] = useState(0)
   const [activeItemIndex, setActiveItemIndex] = useState(0)
+  const [imagesPreview, setImagesPreview] = useState<Media[]>([])
 
   const handleCloseModal = useCallback(() => {
     setOpen(false)
@@ -42,17 +43,6 @@ export function ModalBuyItem({
   const isBoxOrCollection =
     itemObject.object === 'box' || itemObject.object === 'collection'
 
-  const imagesPreview = [
-    {
-      id: new Date().getTime(),
-      file: isBoxOrCollection
-        ? items[activeItemIndex]?.foreground_image
-        : itemObject.foreground_image,
-      media_type: 'image',
-    },
-    ...items[activeItemIndex]?.media,
-  ]
-
   const currentFile =
     previewSelected === 0
       ? {
@@ -63,6 +53,23 @@ export function ModalBuyItem({
           media_type: 'image',
         }
       : items[activeItemIndex]?.media[previewSelected - 1]
+
+  useEffect(() => {
+    if (items.length > 0) {
+      if (items[activeItemIndex]) {
+        setImagesPreview([
+          {
+            id: new Date().getTime(),
+            file: isBoxOrCollection
+              ? items[activeItemIndex]?.foreground_image
+              : itemObject.foreground_image,
+            media_type: 'image',
+          },
+          ...items[activeItemIndex]?.media,
+        ])
+      }
+    }
+  }, [activeItemIndex, isBoxOrCollection, itemObject.foreground_image, items])
 
   return (
     <Modal open={open} onOpenChange={handleCloseModal}>
