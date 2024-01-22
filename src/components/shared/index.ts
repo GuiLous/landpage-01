@@ -73,4 +73,5 @@ export * from './timer/CountdownClock'
 export * from './timer/Timer'
 export * from './toasts/RenderToasts'
 export * from './tooltip/Tooltip'
+export * from './wizard/Wizard'
 

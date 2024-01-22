@@ -1,13 +1,14 @@
 import { twMerge } from 'tailwind-merge'
 
+import { lobbySteps } from '@/utils'
+
 import {
   LobbyGameType,
   LobbyHeader,
   LobbyRenderModalWelcome,
-  LobbyWizard,
 } from '@/components/pages'
 
-import { Lineup } from '@/components/shared'
+import { Lineup, Wizard } from '@/components/shared'
 
 export default function Play() {
   return (
@@ -17,7 +18,7 @@ export default function Play() {
         '3xl:gap-8'
       )}
     >
-      <LobbyWizard />
+      <Wizard steps={lobbySteps} page="lobby" />
 
       <LobbyHeader />
 
