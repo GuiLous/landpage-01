@@ -9,7 +9,7 @@ export function SidebarLogo() {
   return (
     <div className="flex-initial flex-col">
       <div className={twMerge('px-7 pb-0 pt-10', '3xl:px-6 3xl:pt-8')}>
-        <Link href="/jogar">
+        <Link href="/jogar" id="step01">
           <Image
             priority
             src={logoFull}

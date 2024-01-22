@@ -29,6 +29,7 @@ export function SidebarAvatarLink() {
               'flex w-full items-center justify-center gap-4',
               '3xl:gap-3'
             )}
+            id="step02"
           >
             <Avatar
               avatarUrl={user?.account?.avatar?.medium}

@@ -29,6 +29,7 @@ export function Sidebar() {
         '3xl:w-[250px]'
       )}
       style={{ height: `calc(100% - ${showInviteBar ? 48 : 0}px)` }}
+      id="sidebar"
     >
       <main
         className={twMerge(
