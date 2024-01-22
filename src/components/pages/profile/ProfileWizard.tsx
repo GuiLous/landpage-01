@@ -31,6 +31,7 @@ export function ProfileWizard() {
       floaterProps: {
         hideArrow: true,
       },
+      placement: 'center' as placement,
     },
     {
       target: '#step01',
