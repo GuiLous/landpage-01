@@ -1,7 +1,7 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useMediaQuery } from 'react-responsive'
 import { Navigation } from 'swiper/modules'
@@ -22,6 +22,7 @@ interface CenteredCarouselProps {
   data: ImagePreview
   isInventory: boolean
   hasItemInUse: boolean
+  itemInUseIndex: number
   setActiveItemIndex: (state: number) => void
   setPreviewSelected?: (state: number) => void
 }
@@ -32,6 +33,7 @@ export function CenteredCarousel({
   setActiveItemIndex,
   setPreviewSelected,
   hasItemInUse,
+  itemInUseIndex,
 }: CenteredCarouselProps) {
   const isLessThan3xl = useMediaQuery({
     query: '(max-width: 1600px)',
@@ -50,6 +52,15 @@ export function CenteredCarousel({
     }
     setActiveItemIndex(index)
   }
+
+  useEffect(() => {
+    if (hasItemInUse) {
+      setAtiveSlide(itemInUseIndex)
+      return
+    }
+
+    setAtiveSlide(0)
+  }, [hasItemInUse, itemInUseIndex])
 
   return (
     <div

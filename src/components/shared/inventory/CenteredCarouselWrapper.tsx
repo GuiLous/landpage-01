@@ -9,6 +9,7 @@ interface CenteredCarouselWrapperProps {
   data: StoreItem[]
   isInventory?: boolean
   hasItemInUse?: boolean
+  itemInUseIndex?: number
   setActiveItemIndex: (state: number) => void
   setPreviewSelected?: (state: number) => void
 }
@@ -19,6 +20,7 @@ export function CenteredCarouselWrapper({
   setPreviewSelected,
   isInventory = false,
   hasItemInUse = false,
+  itemInUseIndex = 0,
 }: CenteredCarouselWrapperProps) {
   return (
     <div
@@ -50,6 +52,7 @@ export function CenteredCarouselWrapper({
         setPreviewSelected={setPreviewSelected}
         isInventory={isInventory}
         hasItemInUse={hasItemInUse}
+        itemInUseIndex={itemInUseIndex}
       />
     </div>
   )

@@ -117,6 +117,7 @@ export function InventoryWrapperContent({
   const [weaponSelected, setWeaponSelected] =
     useState<WeaponNameType>('Pistola')
   const [activeItemIndex, setActiveItemIndex] = useState(0)
+  const [itemInUseIndex, setItemInUseIndex] = useState(0)
 
   const disableSwitch = TABS_NO_SWITCH.includes(activeItemType)
   const itemInUse = itemsByType.find((item) => item?.in_use)
@@ -241,6 +242,13 @@ export function InventoryWrapperContent({
     }
   }, [activeItemIndex, itemsByType, weaponSelected, isArsenal])
 
+  useEffect(() => {
+    if (hasItemInUse) {
+      const itemIndex = itemsByType.findIndex((item) => item?.in_use)
+      setItemInUseIndex(itemIndex)
+    }
+  }, [hasItemInUse, itemsByType, activeSubTab, activeTab, weaponSelected])
+
   return (
     <>
       <InventoryItemsTabBar
@@ -341,6 +349,7 @@ export function InventoryWrapperContent({
                 data={itemsByType as StoreItem[]}
                 setActiveItemIndex={setActiveItemIndex}
                 hasItemInUse={hasItemInUse}
+                itemInUseIndex={itemInUseIndex}
                 isInventory
               />
             </section>
