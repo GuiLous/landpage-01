@@ -60,7 +60,7 @@ export function CenteredCarouselItem({
           icon={BsCheckCircleFill}
           className={twMerge(
             'text-sm absolute bottom-1 right-1 text-white',
-            '3xl:text-base 3xl:-bottom-1 3xl:-right-1.5'
+            '3xl:text-xs 3xl:bottom-0.5 3xl:right-0.5'
           )}
         />
       )}

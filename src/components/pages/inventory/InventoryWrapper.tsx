@@ -8,7 +8,9 @@ export async function InventoryWrapper() {
   const inventory = await getUserInventory()
 
   return (
-    <section className={twMerge('flex-col gap-10 px-[3.750rem]', '3xl:px-7')}>
+    <section
+      className={twMerge('flex-col gap-10 px-[3.750rem]', '3xl:px-7 3xl:gap-8')}
+    >
       <InventoryWrapperContent inventory={inventory} />
     </section>
   )
