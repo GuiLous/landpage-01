@@ -1,5 +1,6 @@
 'use client'
 
+import { useCallback } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BiSolidMessage } from 'react-icons/bi'
 import { BsEnvelopeFill } from 'react-icons/bs'
@@ -68,6 +69,14 @@ export function SidebarMenuItem({
     ranking: '/ranking',
   }
 
+  const getId = useCallback(() => {
+    if (item === 'amigos') return 'step-sidebar04'
+    if (item === 'notificações') return 'step-sidebar05'
+    if (item === 'suporte') return 'step-sidebar06'
+
+    return ''
+  }, [item])
+
   return (
     <div
       className={twMerge(
@@ -76,6 +85,7 @@ export function SidebarMenuItem({
         'group',
         isSoon && 'opacity-70 hover:bg-transparent'
       )}
+      id={getId()}
     >
       <Link
         href={isLink && !isSoon ? constLinksUrl[item as LinkUrlType] : ''}

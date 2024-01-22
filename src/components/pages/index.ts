@@ -29,7 +29,6 @@ export * from './notFound/NotFoundRedirectButton';
 export * from "./profile/profileHeatmapStatsCard/ProfileHeatmapStatsCard";
 export * from "./profile/profileLevelStatsCard/ProfileLevelStatsCard";
 export * from "./profile/profileMatchHistoryList/ProfileMatchHistoryList";
-export * from "./profile/profileWizard/ProfileWizard";
 export * from './sidebarLayout/RenderInviteBar';
 export * from './sidebarLayout/Wrapper';
 export * from './signup/SignupChangeEmailGoBackLink';

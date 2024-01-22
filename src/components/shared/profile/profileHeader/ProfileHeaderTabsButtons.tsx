@@ -134,8 +134,8 @@ export function ProfileHeaderTabsButtons({
   )
 
   const getId = useCallback((key: ButtonType) => {
-    if (key === 'inventory') return 'step03'
-    if (key === 'config') return 'step04'
+    if (key === 'inventory') return 'step-header03'
+    if (key === 'config') return 'step-header04'
 
     return ''
   }, [])

@@ -69,7 +69,7 @@ div[data-radix-popper-content-wrapper]{
 	width: auto;
 }
 
-.__floater, .__floater__body, .react-joyride__tooltip, .__floater div {
+.__floater, .__floater__body, .react-joyride__tooltip, .react-joyride, .__floater div {
 	display: block;
 	width: auto;
 	flex: initial;
