@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { StoreItem } from '@/functions'
 
 import { ItemsSelectListCard } from './ItemsSelectListCard'
@@ -23,7 +25,12 @@ export function ItemsSelectList({
   }
 
   return (
-    <div className="grid grid-cols-[repeat(4,_80px)] content-baseline gap-2">
+    <div
+      className={twMerge(
+        'grid grid-cols-[repeat(4,_80px)] content-baseline gap-2',
+        '3xl:grid-cols-[repeat(4,_64px)]'
+      )}
+    >
       {items.map((item, index) => (
         <ItemsSelectListCard
           key={item.id}

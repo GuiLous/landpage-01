@@ -21,6 +21,7 @@ interface InventoryItemDescriptionProps {
     updateSelected?: boolean
   }) => void
   itemInUse: StoreItem | undefined
+  isArsenal?: boolean
 }
 
 export function InventoryItemDescription({
@@ -28,6 +29,7 @@ export function InventoryItemDescription({
   item,
   itemType,
   itemInUse,
+  isArsenal = false,
 }: InventoryItemDescriptionProps) {
   const hasItemInUse = !!itemInUse
 
@@ -59,7 +61,7 @@ export function InventoryItemDescription({
             </span>
           </div>
 
-          <div className="flex-col gap-3">
+          <div className="flex-col gap-3.5">
             <p className={twMerge('text-sm text-white', 'leading-none')}>
               {item.description}
             </p>
@@ -76,34 +78,39 @@ export function InventoryItemDescription({
         </>
       )}
 
-      {item?.id === 0 && hasItemInUse && (
-        <Button.Root
-          restricted
-          className="max-h-[42px] w-full py-3"
-          onClick={() =>
-            handleUpdateItemInUse({
-              item_id: item?.id === 0 ? itemInUse.id : item.id,
-              updateSelected: item?.id !== 0,
-            })
-          }
-        >
-          <Button.Content className="text-sm font-semibold">
-            Remover {isProfileItem ? 'Customizável' : removeSFromEnd(itemType)}
-          </Button.Content>
-        </Button.Root>
-      )}
+      {!isArsenal && (
+        <>
+          {item?.id === 0 && hasItemInUse && (
+            <Button.Root
+              restricted
+              className="max-h-[42px] w-full py-3"
+              onClick={() =>
+                handleUpdateItemInUse({
+                  item_id: itemInUse.id,
+                  updateSelected: false,
+                })
+              }
+            >
+              <Button.Content className="text-sm font-semibold">
+                Remover{' '}
+                {isProfileItem ? 'Customizável' : removeSFromEnd(itemType)}
+              </Button.Content>
+            </Button.Root>
+          )}
 
-      {item?.id !== 0 && (
-        <Button.Root
-          restricted={item.in_use}
-          className="max-h-[42px] w-full py-3"
-          onClick={() => handleUpdateItemInUse({ item_id: item.id })}
-        >
-          <Button.Content className="text-sm font-semibold">
-            {item.in_use ? 'Remover' : 'Ativar'}{' '}
-            {isProfileItem ? 'Customizável' : removeSFromEnd(itemType)}
-          </Button.Content>
-        </Button.Root>
+          {item?.id !== 0 && (
+            <Button.Root
+              restricted={item.in_use}
+              className="max-h-[42px] w-full py-3"
+              onClick={() => handleUpdateItemInUse({ item_id: item.id })}
+            >
+              <Button.Content className="text-sm font-semibold">
+                {item.in_use ? 'Remover' : 'Ativar'}{' '}
+                {isProfileItem ? 'Customizável' : removeSFromEnd(itemType)}
+              </Button.Content>
+            </Button.Root>
+          )}
+        </>
       )}
     </div>
   )

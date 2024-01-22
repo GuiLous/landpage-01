@@ -155,7 +155,7 @@ export function Toast({
         <div className="items-center gap-4">
           <div
             className={twMerge(
-              'items-center justify-center border-[5px] border-gray-900 rounded-[50%] text-xl min-h-[32px] max-w-[32px] min-w-[32px] max-h-[32px] overflow-hidden',
+              'items-center justify-center border-[5px] border-gray-900 rounded-[50%] text-xl min-h-[32px] max-w-[32px] min-w-[32px] max-h-[32px]',
               invite_id && 'border-0'
             )}
           >

@@ -24,7 +24,7 @@ export function ProfileHeader({
       className={twMerge(
         'flex-initial flex-col p-[3.750rem]',
         'bg-no-repeat bg-cover',
-        '3xl:p-7',
+        '3xl:py-11 3xl:px-7',
         !profile.header && 'bg-profile_header'
       )}
       style={{

@@ -237,12 +237,6 @@ export function Websocket() {
 
         case 'maintenance/end':
           useAppStore.getState().updateMaintenance(false)
-          useAppStore.getState().addToast({
-            title: 'A manutenção foi finalizada',
-            content:
-              'Filas e convites de lobby estão habilitados novamente. GLHF!',
-            variant: 'warning',
-          })
           revalidatePath({ path: '/jogar' })
           router.push('/jogar')
           break

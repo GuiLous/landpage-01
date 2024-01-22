@@ -4,12 +4,14 @@ import Image from 'next/image'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
-import { CustomIcon } from '../../icons/CustomIcon'
+import { Media } from '@/functions'
+
+import { CustomIcon } from '@/components/shared'
 
 interface ModalBuyItemThumbsProps {
-  imagesPreview: any[]
-  previewSelected: any
-  setPreviewSelected: any
+  imagesPreview: Media[]
+  previewSelected: number
+  setPreviewSelected: (state: number) => void
 }
 
 export function ModalBuyItemThumbs({
@@ -33,7 +35,8 @@ export function ModalBuyItemThumbs({
             'bg-gray-700/40 rounded cursor-pointer max-h-16 min-h-16 overflow-hidden relative',
             'hover:outline hover:outline-1 hover:outline-purple-400',
             isPreviewSelected(index) && 'outline outline-1 outline-purple-400',
-            'group'
+            'group',
+            '3xl:max-h-[54px] 3xl:min-h-[54px]'
           )}
           onClick={() => setPreviewSelected(index)}
         >

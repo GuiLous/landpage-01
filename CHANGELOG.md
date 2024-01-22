@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria menu de arsenal no inventário [#961](https://github.com/3C-gg/reload-frontend/issues/961).
 - Cria pesquisa por amigo na lista de amigos no projeto next [#961](https://github.com/3C-gg/reload-frontend/issues/961).
 - Cria página de `/loja` no projeto next [#912](https://github.com/3C-gg/reload-frontend/issues/912).
 - Cria sistema de `Convites` no projeto next [#844](https://github.com/3C-gg/reload-frontend/issues/844).

@@ -8,13 +8,22 @@ import { StoreItem } from '@/functions'
 
 interface ImagePreviewProps {
   itemSelected: StoreItem | null
+  isArsenal?: boolean
+  hasSkins?: boolean
 }
-export function ImagePreview({ itemSelected }: ImagePreviewProps) {
+
+export function ImagePreview({
+  itemSelected,
+  isArsenal = false,
+  hasSkins = false,
+}: ImagePreviewProps) {
   const imageRef = useRef<HTMLImageElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
   const isNotNullItem = itemSelected?.id !== 0
+
   const hasBackground = !!itemSelected?.background_image
+  const isWeapon = itemSelected?.item_type === 'weapon'
 
   const [canParallax, setCanParallax] = useState(false)
 
@@ -59,13 +68,13 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
   }, [canParallax])
 
   return (
-    <aside
+    <section
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       className={twMerge(
         'relative max-h-imagePreview items-center overflow-hidden bg-cover bg-no-repeat p-3 justify-start',
-        isNotNullItem && 'justify-center',
-        `3xl:max-h-imagePreviewLaptop`
+        `3xl:max-h-imagePreviewLaptop`,
+        (isNotNullItem || isArsenal) && 'justify-center'
       )}
       style={{
         backgroundImage:
@@ -86,7 +95,10 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
               src={itemSelected?.foreground_image}
               alt="Imagem do item"
               draggable={false}
-              className="z-10 h-full object-scale-down py-12"
+              className={twMerge(
+                'z-10 h-full object-scale-down py-12',
+                isWeapon && 'py-1'
+              )}
               sizes="100%"
               fill
               priority
@@ -95,10 +107,20 @@ export function ImagePreview({ itemSelected }: ImagePreviewProps) {
           )}
         </div>
       ) : (
-        <span className={twMerge('ml-[20%] text-gray-300', '3xl:ml-0')}>
-          Ops, nenhum item selecionado.
+        <span
+          className={twMerge(
+            'ml-[20%] text-gray-300',
+            '3xl:ml-0 3xl:text-sm',
+            isArsenal && 'ml-0'
+          )}
+        >
+          {isArsenal && hasSkins && 'Skin padrão do jogo.'}
+          {isArsenal &&
+            !hasSkins &&
+            'Voçê ainda não possui skins para essa arma.'}
+          {!isArsenal && 'Ops, nenhum item selecionado.'}
         </span>
       )}
-    </aside>
+    </section>
   )
 }

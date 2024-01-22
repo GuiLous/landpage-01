@@ -11,13 +11,14 @@ interface ModalProps {
   children: ReactNode
 }
 
-interface ModalContent {
+interface ModalContent extends Dialog.DialogContentProps {
   title?: string
   children: ReactNode
   className?: string
   showCloseButton?: boolean
   justifyTitle?: 'start' | 'center' | 'end'
   isOver?: boolean
+  overlayClassName?: string
 }
 
 export function Modal({ open, onOpenChange, children }: ModalProps) {
@@ -35,6 +36,8 @@ function ModalContent({
   justifyTitle = 'center',
   showCloseButton = true,
   isOver = false,
+  overlayClassName,
+  ...props
 }: ModalContent) {
   return (
     <Dialog.Portal>
@@ -43,7 +46,8 @@ function ModalContent({
           'fixed backdrop-blur-sm inset-0 z-40 bg-black/[.85]',
           'data-[state=closed]:animate-[dialog-overlay-hide_200ms]',
           'data-[state=open]:animate-[dialog-overlay-show_200ms]',
-          isOver && 'z-50'
+          isOver && 'z-50',
+          overlayClassName
         )}
       />
       <Dialog.Content
@@ -54,6 +58,7 @@ function ModalContent({
           '3xl:p-8',
           className
         )}
+        {...props}
       >
         {title && (
           <div
@@ -78,7 +83,7 @@ function ModalContent({
         {showCloseButton && (
           <Dialog.Close
             className={twMerge(
-              'absolute right-3 top-3 text-base text-white transition-colors',
+              'absolute right-3 top-3 text-base text-white z-50 transition-colors',
               'hover:text-gray-300'
             )}
           >
