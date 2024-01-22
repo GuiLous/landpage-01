@@ -208,9 +208,7 @@ export function InventoryWrapperContent({
   )
 
   useEffect(() => {
-    if (inventory?.items.length > 0) {
-      filterItemsByType()
-    }
+    filterItemsByType()
   }, [inventory, activeTab, activeSubTab, filterItemsByType, weaponSelected])
 
   useEffect(() => {
@@ -277,7 +275,7 @@ export function InventoryWrapperContent({
               <CustomScrollBar
                 className={twMerge(
                   'max-h-[375px] max-w-fit',
-                  '3xl:max-h-[285px]'
+                  '3xl:max-h-[255px]'
                 )}
               >
                 <WeaponsSelectList
