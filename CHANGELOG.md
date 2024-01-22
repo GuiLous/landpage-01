@@ -73,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Fixed
 
+- Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [983](https://github.com/3C-gg/reload-frontend/issues/983).
 - Corrige fluxo de cadastrar no projeto next.
 - Corrige botões de `lobby` que quando tem valor zero buga o contador no projeto next.
 - Corrige slice de `notifications` no projeto next.
