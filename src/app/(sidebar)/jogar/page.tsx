@@ -4,6 +4,7 @@ import {
   LobbyGameType,
   LobbyHeader,
   LobbyRenderModalWelcome,
+  LobbyWizard,
 } from '@/components/pages'
 
 import { Lineup } from '@/components/shared'
@@ -16,6 +17,8 @@ export default function Play() {
         '3xl:gap-8'
       )}
     >
+      <LobbyWizard />
+
       <LobbyHeader />
 
       <LobbyGameType />
