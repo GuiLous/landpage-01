@@ -70,9 +70,9 @@ export function SidebarMenuItem({
   }
 
   const getId = useCallback(() => {
-    if (item === 'amigos') return 'step04'
-    if (item === 'notificações') return 'step05'
-    if (item === 'suporte') return 'step06'
+    if (item === 'amigos') return 'step-sidebar04'
+    if (item === 'notificações') return 'step-sidebar05'
+    if (item === 'suporte') return 'step-sidebar06'
 
     return ''
   }, [item])

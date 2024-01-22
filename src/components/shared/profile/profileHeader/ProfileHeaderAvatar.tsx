@@ -71,7 +71,7 @@ export function ProfileHeaderAvatar({
               isFetching && 'bg-gray-100 cursor-not-allowed'
             )}
             onClick={handleUpdateProfile}
-            id="step01"
+            id="step-header01"
           >
             <CustomIcon
               icon={BiRefresh}

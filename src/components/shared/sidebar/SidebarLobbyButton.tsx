@@ -41,7 +41,7 @@ export function SidebarLobbyButton() {
         queued={isInQueue || !!isIsMatch}
         restricted={isRestricted}
         className="max-h-10 w-full justify-start gap-3 px-3"
-        id="step03"
+        id="step-sidebar03"
       >
         <Link
           href={
