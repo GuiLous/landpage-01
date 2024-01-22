@@ -8,6 +8,7 @@ interface CenteredCarouselItemProps {
   foreground_image: string
   index: number
   activeSlide: number
+  itemId: number
   in_use?: boolean
   isInventory: boolean
   hasItemInUse: boolean
@@ -20,16 +21,19 @@ export function CenteredCarouselItem({
   in_use = false,
   isInventory,
   hasItemInUse,
+  itemId,
 }: CenteredCarouselItemProps) {
+  const isNullItem = itemId === 0
+
   return (
     <div
       className={twMerge(
         'bg-gray-700/40 rounded flex-col cursor-pointer h-full overflow-hidden p-1 relative',
         activeSlide === index && 'border border-purple-400',
-        index === 0 && 'items-center justify-center gap-2'
+        isNullItem && 'items-center justify-center gap-2'
       )}
     >
-      {index === 0 ? (
+      {isNullItem ? (
         <div className="relative h-[18px] min-w-[18px] max-w-fit flex-initial 3xl:h-4 3xl:min-w-4 ">
           <Image
             src={foreground_image}
@@ -49,13 +53,13 @@ export function CenteredCarouselItem({
         />
       )}
 
-      {isInventory && index === 0 && (
+      {isInventory && isNullItem && (
         <span className="text-[0.625rem] leading-none text-gray-300">
           Nenhum
         </span>
       )}
 
-      {isInventory && (in_use || (!hasItemInUse && index === 0)) && (
+      {isInventory && (in_use || (!hasItemInUse && isNullItem)) && (
         <CustomIcon
           icon={BsCheckCircleFill}
           className={twMerge(
