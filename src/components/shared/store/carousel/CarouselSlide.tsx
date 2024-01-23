@@ -4,7 +4,10 @@ import Image from 'next/image'
 import { ReactNode } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 
-import { INTERVAL, TRANSITION_TIME } from '@/constants'
+import {
+  STORE_FEATURED_INTERVAL,
+  STORE_FEATURED_TRANSITION_TIME,
+} from '@/constants'
 
 import { StoreItem } from '@/functions'
 
@@ -36,8 +39,8 @@ export function CarouselSlide({
           autoPlay={!openModalBuyItem}
           infiniteLoop
           stopOnHover
-          interval={INTERVAL}
-          transitionTime={TRANSITION_TIME}
+          interval={STORE_FEATURED_INTERVAL}
+          transitionTime={STORE_FEATURED_TRANSITION_TIME}
           showArrows={false}
           showThumbs={false}
           renderItem={(children) => {
