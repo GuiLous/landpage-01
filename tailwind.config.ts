@@ -158,6 +158,7 @@ const config: Config = {
           'linear-gradient(360deg, #111 0%, rgba(17, 17, 17, 0) 100%)',
       },
       animation: {
+        'carousel-preview': 'carousel-preview 3s linear',
         carousel: 'carousel 1s ease-in-out',
         'show-invite-message': 'show-invite-message 5s linear',
         'show-invite-bar': 'show-invite-bar 0.2s forwards',
@@ -174,6 +175,14 @@ const config: Config = {
         'slide-left-fade': 'slide-left-fade 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
       },
       keyframes: {
+        'carousel-preview': {
+          '0%': {
+            'max-width': '0%',
+          },
+          '100%': {
+            'max-width': '100%',
+          },
+        },
         carousel: {
           '0%': {
             'margin-left': '-10px',
