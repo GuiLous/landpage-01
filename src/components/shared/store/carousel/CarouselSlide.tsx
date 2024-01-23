@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { ReactNode } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 
+import { INTERVAL, TRANSITION_TIME } from '@/constants'
+
 import { StoreItem } from '@/functions'
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
@@ -34,6 +36,8 @@ export function CarouselSlide({
           autoPlay={!openModalBuyItem}
           infiniteLoop
           stopOnHover
+          interval={INTERVAL}
+          transitionTime={TRANSITION_TIME}
           showArrows={false}
           showThumbs={false}
           renderItem={(children) => {

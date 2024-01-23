@@ -158,7 +158,7 @@ const config: Config = {
           'linear-gradient(360deg, #111 0%, rgba(17, 17, 17, 0) 100%)',
       },
       animation: {
-        'carousel-preview': 'carousel-preview 3s linear',
+        'carousel-preview': 'carousel-preview 5s linear',
         carousel: 'carousel 1s ease-in-out',
         'show-invite-message': 'show-invite-message 5s linear',
         'show-invite-bar': 'show-invite-bar 0.2s forwards',
