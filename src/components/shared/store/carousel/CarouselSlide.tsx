@@ -42,7 +42,7 @@ export function CarouselSlide({
                 style={{
                   cursor: 'grabbing',
                   width: '100%',
-                  height: '60vh',
+                  height: '48vh',
                 }}
               >
                 {children}
