@@ -29,7 +29,7 @@ import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
-export type TabTypes = 'personagem' | 'sprays' | 'arsenal' | 'caixas' | 'perfil'
+export type TabTypes = 'personagem' | 'sprays' | 'arsenal' | 'caixas'
 export type SubTabTypes =
   | 'avatar'
   | 'roupas'
@@ -40,9 +40,6 @@ export type SubTabTypes =
   | 'metralhadoras'
   | 'fuzis'
   | 'caixas'
-  | 'capas de perfil'
-  | 'cards de jogador'
-  | 'perfil'
 
 type Item = Partial<StoreItem>
 
@@ -69,10 +66,6 @@ const tabs = {
     tabs: ['boxes'],
     subTabs: [],
   },
-  perfil: {
-    tabs: ['profile', 'card'],
-    subTabs: ['capas de perfil', 'cards de jogador'],
-  },
 }
 
 const sub_tabs = {
@@ -85,9 +78,6 @@ const sub_tabs = {
   metralhadoras: 'machineguns',
   fuzis: 'rifles',
   caixas: 'boxes',
-  'capas de perfil': 'profile',
-  'cards de jogador': 'card',
-  perfil: 'profile',
 }
 
 interface InventoryWrapperContentProps {
@@ -130,15 +120,6 @@ export function InventoryWrapperContent({
     if (activeTab === 'sprays') {
       const itemsFiltered = inventory.items.filter(
         (item) => item.item_type === sub_tabs[activeTab]
-      )
-
-      setItemsByType([nullObject, ...itemsFiltered])
-      return
-    }
-
-    if (activeTab === 'perfil') {
-      const itemsFiltered = inventory.items.filter(
-        (item) => item.subtype === sub_tabs[activeSubTab]
       )
 
       setItemsByType([nullObject, ...itemsFiltered])

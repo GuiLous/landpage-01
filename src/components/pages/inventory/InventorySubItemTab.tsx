@@ -24,6 +24,8 @@ export function InventorySubItemTab({
 
   const wrapperRef = useRef<HTMLDivElement>(null)
 
+  const gapToShowAllTabs = 30
+
   const handleSubItemTabChange = (tab: SubTabTypes) => {
     setActiveItemType(tab)
     setActiveSubTab(tab)
@@ -54,8 +56,6 @@ export function InventorySubItemTab({
         const scrollAmount = isTabOutsideViewRight
           ? selectedTabRect.right - wrapperRect.right + wrapper.scrollLeft
           : selectedTabRect.left - wrapperRect.left
-
-        const gapToShowAllTabs = 60
 
         wrapper.scrollTo({
           left: scrollAmount + gapToShowAllTabs,
