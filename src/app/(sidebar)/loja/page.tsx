@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { StoreItem, getStore, getUserInventory } from '@/functions'
 
 import {
@@ -64,12 +66,17 @@ export default async function page() {
   })
 
   return (
-    <main className="flex-col gap-[7.5rem]">
+    <main className="flex-col gap-20">
       <StoreOpenBuyModalCheck featured={featured} products={products} />
 
       <Carousel featured={featured} />
 
-      <section className="flex-col gap-10 px-[7.5rem] pb-20">
+      <section
+        className={twMerge(
+          'flex-col gap-10 px-[7.5rem] pb-20',
+          '3xl:px-[5.75rem]'
+        )}
+      >
         <StoreRotationTimer nextRotation={nextRotation} />
 
         <StoreListItems products={products} />

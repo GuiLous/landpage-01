@@ -39,13 +39,18 @@ export function CenteredCarousel({
     query: '(max-width: 1600px)',
   })
 
-  const [activeSlide, setActiveSlide] = useState(0)
+  const isOnLoop = data.length > 10
+
+  const initialSlide =
+    !isInventory && !isOnLoop ? Math.ceil(data.length / 2) - 1 : 0
+
+  const [activeSlide, setActiveSlide] = useState(initialSlide)
 
   const isFirstSlide = activeSlide === 0
   const isLastSlide = activeSlide === data.length - 1
 
-  const disableFirstSlide = isFirstSlide && data.length <= 10
-  const disableLastSlide = isLastSlide && data.length <= 10
+  const disableFirstSlide = isFirstSlide && !isOnLoop
+  const disableLastSlide = isLastSlide && !isOnLoop
 
   const onChangeSlide = (index: number) => {
     if (setPreviewSelected) {
@@ -162,12 +167,13 @@ export function CenteredCarousel({
           updateOnWindowResize
           slideToClickedSlide
           roundLengths
-          loop={data.length > 10}
+          loop={isOnLoop}
           speed={100}
           className={twMerge(
             'block h-full max-w-[998px] flex-initial',
             '3xl:max-w-[854px]'
           )}
+          initialSlide={activeSlide}
           allowTouchMove={false}
           navigation={{
             nextEl: '.image-swiper-button-next',
