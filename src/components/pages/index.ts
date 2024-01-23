@@ -9,6 +9,7 @@ export * from './connect/ConnectTimer';
 export * from './connect/connectIpMessage/ConnectIpMessage';
 export * from './home/homeMobileSection/HomeMobileSection';
 export * from './home/homeWebSection/HomeWebSection';
+export * from './inactive/InactiveCheckIfIsActive';
 export * from './inactive/InactiveGoBackLink';
 export * from './inactive/InactiveHeroImage';
 export * from './inactive/InactiveMessage';
