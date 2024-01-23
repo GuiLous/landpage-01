@@ -10,6 +10,8 @@ export type ItemType =
   | 'weapon'
   | 'decorative'
 
+export type ItemSubType = 'ata' | 'def' | 'card' | 'profile'
+
 export type Media = {
   id: number
   file: string
@@ -20,7 +22,7 @@ export interface StoreItem {
   id: number
   name: string
   item_type: ItemType
-  subtype?: 'ata' | 'def'
+  subtype?: ItemSubType
   handle: string
   price: number
   release_date: string
