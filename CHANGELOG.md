@@ -59,6 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Changed
 
+- Altera `Carousel` da loja para ficar igual ao novo design [#988](https://github.com/3C-gg/reload-frontend/issues/988).
+- Altera `initialSlide` no componente `CenteredCarousel`.
 - Altera projeto `Next` para ficar igual ao projeto antigo [#971](https://github.com/3C-gg/reload-frontend/issues/971).
 - Altera página `Conectar` para ficar igual ao novo design [#840](https://github.com/3C-gg/reload-frontend/issues/840).
 - Altera página `Home` para ficar igual ao novo design [#838](https://github.com/3C-gg/reload-frontend/issues/838).
