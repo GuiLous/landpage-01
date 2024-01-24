@@ -20,7 +20,7 @@ export default function SignUpLayout({ children }: { children: ReactNode }) {
     >
       <SignupLayoutHeader />
 
-      <div className="absolute bottom-[85px] left-0 z-0 w-[26%]">
+      <div className="absolute bottom-[80px] left-0 z-0 w-[26%]">
         <Image src={liquidObject} alt="Liquid object" priority />
       </div>
 

@@ -32,12 +32,6 @@ export function InventoryItemsTabBarTabs({
       return
     }
 
-    if (tab === 'perfil') {
-      setActiveItemType('capas de perfil')
-      setActiveSubTab('capas de perfil')
-      return
-    }
-
     setActiveItemType(tab)
   }
 

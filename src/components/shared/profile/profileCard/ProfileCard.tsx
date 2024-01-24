@@ -13,18 +13,19 @@ const cardWrapper = tv({
     variant: {
       account: {
         container: 'gap-8 p-10 3xl:gap-7 3xl:p-6',
-        title: 'font-semibold',
+        cardTitle: 'font-semibold',
       },
     },
   },
 })
 
-type ProfileCardProps = ComponentProps<'input'> &
+type ProfileCardProps = ComponentProps<'div'> &
   VariantProps<typeof cardWrapper> & {
     children?: ReactNode
     title?: string
     icon?: ElementType
     description?: string
+    maxWidth?: string
   }
 
 export function ProfileCard({
@@ -33,13 +34,17 @@ export function ProfileCard({
   title,
   icon,
   description,
+  maxWidth = '100%',
 }: ProfileCardProps) {
   const { container, cardTitle } = cardWrapper({ variant })
 
   return (
-    <section className={container({ variant })}>
+    <section
+      className={container({ variant })}
+      style={{ maxWidth: `${maxWidth}` }}
+    >
       {title && (
-        <div className="flex-col gap-3">
+        <div className="flex-initial flex-col gap-3">
           <div className="items-center gap-2.5">
             {icon && <ProfileCardIcon icon={icon} size={22} />}
 
@@ -54,7 +59,7 @@ export function ProfileCard({
         </div>
       )}
 
-      <div>{children}</div>
+      {children}
     </section>
   )
 }
