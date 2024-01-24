@@ -18,7 +18,7 @@ export function CarouselItemContent({
     <div
       key={currentIndex}
       className={twMerge(
-        'max-w-fit flex-initial flex-col gap-10 left-[5%] absolute top-[26%] z-20',
+        'max-w-fit flex-initial flex-col gap-10 left-[7.42%] absolute top-[15%] z-20',
         'animate-carousel',
         '3xl:gap-6'
       )}
@@ -26,7 +26,7 @@ export function CarouselItemContent({
       <div className="max-w-fit flex-initial flex-col">
         <h2
           className={twMerge(
-            'font-bold uppercase text-5xl leading-none text-white max-w-[485px]',
+            'font-bold -ml-0.5 uppercase text-5xl leading-none text-white max-w-[485px]',
             '3xl:max-w-[450px] 3xl:text-4xl'
           )}
         >

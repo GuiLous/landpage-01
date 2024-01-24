@@ -16,22 +16,23 @@ export function CarouselPreview({
   return (
     <div
       className={twMerge(
-        'max-w-fit flex-initial items-center gap-4 cursor-pointer absolute right-28 top-[calc(100%_-_58.5px)] z-10',
-        '3xl:gap-3.5 3xl:right-[4.625rem] 3xl:top-[calc(100%_-_40.5px)]'
+        'max-w-fit flex-initial items-center gap-2.5 cursor-pointer absolute left-[7.5%] top-[calc(100%_-_58.5px)] z-10',
+        '3xl:top-[calc(100%_-_40.5px)]'
       )}
     >
-      {featured.map((item, index) => (
+      {featured.map((_, index) => (
         <div
           key={index}
           className={twMerge(
-            'bg-no-repeat bg-cover border border-transparent rounded-lg max-h-[106px] min-h-[106px] max-w-[198px] min-w-[198px] opacity-80 overflow-hidden transition-all',
-            'hover:border-white hover:opacity-100',
-            indexContent === index && 'border-white opacity-100',
-            '3xl:max-h-[76px] 3xl:min-h-[76px] 3xl:max-w-[138px] 3xl:min-w-[138px]'
+            'min-w-2 h-2 bg-white/40 overflow-hidden transition-all cursor-pointer rounded-full',
+            indexContent === index && 'min-w-8'
           )}
           onClick={() => setIndexContent(index)}
-          style={{ backgroundImage: `url(${item.featured_image})` }}
-        />
+        >
+          {indexContent === index && (
+            <div className="animate-carousel-preview bg-white/80" />
+          )}
+        </div>
       ))}
     </div>
   )

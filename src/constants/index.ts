@@ -148,8 +148,12 @@ export const MIN_PROGRESS = 0
 export const MAX_PROGRESS = 100
 
 // Inventory
-export const TABS = ['arsenal', 'personagem', 'sprays', 'caixas', 'perfil']
+export const TABS = ['arsenal', 'personagem', 'sprays', 'caixas']
 export const TABS_NO_SWITCH = ['avatar', 'sprays']
 
 // Websocket
 export const SEND_KEEP_ALIVE_TIME = 7000 // 7 seconds
+
+// Store
+export const STORE_FEATURED_INTERVAL = 5000 // 5 seconds
+export const STORE_FEATURED_TRANSITION_TIME = 400 // 400 milliseconds

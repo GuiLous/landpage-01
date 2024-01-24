@@ -2,12 +2,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { getItemName } from '@/utils'
 
-import { ItemType } from '@/functions'
+import { ItemSubType, ItemType } from '@/functions'
 
 import { Divider } from '@/components/shared'
 
 interface ModalBuyItemInfosItemTypeProps {
-  subtype?: 'ata' | 'def'
+  subtype?: ItemSubType
   item_type: ItemType
 }
 

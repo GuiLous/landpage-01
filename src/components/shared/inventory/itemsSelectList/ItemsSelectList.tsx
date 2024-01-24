@@ -10,6 +10,7 @@ interface ItemsSelectListProps {
   setItemSelected: (state: StoreItem) => void
   setNewItemSelected: (state: StoreItem | null) => void
   hasItemInUse: boolean
+  isAccountPage?: boolean
 }
 
 export function ItemsSelectList({
@@ -18,6 +19,7 @@ export function ItemsSelectList({
   setItemSelected,
   setNewItemSelected,
   hasItemInUse,
+  isAccountPage = false,
 }: ItemsSelectListProps) {
   const handleChangeItemSelected = (item: StoreItem) => {
     setNewItemSelected(null)
@@ -28,7 +30,8 @@ export function ItemsSelectList({
     <div
       className={twMerge(
         'grid grid-cols-[repeat(4,_80px)] content-baseline gap-2',
-        '3xl:grid-cols-[repeat(4,_64px)]'
+        '3xl:grid-cols-[repeat(4,_64px)]',
+        isAccountPage && 'grid-cols-[repeat(auto-fill,_56px)] h-fit'
       )}
     >
       {items.map((item, index) => (
@@ -38,6 +41,7 @@ export function ItemsSelectList({
           item={item}
           itemSelectedId={itemSelectedId}
           hasItemInUse={hasItemInUse}
+          isAccountPage={isAccountPage}
           onClick={() => handleChangeItemSelected(item)}
         />
       ))}

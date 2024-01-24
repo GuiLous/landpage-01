@@ -1,18 +1,22 @@
 import { twMerge } from 'tailwind-merge'
 
-export function AccountTitle() {
+interface AccountSectionTitleProps {
+  title: string
+}
+
+export function AccountSectionTitle({ title }: AccountSectionTitleProps) {
   return (
     <section
       className={twMerge('flex-initial items-center px-[3.750rem]', '3xl:px-7')}
     >
       <h1
         className={twMerge(
-          'font-semibold text-white text-xl',
+          'font-semibold text-white text-xl uppercase',
           'leading-none',
           '3xl:text-lg'
         )}
       >
-        CONFIGURAÇÕES DE CONTA
+        {title}
       </h1>
     </section>
   )
