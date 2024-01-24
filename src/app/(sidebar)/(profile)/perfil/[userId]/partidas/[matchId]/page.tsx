@@ -2,6 +2,8 @@ import { twMerge } from 'tailwind-merge'
 
 import { MatchProfileType, getMatchDetails } from '@/functions'
 
+import { Match, useMatchStore } from '@/store/matchStore'
+
 import {
   MatchDetailsHeader,
   MatchDetailsHeaderStatus,
@@ -24,9 +26,17 @@ interface RouteProps {
 }
 
 export default async function MatchDetails({ params }: RouteProps) {
+  const match = useMatchStore.getState().match
+
   const { matchId, userId } = params
 
-  const matchDetails = await getMatchDetails(Number(matchId))
+  let matchDetails: Match | null = match
+
+  if (!match) {
+    matchDetails = await getMatchDetails(Number(matchId))
+  }
+
+  if (!matchDetails) return null
 
   const firstTeamScore = matchDetails.teams[0].score || 0
   const secondTeamScore = matchDetails.teams[1].score || 0
