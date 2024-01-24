@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Verifica se usuário está ativo na página de `/conta-inativa` para redirecioná-lo para outra página [#708](https://github.com/3C-gg/reload-frontend/issues/708).
 - Cria `Wizard` do menu da sidebar [#967](https://github.com/3C-gg/reload-frontend/issues/967).
 - Cria `Wizard` da página de perfil [#773](https://github.com/3C-gg/reload-frontend/issues/773).
 - Cria menu de arsenal no inventário [#961](https://github.com/3C-gg/reload-frontend/issues/961).

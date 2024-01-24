@@ -1,6 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 
 import {
+  InactiveCheckIfIsActive,
   InactiveGoBackLink,
   InactiveHeroImage,
   InactiveMessage,
@@ -17,6 +18,8 @@ export default function Inactive() {
         'bg-home bg-cover bg-no-repeat'
       )}
     >
+      <InactiveCheckIfIsActive />
+
       <section className="flex-col items-center justify-center">
         <InactiveHeroImage />
 
