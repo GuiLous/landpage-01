@@ -63,6 +63,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       if (preMatch || user?.match_id || !auth?.token) return
 
       if (action === 'start' && !isOwner) return
+      if (action === 'start' && lobby.queue) return
 
       let response = null
 
