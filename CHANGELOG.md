@@ -60,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   
 ### Changed
 
+- Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
 - Move customização de `cards` e `capas` para a página de `/conta` [#968](https://github.com/3C-gg/reload-frontend/issues/968).
 - Altera `Carousel` da loja para ficar igual ao novo design [#988](https://github.com/3C-gg/reload-frontend/issues/988).
 - Altera `initialSlide` no componente `CenteredCarousel`.
