@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona arquivos do vscode no gitnignore.
 - Verifica se usuário está ativo na página de `/conta-inativa` para redirecioná-lo para outra página [#708](https://github.com/3C-gg/reload-frontend/issues/708).
 - Cria `Wizard` do menu da sidebar [#967](https://github.com/3C-gg/reload-frontend/issues/967).
 - Cria `Wizard` da página de perfil [#773](https://github.com/3C-gg/reload-frontend/issues/773).
@@ -20,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cria página de `Detalhes da partida` no projeto next [#828](https://github.com/3C-gg/reload-frontend/issues/828).
 - Cria página de `Conta` no projeto next [#826](https://github.com/3C-gg/reload-frontend/issues/826).
 - Cria página de `Perfil` no projeto next [#810](https://github.com/3C-gg/reload-frontend/issues/810).
-- Criar page `Connect` e todos seus componentes no projeto next [#767](https://github.com/3C-gg/reload-frontend/issues/767). 
+- Criar page `Connect` e todos seus componentes no projeto next [#767](https://github.com/3C-gg/reload-frontend/issues/767).
 - Cria componente de `Toast` no projeto next [#763](https://github.com/3C-gg/reload-frontend/issues/763).
 - Cria componente de `ModalMatchFound` no projeto next [#757](https://github.com/3C-gg/reload-frontend/issues/757).
 - Cria componente de `Websocket` no projeto next [#754](https://github.com/3C-gg/reload-frontend/issues/754).
@@ -57,7 +58,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adiciona imagens otimizadas no projeto `next`.
 - Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
-  
+
 ### Changed
 
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
@@ -77,7 +78,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ajusta `httpService` no projeto next.
 - Altera tipagem de `httpService` no projeto next.
 - Altera `PrivateRoute` para redirecionar para `not-found` no projeto `next`.
-  
+
 ### Fixed
 
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
