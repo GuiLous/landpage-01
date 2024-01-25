@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import Joyride, { CallBackProps, Step } from 'react-joyride'
 
@@ -10,7 +11,12 @@ interface WizardsProps {
 }
 
 export function Wizard({ steps, page }: WizardsProps) {
+  const pathname = usePathname()
+
   const [showWizard, setShowWizard] = useState(false)
+
+  const pathSpliced = pathname.split('/')
+  const isMatchDetailsPage = pathSpliced.length > 3
 
   const getStorageKey = useCallback(() => {
     if (page === 'lobby') return 'AlreadyVisitedLobby'
@@ -34,12 +40,13 @@ export function Wizard({ steps, page }: WizardsProps) {
   )
 
   useEffect(() => {
+    if (isMatchDetailsPage) return
     const alreadyVisited = storageService.get(getStorageKey())
 
     if (alreadyVisited) return setShowWizard(false)
 
     setShowWizard(true)
-  }, [getStorageKey])
+  }, [getStorageKey, isMatchDetailsPage])
 
   return (
     <Joyride
