@@ -112,8 +112,8 @@ export function ModalBuyItemPreview({
               src={currentFile.file}
               alt=""
               className={twMerge(
-                'object-scale-down rounded-lg absolute z-10 h-full py-12',
-                '3xl:py-10'
+                'object-cover rounded-lg absolute z-10 h-full',
+                previewSelected === 0 && 'py-12 3xl:py-10 object-scale-down'
               )}
               fill
               sizes="100%"
