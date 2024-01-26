@@ -31,6 +31,7 @@ export interface StoreItem {
   background_image?: string
   decorative_image?: string
   foreground_image: string
+  cover_image: string
   box: any
   box_draw_chance: any
   collection: any

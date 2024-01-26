@@ -16,7 +16,12 @@ export function StoreItemCardHeader({
   purchased = false,
 }: StoreItemCardHeaderProps) {
   return (
-    <header className="relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 p-5">
+    <header
+      className="relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 bg-cover bg-center bg-no-repeat p-5"
+      style={{
+        backgroundImage: item?.cover_image ? `${item.cover_image}` : '',
+      }}
+    >
       <CustomIcon
         icon={IoMdInformationCircleOutline}
         className={twMerge(
