@@ -47,20 +47,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cria componente `ChangeEmailGoBackLink` no projeto next.
 - Adiciona prop `target` no component `Link` no projeto next.
 - Cria `accountsApi` e `baseApi` no projeto next.
-- Cria página `not-found` no projeto `next` [706](https://github.com/3C-gg/reload-frontend/issues/706).
+- Cria página `not-found` no projeto `next` [#706](https://github.com/3C-gg/reload-frontend/issues/#706).
 - Cria função `checkIfPathExists`no projeto `next`.
 - Adicionar `Slot` da lib `Radix` para transformar o botão em seu filho no projeto `next`.
-- Criar página `alterar-email` no projeto `next` [704](https://github.com/3C-gg/reload-frontend/issues/704).
+- Criar página `alterar-email` no projeto `next` [#704](https://github.com/3C-gg/reload-frontend/issues/#704).
 - Criar componente `LayoutHeader` para o `layout` de `signup` no projeto `next`.
-- Cria página `verificar` no projeto `next` [702](https://github.com/3C-gg/reload-frontend/issues/702).
+- Cria página `verificar` no projeto `next` [#702](https://github.com/3C-gg/reload-frontend/issues/#702).
 - Cria componente `Terms` no projeto `next`.
 - Cria página de loading no projeto `next`.
 - Adiciona imagens otimizadas no projeto `next`.
-- Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
+- Cria página de `cadastrar` no projeto `next` [#699](https://github.com/3C-gg/reload-frontend/issues/#699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
 
 ### Changed
 
+- Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
 - Move customização de `cards` e `capas` para a página de `/conta` [#968](https://github.com/3C-gg/reload-frontend/issues/968).
