@@ -32,13 +32,14 @@ export function InventoryItemDescription({
   isArsenal = false,
 }: InventoryItemDescriptionProps) {
   const hasItemInUse = !!itemInUse
+  const showSideInfo = item.item_type === 'wear'
 
   return (
     <div className="flex-initial flex-col gap-6">
       {item?.id !== 0 && (
         <>
           <div className="items-center gap-2">
-            {item?.subtype && (
+            {showSideInfo && (
               <>
                 <span
                   className={twMerge(
