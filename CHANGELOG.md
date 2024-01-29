@@ -61,6 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/#1022).
+- Remove animação de progresso do `carousel` quando há apenas 1 item.
 - Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/#1019).
 - Remove `tabs e sub tabs` que não vamos usar atualmente no inventário.
 - Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/#1012).
