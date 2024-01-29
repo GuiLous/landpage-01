@@ -1,42 +1,30 @@
-import Image from 'next/image'
 import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { SignupLayoutHeader } from '@/components/pages'
+import {
+  SignupContent,
+  SignupHero,
+  SignupLayoutHeader,
+} from '@/components/pages'
 
 import { Footer } from '@/components/shared'
-
-import liquidObject from '@/assets/images/liquid_object.png'
-import logo from '@/assets/images/logo_type_white.svg'
-import rectangle from '@/assets/images/signup_bg_top_right.png'
 
 export default function SignUpLayout({ children }: { children: ReactNode }) {
   return (
     <main
       className={twMerge(
-        'select-none relative h-screen flex-col items-center',
-        'bg-sign_up_bottom_left bg-cover bg-repeat-round'
+        'select-none relative bg-home bg-no-repeat bg-cover h-screen flex-col items-center justify-center'
       )}
     >
       <SignupLayoutHeader />
 
-      <div className="absolute bottom-[80px] left-0 z-0 w-[26%]">
-        <Image src={liquidObject} alt="Liquid object" priority />
-      </div>
+      <div className="items-center justify-center">
+        <div className="min-h-[333px] max-w-[784px] flex-initial overflow-hidden rounded-lg">
+          <SignupHero />
 
-      <Image
-        src={rectangle}
-        alt="Rectangle"
-        className="absolute right-10 top-10"
-      />
-
-      <section className="flex-col items-center justify-center gap-[55px]">
-        <div className="w-[19%] flex-initial items-end justify-center">
-          <Image src={logo} alt="Reload logo" />
+          <SignupContent>{children}</SignupContent>
         </div>
-
-        {children}
-      </section>
+      </div>
 
       <Footer />
     </main>
