@@ -6,7 +6,7 @@ interface InputRootProps extends ComponentProps<'div'> {
 
 export function InputRoot({ children, ...props }: InputRootProps) {
   return (
-    <div className="flex-initial flex-col gap-2" {...props}>
+    <div className="flex-initial flex-col gap-3" {...props}>
       {children}
     </div>
   )

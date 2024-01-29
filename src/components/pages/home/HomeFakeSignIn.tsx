@@ -135,7 +135,7 @@ export function HomeFakeSignIn() {
                   error={cannotSubmit || !!fieldsErrors.email}
                 >
                   {cannotSubmit && (
-                    <Input.RightIcon icon={RiErrorWarningFill} error />
+                    <Input.Icon icon={RiErrorWarningFill} error />
                   )}
                 </Input.Input>
 
