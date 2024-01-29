@@ -61,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+
 - Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
@@ -83,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
 - Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [#983](https://github.com/3C-gg/reload-frontend/issues/983).
 - Corrige fluxo de cadastrar no projeto next.
