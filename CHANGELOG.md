@@ -61,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera página de `verificar` para ficar conforme o novo design [#1004](https://github.com/3C-gg/reload-frontend/issues/#1004)..
 - Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/#1003)..
 - Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
