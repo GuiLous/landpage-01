@@ -16,11 +16,7 @@ export function ModalBuyItemInfosDescription({
     <div className={twMerge('flex-col gap-9', '3xl:gap-8')}>
       <div className="flex-col gap-2">
         <p
-          className={twMerge(
-            'text-white text-sm',
-            'leading-none',
-            '3xl:text-xs'
-          )}
+          className={twMerge('text-white text-sm', 'leading-6', '3xl:text-xs')}
         >
           {description}
         </p>
