@@ -112,7 +112,7 @@ export default function SignUp() {
 
       return router.push('/verificar')
     },
-    [email, router, showErrorToast, auth]
+    [email, router, showErrorToast, auth, isButtonDisabled]
   )
 
   return (
