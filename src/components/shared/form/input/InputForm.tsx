@@ -42,11 +42,19 @@ const inputWrapper = tv({
         input: 'px-2 text-xs text-white',
       },
     },
+    signup: {
+      true: {
+        container:
+          'border border-gray-700 bg-gray-1000 transition-colors hover:bg-gray-700',
+        input: 'pl-12 pr-2 text-sm font-light text-gray-300',
+      },
+    },
   },
   defaultVariants: {
     success: false,
     error: false,
     neutral: false,
+    signup: false,
   },
 })
 
@@ -62,6 +70,7 @@ export function InputForm({
   success,
   error,
   neutral,
+  signup,
   secondary,
   forwardRef,
   ...props
@@ -71,13 +80,14 @@ export function InputForm({
     neutral,
     success,
     secondary,
+    signup,
   })
 
   return (
-    <div className={container({ success, error, neutral, secondary })}>
+    <div className={container({ success, error, neutral, secondary, signup })}>
       <input
         type="text"
-        className={input({ neutral, secondary, className })}
+        className={input({ neutral, secondary, signup, className })}
         ref={forwardRef}
         {...props}
       />
