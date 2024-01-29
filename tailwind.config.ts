@@ -101,7 +101,8 @@ const config: Config = {
       },
       backgroundImage: {
         home: "url('~/src/assets/images/home_bg.png')",
-        bg_card_signup: "url('~/src/assets/images/bg_card_signup.png')",
+        signup: "url('~/src/assets/images/bg_signup.png')",
+        card_signup: "url('~/src/assets/images/bg_card_signup.png')",
         home_mobile: "url('~/src/assets/images/home_mobile_bg.png')",
         sign_up_bottom_left:
           "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
