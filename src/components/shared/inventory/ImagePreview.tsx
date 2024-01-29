@@ -20,12 +20,11 @@ export function ImagePreview({
   const imageRef = useRef<HTMLImageElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const isNotNullItem = itemSelected?.id !== 0
+  const [canParallax, setCanParallax] = useState(false)
 
+  const isNotNullItem = itemSelected?.id !== 0
   const hasBackground = !!itemSelected?.background_image
   const isWeapon = itemSelected?.item_type === 'weapon'
-
-  const [canParallax, setCanParallax] = useState(false)
 
   const handleMouseEnter = () => {
     setCanParallax(true)
