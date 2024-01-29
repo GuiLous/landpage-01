@@ -61,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Remove `tabs e sub tabs` que não vamos usar atualmente no inventário.
 - Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/#1012).
 - Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
@@ -84,6 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/#1016).
 - Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
 - Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
