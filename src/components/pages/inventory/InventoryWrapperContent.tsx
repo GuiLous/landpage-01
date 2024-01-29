@@ -29,7 +29,7 @@ import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
-export type TabTypes = 'personagem' | 'sprays' | 'arsenal' | 'caixas'
+export type TabTypes = 'personagem' | 'sprays' | 'arsenal'
 export type SubTabTypes =
   | 'avatar'
   | 'roupas'
@@ -39,7 +39,6 @@ export type SubTabTypes =
   | 'escopetas'
   | 'metralhadoras'
   | 'fuzis'
-  | 'caixas'
 
 type Item = Partial<StoreItem>
 
@@ -62,10 +61,6 @@ const tabs = {
     tabs: ['spray'],
     subTabs: [],
   },
-  caixas: {
-    tabs: ['boxes'],
-    subTabs: [],
-  },
 }
 
 const sub_tabs = {
@@ -77,7 +72,6 @@ const sub_tabs = {
   escopetas: 'shotguns',
   metralhadoras: 'machineguns',
   fuzis: 'rifles',
-  caixas: 'boxes',
 }
 
 interface InventoryWrapperContentProps {
