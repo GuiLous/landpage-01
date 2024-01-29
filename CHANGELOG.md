@@ -84,6 +84,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
 - Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
 - Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [#983](https://github.com/3C-gg/reload-frontend/issues/983).
