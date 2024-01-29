@@ -212,13 +212,15 @@ export function InventoryWrapperContent({
   }, [activeTab, activeSubTab, weaponSelected, activeItemIndex])
 
   useEffect(() => {
-    if (isArsenal && hasItemInUse) {
-      setItemSelected(itemsByType[activeItemIndex] as StoreItem)
-      return
-    }
+    if (isArsenal) {
+      if (hasItemInUse) {
+        setItemSelected(itemsByType[activeItemIndex] as StoreItem)
+        return
+      }
 
-    if (itemsByType.length > 0) {
-      setItemSelected(itemsByType[0] as StoreItem)
+      if (itemsByType.length > 0) {
+        setItemSelected(itemsByType[0] as StoreItem)
+      }
     }
   }, [activeItemIndex, itemsByType, weaponSelected, isArsenal, hasItemInUse])
 
