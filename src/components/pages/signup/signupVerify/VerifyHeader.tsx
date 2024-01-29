@@ -1,24 +1,14 @@
-'use client'
-
-import { BiSolidLock } from 'react-icons/bi'
-
-import { useAuth } from '@/hooks'
+import { getAuthServer } from '@/utils'
 
 export function VerifyHeader() {
-  const auth = useAuth()
+  const auth = getAuthServer()
 
   return (
-    <header className="flex-col items-center justify-center gap-7">
-      <BiSolidLock size={48} />
-
-      <div className="flex-initial flex-col items-center">
-        <h2 className="text-xl font-bold uppercase">Verificação obrigatória</h2>
-
-        <span className="text-center text-sm font-normal">
-          Insira o código enviado para o email{' '}
-          <span className="text-sm text-purple-300">{auth?.email}</span>
-        </span>
-      </div>
+    <header className="flex-col items-start">
+      <span className="text-center text-sm">
+        Insira o código enviado para o email
+      </span>
+      <span className="text-sm leading-none text-cyan-400">{auth?.email}</span>
     </header>
   )
 }
