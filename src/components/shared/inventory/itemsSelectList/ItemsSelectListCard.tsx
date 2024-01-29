@@ -52,17 +52,31 @@ export function ItemsSelectListCard({
               'relative h-[18px] min-w-[18px] max-w-fit flex-initial 3xl:h-4 3xl:min-w-4 '
           )}
         >
-          <Image
-            src={item?.foreground_image || ''}
-            alt=""
-            className={twMerge(
-              'object-scale-down',
-              index !== 0 && 'p-2 3xl:p-1',
-              isAccountPage && 'object-cover p-0 rounded'
-            )}
-            fill
-            sizes="100%"
-          />
+          {isAccountPage ? (
+            <Image
+              src={item?.preview_image || ''}
+              alt=""
+              className={twMerge(
+                'object-scale-down',
+                index !== 0 && 'p-2 3xl:p-1',
+                isAccountPage && 'object-cover p-0 rounded'
+              )}
+              fill
+              sizes="100%"
+            />
+          ) : (
+            <Image
+              src={item?.foreground_image || ''}
+              alt=""
+              className={twMerge(
+                'object-scale-down',
+                index !== 0 && 'p-2 3xl:p-1',
+                isAccountPage && 'object-cover p-0 rounded'
+              )}
+              fill
+              sizes="100%"
+            />
+          )}
         </div>
 
         {item?.id === 0 && (

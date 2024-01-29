@@ -60,7 +60,7 @@ export function InventoryItemDescription({
           </div>
 
           <div className="flex-col gap-3.5">
-            <p className={twMerge('text-sm text-white', 'leading-none')}>
+            <p className={twMerge('text-sm text-white leading-tight')}>
               {item.description}
             </p>
 

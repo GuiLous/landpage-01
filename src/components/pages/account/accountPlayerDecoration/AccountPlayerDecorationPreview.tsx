@@ -1,12 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 
 interface AccountPlayerDecorationPreviewProps {
-  foreground_image?: string
+  preview_image?: string
   isProfileCover: boolean
 }
 
 export function AccountPlayerDecorationPreview({
-  foreground_image,
+  preview_image,
   isProfileCover,
 }: AccountPlayerDecorationPreviewProps) {
   return (
@@ -17,7 +17,7 @@ export function AccountPlayerDecorationPreview({
         !isProfileCover && 'max-w-fit'
       )}
       style={{
-        backgroundImage: `url(${foreground_image})`,
+        backgroundImage: `url(${preview_image})`,
       }}
     />
   )
