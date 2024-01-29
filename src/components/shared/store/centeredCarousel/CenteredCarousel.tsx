@@ -69,7 +69,7 @@ export function CenteredCarousel({
       }
 
       setActiveSlide(0)
-      setActiveItemIndex(itemInUseIndex)
+      setActiveItemIndex(0)
     }
   }, [hasItemInUse, itemInUseIndex, isInventory, setActiveItemIndex])
 

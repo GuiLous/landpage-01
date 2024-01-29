@@ -211,16 +211,9 @@ export function InventoryWrapperContent({
 
   useEffect(() => {
     if (isArsenal) {
-      if (hasItemInUse) {
-        setItemSelected(itemsByType[activeItemIndex] as StoreItem)
-        return
-      }
-
-      if (itemsByType.length > 0) {
-        setItemSelected(itemsByType[0] as StoreItem)
-      }
+      setItemSelected(itemsByType[activeItemIndex] as StoreItem)
     }
-  }, [activeItemIndex, itemsByType, weaponSelected, isArsenal, hasItemInUse])
+  }, [activeItemIndex, itemsByType, isArsenal])
 
   useEffect(() => {
     if (hasItemInUse) {
@@ -228,6 +221,12 @@ export function InventoryWrapperContent({
       setItemInUseIndex(itemIndex)
     }
   }, [hasItemInUse, itemsByType, activeSubTab, activeTab, weaponSelected])
+
+  useEffect(() => {
+    if (isArsenal) {
+      setActiveItemIndex(0)
+    }
+  }, [activeTab, activeSubTab, weaponSelected, isArsenal])
 
   return (
     <>
