@@ -61,7 +61,7 @@ export function AccountPlayerDecoration({
         >
           <AccountPlayerDecorationPreview
             isProfileCover={isProfileCover}
-            foreground_image={itemSelected?.foreground_image}
+            preview_image={itemSelected?.preview_image}
           />
 
           <div
