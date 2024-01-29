@@ -26,11 +26,11 @@ export function StoreItemCardHeader({
       />
 
       <Image
-        src={item.foreground_image}
+        src={item.cover_image}
         alt={item.name}
         fill
         sizes="100%"
-        className="object-scale-down p-2"
+        className="object-scale-down"
         draggable={false}
         priority
       />

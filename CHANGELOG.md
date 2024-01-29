@@ -47,20 +47,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Cria componente `ChangeEmailGoBackLink` no projeto next.
 - Adiciona prop `target` no component `Link` no projeto next.
 - Cria `accountsApi` e `baseApi` no projeto next.
-- Cria página `not-found` no projeto `next` [706](https://github.com/3C-gg/reload-frontend/issues/706).
+- Cria página `not-found` no projeto `next` [#706](https://github.com/3C-gg/reload-frontend/issues/#706).
 - Cria função `checkIfPathExists`no projeto `next`.
 - Adicionar `Slot` da lib `Radix` para transformar o botão em seu filho no projeto `next`.
-- Criar página `alterar-email` no projeto `next` [704](https://github.com/3C-gg/reload-frontend/issues/704).
+- Criar página `alterar-email` no projeto `next` [#704](https://github.com/3C-gg/reload-frontend/issues/#704).
 - Criar componente `LayoutHeader` para o `layout` de `signup` no projeto `next`.
-- Cria página `verificar` no projeto `next` [702](https://github.com/3C-gg/reload-frontend/issues/702).
+- Cria página `verificar` no projeto `next` [#702](https://github.com/3C-gg/reload-frontend/issues/#702).
 - Cria componente `Terms` no projeto `next`.
 - Cria página de loading no projeto `next`.
 - Adiciona imagens otimizadas no projeto `next`.
-- Cria página de `cadastrar` no projeto `next` [699](https://github.com/3C-gg/reload-frontend/issues/699).
+- Cria página de `cadastrar` no projeto `next` [#699](https://github.com/3C-gg/reload-frontend/issues/#699).
 - Cria novo projeto base com `next` com a página `Home` e o controle de `rotas privadas` [679](https://github.com/3C-gg/reload-frontend/tree/679-novo-projeto-usando-next).
 
 ### Changed
 
+- Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/#1022).
+- Remove animação de progresso do `carousel` quando há apenas 1 item.
+- Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/#1019).
+- Remove `tabs e sub tabs` que não vamos usar atualmente no inventário.
+- Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/#1012).
+- Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
 - Move customização de `cards` e `capas` para a página de `/conta` [#968](https://github.com/3C-gg/reload-frontend/issues/968).
@@ -82,6 +88,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `arma selecionada` que não estava sendo exibida no inventário [#1018](https://github.com/3C-gg/reload-frontend/issues/#1018).
+- Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/#1016).
+- Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
+- Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
 - Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [#983](https://github.com/3C-gg/reload-frontend/issues/983).
 - Corrige fluxo de cadastrar no projeto next.

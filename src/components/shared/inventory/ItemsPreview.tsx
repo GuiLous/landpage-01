@@ -9,13 +9,11 @@ import { Media } from '@/functions'
 
 import { CustomIcon, ModalShowSkin } from '@/components/shared'
 
-interface WeaponVideoPreviewProps {
+interface ItemsPreviewProps {
   imagesPreview?: Media[]
 }
 
-export function WeaponVideoPreview({
-  imagesPreview = [],
-}: WeaponVideoPreviewProps) {
+export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
   const [previewSelected, setPreviewSelected] = useState<Media | null>(null)
   const [openModal, setOpenModal] = useState(false)
 

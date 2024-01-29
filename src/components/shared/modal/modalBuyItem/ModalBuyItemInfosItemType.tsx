@@ -16,10 +16,11 @@ export function ModalBuyItemInfosItemType({
   item_type,
 }: ModalBuyItemInfosItemTypeProps) {
   const isDefSubType = subtype === 'def'
+  const showSideInfo = item_type === 'wear'
 
   return (
     <div className="items-center gap-1.5">
-      {subtype && (
+      {showSideInfo && (
         <>
           <span
             className={twMerge(

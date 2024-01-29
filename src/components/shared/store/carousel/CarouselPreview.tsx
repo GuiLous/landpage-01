@@ -13,6 +13,8 @@ export function CarouselPreview({
   indexContent,
   setIndexContent,
 }: CarouselPreviewProps) {
+  const showTimer = featured.length > 1
+
   return (
     <div
       className={twMerge(
@@ -25,11 +27,11 @@ export function CarouselPreview({
           key={index}
           className={twMerge(
             'min-w-2 h-2 bg-white/40 overflow-hidden transition-all cursor-pointer rounded-full',
-            indexContent === index && 'min-w-8'
+            indexContent === index && showTimer && 'min-w-8'
           )}
           onClick={() => setIndexContent(index)}
         >
-          {indexContent === index && (
+          {indexContent === index && showTimer && (
             <div className="animate-carousel-preview bg-white/80" />
           )}
         </div>

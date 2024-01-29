@@ -29,8 +29,10 @@ export interface StoreItem {
   description: string
   discount: number
   background_image?: string
+  preview_image?: string
   decorative_image?: string
   foreground_image: string
+  cover_image: string
   box: any
   box_draw_chance: any
   collection: any
