@@ -16,6 +16,8 @@ import { Button, PinInput } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
+import { VerifyChangeEmail } from './VerifyChangeEmail'
+
 export function VerifyForm() {
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -88,17 +90,21 @@ export function VerifyForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-initial items-center justify-center gap-2.5"
+      className="flex w-full flex-initial flex-col items-center justify-center gap-10"
     >
-      <PinInput
-        inputs={TOTAL_SIGNUP_PINS}
-        onChangeValue={handleChange}
-        onPressKeyDown={handleKeyEnterDown}
-      />
+      <div className="flex-col gap-6">
+        <PinInput
+          inputs={TOTAL_SIGNUP_PINS}
+          onChangeValue={handleChange}
+          onPressKeyDown={handleKeyEnterDown}
+        />
+
+        <VerifyChangeEmail />
+      </div>
 
       <Button.Root
         disabled={isButtonDisabled}
-        className="h-14 w-14"
+        className="max-h-[42px] min-h-[42px] w-full"
         type="submit"
       >
         {fetching ? (
