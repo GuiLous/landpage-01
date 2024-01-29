@@ -4,6 +4,7 @@ import { SignJWT } from 'jose'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
+import { BsEnvelopeFill } from 'react-icons/bs'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
 import { isEmailValid, revalidatePath } from '@/utils'
@@ -105,30 +106,40 @@ export default function ChangeEmail() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mt-14 flex w-full max-w-[430px] flex-col items-center gap-3 "
+      className="flex h-full w-full flex-col items-center gap-3 "
     >
-      <Input.Root>
-        <Input.Label htmlFor="email" label="Altere seu e-mail" />
+      <div className="flex-initial flex-col gap-3">
+        <Input.Root>
+          <Input.Label
+            className="text-sm font-normal leading-none"
+            htmlFor="email"
+            label="Altere seu e-mail"
+          />
 
-        <Input.Input
-          value={email}
-          placeholder="exemplo@email.com"
-          type="email"
-          id="email"
-          autoComplete="true"
-          onKeyDown={(e) => handleKeyEnterDown(e)}
-          onChange={(e) => handleChange(e.target.value)}
-          error={cannotSubmit || !!fieldsErrors.email}
-        >
-          {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}
-        </Input.Input>
+          <Input.Input
+            value={email}
+            placeholder="exemplo@email.com"
+            type="email"
+            id="email"
+            autoComplete="true"
+            signup
+            onKeyDown={(e) => handleKeyEnterDown(e)}
+            onChange={(e) => handleChange(e.target.value)}
+            error={cannotSubmit || !!fieldsErrors.email}
+          >
+            <Input.Icon
+              icon={BsEnvelopeFill}
+              className="left-3.5 text-gray-300"
+            />
 
-        {fieldsErrors.email && (
-          <Input.ErrorText errorMsg={fieldsErrors.email} />
-        )}
-      </Input.Root>
+            {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}
+          </Input.Input>
 
-      <div className="flex-col gap-3">
+          {fieldsErrors.email && (
+            <Input.ErrorText errorMsg={fieldsErrors.email} />
+          )}
+        </Input.Root>
+
         <Button.Root
           disabled={isButtonDisabled}
           className="w-full"
@@ -144,9 +155,9 @@ export default function ChangeEmail() {
             Alterar e-mail
           </Button.Content>
         </Button.Root>
-
-        <SignupChangeEmailGoBackLink />
       </div>
+
+      <SignupChangeEmailGoBackLink />
     </form>
   )
 }
