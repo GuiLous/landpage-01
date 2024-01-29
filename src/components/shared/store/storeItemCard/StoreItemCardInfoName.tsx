@@ -20,7 +20,7 @@ export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
         {item.name}
       </span>
 
-      <div>
+      <div className="items-center gap-1.5">
         {item?.subtype && (
           <>
             <span
