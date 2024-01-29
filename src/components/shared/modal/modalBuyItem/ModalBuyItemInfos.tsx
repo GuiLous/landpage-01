@@ -59,6 +59,8 @@ export function ModalBuyItemInfos({
             isBox={isBox}
             description={item?.description}
             release_date={item?.release_date}
+            item_type={item.item_type}
+            subtype={item.subtype}
           />
         </div>
 

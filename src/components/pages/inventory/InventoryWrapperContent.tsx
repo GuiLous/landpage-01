@@ -15,8 +15,8 @@ import {
   CenteredCarouselWrapper,
   CustomScrollBar,
   ImagePreview,
+  ItemsPreview,
   ItemsSelectList,
-  WeaponVideoPreview,
   WeaponsSelectList,
 } from '@/components/shared'
 
@@ -29,9 +29,8 @@ import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
-export type TabTypes = 'personagem' | 'sprays' | 'arsenal' | 'caixas'
+export type TabTypes = 'personagem' | 'sprays' | 'arsenal'
 export type SubTabTypes =
-  | 'avatar'
   | 'roupas'
   | 'sprays'
   | 'pistolas'
@@ -39,7 +38,6 @@ export type SubTabTypes =
   | 'escopetas'
   | 'metralhadoras'
   | 'fuzis'
-  | 'caixas'
 
 type Item = Partial<StoreItem>
 
@@ -55,21 +53,16 @@ const tabs = {
     ],
   },
   personagem: {
-    tabs: ['persona', 'wear', 'poses'],
-    subTabs: ['avatar', 'roupas', 'poses'],
+    tabs: ['wear'],
+    subTabs: ['roupas'],
   },
   sprays: {
     tabs: ['spray'],
     subTabs: [],
   },
-  caixas: {
-    tabs: ['boxes'],
-    subTabs: [],
-  },
 }
 
 const sub_tabs = {
-  avatar: 'persona',
   roupas: 'wear',
   sprays: 'spray',
   pistolas: 'pistols',
@@ -77,7 +70,6 @@ const sub_tabs = {
   escopetas: 'shotguns',
   metralhadoras: 'machineguns',
   fuzis: 'rifles',
-  caixas: 'boxes',
 }
 
 interface InventoryWrapperContentProps {
@@ -218,15 +210,10 @@ export function InventoryWrapperContent({
   }, [activeTab, activeSubTab, weaponSelected, activeItemIndex])
 
   useEffect(() => {
-    if (isArsenal && hasItemInUse) {
+    if (isArsenal) {
       setItemSelected(itemsByType[activeItemIndex] as StoreItem)
-      return
     }
-
-    if (itemsByType.length > 0) {
-      setItemSelected(itemsByType[0] as StoreItem)
-    }
-  }, [activeItemIndex, itemsByType, weaponSelected, isArsenal, hasItemInUse])
+  }, [activeItemIndex, itemsByType, isArsenal])
 
   useEffect(() => {
     if (hasItemInUse) {
@@ -234,6 +221,12 @@ export function InventoryWrapperContent({
       setItemInUseIndex(itemIndex)
     }
   }, [hasItemInUse, itemsByType, activeSubTab, activeTab, weaponSelected])
+
+  useEffect(() => {
+    if (isArsenal) {
+      setActiveItemIndex(0)
+    }
+  }, [activeTab, activeSubTab, weaponSelected, isArsenal])
 
   return (
     <>
@@ -317,7 +310,7 @@ export function InventoryWrapperContent({
             >
               {((isNullWeapon && hasItemInUse) || !isNullWeapon) && (
                 <div className="min-h-[44px] items-center justify-between">
-                  <WeaponVideoPreview
+                  <ItemsPreview
                     imagesPreview={itemsByType[activeItemIndex]?.media}
                   />
 
