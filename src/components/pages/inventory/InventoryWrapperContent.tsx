@@ -15,8 +15,8 @@ import {
   CenteredCarouselWrapper,
   CustomScrollBar,
   ImagePreview,
+  ItemsPreview,
   ItemsSelectList,
-  WeaponVideoPreview,
   WeaponsSelectList,
 } from '@/components/shared'
 
@@ -31,7 +31,6 @@ import { InventorySubItemTab } from './InventorySubItemTab'
 
 export type TabTypes = 'personagem' | 'sprays' | 'arsenal'
 export type SubTabTypes =
-  | 'avatar'
   | 'roupas'
   | 'sprays'
   | 'pistolas'
@@ -54,8 +53,8 @@ const tabs = {
     ],
   },
   personagem: {
-    tabs: ['persona', 'wear', 'poses'],
-    subTabs: ['avatar', 'roupas', 'poses'],
+    tabs: ['wear'],
+    subTabs: ['roupas'],
   },
   sprays: {
     tabs: ['spray'],
@@ -64,7 +63,6 @@ const tabs = {
 }
 
 const sub_tabs = {
-  avatar: 'persona',
   roupas: 'wear',
   sprays: 'spray',
   pistolas: 'pistols',
@@ -313,7 +311,7 @@ export function InventoryWrapperContent({
             >
               {((isNullWeapon && hasItemInUse) || !isNullWeapon) && (
                 <div className="min-h-[44px] items-center justify-between">
-                  <WeaponVideoPreview
+                  <ItemsPreview
                     imagesPreview={itemsByType[activeItemIndex]?.media}
                   />
 
