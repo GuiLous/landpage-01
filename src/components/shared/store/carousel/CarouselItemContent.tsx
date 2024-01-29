@@ -14,6 +14,10 @@ export function CarouselItemContent({
   currentIndex,
   children,
 }: CarouselItemContentProps) {
+  const nameSpliced = name.split(' ')
+  const firstSentence = nameSpliced[0]
+  const secondSentence = nameSpliced.filter((_, index) => index !== 0).join(' ')
+
   return (
     <div
       key={currentIndex}
@@ -26,11 +30,18 @@ export function CarouselItemContent({
       <div className="max-w-fit flex-initial flex-col">
         <h2
           className={twMerge(
-            'font-bold -ml-0.5 uppercase text-5xl leading-none text-white max-w-[485px]',
+            'font-light -ml-0.5 uppercase text-4xl leading-none text-white'
+          )}
+        >
+          {firstSentence}
+        </h2>
+        <h2
+          className={twMerge(
+            'font-bold -ml-0.5 uppercase text-5xl text-start leading-none text-white max-w-[485px]',
             '3xl:max-w-[450px] 3xl:text-4xl'
           )}
         >
-          {name}
+          {secondSentence}
         </h2>
       </div>
 
