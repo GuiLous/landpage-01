@@ -13,6 +13,7 @@ interface StoreItemCardInfoNameProps {
 export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
   const isBox = item?.object === 'box'
   const isCollection = item?.object === 'collection'
+  const showSideInfo = item.item_type === 'wear'
 
   return (
     <div className="flex-col gap-3.5">
@@ -20,8 +21,8 @@ export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
         {item.name}
       </span>
 
-      <div>
-        {item?.subtype && (
+      <div className="items-center gap-1.5">
+        {showSideInfo && (
           <>
             <span
               className={twMerge(

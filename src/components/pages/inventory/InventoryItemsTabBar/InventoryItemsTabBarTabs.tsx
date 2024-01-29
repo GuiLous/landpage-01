@@ -21,8 +21,8 @@ export function InventoryItemsTabBarTabs({
     setActiveTab(tab)
 
     if (tab === 'personagem') {
-      setActiveItemType('avatar')
-      setActiveSubTab('avatar')
+      setActiveItemType('roupas')
+      setActiveSubTab('roupas')
       return
     }
 

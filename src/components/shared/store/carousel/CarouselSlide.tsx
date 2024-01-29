@@ -38,7 +38,7 @@ export function CarouselSlide({
           emulateTouch
           autoPlay={!openModalBuyItem}
           infiniteLoop
-          stopOnHover
+          stopOnHover={false}
           interval={STORE_FEATURED_INTERVAL}
           transitionTime={STORE_FEATURED_TRANSITION_TIME}
           showArrows={false}
