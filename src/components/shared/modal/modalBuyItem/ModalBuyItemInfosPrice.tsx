@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { calcOriginalValueByPercentage } from '@/utils'
 
-import reloadCredits from '@/assets/images/reload_credits.png'
+const reloadCredits = '/assets/images/reload_credits.png'
 
 interface ModalBuyItemInfosPriceProps {
   price: number

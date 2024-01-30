@@ -6,9 +6,9 @@ import { SignupLayoutHeader } from '@/components/pages'
 
 import { Footer } from '@/components/shared'
 
-import liquidObject from '@/assets/images/liquid_object.png'
-import logo from '@/assets/images/logo_type_white.svg'
-import rectangle from '@/assets/images/signup_bg_top_right.png'
+const liquidObject = '/assets/images/liquid_object.png'
+const logo = '/assets/images/logo_type_white.svg'
+const rectangle = '/assets/images/signup_bg_top_right.png'
 
 export default function SignUpLayout({ children }: { children: ReactNode }) {
   return (

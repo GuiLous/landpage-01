@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import liquidBg from '@/assets/images/home_bg_animated.gif'
-import hero from '@/assets/images/home_hero.png'
-import logo from '@/assets/images/logo_type_white.svg'
-
 import { HomeFakeSignIn } from '../HomeFakeSignIn'
 import { HomeVideoButton } from '../HomeVideoButton'
 import { HomeWebSectionMessage } from './HomeWebSectionMessage'
 import { HomeWebSectionSteamButton } from './HomeWebSectionSteamButton'
+
+const liquidBg = '/assets/images/home_bg_animated.gif'
+const hero = '/assets/images/home_hero.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export function HomeWebSection() {
   return (

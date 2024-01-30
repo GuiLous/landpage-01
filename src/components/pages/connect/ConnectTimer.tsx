@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Timer } from '@/components/shared'
 
-import loadingGif from '@/assets/images/loading.gif'
+const loadingGif = '/assets/images/loading.gif'
 
 interface ConnectTimerProps {
   timeLeft?: number

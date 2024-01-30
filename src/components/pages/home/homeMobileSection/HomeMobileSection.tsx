@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import logo from '@/assets/images/logo_type_white.svg'
-
 import { HomeVideoButton } from '../HomeVideoButton'
 import { HomeMobileSectionDiscordButton } from './HomeMobileSectionDiscordButton'
 import { HomeMobileSectionHero } from './HomeMobileSectionHero'
 import { HomeMobileSectionMessage } from './HomeMobileSectionMessage'
+
+const logo = '/assets/images/logo_type_white.svg'
 
 export function HomeMobileSection() {
   return (

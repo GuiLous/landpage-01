@@ -3,9 +3,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
 
-import reloadCredits from '@/assets/images/reload_credits.png'
-
 import SidebarRCButton from './SidebarRCButton'
+
+const reloadCredits = '/assets/images/reload_credits.png'
 
 export function SidebarRC() {
   const user = useUserStore.getState().user

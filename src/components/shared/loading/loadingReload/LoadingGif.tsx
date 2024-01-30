@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import loadingGif from '@/assets/images/loading.gif'
+const loadingGif = '/assets/images/loading.gif'
 
 export function LoadingGif() {
   return (
