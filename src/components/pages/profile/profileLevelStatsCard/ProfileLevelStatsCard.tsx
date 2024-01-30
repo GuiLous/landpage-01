@@ -1,5 +1,4 @@
-import { LatestMatchesResult } from '@/store/lobbyStore'
-import { Stats } from '@/store/matchStore'
+import { getUserProfile } from '@/functions'
 
 import { ProfileCard } from '@/components/shared'
 
@@ -7,26 +6,25 @@ import { ProfileLevelStatsCardHeader } from './ProfileLevelStatsCardHeader'
 import { ProfileLevelStatsCardItem } from './ProfileLevelStatsCardItem'
 
 interface ProfileLevelStatsCardProps {
-  level: number
-  highest_level: number
-  matches_won: number
-  highest_win_streak: number
-  latest_matches_results: LatestMatchesResult[]
-  most_kills_in_a_match?: number
-  most_damage_in_a_match?: number
-  stats: Stats
+  userId: number
 }
 
-export function ProfileLevelStatsCard({
-  stats,
-  highest_level,
-  highest_win_streak,
-  latest_matches_results,
-  level,
-  matches_won,
-  most_damage_in_a_match,
-  most_kills_in_a_match,
+export async function ProfileLevelStatsCard({
+  userId,
 }: ProfileLevelStatsCardProps) {
+  const profile = await getUserProfile(userId)
+
+  const {
+    stats,
+    highest_level,
+    most_kills_in_a_match,
+    highest_win_streak,
+    most_damage_in_a_match,
+    level,
+    latest_matches_results,
+    matches_won,
+  } = profile
+
   const statsMap = {
     kdr: {
       label: 'KDR',

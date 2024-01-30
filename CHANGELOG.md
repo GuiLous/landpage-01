@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria Skeletons para a página de `perfil` [#1026](https://github.com/3C-gg/reload-frontend/issues/1026).
 - Adiciona arquivos do vscode no gitnignore.
 - Verifica se usuário está ativo na página de `/conta-inativa` para redirecioná-lo para outra página [#708](https://github.com/3C-gg/reload-frontend/issues/708).
 - Cria `Wizard` do menu da sidebar [#967](https://github.com/3C-gg/reload-frontend/issues/967).

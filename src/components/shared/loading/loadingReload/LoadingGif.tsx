@@ -10,7 +10,6 @@ export function LoadingGif() {
         alt="Carregando..."
         data-testid="loading"
         className="max-w-[48px]"
-        priority
       />
     </div>
   )

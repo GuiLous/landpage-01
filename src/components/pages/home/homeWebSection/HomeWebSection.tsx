@@ -18,7 +18,6 @@ export function HomeWebSection() {
           src={liquidBg}
           alt="Animated Gif"
           width={700}
-          sizes="100vw"
           priority
           className="mt-3 h-fit w-[64%]"
         />

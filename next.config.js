@@ -30,6 +30,10 @@ const nextConfig = {
     })
     return config
   },
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 12,
+  },
 }
 
 module.exports = nextConfig
