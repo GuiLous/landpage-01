@@ -5,8 +5,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { SIDEBAR_BOTTOM_MENU_ITEMS, SIDEBAR_TOP_MENU_ITEMS } from '@/constants'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 
 import {
@@ -38,7 +36,6 @@ export function SidebarMenuItemList() {
   const handleCloseFriendListDrawer = () => {
     setOpenDrawerFriends(false)
     toggleFriendList(false)
-    revalidatePath({ path: '/' })
   }
 
   const handleToggleFriendListDrawer = () => {
@@ -49,7 +46,6 @@ export function SidebarMenuItemList() {
       toggleFriendList(true)
       setOpenDrawerFriends(true)
     }
-    revalidatePath({ path: '/' })
   }
 
   const onClickFunction = (item: ItemMenu) => {

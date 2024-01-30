@@ -3,8 +3,6 @@
 import { usePathname } from 'next/navigation'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { useNotificationStore } from '@/store/notificationStore'
 import { useUserStore } from '@/store/userStore'
 
@@ -53,7 +51,6 @@ export function DrawerNotifications({
       if (response.errorMsg) showErrorToast(response.errorMsg)
       else if (response) {
         readNotification(id)
-        revalidatePath({ path: '/' })
       }
     }
   }

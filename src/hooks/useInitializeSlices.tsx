@@ -4,8 +4,6 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
 
-import { revalidatePath } from '@/utils'
-
 import { httpService } from '@/services'
 
 import { useFriendsStore } from '@/store/friendStore'
@@ -45,7 +43,6 @@ export function useInitializeSlices() {
 
   const initializeSlices = useCallback(async () => {
     if (!auth?.token) {
-      revalidatePath({ path: '/' })
       router.push('/')
       return
     }
@@ -60,7 +57,6 @@ export function useInitializeSlices() {
       if (userResponse.detail) showErrorToast(userResponse.detail)
       setIsLoading(false)
       Cookies.remove('token')
-      revalidatePath({ path: '/' })
       router.push('/')
       return
     }
@@ -164,7 +160,6 @@ export function useInitializeSlices() {
       }
     }
 
-    revalidatePath({ path: '/' })
     setIsLoading(false)
   }, [
     auth?.token,

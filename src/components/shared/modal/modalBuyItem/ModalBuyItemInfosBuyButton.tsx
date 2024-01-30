@@ -6,8 +6,6 @@ import { BsCheckCircleFill } from 'react-icons/bs'
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { StoreItem } from '@/functions'
 
 import { useUserStore } from '@/store/userStore'
@@ -107,8 +105,6 @@ export function ModalBuyItemInfosBuyButton({
           },
         })
       }
-
-      revalidatePath({ path: '/' })
 
       setIsFetching(false)
       handleOpenModalConfirmation(itemObject)

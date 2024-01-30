@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { fakeAccountEmails, isEmailValid, revalidatePath } from '@/utils'
+import { fakeAccountEmails, isEmailValid } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
@@ -63,7 +63,6 @@ export function HomeFakeSignIn() {
         return
       } else if (response.errorMsg) {
         if (response.errorMsg === 'Usuário deve ser convidado.') {
-          revalidatePath({ path: '/em-breve' })
           return router.push('/em-breve')
         }
 
@@ -91,21 +90,17 @@ export function HomeFakeSignIn() {
       initializeSlices()
 
       if (!response.is_active) {
-        revalidatePath({ path: '/conta-inativa' })
         return router.push('/conta-inativa')
       }
 
       if (!response?.account?.username) {
-        revalidatePath({ path: '/cadastrar' })
         return router.push('/cadastrar')
       }
 
       if (!response?.account?.is_verified) {
-        revalidatePath({ path: '/verificar' })
         return router.push('/verificar')
       }
 
-      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     },
     [email, router, showErrorToast, initializeSlices]

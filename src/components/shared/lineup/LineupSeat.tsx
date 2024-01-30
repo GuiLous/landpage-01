@@ -3,8 +3,6 @@
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 
 export function LineupSeat() {
@@ -12,7 +10,6 @@ export function LineupSeat() {
 
   const handleSeatClick = () => {
     toggleFriendList(true)
-    revalidatePath({ path: '/' })
   }
 
   return (

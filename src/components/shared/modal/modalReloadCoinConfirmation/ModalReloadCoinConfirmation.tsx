@@ -4,8 +4,6 @@ import Cookies from 'js-cookie'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { Modal } from '@/components/shared'
 
 import { ModalReloadCoinConfirmationHeader } from './ModalReloadCoinConfirmationHeader'
@@ -23,8 +21,6 @@ export function ModalReloadCoinConfirmation({
   const handleCloseConfirmationModal = useCallback(() => {
     setOpen(false)
     Cookies.set('canOpenBuyModal', 'true')
-
-    revalidatePath({ path: '/loja' })
   }, [setOpen])
 
   return (

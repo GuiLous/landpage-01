@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid, revalidatePath } from '@/utils'
+import { isEmailValid } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
@@ -77,7 +77,6 @@ export default function SignUp() {
         return
       } else if (response.errorMsg) {
         if (response.errorMsg === 'Usuário deve ser convidado.') {
-          revalidatePath({ path: '/em-breve' })
           return router.push('/em-breve')
         }
 
@@ -104,8 +103,6 @@ export default function SignUp() {
         .sign(getJwtSecretKey())
 
       Cookies.set('token', jwtToken)
-
-      revalidatePath({ path: '/verificar' })
 
       setFetching(false)
 

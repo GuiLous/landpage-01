@@ -3,7 +3,7 @@
 import { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { isEmailValid, revalidatePath } from '@/utils'
+import { isEmailValid } from '@/utils'
 
 import { useUserStore } from '@/store/userStore'
 
@@ -79,8 +79,6 @@ export function ModalSendInvitesForm({
     }
 
     addUserInvite(email)
-
-    revalidatePath({ path: '/' })
 
     setInviteSent(true)
 

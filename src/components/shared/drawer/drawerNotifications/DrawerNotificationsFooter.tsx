@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from 'react'
 
-import { revalidatePath } from '@/utils'
-
 import { useNotificationStore } from '@/store/notificationStore'
 
 import { notificationsApi } from '@/modelsApi'
@@ -35,7 +33,6 @@ export function DrawerNotificationsFooter() {
     if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) {
       readAllNotifications()
-      revalidatePath({ path: '/' })
     }
 
     setFetching(false)

@@ -6,8 +6,6 @@ import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { useFriendsStore } from '@/store/friendStore'
 import { Status } from '@/store/userStore'
 
@@ -85,8 +83,6 @@ export function DrawerFriendsInviteItem({
     }
 
     removeFriendRequest(user_id)
-
-    revalidatePath({ path: '/' })
   }, [auth?.token, removeFriendRequest, request_id, showErrorToast, user_id])
 
   return (

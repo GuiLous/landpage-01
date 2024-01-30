@@ -12,8 +12,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { LINK_PATHS, USER_LOGGED_BUTTONS } from '@/constants'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 import { useFriendsStore } from '@/store/friendStore'
 import { useUserStore } from '@/store/userStore'
@@ -162,8 +160,6 @@ export function ProfileHeaderTabsButtons({
     })
 
     addFriendSentRequest(response)
-
-    revalidatePath({ path: '/' })
   }, [
     addFriendSentRequest,
     addToast,
@@ -191,8 +187,6 @@ export function ProfileHeaderTabsButtons({
       title: 'Amigo removido',
       variant: 'info',
     })
-
-    revalidatePath({ path: '/' })
   }, [
     addToast,
     auth?.token,

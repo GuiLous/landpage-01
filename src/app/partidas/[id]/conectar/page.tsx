@@ -37,7 +37,6 @@ export default function Connect() {
   const verifyMatchStatus = useCallback(() => {
     if (!match || match.status === 'cancelled') {
       storageService.remove('matchConnectTimer')
-      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     } else {
       switch (match.status) {

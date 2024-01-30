@@ -2,8 +2,6 @@
 
 import { useCallback } from 'react'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 
 export function useShowErrorToast() {
@@ -15,7 +13,6 @@ export function useShowErrorToast() {
         content: error,
         variant: 'error',
       })
-      revalidatePath({ path: '/' })
     },
     [addToast]
   )

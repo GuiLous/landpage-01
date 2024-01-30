@@ -8,8 +8,6 @@ import { PiArrowRight } from 'react-icons/pi'
 
 import { TOTAL_SIGNUP_PINS } from '@/constants'
 
-import { revalidatePath } from '@/utils'
-
 import { getJwtSecretKey, httpService } from '@/services'
 
 import { Button, PinInput } from '@/components/shared'
@@ -79,7 +77,6 @@ export function VerifyForm() {
 
       Cookies.set('token', jwtToken)
 
-      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     },
     [cannotSubmit, pin, showErrorToast, auth, router]

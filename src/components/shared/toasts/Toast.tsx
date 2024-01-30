@@ -7,8 +7,6 @@ import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore, Variant } from '@/store/appStore'
 import { useInvitesStore } from '@/store/invitesStore'
 
@@ -99,7 +97,6 @@ export function Toast({
       if (id) {
         removeToast(id)
       }
-      revalidatePath({ path: '/' })
     }
 
     return () => {

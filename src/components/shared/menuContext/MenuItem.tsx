@@ -4,8 +4,6 @@ import { useRouter } from 'next/navigation'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 import { useFriendsStore } from '@/store/friendStore'
 import { useInvitesStore } from '@/store/invitesStore'
@@ -114,8 +112,6 @@ export function MenuItem({
         title: 'Convite enviado',
         variant: 'success',
       })
-
-      revalidatePath({ path: '/' })
     }
   }
 
@@ -127,7 +123,6 @@ export function MenuItem({
 
       case 'profile':
         toggleFriendList(false)
-        revalidatePath({ path: `/perfil/${user_id}` })
         router.push(`/perfil/${user_id}`)
         break
 
@@ -176,8 +171,6 @@ export function MenuItem({
     })
 
     addFriendSentRequest(response)
-
-    revalidatePath({ path: '/' })
   }
 
   const handleFriendRemove = async () => {
@@ -198,8 +191,6 @@ export function MenuItem({
       title: 'Amigo removido',
       variant: 'info',
     })
-
-    revalidatePath({ path: '/' })
   }
 
   return (
