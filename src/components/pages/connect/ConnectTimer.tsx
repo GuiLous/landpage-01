@@ -22,7 +22,6 @@ export function ConnectTimer({ timeLeft }: ConnectTimerProps) {
         src={loadingGif}
         alt="Loading gif"
         className={twMerge('w-12', '3xl:w-9')}
-        priority
       />
     </div>
   )
