@@ -61,6 +61,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera o diretório dos assestes para a pasta `public`.
 - Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/#1022).
 - Remove animação de progresso do `carousel` quando há apenas 1 item.
 - Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/#1019).
@@ -88,6 +89,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Muda todo o sistema de `websocket` e `states` do `zustand` para resolver problema de lentidão na vercel [#1025](https://github.com/3C-gg/reload-frontend/issues/#1025).
 - Corrige `arma selecionada` que não estava sendo exibida no inventário [#1018](https://github.com/3C-gg/reload-frontend/issues/#1018).
 - Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/#1016).
 - Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
@@ -100,6 +102,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido `revalidatePath` que não precisavam mais.
 - Deletado todos os arquivos referente ao projeto antigo sem `next` [#679](https://github.com/3C-gg/reload-frontend/issues/679).
 
 ## [303fec9 - 15/1/2024]
