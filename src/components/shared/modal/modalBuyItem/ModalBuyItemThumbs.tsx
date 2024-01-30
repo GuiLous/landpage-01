@@ -49,6 +49,7 @@ export function ModalBuyItemThumbs({
                 index === 0 && 'object-scale-down p-1'
               )}
               fill
+              priority
               sizes="100%"
             />
           )}

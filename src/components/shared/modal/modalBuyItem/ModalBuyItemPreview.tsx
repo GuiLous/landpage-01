@@ -117,6 +117,7 @@ export function ModalBuyItemPreview({
               )}
               fill
               sizes="100%"
+              priority
               draggable={false}
               ref={imageRef}
             />

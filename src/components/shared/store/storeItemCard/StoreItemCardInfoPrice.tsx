@@ -14,7 +14,13 @@ interface StoreItemCardInfoPriceProps {
 export function StoreItemCardInfoPrice({ item }: StoreItemCardInfoPriceProps) {
   return (
     <div className="items-center gap-2">
-      <Image src={reloadCredits} alt="Reload Credits" width={24} height={24} />
+      <Image
+        src={reloadCredits}
+        alt="Reload Credits"
+        width={24}
+        height={24}
+        priority
+      />
 
       <span className={twMerge('text-xl font-bold text-white', 'leading-none')}>
         {item.price} RC

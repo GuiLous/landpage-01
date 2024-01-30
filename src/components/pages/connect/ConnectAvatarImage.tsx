@@ -11,6 +11,7 @@ export function ConnectAvatarImage() {
           src={gta_avatar}
           alt="Personagem do GTA V"
           className="max-h-full max-w-fit"
+          priority
         />
       </div>
     </section>

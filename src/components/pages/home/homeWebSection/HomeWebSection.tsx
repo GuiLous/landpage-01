@@ -19,6 +19,7 @@ export function HomeWebSection() {
           alt="Animated Gif"
           width={700}
           sizes="100vw"
+          priority
           className="mt-3 h-fit w-[64%]"
         />
 
@@ -32,7 +33,7 @@ export function HomeWebSection() {
       </div>
 
       <div className="flex-col items-start justify-center gap-8">
-        <Image src={logo} alt="Reload" width={305} />
+        <Image src={logo} alt="Reload" width={305} priority />
 
         <HomeWebSectionMessage />
 

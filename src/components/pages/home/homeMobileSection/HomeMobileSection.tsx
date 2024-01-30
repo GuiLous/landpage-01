@@ -19,7 +19,7 @@ export function HomeMobileSection() {
       <HomeMobileSectionHero />
 
       <section className="flex-col items-center gap-10">
-        <Image src={logo} alt="Reload" width={250} />
+        <Image src={logo} alt="Reload" width={250} priority />
         <HomeMobileSectionMessage />
         <div className="max-w-[80%] flex-col items-center justify-center gap-4">
           <HomeMobileSectionDiscordButton />

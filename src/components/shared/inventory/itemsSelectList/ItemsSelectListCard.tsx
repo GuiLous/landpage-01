@@ -62,6 +62,7 @@ export function ItemsSelectListCard({
                 isAccountPage && 'object-cover p-0 rounded'
               )}
               fill
+              priority
               sizes="100%"
             />
           ) : (
@@ -74,6 +75,7 @@ export function ItemsSelectListCard({
                 isAccountPage && 'object-cover p-0 rounded'
               )}
               fill
+              priority
               sizes="100%"
             />
           )}

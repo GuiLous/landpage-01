@@ -16,6 +16,7 @@ export function ModalReloadCoinsCardImage() {
         alt="Reload Credits"
         fill
         sizes="100%"
+        priority
         draggable={false}
       />
     </div>
