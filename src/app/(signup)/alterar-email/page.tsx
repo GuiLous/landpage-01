@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid, revalidatePath } from '@/utils'
+import { isEmailValid } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
@@ -90,12 +90,8 @@ export default function ChangeEmail() {
       setFetching(false)
 
       if (response.account.is_verified) {
-        revalidatePath({ path: '/jogar' })
-
         return router.push('/jogar')
       }
-
-      revalidatePath({ path: '/verificar' })
 
       return router.push('/verificar')
     },

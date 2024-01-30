@@ -5,9 +5,9 @@ import { NotFoundMessage, NotFoundRedirectButton } from '@/components/pages'
 
 import { Footer } from '@/components/shared'
 
-import text404 from '@/assets/images/404.png'
-import errorPage from '@/assets/images/error_page.png'
-import logo from '@/assets/images/logo_type_white.svg'
+const text404 = '/assets/images/404.png'
+const errorPage = '/assets/images/error_page.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export default function NotFound() {
   return (

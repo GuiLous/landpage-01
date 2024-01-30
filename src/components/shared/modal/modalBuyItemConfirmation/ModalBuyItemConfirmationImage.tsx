@@ -27,6 +27,7 @@ export function ModalBuyItemConfirmationImage({
         alt="item image"
         fill
         sizes="100%"
+        priority
         className="absolute object-scale-down p-1"
       />
     </div>

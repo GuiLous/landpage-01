@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import liquidBg from '@/assets/images/home_bg_animated.gif'
-import hero from '@/assets/images/home_hero.png'
-import logo from '@/assets/images/logo_type_white.svg'
-
 import { HomeFakeSignIn } from '../HomeFakeSignIn'
 import { HomeVideoButton } from '../HomeVideoButton'
 import { HomeWebSectionMessage } from './HomeWebSectionMessage'
 import { HomeWebSectionSteamButton } from './HomeWebSectionSteamButton'
+
+const liquidBg = '/assets/images/home_bg_animated.gif'
+const hero = '/assets/images/home_hero.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export function HomeWebSection() {
   return (
@@ -18,7 +18,7 @@ export function HomeWebSection() {
           src={liquidBg}
           alt="Animated Gif"
           width={700}
-          sizes="100vw"
+          priority
           className="mt-3 h-fit w-[64%]"
         />
 
@@ -32,7 +32,7 @@ export function HomeWebSection() {
       </div>
 
       <div className="flex-col items-start justify-center gap-8">
-        <Image src={logo} alt="Reload" width={305} />
+        <Image src={logo} alt="Reload" width={305} priority />
 
         <HomeWebSectionMessage />
 

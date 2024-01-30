@@ -9,8 +9,8 @@ import {
   VerifyMaintenance,
 } from '@/components/shared'
 
-import alert from '@/assets/images/alert.png'
-import logo from '@/assets/images/logo_type_white.svg'
+const alert = '/assets/images/alert.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export default function Maintenance() {
   return (

@@ -22,12 +22,12 @@ import {
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-import notSelected from '@/assets/images/not_selected.png'
-
 import { InventoryActiveWeaponButton } from './InventoryActiveWeaponButton'
 import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
+
+const notSelected = '/assets/images/not_selected.png'
 
 export type TabTypes = 'personagem' | 'sprays' | 'arsenal'
 export type SubTabTypes =
@@ -78,7 +78,7 @@ interface InventoryWrapperContentProps {
 
 const nullObject = {
   id: 0,
-  foreground_image: notSelected.src,
+  foreground_image: notSelected,
   in_use: false,
 }
 

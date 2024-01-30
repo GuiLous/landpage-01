@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { PiHouseFill } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
@@ -10,8 +12,8 @@ import { useUserStore } from '@/store/userStore'
 import { Button, Timer } from '@/components/shared'
 
 export function SidebarLobbyButton() {
-  const lobby = useLobbyStore.getState().lobby
-  const user = useUserStore.getState().user
+  const { lobby } = useLobbyStore()
+  const { user } = useUserStore()
 
   const isInQueue = lobby?.queue
     ? !user?.match_id && !lobby.restriction_countdown

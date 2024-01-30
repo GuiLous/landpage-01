@@ -40,6 +40,7 @@ export function CenteredCarouselItem({
             alt=""
             className="object-scale-down"
             fill
+            priority
             sizes="100%"
           />
         </div>
@@ -49,6 +50,7 @@ export function CenteredCarouselItem({
           alt=""
           className="object-scale-down p-0.5"
           fill
+          priority
           sizes="100%"
         />
       )}

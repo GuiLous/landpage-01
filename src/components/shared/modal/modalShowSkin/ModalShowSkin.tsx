@@ -22,7 +22,7 @@ export function ModalShowSkin({ open, setOpen, preview }: ModalShowSkinProps) {
       >
         <div className="relative max-h-[612px] min-h-[612px] min-w-[1088px] max-w-[1088px]">
           {preview.media_type === 'image' && (
-            <Image src={preview.file} alt="" fill sizes="100%" />
+            <Image src={preview.file} alt="" fill sizes="100%" priority />
           )}
 
           {preview.media_type !== 'image' && (

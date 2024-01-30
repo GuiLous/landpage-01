@@ -1,12 +1,12 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import logo from '@/assets/images/logo_type_white.svg'
-
 import { HomeVideoButton } from '../HomeVideoButton'
 import { HomeMobileSectionDiscordButton } from './HomeMobileSectionDiscordButton'
 import { HomeMobileSectionHero } from './HomeMobileSectionHero'
 import { HomeMobileSectionMessage } from './HomeMobileSectionMessage'
+
+const logo = '/assets/images/logo_type_white.svg'
 
 export function HomeMobileSection() {
   return (
@@ -19,7 +19,7 @@ export function HomeMobileSection() {
       <HomeMobileSectionHero />
 
       <section className="flex-col items-center gap-10">
-        <Image src={logo} alt="Reload" width={250} />
+        <Image src={logo} alt="Reload" width={250} priority />
         <HomeMobileSectionMessage />
         <div className="max-w-[80%] flex-col items-center justify-center gap-4">
           <HomeMobileSectionDiscordButton />

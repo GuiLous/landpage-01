@@ -6,7 +6,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { FILE_TYPES, MAX_FILES, MAX_FILE_SIZE } from '@/constants'
 
-import uploadImg from '@/assets/images/upload.png'
+const uploadImg = '/assets/images/upload.png'
 
 interface FileInputProps {
   files: File[]

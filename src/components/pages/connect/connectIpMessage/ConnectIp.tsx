@@ -11,7 +11,7 @@ import { useMatchStore } from '@/store/matchStore'
 import { Button, Tooltip } from '@/components/shared'
 
 export function ConnectIp() {
-  const match = useMatchStore.getState().match
+  const { match } = useMatchStore()
 
   const [copied, setCopied] = useState(false)
   const [copiedTime, setCopiedTime] = useState(0)

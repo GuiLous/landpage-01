@@ -1,20 +1,18 @@
 import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { getAuthServer } from '@/utils'
-
-import { getUserProfile } from '@/functions'
-
 import {
+  ProfileHeaderRender,
   ProfileHeatmapStatsCard,
   ProfileLevelStatsCard,
   ProfileMatchHistoryList,
 } from '@/components/pages'
 
 import {
-  ProfileHeader,
-  ProfileHeaderTabsButtons,
+  SkeletonHeatmapStatsCard,
+  SkeletonLeveStatsCard,
   SkeletonMatchHistoryList,
+  SkeletonProfileHeader,
 } from '@/components/shared'
 
 interface RouteProps {
@@ -23,24 +21,14 @@ interface RouteProps {
 }
 
 export default async function Profile({ params, searchParams }: RouteProps) {
-  const auth = getAuthServer()
-
   const { userId } = params
   const { page } = searchParams
 
-  const profile = await getUserProfile(Number(userId))
-
-  const isUserLogged = Number(userId) === auth?.id
-
   return (
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>
-      <ProfileHeader isUserLogged={isUserLogged} profile={profile}>
-        <ProfileHeaderTabsButtons
-          isUserLogged={isUserLogged}
-          userId={Number(userId)}
-          username={profile.username}
-        />
-      </ProfileHeader>
+      <Suspense fallback={<SkeletonProfileHeader />}>
+        <ProfileHeaderRender userId={Number(userId)} />
+      </Suspense>
 
       <section
         className={twMerge('flex-initial gap-4 px-[3.750rem]', '3xl:px-7')}
@@ -51,28 +39,18 @@ export default async function Profile({ params, searchParams }: RouteProps) {
             '3xl:max-w-[300px]'
           )}
         >
-          <ProfileLevelStatsCard
-            level={profile.level}
-            highest_level={profile.highest_level}
-            matches_won={profile.matches_won}
-            highest_win_streak={profile.highest_win_streak}
-            latest_matches_results={profile.latest_matches_results}
-            most_kills_in_a_match={profile.most_kills_in_a_match}
-            most_damage_in_a_match={profile.most_damage_in_a_match}
-            stats={profile.stats}
-          />
+          <Suspense fallback={<SkeletonLeveStatsCard />}>
+            <ProfileLevelStatsCard userId={Number(userId)} />
+          </Suspense>
 
-          <ProfileHeatmapStatsCard
-            head_shots={profile.stats.head_shots || 0}
-            chest_shots={profile.stats.chest_shots || 0}
-            other_shots={profile.stats.other_shots || 0}
-          />
+          <Suspense fallback={<SkeletonHeatmapStatsCard />}>
+            <ProfileHeatmapStatsCard userId={Number(userId)} />
+          </Suspense>
         </div>
 
         <Suspense fallback={<SkeletonMatchHistoryList />}>
           <ProfileMatchHistoryList
             userId={Number(userId)}
-            username={profile.username}
             page={page ? Number(page) : 1}
           />
         </Suspense>

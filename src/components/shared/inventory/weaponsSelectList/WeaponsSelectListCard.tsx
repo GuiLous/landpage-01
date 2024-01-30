@@ -44,6 +44,7 @@ export function WeaponsSelectListCard({
           alt="weapon image"
           className="object-scale-down px-3.5 py-4"
           fill
+          priority
           sizes="100%"
         />
       </div>

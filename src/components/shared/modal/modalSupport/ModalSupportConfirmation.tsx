@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import checkCircle from '@/assets/images/check_circle.png'
+const checkCircle = '/assets/images/check_circle.png'
 
 export function ModalSupportConfirmation() {
   return (

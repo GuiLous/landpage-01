@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { getAuthServer, groupMatchesByDay } from '@/utils'
 
-import { getMatchesHistory } from '@/functions'
+import { getMatchesHistory, getUserProfile } from '@/functions'
 
 import { Pagination } from '@/components/shared'
 
@@ -12,18 +12,18 @@ import { ProfileMatchHistoryListHeader } from './ProfileMatchHistoryListHeader'
 
 interface ProfileMatchHistoryListProps {
   userId: number
-  username: string
   page?: number
 }
 
 export async function ProfileMatchHistoryList({
   userId,
-  username,
   page = 1,
 }: ProfileMatchHistoryListProps) {
   const auth = getAuthServer()
 
   const matchHistory = await getMatchesHistory(userId, page)
+  const profile = await getUserProfile(userId)
+  const { username } = profile
 
   const matches = matchHistory.results
 
