@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
@@ -53,8 +55,15 @@ export function MenuItem({
   isFriendRemove = false,
   onClose,
 }: MenuItemProps) {
-  const user = useUserStore.getState().user
-  const friends = useFriendsStore.getState().friends
+  const { addToast, toggleFriendList } = useAppStore()
+  const { user } = useUserStore()
+  const {
+    friends,
+    addFriendSentRequest,
+    removeFriend,
+    removeFriendSentRequest,
+  } = useFriendsStore()
+  const { addInvite } = useInvitesStore()
 
   const router = useRouter()
 
@@ -99,9 +108,9 @@ export function MenuItem({
 
     if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) {
-      useInvitesStore.getState().addInvite(response)
+      addInvite(response)
 
-      useAppStore.getState().addToast({
+      addToast({
         title: 'Convite enviado',
         variant: 'success',
       })
@@ -117,7 +126,7 @@ export function MenuItem({
         break
 
       case 'profile':
-        useAppStore.getState().toggleFriendList(false)
+        toggleFriendList(false)
         revalidatePath({ path: `/perfil/${user_id}` })
         router.push(`/perfil/${user_id}`)
         break
@@ -161,12 +170,12 @@ export function MenuItem({
       return
     }
 
-    useAppStore.getState().addToast({
+    addToast({
       title: 'Solicitação enviada',
       variant: 'success',
     })
 
-    useFriendsStore.getState().addFriendSentRequest(response)
+    addFriendSentRequest(response)
 
     revalidatePath({ path: '/' })
   }
@@ -181,11 +190,11 @@ export function MenuItem({
       return
     }
 
-    useFriendsStore.getState().removeFriendSentRequest(user_id)
-    useFriendsStore.getState().removeFriend('online', user_id)
-    useFriendsStore.getState().removeFriend('offline', user_id)
+    removeFriendSentRequest(user_id)
+    removeFriend('online', user_id)
+    removeFriend('offline', user_id)
 
-    useAppStore.getState().addToast({
+    addToast({
       title: 'Amigo removido',
       variant: 'info',
     })

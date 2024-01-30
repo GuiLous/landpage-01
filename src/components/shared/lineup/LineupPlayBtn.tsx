@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
@@ -23,9 +25,9 @@ interface LineupPlayBtnProps {
 }
 
 export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
-  const user = useUserStore.getState().user
-  const lobby = useLobbyStore.getState().lobby
-  const preMatch = usePreMatchStore.getState().preMatch
+  const { user } = useUserStore()
+  const { lobby } = useLobbyStore()
+  const { preMatch } = usePreMatchStore()
 
   const [notificationClicked, setNotificationClicked] = useState(false)
 

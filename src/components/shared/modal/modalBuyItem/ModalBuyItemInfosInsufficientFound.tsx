@@ -1,3 +1,5 @@
+'use client'
+
 import { RiErrorWarningFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
@@ -12,7 +14,7 @@ interface ModalBuyItemInfosInsufficientFoundProps {
 export function ModalBuyItemInfosInsufficientFound({
   price = 0,
 }: ModalBuyItemInfosInsufficientFoundProps) {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
   const coins = user?.account?.coins || 0
 
   return (

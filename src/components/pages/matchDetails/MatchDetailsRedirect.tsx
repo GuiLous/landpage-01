@@ -14,7 +14,7 @@ interface MatchDetailsRedirectProps {
 export function MatchDetailsRedirect({
   playerOnMatch,
 }: MatchDetailsRedirectProps) {
-  const match = useMatchStore.getState().match
+  const { match } = useMatchStore()
 
   const router = useRouter()
 

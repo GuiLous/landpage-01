@@ -1,9 +1,11 @@
+'use client'
+
 import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
 
 export function ModalWelcomeMessage() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   return (
     <p className=" text-center text-sm text-white">

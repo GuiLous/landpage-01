@@ -1,3 +1,5 @@
+'use client'
+
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
@@ -6,8 +8,10 @@ import { revalidatePath } from '@/utils'
 import { useAppStore } from '@/store/appStore'
 
 export function LineupSeat() {
+  const { toggleFriendList } = useAppStore()
+
   const handleSeatClick = () => {
-    useAppStore.getState().toggleFriendList(true)
+    toggleFriendList(true)
     revalidatePath({ path: '/' })
   }
 

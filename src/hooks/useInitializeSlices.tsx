@@ -28,6 +28,14 @@ import { useAuth } from './useAuth'
 import { useShowErrorToast } from './useShowErrorToast'
 
 export function useInitializeSlices() {
+  const { updateUser } = useUserStore()
+  const { updateLobby } = useLobbyStore()
+  const { initFriends } = useFriendsStore()
+  const { initInvites } = useInvitesStore()
+  const { initNotifications } = useNotificationStore()
+  const { updateMatch } = useMatchStore()
+  const { updatePreMatch } = usePreMatchStore()
+
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -57,7 +65,7 @@ export function useInitializeSlices() {
       return
     }
 
-    useUserStore.getState().updateUser(userResponse)
+    updateUser(userResponse)
 
     if (
       userResponse.is_active &&
@@ -80,7 +88,7 @@ export function useInitializeSlices() {
         return
       }
 
-      useLobbyStore.getState().updateLobby(lobbyResponse)
+      updateLobby(lobbyResponse)
 
       // friends
       const friendsResponse = await friendsApi.list(auth.token, {
@@ -93,7 +101,7 @@ export function useInitializeSlices() {
         return
       }
 
-      useFriendsStore.getState().initFriends(friendsResponse)
+      initFriends(friendsResponse)
 
       // invites
       const invitesResponse = await lobbyApi.listInvites(auth.token, {
@@ -106,7 +114,7 @@ export function useInitializeSlices() {
         return
       }
 
-      useInvitesStore.getState().initInvites(invitesResponse)
+      initInvites(invitesResponse)
 
       // notifications
       const notificationsResponse = await notificationsApi.list(auth.token, {
@@ -119,7 +127,7 @@ export function useInitializeSlices() {
         return
       }
 
-      useNotificationStore.getState().initNotifications(notificationsResponse)
+      initNotifications(notificationsResponse)
 
       // match
       if (userResponse.match_id) {
@@ -137,7 +145,7 @@ export function useInitializeSlices() {
           return
         }
 
-        useMatchStore.getState().updateMatch(matchResponse)
+        updateMatch(matchResponse)
       }
 
       // preMatch
@@ -152,13 +160,24 @@ export function useInitializeSlices() {
           return
         }
 
-        usePreMatchStore.getState().updatePreMatch(preMatchResponse)
+        updatePreMatch(preMatchResponse)
       }
     }
 
     revalidatePath({ path: '/' })
     setIsLoading(false)
-  }, [auth?.token, router, showErrorToast])
+  }, [
+    auth?.token,
+    initFriends,
+    initInvites,
+    initNotifications,
+    router,
+    showErrorToast,
+    updateLobby,
+    updateMatch,
+    updatePreMatch,
+    updateUser,
+  ])
 
   return { isLoading, initializeSlices }
 }

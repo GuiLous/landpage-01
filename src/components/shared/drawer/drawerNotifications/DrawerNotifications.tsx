@@ -26,8 +26,8 @@ export function DrawerNotifications({
   open,
   setOpen,
 }: DrawerNotificationsProps) {
-  const user = useUserStore.getState().user
-  const notifications = useNotificationStore.getState().notifications
+  const { user } = useUserStore()
+  const { notifications, readNotification } = useNotificationStore()
 
   const pathname = usePathname()
 
@@ -52,7 +52,7 @@ export function DrawerNotifications({
       const response = await notificationsApi.read(auth.token, id)
       if (response.errorMsg) showErrorToast(response.errorMsg)
       else if (response) {
-        useNotificationStore.getState().readNotification(id)
+        readNotification(id)
         revalidatePath({ path: '/' })
       }
     }

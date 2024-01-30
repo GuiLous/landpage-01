@@ -23,6 +23,8 @@ type FieldsErrors = {
 }
 
 export default function SignUp() {
+  const { addToast } = useAppStore()
+
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -85,7 +87,7 @@ export default function SignUp() {
         return
       }
 
-      useAppStore.getState().addToast({
+      addToast({
         title: 'Que bom que você chegou!',
         content: 'Agora falta pouco, verifique sua conta para começar a jogar!',
         variant: 'success',
@@ -109,7 +111,7 @@ export default function SignUp() {
 
       return router.push('/verificar')
     },
-    [email, router, showErrorToast, auth]
+    [auth, email, addToast, router, showErrorToast]
   )
 
   return (

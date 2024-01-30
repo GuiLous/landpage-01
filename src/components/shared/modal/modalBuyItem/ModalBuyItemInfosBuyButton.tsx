@@ -39,7 +39,7 @@ export function ModalBuyItemInfosBuyButton({
   handleCloseModal,
   handleOpenModalConfirmation,
 }: ModalBuyItemInfosBuyButtonProps) {
-  const user = useUserStore.getState().user
+  const { user, updateUser } = useUserStore()
 
   const auth = useAuth()
 
@@ -99,7 +99,7 @@ export function ModalBuyItemInfosBuyButton({
       }
 
       if (user && user?.account?.coins) {
-        useUserStore.getState().updateUser({
+        updateUser({
           ...user,
           account: {
             ...user.account,
@@ -116,14 +116,15 @@ export function ModalBuyItemInfosBuyButton({
     },
     [
       auth?.token,
+      purchased,
       insufficientCoins,
       itemObject,
-      price,
-      purchased,
-      showErrorToast,
       user,
-      handleCloseModal,
       handleOpenModalConfirmation,
+      handleCloseModal,
+      showErrorToast,
+      updateUser,
+      price,
     ]
   )
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BsCheckCircleFill } from 'react-icons/bs'
@@ -35,7 +37,8 @@ export function Toast({
   avatar,
   invite_id,
 }: ToastProps) {
-  const invites = useInvitesStore.getState().invites
+  const { removeToast } = useAppStore()
+  const { invites } = useInvitesStore()
 
   const showErrorToast = useShowErrorToast()
 
@@ -94,7 +97,7 @@ export function Toast({
     } else {
       clearInterval(interval)
       if (id) {
-        useAppStore.getState().removeToast(id)
+        removeToast(id)
       }
       revalidatePath({ path: '/' })
     }
@@ -104,7 +107,7 @@ export function Toast({
         clearInterval(interval)
       }
     }
-  }, [timer, id])
+  }, [timer, id, removeToast])
 
   useEffect(() => {
     if (title) return

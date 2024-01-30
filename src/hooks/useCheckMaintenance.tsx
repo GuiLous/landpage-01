@@ -14,7 +14,8 @@ import { appApi } from '@/modelsApi'
 import { useShowErrorToast } from './useShowErrorToast'
 
 export function useCheckMaintenance() {
-  const maintenance = useAppStore.getState().app.maintenance
+  const { app, updateMaintenance } = useAppStore()
+  const maintenance = app.maintenance
 
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
@@ -29,16 +30,16 @@ export function useCheckMaintenance() {
     }
 
     if (!response.maintenance) {
-      useAppStore.getState().updateMaintenance(false)
+      updateMaintenance(false)
       revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     }
 
     if (response.maintenance) {
-      useAppStore.getState().updateMaintenance(true)
+      updateMaintenance(true)
       revalidatePath({ path: '/' })
     }
-  }, [router, showErrorToast])
+  }, [router, showErrorToast, updateMaintenance])
 
   useEffect(() => {
     if (!maintenance) {

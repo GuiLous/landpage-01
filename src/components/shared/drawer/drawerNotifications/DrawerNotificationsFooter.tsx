@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 import { revalidatePath } from '@/utils'
@@ -11,7 +13,7 @@ import { Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function DrawerNotificationsFooter() {
-  const notifications = useNotificationStore.getState().notifications
+  const { notifications, readAllNotifications } = useNotificationStore()
 
   const auth = useAuth()
 
@@ -32,7 +34,7 @@ export function DrawerNotificationsFooter() {
 
     if (response.errorMsg) showErrorToast(response.errorMsg)
     else if (response) {
-      useNotificationStore.getState().readAllNotifications()
+      readAllNotifications()
       revalidatePath({ path: '/' })
     }
 

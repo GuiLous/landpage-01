@@ -9,6 +9,7 @@ import { revalidatePath } from '@/utils'
 import { useAppStore } from '@/store/appStore'
 
 export default function CheckoutError() {
+  const { addToast } = useAppStore()
   const router = useRouter()
 
   Cookies.remove('checkout_initiated')
@@ -17,7 +18,7 @@ export default function CheckoutError() {
   const itemId = Cookies.get('itemId')
 
   useEffect(() => {
-    useAppStore.getState().addToast({
+    addToast({
       content: 'Não foi possível processar sua compra.',
       variant: 'warning',
     })
@@ -27,7 +28,7 @@ export default function CheckoutError() {
     if (!itemObject || !itemId) return router.push('/jogar')
 
     router.push(`/loja`)
-  }, [itemId, itemObject, router])
+  }, [addToast, itemId, itemObject, router])
 
   return null
 }
