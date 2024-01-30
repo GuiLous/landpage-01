@@ -21,7 +21,7 @@ export function ModalWelcomeButton({
   setOpen,
   setOpenModalSendInvites,
 }: ModalWelcomeButtonProps) {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   const handleOpenModalSendInvites = () => {
     setOpenModalSendInvites(true)

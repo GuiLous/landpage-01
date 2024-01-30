@@ -5,8 +5,8 @@ import { InviteRequiredCheck, InviteRequiredMessage } from '@/components/pages'
 
 import { Footer, LogoutButtonRedirect } from '@/components/shared'
 
-import logo from '@/assets/images/logo_type_white.svg'
-import notInvitedText from '@/assets/images/not_invited_text.png'
+const logo = '/assets/images/logo_type_white.svg'
+const notInvitedText = '/assets/images/not_invited_text.png'
 
 export default function InviteRequired() {
   return (

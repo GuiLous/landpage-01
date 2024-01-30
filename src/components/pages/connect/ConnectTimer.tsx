@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Timer } from '@/components/shared'
 
-import loadingGif from '@/assets/images/loading.gif'
+const loadingGif = '/assets/images/loading.gif'
 
 interface ConnectTimerProps {
   timeLeft?: number
@@ -22,6 +22,7 @@ export function ConnectTimer({ timeLeft }: ConnectTimerProps) {
         src={loadingGif}
         alt="Loading gif"
         className={twMerge('w-12', '3xl:w-9')}
+        priority
       />
     </div>
   )

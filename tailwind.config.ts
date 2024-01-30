@@ -100,16 +100,16 @@ const config: Config = {
         300: '300%',
       },
       backgroundImage: {
-        home: "url('~/src/assets/images/home_bg.png')",
-        home_mobile: "url('~/src/assets/images/home_mobile_bg.png')",
+        home: "url('~/public/assets/images/home_bg.png')",
+        home_mobile: "url('~/public/assets/images/home_mobile_bg.png')",
         sign_up_bottom_left:
-          "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/src/assets/images/signup_bg_bottom_left.png')",
-        not_found: "url('~/src/assets/images/bg_404.png')",
-        maintenance: "url('~/src/assets/images/bg_maintenance.png')",
-        player_card: "url('~/src/assets/images/lobby_player_card_bg.jpg')",
-        connect: "url('~/src/assets/images/connect_bg.png')",
-        not_invited: "url('~/src/assets/images/bg_not_invited.png')",
-        profile_header: "url('~/src/assets/images/profile_header_bg.jpg')",
+          "linear-gradient(201deg, #000 0%, rgba(0, 0, 0, 0) 100%), url('~/public/assets/images/signup_bg_bottom_left.png')",
+        not_found: "url('~/public/assets/images/bg_404.png')",
+        maintenance: "url('~/public/assets/images/bg_maintenance.png')",
+        player_card: "url('~/public/assets/images/lobby_player_card_bg.jpg')",
+        connect: "url('~/public/assets/images/connect_bg.png')",
+        not_invited: "url('~/public/assets/images/bg_not_invited.png')",
+        profile_header: "url('~/public/assets/images/profile_header_bg.jpg')",
         gradient_drawer_friends:
           'linear-gradient(360deg, #1e1e1e 0%, #1e1e1e00 100%)',
         gradient_friends_invite:

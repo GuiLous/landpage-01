@@ -30,10 +30,10 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
 
   const showErrorToast = useShowErrorToast()
 
-  const user = useUserStore.getState().user
-  const lobby = useLobbyStore.getState().lobby
-  const friends = useFriendsStore.getState().friends
-  const invites = useInvitesStore.getState().invites
+  const { user } = useUserStore()
+  const { lobby } = useLobbyStore()
+  const { friends } = useFriendsStore()
+  const { invites } = useInvitesStore()
 
   const pathname = usePathname()
 

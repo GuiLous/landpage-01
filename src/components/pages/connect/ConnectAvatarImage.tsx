@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import gta_avatar from '@/assets/images/gta_avatar.png'
+const gta_avatar = '/assets/images/gta_avatar.png'
 
 export function ConnectAvatarImage() {
   return (
@@ -11,6 +11,7 @@ export function ConnectAvatarImage() {
           src={gta_avatar}
           alt="Personagem do GTA V"
           className="max-h-full max-w-fit"
+          priority
         />
       </div>
     </section>

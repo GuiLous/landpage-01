@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
-import { isEmailValid, revalidatePath } from '@/utils'
+import { isEmailValid } from '@/utils'
 
 import { getJwtSecretKey, httpService } from '@/services'
 
@@ -23,6 +23,8 @@ type FieldsErrors = {
 }
 
 export default function SignUp() {
+  const { addToast } = useAppStore()
+
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -75,7 +77,6 @@ export default function SignUp() {
         return
       } else if (response.errorMsg) {
         if (response.errorMsg === 'Usuário deve ser convidado.') {
-          revalidatePath({ path: '/em-breve' })
           return router.push('/em-breve')
         }
 
@@ -85,7 +86,7 @@ export default function SignUp() {
         return
       }
 
-      useAppStore.getState().addToast({
+      addToast({
         title: 'Que bom que você chegou!',
         content: 'Agora falta pouco, verifique sua conta para começar a jogar!',
         variant: 'success',
@@ -103,13 +104,11 @@ export default function SignUp() {
 
       Cookies.set('token', jwtToken)
 
-      revalidatePath({ path: '/verificar' })
-
       setFetching(false)
 
       return router.push('/verificar')
     },
-    [email, router, showErrorToast, auth]
+    [auth, email, addToast, router, showErrorToast]
   )
 
   return (

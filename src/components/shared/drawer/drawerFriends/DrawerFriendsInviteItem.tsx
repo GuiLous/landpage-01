@@ -1,10 +1,10 @@
+'use client'
+
 import { DateTime } from 'luxon'
 import { useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
-
-import { revalidatePath } from '@/utils'
 
 import { useFriendsStore } from '@/store/friendStore'
 import { Status } from '@/store/userStore'
@@ -36,6 +36,7 @@ export function DrawerFriendsInviteItem({
   user_id,
   isFriendInvite = false,
 }: DrawerFriendsInviteItemProps) {
+  const { removeFriendRequest } = useFriendsStore()
   const showErrorToast = useShowErrorToast()
 
   const auth = useAuth()
@@ -81,10 +82,8 @@ export function DrawerFriendsInviteItem({
       showErrorToast(response.errorMsg)
     }
 
-    useFriendsStore.getState().removeFriendRequest(user_id)
-
-    revalidatePath({ path: '/' })
-  }, [auth?.token, request_id, showErrorToast, user_id])
+    removeFriendRequest(user_id)
+  }, [auth?.token, removeFriendRequest, request_id, showErrorToast, user_id])
 
   return (
     <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">

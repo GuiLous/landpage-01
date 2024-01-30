@@ -40,6 +40,7 @@ export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
               className={twMerge('object-cover rounded absolute')}
               fill
               sizes="100%"
+              priority
             />
           )}
 

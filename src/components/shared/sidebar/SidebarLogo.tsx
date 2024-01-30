@@ -3,7 +3,7 @@ import { twMerge } from 'tailwind-merge'
 
 import { Link } from '@/components/shared'
 
-import logoFull from '@/assets/images/logo_symbol_full.svg'
+const logoFull = '/assets/images/logo_symbol_full.svg'
 
 export function SidebarLogo() {
   return (

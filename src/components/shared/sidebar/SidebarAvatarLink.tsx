@@ -1,3 +1,5 @@
+'use client'
+
 import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
@@ -7,7 +9,7 @@ import { Avatar, Link, Tooltip } from '@/components/shared'
 import { SidebarRC } from './SidebarRC'
 
 export function SidebarAvatarLink() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   return (
     <div

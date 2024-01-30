@@ -7,7 +7,8 @@ import { useAppStore } from '@/store/appStore'
 import { Toast } from './Toast'
 
 export function ToastList() {
-  const toasts = useAppStore.getState().app.toasts
+  const { app } = useAppStore()
+  const toasts = app.toasts
 
   const transitions = useTransition(toasts, {
     from: { opacity: 0, right: -40 },

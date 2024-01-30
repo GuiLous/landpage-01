@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import heroMobileImg from '@/assets/images/home_mobile_hero.png'
+const heroMobileImg = '/assets/images/home_mobile_hero.png'
 
 export function HomeMobileSectionHero() {
   return (

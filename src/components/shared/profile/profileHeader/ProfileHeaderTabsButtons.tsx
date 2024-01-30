@@ -12,8 +12,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { LINK_PATHS, USER_LOGGED_BUTTONS } from '@/constants'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 import { useFriendsStore } from '@/store/friendStore'
 import { useUserStore } from '@/store/userStore'
@@ -59,8 +57,14 @@ export function ProfileHeaderTabsButtons({
   isUserLogged,
   username,
 }: ProfileHeaderTabsButtonsProps) {
-  const user = useUserStore.getState().user
-  const friends = useFriendsStore.getState().friends
+  const { addToast } = useAppStore()
+  const { user } = useUserStore()
+  const {
+    friends,
+    addFriendSentRequest,
+    removeFriend,
+    removeFriendSentRequest,
+  } = useFriendsStore()
 
   const pathname = usePathname()
 
@@ -150,15 +154,20 @@ export function ProfileHeaderTabsButtons({
       return
     }
 
-    useAppStore.getState().addToast({
+    addToast({
       title: 'Solicitação enviada',
       variant: 'success',
     })
 
-    useFriendsStore.getState().addFriendSentRequest(response)
-
-    revalidatePath({ path: '/' })
-  }, [auth?.token, showErrorToast, userAlreadyInvitedToFriend, username])
+    addFriendSentRequest(response)
+  }, [
+    addFriendSentRequest,
+    addToast,
+    auth?.token,
+    showErrorToast,
+    userAlreadyInvitedToFriend,
+    username,
+  ])
 
   const handleFriendRemove = useCallback(async () => {
     if (!auth?.token) return
@@ -170,17 +179,22 @@ export function ProfileHeaderTabsButtons({
       return
     }
 
-    useFriendsStore.getState().removeFriendSentRequest(userId)
-    useFriendsStore.getState().removeFriend('online', userId)
-    useFriendsStore.getState().removeFriend('offline', userId)
+    removeFriendSentRequest(userId)
+    removeFriend('online', userId)
+    removeFriend('offline', userId)
 
-    useAppStore.getState().addToast({
+    addToast({
       title: 'Amigo removido',
       variant: 'info',
     })
-
-    revalidatePath({ path: '/' })
-  }, [auth?.token, showErrorToast, userId])
+  }, [
+    addToast,
+    auth?.token,
+    removeFriend,
+    removeFriendSentRequest,
+    showErrorToast,
+    userId,
+  ])
 
   return (
     <div className={twMerge('gap-3 max-w-fit', '3xl:gap-2.5')}>
