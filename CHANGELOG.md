@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Altera `botão do modal de confirmação de compra de item` para quando for `card ou profile` levar para `/conta` [#1037](https://github.com/3C-gg/reload-frontend/issues/1037).
 
 ### Fixed
 
