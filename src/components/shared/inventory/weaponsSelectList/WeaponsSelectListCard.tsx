@@ -2,7 +2,7 @@ import Image from 'next/image'
 import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { WeaponNameType, WeaponObject } from '@/utils'
+import { WeaponNameType, WeaponObject, staticBlurDataUrl } from '@/utils'
 
 type WeaponsSelectListCardProps = ComponentProps<'div'> & {
   item: WeaponObject
@@ -45,7 +45,10 @@ export function WeaponsSelectListCard({
           className="object-scale-down px-3.5 py-4"
           fill
           priority
-          sizes="100%"
+          sizes="100vw"
+          quality={50}
+          placeholder="blur"
+          blurDataURL={staticBlurDataUrl()}
         />
       </div>
     </div>
