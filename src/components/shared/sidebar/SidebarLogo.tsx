@@ -14,6 +14,7 @@ export function SidebarLogo() {
             priority
             src={logoFull}
             width={176}
+            height={28}
             data-testid="logo-full"
             alt="Reload logo"
           />

@@ -5,6 +5,8 @@ import { useState } from 'react'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { Media } from '@/functions'
 
 import { CustomIcon, ModalShowSkin } from '@/components/shared'
@@ -39,8 +41,10 @@ export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
               alt=""
               className={twMerge('object-cover rounded absolute')}
               fill
-              sizes="100%"
+              sizes="100vw"
               priority
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
             />
           )}
 

@@ -9,7 +9,8 @@ export function LoadingGif() {
         src={loadingGif}
         alt="Carregando..."
         data-testid="loading"
-        className="max-w-[48px]"
+        width={48}
+        height={48}
       />
     </div>
   )

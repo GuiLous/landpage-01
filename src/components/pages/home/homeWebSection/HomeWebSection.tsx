@@ -18,21 +18,25 @@ export function HomeWebSection() {
           src={liquidBg}
           alt="Animated Gif"
           width={700}
+          height={528}
           priority
           className="mt-3 h-fit w-[64%]"
+          quality={40}
         />
 
         <Image
           src={hero}
           alt="GTA V personagem"
           className="absolute bottom-0 right-10 w-3/4"
+          width={835}
+          height={690}
           sizes="100vw"
           priority
         />
       </div>
 
       <div className="flex-col items-start justify-center gap-8">
-        <Image src={logo} alt="Reload" width={305} priority />
+        <Image src={logo} alt="Reload" width={305} height={45} priority />
 
         <HomeWebSectionMessage />
 

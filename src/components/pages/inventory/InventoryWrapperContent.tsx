@@ -74,6 +74,7 @@ const sub_tabs = {
 
 interface InventoryWrapperContentProps {
   inventory: Inventory
+  placeholders: string[]
 }
 
 const nullObject = {
@@ -84,6 +85,7 @@ const nullObject = {
 
 export function InventoryWrapperContent({
   inventory,
+  placeholders,
 }: InventoryWrapperContentProps) {
   const auth = useAuth()
 
@@ -104,6 +106,10 @@ export function InventoryWrapperContent({
   const disableSwitch = TABS_NO_SWITCH.includes(activeItemType)
   const itemInUse = itemsByType.find((item) => item?.in_use)
   const hasItemInUse = !!itemInUse
+
+  const itemSelectedIndex = itemsByType.findIndex(
+    (item) => item?.item_id === itemSelected?.item_id
+  )
 
   const isNullWeapon = itemsByType[activeItemIndex]?.id === 0
   const isArsenal = activeTab === 'arsenal'
@@ -302,6 +308,8 @@ export function InventoryWrapperContent({
             itemSelected={itemSelected}
             isArsenal={isArsenal}
             hasSkins={itemsByType.length > 0}
+            placeholders={placeholders}
+            itemSelectedIndex={itemSelectedIndex}
           />
 
           {isArsenal && itemSelected && (

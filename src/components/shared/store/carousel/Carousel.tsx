@@ -13,9 +13,10 @@ import { CarouselSlide } from './CarouselSlide'
 
 interface CarouselProps {
   featured: StoreItem[]
+  placeholdersCarousel: string[]
 }
 
-export function Carousel({ featured }: CarouselProps) {
+export function Carousel({ featured, placeholdersCarousel }: CarouselProps) {
   const [indexContent, setIndexContent] = useState(0)
   const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
@@ -33,11 +34,13 @@ export function Carousel({ featured }: CarouselProps) {
         indexContent={indexContent}
         setIndexContent={setIndexContent}
         openModalBuyItem={openModalBuyItem}
+        placeholdersCarousel={placeholdersCarousel}
       >
         <CarouselPreview
           featured={featured}
           indexContent={indexContent}
           setIndexContent={setIndexContent}
+          openModalBuyItem={openModalBuyItem}
         />
 
         {featured.length > 0 && (
@@ -60,6 +63,10 @@ export function Carousel({ featured }: CarouselProps) {
         <ModalBuyItemConfirmation
           foregroundImage={itemPurchased.foreground_image}
           backgroundImage={itemPurchased?.background_image}
+          isCardOrProfile={
+            itemPurchased.subtype === 'card' ||
+            itemPurchased.subtype === 'profile'
+          }
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />

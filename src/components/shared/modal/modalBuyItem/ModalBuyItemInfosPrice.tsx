@@ -26,7 +26,7 @@ export function ModalBuyItemInfosPrice({
           src={reloadCredits}
           alt="Reload Credits"
           fill
-          sizes="100%"
+          sizes="100vw"
           priority
           className="object-cover"
         />

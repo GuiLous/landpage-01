@@ -9,6 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona `placeholder com blur` nas imagens relevantes do site [#1035](https://github.com/3C-gg/reload-frontend/issues/1035).
+
+### Changed
+
+- Altera `botão do modal de confirmação de compra de item` para quando for `card ou profile` levar para `/conta` [#1037](https://github.com/3C-gg/reload-frontend/issues/1037).
+
+### Fixed
+
+- Adiciona props `width e height` em alguns componentes `Image` que estavam faltando.
+- Corrige fluxo de `checkout/success` para abrir modal de compra de item após comprar rc [#1044](https://github.com/3C-gg/reload-frontend/issues/1044).
+- Corrige cache do `inventário` e da `loja` após compra um item [#1036](https://github.com/3C-gg/reload-frontend/issues/1036).
+- Corrige timer do `preview` do `carousel da loja` ao abrir o modal de compra [#1007](https://github.com/3C-gg/reload-frontend/issues/1007).
+- Corrige bug do `Wizard` na página de perfil [#773](https://github.com/3C-gg/reload-frontend/issues/773).
+
+## [? - 30/1/2024]
+
+### Added
+
 - Cria Skeletons para a página de `perfil` [#1026](https://github.com/3C-gg/reload-frontend/issues/1026).
 - Adiciona arquivos do vscode no gitnignore.
 - Verifica se usuário está ativo na página de `/conta-inativa` para redirecioná-lo para outra página [#708](https://github.com/3C-gg/reload-frontend/issues/708).

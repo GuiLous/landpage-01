@@ -23,7 +23,7 @@ export default function InviteRequired() {
         )}
       >
         <div className="flex-initial items-center justify-center">
-          <Image src={logo} alt="Reload logo" width={200} />
+          <Image src={logo} alt="Reload logo" width={200} height={30} />
         </div>
 
         <section
@@ -38,7 +38,13 @@ export default function InviteRequired() {
               '3xl:gap-8'
             )}
           >
-            <Image src={notInvitedText} alt="Que pano" className="w-[15.1%]" />
+            <Image
+              src={notInvitedText}
+              alt="Que pano"
+              className="w-[15.1%]"
+              width={290}
+              height={53}
+            />
 
             <InviteRequiredMessage />
 
