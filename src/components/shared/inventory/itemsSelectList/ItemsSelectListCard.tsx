@@ -3,6 +3,8 @@ import { ComponentProps } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { StoreItem } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
@@ -63,7 +65,9 @@ export function ItemsSelectListCard({
               )}
               fill
               priority
-              sizes="100%"
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
             />
           ) : (
             <Image
@@ -76,7 +80,9 @@ export function ItemsSelectListCard({
               )}
               fill
               priority
-              sizes="100%"
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
             />
           )}
         </div>

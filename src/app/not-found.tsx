@@ -19,12 +19,24 @@ export default function NotFound() {
     >
       <section className="flex-col items-center justify-center gap-[5.625rem]">
         <div className="flex-initial justify-center">
-          <Image src={logo} alt="Reload logo" width={200} />
+          <Image src={logo} alt="Reload logo" width={200} height={30} />
         </div>
 
         <div className="flex-initial flex-col items-center justify-center gap-10">
-          <Image src={text404} alt="404" className="w-[16%]" />
-          <Image src={errorPage} alt="Error page" className="w-[16%]" />
+          <Image
+            src={text404}
+            alt="404"
+            className="w-[16%]"
+            width={307}
+            height={125}
+          />
+          <Image
+            src={errorPage}
+            alt="Error page"
+            className="w-[16%]"
+            width={307}
+            height={43}
+          />
         </div>
 
         <div className="flex-initial flex-col items-center justify-center gap-10">

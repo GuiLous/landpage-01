@@ -1,6 +1,8 @@
 import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 
+import { profileSteps } from '@/utils'
+
 import {
   ProfileHeaderRender,
   ProfileHeatmapStatsCard,
@@ -13,6 +15,7 @@ import {
   SkeletonLeveStatsCard,
   SkeletonMatchHistoryList,
   SkeletonProfileHeader,
+  Wizard,
 } from '@/components/shared'
 
 interface RouteProps {
@@ -28,6 +31,7 @@ export default async function Profile({ params, searchParams }: RouteProps) {
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>
       <Suspense fallback={<SkeletonProfileHeader />}>
         <ProfileHeaderRender userId={Number(userId)} />
+        <Wizard steps={profileSteps} page="profile" />
       </Suspense>
 
       <section

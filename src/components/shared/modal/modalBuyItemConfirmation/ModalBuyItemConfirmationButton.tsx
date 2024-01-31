@@ -2,7 +2,13 @@ import { twMerge } from 'tailwind-merge'
 
 import { Button, Link } from '@/components/shared'
 
-export function ModalBuyItemConfirmationButton() {
+interface ModalBuyItemConfirmationButtonProps {
+  isCardOrProfile: boolean
+}
+
+export function ModalBuyItemConfirmationButton({
+  isCardOrProfile,
+}: ModalBuyItemConfirmationButtonProps) {
   return (
     <div className={twMerge('items-center justify-center gap-4', '3xl:gap-3')}>
       <Button.Root
@@ -12,9 +18,10 @@ export function ModalBuyItemConfirmationButton() {
           '3xl:min-h-[34px] 3xl:max-h-[34px]'
         )}
       >
-        <Link href="/inventario">
+        <Link href={isCardOrProfile ? '/conta' : '/inventario'}>
           <Button.Content className="text-sm font-semibold">
-            Ir para o inventário
+            {isCardOrProfile && 'Ver na conta'}
+            {!isCardOrProfile && 'Ir para o inventário'}
           </Button.Content>
         </Link>
       </Button.Root>
