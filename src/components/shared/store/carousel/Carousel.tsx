@@ -61,6 +61,10 @@ export function Carousel({ featured }: CarouselProps) {
         <ModalBuyItemConfirmation
           foregroundImage={itemPurchased.foreground_image}
           backgroundImage={itemPurchased?.background_image}
+          isCardOrProfile={
+            itemPurchased.subtype === 'card' ||
+            itemPurchased.subtype === 'profile'
+          }
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />
