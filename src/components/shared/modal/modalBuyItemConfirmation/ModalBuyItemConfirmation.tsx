@@ -2,6 +2,8 @@
 
 import { twMerge } from 'tailwind-merge'
 
+import { revalidate } from '@/utils'
+
 import { Modal } from '@/components/shared'
 
 import { ModalBuyItemConfirmationButton } from './ModalBuyItemConfirmationButton'
@@ -24,6 +26,9 @@ export function ModalBuyItemConfirmation({
   backgroundImage,
   isCardOrProfile,
 }: ModalBuyItemConfirmationProps) {
+  revalidate('inventory')
+  revalidate('store')
+
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Content className="max-w-fit">
