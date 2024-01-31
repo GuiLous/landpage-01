@@ -2,6 +2,8 @@ import Image from 'next/image'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { CustomIcon } from '@/components/shared'
 
 interface CenteredCarouselItemProps {
@@ -41,7 +43,9 @@ export function CenteredCarouselItem({
             className="object-scale-down"
             fill
             priority
-            sizes="100%"
+            sizes="50vw"
+            placeholder="blur"
+            blurDataURL={staticBlurDataUrl()}
           />
         </div>
       ) : (
@@ -51,7 +55,9 @@ export function CenteredCarouselItem({
           className="object-scale-down p-0.5"
           fill
           priority
-          sizes="100%"
+          sizes="50vw"
+          placeholder="blur"
+          blurDataURL={staticBlurDataUrl()}
         />
       )}
 

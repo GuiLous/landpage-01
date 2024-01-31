@@ -15,7 +15,7 @@ export function ModalReloadCoinsCardImage() {
         src={reloadCredits}
         alt="Reload Credits"
         fill
-        sizes="100%"
+        sizes="100vw"
         priority
         draggable={false}
       />

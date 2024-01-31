@@ -13,9 +13,10 @@ import { CarouselSlide } from './CarouselSlide'
 
 interface CarouselProps {
   featured: StoreItem[]
+  placeholdersCarousel: string[]
 }
 
-export function Carousel({ featured }: CarouselProps) {
+export function Carousel({ featured, placeholdersCarousel }: CarouselProps) {
   const [indexContent, setIndexContent] = useState(0)
   const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
@@ -33,6 +34,7 @@ export function Carousel({ featured }: CarouselProps) {
         indexContent={indexContent}
         setIndexContent={setIndexContent}
         openModalBuyItem={openModalBuyItem}
+        placeholdersCarousel={placeholdersCarousel}
       >
         <CarouselPreview
           featured={featured}

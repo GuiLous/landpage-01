@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 interface ModalBuyItemConfirmationImageProps {
   backgroundImage?: string
   foregroundImage: string
@@ -26,9 +28,11 @@ export function ModalBuyItemConfirmationImage({
         src={foregroundImage}
         alt="item image"
         fill
-        sizes="100%"
+        sizes="100vw"
         priority
         className="absolute object-scale-down p-1"
+        placeholder="blur"
+        blurDataURL={staticBlurDataUrl()}
       />
     </div>
   )

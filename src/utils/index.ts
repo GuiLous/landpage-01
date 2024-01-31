@@ -9,6 +9,7 @@ export * from './getItemName';
 export * from './getPathToRedirect';
 export * from './groupMatchesByDay';
 export * from './humanizeStatus';
+export * from './imagesBlur';
 export * from './revalidate';
 export * from './uuid4';
 export * from './validators';

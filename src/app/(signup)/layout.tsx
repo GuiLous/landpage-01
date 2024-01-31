@@ -21,18 +21,32 @@ export default function SignUpLayout({ children }: { children: ReactNode }) {
       <SignupLayoutHeader />
 
       <div className="absolute bottom-[80px] left-0 z-0 w-[26%]">
-        <Image src={liquidObject} alt="Liquid object" priority />
+        <Image
+          src={liquidObject}
+          alt="Liquid object"
+          priority
+          width={493}
+          height={329}
+        />
       </div>
 
       <Image
         src={rectangle}
         alt="Rectangle"
+        width={524}
+        height={17}
         className="absolute right-10 top-10"
       />
 
       <section className="flex-col items-center justify-center gap-[55px]">
         <div className="w-[19%] flex-initial items-end justify-center">
-          <Image src={logo} alt="Reload logo" />
+          <Image
+            src={logo}
+            width={365}
+            height={54}
+            alt="Reload logo"
+            priority
+          />
         </div>
 
         {children}
