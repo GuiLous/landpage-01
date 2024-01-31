@@ -14,6 +14,7 @@ interface ModalBuyItemConfirmationProps {
   setOpen: (state: boolean) => void
   backgroundImage?: string
   foregroundImage: string
+  isCardOrProfile: boolean
 }
 
 export function ModalBuyItemConfirmation({
@@ -21,6 +22,7 @@ export function ModalBuyItemConfirmation({
   setOpen,
   foregroundImage,
   backgroundImage,
+  isCardOrProfile,
 }: ModalBuyItemConfirmationProps) {
   return (
     <Modal open={open} onOpenChange={setOpen}>
@@ -35,7 +37,7 @@ export function ModalBuyItemConfirmation({
 
           <ModalReloadCoinConfirmationMessage />
 
-          <ModalBuyItemConfirmationButton />
+          <ModalBuyItemConfirmationButton isCardOrProfile={isCardOrProfile} />
         </div>
       </Modal.Content>
     </Modal>
