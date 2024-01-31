@@ -13,9 +13,13 @@ import {
 
 interface StoreListItemsProps {
   products: StoreItem[]
+  placeholdersProducts: string[]
 }
 
-export function StoreListItems({ products }: StoreListItemsProps) {
+export function StoreListItems({
+  products,
+  placeholdersProducts,
+}: StoreListItemsProps) {
   const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
   const [modalBuyItems, setModalBuyItems] = useState<StoreItem[]>([])
@@ -66,7 +70,7 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         'store-sm:grid-cols-store-sm'
       )}
     >
-      {products.map((item) => (
+      {products.map((item, index) => (
         <StoreItemCard.Root
           key={`${item.object}-${item.id}`}
           purchased={item.is_purchased}
@@ -75,7 +79,12 @@ export function StoreListItems({ products }: StoreListItemsProps) {
           }
         >
           <StoreItemCard.Wrapper purchased={item.is_purchased}>
-            <StoreItemCard.Header item={item} purchased={item.is_purchased} />
+            <StoreItemCard.Header
+              item={item}
+              purchased={item.is_purchased}
+              placeholdersProducts={placeholdersProducts}
+              index={index}
+            />
             <StoreItemCard.Info item={item} />
           </StoreItemCard.Wrapper>
         </StoreItemCard.Root>
