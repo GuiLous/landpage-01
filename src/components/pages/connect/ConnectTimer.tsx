@@ -18,11 +18,11 @@ export function ConnectTimer({ timeLeft }: ConnectTimerProps) {
         <Timer initialTime={timeLeft || 1} reverse />
       </span>
 
-      <Image
-        src={loadingGif}
-        alt="Loading gif"
-        className={twMerge('w-12', '3xl:w-9')}
-      />
+      <div
+        className={twMerge('relative max-w-fit flex-initial w-12', '3xl:w-9')}
+      >
+        <Image src={loadingGif} alt="Loading gif" fill sizes="100vw" />
+      </div>
     </div>
   )
 }
