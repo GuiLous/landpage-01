@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige cache do `inventário` e da `loja` após compra um item [#1036](https://github.com/3C-gg/reload-frontend/issues/1036).
 - Corrige timer do `preview` do `carousel da loja` ao abrir o modal de compra [#1007](https://github.com/3C-gg/reload-frontend/issues/1007).
 - Corrige bug do `Wizard` na página de perfil [#773](https://github.com/3C-gg/reload-frontend/issues/773).
 
