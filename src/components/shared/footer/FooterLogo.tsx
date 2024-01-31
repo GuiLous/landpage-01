@@ -11,7 +11,8 @@ export function FooterLogo() {
           src={logo}
           alt="Reload"
           data-testid="logo"
-          className="w-[170px]"
+          width={170}
+          height={25}
         />
       </Link>
     </div>

@@ -8,6 +8,8 @@ export function HomeMobileSectionHero() {
     <Image
       src={heroMobileImg}
       priority={true}
+      width={338}
+      height={370}
       alt="Personagem do GTA 5"
       className={twMerge('max-w-full', 'range-md-xl:max-w-[28%]')}
     />
