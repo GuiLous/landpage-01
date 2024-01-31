@@ -38,6 +38,7 @@ export function Carousel({ featured }: CarouselProps) {
           featured={featured}
           indexContent={indexContent}
           setIndexContent={setIndexContent}
+          openModalBuyItem={openModalBuyItem}
         />
 
         {featured.length > 0 && (
