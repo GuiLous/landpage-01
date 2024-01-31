@@ -2,6 +2,8 @@
 
 import { twMerge } from 'tailwind-merge'
 
+import { revalidate } from '@/utils'
+
 import { Modal } from '@/components/shared'
 
 import { ModalBuyItemConfirmationButton } from './ModalBuyItemConfirmationButton'
@@ -14,6 +16,7 @@ interface ModalBuyItemConfirmationProps {
   setOpen: (state: boolean) => void
   backgroundImage?: string
   foregroundImage: string
+  isCardOrProfile: boolean
 }
 
 export function ModalBuyItemConfirmation({
@@ -21,7 +24,11 @@ export function ModalBuyItemConfirmation({
   setOpen,
   foregroundImage,
   backgroundImage,
+  isCardOrProfile,
 }: ModalBuyItemConfirmationProps) {
+  revalidate('inventory')
+  revalidate('store')
+
   return (
     <Modal open={open} onOpenChange={setOpen}>
       <Modal.Content className="max-w-fit">
@@ -35,7 +42,7 @@ export function ModalBuyItemConfirmation({
 
           <ModalReloadCoinConfirmationMessage />
 
-          <ModalBuyItemConfirmationButton />
+          <ModalBuyItemConfirmationButton isCardOrProfile={isCardOrProfile} />
         </div>
       </Modal.Content>
     </Modal>
