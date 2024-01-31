@@ -5,12 +5,14 @@ import { StoreItem } from '@/functions'
 interface CarouselPreviewProps {
   featured: StoreItem[]
   indexContent: number
+  openModalBuyItem: boolean
   setIndexContent: (state: number) => void
 }
 
 export function CarouselPreview({
   featured = [],
   indexContent,
+  openModalBuyItem,
   setIndexContent,
 }: CarouselPreviewProps) {
   const showTimer = featured.length > 1
@@ -32,7 +34,11 @@ export function CarouselPreview({
           onClick={() => setIndexContent(index)}
         >
           {indexContent === index && showTimer && (
-            <div className="animate-carousel-preview bg-white/80" />
+            <div
+              className={twMerge(
+                !openModalBuyItem && 'animate-carousel-preview bg-white/80'
+              )}
+            />
           )}
         </div>
       ))}

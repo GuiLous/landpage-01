@@ -85,6 +85,10 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         <ModalBuyItemConfirmation
           foregroundImage={itemPurchased.foreground_image}
           backgroundImage={itemPurchased?.background_image}
+          isCardOrProfile={
+            itemPurchased.subtype === 'card' ||
+            itemPurchased.subtype === 'profile'
+          }
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />
