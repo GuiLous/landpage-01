@@ -5,17 +5,17 @@ import { useState } from 'react'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { Media } from '@/functions'
 
 import { CustomIcon, ModalShowSkin } from '@/components/shared'
 
-interface WeaponVideoPreviewProps {
+interface ItemsPreviewProps {
   imagesPreview?: Media[]
 }
 
-export function WeaponVideoPreview({
-  imagesPreview = [],
-}: WeaponVideoPreviewProps) {
+export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
   const [previewSelected, setPreviewSelected] = useState<Media | null>(null)
   const [openModal, setOpenModal] = useState(false)
 
@@ -41,7 +41,10 @@ export function WeaponVideoPreview({
               alt=""
               className={twMerge('object-cover rounded absolute')}
               fill
-              sizes="100%"
+              sizes="100vw"
+              priority
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
             />
           )}
 

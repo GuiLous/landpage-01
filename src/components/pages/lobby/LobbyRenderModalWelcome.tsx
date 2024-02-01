@@ -11,7 +11,7 @@ import { useUserStore } from '@/store/userStore'
 import { ModalSendInvites, ModalWelcome } from '@/components/shared'
 
 export function LobbyRenderModalWelcome() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   const [openModalWelcome, setOpenModalWelcome] = useState(false)
   const [openModalSendInvites, setOpenModalSendInvites] = useState(false)

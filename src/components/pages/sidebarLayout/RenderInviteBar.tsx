@@ -8,7 +8,7 @@ import { useUserStore } from '@/store/userStore'
 import { InviteBar, ModalSendInvites } from '@/components/shared'
 
 export function RenderInviteBar() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   const [openModalSendInvites, setOpenModalSendInvites] = useState(false)
 

@@ -17,7 +17,7 @@ interface ModalMatchFoundButtonsProps {
 }
 
 export function ModalMatchFoundButtons({ open }: ModalMatchFoundButtonsProps) {
-  const preMatch = usePreMatchStore.getState().preMatch
+  const { preMatch } = usePreMatchStore()
 
   const showErrorToast = useShowErrorToast()
 

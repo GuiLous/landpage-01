@@ -18,7 +18,8 @@ interface LineupPlayerCardProps {
 }
 
 export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
-  const lobby = useLobbyStore.getState().lobby
+  const { lobby } = useLobbyStore()
+
   const isLobbyOwner = player.user_id === lobby?.id
 
   const [openMenu, setOpenMenu] = useState(false)

@@ -6,8 +6,6 @@ import { BsCheckCircleFill } from 'react-icons/bs'
 import { MdOutlineShoppingBag } from 'react-icons/md'
 import { twMerge } from 'tailwind-merge'
 
-import { revalidatePath } from '@/utils'
-
 import { StoreItem } from '@/functions'
 
 import { useUserStore } from '@/store/userStore'
@@ -39,7 +37,7 @@ export function ModalBuyItemInfosBuyButton({
   handleCloseModal,
   handleOpenModalConfirmation,
 }: ModalBuyItemInfosBuyButtonProps) {
-  const user = useUserStore.getState().user
+  const { user, updateUser } = useUserStore()
 
   const auth = useAuth()
 
@@ -99,7 +97,7 @@ export function ModalBuyItemInfosBuyButton({
       }
 
       if (user && user?.account?.coins) {
-        useUserStore.getState().updateUser({
+        updateUser({
           ...user,
           account: {
             ...user.account,
@@ -108,22 +106,21 @@ export function ModalBuyItemInfosBuyButton({
         })
       }
 
-      revalidatePath({ path: '/' })
-
       setIsFetching(false)
       handleOpenModalConfirmation(itemObject)
       handleCloseModal()
     },
     [
       auth?.token,
+      purchased,
       insufficientCoins,
       itemObject,
-      price,
-      purchased,
-      showErrorToast,
       user,
-      handleCloseModal,
       handleOpenModalConfirmation,
+      handleCloseModal,
+      showErrorToast,
+      updateUser,
+      price,
     ]
   )
 

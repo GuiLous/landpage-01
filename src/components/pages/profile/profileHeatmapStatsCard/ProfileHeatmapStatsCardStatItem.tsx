@@ -40,7 +40,7 @@ export function ProfileHeatmapStatsCardStatItem({
             '3xl:text-sm'
           )}
         >
-          {stat}
+          {stat || 0}
         </span>
 
         <span

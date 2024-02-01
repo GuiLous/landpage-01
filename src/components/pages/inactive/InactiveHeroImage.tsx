@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import inactiveBg from '@/assets/images/inactive_bg.png'
+const inactiveBg = '/assets/images/inactive_bg.png'
 
 export function InactiveHeroImage() {
   return (

@@ -26,6 +26,9 @@ type FieldsErrors = {
 }
 
 export function AccountChangeEmailCard() {
+  const { updateUser } = useUserStore()
+  const { addToast } = useAppStore()
+
   const router = useRouter()
 
   const auth = useAuth()
@@ -121,9 +124,9 @@ export function AccountChangeEmailCard() {
 
       Cookies.set('token', jwtToken)
 
-      useUserStore.getState().updateUser(response)
+      updateUser(response)
 
-      useAppStore.getState().addToast({
+      addToast({
         title: 'E-mail atualizado com sucesso!',
         variant: 'success',
       })
@@ -132,7 +135,7 @@ export function AccountChangeEmailCard() {
 
       return router.push('/verificar')
     },
-    [auth, email, showErrorToast, router]
+    [auth, email, updateUser, addToast, router, showErrorToast]
   )
 
   useOutsideClick({ ref: inputRef, handler: handleOutsideClick })

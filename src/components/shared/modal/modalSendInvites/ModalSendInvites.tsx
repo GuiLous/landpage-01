@@ -18,7 +18,7 @@ interface ModalSendInvitesProps {
 }
 
 export function ModalSendInvites({ open, setOpen }: ModalSendInvitesProps) {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   const [changeView, setChangeView] = useState(false)
 

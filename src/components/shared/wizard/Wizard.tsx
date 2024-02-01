@@ -1,5 +1,4 @@
 'use client'
-import { usePathname } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import Joyride, { CallBackProps, Step } from 'react-joyride'
 
@@ -11,12 +10,7 @@ interface WizardsProps {
 }
 
 export function Wizard({ steps, page }: WizardsProps) {
-  const pathname = usePathname()
-
   const [showWizard, setShowWizard] = useState(false)
-
-  const pathSpliced = pathname.split('/')
-  const isMatchDetailsPage = pathSpliced.length > 3
 
   const getStorageKey = useCallback(() => {
     if (page === 'lobby') return 'AlreadyVisitedLobby'
@@ -30,49 +24,53 @@ export function Wizard({ steps, page }: WizardsProps) {
       const { action, lifecycle } = state
       if (action === 'skip') {
         storageService.save(getStorageKey(), true)
+        setShowWizard(false)
       }
 
       if (action === 'reset' && lifecycle === 'init') {
         storageService.save(getStorageKey(), true)
+        setShowWizard(false)
       }
     },
     [getStorageKey]
   )
 
   useEffect(() => {
-    if (isMatchDetailsPage) return
     const alreadyVisited = storageService.get(getStorageKey())
 
     if (alreadyVisited) return setShowWizard(false)
 
     setShowWizard(true)
-  }, [getStorageKey, isMatchDetailsPage])
+  }, [getStorageKey])
 
   return (
-    <Joyride
-      run={showWizard}
-      steps={steps}
-      continuous
-      disableOverlayClose
-      disableCloseOnEsc
-      hideCloseButton
-      showSkipButton
-      styles={{
-        options: { backgroundColor: '#1B1B1B' },
-        buttonNext: { backgroundColor: '#6847FF', fontSize: 14 },
-        buttonSkip: { color: 'white' },
-        buttonBack: { color: 'white' },
-        overlay: { background: 'rgb(0 0 0 /.85)' },
-        tooltipTitle: { color: 'white' },
-        tooltipContent: { color: 'white' },
-      }}
-      locale={{
-        skip: 'Pular',
-        next: 'Próximo',
-        back: 'Anterior',
-        last: 'Entendi!',
-      }}
-      callback={(state) => saveAlreadyVisitedOnStorage(state)}
-    />
+    showWizard && (
+      <Joyride
+        key={page}
+        run={showWizard}
+        steps={steps}
+        continuous
+        disableOverlayClose
+        disableCloseOnEsc
+        hideCloseButton
+        showSkipButton
+        styles={{
+          options: { backgroundColor: '#1B1B1B' },
+          buttonNext: { backgroundColor: '#6847FF', fontSize: 14 },
+          buttonSkip: { color: 'white' },
+          buttonBack: { color: 'white' },
+          overlay: { background: 'rgb(0 0 0 /.85)' },
+          tooltipTitle: { color: 'white' },
+          tooltipContent: { color: 'white' },
+        }}
+        locale={{
+          skip: 'Pular',
+          next: 'Próximo',
+          back: 'Anterior',
+          last: 'Entendi!',
+        }}
+        callback={(state) => saveAlreadyVisitedOnStorage(state)}
+      />
+    )
   )
 }

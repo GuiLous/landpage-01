@@ -47,10 +47,9 @@ export function SidebarMenuItem({
   item,
   onClickFunction,
 }: SidebarMenuItemProps) {
-  const user = useUserStore.getState().user
-  const invites = useInvitesStore.getState().invites
-
-  const notifications = useNotificationStore.getState().notifications
+  const { user } = useUserStore()
+  const { invites } = useInvitesStore()
+  const { notifications } = useNotificationStore()
 
   const isSoon = SOON_ITEMS.includes(item)
 

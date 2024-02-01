@@ -1,7 +1,9 @@
+'use client'
+
 import { ChangeEvent, FormEvent, KeyboardEvent, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { isEmailValid, revalidatePath } from '@/utils'
+import { isEmailValid } from '@/utils'
 
 import { useUserStore } from '@/store/userStore'
 
@@ -22,6 +24,7 @@ interface ModalSendInvitesFormProps {
 export function ModalSendInvitesForm({
   hasInvites,
 }: ModalSendInvitesFormProps) {
+  const { addUserInvite } = useUserStore()
   const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
@@ -75,9 +78,7 @@ export function ModalSendInvitesForm({
       return
     }
 
-    useUserStore.getState().addUserInvite(email)
-
-    revalidatePath({ path: '/' })
+    addUserInvite(email)
 
     setInviteSent(true)
 

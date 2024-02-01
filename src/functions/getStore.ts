@@ -10,7 +10,16 @@ export type ItemType =
   | 'weapon'
   | 'decorative'
 
-export type ItemSubType = 'ata' | 'def' | 'card' | 'profile'
+export type ItemSubType =
+  | 'ata'
+  | 'def'
+  | 'card'
+  | 'profile'
+  | 'pistols'
+  | 'smgs'
+  | 'shotguns'
+  | 'machineguns'
+  | 'rifles'
 
 export type Media = {
   id: number
@@ -29,6 +38,7 @@ export interface StoreItem {
   description: string
   discount: number
   background_image?: string
+  preview_image?: string
   decorative_image?: string
   foreground_image: string
   cover_image: string

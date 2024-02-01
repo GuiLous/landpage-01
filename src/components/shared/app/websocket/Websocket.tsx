@@ -21,7 +21,21 @@ import { lobbyApi } from '@/modelsApi'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function Websocket() {
-  const user = useUserStore.getState().user
+  const { addToast, updateMaintenance } = useAppStore()
+  const { user, updateUser } = useUserStore()
+  const { addInvite, deleteInvite } = useInvitesStore()
+  const {
+    addFriend,
+    addFriendRequest,
+    removeFriendRequest,
+    removeFriendSentRequest,
+    updateFriend,
+    removeFriend,
+  } = useFriendsStore()
+  const { updateLobby, updateQueueTime } = useLobbyStore()
+  const { addNotification } = useNotificationStore()
+  const { updatePreMatch } = usePreMatchStore()
+  const { updateMatch, cancelMatch } = useMatchStore()
 
   const showErrorToast = useShowErrorToast()
 
@@ -46,12 +60,12 @@ export function Websocket() {
       const refused = payload.status === 'refused'
 
       if (refused && invite.to_player.user_id !== user?.id) {
-        useAppStore.getState().addToast({
+        addToast({
           content: `${invite.to_player.username} recusou seu convite.`,
         })
       }
     },
-    [user]
+    [addToast, user?.id]
   )
 
   const showInviteExpiredToast = useCallback(
@@ -64,11 +78,11 @@ export function Websocket() {
           : 'de ' + invite.from_player.username
       } expirou.`
 
-      useAppStore.getState().addToast({
+      addToast({
         content,
       })
     },
-    [user]
+    [addToast, user?.id]
   )
 
   const logout = useCallback(async () => {
@@ -98,12 +112,12 @@ export function Websocket() {
           break
 
         case 'user/update':
-          useUserStore.getState().updateUser(data.payload)
+          updateUser(data.payload)
           break
 
         // Invites
         case 'invites/create':
-          useAppStore.getState().addToast({
+          addToast({
             variant: 'invite',
             title: data.payload.from_player.username,
             content: 'Convidou você para um grupo.',
@@ -111,65 +125,62 @@ export function Websocket() {
             invite_id: data.payload.id,
           })
 
-          useInvitesStore.getState().addInvite(data.payload)
+          addInvite(data.payload)
           break
 
         case 'invites/delete':
-          useInvitesStore.getState().deleteInvite(data.payload.invite.id)
+          deleteInvite(data.payload.invite.id)
           showInviteRefusedToast(data.payload)
-          revalidatePath({ path: '/' })
           break
 
         case 'invites/expire':
-          useInvitesStore.getState().deleteInvite(data.payload.invite)
+          deleteInvite(data.payload.invite)
           showInviteExpiredToast(data.payload)
           break
 
         // Friends
         case 'friends/create':
-          useFriendsStore.getState().removeFriendRequest(data.payload.user_id)
-          useFriendsStore.getState().addFriend(data.payload)
+          removeFriendRequest(data.payload.user_id)
+          addFriend(data.payload)
           break
 
         case 'friends/delete':
-          useFriendsStore
-            .getState()
-            .removeFriend(data.payload.status, data.payload.user_id)
+          removeFriend(data.payload.status, data.payload.user_id)
           break
 
         case 'friends/update':
-          useFriendsStore.getState().updateFriend(data.payload)
+          updateFriend(data.payload)
           break
 
         case 'friends/request':
-          useFriendsStore.getState().addFriendRequest(data.payload)
+          addFriendRequest(data.payload)
           break
 
         case 'friends/request/refuse':
-          useFriendsStore.getState().removeFriendSentRequest(data.payload.to_id)
+          removeFriendSentRequest(data.payload.to_id)
           break
 
         // Lobbies
         case 'lobbies/player_join':
-          useLobbyStore.getState().updateLobby(data.payload.lobby)
-          useAppStore.getState().addToast({
+          updateLobby(data.payload.lobby)
+          addToast({
             content: `${data.payload.player.username} entrou para o seu grupo.`,
           })
           break
 
         case 'lobbies/player_leave':
-          useLobbyStore.getState().updateLobby(data.payload.lobby)
-          useAppStore.getState().addToast({
+          updateLobby(data.payload.lobby)
+          addToast({
             content: `${data.payload.player.username} deixou o seu grupo.`,
           })
           break
 
         case 'lobbies/update':
-          useLobbyStore.getState().updateLobby(data.payload)
+          updateLobby(data.payload)
           break
 
         case 'lobbies/queue_tick':
-          useLobbyStore.getState().updateQueueTime(data.payload)
+          updateQueueTime(data.payload)
           break
 
         case 'lobbies/queue_start':
@@ -178,8 +189,8 @@ export function Websocket() {
 
         // Notifications
         case 'notifications/add':
-          useNotificationStore.getState().addNotification(data.payload)
-          useAppStore.getState().addToast({
+          addNotification(data.payload)
+          addToast({
             variant: 'notification',
             title: 'Nova notificação',
             content: data.payload.content,
@@ -190,29 +201,28 @@ export function Websocket() {
         // PreMatches
         case 'pre_matches/update':
         case 'pre_matches/delete':
-          usePreMatchStore.getState().updatePreMatch(data.payload)
+          updatePreMatch(data.payload)
           break
 
         case 'pre_matches/create':
-          usePreMatchStore.getState().updatePreMatch(data.payload)
-          revalidatePath({ path: '/jogar' })
+          updatePreMatch(data.payload)
           router.push('/jogar')
           break
 
         // Matches
         case 'matches/create':
-          useMatchStore.getState().updateMatch(data.payload)
-          revalidatePath({ path: `/partidas/${data.payload.id}/conectar` })
+          updateMatch(data.payload)
           router.push(`/partidas/${data.payload.id}/conectar`)
           break
 
         case 'matches/update':
-          useMatchStore.getState().updateMatch(data.payload)
+          updateMatch(data.payload)
+          revalidatePath({ path: '/' })
           break
 
         case 'matches/delete':
-          useMatchStore.getState().cancelMatch()
-          useAppStore.getState().addToast({
+          cancelMatch()
+          addToast({
             variant: 'warning',
             title: 'Partida cancelada',
             content:
@@ -222,7 +232,7 @@ export function Websocket() {
 
         // Toasts
         case `toasts/create`:
-          useAppStore.getState().addToast({
+          addToast({
             content: data.payload.content,
             variant: data.payload.variant,
           })
@@ -230,13 +240,13 @@ export function Websocket() {
 
         // Maintenance
         case 'maintenance/start':
-          useAppStore.getState().updateMaintenance(true)
+          updateMaintenance(true)
           revalidatePath({ path: '/manutencao' })
           router.push('/manutencao')
           break
 
         case 'maintenance/end':
-          useAppStore.getState().updateMaintenance(false)
+          updateMaintenance(false)
           revalidatePath({ path: '/jogar' })
           router.push('/jogar')
           break
@@ -244,17 +254,30 @@ export function Websocket() {
         default:
           break
       }
-
-      if (data.meta.action !== 'keep_alive/ping') {
-        revalidatePath({ path: '/' })
-      }
     },
     [
       logout,
-      router,
-      start_queue,
-      showInviteExpiredToast,
+      updateUser,
+      addToast,
+      addInvite,
+      deleteInvite,
       showInviteRefusedToast,
+      showInviteExpiredToast,
+      removeFriendRequest,
+      addFriend,
+      removeFriend,
+      updateFriend,
+      addFriendRequest,
+      removeFriendSentRequest,
+      updateLobby,
+      updateQueueTime,
+      start_queue,
+      addNotification,
+      updatePreMatch,
+      router,
+      updateMatch,
+      cancelMatch,
+      updateMaintenance,
     ]
   )
 

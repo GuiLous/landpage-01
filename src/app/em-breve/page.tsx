@@ -5,8 +5,8 @@ import { InviteRequiredCheck, InviteRequiredMessage } from '@/components/pages'
 
 import { Footer, LogoutButtonRedirect } from '@/components/shared'
 
-import logo from '@/assets/images/logo_type_white.svg'
-import notInvitedText from '@/assets/images/not_invited_text.png'
+const logo = '/assets/images/logo_type_white.svg'
+const notInvitedText = '/assets/images/not_invited_text.png'
 
 export default function InviteRequired() {
   return (
@@ -23,7 +23,7 @@ export default function InviteRequired() {
         )}
       >
         <div className="flex-initial items-center justify-center">
-          <Image src={logo} alt="Reload logo" width={200} />
+          <Image src={logo} alt="Reload logo" width={200} height={30} />
         </div>
 
         <section
@@ -38,7 +38,13 @@ export default function InviteRequired() {
               '3xl:gap-8'
             )}
           >
-            <Image src={notInvitedText} alt="Que pano" className="w-[15.1%]" />
+            <Image
+              src={notInvitedText}
+              alt="Que pano"
+              className="w-[15.1%]"
+              width={290}
+              height={53}
+            />
 
             <InviteRequiredMessage />
 

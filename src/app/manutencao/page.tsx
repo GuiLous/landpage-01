@@ -9,8 +9,8 @@ import {
   VerifyMaintenance,
 } from '@/components/shared'
 
-import alert from '@/assets/images/alert.png'
-import logo from '@/assets/images/logo_type_white.svg'
+const alert = '/assets/images/alert.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export default function Maintenance() {
   return (
@@ -22,11 +22,11 @@ export default function Maintenance() {
     >
       <section className="flex-col items-center justify-center gap-40 pb-10">
         <div className="flex-initial justify-center">
-          <Image src={logo} alt="Reload logo" width={200} />
+          <Image src={logo} alt="Reload logo" width={200} height={30} />
         </div>
 
         <section className="flex-initial flex-col items-center justify-center gap-[2.75rem]">
-          <Image src={alert} alt="Alert" />
+          <Image src={alert} alt="Alert" width={263} height={60} />
 
           <MaintenanceMessage />
 

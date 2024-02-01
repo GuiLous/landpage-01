@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-import loadingGif from '@/assets/images/loading.gif'
+const loadingGif = '/assets/images/loading.gif'
 
 export function LoadingGif() {
   return (
@@ -9,7 +9,8 @@ export function LoadingGif() {
         src={loadingGif}
         alt="Carregando..."
         data-testid="loading"
-        className="max-w-[48px]"
+        width={48}
+        height={48}
         priority
       />
     </div>
