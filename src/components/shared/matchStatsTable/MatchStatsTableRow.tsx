@@ -58,8 +58,8 @@ export function MatchStatsTableRow({
   setSelectedPlayer,
   ...props
 }: MatchStatsTableRowProps) {
-  const lobby = useLobbyStore.getState().lobby
-  const invites = useInvitesStore.getState().invites
+  const { lobby } = useLobbyStore()
+  const { invites } = useInvitesStore()
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 

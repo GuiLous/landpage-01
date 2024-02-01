@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { Media } from '@/functions'
 
 import { Modal } from '@/components/shared'
@@ -22,7 +24,15 @@ export function ModalShowSkin({ open, setOpen, preview }: ModalShowSkinProps) {
       >
         <div className="relative max-h-[612px] min-h-[612px] min-w-[1088px] max-w-[1088px]">
           {preview.media_type === 'image' && (
-            <Image src={preview.file} alt="" fill sizes="100%" />
+            <Image
+              src={preview.file}
+              alt=""
+              fill
+              sizes="100vw"
+              priority
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
+            />
           )}
 
           {preview.media_type !== 'image' && (

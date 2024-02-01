@@ -25,8 +25,8 @@ import { Loading } from '@/components/shared'
 import { usePersistentTimer } from '@/hooks'
 
 export default function Connect() {
-  const match = useMatchStore.getState().match
-  const user = useUserStore.getState().user
+  const { match } = useMatchStore()
+  const { user } = useUserStore()
 
   const router = useRouter()
 
@@ -37,7 +37,6 @@ export default function Connect() {
   const verifyMatchStatus = useCallback(() => {
     if (!match || match.status === 'cancelled') {
       storageService.remove('matchConnectTimer')
-      revalidatePath({ path: '/jogar' })
       return router.push('/jogar')
     } else {
       switch (match.status) {

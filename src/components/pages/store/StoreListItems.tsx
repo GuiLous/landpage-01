@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import Cookies from 'js-cookie'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -13,9 +14,13 @@ import {
 
 interface StoreListItemsProps {
   products: StoreItem[]
+  placeholdersProducts: string[]
 }
 
-export function StoreListItems({ products }: StoreListItemsProps) {
+export function StoreListItems({
+  products,
+  placeholdersProducts,
+}: StoreListItemsProps) {
   const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
   const [modalBuyItems, setModalBuyItems] = useState<StoreItem[]>([])
@@ -42,7 +47,16 @@ export function StoreListItems({ products }: StoreListItemsProps) {
     setOpenModalBuyItem(true)
   }
 
-  const getModalBuyItems = (item: StoreItem) => {
+  const isBoxOrCollection = useCallback(() => {
+    if (!itemPurchased) return false
+
+    const isBox = itemPurchased?.object === 'box'
+    const isCollection = itemPurchased?.object === 'collection'
+
+    return isBox || isCollection
+  }, [itemPurchased])
+
+  const getModalBuyItems = useCallback((item: StoreItem) => {
     const isBox = item?.object === 'box'
     const isCollection = item?.object === 'collection'
 
@@ -56,7 +70,14 @@ export function StoreListItems({ products }: StoreListItemsProps) {
     }
 
     setModalBuyItems(modalBuyItems)
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
 
   return (
     <section
@@ -66,7 +87,7 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         'store-sm:grid-cols-store-sm'
       )}
     >
-      {products.map((item) => (
+      {products.map((item, index) => (
         <StoreItemCard.Root
           key={`${item.object}-${item.id}`}
           purchased={item.is_purchased}
@@ -75,7 +96,12 @@ export function StoreListItems({ products }: StoreListItemsProps) {
           }
         >
           <StoreItemCard.Wrapper purchased={item.is_purchased}>
-            <StoreItemCard.Header item={item} purchased={item.is_purchased} />
+            <StoreItemCard.Header
+              item={item}
+              purchased={item.is_purchased}
+              placeholdersProducts={placeholdersProducts}
+              index={index}
+            />
             <StoreItemCard.Info item={item} />
           </StoreItemCard.Wrapper>
         </StoreItemCard.Root>
@@ -85,6 +111,13 @@ export function StoreListItems({ products }: StoreListItemsProps) {
         <ModalBuyItemConfirmation
           foregroundImage={itemPurchased.foreground_image}
           backgroundImage={itemPurchased?.background_image}
+          isCardOrProfile={
+            itemPurchased.subtype === 'card' ||
+            itemPurchased.subtype === 'profile'
+          }
+          isBoxOrCollection={isBoxOrCollection()}
+          itemId={itemPurchased.id}
+          itemType={itemPurchased.item_type}
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { twMerge } from 'tailwind-merge'
 
-import reloadCredits from '@/assets/images/reload_credits.png'
+const reloadCredits = '/assets/images/reload_credits.png'
 
 export function ModalReloadCoinsCardImage() {
   return (
@@ -15,7 +15,8 @@ export function ModalReloadCoinsCardImage() {
         src={reloadCredits}
         alt="Reload Credits"
         fill
-        sizes="100%"
+        sizes="100vw"
+        priority
         draggable={false}
       />
     </div>

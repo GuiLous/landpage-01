@@ -23,6 +23,7 @@ export function ProfileHeaderAvatar({
   avatarUrl,
   isUserLogged,
 }: ProfileHeaderAvatarProps) {
+  const { updateUser } = useUserStore()
   const showErrorToast = useShowErrorToast()
 
   const auth = useAuth()
@@ -43,11 +44,11 @@ export function ProfileHeaderAvatar({
       return
     }
 
-    useUserStore.getState().updateUser(response)
+    updateUser(response)
 
     revalidate('profile')
     setIsFetching(false)
-  }, [auth?.token, showErrorToast])
+  }, [auth?.token, showErrorToast, updateUser])
 
   return (
     <div className="relative max-w-fit flex-initial">

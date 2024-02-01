@@ -9,19 +9,18 @@ import { CustomIcon } from '@/components/shared'
 interface StoreItemCardHeaderProps {
   item: StoreItem
   purchased?: boolean
+  placeholdersProducts: string[]
+  index: number
 }
 
 export function StoreItemCardHeader({
   item,
   purchased = false,
+  placeholdersProducts,
+  index,
 }: StoreItemCardHeaderProps) {
   return (
-    <header
-      className="relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 bg-cover bg-center bg-no-repeat p-5"
-      style={{
-        backgroundImage: item?.cover_image ? `${item.cover_image}` : '',
-      }}
-    >
+    <header className="relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 p-5">
       <CustomIcon
         icon={IoMdInformationCircleOutline}
         className={twMerge(
@@ -31,12 +30,15 @@ export function StoreItemCardHeader({
       />
 
       <Image
-        src={item.foreground_image}
+        src={item.cover_image}
         alt={item.name}
         fill
-        sizes="100%"
-        className="object-scale-down p-2"
+        sizes="70vw"
+        className="object-scale-down"
         draggable={false}
+        quality={60}
+        placeholder="blur"
+        blurDataURL={placeholdersProducts[index]}
         priority
       />
 

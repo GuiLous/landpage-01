@@ -1,9 +1,11 @@
+'use client'
+
 import { twMerge } from 'tailwind-merge'
 
 import { useUserStore } from '@/store/userStore'
 
 export function ModalSendInvitesInitialMessage() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   return (
     <div className="max-w-fit flex-initial flex-col items-center justify-center gap-9">

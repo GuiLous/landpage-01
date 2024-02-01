@@ -5,8 +5,6 @@ import { twMerge } from 'tailwind-merge'
 
 import { SIDEBAR_BOTTOM_MENU_ITEMS, SIDEBAR_TOP_MENU_ITEMS } from '@/constants'
 
-import { revalidatePath } from '@/utils'
-
 import { useAppStore } from '@/store/appStore'
 
 import {
@@ -27,7 +25,8 @@ type ItemMenu =
   | 'sair'
 
 export function SidebarMenuItemList() {
-  const friendListOpenByApp = useAppStore.getState().app.friendListOpen
+  const { toggleFriendList, app } = useAppStore()
+  const friendListOpenByApp = app.friendListOpen
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
   const [openModalLogout, setOpenModalLogout] = useState(false)
@@ -36,19 +35,17 @@ export function SidebarMenuItemList() {
 
   const handleCloseFriendListDrawer = () => {
     setOpenDrawerFriends(false)
-    useAppStore.getState().toggleFriendList(false)
-    revalidatePath({ path: '/' })
+    toggleFriendList(false)
   }
 
   const handleToggleFriendListDrawer = () => {
     if (openDrawerFriends) {
-      useAppStore.getState().toggleFriendList(false)
+      toggleFriendList(false)
       setOpenDrawerFriends(false)
     } else {
-      useAppStore.getState().toggleFriendList(true)
+      toggleFriendList(true)
       setOpenDrawerFriends(true)
     }
-    revalidatePath({ path: '/' })
   }
 
   const onClickFunction = (item: ItemMenu) => {

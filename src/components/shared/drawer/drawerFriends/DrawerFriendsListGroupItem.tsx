@@ -1,3 +1,5 @@
+'use client'
+
 import { MouseEvent, useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
@@ -28,8 +30,8 @@ export function DrawerFriendsListGroupItem({
   username,
   title,
 }: DrawerFriendsListGroupItemProps) {
-  const lobby = useLobbyStore.getState().lobby
-  const invites = useInvitesStore.getState().invites
+  const { lobby } = useLobbyStore()
+  const { invites } = useInvitesStore()
 
   const [openMenu, setOpenMenu] = useState(false)
 

@@ -84,7 +84,7 @@ function MenuContextContent({
   isLobbyOwner = false,
   onClose,
 }: MenuContextContentProps) {
-  const friends = useFriendsStore.getState().friends
+  const { friends } = useFriendsStore()
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
 

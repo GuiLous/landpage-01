@@ -22,9 +22,9 @@ export function LineupMenuContext({
   setIsMenuOpen,
   onClose,
 }: LineupMenuContextProps) {
-  const user = useUserStore.getState().user
-  const lobby = useLobbyStore.getState().lobby
-  const invites = useInvitesStore.getState().invites
+  const { user } = useUserStore()
+  const { lobby } = useLobbyStore()
+  const { invites } = useInvitesStore()
 
   const alreadyInvitedByFriend = !!lobby?.invited_players_ids.some(
     (id) => id === player?.user_id

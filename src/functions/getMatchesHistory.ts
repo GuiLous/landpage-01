@@ -1,3 +1,5 @@
+'use server'
+
 import { getAuthServer } from '@/utils'
 
 import { GameType, MatchStatus } from '@/store/matchStore'

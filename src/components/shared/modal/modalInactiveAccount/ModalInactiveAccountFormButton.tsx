@@ -16,6 +16,9 @@ import { Button } from '@/components/shared'
 import { useAuth, useShowErrorToast } from '@/hooks'
 
 export function ModalInactiveAccountFormButton() {
+  const { updateUser } = useUserStore()
+  const { addToast } = useAppStore()
+
   const router = useRouter()
 
   const auth = useAuth()
@@ -41,9 +44,9 @@ export function ModalInactiveAccountFormButton() {
         return
       }
 
-      useUserStore.getState().updateUser(null)
+      updateUser(null)
 
-      useAppStore.getState().addToast({
+      addToast({
         title: 'Conta inativada com sucesso!',
         variant: 'success',
       })
@@ -54,7 +57,7 @@ export function ModalInactiveAccountFormButton() {
 
       return router.push('/')
     },
-    [auth?.token, isFetching, router, showErrorToast]
+    [addToast, auth?.token, isFetching, router, showErrorToast, updateUser]
   )
 
   return (

@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import logo from '@/assets/images/logo_type_white.svg'
+const logo = '/assets/images/logo_type_white.svg'
 
 export function FooterLogo() {
   return (
@@ -11,7 +11,8 @@ export function FooterLogo() {
           src={logo}
           alt="Reload"
           data-testid="logo"
-          className="w-[170px]"
+          width={170}
+          height={25}
         />
       </Link>
     </div>

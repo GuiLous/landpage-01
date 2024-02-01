@@ -1,22 +1,23 @@
 import { twMerge } from 'tailwind-merge'
 
-import { ProfileCard } from '@/components/shared'
+import { getUserProfile } from '@/functions'
 
-import { ProfileHeatmapStatsCardIcon } from './ProfileHeatmapStatsCardIcon'
+import { ProfileCard, ProfileHeatmapStatsCardIcon } from '@/components/shared'
+
 import { ProfileHeatmapStatsCardStatItem } from './ProfileHeatmapStatsCardStatItem'
 
 interface ProfileHeatmapStatsCardProps {
-  head_shots: number
-  chest_shots: number
-  other_shots: number
+  userId: number
 }
 
-export function ProfileHeatmapStatsCard({
-  chest_shots,
-  head_shots,
-  other_shots,
+export async function ProfileHeatmapStatsCard({
+  userId,
 }: ProfileHeatmapStatsCardProps) {
-  const totalShots = head_shots + chest_shots + other_shots
+  const profile = await getUserProfile(userId)
+  const { stats } = profile
+  const { head_shots, chest_shots, other_shots } = stats
+
+  const totalShots = (head_shots || 0) + (chest_shots || 0) + (other_shots || 0)
 
   const headShotsPercent =
     totalShots === 0 ? 0 : Number((head_shots * 100) / totalShots).toFixed(0)
