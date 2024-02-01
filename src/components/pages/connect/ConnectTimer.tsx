@@ -21,7 +21,7 @@ export function ConnectTimer({ timeLeft }: ConnectTimerProps) {
       <div
         className={twMerge('relative max-w-fit flex-initial w-12', '3xl:w-9')}
       >
-        <Image src={loadingGif} alt="Loading gif" fill sizes="100vw" />
+        <Image src={loadingGif} alt="Loading gif" fill sizes="100vw" priority />
       </div>
     </div>
   )
