@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { useCallback, useState } from 'react'
 
@@ -15,7 +17,7 @@ interface AccountPlayerDecorationButtonsProps {
   isProfileCover: boolean
   in_use?: boolean
   itemSelected: StoreItem | null
-  setNewItemSelected: (state: StoreItem | null) => void
+  setNewItemSelected?: (state: StoreItem | null) => void
 }
 
 export function AccountPlayerDecorationButtons({
@@ -32,7 +34,7 @@ export function AccountPlayerDecorationButtons({
   const disableButton = itemSelected?.in_use || isUpdatingInUse
 
   const handleUpdateItemInUse = useCallback(async () => {
-    if (!auth?.token) return
+    if (!auth?.token || !setNewItemSelected) return
 
     if (itemSelected) {
       setIsUpdatingInUse(true)

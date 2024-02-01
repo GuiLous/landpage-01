@@ -96,7 +96,7 @@ const sub_tabs_search = {
   profile: '',
 }
 
-const nullObject = {
+export const nullObject = {
   id: 0,
   foreground_image: notSelected,
   in_use: false,

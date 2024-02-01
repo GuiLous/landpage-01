@@ -12,7 +12,7 @@ interface CenteredCarouselWrapperProps {
   itemInUseIndex?: number
   hasSearchFilters?: boolean
   activeItemIndex?: number
-  setActiveItemIndex: (state: number) => void
+  setActiveItemIndex?: (state: number) => void
   setPreviewSelected?: (state: number) => void
 }
 
