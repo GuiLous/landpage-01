@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige `level` que não estava aparecendo em alguns navegadores `opera` [#1054](https://github.com/3C-gg/reload-frontend/issues/1054).
 - Adiciona props `width e height` em alguns componentes `Image` que estavam faltando.
 - Corrige fluxo de `checkout/success` para abrir modal de compra de item após comprar rc [#1044](https://github.com/3C-gg/reload-frontend/issues/1044).
 - Corrige cache do `inventário` e da `loja` após compra um item [#1036](https://github.com/3C-gg/reload-frontend/issues/1036).
