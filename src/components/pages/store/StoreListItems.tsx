@@ -1,6 +1,7 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import Cookies from 'js-cookie'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -70,6 +71,13 @@ export function StoreListItems({
 
     setModalBuyItems(modalBuyItems)
   }, [])
+
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
 
   return (
     <section

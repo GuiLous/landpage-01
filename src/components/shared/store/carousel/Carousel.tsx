@@ -1,6 +1,7 @@
 'use client'
 
-import { useCallback, useState } from 'react'
+import Cookies from 'js-cookie'
+import { useCallback, useEffect, useState } from 'react'
 
 import { StoreItem } from '@/functions'
 
@@ -35,6 +36,13 @@ export function Carousel({ featured, placeholdersCarousel }: CarouselProps) {
 
     return isBox || isCollection
   }, [itemPurchased])
+
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
 
   return (
     <>

@@ -98,6 +98,13 @@ export function StoreOpenBuyModalCheck({
     featured,
   ])
 
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
+
   return (
     <>
       {!!itemPurchased && (
