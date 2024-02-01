@@ -1,20 +1,20 @@
 /* eslint-disable import-helpers/order-imports */
 /* eslint-disable prettier/prettier */
 
-import WEAPON_APPISTOL from '@/assets/images/weapons/WEAPON_APPISTOL.webp'
-import WEAPON_ASSAULTRIFLE from '@/assets/images/weapons/WEAPON_ASSAULTRIFLE.webp'
-import WEAPON_ASSAULTSHOTGUN from '@/assets/images/weapons/WEAPON_ASSAULTSHOTGUN.webp'
-import WEAPON_COMBATMG from '@/assets/images/weapons/WEAPON_COMBATMG.webp'
-import WEAPON_HEAVYSNIPER from '@/assets/images/weapons/WEAPON_HEAVYSNIPER.webp'
-import WEAPON_MG from '@/assets/images/weapons/WEAPON_MG.webp'
-import WEAPON_MICROSMG from '@/assets/images/weapons/WEAPON_MICROSMG.webp'
-import WEAPON_PISTOL from '@/assets/images/weapons/WEAPON_PISTOL.webp'
-import WEAPON_PISTOL50 from '@/assets/images/weapons/WEAPON_PISTOL50.webp'
-import WEAPON_PISTOL_MK2 from '@/assets/images/weapons/WEAPON_PISTOL_MK2.webp'
-import WEAPON_PUMPSHOTGUN from '@/assets/images/weapons/WEAPON_PUMPSHOTGUN.webp'
-import WEAPON_SMG from '@/assets/images/weapons/WEAPON_SMG.webp'
-import WEAPON_SNIPERRIFLE from '@/assets/images/weapons/WEAPON_SNIPERRIFLE.webp'
-import WEAPON_TACTICALRIFLE from '@/assets/images/weapons/WEAPON_TACTICALRIFLE.webp'
+const WEAPON_APPISTOL = '/assets/images/weapons/WEAPON_APPISTOL.webp'
+const WEAPON_ASSAULTRIFLE = '/assets/images/weapons/WEAPON_ASSAULTRIFLE.webp'
+const WEAPON_ASSAULTSHOTGUN = '/assets/images/weapons/WEAPON_ASSAULTSHOTGUN.webp'
+const WEAPON_COMBATMG = '/assets/images/weapons/WEAPON_COMBATMG.webp'
+const WEAPON_HEAVYSNIPER = '/assets/images/weapons/WEAPON_HEAVYSNIPER.webp'
+const WEAPON_MG = '/assets/images/weapons/WEAPON_MG.webp'
+const WEAPON_MICROSMG = '/assets/images/weapons/WEAPON_MICROSMG.webp'
+const WEAPON_PISTOL = '/assets/images/weapons/WEAPON_PISTOL.webp'
+const WEAPON_PISTOL50 = '/assets/images/weapons/WEAPON_PISTOL50.webp'
+const WEAPON_PISTOL_MK2 = '/assets/images/weapons/WEAPON_PISTOL_MK2.webp'
+const WEAPON_PUMPSHOTGUN = '/assets/images/weapons/WEAPON_PUMPSHOTGUN.webp'
+const WEAPON_SMG = '/assets/images/weapons/WEAPON_SMG.webp'
+const WEAPON_SNIPERRIFLE = '/assets/images/weapons/WEAPON_SNIPERRIFLE.webp'
+const WEAPON_TACTICALRIFLE = '/assets/images/weapons/WEAPON_TACTICALRIFLE.webp'
 
 
 const pistols = [

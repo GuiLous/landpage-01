@@ -12,7 +12,7 @@ import { SidebarLogo } from './SidebarLogo'
 import { SidebarMenuItemList } from './SidebarMenuItemList'
 
 export function Sidebar() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   const pathname = usePathname()
 

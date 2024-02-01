@@ -108,10 +108,6 @@ export function LevelBadge({
         className: twMerge(className, fitParent && 'max-w-full min-w-full'),
       })}
     >
-      <div className="absolute h-full w-full items-center justify-center">
-        <span className={levelText({ variant })}>{level}</span>
-      </div>
-
       <Image
         src={`/level_badges/badge_${calcLvlRange()}.png`}
         alt={`Level ${level}`}
@@ -119,6 +115,10 @@ export function LevelBadge({
         height={BADGE_SIZES[getVariant()]}
         sizes="100vw"
       />
+
+      <div className="absolute z-10 h-full w-full items-center justify-center">
+        <span className={levelText({ variant })}>{level}</span>
+      </div>
     </div>
   )
 }

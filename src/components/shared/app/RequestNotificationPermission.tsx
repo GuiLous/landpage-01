@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useUserStore } from '@/store/userStore'
 
 export function RequestNotificationPermission() {
-  const user = useUserStore.getState().user
+  const { user } = useUserStore()
 
   useEffect(() => {
     if (user && user.account && user.account.is_verified) {

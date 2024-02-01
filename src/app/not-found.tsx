@@ -5,9 +5,9 @@ import { NotFoundMessage, NotFoundRedirectButton } from '@/components/pages'
 
 import { Footer } from '@/components/shared'
 
-import text404 from '@/assets/images/404.png'
-import errorPage from '@/assets/images/error_page.png'
-import logo from '@/assets/images/logo_type_white.svg'
+const text404 = '/assets/images/404.png'
+const errorPage = '/assets/images/error_page.png'
+const logo = '/assets/images/logo_type_white.svg'
 
 export default function NotFound() {
   return (
@@ -19,12 +19,24 @@ export default function NotFound() {
     >
       <section className="flex-col items-center justify-center gap-[5.625rem]">
         <div className="flex-initial justify-center">
-          <Image src={logo} alt="Reload logo" width={200} />
+          <Image src={logo} alt="Reload logo" width={200} height={30} />
         </div>
 
         <div className="flex-initial flex-col items-center justify-center gap-10">
-          <Image src={text404} alt="404" className="w-[16%]" />
-          <Image src={errorPage} alt="Error page" className="w-[16%]" />
+          <Image
+            src={text404}
+            alt="404"
+            className="w-[16%]"
+            width={307}
+            height={125}
+          />
+          <Image
+            src={errorPage}
+            alt="Error page"
+            className="w-[16%]"
+            width={307}
+            height={43}
+          />
         </div>
 
         <div className="flex-initial flex-col items-center justify-center gap-10">

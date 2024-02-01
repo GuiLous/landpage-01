@@ -28,6 +28,7 @@ export * from "./matchDetails/MatchDetailsHeader/MatchDetailsHeaderStatus";
 export * from "./matchDetails/MatchDetailsRedirect";
 export * from './notFound/NotFoundMessage';
 export * from './notFound/NotFoundRedirectButton';
+export * from "./profile/profileHeaderRender/ProfileHeaderRender";
 export * from "./profile/profileHeatmapStatsCard/ProfileHeatmapStatsCard";
 export * from "./profile/profileLevelStatsCard/ProfileLevelStatsCard";
 export * from "./profile/profileMatchHistoryList/ProfileMatchHistoryList";

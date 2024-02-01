@@ -20,8 +20,8 @@ interface LineupProps {
 }
 
 export function Lineup({ maxPlayers = 5 }: LineupProps) {
-  const user = useUserStore.getState().user
-  const lobby = useLobbyStore.getState().lobby
+  const { user } = useUserStore()
+  const { lobby } = useLobbyStore()
 
   const auth = useAuth()
 

@@ -1,11 +1,11 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { AiFillBell } from 'react-icons/ai'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
-
-import { revalidatePath } from '@/utils'
 
 import { useAppStore, Variant } from '@/store/appStore'
 import { useInvitesStore } from '@/store/invitesStore'
@@ -35,7 +35,8 @@ export function Toast({
   avatar,
   invite_id,
 }: ToastProps) {
-  const invites = useInvitesStore.getState().invites
+  const { removeToast } = useAppStore()
+  const { invites } = useInvitesStore()
 
   const showErrorToast = useShowErrorToast()
 
@@ -94,9 +95,8 @@ export function Toast({
     } else {
       clearInterval(interval)
       if (id) {
-        useAppStore.getState().removeToast(id)
+        removeToast(id)
       }
-      revalidatePath({ path: '/' })
     }
 
     return () => {
@@ -104,7 +104,7 @@ export function Toast({
         clearInterval(interval)
       }
     }
-  }, [timer, id])
+  }, [timer, id, removeToast])
 
   useEffect(() => {
     if (title) return

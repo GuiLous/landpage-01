@@ -1,5 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 
+import { dynamicBlurDataUrl } from '@/utils'
+
 import { StoreItem, getStore, getUserInventory } from '@/functions'
 
 import {
@@ -65,11 +67,22 @@ export default async function page() {
     isProducts: false,
   })
 
+  const placeholdersCarousel = await Promise.all(
+    featured.map((item) => dynamicBlurDataUrl(item.featured_image))
+  )
+
+  const placeholdersProducts = await Promise.all(
+    products.map((item) => dynamicBlurDataUrl(item.cover_image))
+  )
+
   return (
     <main className="flex-col gap-20">
       <StoreOpenBuyModalCheck featured={featured} products={products} />
 
-      <Carousel featured={featured} />
+      <Carousel
+        featured={featured}
+        placeholdersCarousel={placeholdersCarousel}
+      />
 
       <section
         className={twMerge(
@@ -79,7 +92,10 @@ export default async function page() {
       >
         <StoreRotationTimer nextRotation={nextRotation} />
 
-        <StoreListItems products={products} />
+        <StoreListItems
+          products={products}
+          placeholdersProducts={placeholdersProducts}
+        />
       </section>
     </main>
   )

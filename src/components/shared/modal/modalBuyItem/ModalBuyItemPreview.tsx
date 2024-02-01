@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { Media } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
@@ -103,7 +105,7 @@ export function ModalBuyItemPreview({
           )}
         >
           <div
-            className="h-full w-full items-center justify-center"
+            className="relative h-full w-full items-center justify-center"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             ref={boxRef}
@@ -116,8 +118,11 @@ export function ModalBuyItemPreview({
                 previewSelected === 0 && 'py-12 3xl:py-10 object-scale-down'
               )}
               fill
-              sizes="100%"
+              sizes="100vw"
+              priority
               draggable={false}
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
               ref={imageRef}
             />
           </div>

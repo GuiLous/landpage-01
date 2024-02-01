@@ -17,8 +17,9 @@ interface CarouselProps {
   featured: StoreItem[]
   indexContent: number
   openModalBuyItem: boolean
-  setIndexContent: (state: number) => void
   children: ReactNode
+  placeholdersCarousel: string[]
+  setIndexContent: (state: number) => void
 }
 
 export function CarouselSlide({
@@ -27,6 +28,7 @@ export function CarouselSlide({
   setIndexContent,
   openModalBuyItem,
   children,
+  placeholdersCarousel,
 }: CarouselProps) {
   const bgGradient = 'linear-gradient(90deg, #111 0%, rgba(17, 17, 17, 0) 100%)'
 
@@ -38,7 +40,7 @@ export function CarouselSlide({
           emulateTouch
           autoPlay={!openModalBuyItem}
           infiniteLoop
-          stopOnHover
+          stopOnHover={false}
           interval={STORE_FEATURED_INTERVAL}
           transitionTime={STORE_FEATURED_TRANSITION_TIME}
           showArrows={false}
@@ -67,8 +69,10 @@ export function CarouselSlide({
                 alt={item.name}
                 className="object-cover"
                 fill
-                sizes="100%"
+                sizes="100vw"
                 priority
+                placeholder="blur"
+                blurDataURL={placeholdersCarousel[index]}
               />
 
               <div

@@ -8,6 +8,10 @@ const nextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'reload-api-prod.s3.amazonaws.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'static.wikia.nocookie.net',
       },
       {
@@ -29,6 +33,10 @@ const nextConfig = {
       ],
     })
     return config
+  },
+  onDemandEntries: {
+    maxInactiveAge: 25 * 1000,
+    pagesBufferLength: 12,
   },
 }
 

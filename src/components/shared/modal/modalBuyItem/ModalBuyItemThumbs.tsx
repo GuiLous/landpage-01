@@ -4,6 +4,8 @@ import Image from 'next/image'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
+import { staticBlurDataUrl } from '@/utils'
+
 import { Media } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
@@ -49,7 +51,11 @@ export function ModalBuyItemThumbs({
                 index === 0 && 'object-scale-down p-1'
               )}
               fill
-              sizes="100%"
+              priority
+              sizes="40vw"
+              quality={50}
+              placeholder="blur"
+              blurDataURL={staticBlurDataUrl()}
             />
           )}
 

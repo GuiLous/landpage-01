@@ -5,9 +5,9 @@ import { twMerge } from 'tailwind-merge'
 
 import { IMAGE_TYPES, VIDEO_TYPES } from '@/constants'
 
-import imgFileImg from '@/assets/images/img_file.png'
-import pdfFileImg from '@/assets/images/pdf_file.png'
-import vidFileImg from '@/assets/images/vid_file.png'
+const imgFileImg = '/assets/images/img_file.png'
+const pdfFileImg = '/assets/images/pdf_file.png'
+const vidFileImg = '/assets/images/vid_file.png'
 
 const images = {
   img: imgFileImg,

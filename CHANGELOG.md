@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Adiciona `placeholder com blur` nas imagens relevantes do site [#1035](https://github.com/3C-gg/reload-frontend/issues/1035).
+
+### Changed
+
+- Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/#1003).
+- Altera `inventário` para filtrar pelo item comprado após comprar `item` na loja [#1048](https://github.com/3C-gg/reload-frontend/issues/1048).
+- Altera `botão do modal de confirmação de compra de item` para quando for `card ou profile` levar para `/conta` [#1037](https://github.com/3C-gg/reload-frontend/issues/1037).
+
+### Fixed
+
+- Corrige `level` que não estava aparecendo em alguns navegadores `opera` [#1054](https://github.com/3C-gg/reload-frontend/issues/1054).
+- Adiciona props `width e height` em alguns componentes `Image` que estavam faltando.
+- Corrige fluxo de `checkout/success` para abrir modal de compra de item após comprar rc [#1044](https://github.com/3C-gg/reload-frontend/issues/1044).
+- Corrige cache do `inventário` e da `loja` após compra um item [#1036](https://github.com/3C-gg/reload-frontend/issues/1036).
+- Corrige timer do `preview` do `carousel da loja` ao abrir o modal de compra [#1007](https://github.com/3C-gg/reload-frontend/issues/1007).
+- Corrige bug do `Wizard` na página de perfil [#773](https://github.com/3C-gg/reload-frontend/issues/773).
+
+## [? - 30/1/2024]
+
+### Added
+
+- Cria Skeletons para a página de `perfil` [#1026](https://github.com/3C-gg/reload-frontend/issues/1026).
 - Adiciona arquivos do vscode no gitnignore.
 - Verifica se usuário está ativo na página de `/conta-inativa` para redirecioná-lo para outra página [#708](https://github.com/3C-gg/reload-frontend/issues/708).
 - Cria `Wizard` do menu da sidebar [#967](https://github.com/3C-gg/reload-frontend/issues/967).
@@ -61,7 +83,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/#1003)..
+- Altera o diretório dos assestes para a pasta `public`.
+- Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/#1022).
+- Remove animação de progresso do `carousel` quando há apenas 1 item.
+- Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/#1019).
+- Remove `tabs e sub tabs` que não vamos usar atualmente no inventário.
+- Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/#1012).
 - Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
@@ -84,6 +111,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Muda todo o sistema de `websocket` e `states` do `zustand` para resolver problema de lentidão na vercel [#1025](https://github.com/3C-gg/reload-frontend/issues/#1025).
+- Corrige `arma selecionada` que não estava sendo exibida no inventário [#1018](https://github.com/3C-gg/reload-frontend/issues/#1018).
+- Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/#1016).
+- Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
+- Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
 - Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
 - Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [#983](https://github.com/3C-gg/reload-frontend/issues/983).
 - Corrige fluxo de cadastrar no projeto next.
@@ -92,6 +124,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removido `revalidatePath` que não precisavam mais.
 - Deletado todos os arquivos referente ao projeto antigo sem `next` [#679](https://github.com/3C-gg/reload-frontend/issues/679).
 
 ## [303fec9 - 15/1/2024]

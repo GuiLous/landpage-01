@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
@@ -15,17 +17,17 @@ import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-import matchFoundAudioUrl from '@/assets/audios/match_found.ogg'
-import attentionFavicon from '@/assets/images/attentionFavicon.ico'
+const matchFoundAudioUrl = '/assets/audios/match_found.ogg'
+const attentionFavicon = '/assets/images/attentionFavicon.ico'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
 }
 
 export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
-  const user = useUserStore.getState().user
-  const lobby = useLobbyStore.getState().lobby
-  const preMatch = usePreMatchStore.getState().preMatch
+  const { user } = useUserStore()
+  const { lobby } = useLobbyStore()
+  const { preMatch } = usePreMatchStore()
 
   const [notificationClicked, setNotificationClicked] = useState(false)
 
@@ -113,7 +115,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
       if (link) {
         link.rel = 'icon'
-        link.href = isDefaultFavicon ? defaultFavicon : attentionFavicon.src
+        link.href = isDefaultFavicon ? defaultFavicon : attentionFavicon
         const head = document.head || document.getElementsByTagName('head')[0]
         head
           .querySelectorAll("link[rel*='icon']")

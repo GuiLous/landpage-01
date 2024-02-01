@@ -10,22 +10,25 @@ interface ImagePreviewProps {
   itemSelected: StoreItem | null
   isArsenal?: boolean
   hasSkins?: boolean
+  placeholders: string[]
+  itemSelectedIndex: number
 }
 
 export function ImagePreview({
   itemSelected,
   isArsenal = false,
   hasSkins = false,
+  placeholders,
+  itemSelectedIndex = 0,
 }: ImagePreviewProps) {
   const imageRef = useRef<HTMLImageElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
 
-  const isNotNullItem = itemSelected?.id !== 0
+  const [canParallax, setCanParallax] = useState(false)
 
+  const isNotNullItem = itemSelected?.id !== 0
   const hasBackground = !!itemSelected?.background_image
   const isWeapon = itemSelected?.item_type === 'weapon'
-
-  const [canParallax, setCanParallax] = useState(false)
 
   const handleMouseEnter = () => {
     setCanParallax(true)
@@ -90,7 +93,7 @@ export function ImagePreview({
           onMouseLeave={handleMouseLeave}
           ref={wrapperRef}
         >
-          {itemSelected?.foreground_image && (
+          {itemSelected?.foreground_image && itemSelectedIndex !== -1 && (
             <Image
               src={itemSelected?.foreground_image}
               alt="Imagem do item"
@@ -99,9 +102,11 @@ export function ImagePreview({
                 'z-10 h-full object-scale-down py-12',
                 isWeapon && 'py-1'
               )}
-              sizes="100%"
+              sizes="100vw"
               fill
               priority
+              placeholder="blur"
+              blurDataURL={placeholders[itemSelectedIndex]}
               ref={imageRef}
             />
           )}
