@@ -10,7 +10,16 @@ export type ItemType =
   | 'weapon'
   | 'decorative'
 
-export type ItemSubType = 'ata' | 'def' | 'card' | 'profile'
+export type ItemSubType =
+  | 'ata'
+  | 'def'
+  | 'card'
+  | 'profile'
+  | 'pistols'
+  | 'smgs'
+  | 'shotguns'
+  | 'machineguns'
+  | 'rifles'
 
 export type Media = {
   id: number

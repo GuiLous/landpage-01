@@ -32,6 +32,15 @@ export function StoreOpenBuyModalCheck({
     setOpenModalConfirmation(true)
   }
 
+  const isBoxOrCollection = useCallback(() => {
+    if (!itemPurchased) return false
+
+    const isBox = itemPurchased?.object === 'box'
+    const isCollection = itemPurchased?.object === 'collection'
+
+    return isBox || isCollection
+  }, [itemPurchased])
+
   const getModalBuyItems = (item: StoreItem) => {
     const isBox = item?.object === 'box'
     const isCollection = item?.object === 'collection'
@@ -89,6 +98,13 @@ export function StoreOpenBuyModalCheck({
     featured,
   ])
 
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
+
   return (
     <>
       {!!itemPurchased && (
@@ -99,6 +115,9 @@ export function StoreOpenBuyModalCheck({
             itemPurchased.subtype === 'card' ||
             itemPurchased.subtype === 'profile'
           }
+          isBoxOrCollection={isBoxOrCollection()}
+          itemId={itemPurchased.id}
+          itemType={itemPurchased.item_type}
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />

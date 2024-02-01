@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import Cookies from 'js-cookie'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -46,7 +47,16 @@ export function StoreListItems({
     setOpenModalBuyItem(true)
   }
 
-  const getModalBuyItems = (item: StoreItem) => {
+  const isBoxOrCollection = useCallback(() => {
+    if (!itemPurchased) return false
+
+    const isBox = itemPurchased?.object === 'box'
+    const isCollection = itemPurchased?.object === 'collection'
+
+    return isBox || isCollection
+  }, [itemPurchased])
+
+  const getModalBuyItems = useCallback((item: StoreItem) => {
     const isBox = item?.object === 'box'
     const isCollection = item?.object === 'collection'
 
@@ -60,7 +70,14 @@ export function StoreListItems({
     }
 
     setModalBuyItems(modalBuyItems)
-  }
+  }, [])
+
+  useEffect(() => {
+    if (!openModalConfirmation) {
+      Cookies.remove('purchasedItemId')
+      Cookies.remove('purchasedItemType')
+    }
+  }, [openModalConfirmation])
 
   return (
     <section
@@ -98,6 +115,9 @@ export function StoreListItems({
             itemPurchased.subtype === 'card' ||
             itemPurchased.subtype === 'profile'
           }
+          isBoxOrCollection={isBoxOrCollection()}
+          itemId={itemPurchased.id}
+          itemType={itemPurchased.item_type}
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />
