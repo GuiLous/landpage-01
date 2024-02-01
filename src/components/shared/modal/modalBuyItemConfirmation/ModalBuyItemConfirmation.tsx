@@ -4,6 +4,8 @@ import { twMerge } from 'tailwind-merge'
 
 import { revalidate } from '@/utils'
 
+import { ItemType } from '@/functions'
+
 import { Modal } from '@/components/shared'
 
 import { ModalBuyItemConfirmationButton } from './ModalBuyItemConfirmationButton'
@@ -17,6 +19,9 @@ interface ModalBuyItemConfirmationProps {
   backgroundImage?: string
   foregroundImage: string
   isCardOrProfile: boolean
+  itemId: number
+  itemType: ItemType
+  isBoxOrCollection: boolean
 }
 
 export function ModalBuyItemConfirmation({
@@ -25,6 +30,9 @@ export function ModalBuyItemConfirmation({
   foregroundImage,
   backgroundImage,
   isCardOrProfile,
+  itemId,
+  itemType,
+  isBoxOrCollection,
 }: ModalBuyItemConfirmationProps) {
   revalidate('inventory')
   revalidate('store')
@@ -42,7 +50,12 @@ export function ModalBuyItemConfirmation({
 
           <ModalReloadCoinConfirmationMessage />
 
-          <ModalBuyItemConfirmationButton isCardOrProfile={isCardOrProfile} />
+          <ModalBuyItemConfirmationButton
+            isCardOrProfile={isCardOrProfile}
+            itemId={itemId}
+            itemType={itemType}
+            isBoxOrCollection={isBoxOrCollection}
+          />
         </div>
       </Modal.Content>
     </Modal>

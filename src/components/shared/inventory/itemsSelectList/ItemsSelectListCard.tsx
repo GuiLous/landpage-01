@@ -65,7 +65,8 @@ export function ItemsSelectListCard({
               )}
               fill
               priority
-              sizes="100vw"
+              sizes="60vw"
+              quality={60}
               placeholder="blur"
               blurDataURL={staticBlurDataUrl()}
             />
@@ -80,7 +81,8 @@ export function ItemsSelectListCard({
               )}
               fill
               priority
-              sizes="100vw"
+              sizes="60vw"
+              quality={60}
               placeholder="blur"
               blurDataURL={staticBlurDataUrl()}
             />

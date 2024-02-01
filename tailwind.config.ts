@@ -100,6 +100,8 @@ const config: Config = {
         300: '300%',
       },
       backgroundImage: {
+        signup: "url('~/public/assets/images/bg_signup.png')",
+        card_signup: "url('~/public/assets/images/bg_card_signup.png')",
         home: "url('~/public/assets/images/home_bg.png')",
         home_mobile: "url('~/public/assets/images/home_mobile_bg.png')",
         sign_up_bottom_left:

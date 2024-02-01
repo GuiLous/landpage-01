@@ -45,7 +45,7 @@ export function WeaponsSelectListCard({
           className="object-scale-down px-3.5 py-4"
           fill
           priority
-          sizes="100vw"
+          sizes="35vw"
           quality={50}
           placeholder="blur"
           blurDataURL={staticBlurDataUrl()}

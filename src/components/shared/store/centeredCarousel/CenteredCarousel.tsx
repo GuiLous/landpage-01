@@ -23,7 +23,9 @@ interface CenteredCarouselProps {
   isInventory: boolean
   hasItemInUse: boolean
   itemInUseIndex: number
-  setActiveItemIndex: (state: number) => void
+  hasSearchFilters: boolean
+  activeItemIndex: number
+  setActiveItemIndex?: (state: number) => void
   setPreviewSelected?: (state: number) => void
 }
 
@@ -34,6 +36,8 @@ export function CenteredCarousel({
   setPreviewSelected,
   hasItemInUse,
   itemInUseIndex,
+  hasSearchFilters,
+  activeItemIndex,
 }: CenteredCarouselProps) {
   const isLessThan3xl = useMediaQuery({
     query: '(max-width: 1600px)',
@@ -53,6 +57,8 @@ export function CenteredCarousel({
   const disableLastSlide = isLastSlide && !isOnLoop
 
   const onChangeSlide = (index: number) => {
+    if (!setActiveItemIndex) return
+
     if (setPreviewSelected) {
       setPreviewSelected(0)
     }
@@ -61,6 +67,13 @@ export function CenteredCarousel({
   }
 
   useEffect(() => {
+    if (!setActiveItemIndex) return
+
+    if (hasSearchFilters) {
+      setActiveSlide(activeItemIndex)
+      return
+    }
+
     if (isInventory) {
       if (hasItemInUse) {
         setActiveSlide(itemInUseIndex)
@@ -71,7 +84,14 @@ export function CenteredCarousel({
       setActiveSlide(0)
       setActiveItemIndex(0)
     }
-  }, [hasItemInUse, itemInUseIndex, isInventory, setActiveItemIndex])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [
+    hasItemInUse,
+    itemInUseIndex,
+    isInventory,
+    setActiveItemIndex,
+    hasSearchFilters,
+  ])
 
   return (
     <div

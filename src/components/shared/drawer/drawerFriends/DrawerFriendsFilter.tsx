@@ -34,11 +34,7 @@ export function DrawerFriendsFilter({
             neutral
             value={filter}
           >
-            <Input.RightIcon
-              icon={IoSearch}
-              size={18}
-              className="text-gray-300"
-            />
+            <Input.Icon icon={IoSearch} size={18} className="text-gray-300" />
           </Input.Input>
         </Input.Root>
       </div>

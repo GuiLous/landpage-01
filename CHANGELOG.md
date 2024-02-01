@@ -9,14 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria `skeleton` na página de `inventário` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `skeleton` na página de `conta` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `loading skeleton` em `detalhes da partida` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `loading skeleton` na `loja` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
 - Adiciona `placeholder com blur` nas imagens relevantes do site [#1035](https://github.com/3C-gg/reload-frontend/issues/1035).
 
 ### Changed
 
+- Altera página de `alterar-email` para ficar conforme o novo design [#1005](https://github.com/3C-gg/reload-frontend/issues/#1005).
+- Altera página de `verificar` para ficar conforme o novo design [#1004](https://github.com/3C-gg/reload-frontend/issues/#1004).
+- Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/#1003).
+- Altera `inventário` para filtrar pelo item comprado após comprar `item` na loja [#1048](https://github.com/3C-gg/reload-frontend/issues/1048).
 - Altera `botão do modal de confirmação de compra de item` para quando for `card ou profile` levar para `/conta` [#1037](https://github.com/3C-gg/reload-frontend/issues/1037).
 
 ### Fixed
 
+- Corrige `level` que não estava aparecendo em alguns navegadores `opera` [#1054](https://github.com/3C-gg/reload-frontend/issues/1054).
 - Adiciona props `width e height` em alguns componentes `Image` que estavam faltando.
 - Corrige fluxo de `checkout/success` para abrir modal de compra de item após comprar rc [#1044](https://github.com/3C-gg/reload-frontend/issues/1044).
 - Corrige cache do `inventário` e da `loja` após compra um item [#1036](https://github.com/3C-gg/reload-frontend/issues/1036).

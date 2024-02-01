@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -10,7 +12,7 @@ interface InventoryActiveWeaponButtonProps {
   in_use?: boolean
   hasItemInUse?: boolean
   itemInUse?: StoreItem
-  handleUpdateItemInUse: ({
+  handleUpdateItemInUse?: ({
     item_id,
     updateSelected,
   }: {
@@ -29,6 +31,8 @@ export function InventoryActiveWeaponButton({
   const isNullItemSelected = weapon_id === 0 && hasItemInUse
 
   const updateItem = useCallback(() => {
+    if (!handleUpdateItemInUse) return
+
     if (weapon_id === 0 && itemInUse?.id)
       return handleUpdateItemInUse({
         item_id: itemInUse.id,
@@ -48,6 +52,7 @@ export function InventoryActiveWeaponButton({
       )}
       onClick={updateItem}
       restricted={in_use || isNullItemSelected}
+      disabled={!handleUpdateItemInUse}
     >
       <Button.Content className="text-sm font-semibold">
         {in_use || isNullItemSelected ? 'Remover skin' : 'Equipar skin'}

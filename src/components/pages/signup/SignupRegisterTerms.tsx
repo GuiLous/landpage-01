@@ -4,8 +4,8 @@ import { Link } from '@/components/shared'
 
 export function SignupRegisterTerms() {
   return (
-    <p className="text-sm text-gray-300">
-      Ao se cadastrar, você concorda com os{' '}
+    <p className="-mt-1 text-xs leading-5 text-gray-300">
+      Ao se cadastrar, você concorda com os <br />
       <Link target="_blank" href={USETERMS_LINK} inline>
         Termos de Uso
       </Link>{' '}

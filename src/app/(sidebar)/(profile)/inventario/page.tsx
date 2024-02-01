@@ -1,29 +1,25 @@
+import { Suspense } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { getAuthServer } from '@/utils'
 
-import { getUserProfile } from '@/functions'
-
+import { ProfileHeaderRender } from '@/components/pages'
 import { InventoryWrapper } from '@/components/pages/inventory/InventoryWrapper'
 
-import { ProfileHeader, ProfileHeaderTabsButtons } from '@/components/shared'
+import { SkeletonInventory, SkeletonProfileHeader } from '@/components/shared'
 
 export default async function Inventory() {
   const auth = getAuthServer()
 
-  const profile = await getUserProfile(auth?.id)
-
   return (
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>
-      <ProfileHeader isUserLogged profile={profile}>
-        <ProfileHeaderTabsButtons
-          isUserLogged
-          userId={auth?.id}
-          username={profile.username}
-        />
-      </ProfileHeader>
+      <Suspense fallback={<SkeletonProfileHeader />}>
+        <ProfileHeaderRender userId={auth.id} />
+      </Suspense>
 
-      <InventoryWrapper />
+      <Suspense fallback={<SkeletonInventory />}>
+        <InventoryWrapper />
+      </Suspense>
     </main>
   )
 }

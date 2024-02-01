@@ -1,5 +1,6 @@
 'use client'
 
+import Cookies from 'js-cookie'
 import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -7,7 +8,7 @@ import { TABS_NO_SWITCH } from '@/constants'
 
 import { WeaponNameType, WeaponType, revalidate } from '@/utils'
 
-import { Inventory, StoreItem } from '@/functions'
+import { Inventory, ItemType, StoreItem } from '@/functions'
 
 import { storeApi } from '@/modelsApi'
 
@@ -72,15 +73,38 @@ const sub_tabs = {
   fuzis: 'rifles',
 }
 
-interface InventoryWrapperContentProps {
-  inventory: Inventory
-  placeholders: string[]
+const tabs_search = {
+  weapon: 'arsenal',
+  persona: 'personagem',
+  spray: 'sprays',
+  wear: 'personagem',
+  consumable: '',
+  decorative: '',
 }
 
-const nullObject = {
+const sub_tabs_search = {
+  pistols: 'pistolas',
+  smgs: 'submetralhadoras',
+  shotguns: 'escopetas',
+  machineguns: 'metralhadoras',
+  rifles: 'rifles',
+  roupas: 'wear',
+  sprays: '',
+  ata: '',
+  def: '',
+  card: '',
+  profile: '',
+}
+
+export const nullObject = {
   id: 0,
   foreground_image: notSelected,
   in_use: false,
+}
+
+interface InventoryWrapperContentProps {
+  inventory: Inventory
+  placeholders: string[]
 }
 
 export function InventoryWrapperContent({
@@ -91,21 +115,43 @@ export function InventoryWrapperContent({
 
   const showErrorToast = useShowErrorToast()
 
-  const [activeTab, setActiveTab] = useState<TabTypes>('arsenal')
-  const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>('pistolas')
+  const searchItemId = Cookies.get('purchasedItemId')
+  const searchItemType = Cookies.get('purchasedItemType') as
+    | ItemType
+    | undefined
+
+  const searchItemObject = (!!searchItemId &&
+    inventory.items.find((item) => item.item_id === Number(searchItemId))) as
+    | StoreItem
+    | undefined
+
+  const [activeTab, setActiveTab] = useState<TabTypes>(
+    searchItemType ? (tabs_search[searchItemType] as TabTypes) : 'arsenal'
+  )
+
+  const [activeSubTab, setActiveSubTab] = useState<SubTabTypes>(
+    searchItemObject?.subtype
+      ? (sub_tabs_search[searchItemObject.subtype] as SubTabTypes)
+      : 'pistolas'
+  )
+
   const [itemsByType, setItemsByType] = useState<Partial<Item[]>>([])
-  const [itemSelected, setItemSelected] = useState<StoreItem | null>(null)
+  const [itemSelected, setItemSelected] = useState<StoreItem | null>(
+    searchItemObject || null
+  )
   const [newItemSelected, setNewItemSelected] = useState<StoreItem | null>(null)
   const [activeItemType, setActiveItemType] = useState<SubTabTypes>('pistolas')
   const [isChecked, setIsChecked] = useState(false)
-  const [weaponSelected, setWeaponSelected] =
-    useState<WeaponNameType>('Pistola')
+  const [weaponSelected, setWeaponSelected] = useState<WeaponNameType>(
+    searchItemObject?.weapon ? searchItemObject.weapon : 'Pistola'
+  )
   const [activeItemIndex, setActiveItemIndex] = useState(0)
   const [itemInUseIndex, setItemInUseIndex] = useState(0)
 
   const disableSwitch = TABS_NO_SWITCH.includes(activeItemType)
   const itemInUse = itemsByType.find((item) => item?.in_use)
   const hasItemInUse = !!itemInUse
+  const hasSearchFilters = !!searchItemId && !!searchItemType
 
   const itemSelectedIndex = itemsByType.findIndex(
     (item) => item?.item_id === itemSelected?.item_id
@@ -138,6 +184,14 @@ export function InventoryWrapperContent({
       )
 
       setItemsByType([nullObject, ...itemsFilteredByWeaponName])
+
+      if (hasSearchFilters) {
+        const weaponIndex = itemsFilteredByWeaponName.findIndex(
+          (item) => item?.item_id === Number(searchItemId)
+        )
+
+        if (weaponIndex !== -1) setActiveItemIndex(weaponIndex + 1)
+      }
       return
     }
 
@@ -146,7 +200,15 @@ export function InventoryWrapperContent({
     )
 
     setItemsByType([nullObject, ...itemsFiltered])
-  }, [activeTab, activeSubTab, inventory, weaponSelected, isArsenal])
+  }, [
+    activeTab,
+    isArsenal,
+    inventory.items,
+    hasSearchFilters,
+    activeSubTab,
+    weaponSelected,
+    searchItemId,
+  ])
 
   const handleUpdateItemInUse = useCallback(
     async ({
@@ -188,10 +250,22 @@ export function InventoryWrapperContent({
   )
 
   useEffect(() => {
+    if (hasSearchFilters) {
+      if (searchItemType === 'persona' || searchItemType === 'wear') {
+        if (searchItemType === 'wear') {
+          setActiveSubTab('roupas')
+        }
+      }
+    }
+  }, [hasSearchFilters, searchItemType])
+
+  useEffect(() => {
     filterItemsByType()
   }, [inventory, activeTab, activeSubTab, filterItemsByType, weaponSelected])
 
   useEffect(() => {
+    if (hasSearchFilters) return
+
     if (itemsByType.length > 0) {
       if (hasItemInUse) {
         setItemSelected(itemInUse as StoreItem)
@@ -203,36 +277,118 @@ export function InventoryWrapperContent({
     }
 
     setItemSelected(null)
-  }, [itemsByType, hasItemInUse, itemInUse])
+  }, [
+    itemsByType,
+    hasItemInUse,
+    itemInUse,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+  ])
 
   useEffect(() => {
+    if (hasSearchFilters) return
+
     if (newItemSelected) {
       setItemSelected(newItemSelected)
     }
-  }, [newItemSelected, itemSelected])
+  }, [
+    newItemSelected,
+    itemSelected,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+  ])
 
   useEffect(() => {
+    if (hasSearchFilters) {
+      if (activeTab === 'arsenal') {
+        if (
+          searchItemObject?.weapon &&
+          weaponSelected !== searchItemObject.weapon
+        ) {
+          Cookies.remove('purchasedItemId')
+          Cookies.remove('purchasedItemType')
+
+          return
+        }
+
+        if (
+          searchItemObject?.subtype &&
+          activeSubTab !==
+            (sub_tabs_search[searchItemObject.subtype] as SubTabTypes)
+        ) {
+          Cookies.remove('purchasedItemId')
+          Cookies.remove('purchasedItemType')
+        }
+      }
+
+      if (activeTab !== tabs_search[searchItemType]) {
+        Cookies.remove('purchasedItemId')
+        Cookies.remove('purchasedItemType')
+      }
+    }
+
     setNewItemSelected(null)
-  }, [activeTab, activeSubTab, weaponSelected, activeItemIndex])
+  }, [
+    activeTab,
+    activeSubTab,
+    weaponSelected,
+    activeItemIndex,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+    inventory.items,
+    searchItemObject?.weapon,
+    searchItemObject?.subtype,
+  ])
 
   useEffect(() => {
     if (isArsenal) {
       setItemSelected(itemsByType[activeItemIndex] as StoreItem)
     }
-  }, [activeItemIndex, itemsByType, isArsenal])
+  }, [
+    activeItemIndex,
+    itemsByType,
+    isArsenal,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+  ])
 
   useEffect(() => {
+    if (hasSearchFilters) return
+
     if (hasItemInUse) {
       const itemIndex = itemsByType.findIndex((item) => item?.in_use)
       setItemInUseIndex(itemIndex)
     }
-  }, [hasItemInUse, itemsByType, activeSubTab, activeTab, weaponSelected])
+  }, [
+    hasItemInUse,
+    itemsByType,
+    activeSubTab,
+    activeTab,
+    weaponSelected,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+  ])
 
   useEffect(() => {
+    if (hasSearchFilters) return
+
     if (isArsenal) {
       setActiveItemIndex(0)
     }
-  }, [activeTab, activeSubTab, weaponSelected, isArsenal])
+  }, [
+    activeTab,
+    activeSubTab,
+    weaponSelected,
+    isArsenal,
+    searchItemId,
+    searchItemType,
+    hasSearchFilters,
+  ])
 
   return (
     <>
@@ -338,6 +494,8 @@ export function InventoryWrapperContent({
                 hasItemInUse={hasItemInUse}
                 itemInUseIndex={itemInUseIndex}
                 isInventory
+                hasSearchFilters={hasSearchFilters}
+                activeItemIndex={activeItemIndex}
               />
             </section>
           )}

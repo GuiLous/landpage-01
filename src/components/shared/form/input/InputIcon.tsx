@@ -21,18 +21,18 @@ const icon = tv({
   },
 })
 
-type InputRightIconProps = ComponentProps<'button'> &
+type InputIconProps = ComponentProps<'button'> &
   VariantProps<typeof icon> &
   IconBaseProps & {
     icon: ElementType
   }
 
-export function InputRightIcon({
+export function InputIcon({
   icon: Icon,
   success,
   error,
   className,
   ...props
-}: InputRightIconProps) {
+}: InputIconProps) {
   return <Icon className={icon({ success, error, className })} {...props} />
 }
