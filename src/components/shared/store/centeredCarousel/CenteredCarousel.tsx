@@ -25,7 +25,7 @@ interface CenteredCarouselProps {
   itemInUseIndex: number
   hasSearchFilters: boolean
   activeItemIndex: number
-  setActiveItemIndex: (state: number) => void
+  setActiveItemIndex?: (state: number) => void
   setPreviewSelected?: (state: number) => void
 }
 
@@ -57,6 +57,8 @@ export function CenteredCarousel({
   const disableLastSlide = isLastSlide && !isOnLoop
 
   const onChangeSlide = (index: number) => {
+    if (!setActiveItemIndex) return
+
     if (setPreviewSelected) {
       setPreviewSelected(0)
     }
@@ -65,6 +67,8 @@ export function CenteredCarousel({
   }
 
   useEffect(() => {
+    if (!setActiveItemIndex) return
+
     if (hasSearchFilters) {
       setActiveSlide(activeItemIndex)
       return
