@@ -5,6 +5,7 @@ import { Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
 import {
+  DeletePurchasedItemsFromCookies,
   InitializeSlices,
   RenderModalReloadCoinsConfirmation,
   RenderToasts,
@@ -41,6 +42,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <RenderModalReloadCoinsConfirmation />
 
         <RequestNotificationPermission />
+
+        <DeletePurchasedItemsFromCookies />
 
         <SpeedInsights />
         <Analytics />

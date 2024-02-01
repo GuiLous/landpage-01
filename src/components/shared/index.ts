@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+export * from './app/DeletePurchasedItemsFromCookies'
 export * from './app/InitializeSlices'
 export * from './app/RenderModalReloadCoinsConfirmation'
 export * from './app/RequestNotificationPermission'
