@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 import { StoreItem } from '@/functions'
 
@@ -26,6 +26,15 @@ export function Carousel({ featured, placeholdersCarousel }: CarouselProps) {
     setItemPurchased(item)
     setOpenModalConfirmation(true)
   }
+
+  const isBoxOrCollection = useCallback(() => {
+    if (!itemPurchased) return false
+
+    const isBox = itemPurchased?.object === 'box'
+    const isCollection = itemPurchased?.object === 'collection'
+
+    return isBox || isCollection
+  }, [itemPurchased])
 
   return (
     <>
@@ -67,6 +76,9 @@ export function Carousel({ featured, placeholdersCarousel }: CarouselProps) {
             itemPurchased.subtype === 'card' ||
             itemPurchased.subtype === 'profile'
           }
+          isBoxOrCollection={isBoxOrCollection()}
+          itemId={itemPurchased.id}
+          itemType={itemPurchased.item_type}
           open={openModalConfirmation}
           setOpen={setOpenModalConfirmation}
         />
