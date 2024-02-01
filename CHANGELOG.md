@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria `skeleton` na página de `inventário` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `skeleton` na página de `conta` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `loading skeleton` em `detalhes da partida` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
+- Cria `loading skeleton` na `loja` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
 - Adiciona `placeholder com blur` nas imagens relevantes do site [#1035](https://github.com/3C-gg/reload-frontend/issues/1035).
 
 ### Changed
