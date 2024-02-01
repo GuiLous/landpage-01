@@ -108,14 +108,14 @@ export function PinInput({
   }, [onChangeValue, otp])
 
   return (
-    <>
+    <div className="gap-3">
       {otp.map((_, index) => (
         <input
           key={index}
           ref={index === activeOTPIndex ? inputRef : null}
           type="text"
           className={twMerge(
-            'h-14 w-14 rounded-md border-none bg-white text-center text-[1.625rem] font-medium text-gray-700 outline-none transition',
+            'h-[42px] w-[42px] rounded bg-gray-1000 border border-gray-700 text-center text-[1.625rem] font-medium text-gray-300 outline-none transition',
             'pin-button-none',
             'focus:ring-1 focus:ring-purple-400',
             className
@@ -125,6 +125,6 @@ export function PinInput({
           value={otp[index]}
         />
       ))}
-    </>
+    </div>
   )
 }

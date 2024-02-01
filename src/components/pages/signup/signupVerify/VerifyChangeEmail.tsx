@@ -1,6 +1,6 @@
 import { Link } from '@/components/shared'
 
-export function VerifyFooter() {
+export function VerifyChangeEmail() {
   return (
     <footer className="max-w-fit flex-initial">
       <p className="text-center text-sm text-gray-300">
