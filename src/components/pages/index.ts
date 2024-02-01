@@ -35,6 +35,8 @@ export * from "./profile/profileMatchHistoryList/ProfileMatchHistoryList";
 export * from './sidebarLayout/RenderInviteBar';
 export * from './sidebarLayout/Wrapper';
 export * from './signup/SignupChangeEmailGoBackLink';
+export * from './signup/SignupContent';
+export * from './signup/SignupHero';
 export * from './signup/SignupLayoutHeader';
 export * from './signup/SignupRegisterTerms';
 export * from './signup/signupVerify/VerifyFooter';

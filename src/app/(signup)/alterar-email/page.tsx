@@ -116,7 +116,7 @@ export default function ChangeEmail() {
           onChange={(e) => handleChange(e.target.value)}
           error={cannotSubmit || !!fieldsErrors.email}
         >
-          {cannotSubmit && <Input.RightIcon icon={RiErrorWarningFill} error />}
+          {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}
         </Input.Input>
 
         {fieldsErrors.email && (

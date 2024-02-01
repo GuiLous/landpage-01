@@ -12,7 +12,9 @@ const logo = '/assets/images/logo_type_white.svg'
 
 export function HomeWebSection() {
   return (
-    <section className={twMerge('gap-16 bg-home', 'xl:hidden')}>
+    <section
+      className={twMerge('gap-16 bg-home bg-no-repeat bg-cover', 'xl:hidden')}
+    >
       <div className="relative mt-[3%] min-w-[58%] items-center justify-end">
         <Image
           src={liquidBg}

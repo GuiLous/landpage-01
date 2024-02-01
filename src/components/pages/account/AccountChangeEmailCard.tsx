@@ -176,7 +176,7 @@ export function AccountChangeEmailCard() {
               )}
             >
               {showError && (
-                <Input.RightIcon
+                <Input.Icon
                   icon={RiErrorWarningFill}
                   error
                   size={22}
@@ -184,7 +184,7 @@ export function AccountChangeEmailCard() {
                 />
               )}
               {showSuccess && (
-                <Input.RightIcon
+                <Input.Icon
                   icon={RiCheckboxCircleFill}
                   success
                   size={22}

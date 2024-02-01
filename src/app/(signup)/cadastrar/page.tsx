@@ -4,6 +4,7 @@ import { SignJWT } from 'jose'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
+import { BsEnvelopeFill } from 'react-icons/bs'
 import { RiErrorWarningFill } from 'react-icons/ri'
 
 import { isEmailValid } from '@/utils'
@@ -14,7 +15,7 @@ import { useAppStore } from '@/store/appStore'
 
 import { SignupRegisterTerms } from '@/components/pages'
 
-import { Button, Input } from '@/components/shared'
+import { Button, CheckBox, Input } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
@@ -29,6 +30,7 @@ export default function SignUp() {
   const router = useRouter()
 
   const [email, setEmail] = useState('')
+  const [isChecked, setIsChecked] = useState(false)
   const [fetching, setFetching] = useState(false)
   const [fieldsErrors, setFieldsErrors] = useState<FieldsErrors>(
     {} as FieldsErrors
@@ -37,7 +39,8 @@ export default function SignUp() {
   const auth = useAuth()
   const cannotSubmit = email !== '' && !isEmailValid(email)
 
-  const isButtonDisabled = fetching || cannotSubmit || email === ''
+  const isButtonDisabled =
+    fetching || cannotSubmit || email === '' || !isChecked
 
   const handleChange = (value: string) => {
     setEmail(value)
@@ -51,7 +54,7 @@ export default function SignUp() {
 
   const handleSubmit = useCallback(
     async (e?: FormEvent) => {
-      if (!auth?.token) return
+      if (!auth?.token || isButtonDisabled) return
 
       e?.preventDefault()
 
@@ -108,54 +111,63 @@ export default function SignUp() {
 
       return router.push('/verificar')
     },
-    [auth, email, addToast, router, showErrorToast]
+    [auth, isButtonDisabled, email, addToast, router, showErrorToast]
   )
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full max-w-[430px] flex-col items-center gap-3 "
+      className="flex w-full flex-col items-center gap-10"
     >
-      <Input.Root>
-        <Input.Label htmlFor="email" label="E-mail" />
+      <div className="flex-col gap-3">
+        <Input.Root>
+          <Input.Label
+            className="text-sm font-normal leading-none"
+            htmlFor="email"
+            label="E-mail"
+          />
 
-        <Input.Input
-          value={email}
-          placeholder="Seu e-mail aqui"
-          type="email"
-          id="email"
-          autoComplete="true"
-          onKeyDown={(e) => handleKeyEnterDown(e)}
-          onChange={(e) => handleChange(e.target.value)}
-          error={cannotSubmit || !!fieldsErrors.email}
-        >
-          {cannotSubmit && <Input.RightIcon icon={RiErrorWarningFill} error />}
-        </Input.Input>
-
-        {fieldsErrors.email && (
-          <Input.ErrorText errorMsg={fieldsErrors.email} />
-        )}
-      </Input.Root>
-
-      <div className="flex-col gap-2">
-        <Button.Root
-          disabled={isButtonDisabled}
-          className="w-full"
-          type="submit"
-        >
-          {fetching && <Button.Spinner />}
-
-          <Button.Content
-            disabled={isButtonDisabled}
-            isLoading={fetching}
-            className="text-sm font-semibold"
+          <Input.Input
+            value={email}
+            placeholder="Seu e-mail aqui"
+            type="email"
+            id="email"
+            autoComplete="true"
+            signup
+            onKeyDown={(e) => handleKeyEnterDown(e)}
+            onChange={(e) => handleChange(e.target.value)}
+            error={cannotSubmit || !!fieldsErrors.email}
           >
-            Cadastrar
-          </Button.Content>
-        </Button.Root>
+            <Input.Icon
+              icon={BsEnvelopeFill}
+              className="left-3.5 text-gray-300"
+            />
 
-        <SignupRegisterTerms />
+            {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}
+          </Input.Input>
+
+          {fieldsErrors.email && (
+            <Input.ErrorText errorMsg={fieldsErrors.email} />
+          )}
+        </Input.Root>
+
+        <div className="items-start gap-2.5">
+          <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
+          <SignupRegisterTerms />
+        </div>
       </div>
+
+      <Button.Root disabled={isButtonDisabled} className="w-full" type="submit">
+        {fetching && <Button.Spinner />}
+
+        <Button.Content
+          disabled={isButtonDisabled}
+          isLoading={fetching}
+          className="text-sm font-semibold"
+        >
+          Cadastrar
+        </Button.Content>
+      </Button.Root>
     </form>
   )
 }
