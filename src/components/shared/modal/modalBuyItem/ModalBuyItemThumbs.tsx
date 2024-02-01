@@ -52,8 +52,8 @@ export function ModalBuyItemThumbs({
               )}
               fill
               priority
-              sizes="40vw"
-              quality={50}
+              sizes="15vw"
+              quality={30}
               placeholder="blur"
               blurDataURL={staticBlurDataUrl()}
             />
