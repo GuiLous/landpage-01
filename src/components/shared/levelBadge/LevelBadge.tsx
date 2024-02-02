@@ -72,12 +72,13 @@ export function LevelBadge({
   const { container, levelText } = badge({ variant })
 
   const calcLvlRange = useCallback(() => {
-    let range = '0-9'
-    if (level >= 10) range = '10-19'
-    if (level >= 20) range = '20-29'
-    if (level >= 30) range = '30-39'
-    if (level >= 40) range = '40-49'
-    if (level >= 50) range = '50'
+    let range = '0-5'
+
+    if (level >= 6) range = '6-10'
+    if (level >= 11) range = '11-15'
+    if (level >= 16) range = '16-20'
+    if (level >= 21) range = '21-25'
+    if (level >= 26) range = '26'
 
     return range
   }, [level])
