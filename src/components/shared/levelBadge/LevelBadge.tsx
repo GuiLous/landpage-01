@@ -78,7 +78,8 @@ export function LevelBadge({
     if (level >= 11) range = '11-15'
     if (level >= 16) range = '16-20'
     if (level >= 21) range = '21-25'
-    if (level >= 26) range = '26'
+    if (level >= 26) range = '26-29'
+    if (level >= 30) range = '30'
 
     return range
   }, [level])
