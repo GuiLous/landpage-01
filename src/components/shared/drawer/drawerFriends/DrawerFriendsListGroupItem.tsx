@@ -90,7 +90,11 @@ export function DrawerFriendsListGroupItem({
           )}
         >
           <span
-            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+            className={twMerge(
+              'text-sm font-medium text-white',
+              '3xl:text-xs',
+              'ultrawide:text-xl'
+            )}
           >
             {username}
           </span>
@@ -98,6 +102,7 @@ export function DrawerFriendsListGroupItem({
             className={twMerge(
               'text-xs',
               '3xl:text-[0.625rem]',
+              'ultrawide:text-xl',
               COLOR_STATUS[status]
             )}
           >

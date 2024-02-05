@@ -67,7 +67,8 @@ export function ProfileMatchStatsLinkStats({
             <span
               className={twMerge(
                 'items-start text-xs font-medium uppercase text-gray-300',
-                'leading-none'
+                'leading-none',
+                'ultrawide:text-xl ultrawide:leading-none'
               )}
             >
               {stat.title}
@@ -77,7 +78,8 @@ export function ProfileMatchStatsLinkStats({
           <span
             className={twMerge(
               'items-start font-semibold leading-none text-white',
-              '3xl:text-sm'
+              '3xl:text-sm',
+              'ultrawide:text-2xl ultrawide:leading-none'
             )}
           >
             {(status === 'running' || status === 'warmup') && '-'}
@@ -90,10 +92,10 @@ export function ProfileMatchStatsLinkStats({
       {isLink && (
         <CustomIcon
           icon={RiArrowRightSLine}
-          size={24}
           className={twMerge(
-            'text-gray-300 transition-colors',
-            'group-hover:text-white'
+            'text-gray-300 transition-colors text-2xl',
+            'group-hover:text-white',
+            'ultrawide:text-4xl'
           )}
         />
       )}

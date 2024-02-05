@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { BsEnvelopeFill } from 'react-icons/bs'
 import { RiErrorWarningFill } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 
 import { isEmailValid } from '@/utils'
 
@@ -125,7 +126,7 @@ export default function ChangeEmail() {
           >
             <Input.Icon
               icon={BsEnvelopeFill}
-              className="left-3.5 text-gray-300"
+              className={twMerge('left-3.5 text-gray-300', 'ultrawide:left-6')}
             />
 
             {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}

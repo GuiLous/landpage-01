@@ -50,6 +50,7 @@ export function Tooltip({
               className={twMerge(
                 'block text-sm font-semibold text-white',
                 'leading-none',
+                'ultrawide:text-xl',
                 className
               )}
             >

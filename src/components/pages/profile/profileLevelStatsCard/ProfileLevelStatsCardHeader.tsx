@@ -22,20 +22,30 @@ export function ProfileLevelStatsCardHeader({
   })
 
   return (
-    <div className={twMerge('gap-5 items-center', '3xl:gap-4')}>
+    <div
+      className={twMerge('gap-5 items-center', '3xl:gap-4', 'ultrawide:gap-7')}
+    >
       <LevelBadge level={level} />
 
       <div className="flex-col">
         <span
           className={twMerge(
             'text-lg font-bold uppercase text-white',
-            '3xl:text-base'
+            '3xl:text-base',
+            'ultrawide:text-2xl'
           )}
         >
           <span className="text-cyan-400">{matches_won}</span> Vitórias
         </span>
 
-        <div className="text-xs font-medium text-gray-300">{latestResults}</div>
+        <div
+          className={twMerge(
+            'text-xs font-medium text-gray-300',
+            'ultrawide:text-lg'
+          )}
+        >
+          {latestResults}
+        </div>
       </div>
     </div>
   )

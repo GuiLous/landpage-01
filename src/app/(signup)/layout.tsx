@@ -19,7 +19,12 @@ export default function SignUpLayout({ children }: { children: ReactNode }) {
       <SignupLayoutHeader />
 
       <div className="items-center justify-center">
-        <div className="min-h-[333px] max-w-[784px] flex-initial overflow-hidden rounded-lg">
+        <div
+          className={twMerge(
+            'min-h-[333px] max-w-[784px] flex-initial overflow-hidden rounded-lg',
+            'ultrawide:min-h-[666px] ultrawide:max-w-[1568px]'
+          )}
+        >
           <SignupHero />
 
           <SignupContent>{children}</SignupContent>

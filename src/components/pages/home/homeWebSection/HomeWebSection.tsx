@@ -13,7 +13,11 @@ const logo = '/assets/images/logo_type_white.svg'
 export function HomeWebSection() {
   return (
     <section
-      className={twMerge('gap-16 bg-home bg-no-repeat bg-cover', 'xl:hidden')}
+      className={twMerge(
+        'gap-16 bg-home bg-no-repeat bg-cover',
+        'xl:hidden',
+        'ultrawide:gap-28'
+      )}
     >
       <div className="relative mt-[3%] min-w-[58%] items-center justify-end">
         <Image
@@ -37,12 +41,29 @@ export function HomeWebSection() {
         />
       </div>
 
-      <div className="flex-col items-start justify-center gap-8">
-        <Image src={logo} alt="Reload" width={305} height={45} priority />
+      <div
+        className={twMerge(
+          'flex-col items-start justify-center gap-8',
+          'ultrawide:gap-20'
+        )}
+      >
+        <div
+          className={twMerge(
+            'relative h-[6%] w-[42%] flex-initial',
+            'ultrawide:h-[7%]'
+          )}
+        >
+          <Image src={logo} alt="Reload" fill priority />
+        </div>
 
         <HomeWebSectionMessage />
 
-        <div className="max-w-[452px] flex-initial items-center justify-center gap-4">
+        <div
+          className={twMerge(
+            'max-w-[452px] flex-initial items-center justify-center gap-4',
+            'ultrawide:gap-8 ultrawide:max-w-[904px]'
+          )}
+        >
           <HomeWebSectionSteamButton />
 
           <HomeVideoButton />

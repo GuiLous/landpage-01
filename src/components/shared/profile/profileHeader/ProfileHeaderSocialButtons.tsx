@@ -47,7 +47,13 @@ export function ProfileHeaderSocialButtons({
   }
 
   return (
-    <div className={twMerge('flex-initial items-center gap-3.5', '3xl:gap-3')}>
+    <div
+      className={twMerge(
+        'flex-initial items-center gap-3.5',
+        '3xl:gap-3',
+        'ultrawide:gap-5'
+      )}
+    >
       {socialLinkedKeys?.map((item) => (
         <Tooltip
           key={item}
@@ -56,7 +62,10 @@ export function ProfileHeaderSocialButtons({
           className="px-2 py-2 text-xs"
         >
           <Link href={socialsLinksPrefix[item] + socials[item]} target="_blank">
-            <CustomIcon icon={socialIcons[item]} />
+            <CustomIcon
+              icon={socialIcons[item]}
+              className="ultrawide:text-4xl"
+            />
           </Link>
         </Tooltip>
       ))}
@@ -70,7 +79,10 @@ export function ProfileHeaderSocialButtons({
           <div className="max-w-fit flex-initial" id="step-header02">
             <Button.Root
               ghost
-              className="min-h-[16px] min-w-[16px]"
+              className={twMerge(
+                'min-h-[16px] min-w-[16px]',
+                'ultrawide:min-h-9 ultrawide:max-h-9 ultrawide:min-w-9 ultrawide:rounded-lg'
+              )}
               onClick={() => {
                 setOpenModalAddSocial(true)
               }}

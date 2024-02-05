@@ -60,14 +60,20 @@ export function DrawerContent({
         {...props}
       >
         <div className="flex-initial items-center justify-start">
-          <Dialog.Title className="px-5 font-semibold capitalize leading-none text-white">
+          <Dialog.Title
+            className={twMerge(
+              'px-5 font-semibold capitalize leading-none text-white',
+              'ultrawide:text-xl'
+            )}
+          >
             {title}
           </Dialog.Title>
         </div>
         <Dialog.Close
           className={twMerge(
             'absolute right-3 top-3 text-base text-white transition-colors',
-            'hover:text-gray-300'
+            'hover:text-gray-300',
+            'ultrawide:text-xl'
           )}
         >
           <RxCross1 className="" />

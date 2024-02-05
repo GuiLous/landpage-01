@@ -152,6 +152,7 @@ export function DrawerFriendsListGroup({
           <h2
             className={twMerge(
               'text-xs text-gray-200',
+              'ultrawide:text-xl',
               (isOpen || isSearchResult) && 'text-white'
             )}
           >

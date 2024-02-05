@@ -10,11 +10,18 @@ export function ProfileHeaderLevel({
   level_points,
 }: ProfileHeaderLevelProps) {
   return (
-    <div className={twMerge('flex-col gap-2 max-w-[318px]', '3xl:gap-1.5')}>
+    <div
+      className={twMerge(
+        'flex-col gap-2 max-w-[318px]',
+        '3xl:gap-1.5',
+        'ultrawide:max-w-[600px] ultrawide:gap-4'
+      )}
+    >
       <div
         className={twMerge(
           'min-h-[9px] overflow-hidden border-0 rounded-lg bg-gray-50',
-          '3xl:min-h-2'
+          '3xl:min-h-2',
+          'ultrawide:min-h-4'
         )}
       >
         <div
@@ -25,13 +32,21 @@ export function ProfileHeaderLevel({
 
       <div className="justify-between">
         <span
-          className={twMerge('font-medium text-white text-sm', '3xl:text-xs')}
+          className={twMerge(
+            'font-medium text-white text-sm',
+            '3xl:text-xs',
+            'ultrawide:text-2xl'
+          )}
         >
           Level {level}
         </span>
 
         <span
-          className={twMerge('font-medium text-white text-sm', '3xl:text-xs')}
+          className={twMerge(
+            'font-medium text-white text-sm',
+            '3xl:text-xs',
+            'ultrawide:text-2xl'
+          )}
         >
           {level_points}/100
         </span>

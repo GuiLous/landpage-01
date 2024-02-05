@@ -2,7 +2,7 @@ import { ComponentProps, ReactNode } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const content = tv({
-  base: 'uppercase text-white',
+  base: ['uppercase text-white', 'ultrawide:text-3xl'],
   variants: {
     disabled: {
       true: 'text-sm font-semibold text-gray-400',

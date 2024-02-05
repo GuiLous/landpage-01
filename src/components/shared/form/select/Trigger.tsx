@@ -20,6 +20,7 @@ export function Trigger({ children, error = false, ...props }: TriggerProps) {
         'focus:border-purple-400 focus:border',
         'hover:border hover:border-purple-400',
         error && 'border-red-500 hover:border-red-500',
+        'ultrawide:py-4 ultrawide:px-6 ultrawide:data-[placeholder]:text-xl',
         props.className
       )}
     >

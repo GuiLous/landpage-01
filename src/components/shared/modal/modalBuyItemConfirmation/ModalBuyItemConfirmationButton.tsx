@@ -36,11 +36,14 @@ export function ModalBuyItemConfirmationButton({
         asChild
         className={twMerge(
           'min-h-[38px] max-h-[38px] w-[184px]',
-          '3xl:min-h-[34px] 3xl:max-h-[34px]'
+          '3xl:min-h-[34px] 3xl:max-h-[34px]',
+          'ultrawide:min-h-16 ultrawide:max-h-16 ultrawide:w-[284px]'
         )}
       >
         <Link href={isCardOrProfile ? accountPath : inventoryPath}>
-          <Button.Content className="text-sm font-semibold">
+          <Button.Content
+            className={twMerge('text-sm font-semibold', 'ultrawide:text-xl')}
+          >
             {isCardOrProfile && 'Ver na conta'}
             {!isCardOrProfile && 'Ir para o inventário'}
           </Button.Content>

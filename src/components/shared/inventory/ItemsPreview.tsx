@@ -25,13 +25,14 @@ export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
   }
 
   return (
-    <ul className="flex items-center gap-2">
+    <ul className={twMerge('flex items-center gap-2', 'ultrawide:gap-4')}>
       {imagesPreview.map((preview, index) => (
         <li
           key={index}
           className={twMerge(
             'relative h-11 w-11 cursor-pointer overflow-hidden rounded bg-gray-700/40',
-            'group'
+            'group',
+            'ultrawide:h-14 ultrawide:w-14'
           )}
           onClick={() => handleOpenModal(preview)}
         >

@@ -29,8 +29,20 @@ export function ModalSupportConfirmation() {
           '3xl:w-[420px]'
         )}
       >
-        <span className="font-bold uppercase text-white">Obrigado!</span>
-        <p className="text-center text-sm text-white">
+        <span
+          className={twMerge(
+            'font-bold uppercase text-white',
+            'ultrawide:text-2xl'
+          )}
+        >
+          Obrigado!
+        </span>
+        <p
+          className={twMerge(
+            'text-center text-sm text-white',
+            'ultrawide:text-xl'
+          )}
+        >
           {' '}
           Sua mensagem foi recebida. Fique de olho no seu e-mail e assim que
           possível, retornaremos.

@@ -44,7 +44,8 @@ export function InventoryItemDescription({
                 <span
                   className={twMerge(
                     'leading-none text-red-500 font-medium',
-                    item.subtype === 'def' && 'text-blue-500'
+                    item.subtype === 'def' && 'text-blue-500',
+                    'ultrawide:text-2xl'
                   )}
                 >
                   {item.subtype === 'def' ? 'DEF' : 'ATA'}
@@ -54,17 +55,33 @@ export function InventoryItemDescription({
               </>
             )}
 
-            <span className="font-semibold uppercase text-white">
+            <span
+              className={twMerge(
+                'font-semibold uppercase text-white',
+                'ultrawide:text-2xl'
+              )}
+            >
               {item.name}
             </span>
           </div>
 
           <div className="flex-col gap-3.5">
-            <p className={twMerge('text-sm text-white leading-tight')}>
+            <p
+              className={twMerge(
+                'text-sm text-white leading-tight',
+                'ultrawide:text-xl ultrawide:leading-tight'
+              )}
+            >
               {item.description}
             </p>
 
-            <span className={twMerge('text-sm text-white', 'leading-none')}>
+            <span
+              className={twMerge(
+                'text-sm text-white',
+                'leading-none',
+                'ultrawide:text-xl ultrawide:leading-none'
+              )}
+            >
               No jogo desde -{' '}
               <span className="font-semibold leading-none">
                 {formatDateToPtFormat(item.release_date)}

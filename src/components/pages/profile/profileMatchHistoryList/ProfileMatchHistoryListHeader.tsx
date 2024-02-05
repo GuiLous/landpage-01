@@ -15,7 +15,8 @@ export function ProfileMatchHistoryListHeader({
         <h2
           className={twMerge(
             'text-[1.375rem] font-bold uppercase leading-none text-white',
-            '3xl:text-xl'
+            '3xl:text-xl',
+            'ultrawide:text-3xl ultrawide:leading-none'
           )}
         >
           Últimas Partidas
@@ -25,7 +26,8 @@ export function ProfileMatchHistoryListHeader({
           className={twMerge(
             'text-gray-300 text-sm',
             'leading-none',
-            '3xl:text-xs'
+            '3xl:text-xs',
+            'ultrawide:text-xl ultrawide:leading-none'
           )}
         >
           {matches.length === 1

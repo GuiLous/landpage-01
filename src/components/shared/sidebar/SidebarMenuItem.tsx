@@ -82,7 +82,8 @@ export function SidebarMenuItem({
         'min-h-[40px] flex-initial rounded transition-colors',
         'hover:bg-purple-400/30',
         'group',
-        isSoon && 'opacity-70 hover:bg-transparent'
+        isSoon && 'opacity-70 hover:bg-transparent',
+        'ultrawide:min-h-16'
       )}
       id={getId()}
     >
@@ -102,15 +103,19 @@ export function SidebarMenuItem({
           <div className="items-center gap-3.5">
             <SidebarMenuItemIcon
               icon={icons[item]}
-              size={20}
               className={twMerge(
-                'text-gray-300 transition-colors',
+                'text-gray-300 text-xl transition-colors',
                 'group-hover:text-white',
-                isSoon && 'group-hover:text-gray-30'
+                isSoon && 'group-hover:text-gray-30',
+                'ultrawide:text-4xl'
               )}
             />
 
-            <span className="text-sm capitalize">{item}</span>
+            <span
+              className={twMerge('text-sm capitalize', 'ultrawide:text-2xl')}
+            >
+              {item}
+            </span>
           </div>
 
           <div className="justify-end">
@@ -119,14 +124,17 @@ export function SidebarMenuItem({
                 variant="highlight"
                 className={
                   receivedInvites > 0
-                    ? 'gap-2 text-xs opacity-100'
+                    ? 'gap-2 text-xs opacity-100 ultrawide:text-xl'
                     : 'opacity-0'
                 }
               >
                 <SidebarMenuItemIcon
                   icon={BsEnvelopeFill}
-                  size={14}
-                  className={twMerge('text-white', 'animate-shake')}
+                  className={twMerge(
+                    'text-white text-sm',
+                    'animate-shake',
+                    'ultrawide:text-2xl'
+                  )}
                 />
 
                 <span className="capitalize">{receivedInvites}</span>
@@ -138,7 +146,7 @@ export function SidebarMenuItem({
                 variant="highlight"
                 className={
                   unreadNotifications > 0
-                    ? 'min-h-[22px] min-w-[22px] text-xs opacity-100'
+                    ? 'min-h-[22px] min-w-[22px] text-xs opacity-100 ultrawide:text-xl'
                     : 'opacity-0'
                 }
               >

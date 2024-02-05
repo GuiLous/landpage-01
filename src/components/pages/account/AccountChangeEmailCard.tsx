@@ -207,7 +207,10 @@ export function AccountChangeEmailCard() {
 
         <Button.Root
           disabled={isButtonDisabled}
-          className="w-full min-w-[86px] max-w-fit px-3"
+          className={twMerge(
+            'w-full max-w-fit px-3',
+            'ultrawide:min-h-20 ultrawide:max-h-20'
+          )}
           type="submit"
         >
           {fetching && <Button.Spinner />}

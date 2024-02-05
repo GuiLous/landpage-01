@@ -2,6 +2,7 @@
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { revalidatePath } from '@/utils'
 
@@ -49,10 +50,15 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
   }, [showErrorToast, router, auth?.token])
 
   return (
-    <div className="flex-initial items-center justify-center gap-3.5">
+    <div
+      className={twMerge(
+        'flex-initial items-center justify-center gap-3.5',
+        'ultrawide:gap-7'
+      )}
+    >
       <Button.Root
         disabled={fetching}
-        className="w-full max-w-[102px]"
+        className={twMerge('w-full max-w-[102px]', 'ultrawide:max-w-[186px]')}
         neutral
         onClick={handleCloseModal}
       >
@@ -67,7 +73,10 @@ export function ModalLogoutButtons({ setOpen }: ModalLogoutButtonsProps) {
 
       <Button.Root
         disabled={fetching}
-        className="min-h-[42px] w-full max-w-[102px]"
+        className={twMerge(
+          'min-h-[42px] w-full max-w-[102px]',
+          'ultrawide:max-w-[186px]'
+        )}
         type="submit"
         restricted={!fetching}
         onClick={handleLogout}

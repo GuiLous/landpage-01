@@ -129,7 +129,8 @@ export function MatchStatsTableRow({
             <span
               className={twMerge(
                 'font-medium max-w-[150px] truncate',
-                '3xl:text-sm'
+                '3xl:text-sm',
+                'ultrawide:text-2xl'
               )}
             >
               {player.username}
@@ -159,7 +160,8 @@ export function MatchStatsTableRow({
           key={stat}
           className={twMerge(
             'border-0 px-3.5 py-3 text-center font-medium',
-            '3xl:px-3'
+            '3xl:px-3',
+            'ultrawide:text-2xl'
           )}
         >
           {stat === 'head_accuracy'

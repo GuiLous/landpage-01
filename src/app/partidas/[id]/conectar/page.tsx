@@ -82,7 +82,8 @@ export default function Connect() {
       <section
         className={twMerge(
           'flex-col bottom-[90px] right-40 absolute items-end justify-center',
-          '3xl:bottom-14 3xl:right-28'
+          '3xl:bottom-14 3xl:right-28',
+          'ultrawide:bottom-40'
         )}
       >
         <div

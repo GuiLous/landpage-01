@@ -37,7 +37,8 @@ export function ModalSupport({
         className={twMerge(
           'min-w-[580px] max-w-[580px]',
           '3xl:min-w-[470px] 3xl:max-w-[470px]',
-          formSent && 'min-w-fit max-w-fit 3xl:min-w-fit 3xl:max-w-fit'
+          formSent && 'min-w-fit max-w-fit 3xl:min-w-fit 3xl:max-w-fit',
+          'ultrawide:min-w-[780px] ultrawide:max-w-[780px]'
         )}
       >
         {formSent ? (

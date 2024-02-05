@@ -79,7 +79,8 @@ export function SidebarMenuItemList() {
     <div
       className={twMerge(
         'flex-initial flex-col gap-7 px-7',
-        '3xl:gap-6 3xl:px-6'
+        '3xl:gap-6 3xl:px-6',
+        'ultrawide:px-9 ultrawide:gap-12'
       )}
     >
       <div className="flex-initial flex-col">

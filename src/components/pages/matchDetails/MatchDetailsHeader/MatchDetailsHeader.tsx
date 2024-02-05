@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { IoIosArrowRoundBack } from 'react-icons/io'
+import { twMerge } from 'tailwind-merge'
 
 import { GoBackLink } from '@/components/shared'
 
@@ -18,8 +19,13 @@ export function MatchDetailsHeader({
         href={`/perfil/${user_id}`}
         className="relative left-0 top-0"
       >
-        <GoBackLink.Icon icon={IoIosArrowRoundBack} size={31} />
-        <GoBackLink.Content className="text-sm">Voltar</GoBackLink.Content>
+        <GoBackLink.Icon
+          icon={IoIosArrowRoundBack}
+          className={twMerge('text-3xl', 'ultrawide:text-5xl')}
+        />
+        <GoBackLink.Content className={twMerge('text-sm', 'ultrawide:text-xl')}>
+          Voltar
+        </GoBackLink.Content>
       </GoBackLink.Root>
 
       {children}

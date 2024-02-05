@@ -16,6 +16,7 @@ export function Value({ children, className, ...props }: ValueProps) {
       <span
         className={twMerge(
           'flex items-center text-xs text-gray-300',
+          'ultrawide:text-xl',
           className
         )}
       >

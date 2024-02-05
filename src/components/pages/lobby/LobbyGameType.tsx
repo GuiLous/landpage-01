@@ -20,13 +20,24 @@ export function LobbyGameType({
           className={twMerge(
             'items-center cursor-pointer justify-center gap-3 border-b border-b-gray-400 pb-[1.125rem]',
             '3xl:pb-4',
+            'ultrawide:border-b-2',
             activeTab === gameType && 'border-b-purple-400',
             !GAME_TYPES_AVAILABLE.includes(gameType) && 'cursor-default'
           )}
         >
           {activeTab === gameType && (
-            <div className="absolute -bottom-[12px] max-w-fit justify-center">
-              <RxTriangleUp className="text-purple-400" size={32} />
+            <div
+              className={twMerge(
+                'absolute -bottom-[12px] max-w-fit justify-center',
+                'ultrawide:-bottom-[17px]'
+              )}
+            >
+              <RxTriangleUp
+                className={twMerge(
+                  'text-[32px] text-purple-400',
+                  'ultrawide:text-5xl'
+                )}
+              />
             </div>
           )}
 
@@ -34,6 +45,7 @@ export function LobbyGameType({
             className={twMerge(
               'text-lg uppercase text-white',
               '3xl:text-base',
+              'ultrawide:text-2xl',
               activeTab === gameType && 'text-purple-400 font-medium',
               !GAME_TYPES_AVAILABLE.includes(gameType) && 'text-gray-400'
             )}

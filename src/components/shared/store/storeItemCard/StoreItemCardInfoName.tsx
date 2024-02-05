@@ -17,7 +17,12 @@ export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
 
   return (
     <div className="flex-col gap-3.5">
-      <span className="font-semibold uppercase leading-none text-white">
+      <span
+        className={twMerge(
+          'font-semibold uppercase leading-none text-white',
+          'ultrawide:text-3xl'
+        )}
+      >
         {item.name}
       </span>
 
@@ -27,7 +32,8 @@ export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
             <span
               className={twMerge(
                 'font-medium leading-none text-blue-500',
-                item.subtype !== 'def' && 'text-red-500'
+                item.subtype !== 'def' && 'text-red-500',
+                'ultrawide:text-3xl'
               )}
             >
               {item.subtype === 'def' ? 'DEF' : 'ATA'}
@@ -37,7 +43,13 @@ export function StoreItemCardInfoName({ item }: StoreItemCardInfoNameProps) {
           </>
         )}
 
-        <span className={twMerge('text-sm text-gray-300', 'leading-none')}>
+        <span
+          className={twMerge(
+            'text-sm text-gray-300',
+            'leading-none',
+            'ultrawide:text-2xl ultrawide:leading-none'
+          )}
+        >
           {isBox && 'Caixa'}
           {isCollection && 'Coleção'}
           {!isBox && !isCollection && getItemName(item?.item_type)}

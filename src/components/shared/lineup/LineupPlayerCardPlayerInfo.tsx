@@ -15,19 +15,27 @@ export function LineupPlayerCardPlayerInfo({
   return (
     <div className="flex-col">
       <div className="items-center gap-1.5">
-        {isLobbyOwner && <FaCrown className="mb-0.5 text-sm text-white" />}
+        {isLobbyOwner && (
+          <FaCrown
+            className={twMerge(
+              'mb-0.5 text-sm text-white',
+              'ultrawide:text-2xl'
+            )}
+          />
+        )}
 
         <h3
           className={twMerge(
             'max-w-[150px] truncate italic text-sm font-bold',
-            '3xl:max-w-[100px]'
+            '3xl:max-w-[100px]',
+            'ultrawide:text-2xl'
           )}
         >
           {username}
         </h3>
       </div>
 
-      <p className="text-xs">
+      <p className={twMerge('text-xs', 'ultrawide:text-xl')}>
         {matches_played}{' '}
         {matches_played !== 1 ? ' Partidas jogadas' : ' Partida jogada'}
       </p>

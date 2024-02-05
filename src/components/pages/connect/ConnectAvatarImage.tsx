@@ -9,8 +9,9 @@ export function ConnectAvatarImage() {
       <div className="h-[90%] items-end">
         <Image
           src={gta_avatar}
+          className="max-w-fit"
           alt="Personagem do GTA V"
-          className="max-h-full max-w-fit"
+          fill
           priority
         />
       </div>

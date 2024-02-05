@@ -100,7 +100,11 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
 
   return (
     <div
-      className={twMerge('h-full items-center gap-[1.125rem]', '3xl:gap-3.5')}
+      className={twMerge(
+        'h-full items-center gap-[1.125rem]',
+        '3xl:gap-3.5',
+        'ultrawide:gap-6'
+      )}
     >
       {lineup.map((player, index) => (
         <div

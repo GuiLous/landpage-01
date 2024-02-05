@@ -54,7 +54,10 @@ export function ModalAddSocialInput({
           value={socialName}
           error={hasUrlOnText(socialName)}
           placeholder={socialHashes[item].placeholder}
-          className="max-h-[28px] min-h-[28px] min-w-[170px] text-xs"
+          className={twMerge(
+            'max-h-[28px] min-h-[28px] min-w-[170px] text-xs',
+            'ultrawide:max-h-10 ultrawide:min-h-10 ultrawide:min-w-48 ultrawide:text-lg'
+          )}
           onChange={handleChange}
           onKeyDown={(e) => handleKeyEnterDown(e, item)}
         />
@@ -65,7 +68,8 @@ export function ModalAddSocialInput({
           'text-gray-300 text-xs font-medium transition-colors',
           'leading-none',
           !disableSend && 'hover:text-white',
-          !disableSend && 'cursor-pointer'
+          !disableSend && 'cursor-pointer',
+          'ultrawide:text-lg'
         )}
         onClick={() => handleUpdateSocials(item)}
       >
@@ -74,10 +78,10 @@ export function ModalAddSocialInput({
 
       <CustomIcon
         icon={RiCloseFill}
-        size={26}
         className={twMerge(
-          'cursor-pointer transition-colors -ml-1',
-          'hover:text-gray-300'
+          'cursor-pointer transition-colors -ml-1 text-3xl',
+          'hover:text-gray-300',
+          'ultrawide:text-6xl'
         )}
         onClick={() => setActiveSocialItem('')}
       />

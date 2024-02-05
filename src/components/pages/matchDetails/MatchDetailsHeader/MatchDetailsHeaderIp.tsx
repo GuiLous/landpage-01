@@ -52,13 +52,15 @@ export function MatchDetailsHeaderIp({
           <CustomIcon
             icon={HiOutlineClipboardDocument}
             color={copied ? 'purple.400' : 'white'}
+            className="ultrawide:text-3xl"
           />
 
           <Tooltip content="Copiado!" open={copied} side="bottom">
             <span
               className={twMerge(
                 'text-white text-lg',
-                copied && 'text-purple-400'
+                copied && 'text-purple-400',
+                'ultrawide:text-4xl'
               )}
             >
               IP: {server_ip}

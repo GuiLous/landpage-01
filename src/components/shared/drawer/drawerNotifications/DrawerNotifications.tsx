@@ -61,7 +61,8 @@ export function DrawerNotifications({
         title="Notificações"
         className={twMerge(
           'z-20 max-w-[350px] select-none',
-          '3xl:max-w-[300px]'
+          '3xl:max-w-[300px]',
+          'ultrawide:max-w-[550px]'
         )}
         style={{
           height: `calc(100vh - ${showInviteBar ? 48 : 0}px)`,
@@ -88,7 +89,9 @@ export function DrawerNotifications({
               ))}
             </ScrollArea>
           ) : (
-            <p className="text-xs text-white">Você não tem notificações</p>
+            <p className={twMerge('text-xs text-white', 'ultrawide:text-xl')}>
+              Você não tem notificações
+            </p>
           )}
         </div>
 
