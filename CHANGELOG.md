@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/#1058).
 - Altera `modal de preview de skins` no inventário para abrir e fechar com click [#1064](https://github.com/3C-gg/reload-frontend/issues/#1064).
 - Altera página de `alterar-email` para ficar conforme o novo design [#1005](https://github.com/3C-gg/reload-frontend/issues/#1005).
 - Altera página de `verificar` para ficar conforme o novo design [#1004](https://github.com/3C-gg/reload-frontend/issues/#1004).
