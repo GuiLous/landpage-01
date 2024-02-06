@@ -12,6 +12,11 @@ import {
   StoreItemCard,
 } from '@/components/shared'
 
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
+
 interface StoreListItemsProps {
   products: StoreItem[]
   placeholdersProducts: string[]
@@ -21,6 +26,9 @@ export function StoreListItems({
   products,
   placeholdersProducts,
 }: StoreListItemsProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const [openModalBuyItem, setOpenModalBuyItem] = useState(false)
   const [openModalConfirmation, setOpenModalConfirmation] = useState(false)
   const [modalBuyItems, setModalBuyItems] = useState<StoreItem[]>([])
@@ -40,6 +48,8 @@ export function StoreListItems({
     purchased?: boolean
   }) => {
     if (purchased) return
+
+    playSoundClick()
 
     setItemObject(item)
     getModalBuyItems(item)
@@ -94,6 +104,7 @@ export function StoreListItems({
           onClick={() =>
             handleOpenBuyModal({ item, purchased: item.is_purchased })
           }
+          onMouseEnter={!item.is_purchased ? playSoundHover : undefined}
         >
           <StoreItemCard.Wrapper purchased={item.is_purchased}>
             <StoreItemCard.Header
