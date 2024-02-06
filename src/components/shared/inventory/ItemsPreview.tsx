@@ -33,7 +33,7 @@ export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
             'relative h-11 w-11 cursor-pointer overflow-hidden rounded bg-gray-700/40',
             'group'
           )}
-          onMouseOver={() => handleOpenModal(preview)}
+          onClick={() => handleOpenModal(preview)}
         >
           {preview.media_type === 'image' && (
             <Image
