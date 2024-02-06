@@ -12,7 +12,10 @@ import { accountsApi } from '@/modelsApi'
 
 import { Avatar, CustomIcon, Tooltip } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface ProfileHeaderAvatarProps {
   avatarUrl: string
@@ -24,6 +27,10 @@ export function ProfileHeaderAvatar({
   isUserLogged,
 }: ProfileHeaderAvatarProps) {
   const { updateUser } = useUserStore()
+
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const showErrorToast = useShowErrorToast()
 
   const auth = useAuth()
@@ -32,6 +39,8 @@ export function ProfileHeaderAvatar({
 
   const handleUpdateProfile = useCallback(async () => {
     if (!auth?.token) return
+
+    playSoundClick()
 
     setIsFetching(true)
 
@@ -48,7 +57,7 @@ export function ProfileHeaderAvatar({
 
     revalidate('profile')
     setIsFetching(false)
-  }, [auth?.token, showErrorToast, updateUser])
+  }, [auth?.token, showErrorToast, updateUser, playSoundClick])
 
   return (
     <div className="relative max-w-fit flex-initial">
@@ -73,6 +82,7 @@ export function ProfileHeaderAvatar({
               isFetching && 'bg-gray-100 cursor-not-allowed'
             )}
             onClick={handleUpdateProfile}
+            onMouseEnter={playSoundHover}
             id="step-header01"
           >
             <CustomIcon
