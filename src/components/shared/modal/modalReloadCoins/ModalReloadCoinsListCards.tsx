@@ -7,7 +7,7 @@ import { storeApi } from '@/modelsApi'
 
 import { SkeletonModalReloadCoinsListCards } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { ModalReloadCoinsCard } from './ModalReloadCoinsCard'
 import { ModalReloadCoinsCardAmount } from './ModalReloadCoinsCardAmount'
@@ -15,6 +15,9 @@ import { ModalReloadCoinsCardBorder } from './ModalReloadCoinsCardBorder'
 import { ModalReloadCoinsCardGradient } from './ModalReloadCoinsCardGradient'
 import { ModalReloadCoinsCardImage } from './ModalReloadCoinsCardImage'
 import { ModalReloadCoinsCardPrice } from './ModalReloadCoinsCardPrice'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface ModalReloadCoinsListCardsProps {
   open: boolean
@@ -30,6 +33,9 @@ type ReloadCoin = {
 export function ModalReloadCoinsListCards({
   open,
 }: ModalReloadCoinsListCardsProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
@@ -77,6 +83,8 @@ export function ModalReloadCoinsListCards({
               key={coin.id}
               id={coin.id}
               setIsFetching={setIsFetching}
+              playSoundClick={playSoundClick}
+              onMouseEnter={playSoundHover}
             >
               <ModalReloadCoinsCardImage />
               <ModalReloadCoinsCardAmount amount={coin.amount} />
