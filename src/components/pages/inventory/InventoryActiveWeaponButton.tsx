@@ -54,6 +54,7 @@ export function InventoryActiveWeaponButton({
       onClick={updateItem}
       restricted={in_use || isNullItemSelected}
       disabled={!handleUpdateItemInUse}
+      disableClickSound
     >
       <Button.Content className="text-sm font-semibold">
         {in_use || isNullItemSelected ? 'Remover skin' : 'Equipar skin'}
