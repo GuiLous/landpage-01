@@ -228,8 +228,6 @@ export function InventoryWrapperContent({
 
       const itemById = itemsByType.find((item) => item?.id === item_id)
 
-      // eslint-disable-next-line no-debugger
-      debugger
       if (itemById) {
         if (!itemById.in_use) playSoundActivate()
         if (itemById.in_use) playSoundClick()
