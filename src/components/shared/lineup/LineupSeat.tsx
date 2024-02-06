@@ -5,10 +5,20 @@ import { twMerge } from 'tailwind-merge'
 
 import { useAppStore } from '@/store/appStore'
 
-export function LineupSeat() {
+interface LineupSeatProps {
+  playSoundClick: () => void
+  playSoundHover: () => void
+}
+
+export function LineupSeat({
+  playSoundClick,
+  playSoundHover,
+}: LineupSeatProps) {
   const { toggleFriendList } = useAppStore()
 
   const handleSeatClick = () => {
+    playSoundClick()
+
     toggleFriendList(true)
   }
 
@@ -19,6 +29,7 @@ export function LineupSeat() {
         'group'
       )}
       onClick={handleSeatClick}
+      onMouseEnter={playSoundHover}
     >
       <div className="relative z-10 h-full w-full items-center justify-center rounded-lg bg-gray-750">
         <RiCloseFill

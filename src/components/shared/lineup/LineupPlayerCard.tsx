@@ -15,10 +15,17 @@ import { LineupPlayerCardProfile } from './LineupPlayerCardProfile'
 
 interface LineupPlayerCardProps {
   player: Friend
+  playSoundClick: () => void
+  playSoundHover: () => void
   onClose?: false | (() => Promise<void>)
 }
 
-export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
+export function LineupPlayerCard({
+  player,
+  onClose,
+  playSoundClick,
+  playSoundHover,
+}: LineupPlayerCardProps) {
   const isUltrawide = useMediaQuery({
     query: '(min-width: 2560px)',
   })
@@ -31,6 +38,8 @@ export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
 
   const handleToggleMenu = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
+    playSoundClick()
+
     setOpenMenu((prev) => !prev)
   }
 
@@ -44,6 +53,7 @@ export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
       style={{ backgroundImage: player.card ? `url(${player.card})` : '' }}
       onClick={handleToggleMenu}
       onContextMenu={handleToggleMenu}
+      onMouseEnter={playSoundHover}
     >
       <div className="absolute right-1.5 top-2 max-w-fit flex-initial">
         <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'smd'} />

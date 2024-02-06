@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MdBlock } from 'react-icons/md'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
@@ -15,9 +15,11 @@ import { lobbyApi } from '@/modelsApi'
 
 import { Button, ModalMatchFound, Timer } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 const matchFoundAudioUrl = '/assets/audios/match_found.ogg'
+const queueUrl = '/assets/audios/queue.mp3'
+
 const attentionFavicon = '/assets/images/attentionFavicon.ico'
 
 interface LineupPlayBtnProps {
@@ -28,6 +30,9 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
   const { preMatch } = usePreMatchStore()
+
+  const playSoundClick = useAudio(queueUrl)
+  const matchFoundAudio = useAudio(matchFoundAudioUrl)
 
   const [notificationClicked, setNotificationClicked] = useState(false)
 
@@ -44,14 +49,6 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   const isRestricted = !!(lobby?.restriction_countdown && !user?.match_id)
 
   const isInMatch = !!user?.match_id
-
-  const audio = useMemo(() => {
-    return new Audio(matchFoundAudioUrl)
-  }, [])
-
-  const playSound = useCallback(() => {
-    audio.play()
-  }, [audio])
 
   const handleQueue = useCallback(
     async (action: 'start' | 'cancel') => {
@@ -87,18 +84,19 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
   }, [handleQueue])
 
   const handleStartQueue = useCallback(() => {
+    playSoundClick()
     handleQueue('start')
-  }, [handleQueue])
+  }, [handleQueue, playSoundClick])
 
   const onMatchFound = useCallback(() => {
     if (preMatch && !openMatchFoundModal) {
-      playSound()
+      matchFoundAudio()
       setOpenMatchFoundModal(true)
     } else if ((preMatch && preMatch.ready && openMatchFoundModal) || !preMatch)
       setOpenMatchFoundModal(false)
     setNotificationClicked(false)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [preMatch, playSound])
+  }, [preMatch, matchFoundAudio])
 
   useEffect(() => {
     onMatchFound()
@@ -208,6 +206,7 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
           isInQueue && 'hover:bg-red-500'
         )}
         onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
+        disableClickSound={!lobby?.queue_time}
       >
         {!isRestricted && !isInQueue && (
           <Button.Content
