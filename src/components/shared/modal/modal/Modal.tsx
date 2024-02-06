@@ -5,6 +5,11 @@ import { ReactNode } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
+
 interface ModalProps {
   open?: boolean
   onOpenChange?: (open: boolean) => void
@@ -39,6 +44,9 @@ function ModalContent({
   overlayClassName,
   ...props
 }: ModalContent) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   return (
     <Dialog.Portal>
       <Dialog.Overlay
@@ -83,6 +91,8 @@ function ModalContent({
 
         {showCloseButton && (
           <Dialog.Close
+            onMouseEnter={playSoundHover}
+            onClick={playSoundClick}
             className={twMerge(
               'absolute right-3 top-3 text-base text-white z-50 transition-colors',
               'hover:text-gray-300'
