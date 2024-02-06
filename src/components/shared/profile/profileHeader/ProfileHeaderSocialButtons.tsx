@@ -1,6 +1,5 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
 import { SiDiscord, SiSteam, SiTwitch, SiYoutube } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
@@ -10,6 +9,7 @@ import { SocialHandles } from '@/functions'
 import {
   Button,
   CustomIcon,
+  Link,
   ModalAddSocial,
   ModalAddSocialList,
   Tooltip,
