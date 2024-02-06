@@ -2,7 +2,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { TABS } from '@/constants'
 
+import { useAudio } from '@/hooks'
+
 import { SubTabTypes, TabTypes } from '../InventoryWrapperContent'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface InventoryItemsTabBarTabsProps {
   activeTab: string
@@ -17,7 +22,12 @@ export function InventoryItemsTabBarTabs({
   setActiveTab,
   activeTab,
 }: InventoryItemsTabBarTabsProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const handleChangeTab = (tab: TabTypes) => {
+    playSoundClick()
+
     setActiveTab(tab)
 
     if (tab === 'personagem') {
@@ -38,13 +48,14 @@ export function InventoryItemsTabBarTabs({
   return (
     <div className={twMerge('max-w-fit gap-6', '3xl:gap-5')}>
       {TABS.map((tab) => (
-        <div
+        <button
           key={tab}
           className={twMerge(
             'max-w-fit cursor-pointer flex-col gap-1',
             '3xl:gap-0.5'
           )}
           onClick={() => handleChangeTab(tab as TabTypes)}
+          onMouseEnter={activeTab !== tab ? playSoundHover : undefined}
         >
           <span
             className={twMerge(
@@ -58,7 +69,7 @@ export function InventoryItemsTabBarTabs({
           </span>
 
           {activeTab === tab && <div className="min-h-[3px] bg-purple-400" />}
-        </div>
+        </button>
       ))}
     </div>
   )

@@ -3,7 +3,12 @@ import { twMerge } from 'tailwind-merge'
 
 import { WeaponNameType, capitalizeFirstLetter } from '@/utils'
 
+import { useAudio } from '@/hooks'
+
 import { SubTabTypes } from './InventoryWrapperContent'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface InventorySubItemTabProps {
   activeSubTab: SubTabTypes
@@ -20,6 +25,9 @@ export function InventorySubItemTab({
   subTabs,
   setWeaponSelected,
 }: InventorySubItemTabProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const [selectedTabsRef, setSelectedTabsRef] = useState<any>([])
 
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -27,6 +35,8 @@ export function InventorySubItemTab({
   const gapToShowAllTabs = 30
 
   const handleSubItemTabChange = (tab: SubTabTypes) => {
+    playSoundClick()
+
     setActiveItemType(tab)
     setActiveSubTab(tab)
 
@@ -79,10 +89,11 @@ export function InventorySubItemTab({
       ref={wrapperRef}
     >
       {subTabs.map((tab, index) => (
-        <div
+        <button
           key={tab}
           className={twMerge(
-            'max-w-fit max-h-[38px] min-h-[38px] px-2.5 flex-initial bg-gray-700/30 rounded cursor-pointer items-center justify-center'
+            'max-w-fit max-h-[38px] min-h-[38px] px-2.5 flex-initial bg-gray-700/30 rounded cursor-pointer items-center justify-center',
+            'group'
           )}
           style={{
             background:
@@ -91,19 +102,20 @@ export function InventorySubItemTab({
                 : '',
           }}
           onClick={() => handleSubItemTabChange(tab as SubTabTypes)}
+          onMouseEnter={activeSubTab !== tab ? playSoundHover : undefined}
           ref={(el) => (selectedTabsRef[index] = el)}
         >
           <span
             className={twMerge(
               'text-sm transition-colors text-gray-300',
               'leading-none',
-              'hover:text-white',
+              'group-hover:text-white',
               activeSubTab === tab && 'text-white'
             )}
           >
             {capitalizeFirstLetter(tab)}
           </span>
-        </div>
+        </button>
       ))}
     </div>
   )
