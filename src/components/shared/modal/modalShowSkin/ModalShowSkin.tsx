@@ -20,7 +20,6 @@ export function ModalShowSkin({ open, setOpen, preview }: ModalShowSkinProps) {
       <Modal.Content
         className="max-w-fit overflow-hidden rounded p-0 shadow-2xl outline outline-1 outline-purple-400"
         overlayClassName="bg-black/70"
-        onMouseLeave={() => setOpen(false)}
       >
         <div className="relative max-h-[612px] min-h-[612px] min-w-[1088px] max-w-[1088px]">
           {preview.media_type === 'image' && (
