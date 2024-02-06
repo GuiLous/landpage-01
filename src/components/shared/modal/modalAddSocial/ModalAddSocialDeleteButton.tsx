@@ -21,17 +21,21 @@ export function ModalAddSocialDeleteButton({
   return (
     <div className="max-w-fit flex-initial items-center gap-3">
       <span
-        className={twMerge('text-sm font-medium text-white', 'leading-none')}
+        className={twMerge(
+          'text-sm font-medium text-white',
+          'leading-none',
+          'ultrawide:text-2xl ultrawide:leading-none'
+        )}
       >
         {socials[item]}
       </span>
 
       <CustomIcon
         icon={RiCloseFill}
-        size={18}
         className={twMerge(
-          'cursor-pointer transition-colors',
-          'hover:text-gray-300'
+          'cursor-pointer transition-colors text-xl',
+          'hover:text-gray-300',
+          'ultrawide:text-6xl'
         )}
         onClick={() => handleDeleteSocials(item)}
       />

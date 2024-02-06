@@ -84,7 +84,8 @@ export function MatchStatsTableHeader({
         <th
           className={twMerge(
             'w-[300px] max-w-[300px] tracking-wide leading-none overflow-hidden border-0 p-3.5 text-left font-medium uppercase text-white',
-            '3xl:w-[280px] 3xl:max-w-[280px]'
+            '3xl:w-[280px] 3xl:max-w-[280px]',
+            'ultrawide:text-2xl'
           )}
         >
           Time {teamName}
@@ -92,7 +93,12 @@ export function MatchStatsTableHeader({
 
         {statsTable.map((stat) => (
           <Tooltip key={stat.stat} content={stat.label}>
-            <th className="border-0  p-3.5 text-center font-medium leading-none text-white">
+            <th
+              className={twMerge(
+                'border-0 p-3.5 text-center font-medium leading-none text-white',
+                'ultrawide:text-2xl'
+              )}
+            >
               {stat.stat}
             </th>
           </Tooltip>

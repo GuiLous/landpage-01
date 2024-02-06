@@ -46,30 +46,47 @@ export function ProfileMatchStatsLinkMapInfo({
   elapsedTime = elapsedTime < 0 ? 0 : elapsedTime
 
   return (
-    <div className="gap-4">
-      <Image
-        src={
-          map_image ||
-          'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png'
-        }
-        alt={`imagem do mapa ${map_name}`}
-        width={54}
-        height={54}
+    <div className={twMerge('gap-4', 'ultrawide:gap-7')}>
+      <div
         className={twMerge(
-          'rounded h-auto object-cover ',
-          isLink && 'img_link:hidden'
+          'relative flex-initial h-[54px] w-[54px]',
+          'ultrawide:h-20 ultrawide:w-20'
         )}
-        quality={35}
-        sizes="15vw"
-      />
+      >
+        <Image
+          src={
+            map_image ||
+            'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png'
+          }
+          alt={`imagem do mapa ${map_name}`}
+          fill
+          className={twMerge(
+            'rounded h-auto object-cover ',
+            isLink && 'img_link:hidden'
+          )}
+          quality={35}
+          sizes="15vw"
+        />
+      </div>
 
       <div className="flex-col justify-between gap-2">
-        <span className="font-medium leading-none text-white">
+        <span
+          className={twMerge(
+            'font-medium leading-none text-white',
+            'ultrawide:text-2xl ultrawide:leading-none'
+          )}
+        >
           {map_name || 'Nome do mapa'}
         </span>
 
         <div className="max-w-fit flex-initial flex-col gap-1">
-          <span className={twMerge('text-xs text-gray-300', 'leading-none')}>
+          <span
+            className={twMerge(
+              'text-xs text-gray-300',
+              'ultrawide:text-xl ultrawide:leading-none',
+              'leading-none'
+            )}
+          >
             {type_map[game_type]}
           </span>
 
@@ -77,6 +94,7 @@ export function ProfileMatchStatsLinkMapInfo({
             <span
               className={twMerge(
                 'whitespace-nowrap text-xs text-gray-300',
+                'ultrawide:text-xl ultrawide:leading-none',
                 'leading-none'
               )}
             >

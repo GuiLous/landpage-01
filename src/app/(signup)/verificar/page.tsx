@@ -1,9 +1,16 @@
+import { twMerge } from 'tailwind-merge'
+
 import { VerifyForm, VerifyHeader } from '@/components/pages'
 
 export default function Verify() {
   return (
-    <main className="flex-initial flex-col items-center justify-center gap-10">
-      <div className="flex-col gap-6">
+    <main
+      className={twMerge(
+        'flex-initial flex-col items-center justify-center gap-10',
+        'ultrawide:gap-28'
+      )}
+    >
+      <div className={twMerge('flex-col gap-6', 'ultrawide:gap-12')}>
         <VerifyHeader />
 
         <VerifyForm />

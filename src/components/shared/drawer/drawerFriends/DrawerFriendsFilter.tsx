@@ -1,4 +1,5 @@
 import { IoSearch } from 'react-icons/io5'
+import { twMerge } from 'tailwind-merge'
 
 import { Friend } from '@/store/friendStore'
 
@@ -30,11 +31,17 @@ export function DrawerFriendsFilter({
           <Input.Input
             placeholder="Procurar amigos..."
             onChange={(e) => updateFilter(e.target.value)}
-            className="max-h-[40px] min-h-[40px]"
+            className={twMerge(
+              'max-h-[40px] min-h-[40px]',
+              'ultrawide:min-h-14 ultrawide:max-h-14 ultrawide:text-2xl'
+            )}
             neutral
             value={filter}
           >
-            <Input.Icon icon={IoSearch} size={18} className="text-gray-300" />
+            <Input.Icon
+              icon={IoSearch}
+              className={twMerge('text-gray-300 text-lg', 'ultrawide:text-2xl')}
+            />
           </Input.Input>
         </Input.Root>
       </div>

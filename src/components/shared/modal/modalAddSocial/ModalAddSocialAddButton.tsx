@@ -1,5 +1,7 @@
 'use client'
 
+import { twMerge } from 'tailwind-merge'
+
 import { Button, SocialHashType } from '@/components/shared'
 
 interface ModalAddSocialAddButtonProps {
@@ -17,7 +19,10 @@ export function ModalAddSocialAddButton({
 }: ModalAddSocialAddButtonProps) {
   return (
     <Button.Root
-      className="h-7 min-w-[82.5px] rounded-[67px] px-4 py-2.5"
+      className={twMerge(
+        'h-7 min-w-[82.5px] rounded-[67px] px-4 py-2.5',
+        'ultrawide:min-h-12 ultrawide:max-h-12'
+      )}
       disabled={isFetching}
       onClick={() => handleChangeActiveSocialName(item)}
     >

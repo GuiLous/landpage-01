@@ -5,6 +5,7 @@ import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { PiArrowRight } from 'react-icons/pi'
+import { twMerge } from 'tailwind-merge'
 
 import { TOTAL_SIGNUP_PINS } from '@/constants'
 
@@ -87,11 +88,17 @@ export function VerifyForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-initial flex-col items-center justify-center gap-10"
+      className={twMerge(
+        'flex w-full flex-initial flex-col items-center justify-center gap-10',
+        'ultrawide:gap-14'
+      )}
     >
-      <div className="flex-col gap-6">
+      <div className={twMerge('flex-col gap-6', 'ultrawide:gap-12')}>
         <PinInput
           inputs={TOTAL_SIGNUP_PINS}
+          className={twMerge(
+            'ultrawide:w-20 ultrawide:h-20 ultrawide:text-5xl'
+          )}
           onChangeValue={handleChange}
           onPressKeyDown={handleKeyEnterDown}
         />
@@ -101,7 +108,7 @@ export function VerifyForm() {
 
       <Button.Root
         disabled={isButtonDisabled}
-        className="max-h-[42px] min-h-[42px] w-full"
+        className={twMerge('w-full')}
         type="submit"
       >
         {fetching ? (
@@ -110,7 +117,7 @@ export function VerifyForm() {
           <Button.Icon
             icon={PiArrowRight}
             disabled={isButtonDisabled}
-            className="text-3xl"
+            className={twMerge('text-3xl')}
           />
         )}
       </Button.Root>

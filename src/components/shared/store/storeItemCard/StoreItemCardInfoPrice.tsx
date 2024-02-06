@@ -14,15 +14,28 @@ interface StoreItemCardInfoPriceProps {
 export function StoreItemCardInfoPrice({ item }: StoreItemCardInfoPriceProps) {
   return (
     <div className="items-center gap-2">
-      <Image
-        src={reloadCredits}
-        alt="Reload Credits"
-        width={24}
-        height={24}
-        priority
-      />
+      <div
+        className={twMerge(
+          'relative max-fit flex-initial w-6 h-6',
+          'ultrawide:w-12 ultrawide:h-12'
+        )}
+      >
+        <Image
+          src={reloadCredits}
+          alt="Reload Credits"
+          fill
+          quality={40}
+          priority
+        />
+      </div>
 
-      <span className={twMerge('text-xl font-bold text-white', 'leading-none')}>
+      <span
+        className={twMerge(
+          'text-xl font-bold text-white',
+          'leading-none',
+          'ultrawide:text-4xl'
+        )}
+      >
         {item.price} RC
       </span>
 
@@ -30,7 +43,8 @@ export function StoreItemCardInfoPrice({ item }: StoreItemCardInfoPriceProps) {
         <span
           className={twMerge(
             'text-sm text-red-500 line-through',
-            'leading-none'
+            'leading-none',
+            'ultrawide:text-xl ultrawide:leading-none'
           )}
         >
           {calcOriginalValueByPercentage(item.price, item.discount)} RC

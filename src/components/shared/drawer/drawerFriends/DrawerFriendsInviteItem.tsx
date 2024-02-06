@@ -94,14 +94,19 @@ export function DrawerFriendsInviteItem({
 
         <div className="flex-col gap-1">
           <span
-            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+            className={twMerge(
+              'text-sm font-medium text-white',
+              '3xl:text-xs',
+              'ultrawide:text-xl'
+            )}
           >
             {username}
           </span>
           <span
             className={twMerge(
               'min-w-[95px] text-xs font-medium text-purple-300',
-              '3xl:text-[0.625rem]'
+              '3xl:text-[0.625rem]',
+              'ultrawide:text-xl ultrawide:min-w-[152px]'
             )}
           >
             {isFriendInvite
@@ -120,10 +125,10 @@ export function DrawerFriendsInviteItem({
         >
           <BsCheckCircleFill
             className={twMerge(
-              'text-green-600 transition-al',
-              'hover:scale-110 hover:text-green-500'
+              'text-green-600 transition-all text-xl',
+              'hover:scale-110 hover:text-green-500',
+              'ultrawide:text-3xl'
             )}
-            size={20}
           />
         </div>
 
@@ -135,10 +140,10 @@ export function DrawerFriendsInviteItem({
         >
           <RiCloseFill
             className={twMerge(
-              'text-gray-300 transition-all',
-              'hover:text-white'
+              'text-gray-300 transition-all text-[1.375rem]',
+              'hover:text-white',
+              'ultrawide:text-3xl'
             )}
-            size={22}
           />
         </div>
       </div>

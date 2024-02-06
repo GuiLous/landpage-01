@@ -9,6 +9,7 @@ const button = tv({
     'transition-colors duration-[0.2s] ease-in-out',
     'hover:bg-purple-300',
     'active:bg-purple-700',
+    'ultrawide:max-h-20 ultrawide:min-h-20',
   ],
   variants: {
     disabled: {

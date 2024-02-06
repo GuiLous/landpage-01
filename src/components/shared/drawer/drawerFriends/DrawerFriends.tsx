@@ -135,7 +135,8 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
         title="Amigos"
         className={twMerge(
           'left-[300px] z-20 max-w-[320px] select-none',
-          '3xl:left-[250px] 3xl:max-w-[300px]'
+          '3xl:left-[250px] 3xl:max-w-[300px]',
+          'ultrawide:left-[450px] ultrawide:max-w-[500px]'
         )}
         position="left"
         style={{
@@ -159,7 +160,8 @@ export function DrawerFriends({ open, setOpen }: DrawerFriends) {
             <ScrollArea
               className={twMerge(
                 'max-h-friends min-h-friends',
-                'first:border-t first:border-t-gray-700'
+                'first:border-t first:border-t-gray-700',
+                'ultrawide:min-h-friendsUltrawide ultrawide:max-h-friendsUltrawide'
               )}
             >
               {!isFilterEmpty && (

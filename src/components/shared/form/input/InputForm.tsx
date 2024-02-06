@@ -46,7 +46,8 @@ const inputWrapper = tv({
       true: {
         container:
           'border border-gray-700 bg-gray-1000 transition-colors hover:bg-gray-700',
-        input: 'pl-12 pr-2 text-sm font-light text-gray-300',
+        input:
+          'pl-12 pr-2 text-sm font-light text-gray-300 ultrawide:min-h-20 ultrawide:pl-24 ultrawide:pr-4 ultrawide:text-3xl',
       },
     },
   },

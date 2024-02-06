@@ -23,10 +23,10 @@ export function LineupSeat() {
       <div className="relative z-10 h-full w-full items-center justify-center rounded-lg bg-gray-750">
         <RiCloseFill
           className={twMerge(
-            'text-gray-300 text-opacity-50 transition-all',
-            'group-hover:rotate-45 group-hover:text-purple-400'
+            'text-gray-300 text-4xl text-opacity-50 transition-all',
+            'group-hover:rotate-45 group-hover:text-purple-400',
+            'ultrawide:text-7xl'
           )}
-          size={34}
         />
       </div>
       <div

@@ -69,6 +69,7 @@ export function ProfileHeaderAvatar({
             className={twMerge(
               'absolute bottom-0 right-1 h-8 w-auto min-w-8 max-w-fit flex-initial cursor-pointer items-center justify-center rounded-full bg-white transition-colors',
               'hover:bg-gray-100',
+              'ultrawide:min-h-14 ultrawide:min-w-14',
               isFetching && 'bg-gray-100 cursor-not-allowed'
             )}
             onClick={handleUpdateProfile}
@@ -78,6 +79,7 @@ export function ProfileHeaderAvatar({
               icon={BiRefresh}
               className={twMerge(
                 'text-xl text-gray-1100',
+                'ultrawide:text-4xl',
                 isFetching && 'animate-spin'
               )}
             />

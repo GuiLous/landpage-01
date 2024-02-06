@@ -55,15 +55,28 @@ export function ModalAddSocialList({
         >
           <div className="items-center gap-3.5">
             <div className="max-w-fit flex-initial">
-              <CustomIcon icon={socialHashes[item].icon} />
+              <CustomIcon
+                icon={socialHashes[item].icon}
+                className="ultrawide:text-3xl"
+              />
             </div>
 
             <div className="flex-col gap-0.5">
-              <span className="text-sm font-medium text-white">
+              <span
+                className={twMerge(
+                  'text-sm font-medium text-white',
+                  'ultrawide:text-xl'
+                )}
+              >
                 {socialHashes[item].title}
               </span>
 
-              <span className="text-xs text-gray-200">
+              <span
+                className={twMerge(
+                  'text-xs text-gray-200',
+                  'ultrawide:text-lg'
+                )}
+              >
                 {socialHashes[item].helper}
               </span>
             </div>

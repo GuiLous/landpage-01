@@ -406,7 +406,8 @@ export function InventoryWrapperContent({
         <aside
           className={twMerge(
             'max-w-[364px] flex-col justify-between',
-            '3xl:max-w-[355px]'
+            '3xl:max-w-[355px]',
+            'ultrawide:max-w-[457px]'
           )}
         >
           <div className="flex-initial flex-col gap-4">
@@ -424,7 +425,8 @@ export function InventoryWrapperContent({
               <CustomScrollBar
                 className={twMerge(
                   'max-h-[375px] max-w-fit',
-                  '3xl:max-h-[255px]'
+                  '3xl:max-h-[255px]',
+                  'ultrawide:max-h-[575px]'
                 )}
               >
                 <WeaponsSelectList
@@ -436,7 +438,12 @@ export function InventoryWrapperContent({
             )}
 
             {!isArsenal && (
-              <CustomScrollBar className="max-h-[312px] max-w-fit">
+              <CustomScrollBar
+                className={twMerge(
+                  'max-h-[312px] max-w-fit',
+                  'ultrawide:max-h-[512px]'
+                )}
+              >
                 <ItemsSelectList
                   hasItemInUse={hasItemInUse}
                   itemSelectedId={itemSelected?.id}

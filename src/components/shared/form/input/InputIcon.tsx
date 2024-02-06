@@ -5,6 +5,7 @@ import { VariantProps, tv } from 'tailwind-variants'
 const icon = tv({
   base: [
     'absolute right-2 top-1/2 -translate-y-2/4 text-[1.375rem] text-white',
+    'ultrawide:text-5xl',
     'group-focus-within:text-white',
   ],
   variants: {

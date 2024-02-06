@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { MdBlock } from 'react-icons/md'
+import { twMerge } from 'tailwind-merge'
 
 import { Button, ModalInactiveAccount, ProfileCard } from '@/components/shared'
 
@@ -15,10 +16,13 @@ export function AccountInactiveCard() {
       icon={MdBlock}
       variant="account"
     >
-      <div>
+      <div className="items-end">
         <Button.Root
           onClick={() => setOpenModalInactive(true)}
-          className="max-h-[38px] w-full max-w-fit px-4"
+          className={twMerge(
+            'max-h-[38px] w-full max-w-fit px-4',
+            'ultrawide:max-h-20 ultrawide:min-h-20'
+          )}
         >
           <Button.Content
             className="text-sm font-semibold"

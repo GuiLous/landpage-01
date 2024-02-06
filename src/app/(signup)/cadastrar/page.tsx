@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { BsEnvelopeFill } from 'react-icons/bs'
 import { RiErrorWarningFill } from 'react-icons/ri'
+import { twMerge } from 'tailwind-merge'
 
 import { isEmailValid } from '@/utils'
 
@@ -117,12 +118,15 @@ export default function SignUp() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex w-full flex-col items-center gap-10"
+      className={twMerge(
+        'flex w-full flex-col items-center gap-10',
+        'ultrawide:gap-28'
+      )}
     >
-      <div className="flex-col gap-3">
+      <div className={twMerge('flex-col gap-3', 'ultrawide:gap-6')}>
         <Input.Root>
           <Input.Label
-            className="text-sm font-normal leading-none"
+            className={twMerge('text-sm font-normal leading-none')}
             htmlFor="email"
             label="E-mail"
           />
@@ -140,7 +144,7 @@ export default function SignUp() {
           >
             <Input.Icon
               icon={BsEnvelopeFill}
-              className="left-3.5 text-gray-300"
+              className={twMerge('left-3.5 text-gray-300', 'ultrawide:left-6')}
             />
 
             {cannotSubmit && <Input.Icon icon={RiErrorWarningFill} error />}
@@ -151,19 +155,23 @@ export default function SignUp() {
           )}
         </Input.Root>
 
-        <div className="items-start gap-2.5">
+        <div className={twMerge('items-start gap-2.5', 'ultrawide:gap-5')}>
           <CheckBox isChecked={isChecked} setIsChecked={setIsChecked} />
           <SignupRegisterTerms />
         </div>
       </div>
 
-      <Button.Root disabled={isButtonDisabled} className="w-full" type="submit">
+      <Button.Root
+        disabled={isButtonDisabled}
+        className={twMerge('w-full')}
+        type="submit"
+      >
         {fetching && <Button.Spinner />}
 
         <Button.Content
           disabled={isButtonDisabled}
           isLoading={fetching}
-          className="text-sm font-semibold"
+          className={twMerge('text-sm font-semibold')}
         >
           Cadastrar
         </Button.Content>

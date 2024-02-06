@@ -10,7 +10,13 @@ interface StoreRotationTimerProps {
 export function StoreRotationTimer({ nextRotation }: StoreRotationTimerProps) {
   return (
     <section className="flex-initial items-center justify-between">
-      <p className={twMerge('text-xl font-semibold uppercase', '3xl:text-lg')}>
+      <p
+        className={twMerge(
+          'text-xl font-semibold uppercase',
+          '3xl:text-lg',
+          'ultrawide:text-3xl'
+        )}
+      >
         {' '}
         Ofertas por <span className="text-purple-300">tempo limitado</span>
       </p>
@@ -19,10 +25,20 @@ export function StoreRotationTimer({ nextRotation }: StoreRotationTimerProps) {
         <div className="max-w-fit flex-initial items-center gap-1.5">
           <CustomIcon
             icon={GoClock}
-            className={twMerge('text-lg', '3xl:text-base')}
+            className={twMerge(
+              'text-lg',
+              '3xl:text-base',
+              'ultrawide:text-3xl'
+            )}
           />
 
-          <span className={twMerge('text-xl font-semibold', '3xl:text-lg')}>
+          <span
+            className={twMerge(
+              'text-xl font-semibold',
+              '3xl:text-lg',
+              'ultrawide:text-4xl'
+            )}
+          >
             <CountdownClock endTime={nextRotation} />
           </span>
         </div>

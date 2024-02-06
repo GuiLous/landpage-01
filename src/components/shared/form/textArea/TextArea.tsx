@@ -8,6 +8,7 @@ const textArea = tv({
     'hover:border-purple-400',
     'focus:border-purple-400 focus:text-white focus:ring-0 focus:placeholder:text-white',
     '3xl:min-h-[68px]',
+    'ultrawide:min-h-32 ultrawide:text-xl ultrawide:placeholder:text-xl',
   ],
   variants: {
     error: {

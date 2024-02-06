@@ -21,7 +21,8 @@ export function CarouselPreview({
     <div
       className={twMerge(
         'max-w-fit flex-initial items-center gap-2.5 cursor-pointer absolute left-[7.5%] top-[calc(100%_-_58.5px)] z-10',
-        '3xl:top-[calc(100%_-_40.5px)]'
+        '3xl:top-[calc(100%_-_40.5px)]',
+        'ultrawide:left-[4.2%]'
       )}
     >
       {featured.map((_, index) => (

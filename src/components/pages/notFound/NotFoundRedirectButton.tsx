@@ -2,6 +2,7 @@
 
 import Cookies from 'js-cookie'
 import { useCallback } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { Button, Link } from '@/components/shared'
 
@@ -13,7 +14,12 @@ export function NotFoundRedirectButton() {
   return (
     <Button.Root asChild onClick={handleRemoveCookies}>
       <Link href="/">
-        <Button.Content className="w-60 text-center text-sm font-bold">
+        <Button.Content
+          className={twMerge(
+            'w-60 text-center text-sm font-bold',
+            'ultrawide:w-96'
+          )}
+        >
           Voltar para o início
         </Button.Content>
       </Link>

@@ -127,7 +127,11 @@ export function ModalBuyItemInfosBuyButton({
   return (
     <>
       <Button.Root
-        className={twMerge('min-h-12', '3xl:min-h-[42px]')}
+        className={twMerge(
+          'min-h-12',
+          '3xl:min-h-[42px]',
+          'ultrawide:min-h-16 ultrawide:max-h-16'
+        )}
         light={purchased}
         disabled={purchased || isFetching}
         onClick={insufficientCoins ? handleOpenModal : handleBuy}
@@ -138,12 +142,18 @@ export function ModalBuyItemInfosBuyButton({
           icon={buttonIcons[getIconKey()].icon}
           className={twMerge(
             'text-xl 3xl:text-lg',
-            (purchased || insufficientCoins) && 'text-[1.375rem] 3xl:text-xl'
+            (purchased || insufficientCoins) &&
+              'text-[1.375rem] 3xl:text-xl ultrawide:text-3xl',
+            'ultrawide:text-3xl'
           )}
         />
 
         <Button.Content
-          className={twMerge('text-sm font-semibold', '3xl:text-xs')}
+          className={twMerge(
+            'text-sm font-semibold',
+            '3xl:text-xs',
+            'ultrawide:text-2xl'
+          )}
           loadingText={insufficientCoins ? 'Comprando RC' : 'Comprando'}
           isLoading={isFetching}
         >

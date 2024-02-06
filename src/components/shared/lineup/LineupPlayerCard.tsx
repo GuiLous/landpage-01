@@ -1,6 +1,7 @@
 'use client'
 
 import { MouseEvent, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 import { twMerge } from 'tailwind-merge'
 
 import { Friend } from '@/store/friendStore'
@@ -18,6 +19,10 @@ interface LineupPlayerCardProps {
 }
 
 export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
+  const isUltrawide = useMediaQuery({
+    query: '(min-width: 2560px)',
+  })
+
   const { lobby } = useLobbyStore()
 
   const isLobbyOwner = player.user_id === lobby?.id
@@ -41,7 +46,7 @@ export function LineupPlayerCard({ player, onClose }: LineupPlayerCardProps) {
       onContextMenu={handleToggleMenu}
     >
       <div className="absolute right-1.5 top-2 max-w-fit flex-initial">
-        <LevelBadge level={player.level} variant="smd" />
+        <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'smd'} />
       </div>
 
       <LineupMenuContext

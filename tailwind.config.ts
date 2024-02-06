@@ -22,6 +22,7 @@ const config: Config = {
         'range-md-xl': { min: '913px', max: '1279px' },
         'store-md': { max: '1634px' },
         'store-sm': { max: '1560px' },
+        ultrawide: { min: '2560px' },
       },
       flex: {
         file_card: '0 0 48.5%',
@@ -32,10 +33,12 @@ const config: Config = {
       },
       minHeight: {
         friends: 'calc(100vh - 120px)',
+        friendsUltrawide: 'calc(100vh - 148px)',
         friendsSearch: 'calc(100vh - 121px)',
       },
       maxHeight: {
         friends: 'calc(100vh - 120px)',
+        friendsUltrawide: 'calc(100vh - 148px)',
         friendsSearch: 'calc(100vh - 121px)',
         notifications: 'calc(100vh - 64px)',
         imagePreview: `calc(100vh - 383px)`,

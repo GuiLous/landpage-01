@@ -72,7 +72,8 @@ function ModalContent({
               className={twMerge(
                 'text-xl font-bold text-white',
                 'leading-none',
-                '3xl:text-lg'
+                '3xl:text-lg',
+                'ultrawide:text-4xl'
               )}
             >
               {title}

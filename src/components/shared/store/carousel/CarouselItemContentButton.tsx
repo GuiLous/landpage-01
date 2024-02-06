@@ -47,7 +47,11 @@ export function CarouselItemContentButton({
   return (
     <>
       <Button.Root
-        className={twMerge('max-h-[42px] w-[180px]', '3xl:max-h-[38px]')}
+        className={twMerge(
+          'max-h-[42px] w-[180px]',
+          '3xl:max-h-[38px]',
+          'ultrawide:max-h-16 ultrawide:min-h-16 ultrawide:w-[280px]'
+        )}
         onClick={handleOpenBuyModal}
       >
         <Button.Content className={twMerge('text-lg', '3xl:text-base')}>
