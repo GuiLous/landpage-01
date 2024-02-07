@@ -11,8 +11,13 @@ import { Invite } from '@/store/invitesStore'
 
 import { Spinner } from '@/components/shared'
 
+import { useAudio } from '@/hooks'
+
 import { DrawerFriendsInviteItem } from './DrawerFriendsInviteItem'
 import { DrawerFriendsListGroupItem } from './DrawerFriendsListGroupItem'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface DrawerFriendsListGroupProps {
   title:
@@ -43,6 +48,9 @@ export function DrawerFriendsListGroup({
   showHeader = true,
   isSearching = false,
 }: DrawerFriendsListGroupProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const [isOpen, setIsOpen] = useState(false)
 
   const isFriendInvite = title === 'Solicitações de amizade'
@@ -210,6 +218,8 @@ export function DrawerFriendsListGroup({
                     {...friend}
                     avatar={friend.avatar.medium}
                     title={title}
+                    playSoundClick={playSoundClick}
+                    onMouseEnter={playSoundHover}
                   />
                 ))}
               </div>
@@ -227,6 +237,7 @@ export function DrawerFriendsListGroup({
                   avatar={invite.from_player.avatar.medium}
                   status={invite.from_player.status}
                   username={invite.from_player.username}
+                  onMouseEnter={playSoundHover}
                 />
               ))}
             </div>
@@ -244,6 +255,7 @@ export function DrawerFriendsListGroup({
                   create_date={request.create_date}
                   avatar={request.user_from.avatar.medium}
                   isFriendInvite
+                  onMouseEnter={playSoundHover}
                 />
               ))}
             </div>
@@ -257,6 +269,8 @@ export function DrawerFriendsListGroup({
                   {...friend}
                   avatar={friend.avatar.medium}
                   title={title}
+                  playSoundClick={playSoundClick}
+                  onMouseEnter={playSoundHover}
                 />
               ))}
             </div>
