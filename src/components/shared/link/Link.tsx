@@ -33,6 +33,7 @@ type LinkProps = VariantProps<typeof link> &
     className?: string
     target?: string
     asChild?: boolean
+    disableSound?: boolean
     forwardRef?: Ref<HTMLAnchorElement>
   }
 
@@ -43,13 +44,14 @@ export function Link({
   asChild,
   forwardRef,
   onClick,
+  disableSound = false,
   ...props
 }: LinkProps) {
   const playSoundHover = useAudio(buttonHoverUrl)
   const playSoundClick = useAudio(buttonClickUrl)
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    playSoundClick()
+    if (!disableSound) playSoundClick()
 
     if (onClick) onClick(event)
   }
@@ -59,7 +61,7 @@ export function Link({
   return (
     <Component
       ref={forwardRef}
-      onMouseEnter={!inline ? playSoundHover : undefined}
+      onMouseEnter={!inline && !disableSound ? playSoundHover : undefined}
       onClick={handleClick}
       className={link({ inline, className })}
       {...props}
