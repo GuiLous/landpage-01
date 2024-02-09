@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import { getRanking } from '@/functions'
+import { PlayerRanking, getRanking } from '@/functions'
 
 import { RankingHeader, RankingTopPlayersCard } from '@/components/pages'
 
@@ -43,7 +43,11 @@ export default async function Ranking({ searchParams }: RouteProps) {
 
   const ranking = await getRanking({ page: page ? Number(page) : 1 })
 
-  const topPlayers = ranking.results.splice(0, 3)
+  let topPlayers: PlayerRanking[] = []
+
+  if (ranking.current_page <= 1) {
+    topPlayers = ranking.results.splice(0, 3)
+  }
 
   return (
     <main
