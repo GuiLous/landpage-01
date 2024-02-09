@@ -38,7 +38,7 @@ const button = tv({
       true: 'max-w-fit gap-0 border border-white bg-transparent p-0 hover:bg-transparent active:bg-transparent',
     },
     pagination: {
-      true: 'h-8 w-8 cursor-pointer rounded-lg bg-gray-700 hover:bg-gray-400 active:bg-gray-700 disabled:cursor-default disabled:bg-gray-400 disabled:hover:bg-gray-400',
+      true: 'h-8 w-8 cursor-pointer rounded border border-gray-700/50 bg-transparent hover:bg-gray-700/50 active:bg-gray-700/50 disabled:cursor-default disabled:bg-gray-700/50 disabled:hover:bg-gray-700/50',
     },
     light: {
       true: 'bg-purple-300 hover:bg-purple-300 active:bg-purple-300 disabled:bg-purple-300',
