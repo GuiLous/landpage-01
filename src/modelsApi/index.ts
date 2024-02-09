@@ -7,6 +7,7 @@ export * from './matchesApi';
 export * from './notificationsApi';
 export * from './preMatchApi';
 export * from './profilesApi';
+export * from './rankingApi';
 export * from './storeApi';
 export * from './supportApi';
 
