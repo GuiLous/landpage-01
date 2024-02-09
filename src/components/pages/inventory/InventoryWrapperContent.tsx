@@ -21,12 +21,15 @@ import {
   WeaponsSelectList,
 } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { InventoryActiveWeaponButton } from './InventoryActiveWeaponButton'
 import { InventoryItemDescription } from './InventoryItemDescription'
 import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
+
+const buttonActivateUrl = '/assets/audios/item_activate.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 const notSelected = '/assets/images/not_selected.png'
 
@@ -112,6 +115,9 @@ export function InventoryWrapperContent({
   placeholders,
 }: InventoryWrapperContentProps) {
   const auth = useAuth()
+
+  const playSoundActivate = useAudio(buttonActivateUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
 
   const showErrorToast = useShowErrorToast()
 
@@ -223,6 +229,9 @@ export function InventoryWrapperContent({
       const itemById = itemsByType.find((item) => item?.id === item_id)
 
       if (itemById) {
+        if (!itemById.in_use) playSoundActivate()
+        if (itemById.in_use) playSoundClick()
+
         const payload = { in_use: !itemById.in_use }
 
         const response = await storeApi.updateInUse(
@@ -246,7 +255,13 @@ export function InventoryWrapperContent({
         revalidate('inventory')
       }
     },
-    [auth?.token, itemsByType, showErrorToast]
+    [
+      auth?.token,
+      itemsByType,
+      playSoundActivate,
+      playSoundClick,
+      showErrorToast,
+    ]
   )
 
   useEffect(() => {

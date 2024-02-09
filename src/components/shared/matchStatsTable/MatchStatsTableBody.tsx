@@ -5,9 +5,12 @@ import { useCallback, useState } from 'react'
 
 import { Player } from '@/store/matchStore'
 
-import { useAuth } from '@/hooks'
+import { useAudio, useAuth } from '@/hooks'
 
 import { MatchStatsTableRow } from './MatchStatsTableRow'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface MatchStatsTableBodyProps {
   players: Player[]
@@ -18,6 +21,9 @@ export function MatchStatsTableBody({
   players,
   userId,
 }: MatchStatsTableBodyProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const auth = useAuth()
 
   const router = useRouter()
@@ -25,12 +31,17 @@ export function MatchStatsTableBody({
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null)
 
   const handleRedirectToProfile = useCallback(() => {
+    playSoundClick()
     return router.push(`/perfil/${auth?.id}`)
-  }, [auth?.id, router])
+  }, [auth?.id, playSoundClick, router])
 
-  const handleOpenMenu = useCallback((player: Player) => {
-    setSelectedPlayer(player)
-  }, [])
+  const handleOpenMenu = useCallback(
+    (player: Player) => {
+      playSoundClick()
+      setSelectedPlayer(player)
+    },
+    [playSoundClick]
+  )
 
   return (
     <tbody>
@@ -46,6 +57,7 @@ export function MatchStatsTableBody({
               ? handleRedirectToProfile()
               : handleOpenMenu(player)
           }
+          onMouseEnter={playSoundHover}
         />
       ))}
     </tbody>

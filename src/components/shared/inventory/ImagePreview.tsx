@@ -18,7 +18,6 @@ export function ImagePreview({
   itemSelected,
   isArsenal = false,
   hasSkins = false,
-  placeholders,
   itemSelectedIndex = 0,
 }: ImagePreviewProps) {
   const imageRef = useRef<HTMLImageElement>(null)
@@ -105,8 +104,6 @@ export function ImagePreview({
               sizes="100vw"
               fill
               priority
-              placeholder="blur"
-              blurDataURL={placeholders[itemSelectedIndex]}
               ref={imageRef}
             />
           )}

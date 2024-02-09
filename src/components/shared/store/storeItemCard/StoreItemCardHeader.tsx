@@ -29,7 +29,7 @@ export function StoreItemCardHeader({
       <CustomIcon
         icon={IoMdInformationCircleOutline}
         className={twMerge(
-          'absolute right-3 top-3 text-[1.375rem] text-white opacity-0 transition-opacity',
+          'absolute z-10 right-3 top-3 text-[1.375rem] text-white opacity-0 transition-opacity',
           !purchased && 'group-hover:opacity-100'
         )}
       />

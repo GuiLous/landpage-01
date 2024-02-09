@@ -136,7 +136,7 @@ export function Progress({
 
             <div
               className={twMerge(
-                'rounded-lg max-h-1.5 overflow-hidden relative bg-green-400 z-30',
+                'rounded-lg min-h-1.5 overflow-hidden relative bg-green-400 z-30',
                 !isPositive && 'bg-red-500',
                 'ultrawide:min-h-3'
               )}
@@ -186,7 +186,7 @@ export function Progress({
 
           <div
             className={twMerge(
-              'rounded-lg max-h-1.5 overflow-hidden relative bg-green-400 z-30',
+              'rounded-lg min-h-1.5 overflow-hidden relative bg-green-400 z-30',
               !isPositive && 'bg-red-500',
               'ultrawide:min-h-3'
             )}
@@ -223,7 +223,7 @@ export function Progress({
 
           <div
             className={twMerge(
-              'relative z-10 max-h-1.5 overflow-hidden rounded-lg bg-purple-300',
+              'relative z-10 min-h-1.5 overflow-hidden rounded-lg bg-purple-300',
               'ultrawide:min-h-3'
             )}
             style={{
@@ -249,7 +249,7 @@ export function Progress({
 
           <div
             className={twMerge(
-              'bg-white z-0 rounded-lg max-h-1.5 overflow-hidden relative',
+              'bg-white z-0 rounded-lg min-h-1.5 overflow-hidden relative',
               initial + value < 0 && changeInitialBg && 'bg-purple-300',
               'ultrawide:min-h-3'
             )}

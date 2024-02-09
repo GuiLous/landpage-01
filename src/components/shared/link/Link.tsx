@@ -1,7 +1,14 @@
+'use client'
+
 import { Slot } from '@radix-ui/react-slot'
 import NextLink from 'next/link'
-import { ComponentProps, ReactNode, Ref } from 'react'
+import { ComponentProps, MouseEvent, ReactNode, Ref } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
+
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 const link = tv({
   base: [
@@ -26,6 +33,7 @@ type LinkProps = VariantProps<typeof link> &
     className?: string
     target?: string
     asChild?: boolean
+    disableSound?: boolean
     forwardRef?: Ref<HTMLAnchorElement>
   }
 
@@ -35,13 +43,26 @@ export function Link({
   className,
   asChild,
   forwardRef,
+  onClick,
+  disableSound = false,
   ...props
 }: LinkProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
+  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (!disableSound) playSoundClick()
+
+    if (onClick) onClick(event)
+  }
+
   const Component = asChild ? Slot : NextLink
 
   return (
     <Component
       ref={forwardRef}
+      onMouseEnter={!inline && !disableSound ? playSoundHover : undefined}
+      onClick={handleClick}
       className={link({ inline, className })}
       {...props}
     >

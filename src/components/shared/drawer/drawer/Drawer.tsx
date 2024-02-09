@@ -5,6 +5,11 @@ import { ReactNode } from 'react'
 import { RxCross1 } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
+
 type Position = 'left' | 'right'
 
 interface DrawerProps {
@@ -37,6 +42,9 @@ export function DrawerContent({
   position = 'right',
   ...props
 }: DrawerContent) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   return (
     <Dialog.Portal>
       {showOverlay && (
@@ -70,6 +78,8 @@ export function DrawerContent({
           </Dialog.Title>
         </div>
         <Dialog.Close
+          onMouseEnter={playSoundHover}
+          onClick={playSoundClick}
           className={twMerge(
             'absolute right-3 top-3 text-base text-white transition-colors',
             'hover:text-gray-300',

@@ -103,6 +103,7 @@ export function InventoryItemDescription({
                   updateSelected: false,
                 })
               }
+              disableClickSound
             >
               <Button.Content className="text-sm font-semibold">
                 Remover {removeSFromEnd(itemType)}
@@ -115,6 +116,7 @@ export function InventoryItemDescription({
               restricted={item.in_use}
               className="max-h-[42px] w-full py-3"
               onClick={() => handleUpdateItemInUse({ item_id: item.id })}
+              disableClickSound
             >
               <Button.Content className="text-sm font-semibold">
                 {item.in_use ? 'Remover' : 'Ativar'} {removeSFromEnd(itemType)}

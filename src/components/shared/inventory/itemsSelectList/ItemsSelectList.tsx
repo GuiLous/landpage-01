@@ -1,8 +1,15 @@
+'use client'
+
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
 
+import { useAudio } from '@/hooks'
+
 import { ItemsSelectListCard } from './ItemsSelectListCard'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface ItemsSelectListProps {
   items: StoreItem[]
@@ -21,7 +28,11 @@ export function ItemsSelectList({
   hasItemInUse,
   isAccountPage = false,
 }: ItemsSelectListProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const handleChangeItemSelected = (item: StoreItem) => {
+    playSoundClick()
     setNewItemSelected(null)
     setItemSelected(item)
   }
@@ -42,6 +53,9 @@ export function ItemsSelectList({
           itemSelectedId={itemSelectedId}
           hasItemInUse={hasItemInUse}
           isAccountPage={isAccountPage}
+          onMouseEnter={
+            item?.id !== itemSelectedId ? playSoundHover : undefined
+          }
           onClick={() => handleChangeItemSelected(item)}
         />
       ))}

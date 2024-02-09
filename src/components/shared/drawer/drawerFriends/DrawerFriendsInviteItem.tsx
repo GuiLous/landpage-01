@@ -1,7 +1,7 @@
 'use client'
 
 import { DateTime } from 'luxon'
-import { useCallback } from 'react'
+import { ComponentProps, useCallback } from 'react'
 import { BsCheckCircleFill } from 'react-icons/bs'
 import { RiCloseFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
@@ -15,7 +15,7 @@ import { Avatar } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-interface DrawerFriendsInviteItemProps {
+interface DrawerFriendsInviteItemProps extends ComponentProps<'div'> {
   lobby_invite_id?: string
   request_id?: number
   create_date?: string
@@ -35,6 +35,7 @@ export function DrawerFriendsInviteItem({
   request_id,
   user_id,
   isFriendInvite = false,
+  ...props
 }: DrawerFriendsInviteItemProps) {
   const { removeFriendRequest } = useFriendsStore()
   const showErrorToast = useShowErrorToast()
@@ -86,7 +87,10 @@ export function DrawerFriendsInviteItem({
   }, [auth?.token, removeFriendRequest, request_id, showErrorToast, user_id])
 
   return (
-    <div className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4">
+    <div
+      className="items-stretch bg-gradient_friends_invite py-2.5 pl-5 pr-4"
+      {...props}
+    >
       <div className="items-center gap-3.5 ">
         <div className="max-w-fit flex-initial">
           <Avatar avatarUrl={avatar} status={status} alt="Perfil do usuário" />

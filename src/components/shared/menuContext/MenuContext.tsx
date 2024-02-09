@@ -14,7 +14,12 @@ import { useFriendsStore } from '@/store/friendStore'
 
 import { ModalSupport } from '@/components/shared'
 
+import { useAudio } from '@/hooks'
+
 import { MenuItem, keysMenuType } from './MenuItem'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 type PopoverContentPrimitiveProps = React.ComponentProps<
   typeof PopoverPrimitive.Content
@@ -84,6 +89,9 @@ function MenuContextContent({
   isLobbyOwner = false,
   onClose,
 }: MenuContextContentProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const { friends } = useFriendsStore()
 
   const [openModalSupport, setOpenModalSupport] = useState(false)
@@ -156,6 +164,8 @@ function MenuContextContent({
                 username={username}
                 onClose={onClose}
                 isFriendRemove
+                playSoundHover={playSoundHover}
+                playSoundClick={playSoundClick}
               />
             )}
 
@@ -171,6 +181,8 @@ function MenuContextContent({
                 username={username}
                 onClose={onClose}
                 isFriendAdd
+                playSoundHover={playSoundHover}
+                playSoundClick={playSoundClick}
               />
             )}
 
@@ -185,6 +197,8 @@ function MenuContextContent({
                 setOpenModalSupport={setOpenModalSupport}
                 username={username}
                 onClose={onClose}
+                playSoundHover={playSoundHover}
+                playSoundClick={playSoundClick}
               />
             )}
           </Fragment>

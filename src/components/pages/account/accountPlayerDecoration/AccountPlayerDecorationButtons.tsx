@@ -11,7 +11,9 @@ import { storeApi } from '@/modelsApi'
 
 import { Button } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
+
+const buttonActivateUrl = '/assets/audios/item_activate.mp3'
 
 interface AccountPlayerDecorationButtonsProps {
   isProfileCover: boolean
@@ -25,6 +27,8 @@ export function AccountPlayerDecorationButtons({
   itemSelected,
   setNewItemSelected,
 }: AccountPlayerDecorationButtonsProps) {
+  const playSoundActivate = useAudio(buttonActivateUrl)
+
   const auth = useAuth()
 
   const showErrorToast = useShowErrorToast()
@@ -35,6 +39,8 @@ export function AccountPlayerDecorationButtons({
 
   const handleUpdateItemInUse = useCallback(async () => {
     if (!auth?.token || !setNewItemSelected) return
+
+    playSoundActivate()
 
     if (itemSelected) {
       setIsUpdatingInUse(true)
@@ -61,7 +67,13 @@ export function AccountPlayerDecorationButtons({
       setIsUpdatingInUse(false)
       revalidate('inventory')
     }
-  }, [auth?.token, itemSelected, setNewItemSelected, showErrorToast])
+  }, [
+    auth?.token,
+    itemSelected,
+    playSoundActivate,
+    setNewItemSelected,
+    showErrorToast,
+  ])
 
   return (
     <div className="flex-initial items-center justify-end gap-4">
@@ -77,6 +89,7 @@ export function AccountPlayerDecorationButtons({
         className="max-h-[38px] min-h-[38px] px-3"
         disabled={disableButton}
         onClick={handleUpdateItemInUse}
+        disableClickSound
       >
         <Button.Content
           className="text-sm font-semibold"

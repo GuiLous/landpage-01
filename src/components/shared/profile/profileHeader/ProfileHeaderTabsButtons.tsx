@@ -263,6 +263,8 @@ export function ProfileHeaderTabsButtons({
                             ? gradientAlreadyInvited
                             : '',
                         }}
+                        disableHoverSound={userAlreadyInvitedToFriend}
+                        disableClickSound={userAlreadyInvitedToFriend}
                       >
                         <Button.Icon
                           icon={
