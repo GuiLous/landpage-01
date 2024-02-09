@@ -62,6 +62,7 @@ export function RankingTableBody({
               : handleOpenMenu(player as unknown as Player)
           }
           onMouseEnter={playSoundHover}
+          isLastRow={index === players.length - 1}
         />
       ))}
     </tbody>

@@ -22,8 +22,9 @@ import { FieldsTableType } from './RankingTableHeader'
 interface RankingTableRowProps extends ComponentProps<'tr'> {
   player: PlayerRanking
   selectedPlayer: Player | null
-  setSelectedPlayer: (state: Player | null) => void
   fieldsColumn: FieldsTableType[]
+  isLastRow?: boolean
+  setSelectedPlayer: (state: Player | null) => void
 }
 
 export function RankingTableRow({
@@ -31,6 +32,7 @@ export function RankingTableRow({
   selectedPlayer,
   setSelectedPlayer,
   fieldsColumn,
+  isLastRow = false,
   ...props
 }: RankingTableRowProps) {
   const { lobby } = useLobbyStore()
@@ -84,7 +86,8 @@ export function RankingTableRow({
         'cursor-pointer bg-gray-1100 border-b border-b-gray-300/30',
         'last:border-0',
         player.user_id !== Number(auth?.id) &&
-          'hover:bg-gradient_match_table_hover'
+          'hover:bg-gradient_match_table_hover',
+        isLastRow && 'rounded-b overflow-hidden'
       )}
       style={{
         background: player.user_id === Number(auth?.id) ? bgUserGradient : '',
@@ -156,7 +159,8 @@ export function RankingTableRow({
               className={twMerge(
                 'border-0 py-3 text-left text-sm leading-none',
                 'ultrawide:text-lg ultrawide:leading-none',
-                index === 0 && 'pl-8'
+                index === 0 && 'pl-8 rounded-bl',
+                index === 5 && 'pl-8 rounded-br'
               )}
             >
               {field.stat === 'Posição' && player.ranking_pos + 1}
