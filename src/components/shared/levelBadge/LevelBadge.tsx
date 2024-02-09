@@ -48,12 +48,6 @@ const badge = tv({
   },
 })
 
-type LevelBadgeProps = VariantProps<typeof badge> & {
-  fitParent?: boolean
-  level: number
-  className?: string
-}
-
 const BADGE_SIZES = {
   xs: 25,
   sm: 41,
@@ -63,10 +57,18 @@ const BADGE_SIZES = {
   xl: 120,
 }
 
+type LevelBadgeProps = VariantProps<typeof badge> & {
+  fitParent?: boolean
+  level: number
+  className?: string
+  hideLevel?: boolean
+}
+
 export function LevelBadge({
   fitParent = false,
   level,
   variant,
+  hideLevel = false,
   className,
 }: LevelBadgeProps) {
   const { container, levelText } = badge({ variant })
@@ -118,9 +120,11 @@ export function LevelBadge({
         sizes="100vw"
       />
 
-      <div className="absolute z-10 h-full w-full items-center justify-center">
-        <span className={levelText({ variant })}>{level}</span>
-      </div>
+      {!hideLevel && (
+        <div className="absolute z-10 h-full w-full items-center justify-center">
+          <span className={levelText({ variant })}>{level}</span>
+        </div>
+      )}
     </div>
   )
 }
