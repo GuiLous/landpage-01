@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/#1068).
 - Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/#1055).
 
 ### Changed
