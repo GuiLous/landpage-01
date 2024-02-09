@@ -33,6 +33,8 @@ export * from "./profile/ProfileHeaderRender";
 export * from "./profile/profileHeatmapStatsCard/ProfileHeatmapStatsCard";
 export * from "./profile/profileLevelStatsCard/ProfileLevelStatsCard";
 export * from "./profile/profileMatchHistoryList/ProfileMatchHistoryList";
+export * from './ranking/RankingHeader';
+export * from './ranking/rankingTopPlayersCard/RankingTopPlayersCard';
 export * from './sidebarLayout/RenderInviteBar';
 export * from './sidebarLayout/Wrapper';
 export * from './signup/SignupChangeEmailGoBackLink';
