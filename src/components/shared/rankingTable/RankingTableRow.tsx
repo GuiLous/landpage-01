@@ -160,7 +160,7 @@ export function RankingTableRow({
                 'border-0 py-3 text-left text-sm leading-none',
                 'ultrawide:text-lg ultrawide:leading-none',
                 index === 0 && 'pl-8 rounded-bl',
-                index === 5 && 'pl-8 rounded-br'
+                index === 5 && 'rounded-br'
               )}
             >
               {field.stat === 'Posição' && player.ranking_pos}
