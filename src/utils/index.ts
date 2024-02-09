@@ -6,6 +6,7 @@ export * from './format';
 export * from './generatePagesArray';
 export * from './getAuthServer';
 export * from './getItemName';
+export * from './getLevelName';
 export * from './getPathToRedirect';
 export * from './groupMatchesByDay';
 export * from './humanizeStatus';
