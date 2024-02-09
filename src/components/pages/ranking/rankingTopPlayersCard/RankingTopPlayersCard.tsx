@@ -20,7 +20,7 @@ export function RankingTopPlayersCard({ player }: RankingTopPlayersCardProps) {
   const firstRowStats = [
     {
       label: 'Posição',
-      value: player.ranking_pos + 1,
+      value: player.ranking_pos,
     },
     {
       label: 'Rank',

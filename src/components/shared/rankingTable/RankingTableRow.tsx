@@ -163,7 +163,7 @@ export function RankingTableRow({
                 index === 5 && 'pl-8 rounded-br'
               )}
             >
-              {field.stat === 'Posição' && player.ranking_pos + 1}
+              {field.stat === 'Posição' && player.ranking_pos}
               {field.stat === 'Level' && player.level}
               {field.stat === 'Win Rate' && `${Math.round(win_rate)}%`}
               {field.stat === 'KDA' && (player.stats.kda || '0.00')}
