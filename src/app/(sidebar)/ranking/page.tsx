@@ -55,11 +55,13 @@ export default async function Ranking({ searchParams }: RouteProps) {
     >
       <RankingHeader />
 
-      <section className={twMerge('flex-initial gap-6', '3xl:gap-4')}>
-        {topPlayers.map((player) => (
-          <RankingTopPlayersCard key={player.user_id} player={player} />
-        ))}
-      </section>
+      {ranking.current_page <= 1 && (
+        <section className={twMerge('flex-initial gap-6', '3xl:gap-4')}>
+          {topPlayers.map((player) => (
+            <RankingTopPlayersCard key={player.user_id} player={player} />
+          ))}
+        </section>
+      )}
 
       <RankingTable.Root>
         <RankingTable.Header fieldsTable={fieldsTable as FieldsTableType[]} />
