@@ -101,5 +101,6 @@ export const config = {
     '/checkout/:path*',
     '/inventario/:path*',
     '/loja/:path*',
+    '/ranking/:path*',
   ],
 }
