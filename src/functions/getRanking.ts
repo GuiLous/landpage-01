@@ -9,8 +9,7 @@ import { Profile } from './getUserProfile'
 export type PlayerRanking = Profile & { ranking_pos: number }
 
 export type ranking = {
-  list: PlayerRanking[]
-  user: PlayerRanking
+  results: PlayerRanking[]
   count: number
   page_size: number
   total_pages: number

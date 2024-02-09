@@ -42,7 +42,8 @@ export default async function Ranking({ searchParams }: RouteProps) {
   const { page } = searchParams
 
   const ranking = await getRanking({ page: page ? Number(page) : 1 })
-  const topPlayers = ranking.list.splice(0, 3)
+
+  const topPlayers = ranking.results.splice(0, 3)
 
   return (
     <main
@@ -64,7 +65,7 @@ export default async function Ranking({ searchParams }: RouteProps) {
         <RankingTable.Header fieldsTable={fieldsTable as FieldsTableType[]} />
 
         <RankingTable.Body
-          players={ranking.list}
+          players={ranking.results}
           fieldsColumn={fieldsTable as FieldsTableType[]}
         />
       </RankingTable.Root>
