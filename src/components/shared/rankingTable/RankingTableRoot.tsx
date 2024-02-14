@@ -5,9 +5,5 @@ interface RankingTableRootProps {
 }
 
 export function RankingTableRoot({ children }: RankingTableRootProps) {
-  return (
-    <section>
-      <table className="w-full">{children}</table>
-    </section>
-  )
+  return <table className="w-full">{children}</table>
 }
