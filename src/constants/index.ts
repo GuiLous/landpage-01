@@ -11,6 +11,7 @@ export const PRIVATE_ROUTES = [
   '/inventario',
   '/loja',
   '/checkout',
+  '/ranking',
 ]
 export const PUBLIC_ROUTES = ['/', '/not-found', '/manutencao']
 export const ROUTES_TO_INITIALIZE_SLICES = [
@@ -21,6 +22,7 @@ export const ROUTES_TO_INITIALIZE_SLICES = [
   '/manutencao',
   '/loja',
   '/inventario',
+  '/ranking',
 ]
 export const ROUTES_SIGNUP = [
   '/api',
@@ -44,7 +46,6 @@ export const SIDEBAR_TOP_MENU_ITEMS = [
 ]
 export const SIDEBAR_BOTTOM_MENU_ITEMS = ['suporte', 'sair']
 export const SOON_ITEMS = [
-  'ranking',
   process.env.NEXT_PUBLIC_REACT_APP_STORE_ENABLED === 'false' && 'loja',
 ]
 export const MENU_LINKS = ['loja', 'ranking']
