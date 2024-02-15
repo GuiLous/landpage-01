@@ -24,7 +24,7 @@ export function RankingTopPlayersCard({ player }: RankingTopPlayersCardProps) {
     },
     {
       label: 'Rank',
-      value: null,
+      value: player.level,
     },
     {
       label: 'Level',
