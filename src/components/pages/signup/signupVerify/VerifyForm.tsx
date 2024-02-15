@@ -108,7 +108,7 @@ export function VerifyForm() {
 
       <Button.Root
         disabled={isButtonDisabled}
-        className={twMerge('w-full')}
+        className={twMerge('w-full max-h-[42px] min-h-[42px]')}
         type="submit"
       >
         {fetching ? (
