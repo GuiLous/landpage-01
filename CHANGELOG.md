@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/#1060).
 - Altera `modal de preview de skins` no inventário para abrir e fechar com click [#1064](https://github.com/3C-gg/reload-frontend/issues/#1064).
 
+### Fixed
+
+- Corrige `altura` do botão de verificar código de 6 dígitos.
+
 ## [4773d21 - 1/2/2024]
 
 ### Added
