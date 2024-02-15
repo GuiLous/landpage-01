@@ -59,7 +59,7 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
                 query: { page: '1' },
               }}
             >
-              <Button.Content className="mt-px" pagination>
+              <Button.Content className="mt-px leading-none" pagination>
                 1
               </Button.Content>
             </Link>
@@ -68,9 +68,11 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
           {currentPage > 2 + SIBLINGS_COUNT && (
             <Button.Root
               pagination
-              className="cursor-default hover:bg-gray-700"
+              className="cursor-default hover:bg-transparent active:bg-transparent"
+              disableClickSound
+              disableHoverSound
             >
-              <Button.Content className="ml-px text-lg tracking-[2px] text-gray-300">
+              <Button.Content className="ml-px text-lg leading-none tracking-[2px] text-gray-300">
                 ...
               </Button.Content>
             </Button.Root>
@@ -88,7 +90,7 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
                   query: { page: String(page) },
                 }}
               >
-                <Button.Content className="mt-px" pagination>
+                <Button.Content className="mt-px leading-none" pagination>
                   {String(page)}
                 </Button.Content>
               </Link>
@@ -97,7 +99,7 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
         })}
 
       <Button.Root disabled pagination>
-        <Button.Content className="mt-px text-base font-semibold">
+        <Button.Content className="mt-px text-base font-semibold leading-none">
           {String(currentPage)}
         </Button.Content>
       </Button.Root>
@@ -112,7 +114,7 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
                   query: { page: String(page) },
                 }}
               >
-                <Button.Content className="mt-px" pagination>
+                <Button.Content className="mt-px leading-none" pagination>
                   {String(page)}
                 </Button.Content>
               </Link>
@@ -125,9 +127,11 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
           {currentPage + 1 + SIBLINGS_COUNT < lastPage && (
             <Button.Root
               pagination
-              className="cursor-default hover:bg-gray-700"
+              className="cursor-default hover:bg-transparent active:bg-transparent"
+              disableClickSound
+              disableHoverSound
             >
-              <Button.Content className="ml-px text-lg tracking-[2px] text-gray-300">
+              <Button.Content className="ml-px text-lg leading-none tracking-[2px] text-gray-300">
                 ...
               </Button.Content>
             </Button.Root>
@@ -140,7 +144,7 @@ export function Pagination({ totalPages, currentPage = 1 }: PaginationProps) {
                 query: { page: String(lastPage) },
               }}
             >
-              <Button.Content className="mt-px" pagination>
+              <Button.Content className="mt-px leading-none" pagination>
                 {String(lastPage)}
               </Button.Content>
             </Link>
