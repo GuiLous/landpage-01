@@ -55,8 +55,8 @@ export function LineupPlayerCard({
       onContextMenu={handleToggleMenu}
       onMouseEnter={playSoundHover}
     >
-      <div className="absolute right-1.5 top-2 max-w-fit flex-initial">
-        <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'smd'} />
+      <div className="absolute -right-1.5 -top-1.5 max-w-fit flex-initial">
+        <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'md'} />
       </div>
 
       <LineupMenuContext
