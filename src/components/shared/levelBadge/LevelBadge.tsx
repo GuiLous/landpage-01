@@ -8,7 +8,7 @@ import { VariantProps, tv } from 'tailwind-variants'
 const badge = tv({
   slots: {
     container: 'relative items-center justify-center',
-    levelText: 'relative -mt-1.5 text-lg font-semibold text-white opacity-65',
+    levelText: 'relative -mt-1.5 text-lg font-semibold text-white opacity-70',
   },
   variants: {
     variant: {
@@ -30,7 +30,7 @@ const badge = tv({
       md: {
         container:
           'min-w-[75px] max-w-[75px] 3xl:min-w-[55px] 3xl:max-w-[55px]',
-        levelText: '-mt-1 text-lg 3xl:-mt-1 3xl:text-sm',
+        levelText: '-mt-1 text-lg 3xl:-mt-1 3xl:ml-px 3xl:text-sm',
       },
 
       lg: {
@@ -123,7 +123,7 @@ export function LevelBadge({
         <div className="absolute z-10 h-full w-full items-center justify-center">
           <span
             className={levelText({ variant })}
-            style={{ textShadow: '0px 2px 3px rgba(0, 0, 0, 0.40)' }}
+            style={{ textShadow: '0px 2px 3px rgba(0, 0, 0, 0.80)' }}
           >
             {level}
           </span>
