@@ -145,7 +145,7 @@ export function RankingTableRow({
               )}
             >
               <div className="items-center gap-3">
-                <LevelBadge level={player.level} variant="xs" hideLevel />
+                <LevelBadge level={player.level} variant="sm" hideLevel />
 
                 <span className="text-sm leading-none">
                   {getLeveName(player.level)}

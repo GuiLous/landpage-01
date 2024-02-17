@@ -24,7 +24,7 @@ export function RankingTopPlayersCard({ player }: RankingTopPlayersCardProps) {
     },
     {
       label: 'Rank',
-      value: null,
+      value: player.level,
     },
     {
       label: 'Level',
@@ -73,8 +73,8 @@ export function RankingTopPlayersCard({ player }: RankingTopPlayersCardProps) {
 
       <div
         className={twMerge(
-          'max-w-[70%] flex-col items-center gap-10',
-          '3xl:gap-8 3xl:max-w-[85%]'
+          'max-w-[70%] relative flex-col items-center gap-14',
+          '3xl:gap-10 3xl:max-w-[85%]'
         )}
       >
         <RankingTopPlayersCardStats stats={firstRowStats} />

@@ -34,8 +34,11 @@ export function RankingTopPlayersCardStats({
           >
             {stat.label}
           </span>
+
           {stat.label === 'Rank' && (
-            <LevelBadge level={stat.value} variant="sm" />
+            <div className="absolute top-[13.5%] max-w-fit flex-initial">
+              <LevelBadge level={stat.value} variant="md" hideLevel />
+            </div>
           )}
 
           {stat.label !== 'Rank' && (

@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -6,40 +8,39 @@ import { VariantProps, tv } from 'tailwind-variants'
 const badge = tv({
   slots: {
     container: 'relative items-center justify-center',
-    levelText: 'relative -ml-0.5 -mt-[15px] text-xl font-bold text-white',
+    levelText: 'relative -mt-1.5 text-lg font-semibold text-white opacity-70',
   },
   variants: {
     variant: {
       xs: {
         container: 'min-w-[25px] max-w-[25px]',
-        levelText: '-mt-[5px] text-[7px]',
+        levelText: '-mt-0.5 text-[7px]',
       },
 
       sm: {
         container: 'min-w-[41px] max-w-[41px]',
-        levelText: '-ml-px -mt-2 text-[11px]',
+        levelText: '-mt-px text-[11px]',
       },
 
       smd: {
         container: 'min-w-[52px] max-w-[52px]',
-        levelText: '-mt-2 ml-0 text-[15px]',
+        levelText: '-mt-1 text-xs',
       },
 
       md: {
         container:
           'min-w-[75px] max-w-[75px] 3xl:min-w-[55px] 3xl:max-w-[55px]',
-        levelText:
-          '-ml-0.5 -mt-[15px] text-xl 3xl:-mt-2 3xl:ml-0 3xl:text-[15px]',
+        levelText: '-mt-1 text-lg 3xl:-mt-1 3xl:ml-px 3xl:text-sm',
       },
 
       lg: {
         container: 'min-w-[90px] max-w-[90px]',
-        levelText: '-ml-0.5 -mt-[18px] text-2xl',
+        levelText: '-mt-2 text-2xl',
       },
 
       xl: {
         container: 'min-w-[120px] max-w-[120px]',
-        levelText: '-ml-0.5 -mt-[22px] text-[32px]',
+        levelText: '-mt-3.5 text-[32px]',
       },
     },
   },
@@ -74,16 +75,14 @@ export function LevelBadge({
   const { container, levelText } = badge({ variant })
 
   const calcLvlRange = useCallback(() => {
-    let range = '0-5'
+    if (level <= 5) return '0-5'
+    if (level <= 10) return '6-10'
+    if (level <= 15) return '11-15'
+    if (level <= 20) return '16-20'
+    if (level <= 25) return '21-25'
+    if (level <= 29) return '26-29'
 
-    if (level >= 6) range = '6-10'
-    if (level >= 11) range = '11-15'
-    if (level >= 16) range = '16-20'
-    if (level >= 21) range = '21-25'
-    if (level >= 26) range = '26-29'
-    if (level >= 30) range = '30'
-
-    return range
+    return '30'
   }, [level])
 
   const getVariant = useCallback(() => {
@@ -113,7 +112,7 @@ export function LevelBadge({
       })}
     >
       <Image
-        src={`/level_badges/badge_${calcLvlRange()}.png`}
+        src={`/level_badges/badge_${calcLvlRange()}.webp`}
         alt={`Level ${level}`}
         width={BADGE_SIZES[getVariant()]}
         height={BADGE_SIZES[getVariant()]}
@@ -122,7 +121,12 @@ export function LevelBadge({
 
       {!hideLevel && (
         <div className="absolute z-10 h-full w-full items-center justify-center">
-          <span className={levelText({ variant })}>{level}</span>
+          <span
+            className={levelText({ variant })}
+            style={{ textShadow: '0px 2px 3px rgba(0, 0, 0, 0.80)' }}
+          >
+            {level}
+          </span>
         </div>
       )}
     </div>
