@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Melhora uso do `use client` na aplicação [#1075](https://github.com/3C-gg/reload-frontend/issues/#1075).
 - Altera `imagens` de `levelBadge` [#1067](https://github.com/3C-gg/reload-frontend/issues/#1067).
 - Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/#1058).
 - Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/#1060).
