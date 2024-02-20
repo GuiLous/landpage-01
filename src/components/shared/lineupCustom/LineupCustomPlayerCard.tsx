@@ -1,12 +1,9 @@
 'use client'
 
-import { MouseEvent, useState } from 'react'
-import { FaCrown } from 'react-icons/fa'
+import { MouseEvent, ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Friend } from '@/store/friendStore'
-
-import { Avatar } from '@/components/shared'
 
 import { LineupMenuContext } from '../lineup/LineupMenuContext'
 import { SideType } from './LineupCustomSide'
@@ -17,6 +14,7 @@ interface LineupCustomPlayerCardProps {
   isLobbyOwner?: boolean
   playSoundClick: () => void
   playSoundHover: () => void
+  children: ReactNode
 }
 
 export function LineupCustomPlayerCard({
@@ -25,6 +23,7 @@ export function LineupCustomPlayerCard({
   isLobbyOwner = false,
   playSoundClick,
   playSoundHover,
+  children,
 }: LineupCustomPlayerCardProps) {
   const [openMenu, setOpenMenu] = useState(false)
 
@@ -49,43 +48,14 @@ export function LineupCustomPlayerCard({
       onContextMenu={handleToggleMenu}
       onMouseEnter={playSoundHover}
     >
-      <div
-        className={twMerge(
-          'items-center justify-start gap-3.5',
-          'ultrawide:gap-6'
-        )}
-      >
-        <Avatar
-          avatarUrl={player.avatar.medium}
-          alt="Player image"
-          size="md"
-          className={twMerge('border border-white', 'ultrawide:border-2')}
-        />
+      {children}
 
-        <div className={twMerge('items-center gap-1', 'ultrawide:gap-2')}>
-          {isLobbyOwner && (
-            <FaCrown
-              className={twMerge('text-sm text-white', 'ultrawide:text-2xl')}
-            />
-          )}
-
-          <span
-            className={twMerge(
-              'text-sm font-medium text-white',
-              'ultrawide:text-2xl'
-            )}
-          >
-            {player.username}
-          </span>
-        </div>
-
-        <LineupMenuContext
-          player={player}
-          isMenuOpen={openMenu}
-          setIsMenuOpen={setOpenMenu}
-          side="left"
-        />
-      </div>
+      <LineupMenuContext
+        player={player}
+        isMenuOpen={openMenu}
+        setIsMenuOpen={setOpenMenu}
+        side="left"
+      />
     </li>
   )
 }

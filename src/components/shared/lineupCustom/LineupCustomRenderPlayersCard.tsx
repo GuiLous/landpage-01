@@ -5,6 +5,7 @@ import { Friend } from '@/store/friendStore'
 import { useAudio } from '@/hooks'
 
 import { LineupCustomPlayerCard } from './LineupCustomPlayerCard'
+import { LineupCustomPlayerCardContent } from './LineupCustomPlayerCardContent'
 import { SideType } from './LineupCustomSide'
 
 const buttonHoverUrl = '/assets/audios/button_hover.mp3'
@@ -32,6 +33,11 @@ export function LineupCustomRenderPlayersCard({
       isLobbyOwner={owner_id === player?.user_id}
       playSoundClick={playSoundClick}
       playSoundHover={playSoundHover}
-    />
+    >
+      <LineupCustomPlayerCardContent
+        isLobbyOwner={owner_id === player?.user_id}
+        player={player}
+      />
+    </LineupCustomPlayerCard>
   ))
 }
