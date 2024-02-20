@@ -1,13 +1,17 @@
-import { redirect } from 'next/navigation'
+'use client'
+
+import { useRouter } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { CONNECT_TEXTS_ARRAY } from '@/constants'
+import { CONNECT_TEXTS_ARRAY, COUNTDOWN_TIME, TIMER_NAME } from '@/constants'
 
-import { getAuthServer, revalidatePath } from '@/utils'
+import { revalidatePath } from '@/utils'
 
 import { storageService } from '@/services'
 
 import { useMatchStore } from '@/store/matchStore'
+import { useUserStore } from '@/store/userStore'
 
 import {
   ConnectAvatarImage,
@@ -18,28 +22,48 @@ import {
 
 import { Loading } from '@/components/shared'
 
+import { usePersistentTimer } from '@/hooks'
+
 export default function Connect() {
-  const match = useMatchStore.getState().match
-  const auth = getAuthServer()
+  const { match } = useMatchStore()
+  const { user } = useUserStore()
 
-  let isLoading = true
+  const router = useRouter()
 
-  if (!match || match.status === 'cancelled') {
-    storageService.remove('matchConnectTimer')
-    return redirect('/jogar')
-  } else {
-    switch (match.status) {
-      case 'warmup':
-        isLoading = false
-        break
-      case 'running':
-        storageService.remove('matchConnectTimer')
-        revalidatePath({ path: `/perfil/${auth?.id}/partidas/${match.id}` })
-        return redirect(`/perfil/${auth?.id}/partidas/${match.id}`)
-      default:
-        break
+  const [isLoading, setIsLoading] = useState(true)
+
+  const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
+
+  const verifyMatchStatus = useCallback(() => {
+    if (!match || match.status === 'cancelled') {
+      storageService.remove('matchConnectTimer')
+      return router.push('/jogar')
+    } else {
+      switch (match.status) {
+        case 'warmup':
+          setIsLoading(false)
+          break
+        case 'running':
+          storageService.remove('matchConnectTimer')
+          revalidatePath({ path: `/perfil/${user?.id}/partidas/${match.id}` })
+          router.push(`/perfil/${user?.id}/partidas/${match.id}`)
+          break
+        default:
+          break
+      }
     }
-  }
+  }, [match, user?.id, router, setIsLoading])
+
+  useEffect(() => {
+    verifyMatchStatus()
+  }, [match, verifyMatchStatus])
+
+  useEffect(() => {
+    if (timeLeft === 0) {
+      revalidatePath({ path: `/perfil/${user?.id}/partidas/${match?.id}` })
+      return router.push(`/perfil/${user?.id}/partidas/${match?.id}`)
+    }
+  }, [timeLeft, match?.id, user?.id, router])
 
   return isLoading ? (
     <Loading.Overlay>
@@ -72,7 +96,7 @@ export default function Connect() {
 
           <ConnectIpMessage />
 
-          <ConnectTimer isLoading={isLoading} />
+          <ConnectTimer timeLeft={timeLeft} />
         </div>
       </section>
     </main>
