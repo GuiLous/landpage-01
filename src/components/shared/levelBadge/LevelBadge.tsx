@@ -1,7 +1,4 @@
-'use client'
-
 import Image from 'next/image'
-import { useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { VariantProps, tv } from 'tailwind-variants'
 
@@ -74,7 +71,7 @@ export function LevelBadge({
 }: LevelBadgeProps) {
   const { container, levelText } = badge({ variant })
 
-  const calcLvlRange = useCallback(() => {
+  const calcLvlRange = () => {
     if (level <= 5) return '0-5'
     if (level <= 10) return '6-10'
     if (level <= 15) return '11-15'
@@ -83,9 +80,9 @@ export function LevelBadge({
     if (level <= 29) return '26-29'
 
     return '30'
-  }, [level])
+  }
 
-  const getVariant = useCallback(() => {
+  const getVariant = () => {
     switch (variant) {
       case 'xs':
         return 'xs'
@@ -102,7 +99,7 @@ export function LevelBadge({
       default:
         return 'md'
     }
-  }, [variant])
+  }
 
   return (
     <div
