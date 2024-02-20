@@ -20,6 +20,7 @@ import {
   ItemsSelectList,
   WeaponsSelectList,
 } from '@/components/shared'
+import { ImagePreviewEmptyMessage } from '@/components/shared/inventory/imagePreview/ImagePreviewEmptyMessage'
 
 import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
@@ -487,10 +488,14 @@ export function InventoryWrapperContent({
           <ImagePreview
             itemSelected={itemSelected}
             isArsenal={isArsenal}
-            hasSkins={itemsByType.length > 0}
             placeholders={placeholders}
             itemSelectedIndex={itemSelectedIndex}
-          />
+          >
+            <ImagePreviewEmptyMessage
+              hasSkins={itemsByType.length > 0}
+              isArsenal={isArsenal}
+            />
+          </ImagePreview>
 
           {isArsenal && itemSelected && (
             <section
