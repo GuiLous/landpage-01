@@ -14,6 +14,7 @@ import { LineupHiddenBox } from './LineupHiddenBox'
 import { LineupPlayBtn } from './LineupPlayBtn'
 import { LineupPlayerCard } from './LineupPlayerCard'
 import { LineupSeat } from './LineupSeat'
+import { LineupSeatWrapper } from './LineupSeatWrapper'
 
 const buttonHoverUrl = '/assets/audios/button_hover.mp3'
 const buttonClickUrl = '/assets/audios/click.mp3'
@@ -129,7 +130,9 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
             <LineupSeat
               playSoundClick={playSoundClick}
               playSoundHover={playSoundHover}
-            />
+            >
+              <LineupSeatWrapper />
+            </LineupSeat>
           )}
 
           {index === 2 ? (
