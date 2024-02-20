@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { MouseEvent, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 import { twMerge } from 'tailwind-merge'
@@ -46,17 +47,27 @@ export function LineupPlayerCard({
   return (
     <div
       className={twMerge(
-        'bg-cover bg-center relative cursor-pointer h-full min-w-[200px] flex-col justify-between rounded-lg p-5',
+        'relative overflow-hidden cursor-pointer h-full min-w-[200px] flex-col justify-between rounded-lg p-5',
         'after:bg-gradient_player_card after:bottom-0 after:h-24 after:left-0 after:opacity-80 after:absolute after:w-full',
         '3xl:p-2.5'
       )}
-      style={{ backgroundImage: player.card ? `url(${player.card})` : '' }}
       onClick={handleToggleMenu}
       onContextMenu={handleToggleMenu}
       onMouseEnter={playSoundHover}
     >
+      {player.card && (
+        <Image
+          src={player.card}
+          alt="Player card"
+          fill
+          priority
+          sizes="60vw"
+          className="rounded-lg object-cover object-center"
+        />
+      )}
+
       <div className="absolute -right-1.5 -top-1.5 max-w-fit flex-initial">
-        <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'md'} />
+        <LevelBadge level={player.level} variant={isUltrawide ? 'lg' : 'md'} />I
       </div>
 
       <LineupMenuContext
