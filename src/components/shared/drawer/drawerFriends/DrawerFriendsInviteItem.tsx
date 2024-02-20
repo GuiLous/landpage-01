@@ -1,19 +1,13 @@
-'use client'
-
 import { DateTime } from 'luxon'
-import { ComponentProps, useCallback } from 'react'
-import { BsCheckCircleFill } from 'react-icons/bs'
-import { RiCloseFill } from 'react-icons/ri'
+import { ComponentProps } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { useFriendsStore } from '@/store/friendStore'
 import { Status } from '@/store/userStore'
-
-import { friendsApi, lobbyApi } from '@/modelsApi'
 
 import { Avatar } from '@/components/shared'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { DrawerFriendsInviteItemAccept } from './DrawerFriendsInviteItemAccept'
+import { DrawerFriendsInviteItemRefuse } from './DrawerFriendsInviteItemRefuse'
 
 interface DrawerFriendsInviteItemProps extends ComponentProps<'div'> {
   lobby_invite_id?: string
@@ -37,54 +31,7 @@ export function DrawerFriendsInviteItem({
   isFriendInvite = false,
   ...props
 }: DrawerFriendsInviteItemProps) {
-  const { removeFriendRequest } = useFriendsStore()
-  const showErrorToast = useShowErrorToast()
-
-  const auth = useAuth()
-
   const createDate = create_date && DateTime.fromISO(create_date)
-
-  const handleAcceptLobbyInvite = useCallback(async () => {
-    if (!auth?.token || !lobby_invite_id) return
-
-    const response = await lobbyApi.acceptInvite(auth.token, lobby_invite_id)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-  }, [lobby_invite_id, showErrorToast, auth?.token])
-
-  const handleRefuseLobbyInvite = useCallback(async () => {
-    if (!auth?.token || !lobby_invite_id) return
-
-    const response = await lobbyApi.refuseInvite(auth.token, lobby_invite_id)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-  }, [showErrorToast, lobby_invite_id, auth?.token])
-
-  const handleAcceptFriendInvite = useCallback(async () => {
-    if (!auth?.token || !request_id) return
-
-    const response = await friendsApi.accept(auth.token, request_id)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-  }, [auth?.token, request_id, showErrorToast])
-
-  const handleRefuseFriendInvite = useCallback(async () => {
-    if (!auth?.token || !request_id || !user_id) return
-
-    const response = await friendsApi.refuse(auth.token, request_id)
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-    }
-
-    removeFriendRequest(user_id)
-  }, [auth?.token, removeFriendRequest, request_id, showErrorToast, user_id])
 
   return (
     <div
@@ -121,35 +68,18 @@ export function DrawerFriendsInviteItem({
       </div>
 
       <div className="items-center justify-end gap-2.5">
-        <div
-          className="max-w-fit flex-initial cursor-pointer items-center"
-          onClick={
-            isFriendInvite ? handleAcceptFriendInvite : handleAcceptLobbyInvite
-          }
-        >
-          <BsCheckCircleFill
-            className={twMerge(
-              'text-green-600 transition-all text-xl',
-              'hover:scale-110 hover:text-green-500',
-              'ultrawide:text-3xl'
-            )}
-          />
-        </div>
+        <DrawerFriendsInviteItemAccept
+          isFriendInvite={isFriendInvite}
+          lobby_invite_id={lobby_invite_id}
+          request_id={request_id}
+        />
 
-        <div
-          className="max-w-fit flex-initial cursor-pointer items-center"
-          onClick={
-            isFriendInvite ? handleRefuseFriendInvite : handleRefuseLobbyInvite
-          }
-        >
-          <RiCloseFill
-            className={twMerge(
-              'text-gray-300 transition-all text-[1.375rem]',
-              'hover:text-white',
-              'ultrawide:text-3xl'
-            )}
-          />
-        </div>
+        <DrawerFriendsInviteItemRefuse
+          isFriendInvite={isFriendInvite}
+          lobby_invite_id={lobby_invite_id}
+          request_id={request_id}
+          user_id={user_id}
+        />
       </div>
     </div>
   )
