@@ -1,7 +1,13 @@
 import { BiSolidJoystick } from 'react-icons/bi'
 import { twMerge } from 'tailwind-merge'
 
-export function LobbyHeader() {
+import { LobbyGameType } from './LobbyGameTypeWrapper'
+
+interface LobbyHeaderProps {
+  activeTab: LobbyGameType
+}
+
+export function LobbyHeader({ activeTab }: LobbyHeaderProps) {
   return (
     <header className="mb-5 flex-initial items-center gap-3">
       <BiSolidJoystick
@@ -20,7 +26,8 @@ export function LobbyHeader() {
             'ultrawide:text-3xl'
           )}
         >
-          Suba de nível e
+          {activeTab === 'RANQUEADA 5X5' && 'Suba de nível e'}
+          {activeTab === 'PERSONALIZADA' && 'Escolha seu campo de batalha e'}
         </h2>
         <h2
           className={twMerge(
@@ -30,7 +37,8 @@ export function LobbyHeader() {
           )}
         >
           {' '}
-          fique entre os melhores
+          {activeTab === 'RANQUEADA 5X5' && 'fique entre os melhores'}
+          {activeTab === 'PERSONALIZADA' && ' desafie seus amigos'}
         </h2>
       </div>
     </header>
