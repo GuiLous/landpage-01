@@ -114,3 +114,21 @@ export type WeaponNameType =
 'Sniper' |
 'Rambinho' |
 'Rambão'
+
+
+export const WeaponsName = [
+'Pistola',
+'Rapidinha',
+'9idade',
+'Trinta e Oito',
+'Micro',
+'Nova',
+'Doze',
+'Bull',
+'AK',
+'M4',
+'Teco-Teco',
+'Sniper',
+'Rambinho',
+'Rambão'
+]
