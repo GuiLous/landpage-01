@@ -14,6 +14,7 @@ interface LineupMenuContextProps {
   isMenuOpen: boolean
   setIsMenuOpen: (state: boolean) => void
   onClose?: false | (() => Promise<void>)
+  side?: 'left' | 'right' | 'bottom' | 'top'
 }
 
 export function LineupMenuContext({
@@ -21,6 +22,7 @@ export function LineupMenuContext({
   isMenuOpen,
   setIsMenuOpen,
   onClose,
+  side = 'bottom',
 }: LineupMenuContextProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
@@ -49,7 +51,7 @@ export function LineupMenuContext({
       <MenuContext.Trigger className="invisible" />
 
       <MenuContext.Content
-        side="bottom"
+        side={side}
         alreadyInvited={alreadyInvited}
         alreadyOnTeam={alreadyOnTeam}
         isAvailable={isAvailable}
