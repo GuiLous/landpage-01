@@ -24,8 +24,9 @@ import {
 import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { InventoryActiveWeaponButton } from './InventoryActiveWeaponButton'
-import { InventoryItemDescription } from './InventoryItemDescription'
-import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
+import { InventoryItemDescription } from './inventoryItemDescription/InventoryItemDescription'
+import { InventoryItemDescriptionButtons } from './inventoryItemDescription/InventoryItemDescriptionButtons'
+import { InventoryItemsTabBar } from './inventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
 const buttonActivateUrl = '/assets/audios/item_activate.mp3'
@@ -471,13 +472,14 @@ export function InventoryWrapperContent({
           </div>
 
           {itemSelected && (
-            <InventoryItemDescription
-              handleUpdateItemInUse={handleUpdateItemInUse}
-              item={itemSelected}
-              itemType={activeItemType}
-              itemInUse={itemInUse as StoreItem}
-              isArsenal={isArsenal}
-            />
+            <InventoryItemDescription item={itemSelected} isArsenal={isArsenal}>
+              <InventoryItemDescriptionButtons
+                handleUpdateItemInUse={handleUpdateItemInUse}
+                itemType={activeItemType}
+                itemInUse={itemInUse as StoreItem}
+                item={itemSelected}
+              />
+            </InventoryItemDescription>
           )}
         </aside>
 
