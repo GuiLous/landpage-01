@@ -24,7 +24,9 @@ export function Trigger({ children, error = false, ...props }: TriggerProps) {
         props.className
       )}
     >
-      {children}
+      <div className="max-w-fit flex-initial items-center gap-1">
+        {children}
+      </div>
 
       <Select.Icon>
         <RiArrowDownSLine
