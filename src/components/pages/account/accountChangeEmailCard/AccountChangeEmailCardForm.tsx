@@ -4,7 +4,6 @@ import { SignJWT } from 'jose'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react'
-import { BiSolidLock } from 'react-icons/bi'
 import { RiCheckboxCircleFill, RiErrorWarningFill } from 'react-icons/ri'
 import { twMerge } from 'tailwind-merge'
 
@@ -17,7 +16,7 @@ import { useUserStore } from '@/store/userStore'
 
 import { accountsApi } from '@/modelsApi'
 
-import { Button, Input, ProfileCard } from '@/components/shared'
+import { Button, Input } from '@/components/shared'
 
 import { useAuth, useOutsideClick, useShowErrorToast } from '@/hooks'
 
@@ -25,7 +24,7 @@ type FieldsErrors = {
   email: string
 }
 
-export function AccountChangeEmailCard() {
+export function AccountChangeEmailCardForm() {
   const { updateUser } = useUserStore()
   const { addToast } = useAppStore()
 
@@ -141,90 +140,80 @@ export function AccountChangeEmailCard() {
   useOutsideClick({ ref: inputRef, handler: handleOutsideClick })
 
   return (
-    <ProfileCard
-      title="INFORMAÇÕES PESSOAIS"
-      description="Essa informação é particular e não será compartilhada com outras pessoas."
-      icon={BiSolidLock}
-      variant="account"
-    >
-      <form
-        onSubmit={handleSubmit}
-        className="flex w-full flex-1 flex-col gap-8"
-      >
-        <section className="max-w-[424px]">
-          <Input.Root>
-            <Input.Label
-              htmlFor="email"
-              label="E-mail"
-              className="text-sm font-medium text-gray-300"
-            />
+    <form onSubmit={handleSubmit} className="flex w-full flex-1 flex-col gap-8">
+      <section className="max-w-[424px]">
+        <Input.Root>
+          <Input.Label
+            htmlFor="email"
+            label="E-mail"
+            className="text-sm font-medium text-gray-300"
+          />
 
-            <Input.Input
-              forwardRef={inputRef}
-              secondary
-              type="email"
-              id="email"
-              value={email}
-              error={showError}
-              success={showSuccess}
-              onChange={handleChange}
-              onClick={changeEmailIfHasNotChanged}
-              className={twMerge(
-                'text-sm px-4',
-                email === auth?.email &&
-                  'text-gray-300 transition-colors focus:text-white'
-              )}
-            >
-              {showError && (
-                <Input.Icon
-                  icon={RiErrorWarningFill}
-                  error
-                  size={22}
-                  className="right-3.5"
-                />
-              )}
-              {showSuccess && (
-                <Input.Icon
-                  icon={RiCheckboxCircleFill}
-                  success
-                  size={22}
-                  className="right-3.5"
-                />
-              )}
-
-              {auth?.email === email && !isEditing && (
-                <span className="absolute right-3.5 top-1/2 -translate-y-2/4 text-sm font-medium text-gray-400">
-                  EDITAR
-                </span>
-              )}
-            </Input.Input>
-
-            {fieldsErrors?.email && (
-              <Input.ErrorText errorMsg={fieldsErrors.email} />
+          <Input.Input
+            forwardRef={inputRef}
+            secondary
+            type="email"
+            id="email"
+            value={email}
+            error={showError}
+            success={showSuccess}
+            onChange={handleChange}
+            onClick={changeEmailIfHasNotChanged}
+            className={twMerge(
+              'text-sm px-4',
+              email === auth?.email &&
+                'text-gray-300 transition-colors focus:text-white'
             )}
-          </Input.Root>
-        </section>
-
-        <Button.Root
-          disabled={isButtonDisabled}
-          className={twMerge(
-            'w-full max-w-fit px-3',
-            'ultrawide:min-h-20 ultrawide:max-h-20'
-          )}
-          type="submit"
-        >
-          {fetching && <Button.Spinner />}
-
-          <Button.Content
-            disabled={isButtonDisabled}
-            isLoading={fetching}
-            className="text-sm font-semibold"
-            loadingText="Salvando"
           >
-            Salvar
-          </Button.Content>
-        </Button.Root>
-      </form>
-    </ProfileCard>
+            {showError && (
+              <Input.Icon
+                icon={RiErrorWarningFill}
+                error
+                size={22}
+                className="right-3.5"
+              />
+            )}
+            {showSuccess && (
+              <Input.Icon
+                icon={RiCheckboxCircleFill}
+                success
+                size={22}
+                className="right-3.5"
+              />
+            )}
+
+            {auth?.email === email && !isEditing && (
+              <span className="absolute right-3.5 top-1/2 -translate-y-2/4 text-sm font-medium text-gray-400">
+                EDITAR
+              </span>
+            )}
+          </Input.Input>
+
+          {fieldsErrors?.email && (
+            <Input.ErrorText errorMsg={fieldsErrors.email} />
+          )}
+        </Input.Root>
+      </section>
+
+      <Button.Root
+        disabled={isButtonDisabled}
+        className={twMerge(
+          'w-full max-w-fit px-3',
+          'ultrawide:min-h-20 ultrawide:max-h-20'
+        )}
+        type="submit"
+      >
+        {fetching && <Button.Spinner />}
+
+        <Button.Content
+          disabled={isButtonDisabled}
+          isLoading={fetching}
+          className="text-sm font-semibold"
+          loadingText="Salvando"
+        >
+          Salvar
+        </Button.Content>
+      </Button.Root>
+    </form>
   )
 }
