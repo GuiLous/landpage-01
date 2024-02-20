@@ -212,6 +212,7 @@ export function Websocket() {
         // Matches
         case 'matches/create':
           updateMatch(data.payload)
+          revalidatePath({ path: '/' })
           router.push(`/partidas/${data.payload.id}/conectar`)
           break
 
@@ -228,6 +229,7 @@ export function Websocket() {
             content:
               'Todos os jogadores não se conectaram a tempo ou algum fator desconhecido aconteceu e a sua partida foi cancelada.',
           })
+          revalidatePath({ path: '/' })
           break
 
         // Toasts
