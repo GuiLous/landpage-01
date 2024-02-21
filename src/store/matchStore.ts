@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 import { Avatar, Status } from './userStore'
@@ -109,14 +110,16 @@ type MatchStore = {
   cancelMatch: () => void
 }
 
-export const useMatchStore = create<MatchStore>()((set) => ({
-  match: null,
-  updateMatch: (match: Match | null) =>
-    set(() => ({
-      match,
-    })),
-  cancelMatch: () =>
-    set((state) => ({
-      match: state.match && { ...state.match, status: 'cancelled' },
-    })),
-}))
+export const useMatchStore = create<MatchStore>()(
+  zukeeper((set: any) => ({
+    match: null,
+    updateMatch: (match: Match | null) =>
+      set(() => ({
+        match,
+      })),
+    cancelMatch: () =>
+      set((state: MatchStore) => ({
+        match: state.match && { ...state.match, status: 'cancelled' },
+      })),
+  }))
+)
