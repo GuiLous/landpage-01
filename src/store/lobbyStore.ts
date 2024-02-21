@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 import { Friend } from './friendStore'
@@ -36,17 +37,19 @@ type LobbyStore = {
   updateQueueTime: (queue_time: number | null) => void
 }
 
-export const useLobbyStore = create<LobbyStore>((set) => ({
-  lobby: null,
-  updateLobby: (lobby: Lobby | null) =>
-    set(() => ({
-      lobby,
-    })),
-  updateQueueTime: (queue_time: number | null) =>
-    set((state) => ({
-      lobby: state.lobby && {
-        ...state.lobby,
-        queue_time,
-      },
-    })),
-}))
+export const useLobbyStore = create<LobbyStore>(
+  zukeeper((set: any) => ({
+    lobby: null,
+    updateLobby: (lobby: Lobby | null) =>
+      set(() => ({
+        lobby,
+      })),
+    updateQueueTime: (queue_time: number | null) =>
+      set((state: LobbyStore) => ({
+        lobby: state.lobby && {
+          ...state.lobby,
+          queue_time,
+        },
+      })),
+  }))
+)

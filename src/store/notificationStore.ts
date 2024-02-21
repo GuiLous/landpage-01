@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 export type Notification = {
@@ -18,29 +19,31 @@ type NotificationStore = {
   readAllNotifications: () => void
 }
 
-export const useNotificationStore = create<NotificationStore>((set) => ({
-  notifications: [],
-  initNotifications: (notifications: Notification[]) =>
-    set(() => ({
-      notifications,
-    })),
-  addNotification: (notification: Notification) =>
-    set((state) => ({
-      notifications: [...state.notifications, notification],
-    })),
-  readNotification: (notificationId: number) =>
-    set((state) => ({
-      notifications: state.notifications.map((item) =>
-        item.id === notificationId
-          ? { ...item, read_date: new Date().toISOString() }
-          : item
-      ),
-    })),
-  readAllNotifications: () =>
-    set((state) => ({
-      notifications: state.notifications.map((item) => ({
-        ...item,
-        read_date: new Date().toISOString(),
+export const useNotificationStore = create<NotificationStore>(
+  zukeeper((set: any) => ({
+    notifications: [],
+    initNotifications: (notifications: Notification[]) =>
+      set(() => ({
+        notifications,
       })),
-    })),
-}))
+    addNotification: (notification: Notification) =>
+      set((state: NotificationStore) => ({
+        notifications: [...state.notifications, notification],
+      })),
+    readNotification: (notificationId: number) =>
+      set((state: NotificationStore) => ({
+        notifications: state.notifications.map((item) =>
+          item.id === notificationId
+            ? { ...item, read_date: new Date().toISOString() }
+            : item
+        ),
+      })),
+    readAllNotifications: () =>
+      set((state: NotificationStore) => ({
+        notifications: state.notifications.map((item) => ({
+          ...item,
+          read_date: new Date().toISOString(),
+        })),
+      })),
+  }))
+)

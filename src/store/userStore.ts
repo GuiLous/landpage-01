@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 export type Status =
@@ -49,18 +50,20 @@ type UserStore = {
   addUserInvite: (email: string) => void
 }
 
-export const useUserStore = create<UserStore>()((set) => ({
-  user: null,
-  updateUser: (user: User | null) =>
-    set(() => ({
-      user,
-    })),
-  addUserInvite: (email: string) =>
-    set((state) => ({
-      user: state.user && {
-        ...state.user,
-        invites: [...state.user?.invites, { email, accepted: false }],
-        invites_available_count: state.user.invites_available_count - 1,
-      },
-    })),
-}))
+export const useUserStore = create<UserStore>()(
+  zukeeper((set: any) => ({
+    user: null,
+    updateUser: (user: User | null) =>
+      set(() => ({
+        user,
+      })),
+    addUserInvite: (email: string) =>
+      set((state: UserStore) => ({
+        user: state.user && {
+          ...state.user,
+          invites: [...state.user?.invites, { email, accepted: false }],
+          invites_available_count: state.user.invites_available_count - 1,
+        },
+      })),
+  }))
+)
