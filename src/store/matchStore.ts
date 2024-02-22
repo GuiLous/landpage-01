@@ -50,6 +50,7 @@ export type Map = {
   name: string
   sys_name: string
   is_active: boolean
+  thumbnail: string | null
 }
 
 export type Progress = {
