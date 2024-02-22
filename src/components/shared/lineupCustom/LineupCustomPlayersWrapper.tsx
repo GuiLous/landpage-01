@@ -11,29 +11,37 @@ export function LineupCustomPlayersWrapper() {
 
   const auth = useAuth()
 
-  const userPlayer = lobby?.players?.find(
+  const userDefPlayer = lobby?.def_players?.find(
     (player) => player.user_id === auth?.id
   )
 
-  const defenders = []
+  const userAtkPlayer = lobby?.atk_players?.find(
+    (player) => player.user_id === auth?.id
+  )
 
-  if (userPlayer) {
-    defenders.push(userPlayer)
-  }
+  const userSpecPlayer = lobby?.spec_players?.find(
+    (player) => player.user_id === auth?.id
+  )
 
   return (
     lobby && (
       <div className="justify-center gap-6">
-        <LineupCustomSide owner_id={lobby.owner_id} players={defenders} />
+        <LineupCustomSide
+          owner_id={lobby.owner_id}
+          players={lobby.def_players}
+          isUserPlayerSide={!!userDefPlayer}
+        />
         <LineupCustomSide
           owner_id={lobby.owner_id}
           side="Atacantes"
-          players={[]}
+          players={lobby.atk_players}
+          isUserPlayerSide={!!userAtkPlayer}
         />
         <LineupCustomSide
           owner_id={lobby.owner_id}
           side="Observadores"
-          players={[]}
+          players={lobby.spec_players}
+          isUserPlayerSide={!!userSpecPlayer}
         />
       </div>
     )
