@@ -24,9 +24,13 @@ const attentionFavicon = '/assets/images/attentionFavicon.ico'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
+  disabled?: boolean
 }
 
-export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
+export function LineupPlayBtn({
+  isOwner,
+  disabled = false,
+}: LineupPlayBtnProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
   const { preMatch } = usePreMatchStore()
@@ -197,7 +201,9 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
       <Button.Root
         queued={isInQueue}
         restricted={isRestricted}
-        disabled={(!isOwner && !lobby?.queue) || !!preMatch || isInMatch}
+        disabled={
+          (!isOwner && !lobby?.queue) || !!preMatch || isInMatch || disabled
+        }
         className={twMerge(
           'max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
           'group',
