@@ -1,11 +1,15 @@
 'use client'
 
+import { useCallback } from 'react'
 import { RxTriangleUp } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
 import { GAME_TYPES, GAME_TYPES_AVAILABLE } from '@/constants'
 
 import { useLobbyStore } from '@/store/lobbyStore'
+import { GameType } from '@/store/matchStore'
+
+import { lobbyApi } from '@/modelsApi'
 
 import { Badge } from '@/components/shared'
 
@@ -34,7 +38,19 @@ export function LobbyGameType({
 
   const isLobbyOwner = lobby?.owner_id === auth?.id
 
-  const handlePlaySound = (gameType: string, event: 'click' | 'mouseEnter') => {
+  const updateMatchType = useCallback(
+    async (mode: GameType) => {
+      if (!auth?.token || !lobby?.id) return
+
+      await lobbyApi.switchMode(auth.token, lobby.id, mode)
+    },
+    [auth?.token, lobby?.id]
+  )
+
+  const handleClickAndMouseEnter = (
+    gameType: string,
+    event: 'click' | 'mouseEnter'
+  ) => {
     if (
       GAME_TYPES_AVAILABLE.includes(gameType) &&
       activeTab !== gameType &&
@@ -42,6 +58,8 @@ export function LobbyGameType({
     ) {
       if (event === 'click') {
         playSoundClick()
+
+        updateMatchType(gameType === 'RANQUEADA 5X5' ? 'competitive' : 'custom')
 
         setActiveTab(gameType as LobbyGameType)
       }
@@ -64,8 +82,8 @@ export function LobbyGameType({
             activeTab === gameType && 'border-b-purple-400 cursor-default',
             !GAME_TYPES_AVAILABLE.includes(gameType) && 'cursor-default'
           )}
-          onClick={() => handlePlaySound(gameType, 'click')}
-          onMouseEnter={() => handlePlaySound(gameType, 'mouseEnter')}
+          onClick={() => handleClickAndMouseEnter(gameType, 'click')}
+          onMouseEnter={() => handleClickAndMouseEnter(gameType, 'mouseEnter')}
         >
           {activeTab === gameType && (
             <div

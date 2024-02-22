@@ -1,15 +1,10 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useLobbyStore } from '@/store/lobbyStore'
-import { GameType } from '@/store/matchStore'
 
-import { lobbyApi } from '@/modelsApi'
-
-import { Lineup, LineupCustom, SkeletonLineupCustom } from '@/components/shared'
-
-import { useAuth } from '@/hooks'
+import { Lineup, LineupCustom } from '@/components/shared'
 
 import { LobbyGameType } from './LobbyGameType'
 import { LobbyHeader } from './LobbyHeader'
@@ -20,32 +15,15 @@ const gameTypeConvert = {
   competitive: 'RANQUEADA 5X5',
   custom: 'PERSONALIZADA',
 }
+
 export function LobbyGameTypeWrapper() {
   const { lobby } = useLobbyStore()
-
-  const auth = useAuth()
 
   const [activeTab, setActiveTab] = useState<LobbyGameType>(
     lobby?.mode
       ? (gameTypeConvert[lobby.mode] as LobbyGameType)
       : 'RANQUEADA 5X5'
   )
-  const [isFetching, setIsFetching] = useState(true)
-
-  const updateLobbyType = useCallback(
-    async (mode: GameType) => {
-      if (!auth?.token || !lobby?.id) return
-
-      await lobbyApi.switchMode(auth.token, lobby.id, mode)
-
-      if (activeTab === 'PERSONALIZADA') setIsFetching(false)
-    },
-    [auth?.token, lobby?.id, activeTab]
-  )
-
-  useEffect(() => {
-    updateLobbyType(activeTab === 'RANQUEADA 5X5' ? 'competitive' : 'custom')
-  }, [activeTab, updateLobbyType])
 
   useEffect(() => {
     if (lobby?.mode) {
@@ -60,8 +38,7 @@ export function LobbyGameTypeWrapper() {
       <LobbyGameType activeTab={activeTab} setActiveTab={setActiveTab} />
 
       {activeTab === 'RANQUEADA 5X5' && <Lineup />}
-      {activeTab === 'PERSONALIZADA' && isFetching && <SkeletonLineupCustom />}
-      {activeTab === 'PERSONALIZADA' && !isFetching && <LineupCustom />}
+      {activeTab === 'PERSONALIZADA' && <LineupCustom />}
     </>
   )
 }
