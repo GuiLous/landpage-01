@@ -11,12 +11,14 @@ interface LineupCustomSideProps {
   side?: SideType
   players?: Friend[]
   owner_id: number
+  isUserPlayerSide?: boolean
 }
 
 export function LineupCustomSide({
   side = 'Defensores',
   players = [],
   owner_id,
+  isUserPlayerSide = false,
 }: LineupCustomSideProps) {
   return (
     <div className="flex-col gap-1">
@@ -45,7 +47,11 @@ export function LineupCustomSide({
           players={players}
         />
 
-        <LineupCustomRenderSeats players={players} />
+        <LineupCustomRenderSeats
+          players={players}
+          isUserPlayerSide={isUserPlayerSide}
+          side={side}
+        />
       </ul>
     </div>
   )
