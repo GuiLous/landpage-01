@@ -134,6 +134,7 @@ export const WeaponsName = [
 ]
 
 export type WeaponIndexType =
+  'all' |
   'WEAPON_APPISTOL' |
   'WEAPON_ASSAULTRIFLE' |
   'WEAPON_ASSAULTSHOTGUN' |

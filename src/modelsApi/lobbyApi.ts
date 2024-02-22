@@ -10,9 +10,9 @@ export type PlayerSide =
   | 'atk_players_ids'
   | 'spec_players_ids'
 
-type QueueOptionsType = {
-  match_type: MatchType
-  map_id: number
+export type QueueOptionsType = {
+  match_type?: MatchType
+  map_id?: number
   weapon?: WeaponIndexType
 }
 

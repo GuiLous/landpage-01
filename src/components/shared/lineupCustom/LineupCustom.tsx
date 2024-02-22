@@ -7,7 +7,7 @@ import { WeaponIndexType } from '@/utils'
 
 import { Lobby, MatchType, useLobbyStore } from '@/store/lobbyStore'
 
-import { lobbyApi } from '@/modelsApi'
+import { QueueOptionsType, lobbyApi } from '@/modelsApi'
 
 import {
   LineupPlayBtn,
@@ -57,11 +57,7 @@ export function LineupCustom() {
     async (optionTouUpdate: OptionToUpdateType, value: string) => {
       if (!auth?.token || !lobby?.id || !lobbyDetails) return
 
-      const payload = {
-        match_type: lobbyDetails.match_type,
-        map_id: lobbyDetails.map_id,
-        weapon: lobbyDetails.weapon,
-      }
+      const payload = {} as QueueOptionsType
 
       switch (optionTouUpdate) {
         case 'match_type':
@@ -71,8 +67,7 @@ export function LineupCustom() {
           payload.map_id = Number(value)
           break
         case 'weapon':
-          payload.weapon =
-            value === 'null' ? undefined : (value as WeaponIndexType)
+          payload.weapon = value === 'null' ? 'all' : (value as WeaponIndexType)
           break
         default:
           break
