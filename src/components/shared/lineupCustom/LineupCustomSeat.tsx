@@ -25,7 +25,12 @@ export function LineupCustomSeat({
       onClick={!isUserPlayerSide ? playSoundClick : undefined}
       onMouseEnter={!isUserPlayerSide ? playSoundHover : undefined}
     >
-      <button className="flex h-full flex-1 cursor-default items-center justify-center">
+      <button
+        className={twMerge(
+          'flex h-full flex-1 cursor-default items-center justify-center',
+          !isUserPlayerSide && 'cursor-pointer'
+        )}
+      >
         <RiCloseFill
           className={twMerge(
             'text-gray-300 text-3xl text-opacity-50 transition-all',

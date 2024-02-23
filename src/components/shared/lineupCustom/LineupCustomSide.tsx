@@ -12,6 +12,7 @@ interface LineupCustomSideProps {
   players?: Friend[]
   owner_id: number
   isUserPlayerSide?: boolean
+  userPlayerSide: SideType
 }
 
 export function LineupCustomSide({
@@ -19,13 +20,20 @@ export function LineupCustomSide({
   players = [],
   owner_id,
   isUserPlayerSide = false,
+  userPlayerSide,
 }: LineupCustomSideProps) {
+  const isBgGreen = isUserPlayerSide && userPlayerSide !== 'Observadores'
+  const isBgRed = !isUserPlayerSide && userPlayerSide !== 'Observadores'
+  const isBgGray = userPlayerSide === 'Observadores'
+
   return (
     <div className="flex-col gap-1">
       <div
         className={twMerge(
-          'max-h-[38px] items-center justify-center rounded-t bg-cyan-400/40 backdrop-blur-sm',
-          side === 'Atacantes' && 'bg-red-400/40',
+          'max-h-[38px] items-center justify-center rounded-t backdrop-blur-sm',
+          isBgGreen && 'bg-cyan-400/40',
+          isBgRed && 'bg-red-400/40',
+          isBgGray && 'bg-white/30',
           side === 'Observadores' && 'bg-white/30',
           'ultrawide:max-h-16'
         )}
@@ -45,6 +53,8 @@ export function LineupCustomSide({
           owner_id={owner_id}
           side={side}
           players={players}
+          isUserPlayerSide={isUserPlayerSide}
+          userPlayerSide={userPlayerSide}
         />
 
         <LineupCustomRenderSeats

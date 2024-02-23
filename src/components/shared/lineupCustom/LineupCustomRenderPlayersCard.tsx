@@ -20,12 +20,16 @@ interface LineupCustomRenderPlayersCardProps {
   players?: Friend[]
   side: SideType
   owner_id: number
+  isUserPlayerSide: boolean
+  userPlayerSide: SideType
 }
 
 export function LineupCustomRenderPlayersCard({
   players = [],
   side,
   owner_id,
+  isUserPlayerSide,
+  userPlayerSide,
 }: LineupCustomRenderPlayersCardProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
@@ -80,6 +84,8 @@ export function LineupCustomRenderPlayersCard({
       player={player}
       side={side}
       isLobbyOwner={owner_id === player?.user_id}
+      isUserPlayerSide={isUserPlayerSide}
+      userPlayerSide={userPlayerSide}
       playSoundClick={playSoundClick}
       playSoundHover={playSoundHover}
       onClose={!lobby?.queue && renderCloseButton(player)}
