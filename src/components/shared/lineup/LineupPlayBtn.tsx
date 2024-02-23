@@ -11,7 +11,7 @@ import { useLobbyStore } from '@/store/lobbyStore'
 import { usePreMatchStore } from '@/store/preMatchStore'
 import { useUserStore } from '@/store/userStore'
 
-import { lobbyApi } from '@/modelsApi'
+import { CreateMatchPayloadType, lobbyApi, matchesApi } from '@/modelsApi'
 
 import { Button, ModalMatchFound, Timer, Tooltip } from '@/components/shared'
 
@@ -26,12 +26,14 @@ interface LineupPlayBtnProps {
   isOwner: boolean
   disabled?: boolean
   tooltipLabel?: string
+  lobbyMode?: 'competitive' | 'custom'
 }
 
 export function LineupPlayBtn({
   isOwner,
   disabled = false,
   tooltipLabel = '',
+  lobbyMode = 'competitive',
 }: LineupPlayBtnProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
@@ -85,14 +87,37 @@ export function LineupPlayBtn({
     [isOwner, lobby, preMatch, user, auth?.token, showErrorToast]
   )
 
+  const handleCreateMatch = useCallback(async () => {
+    if (!auth?.token || !lobby) return
+
+    const payload: CreateMatchPayloadType = {
+      players_ids: lobby.players_ids,
+      mode: lobby.mode,
+      mapId: lobby.map_id,
+      weapon: lobby.weapon,
+      defPlayersIds: lobby.def_players.map((player) => player.user_id),
+      atkPlayersIds: lobby.atk_players.map((player) => player.user_id),
+      specPlayersIds: lobby.spec_players.map((player) => player.user_id),
+    }
+
+    const response = await matchesApi.create(auth.token, payload)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+    }
+  }, [auth?.token, lobby, showErrorToast])
+
   const handleCancelQueue = useCallback(() => {
     handleQueue('cancel')
   }, [handleQueue])
 
-  const handleStartQueue = useCallback(() => {
+  const handleStart = useCallback(() => {
     playSoundClick()
+
+    if (lobbyMode === 'custom') return handleCreateMatch()
+
     handleQueue('start')
-  }, [handleQueue, playSoundClick])
+  }, [handleCreateMatch, handleQueue, lobbyMode, playSoundClick])
 
   const onMatchFound = useCallback(() => {
     if (preMatch && !openMatchFoundModal) {
@@ -215,7 +240,7 @@ export function LineupPlayBtn({
               'ultrawide:min-h-36 ultrawide:max-h-36',
               isInQueue && 'hover:bg-red-500'
             )}
-            onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
+            onClick={lobby?.queue_time ? handleCancelQueue : handleStart}
             disableClickSound={!lobby?.queue_time}
           >
             {!isRestricted && !isInQueue && (

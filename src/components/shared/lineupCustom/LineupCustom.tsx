@@ -192,6 +192,7 @@ export function LineupCustom() {
         <LineupPlayBtn
           isOwner={isLobbyOwner}
           disabled={disableButton}
+          lobbyMode="custom"
           tooltipLabel={
             disableButton
               ? 'Para iniciar a partida, pelo menos um jogador precisa estar em uma das equipe.'
