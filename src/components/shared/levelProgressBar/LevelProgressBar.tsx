@@ -10,7 +10,7 @@ import { LevelBadge } from '@/components/shared'
 
 import { Progress } from './Progress'
 
-interface LevelProgressBarProps {
+export interface LevelProgressBarProps {
   points_earned: number
   level_points_before: number
   level_points_after: number
