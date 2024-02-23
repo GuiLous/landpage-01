@@ -1,4 +1,20 @@
+import { WeaponIndexType } from '@/utils'
+
+import { MatchType } from '@/store/lobbyStore'
+import { GameType } from '@/store/matchStore'
+
 import { baseApi } from './baseApi'
+
+export type PlayerSide =
+  | 'def_players_ids'
+  | 'atk_players_ids'
+  | 'spec_players_ids'
+
+export type QueueOptionsType = {
+  match_type?: MatchType
+  map_id?: number
+  weapon?: WeaponIndexType
+}
 
 export const lobbyApi = {
   async listReceivedInvites(token: string, options?: RequestInit) {
@@ -69,7 +85,7 @@ export const lobbyApi = {
 
   async detail(token: string, lobbyId: number, options?: RequestInit) {
     return await baseApi.detail({
-      endpoint: `/lobbies/${lobbyId}/`,
+      endpoint: `lobbies/${lobbyId}/`,
       token,
       options,
     })
@@ -77,11 +93,10 @@ export const lobbyApi = {
 
   async startQueue(token: string, lobbyId: number, options?: RequestInit) {
     return await baseApi.update({
-      endpoint: `/lobbies/${lobbyId}/`,
+      endpoint: `lobbies/${lobbyId}/`,
       token,
       payload: {
-        start_queue: true,
-        cancel_queue: false,
+        queue: 'start',
       },
       options,
     })
@@ -89,12 +104,59 @@ export const lobbyApi = {
 
   async cancelQueue(token: string, lobbyId: number, options?: RequestInit) {
     return await baseApi.update({
-      endpoint: `/lobbies/${lobbyId}/`,
+      endpoint: `lobbies/${lobbyId}/`,
       token,
       payload: {
-        start_queue: false,
-        cancel_queue: true,
+        queue: 'stop',
       },
+      options,
+    })
+  },
+
+  async switchMode(
+    token: string,
+    lobbyId: number,
+    mode: GameType,
+    options?: RequestInit
+  ) {
+    return await baseApi.update({
+      endpoint: `lobbies/${lobbyId}/`,
+      token,
+      payload: {
+        mode,
+      },
+      options,
+    })
+  },
+
+  async switchPlayerSeat(
+    token: string,
+    lobbyId: number,
+    player_id: number,
+    side: PlayerSide,
+    options?: RequestInit
+  ) {
+    return await baseApi.update({
+      endpoint: `/lobbies/${lobbyId}/players/`,
+      token,
+      payload: {
+        player_id,
+        side,
+      },
+      options,
+    })
+  },
+
+  async updateQueueOptions(
+    token: string,
+    lobbyId: number,
+    queueOptions: QueueOptionsType,
+    options?: RequestInit
+  ) {
+    return await baseApi.update({
+      endpoint: `lobbies/${lobbyId}/`,
+      token,
+      payload: queueOptions,
       options,
     })
   },

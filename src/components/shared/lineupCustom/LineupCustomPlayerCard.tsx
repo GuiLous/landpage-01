@@ -5,27 +5,39 @@ import { twMerge } from 'tailwind-merge'
 
 import { Friend } from '@/store/friendStore'
 
+import { useAuth } from '@/hooks'
+
 import { LineupMenuContext } from '../lineup/LineupMenuContext'
 import { SideType } from './LineupCustomSide'
 
 interface LineupCustomPlayerCardProps {
   side?: SideType
   player: Friend
-  isLobbyOwner?: boolean
+  isUserPlayerSide: boolean
+  userPlayerSide: SideType
   playSoundClick: () => void
   playSoundHover: () => void
   children: ReactNode
+  onClose?: false | (() => Promise<void>)
 }
 
 export function LineupCustomPlayerCard({
   side = 'Defensores',
   player,
-  isLobbyOwner = false,
   playSoundClick,
   playSoundHover,
   children,
+  onClose,
+  isUserPlayerSide,
+  userPlayerSide,
 }: LineupCustomPlayerCardProps) {
+  const auth = useAuth()
+
   const [openMenu, setOpenMenu] = useState(false)
+
+  const isBgGreen = isUserPlayerSide && userPlayerSide !== 'Observadores'
+  const isBgRed = !isUserPlayerSide && userPlayerSide !== 'Observadores'
+  const isBgGray = userPlayerSide === 'Observadores'
 
   const handleToggleMenu = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault()
@@ -37,10 +49,12 @@ export function LineupCustomPlayerCard({
   return (
     <li
       className={twMerge(
-        'flex max-h-16 max-w-full cursor-pointer flex-1 items-center justify-start bg-cyan-400/40 px-3.5',
-        side === 'Atacantes' && 'bg-red-400/40',
+        'flex max-h-16 max-w-full cursor-pointer flex-1 items-center justify-start px-3.5',
+        isBgGreen && 'bg-cyan-400/40',
+        isBgRed && 'bg-red-400/40',
+        isBgGray && 'bg-white/30',
         side === 'Observadores' && 'bg-white/30',
-        isLobbyOwner && 'outline outline-1 outline-white',
+        player.user_id === auth?.id && 'outline outline-1 outline-white',
         'last:rounded-b',
         'ultrawide:max-h-28 ultrawide:px-6'
       )}
@@ -55,6 +69,7 @@ export function LineupCustomPlayerCard({
         isMenuOpen={openMenu}
         setIsMenuOpen={setOpenMenu}
         side="left"
+        onClose={onClose}
       />
     </li>
   )

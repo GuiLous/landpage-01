@@ -11,9 +11,9 @@ import { useLobbyStore } from '@/store/lobbyStore'
 import { usePreMatchStore } from '@/store/preMatchStore'
 import { useUserStore } from '@/store/userStore'
 
-import { lobbyApi } from '@/modelsApi'
+import { CreateMatchPayloadType, lobbyApi, matchesApi } from '@/modelsApi'
 
-import { Button, ModalMatchFound, Timer } from '@/components/shared'
+import { Button, ModalMatchFound, Timer, Tooltip } from '@/components/shared'
 
 import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
@@ -24,9 +24,17 @@ const attentionFavicon = '/assets/images/attentionFavicon.ico'
 
 interface LineupPlayBtnProps {
   isOwner: boolean
+  disabled?: boolean
+  tooltipLabel?: string
+  lobbyMode?: 'competitive' | 'custom'
 }
 
-export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
+export function LineupPlayBtn({
+  isOwner,
+  disabled = false,
+  tooltipLabel = '',
+  lobbyMode = 'competitive',
+}: LineupPlayBtnProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
   const { preMatch } = usePreMatchStore()
@@ -79,14 +87,37 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
     [isOwner, lobby, preMatch, user, auth?.token, showErrorToast]
   )
 
+  const handleCreateMatch = useCallback(async () => {
+    if (!auth?.token || !lobby) return
+
+    const payload: CreateMatchPayloadType = {
+      players_ids: lobby.players_ids,
+      mode: lobby.mode,
+      map_id: lobby.map_id,
+      weapon: lobby.weapon,
+      def_players_ids: lobby.def_players.map((player) => player.user_id),
+      atk_players_ids: lobby.atk_players.map((player) => player.user_id),
+      spec_players_ids: lobby.spec_players.map((player) => player.user_id),
+    }
+
+    const response = await matchesApi.create(auth.token, payload)
+
+    if (response.errorMsg) {
+      showErrorToast(response.errorMsg)
+    }
+  }, [auth?.token, lobby, showErrorToast])
+
   const handleCancelQueue = useCallback(() => {
     handleQueue('cancel')
   }, [handleQueue])
 
-  const handleStartQueue = useCallback(() => {
+  const handleStart = useCallback(() => {
     playSoundClick()
+
+    if (lobbyMode === 'custom') return handleCreateMatch()
+
     handleQueue('start')
-  }, [handleQueue, playSoundClick])
+  }, [handleCreateMatch, handleQueue, lobbyMode, playSoundClick])
 
   const onMatchFound = useCallback(() => {
     if (preMatch && !openMatchFoundModal) {
@@ -194,105 +225,111 @@ export function LineupPlayBtn({ isOwner }: LineupPlayBtnProps) {
 
   return (
     <>
-      <Button.Root
-        queued={isInQueue}
-        restricted={isRestricted}
-        disabled={(!isOwner && !lobby?.queue) || !!preMatch || isInMatch}
-        className={twMerge(
-          'max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
-          'group',
-          '3xl:min-h-[53px] 3xl:p-1',
-          'ultrawide:min-h-36 ultrawide:max-h-36',
-          isInQueue && 'hover:bg-red-500'
-        )}
-        onClick={lobby?.queue_time ? handleCancelQueue : handleStartQueue}
-        disableClickSound={!lobby?.queue_time}
-      >
-        {!isRestricted && !isInQueue && (
-          <Button.Content
+      <Tooltip content={tooltipLabel}>
+        <div className="flex-initial">
+          <Button.Root
+            queued={isInQueue}
+            restricted={isRestricted}
+            disabled={
+              (!isOwner && !lobby?.queue) || !!preMatch || isInMatch || disabled
+            }
             className={twMerge(
-              'text-[1.75rem] font-bold uppercase',
-              '3xl:text-2xl',
-              'ultrawide:text-6xl'
+              'max-h-[73px] min-h-[73px] w-full gap-3 rounded-lg p-0',
+              'group',
+              '3xl:min-h-[53px] 3xl:p-1',
+              'ultrawide:min-h-36 ultrawide:max-h-36',
+              isInQueue && 'hover:bg-red-500'
             )}
+            onClick={lobby?.queue_time ? handleCancelQueue : handleStart}
+            disableClickSound={!lobby?.queue_time}
           >
-            Jogar
-          </Button.Content>
-        )}
-
-        {isRestricted && lobby.restriction_countdown && (
-          <Button.Content>
-            <span
-              className={twMerge(
-                'text-sm font-semibold uppercase',
-                '3xl:text-xs 3xl:leading-none',
-                'ultrawide:text-3xl'
-              )}
-            >
-              Grupo com restrição
-            </span>
-
-            <span
-              className={twMerge(
-                'flex w-full flex-1 items-center justify-center gap-1 text-lg font-bold uppercase',
-                'ultrawide:text-4xl'
-              )}
-            >
-              <MdBlock
-                className={twMerge('text-white', 'ultrawide:text-3xl')}
-              />
-              <Timer initialTime={lobby.restriction_countdown} reverse />
-            </span>
-          </Button.Content>
-        )}
-
-        {!isRestricted && isInQueue && (
-          <Button.Content
-            className={twMerge(
-              'flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase',
-              '3xl:text-2xl',
-              'ultrawide:text-6xl'
-            )}
-          >
-            <span
-              className={twMerge(
-                'flex w-full flex-1 items-center justify-center transition-all',
-                'group-hover:-mt-[73px] group-hover:opacity-0',
-                '3xl:group-hover:-mt-[13px] 3xl:group-hover:max-h-[13px]',
-                'ultrawide:group-hover:-mt-36'
-              )}
-            >
-              {lobby?.queue_time !== 0 &&
-                lobby?.queue_time &&
-                formatSecondsToMinutes(lobby.queue_time)}
-
-              {lobby?.queue_time === 0 && '00:00'}
-            </span>
-
-            <span
-              className={twMerge(
-                'hidden w-full flex-1 items-center justify-center gap-1.5 opacity-0',
-                'group-hover:flex group-hover:opacity-100',
-                '3xl:max-h-[53px]',
-                'ultrawide:max-h-36'
-              )}
-            >
-              <Button.Icon
-                icon={RiCloseFill}
-                className={twMerge('text-[1.75rem]', 'ultrawide:text-7xl')}
-              />
-              <span
+            {!isRestricted && !isInQueue && (
+              <Button.Content
                 className={twMerge(
-                  'text-[1.375rem] font-bold uppercase',
-                  'ultrawide:text-5xl'
+                  'text-[1.75rem] font-bold uppercase',
+                  '3xl:text-2xl',
+                  'ultrawide:text-6xl'
                 )}
               >
-                Cancelar
-              </span>
-            </span>
-          </Button.Content>
-        )}
-      </Button.Root>
+                Jogar
+              </Button.Content>
+            )}
+
+            {isRestricted && lobby.restriction_countdown && (
+              <Button.Content>
+                <span
+                  className={twMerge(
+                    'text-sm font-semibold uppercase',
+                    '3xl:text-xs 3xl:leading-none',
+                    'ultrawide:text-3xl'
+                  )}
+                >
+                  Grupo com restrição
+                </span>
+
+                <span
+                  className={twMerge(
+                    'flex w-full flex-1 items-center justify-center gap-1 text-lg font-bold uppercase',
+                    'ultrawide:text-4xl'
+                  )}
+                >
+                  <MdBlock
+                    className={twMerge('text-white', 'ultrawide:text-3xl')}
+                  />
+                  <Timer initialTime={lobby.restriction_countdown} reverse />
+                </span>
+              </Button.Content>
+            )}
+
+            {!isRestricted && isInQueue && (
+              <Button.Content
+                className={twMerge(
+                  'flex h-full w-full flex-col overflow-hidden text-[1.75rem] font-bold uppercase',
+                  '3xl:text-2xl',
+                  'ultrawide:text-6xl'
+                )}
+              >
+                <span
+                  className={twMerge(
+                    'flex w-full flex-1 items-center justify-center transition-all',
+                    'group-hover:-mt-[73px] group-hover:opacity-0',
+                    '3xl:group-hover:-mt-[13px] 3xl:group-hover:max-h-[13px]',
+                    'ultrawide:group-hover:-mt-36'
+                  )}
+                >
+                  {lobby?.queue_time !== 0 &&
+                    lobby?.queue_time &&
+                    formatSecondsToMinutes(lobby.queue_time)}
+
+                  {lobby?.queue_time === 0 && '00:00'}
+                </span>
+
+                <span
+                  className={twMerge(
+                    'hidden w-full flex-1 items-center justify-center gap-1.5 opacity-0',
+                    'group-hover:flex group-hover:opacity-100',
+                    '3xl:max-h-[53px]',
+                    'ultrawide:max-h-36'
+                  )}
+                >
+                  <Button.Icon
+                    icon={RiCloseFill}
+                    className={twMerge('text-[1.75rem]', 'ultrawide:text-7xl')}
+                  />
+                  <span
+                    className={twMerge(
+                      'text-[1.375rem] font-bold uppercase',
+                      'ultrawide:text-5xl'
+                    )}
+                  >
+                    Cancelar
+                  </span>
+                </span>
+              </Button.Content>
+            )}
+          </Button.Root>
+        </div>
+      </Tooltip>
 
       <ModalMatchFound
         open={openMatchFoundModal}

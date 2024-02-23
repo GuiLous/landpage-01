@@ -15,35 +15,37 @@ export function LineupCustomPlayerCardContent({
   isLobbyOwner,
 }: LineupCustomPlayerCardContentProps) {
   return (
-    <div
-      className={twMerge(
-        'items-center justify-start gap-3.5',
-        'ultrawide:gap-6'
-      )}
-    >
-      <Avatar
-        avatarUrl={player.avatar.medium}
-        alt="Player image"
-        size="md"
-        className={twMerge('border border-white', 'ultrawide:border-2')}
-      />
-
-      <div className={twMerge('items-center gap-1', 'ultrawide:gap-2')}>
-        {isLobbyOwner && (
-          <FaCrown
-            className={twMerge('text-sm text-white', 'ultrawide:text-2xl')}
-          />
+    <button className="flex h-full flex-1 items-center justify-center">
+      <div
+        className={twMerge(
+          'items-center justify-start gap-3.5',
+          'ultrawide:gap-6'
         )}
+      >
+        <Avatar
+          avatarUrl={player.avatar.medium}
+          alt="Player image"
+          size="md"
+          className={twMerge('border border-white', 'ultrawide:border-2')}
+        />
 
-        <span
-          className={twMerge(
-            'text-sm font-medium text-white',
-            'ultrawide:text-2xl'
+        <div className={twMerge('items-center gap-1', 'ultrawide:gap-2')}>
+          {isLobbyOwner && (
+            <FaCrown
+              className={twMerge('text-sm text-white', 'ultrawide:text-2xl')}
+            />
           )}
-        >
-          {player.username}
-        </span>
+
+          <span
+            className={twMerge(
+              'text-sm font-medium text-white',
+              'ultrawide:text-2xl'
+            )}
+          >
+            {player.username}
+          </span>
+        </div>
       </div>
-    </div>
+    </button>
   )
 }

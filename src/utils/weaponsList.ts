@@ -132,3 +132,20 @@ export const WeaponsName = [
 'Rambinho',
 'Rambão'
 ]
+
+export type WeaponIndexType =
+  'all' |
+  'WEAPON_APPISTOL' |
+  'WEAPON_ASSAULTRIFLE' |
+  'WEAPON_ASSAULTSHOTGUN' |
+  'WEAPON_COMBATMG' |
+  'WEAPON_HEAVYSNIPER' |
+  'WEAPON_MG' |
+  'WEAPON_MICROSMG' |
+  'WEAPON_PISTOL' |
+  'WEAPON_PISTOL50' |
+  'WEAPON_PISTOL_MK2' |
+  'WEAPON_PUMPSHOTGUN' |
+  'WEAPON_SMG' |
+  'WEAPON_SNIPERRIFLE' |
+  'WEAPON_TACTICALRIFLE'

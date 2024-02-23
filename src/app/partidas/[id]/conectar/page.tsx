@@ -10,6 +10,7 @@ import { revalidatePath } from '@/utils'
 
 import { storageService } from '@/services'
 
+import { useLobbyStore } from '@/store/lobbyStore'
 import { useMatchStore } from '@/store/matchStore'
 import { useUserStore } from '@/store/userStore'
 
@@ -26,11 +27,12 @@ import { usePersistentTimer } from '@/hooks'
 
 export default function Connect() {
   const { match } = useMatchStore()
+  const { lobby } = useLobbyStore()
   const { user } = useUserStore()
 
   const router = useRouter()
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(lobby?.mode === 'competitive')
 
   const timeLeft = usePersistentTimer(COUNTDOWN_TIME, TIMER_NAME, isLoading)
 

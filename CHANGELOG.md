@@ -9,12 +9,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/#1074).
 - Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/#1068).
 - Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/#1055).
 
 ### Changed
 
 - Melhora uso do `use client` na aplicação [#1075](https://github.com/3C-gg/reload-frontend/issues/#1075).
+- Adiciona ícone para remover filtro do componente de `lista de amigos`.
 - Altera `imagens` de `levelBadge` [#1067](https://github.com/3C-gg/reload-frontend/issues/#1067).
 - Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/#1058).
 - Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/#1060).

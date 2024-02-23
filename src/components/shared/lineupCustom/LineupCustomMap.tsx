@@ -1,10 +1,14 @@
 import Image from 'next/image'
 
-export function LineupCustomMap() {
+interface LineupCustomMapProps {
+  thumbnail: string
+}
+
+export function LineupCustomMap({ thumbnail }: LineupCustomMapProps) {
   return (
     <div className="relative row-span-2 flex-initial overflow-hidden rounded">
       <Image
-        src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2019/10/gta-v-vinewood-bowl.jpg"
+        src={thumbnail}
         fill
         sizes="50vw"
         className="object-cover"
