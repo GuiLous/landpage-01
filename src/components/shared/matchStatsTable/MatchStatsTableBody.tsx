@@ -15,11 +15,15 @@ const buttonClickUrl = '/assets/audios/click.mp3'
 interface MatchStatsTableBodyProps {
   players: Player[]
   userId: number
+  playersFirstRowLength: number
+  isPlayersEmpty: boolean
 }
 
 export function MatchStatsTableBody({
   players,
   userId,
+  isPlayersEmpty,
+  playersFirstRowLength,
 }: MatchStatsTableBodyProps) {
   const playSoundHover = useAudio(buttonHoverUrl)
   const playSoundClick = useAudio(buttonClickUrl)
@@ -45,21 +49,32 @@ export function MatchStatsTableBody({
 
   return (
     <tbody>
-      {players.map((player) => (
-        <MatchStatsTableRow
-          key={player.id}
-          player={player}
-          userId={userId}
-          selectedPlayer={selectedPlayer}
-          setSelectedPlayer={setSelectedPlayer}
-          onClick={() =>
-            player.user_id === auth?.id
-              ? handleRedirectToProfile()
-              : handleOpenMenu(player)
-          }
-          onMouseEnter={playSoundHover}
-        />
-      ))}
+      {!isPlayersEmpty &&
+        players.map((player) => (
+          <MatchStatsTableRow
+            key={player.id}
+            player={player}
+            userId={userId}
+            selectedPlayer={selectedPlayer}
+            setSelectedPlayer={setSelectedPlayer}
+            onClick={() =>
+              player.user_id === auth?.id
+                ? handleRedirectToProfile()
+                : handleOpenMenu(player)
+            }
+            onMouseEnter={playSoundHover}
+          />
+        ))}
+
+      {isPlayersEmpty &&
+        Array.from(Array(playersFirstRowLength)).map((_, index) => (
+          <MatchStatsTableRow
+            key={index}
+            userId={0}
+            selectedPlayer={selectedPlayer}
+            setSelectedPlayer={setSelectedPlayer}
+          />
+        ))}
     </tbody>
   )
 }

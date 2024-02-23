@@ -45,7 +45,7 @@ const playerStats = [
 ] as StatsType[]
 
 interface MatchStatsTableRowProps extends ComponentProps<'tr'> {
-  player: Player
+  player?: Player
   userId: number
   selectedPlayer: Player | null
   setSelectedPlayer: (state: Player | null) => void
@@ -98,12 +98,14 @@ export function MatchStatsTableRow({
       className={twMerge(
         'cursor-pointer',
         'last:border-0',
-        player.user_id !== Number(userId) &&
-          'hover:bg-gradient_match_table_hover'
+        player &&
+          player.user_id !== Number(userId) &&
+          'hover:bg-gradient_match_table_hover',
+        !player && 'cursor-default'
       )}
       style={{
         background:
-          player.user_id === Number(userId)
+          player && player.user_id === Number(userId)
             ? 'linear-gradient(90deg, rgba(104, 71, 255, 0.5) 0%, rgba(104, 71, 255, 0.19) 4.94%, rgba(104, 71, 255, 0) 13.92%),  rgba(51, 51, 51, 0.8)'
             : '',
       }}
@@ -112,17 +114,22 @@ export function MatchStatsTableRow({
       <td
         className={twMerge(
           'border-0 max-w-[300px] px-3.5 py-3 text-left font-medium',
-          '3xl:px-3'
+          '3xl:px-3',
+          !player && 'text-gray-300/50'
         )}
       >
         <div className={twMerge('items-center gap-5', '3xl:gap-4')}>
           <div className="max-w-fit flex-initial">
-            <Avatar
-              avatarUrl={player.avatar?.medium}
-              alt="User profile"
-              size="sm"
-              className="border border-purple-400"
-            />
+            {player ? (
+              <Avatar
+                avatarUrl={player.avatar?.medium}
+                alt="User profile"
+                size="sm"
+                className="border border-purple-400"
+              />
+            ) : (
+              ''
+            )}
           </div>
 
           <div className="max-w-fit flex-initial flex-col">
@@ -130,28 +137,31 @@ export function MatchStatsTableRow({
               className={twMerge(
                 'font-medium max-w-[150px] truncate',
                 '3xl:text-sm',
-                'ultrawide:text-2xl'
+                'ultrawide:text-2xl',
+                !player && 'text-gray-300/50'
               )}
             >
-              {player.username}
+              {player ? player.username : '-'}
             </span>
           </div>
 
-          {selectedPlayer && player.username === selectedPlayer.username && (
-            <MenuContext open={isMenuOpen} onOpenChange={onCloseMenu}>
-              <MenuContext.Trigger className="invisible" />
+          {player &&
+            selectedPlayer &&
+            player.username === selectedPlayer.username && (
+              <MenuContext open={isMenuOpen} onOpenChange={onCloseMenu}>
+                <MenuContext.Trigger className="invisible" />
 
-              <MenuContext.Content
-                side="right"
-                alreadyInvited={alreadyInvited}
-                alreadyOnTeam={alreadyOnTeam}
-                isAvailable={isAvailable}
-                steam_url={selectedPlayer.steam_url}
-                user_id={selectedPlayer.user_id}
-                username={selectedPlayer.username}
-              />
-            </MenuContext>
-          )}
+                <MenuContext.Content
+                  side="right"
+                  alreadyInvited={alreadyInvited}
+                  alreadyOnTeam={alreadyOnTeam}
+                  isAvailable={isAvailable}
+                  steam_url={selectedPlayer.steam_url}
+                  user_id={selectedPlayer.user_id}
+                  username={selectedPlayer.username}
+                />
+              </MenuContext>
+            )}
         </div>
       </td>
 
@@ -161,12 +171,15 @@ export function MatchStatsTableRow({
           className={twMerge(
             'border-0 px-3.5 py-3 text-center font-medium',
             '3xl:px-3',
-            'ultrawide:text-2xl'
+            'ultrawide:text-2xl',
+            !player && 'text-gray-300/50'
           )}
         >
-          {stat === 'head_accuracy'
-            ? `${Math.ceil(player.stats.head_accuracy || 0)}%`
-            : player.stats[stat] || 0}
+          {!player && '-'}
+          {player &&
+            stat === 'head_accuracy' &&
+            `${Math.ceil(player?.stats.head_accuracy || 0)}%`}
+          {player && stat !== 'head_accuracy' && (player?.stats[stat] || 0)}
         </td>
       ))}
     </tr>
