@@ -93,11 +93,11 @@ export function LineupPlayBtn({
     const payload: CreateMatchPayloadType = {
       players_ids: lobby.players_ids,
       mode: lobby.mode,
-      mapId: lobby.map_id,
+      map_id: lobby.map_id,
       weapon: lobby.weapon,
-      defPlayersIds: lobby.def_players.map((player) => player.user_id),
-      atkPlayersIds: lobby.atk_players.map((player) => player.user_id),
-      specPlayersIds: lobby.spec_players.map((player) => player.user_id),
+      def_players_ids: lobby.def_players.map((player) => player.user_id),
+      atk_players_ids: lobby.atk_players.map((player) => player.user_id),
+      spec_players_ids: lobby.spec_players.map((player) => player.user_id),
     }
 
     const response = await matchesApi.create(auth.token, payload)

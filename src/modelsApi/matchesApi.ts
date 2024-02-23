@@ -3,11 +3,11 @@ import { baseApi } from './baseApi'
 export type CreateMatchPayloadType = {
   players_ids: number[]
   mode: string
-  mapId: number
+  map_id: number
   weapon?: string
-  defPlayersIds: number[]
-  atkPlayersIds: number[]
-  specPlayersIds: number[]
+  def_players_ids: number[]
+  atk_players_ids: number[]
+  spec_players_ids: number[]
 }
 
 export const matchesApi = {
