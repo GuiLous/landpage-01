@@ -36,6 +36,14 @@ export function LineupCustom() {
     (map) => map.id === lobbyDetails.map_id
   )
 
+  const isLobbyOwner = auth?.id === lobby?.id
+
+  const hasNoDefPlayers = lobby?.def_players?.length === 0
+
+  const hasNoAtkPlayers = lobby?.atk_players?.length === 0
+
+  const disableButton = hasNoAtkPlayers && hasNoDefPlayers
+
   const getCustomLobbyDetails = useCallback(async () => {
     if (!auth?.token || !lobby?.id) return
 
@@ -181,7 +189,15 @@ export function LineupCustom() {
           'ultrawide:max-w-[532px]'
         )}
       >
-        <LineupPlayBtn isOwner />
+        <LineupPlayBtn
+          isOwner={isLobbyOwner}
+          disabled={disableButton}
+          tooltipLabel={
+            disableButton
+              ? 'Para iniciar a partida, pelo menos um jogador precisa estar em uma das equipe.'
+              : undefined
+          }
+        />
       </div>
     </section>
   )
