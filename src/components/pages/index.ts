@@ -22,6 +22,7 @@ export * from './inviteRequired/InviteRequiredMessage';
 export * from './lobby/LobbyGameTypeWrapper';
 export * from './lobby/LobbyRenderModalWelcome';
 export * from './maintenance/MaintenanceMessage';
+export * from "./matchDetails/LevelProgressBarWrapper";
 export * from "./matchDetails/MatchDetailsHeader/MatchDetailsHeader";
 export * from "./matchDetails/MatchDetailsHeader/MatchDetailsHeaderStatus";
 export * from "./matchDetails/MatchDetailsRedirect";

@@ -5,16 +5,13 @@ import { MatchProfileType, getMatchDetails } from '@/functions'
 import { Match, useMatchStore } from '@/store/matchStore'
 
 import {
+  LevelProgressBarWrapper,
   MatchDetailsHeader,
   MatchDetailsHeaderStatus,
   MatchDetailsRedirect,
 } from '@/components/pages'
 
-import {
-  LevelProgressBar,
-  MatchStatsTable,
-  ProfileMatchStatsLink,
-} from '@/components/shared'
+import { MatchStatsTable, ProfileMatchStatsLink } from '@/components/shared'
 
 type Params = {
   matchId: string
@@ -75,11 +72,12 @@ export default async function MatchDetails({ params }: RouteProps) {
       won: winningTeam.id === playerOnMatch.team_id,
       map_name: matchDetails.map.name,
       status: matchDetails.status,
-      map_image:
-        'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png',
-      game_type: matchDetails.game_type,
+      map_image: matchDetails.map.thumbnail,
+      game_mode: matchDetails.game_mode,
     }
   }
+
+  const playersFirstRowLength = matchDetails?.teams[0]?.players?.length
 
   return (
     <main className={twMerge('flex-col gap-7 py-10 px-[4%]', '3xl:gap-6')}>
@@ -108,14 +106,7 @@ export default async function MatchDetails({ params }: RouteProps) {
           )}
 
           {playerOnMatch && (
-            <div
-              className={twMerge(
-                'min-h-[82px] min-w-[38%] max-w-fit items-center rounded bg-gray-800/80 px-3.5',
-                '3xl:max-w-full'
-              )}
-            >
-              <LevelProgressBar {...playerOnMatch.progress} />
-            </div>
+            <LevelProgressBarWrapper {...playerOnMatch.progress} />
           )}
         </section>
 
@@ -130,6 +121,8 @@ export default async function MatchDetails({ params }: RouteProps) {
             <MatchStatsTable.Body
               players={team.players}
               userId={Number(userId)}
+              playersFirstRowLength={playersFirstRowLength}
+              isPlayersEmpty={team.players.length === 0}
             />
           </MatchStatsTable.Root>
         ))}

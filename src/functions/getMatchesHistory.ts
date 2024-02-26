@@ -18,7 +18,7 @@ export type MatchProfileType = {
   id: number
   map_name: string
   map_image: any
-  game_type: GameType
+  game_mode: GameType
   start_date: string
   end_date: string | null
   won: boolean

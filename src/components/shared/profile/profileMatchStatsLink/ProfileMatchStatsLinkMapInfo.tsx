@@ -12,7 +12,7 @@ interface ProfileMatchStatsLinkMapInfoProps {
   map_image?: string
   map_name?: string
   isLink: boolean
-  game_type: GameType
+  game_mode: GameType
   status?: MatchStatus
   start_date?: string
   end_date: string | null
@@ -27,7 +27,7 @@ export function ProfileMatchStatsLinkMapInfo({
   isLink,
   map_image,
   map_name,
-  game_type,
+  game_mode,
   status,
   start_date,
   end_date,
@@ -54,10 +54,7 @@ export function ProfileMatchStatsLinkMapInfo({
         )}
       >
         <Image
-          src={
-            map_image ||
-            'https://static.wikia.nocookie.net/gtawiki/images/e/e8/SisyphusTheater-GTAV-Thumbnail.png'
-          }
+          src={map_image || ''}
           alt={`imagem do mapa ${map_name}`}
           fill
           className={twMerge(
@@ -76,7 +73,7 @@ export function ProfileMatchStatsLinkMapInfo({
             'ultrawide:text-2xl ultrawide:leading-none'
           )}
         >
-          {map_name || 'Nome do mapa'}
+          {map_name}
         </span>
 
         <div className="max-w-fit flex-initial flex-col gap-1">
@@ -87,7 +84,7 @@ export function ProfileMatchStatsLinkMapInfo({
               'leading-none'
             )}
           >
-            {type_map[game_type]}
+            {type_map[game_mode]}
           </span>
 
           <Tooltip content="Duração da partida">
