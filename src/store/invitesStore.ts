@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 import { Lobby, Player } from './lobbyStore'
@@ -24,13 +25,15 @@ type InvitesStore = {
   deleteInvite: (inviteId: string) => void
 }
 
-export const useInvitesStore = create<InvitesStore>((set) => ({
-  invites: [],
-  initInvites: (invites) => set({ invites }),
-  addInvite: (invite) =>
-    set((state) => ({ invites: [...state.invites, invite] })),
-  deleteInvite: (inviteId) =>
-    set((state) => ({
-      invites: [...state.invites.filter((invite) => invite.id !== inviteId)],
-    })),
-}))
+export const useInvitesStore = create<InvitesStore>(
+  zukeeper((set: any) => ({
+    invites: [],
+    initInvites: (invites: Invite[]) => set({ invites }),
+    addInvite: (invite: Invite) =>
+      set((state: InvitesStore) => ({ invites: [...state.invites, invite] })),
+    deleteInvite: (inviteId: string) =>
+      set((state: InvitesStore) => ({
+        invites: [...state.invites.filter((invite) => invite.id !== inviteId)],
+      })),
+  }))
+)

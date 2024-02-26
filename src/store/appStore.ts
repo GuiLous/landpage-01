@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 import { uuid4 } from '@/utils'
@@ -34,29 +35,33 @@ type AppStore = {
   updateMaintenance: (maintenance: boolean) => void
 }
 
-export const useAppStore = create<AppStore>((set) => ({
-  app: {
-    toasts: [],
-    friendListOpen: false,
-    maintenance: false,
-  },
-  addToast: (toast: Toast) =>
-    set((state) => {
-      toast.id = uuid4()
+export const useAppStore = create<AppStore>(
+  zukeeper((set: any) => ({
+    app: {
+      toasts: [],
+      friendListOpen: false,
+      maintenance: false,
+    },
+    addToast: (toast: Toast) =>
+      set((state: AppStore) => {
+        toast.id = uuid4()
 
-      return { app: { ...state.app, toasts: [...state.app.toasts, toast] } }
-    }),
-  removeToast: (id: string) =>
-    set((state) => {
-      return {
-        app: {
-          ...state.app,
-          toasts: state.app.toasts.filter((item) => item.id !== id),
-        },
-      }
-    }),
-  toggleFriendList: (open: boolean) =>
-    set((state) => ({ app: { ...state.app, friendListOpen: open } })),
-  updateMaintenance: (maintenance: boolean) =>
-    set((state) => ({ app: { ...state.app, maintenance } })),
-}))
+        return { app: { ...state.app, toasts: [...state.app.toasts, toast] } }
+      }),
+    removeToast: (id: string) =>
+      set((state: AppStore) => {
+        return {
+          app: {
+            ...state.app,
+            toasts: state.app.toasts.filter((item) => item.id !== id),
+          },
+        }
+      }),
+    toggleFriendList: (open: boolean) =>
+      set((state: AppStore) => ({
+        app: { ...state.app, friendListOpen: open },
+      })),
+    updateMaintenance: (maintenance: boolean) =>
+      set((state: AppStore) => ({ app: { ...state.app, maintenance } })),
+  }))
+)

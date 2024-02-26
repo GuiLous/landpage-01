@@ -15,6 +15,10 @@ const nextConfig = {
         hostname: 'static.wikia.nocookie.net',
       },
       {
+        protocol: 'https',
+        hostname: 'static0.gamerantimages.com',
+      },
+      {
         protocol: 'http',
         hostname: 'localhost',
       },

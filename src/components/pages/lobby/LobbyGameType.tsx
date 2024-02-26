@@ -1,29 +1,89 @@
+'use client'
+
+import { useCallback } from 'react'
 import { RxTriangleUp } from 'react-icons/rx'
 import { twMerge } from 'tailwind-merge'
 
 import { GAME_TYPES, GAME_TYPES_AVAILABLE } from '@/constants'
 
+import { useLobbyStore } from '@/store/lobbyStore'
+import { GameType } from '@/store/matchStore'
+
+import { lobbyApi } from '@/modelsApi'
+
 import { Badge } from '@/components/shared'
 
-interface LobbyGameTypeProps {
-  activeTab?: 'TDM 5X5' | 'RANQUEADA 5X5' | 'PERSONALIZADA'
+import { useAudio, useAuth } from '@/hooks'
+
+import { LobbyGameType } from './LobbyGameTypeWrapper'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
+
+export interface LobbyGameTypeProps {
+  activeTab?: LobbyGameType
+  setActiveTab: (state: LobbyGameType) => void
 }
 
 export function LobbyGameType({
   activeTab = 'RANQUEADA 5X5',
+  setActiveTab,
 }: LobbyGameTypeProps) {
+  const { lobby } = useLobbyStore()
+
+  const auth = useAuth()
+
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
+  const isLobbyOwner = lobby?.owner_id === auth?.id
+
+  const updateMatchType = useCallback(
+    async (mode: GameType) => {
+      if (!auth?.token || !lobby?.id) return
+
+      await lobbyApi.switchMode(auth.token, lobby.id, mode)
+    },
+    [auth?.token, lobby?.id]
+  )
+
+  const handleClickAndMouseEnter = (
+    gameType: string,
+    event: 'click' | 'mouseEnter'
+  ) => {
+    if (
+      GAME_TYPES_AVAILABLE.includes(gameType) &&
+      activeTab !== gameType &&
+      isLobbyOwner
+    ) {
+      if (event === 'click') {
+        playSoundClick()
+
+        updateMatchType(gameType === 'RANQUEADA 5X5' ? 'competitive' : 'custom')
+
+        setActiveTab(gameType as LobbyGameType)
+      }
+
+      playSoundHover()
+    }
+  }
+
   return (
     <nav className="relative flex w-full flex-initial">
       {GAME_TYPES.map((gameType) => (
         <div
           key={gameType}
           className={twMerge(
-            'items-center cursor-pointer justify-center gap-3 border-b border-b-gray-400 pb-[1.125rem]',
+            'items-center justify-center gap-3 border-b border-b-gray-400 pb-[1.125rem]',
+            'group',
             '3xl:pb-4',
             'ultrawide:border-b-2',
-            activeTab === gameType && 'border-b-purple-400',
+            isLobbyOwner && 'cursor-pointer',
+            activeTab === gameType && 'border-b-purple-400 cursor-default',
             !GAME_TYPES_AVAILABLE.includes(gameType) && 'cursor-default'
           )}
+          onClick={() => handleClickAndMouseEnter(gameType, 'click')}
+          onMouseEnter={() => handleClickAndMouseEnter(gameType, 'mouseEnter')}
         >
           {activeTab === gameType && (
             <div
@@ -43,10 +103,13 @@ export function LobbyGameType({
 
           <h3
             className={twMerge(
-              'text-lg uppercase text-white',
+              'text-lg uppercase text-gray-400 transition-colors',
               '3xl:text-base',
               'ultrawide:text-2xl',
               activeTab === gameType && 'text-purple-400 font-medium',
+              GAME_TYPES_AVAILABLE.includes(gameType) &&
+                isLobbyOwner &&
+                'group-hover:text-purple-400',
               !GAME_TYPES_AVAILABLE.includes(gameType) && 'text-gray-400'
             )}
           >

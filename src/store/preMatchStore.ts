@@ -1,3 +1,4 @@
+import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
 export type PreMatch = {
@@ -15,10 +16,12 @@ type PreMatchStore = {
   updatePreMatch: (preMatch: PreMatch | null) => void
 }
 
-export const usePreMatchStore = create<PreMatchStore>()((set) => ({
-  preMatch: null,
-  updatePreMatch: (preMatch: PreMatch | null) =>
-    set(() => ({
-      preMatch,
-    })),
-}))
+export const usePreMatchStore = create<PreMatchStore>()(
+  zukeeper((set: any) => ({
+    preMatch: null,
+    updatePreMatch: (preMatch: PreMatch | null) =>
+      set(() => ({
+        preMatch,
+      })),
+  }))
+)

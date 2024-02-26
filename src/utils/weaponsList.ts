@@ -114,3 +114,38 @@ export type WeaponNameType =
 'Sniper' |
 'Rambinho' |
 'Rambão'
+
+
+export const WeaponsName = [
+'Pistola',
+'Rapidinha',
+'9idade',
+'Trinta e Oito',
+'Micro',
+'Nova',
+'Doze',
+'Bull',
+'AK',
+'M4',
+'Teco-Teco',
+'Sniper',
+'Rambinho',
+'Rambão'
+]
+
+export type WeaponIndexType =
+  'all' |
+  'WEAPON_APPISTOL' |
+  'WEAPON_ASSAULTRIFLE' |
+  'WEAPON_ASSAULTSHOTGUN' |
+  'WEAPON_COMBATMG' |
+  'WEAPON_HEAVYSNIPER' |
+  'WEAPON_MG' |
+  'WEAPON_MICROSMG' |
+  'WEAPON_PISTOL' |
+  'WEAPON_PISTOL50' |
+  'WEAPON_PISTOL_MK2' |
+  'WEAPON_PUMPSHOTGUN' |
+  'WEAPON_SMG' |
+  'WEAPON_SNIPERRIFLE' |
+  'WEAPON_TACTICALRIFLE'
