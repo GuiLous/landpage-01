@@ -20,12 +20,14 @@ import {
   ItemsSelectList,
   WeaponsSelectList,
 } from '@/components/shared'
+import { ImagePreviewEmptyMessage } from '@/components/shared/inventory/imagePreview/ImagePreviewEmptyMessage'
 
 import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { InventoryActiveWeaponButton } from './InventoryActiveWeaponButton'
-import { InventoryItemDescription } from './InventoryItemDescription'
-import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
+import { InventoryItemDescription } from './inventoryItemDescription/InventoryItemDescription'
+import { InventoryItemDescriptionButtons } from './inventoryItemDescription/InventoryItemDescriptionButtons'
+import { InventoryItemsTabBar } from './inventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
 
 const buttonActivateUrl = '/assets/audios/item_activate.mp3'
@@ -471,13 +473,14 @@ export function InventoryWrapperContent({
           </div>
 
           {itemSelected && (
-            <InventoryItemDescription
-              handleUpdateItemInUse={handleUpdateItemInUse}
-              item={itemSelected}
-              itemType={activeItemType}
-              itemInUse={itemInUse as StoreItem}
-              isArsenal={isArsenal}
-            />
+            <InventoryItemDescription item={itemSelected} isArsenal={isArsenal}>
+              <InventoryItemDescriptionButtons
+                handleUpdateItemInUse={handleUpdateItemInUse}
+                itemType={activeItemType}
+                itemInUse={itemInUse as StoreItem}
+                item={itemSelected}
+              />
+            </InventoryItemDescription>
           )}
         </aside>
 
@@ -485,10 +488,14 @@ export function InventoryWrapperContent({
           <ImagePreview
             itemSelected={itemSelected}
             isArsenal={isArsenal}
-            hasSkins={itemsByType.length > 0}
             placeholders={placeholders}
             itemSelectedIndex={itemSelectedIndex}
-          />
+          >
+            <ImagePreviewEmptyMessage
+              hasSkins={itemsByType.length > 0}
+              isArsenal={isArsenal}
+            />
+          </ImagePreview>
 
           {isArsenal && itemSelected && (
             <section

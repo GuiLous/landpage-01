@@ -1,37 +1,23 @@
-'use client'
-
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-import { formatDateToPtFormat, removeSFromEnd } from '@/utils'
+import { formatDateToPtFormat } from '@/utils'
 
 import { StoreItem } from '@/functions'
 
-import { Button, Divider } from '@/components/shared'
-
-import { SubTabTypes } from './InventoryWrapperContent'
+import { Divider } from '@/components/shared'
 
 interface InventoryItemDescriptionProps {
   item: StoreItem
-  itemType: SubTabTypes
-  handleUpdateItemInUse: ({
-    item_id,
-    updateSelected,
-  }: {
-    item_id: number
-    updateSelected?: boolean
-  }) => void
-  itemInUse: StoreItem | undefined
   isArsenal?: boolean
+  children: ReactNode
 }
 
 export function InventoryItemDescription({
-  handleUpdateItemInUse,
   item,
-  itemType,
-  itemInUse,
   isArsenal = false,
+  children,
 }: InventoryItemDescriptionProps) {
-  const hasItemInUse = !!itemInUse
   const showSideInfo = item.item_type === 'wear'
 
   return (
@@ -91,40 +77,7 @@ export function InventoryItemDescription({
         </>
       )}
 
-      {!isArsenal && (
-        <>
-          {item?.id === 0 && hasItemInUse && (
-            <Button.Root
-              restricted
-              className="max-h-[42px] w-full py-3"
-              onClick={() =>
-                handleUpdateItemInUse({
-                  item_id: itemInUse.id,
-                  updateSelected: false,
-                })
-              }
-              disableClickSound
-            >
-              <Button.Content className="text-sm font-semibold">
-                Remover {removeSFromEnd(itemType)}
-              </Button.Content>
-            </Button.Root>
-          )}
-
-          {item?.id !== 0 && (
-            <Button.Root
-              restricted={item.in_use}
-              className="max-h-[42px] w-full py-3"
-              onClick={() => handleUpdateItemInUse({ item_id: item.id })}
-              disableClickSound
-            >
-              <Button.Content className="text-sm font-semibold">
-                {item.in_use ? 'Remover' : 'Ativar'} {removeSFromEnd(itemType)}
-              </Button.Content>
-            </Button.Root>
-          )}
-        </>
-      )}
+      {!isArsenal && children}
     </div>
   )
 }

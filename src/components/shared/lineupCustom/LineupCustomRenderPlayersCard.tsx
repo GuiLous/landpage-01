@@ -11,6 +11,7 @@ import { lobbyApi } from '@/modelsApi'
 import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { LineupCustomPlayerCard } from './LineupCustomPlayerCard'
+import { LineupCustomPlayerCardContent } from './LineupCustomPlayerCardContent'
 import { SideType } from './LineupCustomSide'
 
 const buttonHoverUrl = '/assets/audios/button_hover.mp3'
@@ -83,12 +84,16 @@ export function LineupCustomRenderPlayersCard({
       key={player.user_id}
       player={player}
       side={side}
-      isLobbyOwner={owner_id === player?.user_id}
       isUserPlayerSide={isUserPlayerSide}
       userPlayerSide={userPlayerSide}
       playSoundClick={playSoundClick}
       playSoundHover={playSoundHover}
       onClose={!lobby?.queue && renderCloseButton(player)}
-    />
+    >
+      <LineupCustomPlayerCardContent
+        isLobbyOwner={owner_id === player?.user_id}
+        player={player}
+      />
+    </LineupCustomPlayerCard>
   ))
 }

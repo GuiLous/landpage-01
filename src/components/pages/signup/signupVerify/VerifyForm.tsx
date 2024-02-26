@@ -3,7 +3,13 @@
 import { SignJWT } from 'jose'
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
-import { FormEvent, KeyboardEvent, useCallback, useState } from 'react'
+import {
+  FormEvent,
+  KeyboardEvent,
+  ReactNode,
+  useCallback,
+  useState,
+} from 'react'
 import { PiArrowRight } from 'react-icons/pi'
 import { twMerge } from 'tailwind-merge'
 
@@ -15,9 +21,11 @@ import { Button, PinInput } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-import { VerifyChangeEmail } from './VerifyChangeEmail'
+interface VerifyFormProps {
+  children?: ReactNode
+}
 
-export function VerifyForm() {
+export function VerifyForm({ children }: VerifyFormProps) {
   const showErrorToast = useShowErrorToast()
   const router = useRouter()
 
@@ -103,7 +111,7 @@ export function VerifyForm() {
           onPressKeyDown={handleKeyEnterDown}
         />
 
-        <VerifyChangeEmail />
+        {children}
       </div>
 
       <Button.Root

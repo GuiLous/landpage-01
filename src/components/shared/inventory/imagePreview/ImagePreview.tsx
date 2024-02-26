@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useEffect, useRef, useState } from 'react'
+import { ReactNode, useEffect, useRef, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
@@ -12,13 +12,14 @@ interface ImagePreviewProps {
   hasSkins?: boolean
   placeholders: string[]
   itemSelectedIndex: number
+  children: ReactNode
 }
 
 export function ImagePreview({
   itemSelected,
   isArsenal = false,
-  hasSkins = false,
   itemSelectedIndex = 0,
+  children,
 }: ImagePreviewProps) {
   const imageRef = useRef<HTMLImageElement>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -109,19 +110,7 @@ export function ImagePreview({
           )}
         </div>
       ) : (
-        <span
-          className={twMerge(
-            'ml-[20%] text-gray-300',
-            '3xl:ml-0 3xl:text-sm',
-            isArsenal && 'ml-0'
-          )}
-        >
-          {isArsenal && hasSkins && 'Skin padrão do jogo.'}
-          {isArsenal &&
-            !hasSkins &&
-            'Voçê ainda não possui skins para essa arma.'}
-          {!isArsenal && 'Ops, nenhum item selecionado.'}
-        </span>
+        children
       )}
     </section>
   )

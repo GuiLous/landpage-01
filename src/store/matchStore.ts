@@ -97,8 +97,7 @@ export type Match = {
   start_date: string
   end_date: string | null
   status: MatchStatus
-  game_type: GameType
-  game_mode: number
+  game_mode: GameType
   server_ip: string
   teams: Team[]
   rounds: number

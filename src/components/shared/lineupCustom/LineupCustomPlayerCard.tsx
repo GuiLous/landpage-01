@@ -1,12 +1,9 @@
 'use client'
 
-import { MouseEvent, useState } from 'react'
-import { FaCrown } from 'react-icons/fa'
+import { MouseEvent, ReactNode, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { Friend } from '@/store/friendStore'
-
-import { Avatar } from '@/components/shared'
 
 import { useAuth } from '@/hooks'
 
@@ -16,20 +13,20 @@ import { SideType } from './LineupCustomSide'
 interface LineupCustomPlayerCardProps {
   side?: SideType
   player: Friend
-  isLobbyOwner?: boolean
   isUserPlayerSide: boolean
   userPlayerSide: SideType
   playSoundClick: () => void
   playSoundHover: () => void
+  children: ReactNode
   onClose?: false | (() => Promise<void>)
 }
 
 export function LineupCustomPlayerCard({
   side = 'Defensores',
   player,
-  isLobbyOwner = false,
   playSoundClick,
   playSoundHover,
+  children,
   onClose,
   isUserPlayerSide,
   userPlayerSide,
@@ -65,46 +62,15 @@ export function LineupCustomPlayerCard({
       onContextMenu={handleToggleMenu}
       onMouseEnter={playSoundHover}
     >
-      <button className="flex h-full flex-1 items-center justify-center">
-        <div
-          className={twMerge(
-            'items-center justify-start gap-3.5',
-            'ultrawide:gap-6'
-          )}
-        >
-          <Avatar
-            avatarUrl={player.avatar.medium}
-            alt="Player image"
-            size="md"
-            className={twMerge('border border-white', 'ultrawide:border-2')}
-          />
+      {children}
 
-          <div className={twMerge('items-center gap-1', 'ultrawide:gap-2')}>
-            {isLobbyOwner && (
-              <FaCrown
-                className={twMerge('text-sm text-white', 'ultrawide:text-2xl')}
-              />
-            )}
-
-            <span
-              className={twMerge(
-                'text-sm font-medium text-white',
-                'ultrawide:text-2xl'
-              )}
-            >
-              {player.username}
-            </span>
-          </div>
-
-          <LineupMenuContext
-            player={player}
-            isMenuOpen={openMenu}
-            setIsMenuOpen={setOpenMenu}
-            side="left"
-            onClose={onClose}
-          />
-        </div>
-      </button>
+      <LineupMenuContext
+        player={player}
+        isMenuOpen={openMenu}
+        setIsMenuOpen={setOpenMenu}
+        side="left"
+        onClose={onClose}
+      />
     </li>
   )
 }
