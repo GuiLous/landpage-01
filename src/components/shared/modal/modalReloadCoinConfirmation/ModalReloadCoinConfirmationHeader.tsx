@@ -11,7 +11,8 @@ export function ModalReloadCoinConfirmationHeader() {
           icon={BsCheckCircleFill}
           className={twMerge(
             'text-green-600 text-[2rem]',
-            '3xl:text-[1.75rem]'
+            '3xl:text-[1.75rem]',
+            'ultrawide:text-5xl'
           )}
         />
       </div>
@@ -21,7 +22,8 @@ export function ModalReloadCoinConfirmationHeader() {
           className={twMerge(
             'text-lg font-medium text-green-600',
             'leading-none',
-            '3xl:text-base'
+            '3xl:text-base',
+            'ultrawide:text-2xl'
           )}
         >
           Sucesso!
@@ -31,7 +33,8 @@ export function ModalReloadCoinConfirmationHeader() {
           className={twMerge(
             'font-semibold text-white text-xl',
             'leading-none',
-            '3xl:text-lg'
+            '3xl:text-lg',
+            'ultrawide:text-3xl'
           )}
         >
           Compra concluída.

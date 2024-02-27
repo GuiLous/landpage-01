@@ -114,11 +114,21 @@ export function FileInput({
           )}
         >
           <div className="flex-initial items-center justify-center">
-            <Image
-              src={uploadImg}
-              alt="Upload image"
-              className={twMerge('h-6 w-9', '3xl:h-5 3xl:w-8')}
-            />
+            <div
+              className={twMerge(
+                'h-6 w-9 relative flex-initial',
+                '3xl:h-5 3xl:w-8',
+                'ultrawide:h-9 ultrawide:w-12'
+              )}
+            >
+              <Image
+                src={uploadImg}
+                alt="Upload image"
+                fill
+                priority
+                quality={30}
+              />
+            </div>
           </div>
 
           <div
@@ -131,7 +141,8 @@ export function FileInput({
               className={twMerge(
                 'text-xs text-gray-300',
                 'leading-none',
-                '3xl:text-[0.625rem]'
+                '3xl:text-[0.625rem]',
+                'ultrawide:text-xl'
               )}
             >
               Solte os arquivos aqui ou{' '}
@@ -147,7 +158,8 @@ export function FileInput({
               <p
                 className={twMerge(
                   'text-[0.625rem] leading-none text-gray-300',
-                  '3xl:text-[0.5rem]'
+                  '3xl:text-[0.5rem]',
+                  'ultrawide:text-lg'
                 )}
               >
                 Arquivos suportados:{' '}
@@ -159,7 +171,8 @@ export function FileInput({
               <p
                 className={twMerge(
                   'text-[0.625rem] leading-none text-gray-300',
-                  '3xl:text-[0.5rem]'
+                  '3xl:text-[0.5rem]',
+                  'ultrawide:text-lg'
                 )}
               >
                 Tamanho máximo: <span className="font-medium">10MB</span>

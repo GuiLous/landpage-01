@@ -1,6 +1,13 @@
+'use client'
+
 import { Slot } from '@radix-ui/react-slot'
-import { ButtonHTMLAttributes } from 'react'
+import { ButtonHTMLAttributes, MouseEvent } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
+
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 const button = tv({
   base: [
@@ -9,6 +16,7 @@ const button = tv({
     'transition-colors duration-[0.2s] ease-in-out',
     'hover:bg-purple-300',
     'active:bg-purple-700',
+    'ultrawide:max-h-20 ultrawide:min-h-20',
   ],
   variants: {
     disabled: {
@@ -30,7 +38,7 @@ const button = tv({
       true: 'max-w-fit gap-0 border border-white bg-transparent p-0 hover:bg-transparent active:bg-transparent',
     },
     pagination: {
-      true: 'h-8 w-8 cursor-pointer rounded-lg bg-gray-700 hover:bg-gray-400 active:bg-gray-700 disabled:cursor-default disabled:bg-gray-400 disabled:hover:bg-gray-400',
+      true: 'h-8 w-8 cursor-pointer rounded border border-gray-700/50 bg-transparent hover:bg-gray-700/50 active:bg-gray-700/50 disabled:cursor-default disabled:bg-gray-700/50 disabled:hover:bg-gray-700/50',
     },
     light: {
       true: 'bg-purple-300 hover:bg-purple-300 active:bg-purple-300 disabled:bg-purple-300',
@@ -51,6 +59,8 @@ const button = tv({
 type ButtonRootProps = ButtonHTMLAttributes<HTMLButtonElement> &
   VariantProps<typeof button> & {
     asChild?: boolean
+    disableClickSound?: boolean
+    disableHoverSound?: boolean
   }
 
 export function ButtonRoot({
@@ -64,12 +74,28 @@ export function ButtonRoot({
   ghost,
   pagination,
   light,
+  onClick,
+  disableClickSound = false,
+  disableHoverSound = false,
   ...props
 }: ButtonRootProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    if (!disableClickSound) playSoundClick()
+
+    if (onClick) onClick(event)
+  }
+
   const Component = asChild ? Slot : 'button'
 
   return (
     <Component
+      onMouseEnter={
+        !disabled && !disableHoverSound ? playSoundHover : undefined
+      }
+      onClick={!disabled ? handleClick : undefined}
       disabled={disabled}
       className={button({
         disabled,

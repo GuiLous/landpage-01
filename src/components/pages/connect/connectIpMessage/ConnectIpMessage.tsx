@@ -8,7 +8,8 @@ export function ConnectIpMessage() {
       <p
         className={twMerge(
           'text-xl font-bold uppercase text-white',
-          '3xl:text-lg'
+          '3xl:text-lg',
+          'ultrawide:text-4xl'
         )}
       >
         É hora do jogo!
@@ -17,7 +18,8 @@ export function ConnectIpMessage() {
       <p
         className={twMerge(
           'font-medium text-end max-w-[455px] text-white',
-          '3xl:text-sm'
+          '3xl:text-sm',
+          'ultrawide:text-3xl ultrawide:max-w-[895px]'
         )}
       >
         Para jogar, abra o FiveM e clique no botão abaixo. Ou se preferir,

@@ -11,6 +11,7 @@ export const PRIVATE_ROUTES = [
   '/inventario',
   '/loja',
   '/checkout',
+  '/ranking',
 ]
 export const PUBLIC_ROUTES = ['/', '/not-found', '/manutencao']
 export const ROUTES_TO_INITIALIZE_SLICES = [
@@ -21,6 +22,7 @@ export const ROUTES_TO_INITIALIZE_SLICES = [
   '/manutencao',
   '/loja',
   '/inventario',
+  '/ranking',
 ]
 export const ROUTES_SIGNUP = [
   '/api',
@@ -44,7 +46,6 @@ export const SIDEBAR_TOP_MENU_ITEMS = [
 ]
 export const SIDEBAR_BOTTOM_MENU_ITEMS = ['suporte', 'sair']
 export const SOON_ITEMS = [
-  'ranking',
   process.env.NEXT_PUBLIC_REACT_APP_STORE_ENABLED === 'false' && 'loja',
 ]
 export const MENU_LINKS = ['loja', 'ranking']
@@ -52,7 +53,7 @@ export const MENU_LINKS = ['loja', 'ranking']
 // Links
 export const INSTAGRAM_LINK = 'https://www.instagram.com/reloadclubgg/'
 export const TWITTER_LINK = 'https://twitter.com/reloadclubgg'
-export const DISCORD_LINK = 'https://discord.gg/mMMKshktfT'
+export const DISCORD_LINK = 'https://discord.gg/nKz76bnbKu'
 export const YOUTUBE_LINK =
   'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A'
 export const FACEBOOK_LINK =
@@ -113,7 +114,7 @@ export const DEBOUNCE_SEARCH_TIME = 500
 
 // Lobby
 export const GAME_TYPES = ['TDM 5X5', 'RANQUEADA 5X5', 'PERSONALIZADA']
-export const GAME_TYPES_AVAILABLE = ['RANQUEADA 5X5']
+export const GAME_TYPES_AVAILABLE = ['RANQUEADA 5X5', 'PERSONALIZADA']
 export const MATCH_FOUND_GAP_TIMEOUT = 3000
 export const TIME_OUT_MULTIPLIER = 1000
 export const NOT_FIRST_ACCESS_KEY = 'NOT_FIRST_ACCESS'

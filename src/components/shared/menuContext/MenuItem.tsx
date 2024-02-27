@@ -38,6 +38,8 @@ interface MenuItemProps {
   isFriendAdd?: boolean
   onClose?: false | (() => Promise<void>)
   setOpenModalSupport: (state: boolean) => void
+  playSoundHover: () => void
+  playSoundClick: () => void
 }
 
 export function MenuItem({
@@ -52,6 +54,8 @@ export function MenuItem({
   isFriendAdd = false,
   isFriendRemove = false,
   onClose,
+  playSoundClick,
+  playSoundHover,
 }: MenuItemProps) {
   const { addToast, toggleFriendList } = useAppStore()
   const { user } = useUserStore()
@@ -116,6 +120,8 @@ export function MenuItem({
   }
 
   const onClickFunction = () => {
+    if (!isDisabled && !checkIfIsAlreadyInvited() && !isOnTeam) playSoundClick()
+
     switch (keyMenu) {
       case 'invite':
         handleInvite()
@@ -205,6 +211,11 @@ export function MenuItem({
         checkIfIsAlreadyInvited() && 'bg-gradient_menu_invited cursor-default'
       )}
       onClick={onClickFunction}
+      onMouseEnter={
+        !isDisabled && !checkIfIsAlreadyInvited() && !isOnTeam
+          ? playSoundHover
+          : undefined
+      }
     >
       <MenuItemIcon
         icon={

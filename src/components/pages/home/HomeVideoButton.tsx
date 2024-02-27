@@ -19,12 +19,16 @@ export function HomeVideoButton() {
         ghost
         className={twMerge(
           'min-h-[48px] w-full max-w-full gap-2 border-purple-400',
-          'hover:bg-purple-300'
+          'hover:bg-purple-300',
+          'ultrawide:min-h-[96px] ultrawide:gap-5'
         )}
         onClick={() => setShowVideo(true)}
       >
-        <Button.Icon icon={PiPlayFill} className="text-lg" />
-        <Button.Content className="text-sm">
+        <Button.Icon
+          icon={PiPlayFill}
+          className={twMerge('text-lg', 'ultrawide:text-4xl')}
+        />
+        <Button.Content className={twMerge('text-sm', 'ultrawide:text-3xl')}>
           Assistir <strong className="font-bold">Intro</strong>
         </Button.Content>
       </Button.Root>

@@ -3,12 +3,14 @@
 import { animated as a, useSpring } from '@react-spring/web'
 import { useState } from 'react'
 import CountUp from 'react-countup'
+import { useMediaQuery } from 'react-responsive'
+import { twMerge } from 'tailwind-merge'
 
 import { LevelBadge } from '@/components/shared'
 
 import { Progress } from './Progress'
 
-interface LevelProgressBarProps {
+export interface LevelProgressBarProps {
   points_earned: number
   level_points_before: number
   level_points_after: number
@@ -23,6 +25,10 @@ export function LevelProgressBar({
   level_before,
   level_after,
 }: LevelProgressBarProps) {
+  const isUltrawide = useMediaQuery({
+    query: '(min-width: 2560px)',
+  })
+
   const [levelUpdateReady, setLevelUpdateReady] = useState(false)
 
   const levelChange = level_before !== level_after
@@ -51,7 +57,7 @@ export function LevelProgressBar({
         style={{ ...levelAnimation }}
       >
         <LevelBadge
-          variant="sm"
+          variant={isUltrawide ? 'smd' : 'sm'}
           level={levelUpdateReady ? level_after : level_before}
         />
       </a.div>
@@ -74,15 +80,26 @@ export function LevelProgressBar({
 
         <div className="justify-between">
           <div>
-            <span className="text-xs uppercase">Level {level_after}</span>
+            <span className={twMerge('text-xs uppercase', 'ultrawide:text-xl')}>
+              Level {level_after}
+            </span>
           </div>
 
           <div className="justify-end">
-            <span className="text-xs font-medium text-white">
+            <span
+              className={twMerge(
+                'text-xs font-medium text-white',
+                'ultrawide:text-xl'
+              )}
+            >
               <CountUp start={level_points_before} end={level_points_after} />
             </span>
 
-            <span className="text-xs text-white">/100</span>
+            <span
+              className={twMerge('text-xs text-white', 'ultrawide:text-xl')}
+            >
+              /100
+            </span>
           </div>
         </div>
       </div>
@@ -92,7 +109,7 @@ export function LevelProgressBar({
         style={{ ...levelAnimation }}
       >
         <LevelBadge
-          variant="sm"
+          variant={isUltrawide ? 'smd' : 'sm'}
           level={levelUpdateReady ? level_after + 1 : level_before + 1}
         />
       </a.div>

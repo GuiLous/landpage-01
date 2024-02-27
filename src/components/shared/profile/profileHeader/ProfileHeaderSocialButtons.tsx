@@ -1,19 +1,11 @@
-'use client'
-
-import Link from 'next/link'
-import { useState } from 'react'
 import { SiDiscord, SiSteam, SiTwitch, SiYoutube } from 'react-icons/si'
 import { twMerge } from 'tailwind-merge'
 
 import { SocialHandles } from '@/functions'
 
-import {
-  Button,
-  CustomIcon,
-  ModalAddSocial,
-  ModalAddSocialList,
-  Tooltip,
-} from '@/components/shared'
+import { CustomIcon, Link, Tooltip } from '@/components/shared'
+
+import { ProfileHeaderSocialButtonsOpenModal } from './ProfileHeaderSocialButtonsOpenModal'
 
 export type Socials = 'steam' | 'twitch' | 'youtube' | 'discord'
 
@@ -26,8 +18,6 @@ export function ProfileHeaderSocialButtons({
   isUserLogged,
   socials,
 }: ProfileHeaderSocialButtonsProps) {
-  const [openModalAddSocial, setOpenModalAddSocial] = useState(false)
-
   const socialLinkedKeys = Object.keys(socials).filter(
     (key) => socials[key as Socials] !== null
   ) as Socials[]
@@ -47,7 +37,13 @@ export function ProfileHeaderSocialButtons({
   }
 
   return (
-    <div className={twMerge('flex-initial items-center gap-3.5', '3xl:gap-3')}>
+    <div
+      className={twMerge(
+        'flex-initial items-center gap-3.5',
+        '3xl:gap-3',
+        'ultrawide:gap-5'
+      )}
+    >
       {socialLinkedKeys?.map((item) => (
         <Tooltip
           key={item}
@@ -56,7 +52,10 @@ export function ProfileHeaderSocialButtons({
           className="px-2 py-2 text-xs"
         >
           <Link href={socialsLinksPrefix[item] + socials[item]} target="_blank">
-            <CustomIcon icon={socialIcons[item]} />
+            <CustomIcon
+              icon={socialIcons[item]}
+              className="ultrawide:text-4xl"
+            />
           </Link>
         </Tooltip>
       ))}
@@ -67,28 +66,12 @@ export function ProfileHeaderSocialButtons({
           side="bottom"
           className="px-2 py-2 text-xs"
         >
-          <div className="max-w-fit flex-initial" id="step-header02">
-            <Button.Root
-              ghost
-              className="min-h-[16px] min-w-[16px]"
-              onClick={() => {
-                setOpenModalAddSocial(true)
-              }}
-            >
-              <Button.Content className={twMerge('text-sm', 'leading-none')}>
-                +
-              </Button.Content>
-            </Button.Root>
-          </div>
+          <ProfileHeaderSocialButtonsOpenModal
+            socials={socials}
+            socialLinkedKeys={socialLinkedKeys}
+          />
         </Tooltip>
       )}
-
-      <ModalAddSocial open={openModalAddSocial} setOpen={setOpenModalAddSocial}>
-        <ModalAddSocialList
-          socials={socials}
-          socialsLinked={socialLinkedKeys}
-        />
-      </ModalAddSocial>
     </div>
   )
 }

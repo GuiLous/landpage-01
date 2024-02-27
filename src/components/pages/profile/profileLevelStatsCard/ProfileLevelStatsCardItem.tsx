@@ -34,16 +34,28 @@ export function ProfileLevelStatsCardItem({
         className={twMerge(
           'my-5 max-w-fit flex-initial flex-col',
           center && 'self-center',
-          '3xl:mt-4'
+          '3xl:mt-4',
+          'ultrawide:my-7'
         )}
       >
         <Tooltip content={firstStat.messageTooltip}>
-          <span className="whitespace-nowrap text-xs font-medium uppercase text-gray-300">
+          <span
+            className={twMerge(
+              'whitespace-nowrap text-xs font-medium uppercase text-gray-300',
+              'ultrawide:text-xl'
+            )}
+          >
             {firstStat.label}
           </span>
         </Tooltip>
 
-        <span className={twMerge('font-semibold text-white', '3xl:text-sm')}>
+        <span
+          className={twMerge(
+            'font-semibold text-white',
+            '3xl:text-sm',
+            'ultrawide:text-2xl'
+          )}
+        >
           {firstStat?.stat || 0}
           {firstStat.label === 'Hs Kills %' && '%'}
         </span>
@@ -53,16 +65,28 @@ export function ProfileLevelStatsCardItem({
         className={twMerge(
           'my-5 max-w-fit flex-initial flex-col',
           center && 'self-center',
-          '3xl:mt-4'
+          '3xl:mt-4',
+          'ultrawide:my-7'
         )}
       >
         <Tooltip content={secondStat.messageTooltip}>
-          <span className="whitespace-nowrap text-xs font-medium uppercase text-gray-300">
+          <span
+            className={twMerge(
+              'whitespace-nowrap text-xs font-medium uppercase text-gray-300',
+              'ultrawide:text-xl'
+            )}
+          >
             {secondStat.label}
           </span>
         </Tooltip>
 
-        <span className={twMerge('font-semibold text-white', '3xl:text-sm')}>
+        <span
+          className={twMerge(
+            'font-semibold text-white',
+            '3xl:text-sm',
+            'ultrawide:text-2xl'
+          )}
+        >
           {secondStat?.stat || 0}
         </span>
       </div>

@@ -9,7 +9,11 @@ interface InputLabelProps extends ComponentProps<'label'> {
 export function InputLabel({ className, label, ...props }: InputLabelProps) {
   return (
     <label
-      className={twMerge('font-medium text-white leading-none', className)}
+      className={twMerge(
+        'font-medium text-white leading-none',
+        'ultrawide:text-2xl ultrawide:leading-none',
+        className
+      )}
       {...props}
     >
       {label}

@@ -20,13 +20,18 @@ import {
   ItemsSelectList,
   WeaponsSelectList,
 } from '@/components/shared'
+import { ImagePreviewEmptyMessage } from '@/components/shared/inventory/imagePreview/ImagePreviewEmptyMessage'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { InventoryActiveWeaponButton } from './InventoryActiveWeaponButton'
-import { InventoryItemDescription } from './InventoryItemDescription'
-import { InventoryItemsTabBar } from './InventoryItemsTabBar/InventoryItemsTabBar'
+import { InventoryItemDescription } from './inventoryItemDescription/InventoryItemDescription'
+import { InventoryItemDescriptionButtons } from './inventoryItemDescription/InventoryItemDescriptionButtons'
+import { InventoryItemsTabBar } from './inventoryItemsTabBar/InventoryItemsTabBar'
 import { InventorySubItemTab } from './InventorySubItemTab'
+
+const buttonActivateUrl = '/assets/audios/item_activate.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 const notSelected = '/assets/images/not_selected.png'
 
@@ -112,6 +117,9 @@ export function InventoryWrapperContent({
   placeholders,
 }: InventoryWrapperContentProps) {
   const auth = useAuth()
+
+  const playSoundActivate = useAudio(buttonActivateUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
 
   const showErrorToast = useShowErrorToast()
 
@@ -223,6 +231,9 @@ export function InventoryWrapperContent({
       const itemById = itemsByType.find((item) => item?.id === item_id)
 
       if (itemById) {
+        if (!itemById.in_use) playSoundActivate()
+        if (itemById.in_use) playSoundClick()
+
         const payload = { in_use: !itemById.in_use }
 
         const response = await storeApi.updateInUse(
@@ -246,7 +257,13 @@ export function InventoryWrapperContent({
         revalidate('inventory')
       }
     },
-    [auth?.token, itemsByType, showErrorToast]
+    [
+      auth?.token,
+      itemsByType,
+      playSoundActivate,
+      playSoundClick,
+      showErrorToast,
+    ]
   )
 
   useEffect(() => {
@@ -406,7 +423,8 @@ export function InventoryWrapperContent({
         <aside
           className={twMerge(
             'max-w-[364px] flex-col justify-between',
-            '3xl:max-w-[355px]'
+            '3xl:max-w-[355px]',
+            'ultrawide:max-w-[457px]'
           )}
         >
           <div className="flex-initial flex-col gap-4">
@@ -424,7 +442,8 @@ export function InventoryWrapperContent({
               <CustomScrollBar
                 className={twMerge(
                   'max-h-[375px] max-w-fit',
-                  '3xl:max-h-[255px]'
+                  '3xl:max-h-[255px]',
+                  'ultrawide:max-h-[575px]'
                 )}
               >
                 <WeaponsSelectList
@@ -436,7 +455,12 @@ export function InventoryWrapperContent({
             )}
 
             {!isArsenal && (
-              <CustomScrollBar className="max-h-[312px] max-w-fit">
+              <CustomScrollBar
+                className={twMerge(
+                  'max-h-[312px] max-w-fit',
+                  'ultrawide:max-h-[512px]'
+                )}
+              >
                 <ItemsSelectList
                   hasItemInUse={hasItemInUse}
                   itemSelectedId={itemSelected?.id}
@@ -449,13 +473,14 @@ export function InventoryWrapperContent({
           </div>
 
           {itemSelected && (
-            <InventoryItemDescription
-              handleUpdateItemInUse={handleUpdateItemInUse}
-              item={itemSelected}
-              itemType={activeItemType}
-              itemInUse={itemInUse as StoreItem}
-              isArsenal={isArsenal}
-            />
+            <InventoryItemDescription item={itemSelected} isArsenal={isArsenal}>
+              <InventoryItemDescriptionButtons
+                handleUpdateItemInUse={handleUpdateItemInUse}
+                itemType={activeItemType}
+                itemInUse={itemInUse as StoreItem}
+                item={itemSelected}
+              />
+            </InventoryItemDescription>
           )}
         </aside>
 
@@ -463,10 +488,14 @@ export function InventoryWrapperContent({
           <ImagePreview
             itemSelected={itemSelected}
             isArsenal={isArsenal}
-            hasSkins={itemsByType.length > 0}
             placeholders={placeholders}
             itemSelectedIndex={itemSelectedIndex}
-          />
+          >
+            <ImagePreviewEmptyMessage
+              hasSkins={itemsByType.length > 0}
+              isArsenal={isArsenal}
+            />
+          </ImagePreview>
 
           {isArsenal && itemSelected && (
             <section

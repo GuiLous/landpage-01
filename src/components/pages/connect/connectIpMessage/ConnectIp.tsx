@@ -40,17 +40,19 @@ export function ConnectIp() {
     <div
       className={twMerge(
         'mt-5 max-w-[480px] flex-initial items-center justify-end gap-4',
-        '3xl:max-w-[400px]'
+        '3xl:max-w-[400px]',
+        'ultrawide:max-w-[660px]'
       )}
     >
       <div
         className={twMerge(
           'items-center justify-between max-w-[228px] gap-2 px-4 border border-purple-400 rounded cursor-pointer py-3.5 min-h-12 relative',
-          '3xl:max-w-[200px] 3xl:py-3'
+          '3xl:max-w-[200px] 3xl:py-3',
+          'ultrawide:max-w-[328px] ultrawide:min-h-16'
         )}
         onClick={handleClipboard}
       >
-        <span className={twMerge('text-white text-sm')}>
+        <span className={twMerge('text-white text-sm', 'ultrawide:text-xl')}>
           {' '}
           IP: {match && match.server_ip}
         </span>
@@ -58,8 +60,11 @@ export function ConnectIp() {
         <Tooltip content="Copiado!" open={copied}>
           <div className="max-w-fit flex-initial">
             <HiOutlineClipboardDocument
-              size={20}
-              className={twMerge('text-white', copied && 'text-purple-400')}
+              className={twMerge(
+                'text-white text-xl',
+                copied && 'text-purple-400',
+                'ultrawide:text-3xl'
+              )}
             />
           </div>
         </Tooltip>
@@ -69,14 +74,20 @@ export function ConnectIp() {
         asChild
         className={twMerge(
           'w-full max-w-[228px] py-3.5',
-          '3xl:max-w-[200px] 3xl:py-3'
+          '3xl:max-w-[200px] 3xl:py-3',
+          'ultrawide:min-h-16 ultrawide:max-h-16 ultrawide:max-w-[328px]'
         )}
         type="submit"
       >
         <Link href={`fivem://connect/${match?.server_ip}`} target="_blank">
-          <Button.Icon icon={SiFivem} size={20} />
+          <Button.Icon
+            icon={SiFivem}
+            className={twMerge('text-white text-xl', 'ultrawide:text-3xl')}
+          />
 
-          <Button.Content className="text-sm font-normal">
+          <Button.Content
+            className={twMerge('text-sm font-normal', 'ultrawide:text-xl')}
+          >
             Conectar
             <span className="ml-1 font-bold">FiveM</span>
           </Button.Content>

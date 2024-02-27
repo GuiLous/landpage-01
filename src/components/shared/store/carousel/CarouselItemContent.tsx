@@ -24,13 +24,15 @@ export function CarouselItemContent({
       className={twMerge(
         'max-w-fit flex-initial flex-col gap-10 left-[7.42%] absolute top-[15%] z-20',
         'animate-carousel',
-        '3xl:gap-6'
+        '3xl:gap-6',
+        'ultrawide:left-[4.2%]'
       )}
     >
       <div className="max-w-fit flex-initial flex-col">
         <h2
           className={twMerge(
-            'font-light -ml-0.5 uppercase text-4xl leading-none text-white'
+            'font-light -ml-0.5 uppercase text-4xl leading-none text-white',
+            'ultrawide:text-5xl'
           )}
         >
           {firstSentence}
@@ -38,7 +40,8 @@ export function CarouselItemContent({
         <h2
           className={twMerge(
             'font-bold -ml-0.5 uppercase text-5xl text-start leading-none text-white max-w-[485px]',
-            '3xl:max-w-[450px] 3xl:text-4xl'
+            '3xl:max-w-[450px] 3xl:text-4xl',
+            'ultrawide:text-6xl'
           )}
         >
           {secondSentence}
@@ -48,7 +51,8 @@ export function CarouselItemContent({
       <p
         className={twMerge(
           'text-left text-white max-w-[390px]',
-          '3xl:text-sm 3xl:max-w-[285px]'
+          '3xl:text-sm 3xl:max-w-[285px]',
+          'ultrawide:text-2xl ultrawide:max-w-[490px]'
         )}
       >
         {description}

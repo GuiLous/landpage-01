@@ -1,23 +1,26 @@
 'use client'
 
 import Cookies from 'js-cookie'
-import { ReactNode, useCallback } from 'react'
+import { ComponentProps, ReactNode, useCallback } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { storeApi } from '@/modelsApi'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
-interface ModalReloadCoinsCardProps {
+interface ModalReloadCoinsCardProps extends ComponentProps<'div'> {
   id: string
   children: ReactNode
   setIsFetching: (state: boolean) => void
+  playSoundClick: () => void
 }
 
 export function ModalReloadCoinsCard({
   id,
   children,
   setIsFetching,
+  playSoundClick,
+  ...props
 }: ModalReloadCoinsCardProps) {
   const auth = useAuth()
 
@@ -26,6 +29,8 @@ export function ModalReloadCoinsCard({
   const handlePurchaseCredit = useCallback(
     async (productId: string) => {
       if (!auth?.token) return
+      playSoundClick()
+
       setIsFetching(true)
 
       const response = await storeApi.buyProduct(auth.token, {
@@ -42,7 +47,7 @@ export function ModalReloadCoinsCard({
       Cookies.set('checkout_initiated', 'true')
       window.location.replace(response.url)
     },
-    [auth?.token, showErrorToast, setIsFetching]
+    [auth?.token, showErrorToast, setIsFetching, playSoundClick]
   )
 
   return (
@@ -53,6 +58,7 @@ export function ModalReloadCoinsCard({
         'group'
       )}
       onClick={() => handlePurchaseCredit(id)}
+      {...props}
     >
       {children}
     </div>

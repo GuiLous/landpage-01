@@ -3,6 +3,7 @@
 import Cookies from 'js-cookie'
 import { useRouter } from 'next/navigation'
 import { useCallback, useState } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 import { revalidatePath } from '@/utils'
 
@@ -47,7 +48,11 @@ export function LogoutButtonRedirect() {
   )
 
   return (
-    <Button.Root className="w-60 " disabled={isFetching} onClick={handleLogout}>
+    <Button.Root
+      className={twMerge('w-60', 'ultrawide:w-96')}
+      disabled={isFetching}
+      onClick={handleLogout}
+    >
       {isFetching && <Button.Spinner />}
 
       <Button.Content

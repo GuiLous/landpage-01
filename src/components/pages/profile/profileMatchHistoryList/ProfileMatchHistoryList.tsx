@@ -52,7 +52,13 @@ export async function ProfileMatchHistoryList({
         <div
           className={twMerge('items-center justify-center mt-6', '3xl:mt-5')}
         >
-          <p className={twMerge('text-gray-300', '3xl:text-sm')}>
+          <p
+            className={twMerge(
+              'text-gray-300',
+              '3xl:text-sm',
+              'ultrawide:text-2xl'
+            )}
+          >
             {`Ops, ${
               auth.id === Number(userId) ? 'você' : username
             } ainda não tem partidas.`}

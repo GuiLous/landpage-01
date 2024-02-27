@@ -3,7 +3,7 @@ import { IconBaseProps } from 'react-icons'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const icon = tv({
-  base: 'text-white',
+  base: ['text-white', 'ultrawide:text-6xl'],
   variants: {
     disabled: {
       true: 'text-gray-400',

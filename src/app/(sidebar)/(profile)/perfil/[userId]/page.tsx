@@ -40,7 +40,8 @@ export default async function Profile({ params, searchParams }: RouteProps) {
         <div
           className={twMerge(
             'flex-col gap-4 self-start max-w-[350px]',
-            '3xl:max-w-[300px]'
+            '3xl:max-w-[300px]',
+            'ultrawide:max-w-[450px]'
           )}
         >
           <Suspense fallback={<SkeletonLeveStatsCard />}>

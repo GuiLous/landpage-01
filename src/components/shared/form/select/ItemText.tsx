@@ -14,6 +14,7 @@ export function ItemText({ children, className }: ItemTextProps) {
       <span
         className={twMerge(
           'flex items-center text-left text-xs leading-5 text-white',
+          'ultrawide:text-xl',
           className
         )}
       >

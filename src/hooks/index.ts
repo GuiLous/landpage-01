@@ -1,4 +1,5 @@
 /* eslint-disable prettier/prettier */
+export * from './useAudio';
 export * from './useAuth';
 export * from './useCheckMaintenance';
 export * from './useInitializeSlices';

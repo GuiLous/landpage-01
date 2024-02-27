@@ -37,12 +37,15 @@ export function SidebarLobbyButton() {
   }
 
   return (
-    <div className={twMerge('px-7', '3xl:px-6')}>
+    <div className={twMerge('px-7', '3xl:px-6', 'ultrawide:px-9')}>
       <Button.Root
         asChild
         queued={isInQueue || !!isIsMatch}
         restricted={isRestricted}
-        className="max-h-10 w-full justify-start gap-3 px-3"
+        className={twMerge(
+          'max-h-10 w-full justify-start gap-3 px-3',
+          'ultrawide:max-h-16 ultrawide:min-h-16 ultrawide:gap-6 ultrawide:px-6'
+        )}
         id="step-sidebar03"
       >
         <Link
@@ -52,14 +55,27 @@ export function SidebarLobbyButton() {
               : '/jogar'
           }
         >
-          <Button.Icon icon={PiHouseFill} size={19} />
+          <Button.Icon
+            icon={PiHouseFill}
+            className={twMerge('text-xl', 'ultrawide:text-4xl')}
+          />
 
-          <Button.Content className="text-sm font-semibold capitalize">
+          <Button.Content
+            className={twMerge(
+              'text-sm font-semibold capitalize',
+              'ultrawide:text-2xl'
+            )}
+          >
             {getButtonLabel()}
           </Button.Content>
 
           <div className="justify-end">
-            <Button.Content className="text-sm font-semibold capitalize">
+            <Button.Content
+              className={twMerge(
+                'text-sm font-semibold capitalize',
+                'ultrawide:text-2xl'
+              )}
+            >
               {isInQueue &&
                 lobby?.queue_time !== 0 &&
                 lobby?.queue_time &&

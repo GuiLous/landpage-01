@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useCallback } from 'react'
 import { BsPlayCircle } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
@@ -9,6 +10,11 @@ import { staticBlurDataUrl } from '@/utils'
 import { Media } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
+
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface ModalBuyItemThumbsProps {
   imagesPreview: Media[]
@@ -21,7 +27,18 @@ export function ModalBuyItemThumbs({
   previewSelected,
   setPreviewSelected,
 }: ModalBuyItemThumbsProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const isPreviewSelected = (index: number) => previewSelected === index
+
+  const handleSetPreviewSelected = useCallback(
+    (index: number) => {
+      playSoundClick()
+      setPreviewSelected(index)
+    },
+    [playSoundClick, setPreviewSelected]
+  )
 
   return (
     <aside
@@ -40,7 +57,8 @@ export function ModalBuyItemThumbs({
             'group',
             '3xl:max-h-[54px] 3xl:min-h-[54px]'
           )}
-          onClick={() => setPreviewSelected(index)}
+          onMouseEnter={!isPreviewSelected(index) ? playSoundHover : undefined}
+          onClick={() => handleSetPreviewSelected(index)}
         >
           {preview.media_type === 'image' && (
             <Image

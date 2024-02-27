@@ -1,6 +1,6 @@
 'use client'
 
-import { MouseEvent, useState } from 'react'
+import { ComponentProps, MouseEvent, useCallback, useState } from 'react'
 import { BsThreeDots } from 'react-icons/bs'
 import { twMerge } from 'tailwind-merge'
 
@@ -12,7 +12,7 @@ import { Status } from '@/store/userStore'
 
 import { Avatar, MenuContext } from '@/components/shared'
 
-interface DrawerFriendsListGroupItemProps {
+interface DrawerFriendsListGroupItemProps extends ComponentProps<'div'> {
   user_id: number
   status: Status
   avatar: string
@@ -20,6 +20,7 @@ interface DrawerFriendsListGroupItemProps {
   lobby_id: number | null
   steam_url: string
   title: string
+  playSoundClick: () => void
 }
 
 export function DrawerFriendsListGroupItem({
@@ -29,6 +30,8 @@ export function DrawerFriendsListGroupItem({
   user_id,
   username,
   title,
+  playSoundClick,
+  ...props
 }: DrawerFriendsListGroupItemProps) {
   const { lobby } = useLobbyStore()
   const { invites } = useInvitesStore()
@@ -52,8 +55,14 @@ export function DrawerFriendsListGroupItem({
 
   const handleToggleMenu = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
+    playSoundClick()
     setOpenMenu(!openMenu)
   }
+
+  const handleClick = useCallback(() => {
+    playSoundClick()
+    setOpenMenu(true)
+  }, [playSoundClick])
 
   return (
     <div
@@ -64,7 +73,8 @@ export function DrawerFriendsListGroupItem({
         'hover:bg-gradient_friend'
       )}
       onContextMenu={handleToggleMenu}
-      onClick={() => setOpenMenu(true)}
+      onClick={handleClick}
+      {...props}
     >
       <div
         className={twMerge(
@@ -90,7 +100,11 @@ export function DrawerFriendsListGroupItem({
           )}
         >
           <span
-            className={twMerge('text-sm font-medium text-white', '3xl:text-xs')}
+            className={twMerge(
+              'text-sm font-medium text-white',
+              '3xl:text-xs',
+              'ultrawide:text-xl'
+            )}
           >
             {username}
           </span>
@@ -98,6 +112,7 @@ export function DrawerFriendsListGroupItem({
             className={twMerge(
               'text-xs',
               '3xl:text-[0.625rem]',
+              'ultrawide:text-xl',
               COLOR_STATUS[status]
             )}
           >

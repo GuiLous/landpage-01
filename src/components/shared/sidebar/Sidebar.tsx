@@ -26,7 +26,8 @@ export function Sidebar() {
     <aside
       className={twMerge(
         'fixed z-30 h-full w-[300px] select-none',
-        '3xl:w-[250px]'
+        '3xl:w-[250px]',
+        'ultrawide:w-[450px]'
       )}
       style={{ height: `calc(100% - ${showInviteBar ? 48 : 0}px)` }}
       id="sidebar"
@@ -34,7 +35,8 @@ export function Sidebar() {
       <main
         className={twMerge(
           'relative h-full flex-col justify-between gap-[4.875rem] overflow-hidden bg-gray-1100',
-          '3xl:gap-[3.625rem]'
+          '3xl:gap-[3.625rem]',
+          'ultrawide:gap-24'
         )}
       >
         <SidebarLogo />

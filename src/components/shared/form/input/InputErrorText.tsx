@@ -12,7 +12,14 @@ export function InputErrorText({
   ...props
 }: InputErrorTextProps) {
   return (
-    <p className={twMerge('text-sm text-red-500', className)} {...props}>
+    <p
+      className={twMerge(
+        'text-sm text-red-500',
+        'ultrawide:text-2xl',
+        className
+      )}
+      {...props}
+    >
       {errorMsg}
     </p>
   )

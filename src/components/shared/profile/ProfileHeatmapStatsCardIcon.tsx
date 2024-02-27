@@ -17,11 +17,16 @@ export function ProfileHeatmapStatsCardIcon({
     <div
       className={twMerge(
         'h-[190px] w-[73px] max-w-fit flex-initial items-center justify-center',
-        '3xl:h-[180px] 3xl:w-[63px]'
+        '3xl:h-[180px] 3xl:w-[63px]',
+        'ultrawide:h-[240px] ultrawide:w-[123px]'
       )}
     >
       <FullBodyIcon
-        className={twMerge('mt-1 h-[238px]', '3xl:h-[228px] shrink-0')}
+        className={twMerge(
+          'mt-1 h-[238px]',
+          '3xl:h-[228px] shrink-0',
+          'ultrawide:h-[278px]'
+        )}
         opacityOthers={otherShotsPercent / 100}
         opacityChest={chestShotsPercent / 100}
         opacityHead={headShotsPercent / 100}

@@ -8,12 +8,16 @@ import { useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
-import { useAuth, useShowErrorToast } from '@/hooks'
+import { useAudio, useAuth, useShowErrorToast } from '@/hooks'
 
 import { LineupHiddenBox } from './LineupHiddenBox'
 import { LineupPlayBtn } from './LineupPlayBtn'
 import { LineupPlayerCard } from './LineupPlayerCard'
 import { LineupSeat } from './LineupSeat'
+import { LineupSeatWrapper } from './LineupSeatWrapper'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 interface LineupProps {
   maxPlayers?: number
@@ -22,6 +26,9 @@ interface LineupProps {
 export function Lineup({ maxPlayers = 5 }: LineupProps) {
   const { user } = useUserStore()
   const { lobby } = useLobbyStore()
+
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
 
   const auth = useAuth()
 
@@ -73,10 +80,12 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
         <LineupPlayerCard
           player={player}
           onClose={!lobby?.queue && closeButton}
+          playSoundClick={playSoundClick}
+          playSoundHover={playSoundHover}
         />
       )
     },
-    [renderCloseButton, lobby]
+    [renderCloseButton, lobby?.queue, playSoundClick, playSoundHover]
   )
 
   const fillSeats = useCallback(() => {
@@ -100,7 +109,11 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
 
   return (
     <div
-      className={twMerge('h-full items-center gap-[1.125rem]', '3xl:gap-3.5')}
+      className={twMerge(
+        'h-full items-center gap-[1.125rem]',
+        '3xl:gap-3.5',
+        'ultrawide:gap-6'
+      )}
     >
       {lineup.map((player, index) => (
         <div
@@ -111,7 +124,16 @@ export function Lineup({ maxPlayers = 5 }: LineupProps) {
             index === 2 && 'h-full'
           )}
         >
-          {player ? renderPlayerCard(player) : <LineupSeat />}
+          {player ? (
+            renderPlayerCard(player)
+          ) : (
+            <LineupSeat
+              playSoundClick={playSoundClick}
+              playSoundHover={playSoundHover}
+            >
+              <LineupSeatWrapper />
+            </LineupSeat>
+          )}
 
           {index === 2 ? (
             <LineupPlayBtn isOwner={isOwner} />

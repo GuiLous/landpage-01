@@ -48,11 +48,13 @@ export function InventoryActiveWeaponButton({
     <Button.Root
       className={twMerge(
         'max-h-[42px] min-h-[42px] w-[204px]',
-        '3xl:max-h-[38px] 3xl:min-h-[38px] 3xl:w-[154px]'
+        '3xl:max-h-[38px] 3xl:min-h-[38px] 3xl:w-[154px]',
+        'ultrawide:w-60'
       )}
       onClick={updateItem}
       restricted={in_use || isNullItemSelected}
       disabled={!handleUpdateItemInUse}
+      disableClickSound
     >
       <Button.Content className="text-sm font-semibold">
         {in_use || isNullItemSelected ? 'Remover skin' : 'Equipar skin'}

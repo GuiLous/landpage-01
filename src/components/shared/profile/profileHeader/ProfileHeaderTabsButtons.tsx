@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Fragment, useCallback, useState } from 'react'
 import { BiSolidMessage } from 'react-icons/bi'
+import { BsBackpack2Fill } from 'react-icons/bs'
 import { FaUser, FaUserCheck } from 'react-icons/fa'
 import { MdPersonAddAlt1, MdPersonRemoveAlt1 } from 'react-icons/md'
 import { RiErrorWarningFill } from 'react-icons/ri'
@@ -18,7 +19,7 @@ import { useUserStore } from '@/store/userStore'
 
 import { friendsApi } from '@/modelsApi'
 
-import { BagPackIcon, Button, ModalSupport, Tooltip } from '@/components/shared'
+import { Button, ModalSupport, Tooltip } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
 
@@ -46,7 +47,7 @@ const profileButtons = {
     size: 22,
   },
   profile: { icon: FaUser, label: 'Meu perfil' },
-  inventory: { icon: BagPackIcon, label: 'Inventário' },
+  inventory: { icon: BsBackpack2Fill, label: 'Inventário' },
   config: { icon: TbSettingsFilled, label: 'Configurações' },
   steam_chat: { icon: BiSolidMessage, label: 'Abrir bate-papo' },
   report: { icon: RiErrorWarningFill, label: 'Reportar usuário' },
@@ -213,21 +214,20 @@ export function ProfileHeaderTabsButtons({
                     className={twMerge(
                       'min-w-11 max-w-11 min-h-11 max-h-11 p-0',
                       '3xl:min-w-10 3xl:max-w-10 3xl:max-h-10 3xl:min-h-10',
+                      'ultrawide:min-h-20 ultrawide:max-h-20 ultrawide:min-w-20',
                       LINK_PATHS[path] === key &&
                         'bg-gray-1100/80 outline outline-1 outline-gray-300/50'
                     )}
                     asChild
                   >
-                    <Link
-                      href={getLink(key)}
-                      className="max-h-11 min-h-11 min-w-11 max-w-11"
-                    >
+                    <Link href={getLink(key)}>
                       <Button.Icon
                         icon={profileButtons[key].icon}
                         profile
                         className={twMerge(
                           'fill-gray-300',
                           key === 'config' && 'text-lg',
+                          'ultrawide:text-3xl',
                           LINK_PATHS[path] === key && 'text-white fill-white'
                         )}
                       />
@@ -255,13 +255,16 @@ export function ProfileHeaderTabsButtons({
                         className={twMerge(
                           'min-w-11 max-w-11 min-h-11 max-h-11 p-0',
                           userAlreadyInvitedToFriend &&
-                            'cursor-not-allowed hover:outline-0'
+                            'cursor-not-allowed hover:outline-0',
+                          'ultrawide:min-h-20 ultrawide:max-h-20 ultrawide:min-w-20'
                         )}
                         style={{
                           background: userAlreadyInvitedToFriend
                             ? gradientAlreadyInvited
                             : '',
                         }}
+                        disableHoverSound={userAlreadyInvitedToFriend}
+                        disableClickSound={userAlreadyInvitedToFriend}
                       >
                         <Button.Icon
                           icon={
@@ -272,7 +275,9 @@ export function ProfileHeaderTabsButtons({
                           profile
                           className={twMerge(
                             'text-2xl',
-                            userAlreadyInvitedToFriend && 'text-white text-xl'
+                            'ultrawide:text-5xl',
+                            userAlreadyInvitedToFriend &&
+                              'text-white text-xl ultrawide:text-4xl'
                           )}
                         />
                       </Button.Root>
@@ -290,12 +295,15 @@ export function ProfileHeaderTabsButtons({
                       <Button.Root
                         profile
                         onClick={() => onClickFunction(key)}
-                        className="max-h-11 min-h-11 min-w-11 max-w-11 p-0"
+                        className={twMerge(
+                          'max-h-11 min-h-11 min-w-11 max-w-11 p-0',
+                          'ultrawide:min-h-20 ultrawide:max-h-20 ultrawide:min-w-20'
+                        )}
                       >
                         <Button.Icon
                           icon={profileButtons[key].icon}
                           profile
-                          className="text-2xl"
+                          className={twMerge('text-2xl', 'ultrawide:text-5xl')}
                         />
                       </Button.Root>
                     </div>
@@ -312,12 +320,15 @@ export function ProfileHeaderTabsButtons({
                       <Button.Root
                         profile
                         onClick={() => onClickFunction(key)}
-                        className="max-h-11 min-h-11 min-w-11 max-w-11 p-0"
+                        className={twMerge(
+                          'max-h-11 min-h-11 min-w-11 max-w-11 p-0',
+                          'ultrawide:min-h-20 ultrawide:max-h-20 ultrawide:min-w-20'
+                        )}
                       >
                         <Button.Icon
                           icon={profileButtons[key].icon}
                           profile
-                          className="text-xl"
+                          className={twMerge('text-xl', 'ultrawide:text-4xl')}
                         />
                       </Button.Root>
                     </div>

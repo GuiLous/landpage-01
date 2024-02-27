@@ -87,7 +87,12 @@ export function Progress({
   }, [initial, value, overflow])
 
   return (
-    <div className="relative min-h-[32px] overflow-x-hidden">
+    <div
+      className={twMerge(
+        'relative min-h-[32px] overflow-x-hidden',
+        'ultrawide:min-h-9'
+      )}
+    >
       <div className="relative">
         {overflowed && (
           <a.div
@@ -131,8 +136,9 @@ export function Progress({
 
             <div
               className={twMerge(
-                'rounded-lg max-h-1.5 min-h-[6px] overflow-hidden relative bg-green-400 z-30',
-                !isPositive && 'bg-red-500'
+                'rounded-lg min-h-1.5 overflow-hidden relative bg-green-400 z-30',
+                !isPositive && 'bg-red-500',
+                'ultrawide:min-h-3'
               )}
               style={{ borderRadius: radius ? 8 : undefined }}
             />
@@ -180,8 +186,9 @@ export function Progress({
 
           <div
             className={twMerge(
-              'rounded-lg max-h-1.5 min-h-[6px] overflow-hidden relative bg-green-400 z-30',
-              !isPositive && 'bg-red-500'
+              'rounded-lg min-h-1.5 overflow-hidden relative bg-green-400 z-30',
+              !isPositive && 'bg-red-500',
+              'ultrawide:min-h-3'
             )}
             style={{
               borderBottomRightRadius: rightRadius ? 8 : 0,
@@ -215,7 +222,10 @@ export function Progress({
           )}
 
           <div
-            className="relative z-10 max-h-1.5 min-h-[6px] overflow-hidden rounded-lg bg-purple-300"
+            className={twMerge(
+              'relative z-10 min-h-1.5 overflow-hidden rounded-lg bg-purple-300',
+              'ultrawide:min-h-3'
+            )}
             style={{
               borderBottomLeftRadius: radius ? 8 : 0,
               borderTopLeftRadius: radius ? 8 : 0,
@@ -239,8 +249,9 @@ export function Progress({
 
           <div
             className={twMerge(
-              'bg-white z-0 rounded-lg max-h-1.5 min-h-[6px] overflow-hidden relative',
-              initial + value < 0 && changeInitialBg && 'bg-purple-300'
+              'bg-white z-0 rounded-lg min-h-1.5 overflow-hidden relative',
+              initial + value < 0 && changeInitialBg && 'bg-purple-300',
+              'ultrawide:min-h-3'
             )}
             style={{ borderRadius: radius ? 8 : undefined }}
           ></div>

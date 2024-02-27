@@ -8,7 +8,13 @@ interface ErrorMessageProps {
 
 export function ErrorMessage({ children, className }: ErrorMessageProps) {
   return (
-    <p className={twMerge('mt-3 text-xs font-medium text-red-500', className)}>
+    <p
+      className={twMerge(
+        'mt-3 text-xs font-medium text-red-500',
+        'ultrawide:text-xl',
+        className
+      )}
+    >
       {children}
     </p>
   )

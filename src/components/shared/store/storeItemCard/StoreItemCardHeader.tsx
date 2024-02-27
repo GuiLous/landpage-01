@@ -20,11 +20,16 @@ export function StoreItemCardHeader({
   index,
 }: StoreItemCardHeaderProps) {
   return (
-    <header className="relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 p-5">
+    <header
+      className={twMerge(
+        'relative max-h-[289px] items-center justify-center overflow-hidden rounded bg-gray-700/40 p-5',
+        'ultrawide:max-h-[389px]'
+      )}
+    >
       <CustomIcon
         icon={IoMdInformationCircleOutline}
         className={twMerge(
-          'absolute right-3 top-3 text-[1.375rem] text-white opacity-0 transition-opacity',
+          'absolute z-10 right-3 top-3 text-[1.375rem] text-white opacity-0 transition-opacity',
           !purchased && 'group-hover:opacity-100'
         )}
       />

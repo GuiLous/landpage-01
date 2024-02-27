@@ -29,17 +29,27 @@ export function MatchDetailsHeaderStatus({
     <div className="max-w-fit flex-initial items-center gap-4">
       <div className="max-w-fit flex-initial items-center gap-3">
         {status === 'running' ? (
-          <CustomIcon icon={FiClock} />
+          <CustomIcon icon={FiClock} className="ultrawide:text-3xl" />
         ) : (
-          <CustomIcon icon={BsFillFlagFill} />
+          <CustomIcon icon={BsFillFlagFill} className="ultrawide:text-3xl" />
         )}
 
         <div className="gap-1">
-          <h2 className={twMerge('text-lg uppercase', 'leading-none')}>
+          <h2
+            className={twMerge(
+              'text-lg uppercase',
+              'leading-none',
+              'ultrawide:text-4xl ultrawide:leading-none'
+            )}
+          >
             Partida
           </h2>
           <span
-            className={twMerge('text-lg font-bold uppercase', 'leading-none')}
+            className={twMerge(
+              'text-lg font-bold uppercase',
+              'leading-none',
+              'ultrawide:text-4xl ultrawide:leading-none'
+            )}
           >
             {statusMap[status]}
           </span>

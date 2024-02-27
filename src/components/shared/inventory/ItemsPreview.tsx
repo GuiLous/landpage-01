@@ -11,29 +11,41 @@ import { Media } from '@/functions'
 
 import { CustomIcon, ModalShowSkin } from '@/components/shared'
 
+import { useAudio } from '@/hooks'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
+
 interface ItemsPreviewProps {
   imagesPreview?: Media[]
 }
 
 export function ItemsPreview({ imagesPreview = [] }: ItemsPreviewProps) {
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
+
   const [previewSelected, setPreviewSelected] = useState<Media | null>(null)
   const [openModal, setOpenModal] = useState(false)
 
   const handleOpenModal = (preview: Media) => {
+    playSoundClick()
     setPreviewSelected(preview)
     setOpenModal(true)
   }
 
   return (
-    <ul className="flex items-center gap-2">
+    <ul className={twMerge('flex items-center gap-2', 'ultrawide:gap-4')}>
       {imagesPreview.map((preview, index) => (
         <li
           key={index}
           className={twMerge(
-            'relative h-11 w-11 cursor-pointer overflow-hidden rounded bg-gray-700/40',
-            'group'
+            'relative h-11 w-11 cursor-pointer overflow-hidden rounded bg-gray-700/40 transition-colors',
+            'hover:outline hover:outline-1 hover:outline-purple-400',
+            'group',
+            'ultrawide:h-14 ultrawide:w-14'
           )}
-          onMouseOver={() => handleOpenModal(preview)}
+          onMouseEnter={playSoundHover}
+          onClick={() => handleOpenModal(preview)}
         >
           {preview.media_type === 'image' && (
             <Image

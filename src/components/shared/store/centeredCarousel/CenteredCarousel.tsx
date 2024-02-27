@@ -1,20 +1,25 @@
 /* eslint-disable tailwindcss/no-custom-classname */
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { useMediaQuery } from 'react-responsive'
 import { Navigation } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import { twMerge } from 'tailwind-merge'
 
 import { StoreItem } from '@/functions'
 
 import { CustomIcon } from '@/components/shared'
 
+import { useAudio } from '@/hooks'
+
 import { CenteredCarouselItem } from './CenteredCarouselItem'
 
 import 'swiper/css'
+
+const buttonHoverUrl = '/assets/audios/button_hover.mp3'
+const buttonClickUrl = '/assets/audios/click.mp3'
 
 type ImagePreview = Pick<StoreItem, 'foreground_image' | 'in_use' | 'id'>[]
 
@@ -39,9 +44,14 @@ export function CenteredCarousel({
   hasSearchFilters,
   activeItemIndex,
 }: CenteredCarouselProps) {
+  const swiperRef = useRef<SwiperRef>(null)
+
   const isLessThan3xl = useMediaQuery({
     query: '(max-width: 1600px)',
   })
+
+  const playSoundHover = useAudio(buttonHoverUrl)
+  const playSoundClick = useAudio(buttonClickUrl)
 
   const isOnLoop = data.length > 10
 
@@ -55,6 +65,9 @@ export function CenteredCarousel({
 
   const disableFirstSlide = isFirstSlide && !isOnLoop
   const disableLastSlide = isLastSlide && !isOnLoop
+
+  const activeLeftArrowSound = activeSlide !== 0
+  const activeRightArrowSound = activeSlide !== data.length
 
   const onChangeSlide = (index: number) => {
     if (!setActiveItemIndex) return
@@ -76,6 +89,9 @@ export function CenteredCarousel({
 
     if (isInventory) {
       if (hasItemInUse) {
+        if (swiperRef.current) {
+          swiperRef.current.swiper.slideTo(itemInUseIndex)
+        }
         setActiveSlide(itemInUseIndex)
         setActiveItemIndex(itemInUseIndex)
         return
@@ -104,13 +120,15 @@ export function CenteredCarousel({
         <>
           <div
             className={twMerge(
-              'image-swiper-button-next right-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
+              'image-swiper-button-prev left-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
               'group',
-              disableLastSlide && 'opacity-50 pointer-events-none'
+              disableFirstSlide && 'opacity-50 pointer-events-none'
             )}
+            onClick={activeLeftArrowSound ? playSoundClick : undefined}
+            onMouseEnter={activeLeftArrowSound ? playSoundHover : undefined}
           >
             <CustomIcon
-              icon={IoIosArrowForward}
+              icon={IoIosArrowBack}
               className={twMerge(
                 'h-6 w-6 text-gray-300 transition-colors',
                 'group-hover:text-white'
@@ -120,13 +138,15 @@ export function CenteredCarousel({
 
           <div
             className={twMerge(
-              'image-swiper-button-prev left-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
+              'image-swiper-button-next right-1 absolute top-[calc(50%_-_12px)] z-10 w-auto flex-initial cursor-pointer',
               'group',
-              disableFirstSlide && 'opacity-50 pointer-events-none'
+              disableLastSlide && 'opacity-50 pointer-events-none'
             )}
+            onClick={activeRightArrowSound ? playSoundClick : undefined}
+            onMouseEnter={activeRightArrowSound ? playSoundHover : undefined}
           >
             <CustomIcon
-              icon={IoIosArrowBack}
+              icon={IoIosArrowForward}
               className={twMerge(
                 'h-6 w-6 text-gray-300 transition-colors',
                 'group-hover:text-white'
@@ -138,7 +158,7 @@ export function CenteredCarousel({
 
       {isInventory ? (
         <Swiper
-          key={new Date().getTime()}
+          ref={swiperRef}
           slidesPerView="auto"
           spaceBetween={isLessThan3xl ? 10 : 14}
           centeredSlides={true}
@@ -164,7 +184,9 @@ export function CenteredCarousel({
                 'max-w-[86px] min-w-[86px]',
                 '3xl:max-w-[66px] 3xl:min-w-[66px]'
               )}
-              key={item.id}
+              key={index}
+              onMouseEnter={activeSlide !== index ? playSoundHover : undefined}
+              onClick={playSoundClick}
             >
               <CenteredCarouselItem
                 activeSlide={activeSlide}
@@ -209,7 +231,9 @@ export function CenteredCarousel({
                 'max-w-[86px] min-w-[86px]',
                 '3xl:max-w-[66px] 3xl:min-w-[66px]'
               )}
-              key={item.id}
+              key={index}
+              onMouseEnter={activeSlide !== index ? playSoundHover : undefined}
+              onClick={playSoundClick}
             >
               <CenteredCarouselItem
                 activeSlide={activeSlide}

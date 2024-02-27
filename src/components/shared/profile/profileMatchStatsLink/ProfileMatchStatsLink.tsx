@@ -58,6 +58,7 @@ export function ProfileMatchStatsLink({
       href={isLink ? `/perfil/${userId}/partidas/${match?.id}` : ''}
       asChild={!isLink}
       forwardRef={linkRef}
+      disableSound={!isLink}
     >
       <div>
         <ProfileMatchStatsLinkBorder

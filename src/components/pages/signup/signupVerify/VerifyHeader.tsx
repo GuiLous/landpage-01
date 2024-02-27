@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { getAuthServer } from '@/utils'
 
 export function VerifyHeader() {
@@ -5,10 +7,17 @@ export function VerifyHeader() {
 
   return (
     <header className="flex-col items-start">
-      <span className="text-center text-sm">
+      <span className={twMerge('text-center text-sm', 'ultrawide:text-3xl')}>
         Insira o código enviado para o email
       </span>
-      <span className="text-sm leading-none text-cyan-400">{auth?.email}</span>
+      <span
+        className={twMerge(
+          'text-sm leading-none text-cyan-400',
+          'ultrawide:text-3xl ultrawide:leading-none'
+        )}
+      >
+        {auth?.email}
+      </span>
     </header>
   )
 }

@@ -11,17 +11,25 @@ interface ConnectTimerProps {
 
 export function ConnectTimer({ timeLeft }: ConnectTimerProps) {
   return (
-    <div className="justify-end gap-3.5">
+    <div className={twMerge('justify-end gap-3.5', 'ultrawide:gap-7')}>
       <span
-        className={twMerge('text-2xl font-semibold text-white', '3xl:text-xl')}
+        className={twMerge(
+          'text-2xl font-semibold text-white',
+          '3xl:text-xl',
+          'ultrawide:text-4xl'
+        )}
       >
         <Timer initialTime={timeLeft || 1} reverse />
       </span>
 
       <div
-        className={twMerge('relative max-w-fit flex-initial w-12', '3xl:w-9')}
+        className={twMerge(
+          'relative flex-initial w-12',
+          '3xl:w-9',
+          'ultrawide:w-16'
+        )}
       >
-        <Image src={loadingGif} alt="Loading gif" fill sizes="100vw" priority />
+        <Image src={loadingGif} alt="Loading gif" fill priority />
       </div>
     </div>
   )

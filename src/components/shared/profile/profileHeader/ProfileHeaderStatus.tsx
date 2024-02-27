@@ -23,21 +23,29 @@ export function ProfileHeaderStatus({
     <div className="flex-col">
       <div className="flex-initial items-center gap-3.5">
         <span
-          className={twMerge('font-bold text-white text-xl', '3xl:text-lg')}
+          className={twMerge(
+            'font-bold text-white text-xl',
+            '3xl:text-lg',
+            'ultrawide:text-4xl'
+          )}
         >
           {username}
         </span>
 
-        <div className="items-center gap-2">
+        <div className={twMerge('items-center gap-2', 'ultrawide:gap-4')}>
           <Badge
             variant={status}
-            className="relative h-[10px] w-[10px] flex-initial border-0"
+            className={twMerge(
+              'relative h-[10px] w-[10px] flex-initial border-0',
+              'ultrawide:h-4 ultrawide:w-4 ultrawide:border-0'
+            )}
           />
           <span
             className={twMerge(
               'text-white text-sm',
               'leading-none',
-              '3xl:text-xs'
+              '3xl:text-xs',
+              'ultrawide:text-2xl ultrawide:leading-none'
             )}
           >
             {humanStatus}

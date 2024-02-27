@@ -32,31 +32,34 @@ export function Tooltip({
           {children}
         </PrimitiveTooltip.Trigger>
 
-        <PrimitiveTooltip.Portal>
-          <PrimitiveTooltip.Content
-            sideOffset={0}
-            className={twMerge(
-              'z-50 inline-flex w-full rounded-sm items-center bg-gray-700/50 px-2 py-1.5',
-              'radix-side-bottom:animate-slide-up-fade',
-              'radix-side-left:animate-slide-right-fade',
-              'radix-side-right:animate-slide-left-fade',
-              'radix-side-top:animate-slide-down-fade'
-            )}
-            side={side}
-          >
-            <PrimitiveTooltip.Arrow className="fill-gray-700/50" />
-
-            <span
+        {content && (
+          <PrimitiveTooltip.Portal>
+            <PrimitiveTooltip.Content
+              sideOffset={0}
               className={twMerge(
-                'block text-sm font-semibold text-white',
-                'leading-none',
-                className
+                'z-50 inline-flex w-full rounded-sm items-center bg-gray-700/50 px-2 py-1.5',
+                'radix-side-bottom:animate-slide-up-fade',
+                'radix-side-left:animate-slide-right-fade',
+                'radix-side-right:animate-slide-left-fade',
+                'radix-side-top:animate-slide-down-fade'
               )}
+              side={side}
             >
-              {content}
-            </span>
-          </PrimitiveTooltip.Content>
-        </PrimitiveTooltip.Portal>
+              <PrimitiveTooltip.Arrow className="fill-gray-700/50" />
+
+              <span
+                className={twMerge(
+                  'block text-sm font-semibold text-white',
+                  'leading-none',
+                  'ultrawide:text-xl',
+                  className
+                )}
+              >
+                {content}
+              </span>
+            </PrimitiveTooltip.Content>
+          </PrimitiveTooltip.Portal>
+        )}
       </PrimitiveTooltip.Root>
     </PrimitiveTooltip.Provider>
   )

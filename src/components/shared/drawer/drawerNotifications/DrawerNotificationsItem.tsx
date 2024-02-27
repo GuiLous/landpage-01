@@ -30,13 +30,25 @@ export function DrawerNotificationsItem({
       <div className="items-center gap-4">
         <div className="flex-col gap-3">
           <div>
-            <span className={twMerge('text-sm text-white', '3xl:text-xs')}>
+            <span
+              className={twMerge(
+                'text-sm text-white',
+                '3xl:text-xs',
+                'ultrawide:text-2xl'
+              )}
+            >
               {content}
             </span>
           </div>
 
           <div>
-            <span className={twMerge('text-xs text-gray-200', 'leading-none')}>
+            <span
+              className={twMerge(
+                'text-xs text-gray-200',
+                'leading-none',
+                'ultrawide:text-xl'
+              )}
+            >
               {DateTime.fromISO(String(create_date)).toRelative()}
             </span>
           </div>

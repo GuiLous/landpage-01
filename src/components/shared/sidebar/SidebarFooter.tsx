@@ -19,28 +19,32 @@ import { Link } from '@/components/shared'
 
 export function SidebarFooter() {
   return (
-    <footer className={twMerge('items-end px-10 pb-10', '3xl:px-8 3xl:pb-8')}>
-      <nav
-        className={twMerge('flex items-center gap-6 text-lg', '3xl:text-base')}
-      >
+    <footer
+      className={twMerge(
+        'items-end px-10 pb-10',
+        '3xl:px-8 3xl:pb-8',
+        'ultrawide:px-12 ultrawide:pb-12'
+      )}
+    >
+      <nav className={twMerge('flex items-center gap-6 ', 'ultrawide:gap-12 ')}>
         <Link href={INSTAGRAM_LINK} target="_blank" data-testid="instagram">
-          <SiInstagram />
+          <SiInstagram className="ultrawide:text-3xl" />
         </Link>
 
         <Link href={TWITTER_LINK} target="_blank" data-testid="twitter">
-          <SiTwitter />
+          <SiTwitter className="ultrawide:text-3xl" />
         </Link>
 
         <Link href={DISCORD_LINK} target="_blank" data-testid="discord">
-          <SiDiscord />
+          <SiDiscord className="ultrawide:text-3xl" />
         </Link>
 
         <Link href={YOUTUBE_LINK} target="_blank" data-testid="youtube">
-          <SiYoutube />
+          <SiYoutube className="ultrawide:text-3xl" />
         </Link>
 
         <Link href={FACEBOOK_LINK} target="_blank" data-testid="facebook">
-          <SiFacebook />
+          <SiFacebook className="ultrawide:text-3xl" />
         </Link>
       </nav>
     </footer>

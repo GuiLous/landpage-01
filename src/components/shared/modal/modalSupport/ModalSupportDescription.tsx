@@ -9,7 +9,8 @@ export function ModalSupportDescription() {
     <p
       className={twMerge(
         'max-w-[335px] text-center text-sm text-white',
-        '3xl:text-xs'
+        '3xl:text-xs',
+        'ultrawide:text-xl ultrawide:max-w-[450px]'
       )}
     >
       Tem alguma dúvida? Preencha o formulário ou visite nossa{' '}

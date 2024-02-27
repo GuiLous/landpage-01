@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/#1074).
+- Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/#1068).
+- Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/#1055).
+
+### Changed
+
+- Altera tabala da tela de `detalhes da partida` para preencher com linhas vazias quando tiver apenas um time [#1078](https://github.com/3C-gg/reload-frontend/issues/#1078).
+- Melhora uso do `use client` na aplicação [#1075](https://github.com/3C-gg/reload-frontend/issues/#1075).
+- Adiciona ícone para remover filtro do componente de `lista de amigos`.
+- Altera `imagens` de `levelBadge` [#1067](https://github.com/3C-gg/reload-frontend/issues/#1067).
+- Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/#1058).
+- Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/#1060).
+- Altera `modal de preview de skins` no inventário para abrir e fechar com click [#1064](https://github.com/3C-gg/reload-frontend/issues/#1064).
+
+### Fixed
+
+- Corrige `altura` do botão de verificar código de 6 dígitos.
+
+## [4773d21 - 1/2/2024]
+
+### Added
+
 - Cria `skeleton` na página de `inventário` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
 - Cria `skeleton` na página de `conta` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).
 - Cria `loading skeleton` em `detalhes da partida` [#1034](https://github.com/3C-gg/reload-frontend/issues/1034).

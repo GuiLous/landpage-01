@@ -1,14 +1,26 @@
 'use client'
 
-import { RiCloseFill } from 'react-icons/ri'
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { useAppStore } from '@/store/appStore'
 
-export function LineupSeat() {
+interface LineupSeatProps {
+  playSoundClick: () => void
+  playSoundHover: () => void
+  children: ReactNode
+}
+
+export function LineupSeat({
+  playSoundClick,
+  playSoundHover,
+  children,
+}: LineupSeatProps) {
   const { toggleFriendList } = useAppStore()
 
   const handleSeatClick = () => {
+    playSoundClick()
+
     toggleFriendList(true)
   }
 
@@ -19,22 +31,9 @@ export function LineupSeat() {
         'group'
       )}
       onClick={handleSeatClick}
+      onMouseEnter={playSoundHover}
     >
-      <div className="relative z-10 h-full w-full items-center justify-center rounded-lg bg-gray-750">
-        <RiCloseFill
-          className={twMerge(
-            'text-gray-300 text-opacity-50 transition-all',
-            'group-hover:rotate-45 group-hover:text-purple-400'
-          )}
-          size={34}
-        />
-      </div>
-      <div
-        className={twMerge(
-          'absolute bottom-full left-0 right-0 top-0 z-0 rounded-lg bg-gradient_seat transition-all',
-          'group-hover:bottom-0'
-        )}
-      />
+      {children}
     </div>
   )
 }
