@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria `Skeleton` para a página de `Ranking` [#1081](https://github.com/3C-gg/reload-frontend/issues/#1081).
 - Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/#1074).
 - Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/#1068).
 - Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/#1055).
