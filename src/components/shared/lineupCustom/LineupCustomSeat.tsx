@@ -15,11 +15,10 @@ export function LineupCustomSeat({
   return (
     <li
       className={twMerge(
-        'flex max-h-16 max-w-full transition-colors flex-1 items-center justify-center bg-gray-500/60',
+        'flex max-w-full transition-colors flex-1 items-center justify-center bg-gray-500/60',
         'group',
         !isUserPlayerSide && 'hover:bg-gray-400',
         'last:rounded-b',
-        'ultrawide:max-h-28',
         !isUserPlayerSide && 'cursor-pointer'
       )}
       onClick={!isUserPlayerSide ? playSoundClick : undefined}
