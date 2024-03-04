@@ -42,6 +42,8 @@ export function LineupCustom() {
 
   const disableButton = hasNoAtkPlayers && hasNoDefPlayers
 
+  const isMatchTypeDefault = lobby?.match_type === 'default'
+
   const handleUpdateOptions = useCallback(
     async (optionTouUpdate: OptionToUpdateType, value: string) => {
       if (!auth?.token || !lobby?.id) return
@@ -140,7 +142,7 @@ export function LineupCustom() {
           <Select.Root
             name="weapons"
             value={lobby?.weapon === null ? 'null' : lobby?.weapon}
-            disabled={!isLobbyOwner || isUpdatingOptions}
+            disabled={!isLobbyOwner || isUpdatingOptions || isMatchTypeDefault}
             onValueChange={(value) => handleUpdateOptions('weapon', value)}
           >
             <Select.Trigger
@@ -154,7 +156,8 @@ export function LineupCustom() {
               <Select.Prefix
                 prefix="armas"
                 className={twMerge(
-                  (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                  (!isLobbyOwner || isUpdatingOptions || isMatchTypeDefault) &&
+                    'opacity-60'
                 )}
               />
               <Select.Value placeholder="" />
@@ -165,25 +168,29 @@ export function LineupCustom() {
                 <Select.ItemText
                   className={twMerge(
                     'text-sm',
-                    (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                    (!isLobbyOwner ||
+                      isUpdatingOptions ||
+                      isMatchTypeDefault) &&
+                      'opacity-60'
                   )}
                 >
-                  Todos
+                  Todas
                 </Select.ItemText>
               </Select.Item>
 
-              {lobby?.weapon_choices?.map((weapon) => (
-                <Select.Item key={weapon[1]} value={weapon[0]}>
-                  <Select.ItemText
-                    className={twMerge(
-                      'text-sm',
-                      (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
-                    )}
-                  >
-                    {weapon[0]}
-                  </Select.ItemText>
-                </Select.Item>
-              ))}
+              {!isMatchTypeDefault &&
+                lobby?.weapon_choices?.map((weapon) => (
+                  <Select.Item key={weapon[1]} value={weapon[0]}>
+                    <Select.ItemText
+                      className={twMerge(
+                        'text-sm',
+                        (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                      )}
+                    >
+                      {weapon[0]}
+                    </Select.ItemText>
+                  </Select.Item>
+                ))}
             </Select.Content>
           </Select.Root>
 
