@@ -1,18 +1,18 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 
 import { WeaponIndexType } from '@/utils'
 
-import { Lobby, MatchType, useLobbyStore } from '@/store/lobbyStore'
+import { MatchType, useLobbyStore } from '@/store/lobbyStore'
 
 import { QueueOptionsType, lobbyApi } from '@/modelsApi'
 
 import {
   LineupPlayBtn,
   Select,
-  SkeletonLineupCustom,
+  SkeletonLineupCustomMap,
 } from '@/components/shared'
 
 import { useAuth, useShowErrorToast } from '@/hooks'
@@ -29,12 +29,10 @@ export function LineupCustom() {
 
   const showErrorToast = useShowErrorToast()
 
-  const [isFetching, setIsFetching] = useState(true)
-  const [lobbyDetails, setLobbyDetails] = useState<Lobby | null>(null)
+  const [updatingOptions, setUpdatingOption] =
+    useState<OptionToUpdateType | null>(null)
 
-  const selectedMap = lobbyDetails?.map_choices?.find(
-    (map) => map.id === lobbyDetails.map_id
-  )
+  const selectedMap = lobby?.map_choices?.find((map) => map.id === lobby.map_id)
 
   const isLobbyOwner = auth?.id === lobby?.id
 
@@ -44,37 +42,23 @@ export function LineupCustom() {
 
   const disableButton = hasNoAtkPlayers && hasNoDefPlayers
 
-  const getCustomLobbyDetails = useCallback(async () => {
-    if (!auth?.token || !lobby?.id) return
-
-    const response = await lobbyApi.detail(auth.token, lobby.id, {
-      cache: 'no-cache',
-    })
-
-    if (response.errorMsg) {
-      showErrorToast(response.errorMsg)
-      setIsFetching(false)
-      return
-    }
-
-    setLobbyDetails(response)
-    setIsFetching(false)
-  }, [auth?.token, lobby?.id, showErrorToast])
-
   const handleUpdateOptions = useCallback(
     async (optionTouUpdate: OptionToUpdateType, value: string) => {
-      if (!auth?.token || !lobby?.id || !lobbyDetails) return
+      if (!auth?.token || !lobby?.id) return
 
       const payload = {} as QueueOptionsType
 
       switch (optionTouUpdate) {
         case 'match_type':
+          setUpdatingOption('match_type')
           payload.match_type = value as MatchType
           break
         case 'map':
+          setUpdatingOption('map')
           payload.map_id = Number(value)
           break
         case 'weapon':
+          setUpdatingOption('weapon')
           payload.weapon = value === 'null' ? 'all' : (value as WeaponIndexType)
           break
         default:
@@ -88,42 +72,64 @@ export function LineupCustom() {
       )
 
       if (response.errorMsg) {
-        return showErrorToast(response.errorMsg)
+        showErrorToast(response.errorMsg)
+        setUpdatingOption(null)
+        return
       }
 
-      setLobbyDetails(response)
+      setUpdatingOption(null)
     },
-    [auth?.token, lobby?.id, lobbyDetails, showErrorToast]
+    [auth?.token, lobby?.id, showErrorToast]
   )
 
-  useEffect(() => {
-    getCustomLobbyDetails()
-  }, [getCustomLobbyDetails])
+  const isUpdatingOptions = !!updatingOptions
 
-  return isFetching ? (
-    <SkeletonLineupCustom />
+  return !lobby?.map_choices ? (
+    <SkeletonLineupCustomMap />
   ) : (
     <section className="flex-col items-center justify-center gap-10 px-[10%]">
       <div className="flex-col gap-8">
         <div className="grid flex-initial grid-cols-3 gap-x-6 gap-y-4">
-          <LineupCustomMap
-            thumbnail={selectedMap?.thumbnail ? selectedMap.thumbnail : ''}
-          />
+          {updatingOptions === 'map' ? (
+            <SkeletonLineupCustomMap />
+          ) : (
+            <LineupCustomMap
+              thumbnail={selectedMap?.thumbnail ? selectedMap.thumbnail : ''}
+            />
+          )}
 
           <Select.Root
             name="match_type"
-            value={lobbyDetails?.match_type}
+            value={lobby?.match_type}
+            disabled={!isLobbyOwner || isUpdatingOptions}
             onValueChange={(value) => handleUpdateOptions('match_type', value)}
           >
-            <Select.Trigger className="border-transparent bg-gray-800/60 text-sm">
-              <Select.Prefix prefix="modo" />
+            <Select.Trigger
+              className={twMerge(
+                'border-transparent bg-gray-800/60 text-sm',
+                'disabled:bg-gray-1100 disabled:border-transparent',
+                isUpdatingOptions &&
+                  'disabled:bg-gray-1100 disabled:border-transparent'
+              )}
+            >
+              <Select.Prefix
+                prefix="modo"
+                className={twMerge(
+                  (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                )}
+              />
               <Select.Value placeholder="" />
             </Select.Trigger>
 
             <Select.Content>
-              {lobbyDetails?.match_type_choices?.map((match_type) => (
+              {lobby?.match_type_choices?.map((match_type) => (
                 <Select.Item key={match_type[0]} value={match_type[0]}>
-                  <Select.ItemText className="text-sm ">
+                  <Select.ItemText
+                    className={twMerge(
+                      'text-sm',
+                      (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                    )}
+                  >
                     {match_type[1]}
                   </Select.ItemText>
                 </Select.Item>
@@ -133,24 +139,47 @@ export function LineupCustom() {
 
           <Select.Root
             name="weapons"
-            value={
-              lobbyDetails?.weapon === null ? 'null' : lobbyDetails?.weapon
-            }
+            value={lobby?.weapon === null ? 'null' : lobby?.weapon}
+            disabled={!isLobbyOwner || isUpdatingOptions}
             onValueChange={(value) => handleUpdateOptions('weapon', value)}
           >
-            <Select.Trigger className="border-transparent bg-gray-800/60 text-sm">
-              <Select.Prefix prefix="armas" />
+            <Select.Trigger
+              className={twMerge(
+                'border-transparent bg-gray-800/60 text-sm',
+                'disabled:bg-gray-1100 disabled:border-transparent',
+                isUpdatingOptions &&
+                  'disabled:bg-gray-1100 disabled:border-transparent'
+              )}
+            >
+              <Select.Prefix
+                prefix="armas"
+                className={twMerge(
+                  (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                )}
+              />
               <Select.Value placeholder="" />
             </Select.Trigger>
 
             <Select.Content>
               <Select.Item value={'null'}>
-                <Select.ItemText className="text-sm ">Todos</Select.ItemText>
+                <Select.ItemText
+                  className={twMerge(
+                    'text-sm',
+                    (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                  )}
+                >
+                  Todos
+                </Select.ItemText>
               </Select.Item>
 
-              {lobbyDetails?.weapon_choices?.map((weapon) => (
+              {lobby?.weapon_choices?.map((weapon) => (
                 <Select.Item key={weapon[1]} value={weapon[0]}>
-                  <Select.ItemText className="text-sm ">
+                  <Select.ItemText
+                    className={twMerge(
+                      'text-sm',
+                      (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                    )}
+                  >
                     {weapon[0]}
                   </Select.ItemText>
                 </Select.Item>
@@ -160,18 +189,36 @@ export function LineupCustom() {
 
           <Select.Root
             name="map"
-            value={String(lobbyDetails?.map_id)}
+            value={String(lobby?.map_id)}
+            disabled={!isLobbyOwner || isUpdatingOptions}
             onValueChange={(value) => handleUpdateOptions('map', value)}
           >
-            <Select.Trigger className="border-transparent bg-gray-800/60 text-sm">
-              <Select.Prefix prefix="mapa" />
+            <Select.Trigger
+              className={twMerge(
+                'border-transparent bg-gray-800/60 text-sm',
+                'disabled:bg-gray-1100 disabled:border-transparent',
+                isUpdatingOptions &&
+                  'disabled:bg-gray-1100 disabled:border-transparent'
+              )}
+            >
+              <Select.Prefix
+                prefix="mapa"
+                className={twMerge(
+                  (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                )}
+              />
               <Select.Value placeholder="" />
             </Select.Trigger>
 
             <Select.Content>
-              {lobbyDetails?.map_choices?.map((map) => (
+              {lobby?.map_choices?.map((map) => (
                 <Select.Item key={map.id} value={String(map.id)}>
-                  <Select.ItemText className="text-sm ">
+                  <Select.ItemText
+                    className={twMerge(
+                      'text-sm',
+                      (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
+                    )}
+                  >
                     {map.name}
                   </Select.ItemText>
                 </Select.Item>
