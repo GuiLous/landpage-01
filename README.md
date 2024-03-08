@@ -1,17 +1,39 @@
-# Reload Club Frontend
+# ReloadClub Frontend
 
-Reload Club Webapp.
+ReloadClub React/Next Frontend
 
-## Dependencies
+# Requirements
 
-- Node/NPM.
+[git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+[Node](https://nodejs.org/en/download/current)
 
-## Instructions
+# Extensions (VsCode)
 
-Run `npm install` then `npm run dev`. Access the app on `localhost:3000`.
+- `Eslint` - optional
+- `Prettier` - optional
+- `EditorCOnfig for VS Code` - optional
+- `PostCSS Intellisense and Highlighting` - required
+- `PostCSS Language Support` - required
 
-## Linting
 
-- All `ts, tsx` and `html` files are linted using [Prettier and eslint](https://prettier.io/)(https://eslint.org/).
+# Setup
 
-Before any commit, run `npm run lint` to check any misslinted code and `npm run format` to autofix the errors. Some erros can't be automatically fixed, so you'll have to fix them manually before push your work.
+1. Clone the project:
+
+```bash
+git clone https://github.com/reloadclub-gg/reload-frontend.git
+cd reload-frontend
+```
+
+2. Duplicate `.env.local.example` to `.env.local` and make sure you have all envvars set.
+3. Run `npm i` to install all dependencies.
+
+# Run Project
+
+1. Run `npm run dev` to start application on `dev` mode.
+2. Access `http://localhost:3000` on your browser.
+
+# Build Project
+
+1. Run `npm run build` to build project.
+2. Run `npm run start` to start application on `production` preview mode.
