@@ -1,10 +1,10 @@
 import { BiSolidJoystick } from 'react-icons/bi'
 import { twMerge } from 'tailwind-merge'
 
-import { LobbyGameType } from './LobbyGameTypeWrapper'
+import { LobbyType } from './LobbyGameTypeWrapper'
 
 interface LobbyHeaderProps {
-  activeTab: LobbyGameType
+  activeTab: LobbyType
 }
 
 export function LobbyHeader({ activeTab }: LobbyHeaderProps) {

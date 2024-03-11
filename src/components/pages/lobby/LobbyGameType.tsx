@@ -15,14 +15,14 @@ import { Badge } from '@/components/shared'
 
 import { useAudio, useAuth } from '@/hooks'
 
-import { LobbyGameType } from './LobbyGameTypeWrapper'
+import { LobbyType } from './LobbyGameTypeWrapper'
 
 const buttonHoverUrl = '/assets/audios/button_hover.mp3'
 const buttonClickUrl = '/assets/audios/click.mp3'
 
 export interface LobbyGameTypeProps {
-  activeTab?: LobbyGameType
-  setActiveTab: (state: LobbyGameType) => void
+  activeTab?: LobbyType
+  setActiveTab: (state: LobbyType) => void
 }
 
 export function LobbyGameType({
@@ -61,7 +61,7 @@ export function LobbyGameType({
 
         updateMatchType(gameType === 'RANQUEADA 5X5' ? 'competitive' : 'custom')
 
-        setActiveTab(gameType as LobbyGameType)
+        setActiveTab(gameType as LobbyType)
       }
 
       playSoundHover()
