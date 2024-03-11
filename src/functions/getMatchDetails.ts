@@ -7,7 +7,7 @@ import { Match } from '@/store/matchStore'
 import { matchesApi } from '@/modelsApi'
 
 export async function getMatchDetails(matchId: number): Promise<Match> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await matchesApi.detail(auth.token, matchId, {
     cache: 'no-cache',

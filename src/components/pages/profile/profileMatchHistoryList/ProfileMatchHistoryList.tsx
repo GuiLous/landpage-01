@@ -19,7 +19,7 @@ export async function ProfileMatchHistoryList({
   userId,
   page = 1,
 }: ProfileMatchHistoryListProps) {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const matchHistory = await getMatchesHistory(userId, page)
   const profile = await getUserProfile(userId)

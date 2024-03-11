@@ -18,7 +18,7 @@ import {
 } from '@/components/shared'
 
 export default async function Account() {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   return (
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>

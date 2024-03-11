@@ -11,7 +11,7 @@ interface ProfileHeaderRenderProps {
 export async function ProfileHeaderRender({
   userId,
 }: ProfileHeaderRenderProps) {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const profile = await getUserProfile(userId)
 

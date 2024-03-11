@@ -41,7 +41,7 @@ export async function getMatchesHistory(
   userId: number,
   page: number
 ): Promise<MatchHistory> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await matchesApi.list(auth.token, userId, page, {
     next: { revalidate: 600 },
