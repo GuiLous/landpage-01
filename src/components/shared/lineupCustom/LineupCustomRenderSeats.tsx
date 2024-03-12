@@ -72,14 +72,12 @@ export function LineupCustomRenderSeats({
   }
 
   return (
-    players.length < 5 &&
-    Array.from(Array(5 - players.length)).map((_, index) => (
+    players.length < 5 && (
       <LineupCustomSeat
-        key={index}
         playSoundClick={handlePlaySoundClick}
         playSoundHover={playSoundHover}
         isUserPlayerSide={isUserPlayerSide}
       />
-    ))
+    )
   )
 }

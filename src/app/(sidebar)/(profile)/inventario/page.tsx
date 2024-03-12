@@ -9,7 +9,7 @@ import { InventoryWrapper } from '@/components/pages/inventory/InventoryWrapper'
 import { SkeletonInventory, SkeletonProfileHeader } from '@/components/shared'
 
 export default async function Inventory() {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   return (
     <main className={twMerge('flex-col gap-10 pb-10', '3xl:gap-7 3xl:pb-7')}>

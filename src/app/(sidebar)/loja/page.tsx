@@ -60,12 +60,21 @@ export default async function page() {
     return updateItems(featured)
   }
 
-  const products = updateItemsWithPurchaseFlag({ products: store.products })
+  let products: StoreItem[] = []
+  let featured: StoreItem[] = []
 
-  const featured = updateItemsWithPurchaseFlag({
-    featured: store.featured,
-    isProducts: false,
-  })
+  if (store.products) {
+    products = updateItemsWithPurchaseFlag({
+      products: store.products,
+    })
+  }
+
+  if (store.featured) {
+    featured = updateItemsWithPurchaseFlag({
+      featured: store.featured,
+      isProducts: false,
+    })
+  }
 
   const placeholdersCarousel = await Promise.all(
     featured.map((item) => dynamicBlurDataUrl(item.featured_image))

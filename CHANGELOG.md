@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Update Readme.md [#4](https://github.com/3C-gg/reload-frontend/issues/#4).
+- Altera tela de `partidas customizadas` para renderizar apenas um único espaço vazio que ocupado todo o espaço [#1084](https://github.com/3C-gg/reload-frontend/issues/#1084).
 - Altera tabala da tela de `detalhes da partida` para preencher com linhas vazias quando tiver apenas um time [#1078](https://github.com/3C-gg/reload-frontend/issues/#1078).
 - Melhora uso do `use client` na aplicação [#1075](https://github.com/3C-gg/reload-frontend/issues/#1075).
 - Adiciona ícone para remover filtro do componente de `lista de amigos`.

@@ -2,8 +2,8 @@ import { twMerge } from 'tailwind-merge'
 
 import { getAuthServer } from '@/utils'
 
-export function VerifyHeader() {
-  const auth = getAuthServer()
+export async function VerifyHeader() {
+  const auth = await getAuthServer()
 
   return (
     <header className="flex-col items-start">

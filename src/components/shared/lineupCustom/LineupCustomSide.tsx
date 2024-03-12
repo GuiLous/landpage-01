@@ -48,7 +48,7 @@ export function LineupCustomSide({
         </h2>
       </div>
 
-      <ul className={twMerge('flex w-full flex-1 flex-col gap-0.5')}>
+      <ul className={twMerge('flex w-full min-h-[34.5vh] flex-col gap-0.5')}>
         <LineupCustomRenderPlayersCard
           owner_id={owner_id}
           side={side}
