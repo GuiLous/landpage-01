@@ -460,6 +460,7 @@ export function InventoryWrapperContent({
                   'max-h-[312px] max-w-fit',
                   'ultrawide:max-h-[512px]'
                 )}
+                wrapperClassName={twMerge('min-h-[106%]')}
               >
                 <ItemsSelectList
                   hasItemInUse={hasItemInUse}
