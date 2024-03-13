@@ -12,7 +12,7 @@ import { SidebarRCIcon } from './SidebarRCIcon'
 
 const reloadCredits = '/assets/images/reload_credits.png'
 
-export function SidebarRC() {
+export function SidebarRCButton() {
   const { user } = useUserStore()
 
   const [openModalReloadCoin, setOpenModalReloadCoin] = useState(false)
