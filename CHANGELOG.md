@@ -9,22 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Cria `Skeleton` para a página de `Ranking` [#1081](https://github.com/3C-gg/reload-frontend/issues/#1081).
-- Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/#1074).
-- Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/#1068).
-- Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/#1055).
+- Cria `Skeleton` para a página de `Ranking` [#1081](https://github.com/3C-gg/reload-frontend/issues/1081).
+- Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/1074).
+- Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/1068).
+- Adiciona efeitos de audio em todo o site [#1055](https://github.com/3C-gg/reload-frontend/issues/1055).
 
 ### Changed
 
-- Update Readme.md [#4](https://github.com/3C-gg/reload-frontend/issues/#4).
-- Altera tela de `partidas customizadas` para renderizar apenas um único espaço vazio que ocupado todo o espaço [#1084](https://github.com/3C-gg/reload-frontend/issues/#1084).
-- Altera tabala da tela de `detalhes da partida` para preencher com linhas vazias quando tiver apenas um time [#1078](https://github.com/3C-gg/reload-frontend/issues/#1078).
+- Move click para abrir modal de compra de RC para o componente `SidebarRCButton` [#1090](https://github.com/3C-gg/reload-frontend/issues/1090)
+- Update Readme.md [#4](https://github.com/3C-gg/reload-frontend/issues/4).
+- Altera tela de `partidas customizadas` para renderizar apenas um único espaço vazio que ocupado todo o espaço [#1084](https://github.com/3C-gg/reload-frontend/issues/1084).
+- Altera tabala da tela de `detalhes da partida` para preencher com linhas vazias quando tiver apenas um time [#1078](https://github.com/3C-gg/reload-frontend/issues/1078).
 - Melhora uso do `use client` na aplicação [#1075](https://github.com/3C-gg/reload-frontend/issues/#1075).
 - Adiciona ícone para remover filtro do componente de `lista de amigos`.
-- Altera `imagens` de `levelBadge` [#1067](https://github.com/3C-gg/reload-frontend/issues/#1067).
-- Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/#1058).
-- Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/#1060).
-- Altera `modal de preview de skins` no inventário para abrir e fechar com click [#1064](https://github.com/3C-gg/reload-frontend/issues/#1064).
+- Altera `imagens` de `levelBadge` [#1067](https://github.com/3C-gg/reload-frontend/issues/1067).
+- Altera layout para se adaptar à telas `ultrawide` [#1058](https://github.com/3C-gg/reload-frontend/issues/1058).
+- Altera `levels` necessários para trocar as badges [#1060](https://github.com/3C-gg/reload-frontend/issues/1060).
+- Altera `modal de preview de skins` no inventário para abrir e fechar com click [#1064](https://github.com/3C-gg/reload-frontend/issues/1064).
 
 ### Fixed
 
@@ -42,9 +43,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Altera página de `alterar-email` para ficar conforme o novo design [#1005](https://github.com/3C-gg/reload-frontend/issues/#1005).
-- Altera página de `verificar` para ficar conforme o novo design [#1004](https://github.com/3C-gg/reload-frontend/issues/#1004).
-- Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/#1003).
+- Altera página de `alterar-email` para ficar conforme o novo design [#1005](https://github.com/3C-gg/reload-frontend/issues/1005).
+- Altera página de `verificar` para ficar conforme o novo design [#1004](https://github.com/3C-gg/reload-frontend/issues/1004).
+- Altera layout da página de `cadastrar` para ficar conforme o novo design [#1003](https://github.com/3C-gg/reload-frontend/issues/1003).
 - Altera `inventário` para filtrar pelo item comprado após comprar `item` na loja [#1048](https://github.com/3C-gg/reload-frontend/issues/1048).
 - Altera `botão do modal de confirmação de compra de item` para quando for `card ou profile` levar para `/conta` [#1037](https://github.com/3C-gg/reload-frontend/issues/1037).
 
@@ -115,11 +116,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Altera o diretório dos assestes para a pasta `public`.
-- Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/#1022).
+- Quebra `nome` do item no `carousel` para ficar com duas linhas [#1022](https://github.com/3C-gg/reload-frontend/issues/1022).
 - Remove animação de progresso do `carousel` quando há apenas 1 item.
-- Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/#1019).
+- Altera personalização do `card de jogador` e `header do perfil` para usar a variável `preview_image` [#1019](https://github.com/3C-gg/reload-frontend/issues/1019).
 - Remove `tabs e sub tabs` que não vamos usar atualmente no inventário.
-- Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/#1012).
+- Troca `foreground_image` por `cover_image` nos items da loja [#1012](https://github.com/3C-gg/reload-frontend/issues/1012).
 - Adicionar `cover_image` nos cards de items da loja [#941](https://github.com/3C-gg/reload-frontend/issues/#941).
 - As imagens do modal de compra que não forem a primeira devem cobrir todo o espaço sem efeito de parallax [#999](https://github.com/3C-gg/reload-frontend/issues/999).
 - Ao acessar a tela de detalhes de uma partida em andamento, os dados devem ser carregador a partir do state `match` e não da `api` [#996](https://github.com/3C-gg/reload-frontend/issues/996).
@@ -142,12 +143,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Muda todo o sistema de `websocket` e `states` do `zustand` para resolver problema de lentidão na vercel [#1025](https://github.com/3C-gg/reload-frontend/issues/#1025).
-- Corrige `arma selecionada` que não estava sendo exibida no inventário [#1018](https://github.com/3C-gg/reload-frontend/issues/#1018).
-- Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/#1016).
-- Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/#1014).
-- Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/#1007).
-- Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/#994).
+- Muda todo o sistema de `websocket` e `states` do `zustand` para resolver problema de lentidão na vercel [#1025](https://github.com/3C-gg/reload-frontend/issues/1025).
+- Corrige `arma selecionada` que não estava sendo exibida no inventário [#1018](https://github.com/3C-gg/reload-frontend/issues/1018).
+- Corrige `item selecionado` inicial e ao mudar de tab que deve ser o item ativo [#1016](https://github.com/3C-gg/reload-frontend/issues/1016).
+- Corrige informação de `ATA e DEF` que deve aparecer apenas para items do tipo `wear` [#1014](https://github.com/3C-gg/reload-frontend/issues/1014).
+- Corrige `timer` do `carousel` da `loja` que pausava ao colocar o mouse em cima [#1007](https://github.com/3C-gg/reload-frontend/issues/1007).
+- Corrige `wizard` de perfil que estava aparecendo na tela de detalhes de uma partida [#994](https://github.com/3C-gg/reload-frontend/issues/994).
 - Corrige `crash` no `Modal de compra de item` ao abrir uma `coleção` [#983](https://github.com/3C-gg/reload-frontend/issues/983).
 - Corrige fluxo de cadastrar no projeto next.
 - Corrige botões de `lobby` que quando tem valor zero buga o contador no projeto next.

@@ -6,7 +6,7 @@ import { useUserStore } from '@/store/userStore'
 
 import { Avatar, Link, Tooltip } from '@/components/shared'
 
-import { SidebarRC } from './SidebarRC'
+import { SidebarRCButton } from './SidebarRCButton'
 
 export function SidebarAvatarLink() {
   const { user } = useUserStore()
@@ -71,7 +71,7 @@ export function SidebarAvatarLink() {
         </Tooltip>
 
         {process.env.NEXT_PUBLIC_REACT_APP_STORE_ENABLED === 'true' && (
-          <SidebarRC />
+          <SidebarRCButton />
         )}
       </div>
     </div>
