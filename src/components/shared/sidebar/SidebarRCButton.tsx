@@ -1,12 +1,20 @@
 'use client'
 
+import Image from 'next/image'
 import { MouseEvent, useState } from 'react'
-import { BiPlus } from 'react-icons/bi'
 import { twMerge } from 'tailwind-merge'
 
-import { Button, ModalReloadCoins, Tooltip } from '@/components/shared'
+import { useUserStore } from '@/store/userStore'
 
-export default function SidebarRCButton() {
+import { ModalReloadCoins, Tooltip } from '@/components/shared'
+
+import { SidebarRCIcon } from './SidebarRCIcon'
+
+const reloadCredits = '/assets/images/reload_credits.png'
+
+export function SidebarRCButton() {
+  const { user } = useUserStore()
+
   const [openModalReloadCoin, setOpenModalReloadCoin] = useState(false)
 
   const handleOpenModal = (e: MouseEvent<HTMLButtonElement>) => {
@@ -16,22 +24,39 @@ export default function SidebarRCButton() {
 
   return (
     <>
-      <Tooltip content="Comprar Reload Coins">
-        <span>
-          <Button.Root
-            onClick={handleOpenModal}
-            className={twMerge(
-              'max-h-9 min-h-9 min-w-9 rounded-e-none',
-              '3xl:max-h-8 3xl:min-h-8 3xl:min-w-8',
-              'ultrawide:max-h-14 ultrawide:min-h-14 ultrawide:min-w-14'
-            )}
-          >
-            <Button.Icon
-              icon={BiPlus}
-              className={twMerge('text-2xl', 'ultrawide:text-3xl')}
-            />
-          </Button.Root>
-        </span>
+      <Tooltip content="Comprar Reload Coins" side="bottom">
+        <button
+          onClick={handleOpenModal}
+          className="flex flex-1 items-center justify-between overflow-hidden rounded border-none bg-purple-400/15 pl-3 outline outline-1 outline-purple-400"
+        >
+          <div className="items-center gap-3">
+            <div
+              className={twMerge(
+                'relative h-5 w-5 flex-initial',
+                'ultrawide:w-10 ultrawide:h-10'
+              )}
+            >
+              <Image
+                fill
+                quality={40}
+                src={reloadCredits}
+                alt="Reload Credits"
+              />
+            </div>
+
+            <span
+              className={twMerge(
+                'text-sm font-medium text-white',
+                'leading-none',
+                'ultrawide:text-2xl ultrawide:leading-none'
+              )}
+            >
+              {user?.account?.coins}
+            </span>
+          </div>
+
+          <SidebarRCIcon />
+        </button>
       </Tooltip>
 
       <ModalReloadCoins

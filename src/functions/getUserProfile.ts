@@ -38,7 +38,7 @@ export type Profile = {
 }
 
 export async function getUserProfile(userId: number): Promise<Profile> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await profilesApi.detail(auth.token, userId, {
     next: { tags: ['profile'] },

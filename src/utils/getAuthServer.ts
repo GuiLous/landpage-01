@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation'
 
 import { userAuthToken } from '@/middleware'
 
-export const getAuthServer = () => {
+export const getAuthServer = async () => {
   const cookieStore = cookies()
 
   const { value: token } = cookieStore.get('token') ?? { value: null }

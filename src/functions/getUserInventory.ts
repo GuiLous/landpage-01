@@ -12,7 +12,7 @@ export interface Inventory {
 }
 
 export async function getUserInventory(): Promise<Inventory> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await storeApi.listInventory(auth.token, {
     next: { revalidate: 300, tags: ['inventory'] },

@@ -9,9 +9,13 @@ import { InventoryWrapperContent } from './InventoryWrapperContent'
 export async function InventoryWrapper() {
   const inventory = await getUserInventory()
 
-  const placeholders = await Promise.all(
-    inventory.items.map((item) => dynamicBlurDataUrl(item.foreground_image))
-  )
+  let placeholders: string[] = []
+
+  if (inventory.items) {
+    placeholders = await Promise.all(
+      inventory.items.map((item) => dynamicBlurDataUrl(item.foreground_image))
+    )
+  }
 
   return (
     <section

@@ -31,12 +31,7 @@ export function CustomScrollBar({
   dark,
 }: CustomScrollBarProps) {
   return (
-    <div
-      className={twMerge(
-        'relative overflow-hidden min-h-[106%]',
-        wrapperClassName
-      )}
-    >
+    <div className={twMerge('relative overflow-hidden', wrapperClassName)}>
       <div
         className={customScrollBar({
           dark,

@@ -65,7 +65,7 @@ export interface Store {
 }
 
 export async function getStore(): Promise<Store> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await storeApi.listStore(auth.token, {
     next: { revalidate: 300, tags: ['store'] },

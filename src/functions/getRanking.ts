@@ -25,7 +25,7 @@ interface getRankingProps {
 export async function getRanking({
   page = 1,
 }: getRankingProps): Promise<ranking> {
-  const auth = getAuthServer()
+  const auth = await getAuthServer()
 
   const response = await rankingApi.listRanking(auth.token, page, {
     next: { revalidate: 300, tags: ['ranking'] },

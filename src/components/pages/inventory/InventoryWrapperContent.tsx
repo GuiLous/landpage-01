@@ -441,9 +441,10 @@ export function InventoryWrapperContent({
             {isArsenal && (
               <CustomScrollBar
                 className={twMerge(
-                  'max-h-[375px] max-w-fit',
-                  '3xl:max-h-[255px]',
-                  'ultrawide:max-h-[575px]'
+                  'max-h-[335px] max-w-fit',
+                  '3xl:max-h-[235px]',
+                  'ultrawide:max-h-[575px]',
+                  'laptop-inventory-height:max-h-[235px]'
                 )}
               >
                 <WeaponsSelectList
@@ -460,6 +461,7 @@ export function InventoryWrapperContent({
                   'max-h-[312px] max-w-fit',
                   'ultrawide:max-h-[512px]'
                 )}
+                wrapperClassName={twMerge('min-h-[106%]')}
               >
                 <ItemsSelectList
                   hasItemInUse={hasItemInUse}

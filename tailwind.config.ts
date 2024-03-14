@@ -13,6 +13,7 @@ const config: Config = {
     extend: {
       screens: {
         '3xl': { max: '1600px' },
+        'laptop-inventory-height': { raw: '(max-height: 866px)' },
         '2xl': { max: '1536px' },
         img_link: { max: '1400px' },
         xl: { max: '1279px' },

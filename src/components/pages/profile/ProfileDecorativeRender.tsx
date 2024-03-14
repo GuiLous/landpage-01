@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge'
 
-import { getUserInventory } from '@/functions'
+import { StoreItem, getUserInventory } from '@/functions'
 
 import {
   AccountPlayerDecoration,
@@ -10,8 +10,13 @@ import {
 export async function ProfileDecorativeRender() {
   const inventory = await getUserInventory()
 
-  const cards = inventory.items.filter((item) => item.subtype === 'card')
-  const covers = inventory.items.filter((item) => item.subtype === 'profile')
+  let cards: StoreItem[] = []
+  let covers: StoreItem[] = []
+
+  if (inventory.items) {
+    cards = inventory.items.filter((item) => item.subtype === 'card')
+    covers = inventory.items.filter((item) => item.subtype === 'profile')
+  }
 
   return (
     <section className={twMerge('flex-col gap-10', '3xl:gap-7')}>

@@ -9,7 +9,7 @@ import { Lineup, LineupCustom } from '@/components/shared'
 import { LobbyGameType } from './LobbyGameType'
 import { LobbyHeader } from './LobbyHeader'
 
-export type LobbyGameType = 'TDM 5X5' | 'RANQUEADA 5X5' | 'PERSONALIZADA'
+export type LobbyType = 'TDM 5X5' | 'RANQUEADA 5X5' | 'PERSONALIZADA'
 
 const gameTypeConvert = {
   competitive: 'RANQUEADA 5X5',
@@ -19,15 +19,13 @@ const gameTypeConvert = {
 export function LobbyGameTypeWrapper() {
   const { lobby } = useLobbyStore()
 
-  const [activeTab, setActiveTab] = useState<LobbyGameType>(
-    lobby?.mode
-      ? (gameTypeConvert[lobby.mode] as LobbyGameType)
-      : 'RANQUEADA 5X5'
+  const [activeTab, setActiveTab] = useState<LobbyType>(
+    lobby?.mode ? (gameTypeConvert[lobby.mode] as LobbyType) : 'RANQUEADA 5X5'
   )
 
   useEffect(() => {
     if (lobby?.mode) {
-      setActiveTab(gameTypeConvert[lobby.mode] as LobbyGameType)
+      setActiveTab(gameTypeConvert[lobby.mode] as LobbyType)
     }
   }, [lobby?.mode])
 
