@@ -21,7 +21,7 @@ export function InventoryItemDescription({
   const showSideInfo = item.item_type === 'wear'
 
   return (
-    <div className="flex-initial flex-col gap-6">
+    <div className={twMerge('flex-initial flex-col gap-6', '3xl:gap-3')}>
       {item?.id !== 0 && (
         <>
           <div className="items-center gap-2">
@@ -43,7 +43,7 @@ export function InventoryItemDescription({
 
             <span
               className={twMerge(
-                'font-semibold uppercase text-white',
+                'font-semibold uppercase text-white leading-none',
                 'ultrawide:text-2xl'
               )}
             >
