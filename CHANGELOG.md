@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Cria `variável de ambiente` para habilitar ou desabilitar o modo customizado no lobby [#1093](https://github.com/3C-gg/reload-frontend/issues/1093).
 - Cria `Skeleton` para a página de `Ranking` [#1081](https://github.com/3C-gg/reload-frontend/issues/1081).
 - Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/1074).
 - Cria página de `ranking` [#1068](https://github.com/3C-gg/reload-frontend/issues/1068).
@@ -29,6 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Corrige gap entre a listagem de armas no arsenal e a descrição [#1089](https://github.com/3C-gg/reload-frontend/issues/1089).
 - Corrige `altura` do botão de verificar código de 6 dígitos.
 
 ## [4773d21 - 1/2/2024]
