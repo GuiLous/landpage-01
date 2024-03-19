@@ -1,6 +1,17 @@
 import zukeeper from 'zukeeper'
 import { create } from 'zustand'
 
+export type UserFeats =
+  | 'rc'
+  | 'inventory'
+  | 'support'
+  | 'profiles'
+  | 'friends'
+  | 'comp_lobby'
+  | 'store'
+  | 'custom_lobby'
+  | 'ranking'
+
 export type Status =
   | 'online'
   | 'offline'
@@ -42,6 +53,7 @@ export type User = {
   pre_match_id: number | null
   invites_available_count: number
   invites: UserInvites[]
+  feats: UserFeats[]
 }
 
 type UserStore = {
