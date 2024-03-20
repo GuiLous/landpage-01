@@ -22,7 +22,8 @@ export function ConnectIpMessage() {
           'ultrawide:text-3xl ultrawide:max-w-[895px]'
         )}
       >
-        Para jogar, abra o FiveM e clique no botão abaixo. Ou se preferir,
+        Para jogar, clique em &ldquo;
+        <b className="font-bold">Conectar FiveM</b>&ldquo;. Ou se preferir,
         insira o IP abaixo na lista de servidores.{' '}
         <span className="block font-medium text-cyan-400">
           Você tem até 5 minutos para se conectar.
