@@ -132,7 +132,8 @@ export function LineupCustom() {
                       (!isLobbyOwner || isUpdatingOptions) && 'opacity-60'
                     )}
                   >
-                    {match_type[1]}
+                    {match_type[1] === 'Default' && 'Padrão'}
+                    {match_type[1] !== 'Default' && match_type[1]}
                   </Select.ItemText>
                 </Select.Item>
               ))}
