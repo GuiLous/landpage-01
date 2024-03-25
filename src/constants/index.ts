@@ -53,7 +53,7 @@ export const MENU_LINKS = ['loja', 'ranking']
 // Links
 export const INSTAGRAM_LINK = 'https://www.instagram.com/reloadclubgg/'
 export const TWITTER_LINK = 'https://twitter.com/reloadclubgg'
-export const DISCORD_LINK = 'https://discord.gg/nKz76bnbKu'
+export const DISCORD_LINK = 'https://discord.gg/8TaCAQ7cce'
 export const YOUTUBE_LINK =
   'https://www.youtube.com/channel/UC0Yx6OapSWC0pym9ACd-D1A'
 export const FACEBOOK_LINK =
