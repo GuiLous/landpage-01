@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Verifica array de `feats` para habilitar mudança de tipo de `lobby` [#1096](https://github.com/3C-gg/reload-frontend/issues/1096).
 - Cria `variável de ambiente` para habilitar ou desabilitar o modo customizado no lobby [#1093](https://github.com/3C-gg/reload-frontend/issues/1093).
 - Cria `Skeleton` para a página de `Ranking` [#1081](https://github.com/3C-gg/reload-frontend/issues/1081).
 - Cria página e `Partida personalizada` no lobby [#1074](https://github.com/3C-gg/reload-frontend/issues/1074).
@@ -17,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Altera `link` para o discord [#1102](https://github.com/3C-gg/reload-frontend/issues/1102)
+- Altera nome do modo de jogo de `Default` para `padrão` [#1100](https://github.com/3C-gg/reload-frontend/issues/1100).
+- Altera `texto` da página de `conectar` [#1098](https://github.com/3C-gg/reload-frontend/issues/1098).
 - Move click para abrir modal de compra de RC para o componente `SidebarRCButton` [#1090](https://github.com/3C-gg/reload-frontend/issues/1090)
 - Update Readme.md [#4](https://github.com/3C-gg/reload-frontend/issues/4).
 - Altera tela de `partidas customizadas` para renderizar apenas um único espaço vazio que ocupado todo o espaço [#1084](https://github.com/3C-gg/reload-frontend/issues/1084).

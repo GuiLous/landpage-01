@@ -8,6 +8,7 @@ import { GAME_TYPES, GAME_TYPES_AVAILABLE } from '@/constants'
 
 import { useLobbyStore } from '@/store/lobbyStore'
 import { GameType } from '@/store/matchStore'
+import { UserFeats, useUserStore } from '@/store/userStore'
 
 import { lobbyApi } from '@/modelsApi'
 
@@ -25,11 +26,18 @@ export interface LobbyGameTypeProps {
   setActiveTab: (state: LobbyType) => void
 }
 
+const gameTypeMapper = {
+  'RANQUEADA 5X5': 'comp_lobby',
+  PERSONALIZADA: 'custom_lobby',
+  'TDM 5X5': '',
+}
+
 export function LobbyGameType({
   activeTab = 'RANQUEADA 5X5',
   setActiveTab,
 }: LobbyGameTypeProps) {
   const { lobby } = useLobbyStore()
+  const { user } = useUserStore()
 
   const auth = useAuth()
 
@@ -53,6 +61,9 @@ export function LobbyGameType({
   ) => {
     if (
       GAME_TYPES_AVAILABLE.includes(gameType) &&
+      user?.feats.includes(
+        gameTypeMapper[gameType as LobbyType] as UserFeats
+      ) &&
       activeTab !== gameType &&
       isLobbyOwner
     ) {
@@ -80,7 +91,11 @@ export function LobbyGameType({
             'ultrawide:border-b-2',
             isLobbyOwner && 'cursor-pointer',
             activeTab === gameType && 'border-b-purple-400 cursor-default',
-            !GAME_TYPES_AVAILABLE.includes(gameType) && 'cursor-default'
+            (!GAME_TYPES_AVAILABLE.includes(gameType) ||
+              !user?.feats.includes(
+                gameTypeMapper[gameType as LobbyType] as UserFeats
+              )) &&
+              'cursor-default'
           )}
           onClick={() => handleClickAndMouseEnter(gameType, 'click')}
           onMouseEnter={() => handleClickAndMouseEnter(gameType, 'mouseEnter')}
@@ -108,15 +123,25 @@ export function LobbyGameType({
               'ultrawide:text-2xl',
               activeTab === gameType && 'text-purple-400 font-medium',
               GAME_TYPES_AVAILABLE.includes(gameType) &&
+                user?.feats.includes(
+                  gameTypeMapper[gameType as LobbyType] as UserFeats
+                ) &&
                 isLobbyOwner &&
                 'group-hover:text-purple-400',
-              !GAME_TYPES_AVAILABLE.includes(gameType) && 'text-gray-400'
+              (!GAME_TYPES_AVAILABLE.includes(gameType) ||
+                !user?.feats.includes(
+                  gameTypeMapper[gameType as LobbyType] as UserFeats
+                )) &&
+                'text-gray-400'
             )}
           >
             {gameType}
           </h3>
 
-          {!GAME_TYPES_AVAILABLE.includes(gameType) && (
+          {(!GAME_TYPES_AVAILABLE.includes(gameType) ||
+            !user?.feats.includes(
+              gameTypeMapper[gameType as LobbyType] as UserFeats
+            )) && (
             <Badge variant="highlight" className="uppercase">
               Em breve
             </Badge>
