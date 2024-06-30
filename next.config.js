@@ -2,12 +2,15 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-
+      {
+        protocol: 'https',
+        hostname: 'swiperjs.com',
+      },
     ],
   },
   webpack(config) {
     config.module.rules.push({
-      test: /\.(ogg|mp3|wav|mpe?g)$/i,
+      test: /\.(mp4|ogg|mp3|wav|mpe?g)$/i,
       use: [
         {
           loader: 'url-loader',

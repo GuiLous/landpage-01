@@ -1,8 +1,7 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "@rocketseat/eslint-config/next",
-    "plugin:storybook/recommended"
+    "@rocketseat/eslint-config/next"
   ],
   "plugins": [
     "eslint-plugin-import-helpers",
@@ -35,7 +34,7 @@
           "/^@/hooks/",
           "/^@/actions/",
           "/^@/middleware/",
-          "/^/assets/",
+          "/^@/assets/",
           "/^@/styles/",
           [
             "parent",
@@ -48,9 +47,6 @@
           "ignoreCase": true
         }
       }
-    ],
-    "@typescript-eslint/no-explicit-any": [
-      "off"
     ],
     "tailwindcss/classnames-order": "warn",
     "tailwindcss/no-custom-classname": "warn",

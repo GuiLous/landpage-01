@@ -9,7 +9,19 @@ const config: Config = {
     '!**/.next/**/*',
   ],
   theme: {
-    extend: {}
+    extend: {
+      fontFamily: {
+        poppins: 'var(--font-poppins)',
+        montserrat: 'var(--font-montserrat)',
+        nunito: 'var(--font-nunito)',
+      },
+      backgroundImage: {
+        gradient_purple:
+          'linear-gradient(180deg, rgba(84, 84, 212, 0.27) 0%, rgba(84, 84, 212, 0.1134) 100%)',
+        gradient_red:
+          'linear-gradient(180deg, rgba(251, 168, 28, 0.1066) 0%, rgba(224, 86, 136, 0.0615) 100%)',
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms')],
 }
