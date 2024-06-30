@@ -3,8 +3,9 @@ import type { Metadata } from 'next'
 import { Montserrat, Nunito_Sans, Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
 
-import '@/styles/globals.css'
 import '@radix-ui/themes/styles.css'
+
+import '@/styles/globals.css'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -12,6 +13,7 @@ const poppins = Poppins({
   weight: ['700'],
   style: ['normal'],
   fallback: ['arial'],
+  preload: true,
 })
 
 const montserrat = Montserrat({
@@ -20,6 +22,7 @@ const montserrat = Montserrat({
   weight: ['700'],
   style: ['normal'],
   fallback: ['arial'],
+  preload: true,
 })
 
 const nunito = Nunito_Sans({
@@ -28,6 +31,7 @@ const nunito = Nunito_Sans({
   weight: ['400', '500', '600', '700'],
   style: ['normal'],
   fallback: ['arial'],
+  preload: true,
 })
 
 export const metadata: Metadata = {
@@ -38,11 +42,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body
-        className={`${poppins.variable} ${montserrat.variable} ${nunito.variable} h-full bg-zinc-900`}
-      >
-        <Theme className="bg-zinc-900 py-10 font-nunito font-normal text-white">
-          {children}
+      <body>
+        <Theme>
+          <div
+            className={`${poppins.variable} ${montserrat.variable} ${nunito.variable} font-nunito h-full bg-zinc-900 py-10 font-normal text-white`}
+          >
+            {children}
+          </div>
         </Theme>
       </body>
     </html>
