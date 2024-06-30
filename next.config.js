@@ -2,26 +2,7 @@
 const nextConfig = {
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'reloadclub-api-staging.s3.amazonaws.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'reload-api-prod.s3.amazonaws.com',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static.wikia.nocookie.net',
-      },
-      {
-        protocol: 'https',
-        hostname: 'static0.gamerantimages.com',
-      },
-      {
-        protocol: 'http',
-        hostname: 'localhost',
-      },
+
     ],
   },
   webpack(config) {
