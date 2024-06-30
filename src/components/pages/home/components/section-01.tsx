@@ -10,8 +10,8 @@ import triangles from '@/assets/images/triangles.svg'
 
 export function Section01() {
   return (
-    <section className="relative flex flex-col gap-12 px-6">
-      <h2 className="max-w-64 font-poppins text-5xl font-bold leading-normal">
+    <section id="section01" className="relative flex flex-col gap-12 px-6">
+      <h2 className="font-poppins max-w-64 text-5xl font-bold leading-normal">
         Build Your Awesome Platform
       </h2>
 
@@ -60,10 +60,10 @@ export function Section01() {
           className="h-auto w-auto"
         />
 
-        <div className="absolute left-0 top-0 min-h-[568px] min-w-[350px] rotate-45 bg-gradient_red blur-3xl" />
+        <div className="bg-gradient_red absolute left-0 top-0 min-h-[568px] min-w-[350px] rotate-45 blur-3xl" />
       </div>
 
-      <div className="absolute -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_purple blur-3xl" />
+      <div className="bg-gradient_purple absolute -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 blur-3xl" />
     </section>
   )
 }

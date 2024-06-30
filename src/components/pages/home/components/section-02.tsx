@@ -1,6 +1,6 @@
 export function Section02() {
   return (
-    <section className="flex flex-col gap-12 px-6">
+    <section id="section02" className="flex flex-col gap-12 px-6">
       <h2 className="font-poppins text-4xl font-bold leading-snug">
         Why Enver Is The Best Choice?
       </h2>

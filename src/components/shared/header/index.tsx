@@ -21,20 +21,20 @@ export function Header() {
           </Button>
         </DropdownMenu.Trigger>
         <DropdownMenu.Content className="bg-zinc-700 font-semibold">
-          <DropdownMenu.Item shortcut="⌘" className="text-white">
-            Início
+          <DropdownMenu.Item shortcut="#" className="text-white">
+            <Link href="#section01">Início</Link>
           </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="⌘" className="text-white">
-            Por que nos escolher?
+          <DropdownMenu.Item shortcut="#" className="text-white">
+            <Link href="#section02">Por que nos escolher?</Link>
           </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="⌘" className="text-white">
-            Nossos serviços
+          <DropdownMenu.Item shortcut="#" className="text-white">
+            <Link href="#section03">Nossos serviços</Link>
           </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="⌘" className="text-white">
-            Nosso portfólio
+          <DropdownMenu.Item shortcut="#" className="text-white">
+            <Link href="#section04">Nosso portfólio</Link>
           </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="⌘" className="text-white">
-            Entre em contato
+          <DropdownMenu.Item shortcut="#" className="text-white">
+            <Link href="#section05">Entre em contato</Link>
           </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Root>

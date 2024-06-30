@@ -8,7 +8,10 @@ import triangles from '@/assets/images/triangles.svg'
 
 export function Section03() {
   return (
-    <section className="relative mt-16 flex flex-col gap-12 px-6">
+    <section
+      id="section03"
+      className="relative mt-16 flex flex-col gap-12 px-6"
+    >
       <div className="relative">
         <Image
           src={triangles}
@@ -59,7 +62,7 @@ export function Section03() {
           iconBg="bg-violet-500/20"
         />
 
-        <div className="absolute left-0 top-16 min-h-[668px] min-w-[450px] rotate-45 bg-gradient_purple blur-3xl" />
+        <div className="bg-gradient_purple absolute left-0 top-16 min-h-[668px] min-w-[450px] rotate-45 blur-3xl" />
       </div>
 
       <Image

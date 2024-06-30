@@ -6,7 +6,10 @@ import circles from '@/assets/images/circles.svg'
 
 export function Section05() {
   return (
-    <section className="relative mt-20 flex flex-col gap-12 px-6">
+    <section
+      id="section05"
+      className="relative mt-20 flex flex-col gap-12 px-6"
+    >
       <h2 className="font-poppins text-4xl font-bold leading-normal">
         Contact us for the service you want to use
       </h2>

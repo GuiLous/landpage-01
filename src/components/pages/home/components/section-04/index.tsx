@@ -7,7 +7,7 @@ import graph from '@/assets/images/graph.svg'
 
 export function Section04() {
   return (
-    <section className="relative flex flex-col gap-12">
+    <section id="section04" className="relative flex flex-col gap-12">
       <div className="relative px-6">
         <h2 className="font-poppins text-4xl font-bold leading-snug">
           Our Awesome Portofolio
@@ -30,7 +30,7 @@ export function Section04() {
         className="absolute -bottom-10 left-6"
       />
 
-      <div className="absolute -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_red blur-3xl" />
+      <div className="bg-gradient_red absolute -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 blur-3xl" />
     </section>
   )
 }
