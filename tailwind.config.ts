@@ -16,6 +16,7 @@ const config: Config = {
         nunito: 'var(--font-nunito)',
       },
       backgroundImage: {
+        home_bg: "url('/images/img_02.jpg')",
         gradient_purple:
           'linear-gradient(180deg, rgba(84, 84, 212, 0.27) 0%, rgba(84, 84, 212, 0.1134) 100%)',
         gradient_red:

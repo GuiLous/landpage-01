@@ -1,4 +1,5 @@
 import { Button } from '@radix-ui/themes'
+import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 
 import add from '@/assets/images/add.svg'
@@ -10,11 +11,15 @@ export function Section05() {
       id="section05"
       className="relative mt-20 flex flex-col gap-12 px-6"
     >
-      <h2 className="font-poppins text-4xl font-bold leading-normal">
-        Contact us for the service you want to use
+      <h2 className="text-center font-poppins text-4xl font-bold leading-normal">
+        Aprenda manter e cultivar uma mentalidade de sucesso como empreendedor{' '}
+        <span className="text-yellow-300 ">imbatível</span>
       </h2>
 
-      <Button size="4">Entre em contato</Button>
+      <Button size="4">
+        Garanta seu E-book
+        <ArrowUpRight />
+      </Button>
 
       <Image
         src={add}
@@ -29,6 +34,8 @@ export function Section05() {
         width={35}
         className="absolute -bottom-16 left-6"
       />
+
+      <div className="absolute -top-24 left-0 min-h-[668px] min-w-[350px] rotate-45 bg-gradient_red blur-3xl" />
     </section>
   )
 }

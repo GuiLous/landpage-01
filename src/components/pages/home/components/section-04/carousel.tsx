@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { useRef, useState } from 'react'
 import { EffectCoverflow, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
@@ -11,10 +10,12 @@ import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
-const IMAGES = [
-  'https://swiperjs.com/demos/images/nature-1.jpg',
-  'https://swiperjs.com/demos/images/nature-2.jpg',
-  'https://swiperjs.com/demos/images/nature-3.jpg',
+const AboutMeInfos = [
+  'Entrei no mercado em 2003, comecei empreender com os meus 14 anos de idade.',
+  'Aos 14 anos, eu dei o primeiro passo em direção ao meu sonho de empreender.',
+  'Com uma paixão inabalável e muita determinação, comecei a transformar minhas ideias em realidade.',
+  'Desde aquele momento inicial, enfrentei desafios, aprendi com cada erro e celebrei cada pequeno sucesso.',
+  'Hoje, sou um empreendedor realizado e quero ajudar você a alcançar o mesmo.',
 ]
 
 export function Carousel() {
@@ -22,7 +23,7 @@ export function Carousel() {
 
   const swiperRef = useRef<SwiperRef>(null)
 
-  const maxSlides = IMAGES.length - 1
+  const maxSlides = AboutMeInfos.length - 1
 
   const handleSlidePrev = () => {
     if (slideIndex === 0 || !swiperRef.current) return
@@ -58,9 +59,11 @@ export function Carousel() {
           modules={[EffectCoverflow, Pagination]}
           onSlideChange={(slide) => setSlideIndex(slide.realIndex)}
         >
-          {IMAGES.map((slide, index) => (
+          {AboutMeInfos.map((info, index) => (
             <SwiperSlide key={index} className="relative">
-              <Image src={slide} alt="slide" fill className="object-cover" />
+              <div className="flex h-full w-full flex-1 items-center justify-center bg-gray-500/50 p-4">
+                <p className="text-center text-xl font-bold">{info}</p>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

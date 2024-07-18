@@ -11,11 +11,11 @@ export function Footer() {
           <Image src={logo} alt="Logo" width={30} height={30} />
 
           <h1 className="font-montserrat text-3xl font-bold text-white">
-            Enver
+            Empreendedor
           </h1>
         </Link>
 
-        <p className="text-lg">© 2020 Enver, All right reserved</p>
+        <p className="text-lg">© 2020 Empreendedor, All right reserved</p>
       </nav>
     </footer>
   )
