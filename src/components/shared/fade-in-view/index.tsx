@@ -16,7 +16,7 @@ export function FadeInUpComponent({ children }: Props) {
   return (
     <div
       ref={ref}
-      className={`transition-opacity duration-1000 ${inView ? 'animate-fade_in_up opacity-100' : 'opacity-0'}`}
+      className={`transition-opacity duration-1000 will-change-transform ${inView ? 'animate-fade_in_up opacity-100' : 'opacity-0'}`}
     >
       {children}
     </div>

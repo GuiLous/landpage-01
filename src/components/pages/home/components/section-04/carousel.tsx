@@ -55,12 +55,12 @@ export function Carousel() {
             slideShadows: true,
           }}
           pagination={false}
-          className="h-[256px] rounded-lg"
+          className="h-[256px] rounded-lg will-change-transform"
           modules={[EffectCoverflow, Pagination]}
           onSlideChange={(slide) => setSlideIndex(slide.realIndex)}
         >
           {AboutMeInfos.map((info, index) => (
-            <SwiperSlide key={index} className="relative">
+            <SwiperSlide key={index} className="relative will-change-transform">
               <div className="flex h-full w-full flex-1 items-center justify-center bg-gray-500/50 p-4">
                 <p className="text-center text-xl font-bold">{info}</p>
               </div>
