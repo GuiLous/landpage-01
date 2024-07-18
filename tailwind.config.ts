@@ -22,6 +22,15 @@ const config: Config = {
         gradient_red:
           'linear-gradient(180deg, rgba(251, 168, 28, 0.1066) 0%, rgba(224, 86, 136, 0.0615) 100%)',
       },
+      keyframes: {
+        fade_in_up: {
+          '0%': { opacity: '0', transform: 'translateY(100px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        fade_in_up: 'fade_in_up 0.8s ease-out forwards',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'), require('tailwindcss-radix')],

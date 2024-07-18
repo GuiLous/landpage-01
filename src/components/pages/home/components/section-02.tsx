@@ -1,6 +1,6 @@
 export function Section02() {
   return (
-    <section id="section02" className="flex flex-col gap-12 px-6">
+    <section id="section02" className="flex  flex-col gap-12 px-6">
       <h2 className="text-center font-poppins text-4xl font-bold leading-snug">
         Uma <span className="text-yellow-300">mentalidade</span> empreendedora
       </h2>

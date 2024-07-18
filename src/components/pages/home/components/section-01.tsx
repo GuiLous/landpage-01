@@ -10,7 +10,7 @@ import triangles from '@/assets/images/triangles.svg'
 
 export function Section01() {
   return (
-    <section id="section01" className="relative flex flex-col gap-12">
+    <section id="section01" className="relative flex  flex-col gap-12">
       <div className="flex flex-col gap-12 px-6">
         <h2 className="max-w-64 font-poppins text-5xl font-bold leading-normal">
           Seja um <span className="text-yellow-300">empreendedor</span>{' '}

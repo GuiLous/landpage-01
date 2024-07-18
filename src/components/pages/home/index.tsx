@@ -4,6 +4,7 @@ import { Section03 } from '@/components/pages/home/components/section-03'
 import { Section04 } from '@/components/pages/home/components/section-04'
 import { Section05 } from '@/components/pages/home/components/section-05'
 
+import { FadeInUpComponent } from '@/components/shared/fade-in-view'
 import { Footer } from '@/components/shared/footer'
 import { Header } from '@/components/shared/header'
 
@@ -12,15 +13,25 @@ export default function Home() {
     <main className="flex h-full w-full flex-col gap-28 overflow-hidden">
       <Header />
 
-      <Section01 />
+      <FadeInUpComponent>
+        <Section01 />
+      </FadeInUpComponent>
 
-      <Section02 />
+      <FadeInUpComponent>
+        <Section02 />
+      </FadeInUpComponent>
 
-      <Section03 />
+      <FadeInUpComponent>
+        <Section03 />
+      </FadeInUpComponent>
 
-      <Section04 />
+      <FadeInUpComponent>
+        <Section04 />
+      </FadeInUpComponent>
 
-      <Section05 />
+      <FadeInUpComponent>
+        <Section05 />
+      </FadeInUpComponent>
 
       <Footer />
     </main>
