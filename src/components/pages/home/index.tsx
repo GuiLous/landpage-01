@@ -1,5 +1,4 @@
 import { Section01 } from '@/components/pages/home/components/section-01'
-import { Section02 } from '@/components/pages/home/components/section-02'
 import { Section03 } from '@/components/pages/home/components/section-03'
 import { Section04 } from '@/components/pages/home/components/section-04'
 import { Section05 } from '@/components/pages/home/components/section-05'
@@ -17,9 +16,9 @@ export default function Home() {
         <Section01 />
       </FadeInUpComponent>
 
-      <FadeInUpComponent>
+      {/* <FadeInUpComponent>
         <Section02 />
-      </FadeInUpComponent>
+      </FadeInUpComponent> */}
 
       <FadeInUpComponent>
         <Section03 />
