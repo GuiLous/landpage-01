@@ -1,4 +1,3 @@
-import { Button } from '@radix-ui/themes'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { twMerge } from 'tailwind-merge'
 
@@ -17,31 +16,37 @@ export function Navigation({
 }: NavigationProps) {
   return (
     <div className="flex items-center justify-center gap-3">
-      <Button
+      <button
         className={twMerge(
-          'h-10 w-10 cursor-pointer rounded-full',
-          'disabled:bg-gray-700'
+          'h-10 w-10 cursor-pointer rounded-full bg-blue-500 flex items-center justify-center',
+          'disabled:bg-gray-700',
+          'active:bg-blue-300',
+          'hover:cursor-pointer hover:bg-blue-300'
         )}
         disabled={slideIndex === 0}
         onClick={onLeftClick}
+        aria-label="previous"
       >
         <div>
           <ChevronLeft className="text-white" />
         </div>
-      </Button>
+      </button>
 
-      <Button
+      <button
         className={twMerge(
-          'h-10 w-10 cursor-pointer rounded-full',
-          'disabled:bg-gray-700'
+          'h-10 w-10 cursor-pointer rounded-full bg-blue-500 flex items-center justify-center',
+          'disabled:bg-gray-700',
+          'active:bg-blue-300',
+          'hover:cursor-pointer hover:bg-blue-300'
         )}
         onClick={onRightClick}
         disabled={slideIndex === maxSlides}
+        aria-label="next"
       >
         <div>
           <ChevronRight className="text-white" />
         </div>
-      </Button>
+      </button>
     </div>
   )
 }

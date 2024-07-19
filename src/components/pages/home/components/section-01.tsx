@@ -1,6 +1,6 @@
-import { Button } from '@radix-ui/themes'
 import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import add from '@/assets/images/add.svg'
 import circles from '@/assets/images/circles.svg'
@@ -24,10 +24,18 @@ export function Section01() {
           criatividade e uma vontade incessante de aprender e se adaptar.
         </p>
 
-        <Button size="4">
-          Garanta seu E-book
+        <button
+          className={twMerge(
+            'flex h-12 items-center justify-center gap-2 rounded-lg bg-blue-500 shadow-md',
+            'transition-colors',
+            'active:bg-blue-300',
+            'hover:cursor-pointer hover:bg-blue-300'
+          )}
+          aria-label="ebook"
+        >
+          <span className="text-lg font-medium">Garanta seu E-BOOK</span>
           <ArrowUpRight />
-        </Button>
+        </button>
       </div>
 
       <div className="relative">
@@ -36,6 +44,7 @@ export function Section01() {
           alt="Gráfico"
           width={61}
           className="absolute top-8"
+          quality={50}
         />
         <Image
           src={circles}
@@ -48,12 +57,14 @@ export function Section01() {
           alt="Triângulos"
           width={65}
           className="absolute bottom-0"
+          quality={50}
         />
         <Image
           src={add}
           alt="Mais"
           width={39}
           className="absolute bottom-14 right-0"
+          quality={50}
         />
         <Image
           src={img01}

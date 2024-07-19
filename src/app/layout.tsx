@@ -1,9 +1,6 @@
-import { Theme } from '@radix-ui/themes'
 import type { Metadata } from 'next'
 import { Montserrat, Nunito_Sans, Poppins } from 'next/font/google'
 import { ReactNode } from 'react'
-
-import '@radix-ui/themes/styles.css'
 
 import '@/styles/globals.css'
 
@@ -35,21 +32,18 @@ const nunito = Nunito_Sans({
 })
 
 export const metadata: Metadata = {
-  title: '',
-  description: '',
+  title: 'Empreendedor Imbatível',
+  description:
+    'Aprenda manter e cultivar uma mentalidade de sucesso como empreendedor',
 }
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR">
-      <body>
-        <Theme>
-          <div
-            className={`${poppins.variable} ${montserrat.variable} ${nunito.variable} font-nunito h-full bg-zinc-900 py-10 font-normal text-white`}
-          >
-            {children}
-          </div>
-        </Theme>
+      <body
+        className={`${poppins.variable} ${montserrat.variable} ${nunito.variable} h-screen bg-zinc-900 font-nunito font-normal text-white`}
+      >
+        <div className="py-10">{children}</div>
       </body>
     </html>
   )

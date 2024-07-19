@@ -28,6 +28,7 @@ export function Section04() {
           alt="Círculos"
           width={35}
           className="absolute bottom-0 right-2"
+          quality={50}
         />
       </div>
 
@@ -38,6 +39,7 @@ export function Section04() {
         alt="Gráfico"
         width={61}
         className="absolute -bottom-10 left-6"
+        quality={50}
       />
 
       <div className="absolute -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_red blur-3xl" />

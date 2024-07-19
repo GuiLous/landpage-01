@@ -25,6 +25,7 @@ export function Section03() {
           alt="Triângulos"
           width={65}
           className="absolute -top-20"
+          quality={50}
         />
 
         <h2 className="text-center font-poppins text-4xl font-bold leading-snug">
@@ -36,6 +37,7 @@ export function Section03() {
           alt="Mais"
           width={39}
           className="absolute -bottom-6 right-0"
+          quality={50}
         />
       </div>
 
@@ -93,6 +95,7 @@ export function Section03() {
         alt="Mais"
         width={39}
         className="absolute -bottom-14 left-6"
+        quality={50}
       />
     </section>
   )

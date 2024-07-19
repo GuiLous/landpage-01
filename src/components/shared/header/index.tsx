@@ -1,5 +1,3 @@
-import { Button, DropdownMenu } from '@radix-ui/themes'
-import { BarChart } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -15,31 +13,6 @@ export function Header() {
           Empreendedor
         </h1>
       </Link>
-
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
-          <Button variant="ghost" className="cursor-pointer text-white">
-            <BarChart className="-rotate-90" />
-          </Button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content className="bg-zinc-700 font-semibold">
-          <DropdownMenu.Item shortcut="#" className="text-white">
-            <Link href="#section01">Início</Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="#" className="text-white">
-            <Link href="#section02">Video apresentação</Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="#" className="text-white">
-            <Link href="#section03">O que faremos por você</Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="#" className="text-white">
-            <Link href="#section04">Sobre mim</Link>
-          </DropdownMenu.Item>
-          <DropdownMenu.Item shortcut="#" className="text-white">
-            <Link href="#section05">E-BOOK</Link>
-          </DropdownMenu.Item>
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
     </header>
   )
 }
