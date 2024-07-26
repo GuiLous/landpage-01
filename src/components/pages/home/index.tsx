@@ -1,3 +1,5 @@
+import { twMerge } from 'tailwind-merge'
+
 import { Section01 } from '@/components/pages/home/components/section-01'
 import { Section03 } from '@/components/pages/home/components/section-03'
 import { Section04 } from '@/components/pages/home/components/section-04'
@@ -9,7 +11,12 @@ import { Header } from '@/components/shared/header'
 
 export default function Home() {
   return (
-    <main className="flex h-full w-full flex-col gap-28 overflow-hidden">
+    <main
+      className={twMerge(
+        'flex h-full w-full flex-col gap-28 overflow-hidden',
+        'lg:gap-20'
+      )}
+    >
       <Header />
 
       <FadeInUpComponent>

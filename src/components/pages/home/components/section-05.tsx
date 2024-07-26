@@ -9,7 +9,7 @@ export function Section05() {
   return (
     <section
       id="section05"
-      className="relative mt-20 flex flex-col gap-12 px-6"
+      className={twMerge("relative mt-20 flex flex-col gap-12 px-6", 'lg:px-32')}
     >
       <h2 className="text-center font-poppins text-4xl font-bold leading-normal">
         Aprenda manter e cultivar uma mentalidade de sucesso como empreendedor{' '}

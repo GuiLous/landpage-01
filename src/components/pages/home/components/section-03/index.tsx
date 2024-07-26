@@ -12,12 +12,13 @@ import { Card } from '@/components/pages/home/components/section-03/card'
 
 import add from '@/assets/images/add.svg'
 import triangles from '@/assets/images/triangles.svg'
+import { twMerge } from 'tailwind-merge'
 
 export function Section03() {
   return (
     <section
       id="section03"
-      className="relative mt-16 flex flex-col gap-12 px-6"
+      className={twMerge("relative mt-16 flex flex-col gap-12 px-6", 'lg:px-32')}
     >
       <div className="relative">
         <Image

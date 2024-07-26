@@ -6,7 +6,7 @@ import logo from '@/assets/images/logo.svg'
 export function Footer() {
   return (
     <footer>
-      <nav className="mt-20 flex flex-col items-center gap-10">
+      <nav className="mt-20 flex flex-col items-center gap-10 pb-10">
         <Link className="flex items-center gap-1" href="/">
           <Image src={logo} alt="Logo" width={30} height={30} />
 

@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${poppins.variable} ${montserrat.variable} ${nunito.variable} h-screen bg-zinc-900 font-nunito font-normal text-white`}
       >
-        <div className="py-10">{children}</div>
+        <div>{children}</div>
       </body>
     </html>
   )
