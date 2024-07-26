@@ -29,7 +29,7 @@ const config: Config = {
         },
       },
       animation: {
-        fade_in_up: 'fade_in_up 0.8s ease-out forwards',
+        fade_in_up: 'fade_in_up 1s ease-out forwards',
       },
     },
   },
