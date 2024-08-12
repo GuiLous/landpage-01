@@ -1,6 +1,11 @@
+import { ReactNode } from 'react'
 import { twMerge } from 'tailwind-merge'
 
-export function Section02() {
+type Section02Props = {
+  children?: ReactNode
+}
+
+export function Section02({ children }: Section02Props) {
   return (
     <section
       id="section02"
@@ -10,7 +15,9 @@ export function Section02() {
         Uma <span className="text-yellow-300">Mentalidade</span> Empreendedora
       </h2>
 
-      <p className="text-center text-xl font-semibold">
+      <p
+        className={twMerge('text-center text-xl font-semibold', 'lg:text-2xl')}
+      >
         Você está cansado de{' '}
         <span className="text-yellow-300">EMPREENDER E NÃ0 TER RESULTADO?</span>{' '}
         Quer finalmente ter uma{' '}
@@ -19,14 +26,7 @@ export function Section02() {
         dificuldades em sucesso!
       </p>
 
-      <iframe
-        className="min-h-[214px]"
-        src="https://www.youtube.com/embed/K4TOrB7at0Y"
-        title="Demo Background Sample Video"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
+      {children}
     </section>
   )
 }
