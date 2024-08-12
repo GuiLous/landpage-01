@@ -11,7 +11,7 @@ export function FadeInUpComponent({ children }: Props) {
   const { ref, inView } = useInView({
     triggerOnce: false,
     threshold: 0.1,
-    delay: 300
+    delay: 300,
   })
 
   return (
