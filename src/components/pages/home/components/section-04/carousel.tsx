@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { EffectCoverflow, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
+import { twMerge } from 'tailwind-merge'
 
 import { Navigation } from '@/components/pages/home/components/section-04/navigation'
 
@@ -38,8 +39,8 @@ export function Carousel() {
   }
 
   return (
-    <>
-      <div className="bg-zinc-800/50 p-6">
+    <div className={twMerge('flex flex-1 flex-col gap-12', 'lg:pr-12')}>
+      <div className={twMerge('bg-zinc-800/50 p-6', 'lg:p-0')}>
         <Swiper
           ref={swiperRef}
           effect={'coverflow'}
@@ -62,7 +63,14 @@ export function Carousel() {
           {AboutMeInfos.map((info, index) => (
             <SwiperSlide key={index} className="relative will-change-transform">
               <div className="flex h-full w-full flex-1 items-center justify-center bg-gray-500/50 p-4">
-                <p className="text-center text-xl font-bold">{info}</p>
+                <p
+                  className={twMerge(
+                    'text-center text-xl font-bold',
+                    'lg:text-2xl'
+                  )}
+                >
+                  {info}
+                </p>
               </div>
             </SwiperSlide>
           ))}
@@ -75,6 +83,6 @@ export function Carousel() {
         onRightClick={handleSlideNext}
         maxSlides={maxSlides}
       />
-    </>
+    </div>
   )
 }

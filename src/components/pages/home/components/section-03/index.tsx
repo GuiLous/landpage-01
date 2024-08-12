@@ -7,18 +7,21 @@ import {
   ShieldAlert,
 } from 'lucide-react'
 import Image from 'next/image'
+import { twMerge } from 'tailwind-merge'
 
 import { Card } from '@/components/pages/home/components/section-03/card'
 
 import add from '@/assets/images/add.svg'
 import triangles from '@/assets/images/triangles.svg'
-import { twMerge } from 'tailwind-merge'
 
 export function Section03() {
   return (
     <section
       id="section03"
-      className={twMerge("relative mt-16 flex flex-col gap-12 px-6", 'lg:px-32')}
+      className={twMerge(
+        'relative mt-16 flex flex-col gap-12 px-6',
+        'lg:px-32'
+      )}
     >
       <div className="relative">
         <Image
@@ -30,7 +33,7 @@ export function Section03() {
         />
 
         <h2 className="text-center font-poppins text-4xl font-bold leading-snug">
-          O que oferecemos para você
+          O Que Oferecemos Para Você
         </h2>
 
         <Image
@@ -42,7 +45,12 @@ export function Section03() {
         />
       </div>
 
-      <div className="relative flex flex-col gap-10">
+      <div
+        className={twMerge(
+          'relative flex flex-col gap-10',
+          'lg:grid lg:grid-cols-3'
+        )}
+      >
         <Card
           icon={Brain}
           title="Pensamentos"
@@ -86,9 +94,19 @@ export function Section03() {
           iconBg="bg-orange-500/20"
         />
 
-        <div className="absolute left-0 top-16 min-h-[668px] min-w-[450px] rotate-45 bg-gradient_purple blur-3xl" />
+        <div
+          className={twMerge(
+            'absolute left-0 top-16 min-h-[668px] min-w-[450px] rotate-45 bg-gradient_purple blur-3xl',
+            'lg:bg-none'
+          )}
+        />
 
-        <div className="absolute bottom-10 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_purple blur-3xl" />
+        <div
+          className={twMerge(
+            'absolute bottom-10 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_purple blur-3xl',
+            'lg:bg-none'
+          )}
+        />
       </div>
 
       <Image

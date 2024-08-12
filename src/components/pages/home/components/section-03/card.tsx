@@ -27,8 +27,17 @@ export function Card({
         <Icon className={iconColor} size={40} />
       </div>
 
-      <h3 className="text-3xl font-semibold">{title}</h3>
-      <p className="text-center text-xl leading-relaxed">{description}</p>
+      <h3 className={twMerge('text-3xl font-semibold', 'lg:text-5xl')}>
+        {title}
+      </h3>
+      <p
+        className={twMerge(
+          'text-center text-xl leading-relaxed',
+          'lg:text-2xl'
+        )}
+      >
+        {description}
+      </p>
     </div>
   )
 }

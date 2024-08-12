@@ -1,10 +1,13 @@
-import { twMerge } from "tailwind-merge";
+import { twMerge } from 'tailwind-merge'
 
 export function Section02() {
   return (
-    <section id="section02" className={twMerge("flex flex-col gap-12 px-6", 'lg:px-32')}>
+    <section
+      id="section02"
+      className={twMerge('flex flex-col gap-12 px-6', 'lg:px-32')}
+    >
       <h2 className="text-center font-poppins text-4xl font-bold leading-snug">
-        Uma <span className="text-yellow-300">mentalidade</span> empreendedora
+        Uma <span className="text-yellow-300">Mentalidade</span> Empreendedora
       </h2>
 
       <p className="text-center text-xl font-semibold">

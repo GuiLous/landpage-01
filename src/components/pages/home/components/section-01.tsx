@@ -14,7 +14,7 @@ export function Section01() {
       id="section01"
       className={twMerge(
         'relative flex flex-col gap-12',
-        'lg:flex-row lg:gap-8'
+        'lg:flex-row lg:gap-8 lg:justify-between lg:pr-32'
       )}
     >
       <div className={twMerge('flex flex-col gap-12 px-6', 'lg:pl-32 lg:pr-0')}>
@@ -24,7 +24,7 @@ export function Section01() {
             'lg:text-6xl lg:max-w-2xl'
           )}
         >
-          Seja um <span className="text-yellow-300">empreendedor</span>{' '}
+          Seja Um <span className="text-yellow-300">Empreendedor</span>{' '}
           Imbatível
         </h2>
 
@@ -46,7 +46,7 @@ export function Section01() {
             'transition-colors',
             'active:bg-blue-300',
             'hover:bg-blue-300',
-            'lg:max-w-64 lg:h-14'
+            'lg:max-w-64 lg:h-14 lg:px-6'
           )}
           aria-label="ebook"
         >
@@ -55,7 +55,7 @@ export function Section01() {
         </button>
       </div>
 
-      <div className="relative">
+      <div className={twMerge('relative')}>
         <Image
           src={graph}
           alt="Gráfico"
@@ -95,7 +95,7 @@ export function Section01() {
         <div
           className={twMerge(
             '-z-10 absolute left-0 top-0 min-h-[568px] min-w-[350px] rotate-45 bg-gradient_red blur-3xl',
-            'lg:min-h-[468px] lg:min-w-[650px] lg:-rotate-45 lg:top-20'
+            'lg:min-h-[468px] lg:min-w-[650px] lg:-rotate-45 lg:top-20 lg:opacity-45'
           )}
         />
       </div>
@@ -103,7 +103,7 @@ export function Section01() {
       <div
         className={twMerge(
           'absolute -z-10 -top-24 left-0 min-h-[668px] min-w-[350px] -rotate-45 bg-gradient_purple blur-3xl',
-          'lg:min-w-[450px] lg:min-h-[768px] lg:-rotate-45'
+          'lg:min-w-[450px] lg:min-h-[768px] lg:-rotate-45 lg:opacity-45'
         )}
       />
     </section>
