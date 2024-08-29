@@ -10,7 +10,7 @@ import img02 from '@/assets/images/img_02.jpg'
 export function Section04() {
   return (
     <section id="section04" className="flex flex-col gap-12">
-      <h2 className="text-center font-poppins text-4xl font-bold leading-snug">
+      <h2 className="px-6 text-center font-poppins text-4xl font-bold leading-snug">
         Sobre Mim <span className="text-yellow-300">Jeanderson Sá</span>
       </h2>
 

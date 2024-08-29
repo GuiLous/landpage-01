@@ -15,7 +15,7 @@ export function Navigation({
   maxSlides,
 }: NavigationProps) {
   return (
-    <div className="flex items-center justify-center gap-3">
+    <div className="z-20 flex items-center justify-center gap-3">
       <button
         className={twMerge(
           'h-10 w-10 cursor-pointer rounded-full bg-blue-500 flex items-center justify-center',
