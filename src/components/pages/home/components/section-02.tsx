@@ -21,9 +21,11 @@ export function Section02({ children }: Section02Props) {
         Você está cansado de{' '}
         <span className="text-yellow-300">EMPREENDER E NÃ0 TER RESULTADO?</span>{' '}
         Quer finalmente ter uma{' '}
-        <span className="text-yellow-300">MENTALIDADE EMPREENDEDORA?</span>{' '}
-        Nosso eBook é exatamente o que você precisa para transformar suas
-        dificuldades em sucesso!
+        <span className="text-yellow-300">MENTALIDADE DE SUCESSO?</span>
+        <p>
+          Nosso e-book é exatamente o que você precisa para transformar suas
+          dificuldades em sucesso!
+        </p>
       </p>
 
       {children}

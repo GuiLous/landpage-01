@@ -27,7 +27,7 @@ export function Section04() {
             width={380}
             height={414}
             priority
-            className="h-auto w-full"
+            className="h-auto w-full border-4 border-white"
           />
 
           <Image

@@ -1,42 +1,36 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import { EffectCoverflow, Pagination } from 'swiper/modules'
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react'
 import { twMerge } from 'tailwind-merge'
-
-import { Navigation } from '@/components/pages/home/components/section-04/navigation'
 
 import 'swiper/css'
 import 'swiper/css/effect-coverflow'
 import 'swiper/css/pagination'
 
 const AboutMeInfos = [
-  'Entrei no mercado em 2003, comecei empreender com os meus 14 anos de idade.',
-  'Aos 14 anos, eu dei o primeiro passo em direção ao meu sonho de empreender.',
-  'Com uma paixão inabalável e muita determinação, comecei a transformar minhas ideias em realidade.',
-  'Desde aquele momento inicial, enfrentei desafios, aprendi com cada erro e celebrei cada pequeno sucesso.',
-  'Hoje, sou um empreendedor realizado e quero ajudar você a alcançar o mesmo.',
+  'Entrei no mercado em 2003, comecei empreender com os meus 14 anos de idade. Aos 14 anos, eu dei o primeiro passo em direção ao meu sonho de empreender, com uma paixão inabalável e muita determinação, comecei a transformar minhas ideias em realidade, desde aquele momento inicial, enfrentei desafios, aprendi com cada erro e celebrei cada pequeno sucesso! Hoje, sou um empreendedor realizado e quero ajudar você a alcançar o mesmo.',
 ]
 
 export function Carousel() {
-  const [slideIndex, setSlideIndex] = useState(0)
+  // const [slideIndex, setSlideIndex] = useState(0)
 
   const swiperRef = useRef<SwiperRef>(null)
 
-  const maxSlides = AboutMeInfos.length - 1
+  // const maxSlides = AboutMeInfos.length - 1
 
-  const handleSlidePrev = () => {
-    if (slideIndex === 0 || !swiperRef.current) return
+  // const handleSlidePrev = () => {
+  //   if (slideIndex === 0 || !swiperRef.current) return
 
-    swiperRef.current.swiper.slideTo(slideIndex - 1)
-  }
+  //   swiperRef.current.swiper.slideTo(slideIndex - 1)
+  // }
 
-  const handleSlideNext = () => {
-    if (slideIndex === maxSlides || !swiperRef.current) return
+  // const handleSlideNext = () => {
+  //   if (slideIndex === maxSlides || !swiperRef.current) return
 
-    swiperRef.current.swiper.slideTo(slideIndex + 1)
-  }
+  //   swiperRef.current.swiper.slideTo(slideIndex + 1)
+  // }
 
   return (
     <div className={twMerge('flex flex-1 flex-col gap-12', 'lg:pr-12')}>
@@ -56,9 +50,9 @@ export function Carousel() {
             slideShadows: true,
           }}
           pagination={false}
-          className="h-[256px] rounded-lg will-change-transform"
+          className="rounded-lg will-change-transform"
           modules={[EffectCoverflow, Pagination]}
-          onSlideChange={(slide) => setSlideIndex(slide.realIndex)}
+          // onSlideChange={(slide) => setSlideIndex(slide.realIndex)}
         >
           {AboutMeInfos.map((info, index) => (
             <SwiperSlide key={index} className="relative will-change-transform">
@@ -76,13 +70,13 @@ export function Carousel() {
           ))}
         </Swiper>
       </div>
-
+      {/*
       <Navigation
         slideIndex={slideIndex}
         onLeftClick={handleSlidePrev}
         onRightClick={handleSlideNext}
         maxSlides={maxSlides}
-      />
+      /> */}
     </div>
   )
 }

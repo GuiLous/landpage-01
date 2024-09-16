@@ -30,27 +30,32 @@ export function Section01() {
 
         <p
           className={twMerge(
-            'text-justify text-xl',
+            'text-justify text-xl font-semibold',
             'lg:max-w-lg lg:leading-loose lg:text-left'
           )}
         >
           Como empreendedor, você está na linha de frente da inovação. Suas
           ideias têm o poder de mudar vidas, criar empregos e contribuir para a
           sociedade. Mas essa jornada não é fácil. Ela exige resiliência,
-          criatividade e uma vontade incessante de aprender e se adaptar.
+          criatividade e uma vontade incessante de aprender e se adaptar. Por
+          isso, para lhe ajudar nessa jornada rumo ao sucesso, o e-book{' '}
+          <span className="text-yellow-300">EMPREENDEDOR IMBATÍVEL</span> é
+          essencial no caminho até sucesso.
         </p>
 
         <button
           className={twMerge(
-            'cursor-pointer z-10 flex h-12 items-center justify-center gap-2 rounded-lg bg-blue-500 shadow-md',
+            'cursor-pointer z-10 flex h-14 items-center justify-center gap-2 rounded-lg bg-green-500 shadow-md',
             'transition-colors',
-            'active:bg-blue-300',
-            'hover:bg-blue-300',
-            'lg:max-w-64 lg:h-14 lg:px-6'
+            'active:bg-green-300',
+            'hover:bg-green-300',
+            'lg:max-w-96 lg:h-16 lg:px-6'
           )}
           aria-label="ebook"
         >
-          <span className="text-lg font-medium">Garanta seu E-BOOK</span>
+          <span className="text-xl font-semibold text-white">
+            Garanta seu E-BOOK AGORA!
+          </span>
           <ArrowUpRight />
         </button>
       </div>
@@ -89,7 +94,7 @@ export function Section01() {
           width={380}
           height={414}
           priority
-          className="h-auto w-full"
+          className="h-auto w-full border-4 border-white"
         />
 
         <div

@@ -27,9 +27,21 @@ const config: Config = {
           '0%': { opacity: '0', transform: 'translateY(100px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
+        bounce_hand: {
+          '0%': { transform: 'translateY(-25%) rotate(180deg)' },
+          '100%': {
+            transform: 'translateY(-25%) rotate(180deg)',
+            animation_timing_function: 'cubic-bezier(0.8,0,1,1)',
+          },
+          '50%': {
+            transform: 'rotate(180deg)',
+            animation_timing_function: 'cubic-bezier(0,0,0.2,1)',
+          },
+        },
       },
       animation: {
         fade_in_up: 'fade_in_up 1s ease-out forwards',
+        bounce_hand: 'bounce_hand 1s infinite',
       },
     },
   },

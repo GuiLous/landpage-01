@@ -11,7 +11,7 @@ export function Section05() {
       id="section05"
       className={twMerge(
         'relative mt-20 flex flex-col gap-12 px-6',
-        'lg:px-32 lg:flex-row lg:justify-between lg:items-center'
+        'lg:px-32 lg:justify-between lg:items-center'
       )}
     >
       <h2
@@ -20,21 +20,27 @@ export function Section05() {
           'lg:text-start lg:max-w-[62%]'
         )}
       >
-        Aprenda Manter e Cultivar Uma Mentalidade De Sucesso Como Um
-        Empreendedor <span className="text-yellow-300 ">Imbatível</span>
+        Não perca a oportunidade de chegar aonde você empreendedor sempre
+        sonhou. <span className="text-yellow-300">O SUCESSO!</span> Uma empresa
+        consolidada com muitos clientes e um fluxo de caixa recorrente está mais
+        perto do que vc imagina. Não deixe para depois{' '}
+        <span className="text-yellow-300">clica aqui em baixo</span> e saiba
+        mais!
       </h2>
 
       <button
         className={twMerge(
-          'cursor-pointer z-10 flex h-12 items-center justify-center gap-2 rounded-lg bg-blue-500 shadow-md',
+          'cursor-pointer z-10 flex h-14 items-center justify-center gap-2 rounded-lg bg-green-500 shadow-md',
           'transition-colors',
-          'active:bg-blue-300',
-          'hover:bg-blue-300',
-          'lg:max-w-64 lg:h-14 lg:px-6'
+          'active:bg-green-300',
+          'hover:bg-green-300',
+          'lg:max-w-96 lg:h-16 lg:px-6'
         )}
         aria-label="ebook"
       >
-        <span className="text-lg font-medium">Garanta seu E-BOOK</span>
+        <span className="text-xl font-medium text-white">
+          Garanta seu E-BOOK AGORA!
+        </span>
         <ArrowUpRight />
       </button>
 
