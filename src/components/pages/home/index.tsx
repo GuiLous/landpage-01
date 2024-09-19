@@ -5,6 +5,7 @@ import { Section02 } from '@/components/pages/home/components/section-02'
 import { Section03 } from '@/components/pages/home/components/section-03'
 import { Section04 } from '@/components/pages/home/components/section-04'
 import { Section05 } from '@/components/pages/home/components/section-05'
+import { SectionCta } from '@/components/pages/home/components/section-cta'
 
 import { FadeInUpComponent } from '@/components/shared/fade-in-view'
 import { Footer } from '@/components/shared/footer'
@@ -33,6 +34,10 @@ export default function Home() {
 
       <FadeInUpComponent>
         <Section03 />
+      </FadeInUpComponent>
+
+      <FadeInUpComponent>
+        <SectionCta />
       </FadeInUpComponent>
 
       <FadeInUpComponent>

@@ -17,7 +17,7 @@ export function Section05() {
       <h2
         className={twMerge(
           'text-center font-poppins text-4xl font-bold leading-normal',
-          'lg:text-start lg:max-w-[62%]'
+          'lg:text-justify lg:max-w-[62%]'
         )}
       >
         Não perca a oportunidade de chegar aonde você empreendedor sempre

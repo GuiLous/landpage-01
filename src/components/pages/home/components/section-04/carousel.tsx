@@ -59,8 +59,8 @@ export function Carousel() {
               <div className="flex h-full w-full flex-1 items-center justify-center bg-gray-500/50 p-4">
                 <p
                   className={twMerge(
-                    'text-center text-xl font-bold',
-                    'lg:text-2xl'
+                    'text-xl font-bold text-justify',
+                    'lg:text-2xl lg:max-w-[895px]'
                   )}
                 >
                   {info}
